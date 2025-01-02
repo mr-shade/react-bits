@@ -60,7 +60,7 @@ This project is always open to improvements and contributions, you can check the
 - [Blur Text](https://www.reactbits.dev/text-animations/blur-text)
 - [Wave Text](https://www.reactbits.dev/text-animations/wave-text)
 - [Shiny Text](https://www.reactbits.dev/text-animations/shiny-text)
-- + more
+- more
 
 ### ANIMATIONS
 
@@ -69,14 +69,20 @@ This project is always open to improvements and contributions, you can check the
 - [Follow Cursor](https://www.reactbits.dev/animations/follow-cursor)
 - [Magnet](https://www.reactbits.dev/animations/magnet)
 - [Fade](https://www.reactbits.dev/animations/fade)
-- + more
+- more
 
 ### COMPONENTS
 
 - [Stack](https://www.reactbits.dev/components/stack)
 - [Dock](https://www.reactbits.dev/components/dock)
 - [Masonry](https://www.reactbits.dev/components/masonry)
-- + more
+- more
+
+### BACKGROUNDS
+
+- [Hyperspeed](https://www.reactbits.dev/backgrounds/hyperspeed)
+- [Squares](https://www.reactbits.dev/backgrounds/squares)
+- more
 
 ## Maintainers
 
