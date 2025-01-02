@@ -9,12 +9,15 @@ import github from '../assets/common/icon-github.svg';
 import docs from '../assets/common/icon-docs.svg';
 import Fade from "../content/Animations/Fade/Fade";
 import { Link, Spinner } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const [stars, setStars] = useState(0);
   const [activeBeams, setActiveBeams] = useState([]);
   const activeBeamsRef = useRef([]); // Ref for managing active beams
-  const isMounted = useRef(false); // To avoid triggering unwanted renders du
+  const isMounted = useRef(false);
+  const navigate = useNavigate();
+
 
   useSingleEffect(() => {
     const fetchStars = async () => {
@@ -105,7 +108,7 @@ const LandingPage = () => {
               {stars ? <Fade blur><span>{String(stars)}</span></Fade> : <Spinner boxSize={3} />}
             </Link>
 
-            <div className="landing-button docs-button">
+            <div className="landing-button docs-button" onClick={() => navigate('/text-animations/split-text')}>
               <img src={docs} alt="github octocat" /> Read Docs
             </div>
           </div>

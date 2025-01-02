@@ -55,7 +55,7 @@ const Sidebar = () => {
                 onClick={() => setDrawerOpen(false)}
               />
               <Link to="/">
-                <Image height="25px" src={Logo} alt="Bits Logo" />
+                <Image height="25px" ml={'1em'} src={Logo} alt="Bits Logo" />
               </Link>
             </Flex>
           </DrawerHeader>

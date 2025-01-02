@@ -56,7 +56,7 @@
   border-radius: 20px !important;
   background: #060606 !important;
   font-size: 14px !important;
- }
+}
 
 .demo-container {
   width: 100%;
@@ -194,6 +194,10 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .category-wrapper {
+    position: static;
+  }
+
   .category-page {
     width: 100%;
     padding-top: 6em;
