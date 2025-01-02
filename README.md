@@ -14,6 +14,8 @@ Welcome to React Bits, your go-to for animated React components, and other goodi
 
 React Bits is a library of animated and interactive React components designed to make your UI development faster and more engaging. From text animations to responsive layouts, React Bits has got you covered.
 
+The main idea behind this project is to keep dependencies to a minimum and just offer code that you can plug into your projects without much hassle - this is why most components you will find here only use an animation library for smoother animations and shorter code and nothing else - the rest is up to you to customize according to your own needs.
+
 ## Key Features
 - A variety of animated text and UI components
 - Customizable and lightweight with minimal dependencies
@@ -58,6 +60,7 @@ This project is always open to improvements and contributions, you can check the
 - [Blur Text](https://www.reactbits.dev/text-animations/blur-text)
 - [Wave Text](https://www.reactbits.dev/text-animations/wave-text)
 - [Shiny Text](https://www.reactbits.dev/text-animations/shiny-text)
+- + more
 
 ### ANIMATIONS
 
@@ -66,12 +69,14 @@ This project is always open to improvements and contributions, you can check the
 - [Follow Cursor](https://www.reactbits.dev/animations/follow-cursor)
 - [Magnet](https://www.reactbits.dev/animations/magnet)
 - [Fade](https://www.reactbits.dev/animations/fade)
+- + more
 
 ### COMPONENTS
 
 - [Stack](https://www.reactbits.dev/components/stack)
 - [Dock](https://www.reactbits.dev/components/dock)
 - [Masonry](https://www.reactbits.dev/components/masonry)
+- + more
 
 ## Maintainers
 
