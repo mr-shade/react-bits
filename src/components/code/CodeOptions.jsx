@@ -36,10 +36,10 @@ const CodeOptions = ({ children, hasNoCss = false }) => {
     <Tabs mt={4}>
       <TabList borderBottom="1px solid #ffffff1c" mb={4}>
         <Tab _selected={{ color: "#00f0ff", borderBottomColor: "#00f0ff" }} sx={tabStyle}>
-          <Icon as={TbBrandCss3} />&nbsp;Vanilla
+          <Icon as={TbBrandCss3} />&nbsp;CSS
         </Tab>
         <Tab _selected={{ color: "#00f0ff", borderBottomColor: "#00f0ff" }} sx={tabStyle}>
-          <Icon as={RiTailwindCssLine} />&nbsp;Tailwind
+          <Icon as={RiTailwindCssLine} />&nbsp;Tailwind CSS
         </Tab>
       </TabList>
       <TabPanels>
