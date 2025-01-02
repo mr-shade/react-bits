@@ -1670,11 +1670,11 @@ const Squares = ({
   direction = 'right',
   speed = 1,
   borderColor = '#999',
-  hoverFillColor = '#222', // Default hover color set to semi-transparent red
+  squareSize = 40,
+  hoverFillColor = '#222',
 }) => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
-  const squareSize = 50; // Square size set to 50px
   const numSquaresX = useRef();
   const numSquaresY = useRef();
   const gridOffset = useRef({ x: 0, y: 0 });
@@ -1697,24 +1697,28 @@ const Squares = ({
     const drawGrid = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (let x = 0; x < numSquaresX.current; x++) {
-        for (let y = 0; y < numSquaresY.current; y++) {
-          const squareX = (x * squareSize) + (gridOffset.current.x % squareSize);
-          const squareY = (y * squareSize) + (gridOffset.current.y % squareSize);
+      const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
+      const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
 
-          // Fill square if hovered
-          if (hoveredSquare && hoveredSquare.x === x && hoveredSquare.y === y) {
+      for (let x = startX; x < canvas.width + squareSize; x += squareSize) {
+        for (let y = startY; y < canvas.height + squareSize; y += squareSize) {
+          const squareX = x - (gridOffset.current.x % squareSize);
+          const squareY = y - (gridOffset.current.y % squareSize);
+
+          if (
+            hoveredSquare &&
+            Math.floor((x - startX) / squareSize) === hoveredSquare.x &&
+            Math.floor((y - startY) / squareSize) === hoveredSquare.y
+          ) {
             ctx.fillStyle = hoverFillColor;
             ctx.fillRect(squareX, squareY, squareSize, squareSize);
           }
 
-          // Set the border color
           ctx.strokeStyle = borderColor;
           ctx.strokeRect(squareX, squareY, squareSize, squareSize);
         }
       }
 
-      // Draw radial gradient overlay
       const gradient = ctx.createRadialGradient(
         canvas.width / 2,
         canvas.height / 2,
@@ -1723,37 +1727,35 @@ const Squares = ({
         canvas.height / 2,
         Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height, 2)) / 2
       );
-      gradient.addColorStop(0, 'rgba(0, 0, 0, 0)'); // Transparent center
-      gradient.addColorStop(1, '#060606'); // Black edge
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+      gradient.addColorStop(1, '#060606');
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
     const updateAnimation = () => {
+      const effectiveSpeed = Math.max(speed, 0.1);
       switch (direction) {
         case 'right':
-          gridOffset.current.x -= speed;
+          gridOffset.current.x = (gridOffset.current.x - effectiveSpeed + squareSize) % squareSize;
           break;
         case 'left':
-          gridOffset.current.x += speed;
-          break;
-        case 'down':
-          gridOffset.current.y += speed;
+          gridOffset.current.x = (gridOffset.current.x + effectiveSpeed + squareSize) % squareSize;
           break;
         case 'up':
-          gridOffset.current.y -= speed;
+          gridOffset.current.y = (gridOffset.current.y + effectiveSpeed + squareSize) % squareSize;
+          break;
+        case 'down':
+          gridOffset.current.y = (gridOffset.current.y - effectiveSpeed + squareSize) % squareSize;
           break;
         case 'diagonal':
-          gridOffset.current.x -= speed;
-          gridOffset.current.y -= speed;
+          gridOffset.current.x = (gridOffset.current.x - effectiveSpeed + squareSize) % squareSize;
+          gridOffset.current.y = (gridOffset.current.y - effectiveSpeed + squareSize) % squareSize;
           break;
         default:
           break;
       }
-
-      if (Math.abs(gridOffset.current.x) > squareSize) gridOffset.current.x = 0;
-      if (Math.abs(gridOffset.current.y) > squareSize) gridOffset.current.y = 0;
 
       drawGrid();
       requestRef.current = requestAnimationFrame(updateAnimation);
@@ -1765,18 +1767,15 @@ const Squares = ({
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
 
-      // Calculate which square is being hovered over
-      const hoveredSquareX = Math.floor(
-        (mouseX - (gridOffset.current.x % squareSize)) / squareSize
-      );
-      const hoveredSquareY = Math.floor(
-        (mouseY - (gridOffset.current.y % squareSize)) / squareSize
-      );
+      const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
+      const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
+
+      const hoveredSquareX = Math.floor((mouseX + gridOffset.current.x - startX) / squareSize);
+      const hoveredSquareY = Math.floor((mouseY + gridOffset.current.y - startY) / squareSize);
 
       setHoveredSquare({ x: hoveredSquareX, y: hoveredSquareY });
     };
 
-    // Clear hover state when mouse leaves the canvas
     const handleMouseLeave = () => {
       setHoveredSquare(null);
     };
@@ -1792,7 +1791,7 @@ const Squares = ({
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare]);
+  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, squareSize]);
 
   return <canvas ref={canvasRef} className="squares-canvas"></canvas>;
 };
@@ -1810,11 +1809,11 @@ const Squares = ({
   direction = 'right',
   speed = 1,
   borderColor = '#999',
-  hoverFillColor = '#222', // Default hover color set to semi-transparent red
+  squareSize = 40,
+  hoverFillColor = '#222',
 }) => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
-  const squareSize = 50; // Square size set to 50px
   const numSquaresX = useRef();
   const numSquaresY = useRef();
   const gridOffset = useRef({ x: 0, y: 0 });
@@ -1837,24 +1836,28 @@ const Squares = ({
     const drawGrid = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (let x = 0; x < numSquaresX.current; x++) {
-        for (let y = 0; y < numSquaresY.current; y++) {
-          const squareX = (x * squareSize) + (gridOffset.current.x % squareSize);
-          const squareY = (y * squareSize) + (gridOffset.current.y % squareSize);
+      const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
+      const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
 
-          // Fill square if hovered
-          if (hoveredSquare && hoveredSquare.x === x && hoveredSquare.y === y) {
+      for (let x = startX; x < canvas.width + squareSize; x += squareSize) {
+        for (let y = startY; y < canvas.height + squareSize; y += squareSize) {
+          const squareX = x - (gridOffset.current.x % squareSize);
+          const squareY = y - (gridOffset.current.y % squareSize);
+
+          if (
+            hoveredSquare &&
+            Math.floor((x - startX) / squareSize) === hoveredSquare.x &&
+            Math.floor((y - startY) / squareSize) === hoveredSquare.y
+          ) {
             ctx.fillStyle = hoverFillColor;
             ctx.fillRect(squareX, squareY, squareSize, squareSize);
           }
 
-          // Set the border color
           ctx.strokeStyle = borderColor;
           ctx.strokeRect(squareX, squareY, squareSize, squareSize);
         }
       }
 
-      // Draw radial gradient overlay
       const gradient = ctx.createRadialGradient(
         canvas.width / 2,
         canvas.height / 2,
@@ -1863,37 +1866,35 @@ const Squares = ({
         canvas.height / 2,
         Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height, 2)) / 2
       );
-      gradient.addColorStop(0, 'rgba(0, 0, 0, 0)'); // Transparent center
-      gradient.addColorStop(1, '#060606'); // Black edge
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+      gradient.addColorStop(1, '#060606');
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
     const updateAnimation = () => {
+      const effectiveSpeed = Math.max(speed, 0.1);
       switch (direction) {
         case 'right':
-          gridOffset.current.x -= speed;
+          gridOffset.current.x = (gridOffset.current.x - effectiveSpeed + squareSize) % squareSize;
           break;
         case 'left':
-          gridOffset.current.x += speed;
-          break;
-        case 'down':
-          gridOffset.current.y += speed;
+          gridOffset.current.x = (gridOffset.current.x + effectiveSpeed + squareSize) % squareSize;
           break;
         case 'up':
-          gridOffset.current.y -= speed;
+          gridOffset.current.y = (gridOffset.current.y + effectiveSpeed + squareSize) % squareSize;
+          break;
+        case 'down':
+          gridOffset.current.y = (gridOffset.current.y - effectiveSpeed + squareSize) % squareSize;
           break;
         case 'diagonal':
-          gridOffset.current.x -= speed;
-          gridOffset.current.y -= speed;
+          gridOffset.current.x = (gridOffset.current.x - effectiveSpeed + squareSize) % squareSize;
+          gridOffset.current.y = (gridOffset.current.y - effectiveSpeed + squareSize) % squareSize;
           break;
         default:
           break;
       }
-
-      if (Math.abs(gridOffset.current.x) > squareSize) gridOffset.current.x = 0;
-      if (Math.abs(gridOffset.current.y) > squareSize) gridOffset.current.y = 0;
 
       drawGrid();
       requestRef.current = requestAnimationFrame(updateAnimation);
@@ -1905,18 +1906,15 @@ const Squares = ({
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
 
-      // Calculate which square is being hovered over
-      const hoveredSquareX = Math.floor(
-        (mouseX - (gridOffset.current.x % squareSize)) / squareSize
-      );
-      const hoveredSquareY = Math.floor(
-        (mouseY - (gridOffset.current.y % squareSize)) / squareSize
-      );
+      const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
+      const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
+
+      const hoveredSquareX = Math.floor((mouseX + gridOffset.current.x - startX) / squareSize);
+      const hoveredSquareY = Math.floor((mouseY + gridOffset.current.y - startY) / squareSize);
 
       setHoveredSquare({ x: hoveredSquareX, y: hoveredSquareY });
     };
 
-    // Clear hover state when mouse leaves the canvas
     const handleMouseLeave = () => {
       setHoveredSquare(null);
     };
@@ -1932,7 +1930,7 @@ const Squares = ({
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare]);
+  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, squareSize]);
 
   return <canvas ref={canvasRef} className="w-full h-full border-none block"></canvas>;
 };
