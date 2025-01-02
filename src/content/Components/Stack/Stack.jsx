@@ -68,7 +68,7 @@ function Stack() {
               alignItems: 'center',
               width: '300px',
               height: '300px',
-              backgroundColor: '#000',
+              backgroundColor: '#060606',
               border: '1px solid #ffffff1c',
               borderRadius: '10px',
               fontSize: '90px', // Adjust font size as needed

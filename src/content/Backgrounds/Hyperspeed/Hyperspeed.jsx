@@ -1082,7 +1082,7 @@ const Hyperspeed = ({ effectOptions = {
       const myApp = new App(container, effectOptions);
       myApp.loadAssets().then(myApp.init);
     })();
-  }, [effectOptions]);
+  }, []);
 
   return (
     <div id="lights" ref={hyperspeed}></div>

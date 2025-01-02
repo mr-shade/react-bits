@@ -15,7 +15,7 @@ const customTheme = extendTheme({
       'html, body': {
         minHeight: '100vh',
         fontFamily: '"DM Sans", sans-serif',
-        backgroundColor: '#000'
+        backgroundColor: '#060606'
       }
     }
   }

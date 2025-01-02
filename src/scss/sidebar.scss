@@ -1,12 +1,11 @@
 .sidebar,
 .sidebar-mobile {
-  background-color: #000 !important;
+  background-color: #060606 !important;
   min-width: 250px;
 }
 
 .sidebar {
-  padding-bottom: 6em !important;
-  // border-right: 1px solid #ffffff1c;
+  padding: 1.25rem 0 6em 0 !important;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -19,7 +18,7 @@
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: #000;
+    background: #060606;
     border-radius: 50px;
   }
 
@@ -96,7 +95,7 @@
 
   &:hover {
     border: 1px solid #ffffff1c;
-    background-color: #000 !important;
+    background-color: #060606 !important;
     color: #fff;
     transition: 0.3s ease;
 

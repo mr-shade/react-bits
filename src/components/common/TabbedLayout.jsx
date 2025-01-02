@@ -15,7 +15,7 @@ import ContributionSection from "./ContributionSection";
 const tabStyles = {
   _selected: { color: "#fff", bg: "#111" },
   borderRadius: "10px",
-  bg: "#000",
+  bg: "#060606",
   fontSize: "14px",
   border: "1px solid #ffffff1c",
   height: 9,

@@ -5,7 +5,6 @@ export const CATEGORIES = [
     subcategories: [
       'Split Text',
       'Blur Text',
-      'Wave Text',
       'Shiny Text',
       'Gradient Text',
       // 'Decrypt Hover',

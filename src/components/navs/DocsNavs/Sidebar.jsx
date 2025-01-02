@@ -18,10 +18,9 @@ import { ArrowForwardIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import { Link, useLocation } from 'react-router-dom';
 
-// Assuming you have the logo imported already
-import Logo from '../../assets/logos/bits-logo.svg';
+import Logo from '../../../assets/logos/reactbits-logo.svg';
 import { useRef, useState } from 'react';
-import { CATEGORIES } from '../../constants/CategoryConstants';
+import { CATEGORIES } from '../../../constants/CategoryConstants';
 
 const scrollToTop = () => window.scrollTo(0, 0);
 
@@ -31,11 +30,11 @@ const Sidebar = () => {
   const linkHoverColor = useColorModeValue('gray.800', 'gray');
   const btnRef = useRef();
 
-  const location = useLocation(); // Get the current location;
+  const location = useLocation();
 
   return (
     <>
-      <Box display={{ md: 'none' }} position="fixed" top={0} left={0} zIndex="overlay" p={"1em"} w={"100%"} bgColor={'#000'}>
+      <Box display={{ md: 'none' }} position="fixed" top={0} left={0} zIndex="overlay" p={"1em"} w={"100%"} bgColor={'#060606'}>
         <Flex alignItems="center" gap={"1em"}>
           <IconButton ref={btnRef} icon={<HamburgerIcon />} onClick={() => setDrawerOpen(true)} />
           <Link to="/">
@@ -67,12 +66,12 @@ const Sidebar = () => {
               ))}
             </VStack>
             <Divider my={4} />
-            <p className='useful-links'>Useful Links</p>
+            <p>Useful Links</p>
             <Flex direction="column">
-              <Link className="nav-link mobile-nav-link" to="https://github.com/DavidHDev/react-bits" target='_blank' display="block" mb={2} onClick={() => setDrawerOpen(false)}>
+              <Link to="https://github.com/DavidHDev/react-bits" target='_blank' display="block" mb={2} onClick={() => setDrawerOpen(false)}>
                 GitHub<ArrowForwardIcon boxSize={7} transform={"rotate(-45deg)"} position="relative" top="-1px" />
               </Link>
-              <Link className="nav-link mobile-nav-link" to="https://davidhaz.com/" target='_blank' display="block" mb={2} onClick={() => setDrawerOpen(false)}>
+              <Link to="https://davidhaz.com/" target='_blank' display="block" mb={2} onClick={() => setDrawerOpen(false)}>
                 Who made this?<ArrowForwardIcon boxSize={7} transform={"rotate(-45deg)"} position="relative" top="-1px" />
               </Link>
             </Flex>
@@ -92,7 +91,6 @@ const Sidebar = () => {
 };
 
 const Category = ({ category, handleClick, location }) => {
-  // Function to format the string for URLs by replacing spaces with dashes
   const formatForURL = (str) => str.replace(/\s+/g, '-').toLowerCase();
 
   return (
@@ -101,7 +99,7 @@ const Category = ({ category, handleClick, location }) => {
       <Stack spacing={0.5} pl={4} borderLeft={'1px solid #ffffff1c'}>
         {category.subcategories.map(sub => {
           const path = `/${formatForURL(category.name)}/${formatForURL(sub)}`;
-          const isActive = location.pathname === path; // Determine if this is the active link
+          const isActive = location.pathname === path;
 
           return (
             <Link

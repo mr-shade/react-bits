@@ -32,3 +32,8 @@ export const decodeLabel = (label) => label
   .split('-')
   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
+
+export const forceChakraDarkTheme = () => {
+  localStorage.setItem('chakra-ui-color-mode', 'dark');
+  console.info('Successfully set dark color mode.');
+};

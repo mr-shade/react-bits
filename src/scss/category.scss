@@ -1,3 +1,24 @@
+.category-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.main-nav {
+  width: 100%;
+  position: fixed;
+  padding: 0 4em;
+  left: 0;
+
+  .nav-items {
+    background: #000;
+    padding: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
 .category-name {
   color: white;
   font-weight: 900;
@@ -6,10 +27,10 @@
 }
 
 .category-page {
-  width: calc(100% - 314px);
+  width: calc(100% - 250px);
   position: absolute;
   right: 0px;
-  padding: 5em 4em 4em 2em;
+  padding: 5em 0 6em 1em;
   min-height: 100vh;
 
   .main-category {
@@ -33,15 +54,14 @@
 .code-highlighter {
   border: 1px solid #ffffff1c !important;
   border-radius: 20px !important;
-  background: #000 !important;
+  background: #060606 !important;
   font-size: 14px !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 238, 255, 0.08) !important;
 }
 
 .demo-container {
   width: 100%;
   margin-top: 1em;
-  background: linear-gradient(to top, #000, #111);
+  background: linear-gradient(to top, #060606, #111);
   border: 1px solid #ffffff1c;
   padding: 1em;
   border-radius: 20px;
@@ -105,7 +125,7 @@
 }
 
 .contribute-container {
-  background: linear-gradient(to bottom, #111, #000);
+  background: linear-gradient(to bottom, #111, #060606);
   border: 1px solid #161616;
   border-radius: 20px;
   margin-top: 1em;
@@ -113,7 +133,7 @@
 }
 
 .contribute-button {
-  background: linear-gradient(to bottom, #111, #000) !important;
+  background: linear-gradient(to bottom, #111, #060606) !important;
   border: 1px solid #222;
   transition: 0.5s ease;
 
@@ -203,7 +223,6 @@
 
 .count-up-text {
   font-size: 4rem;
-  // color: white;
   font-weight: bold;
 }
 
