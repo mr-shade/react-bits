@@ -12,9 +12,9 @@ We use the GitHub issue tracker to keep track of bugs, feature requests, and oth
 
 When creating branches for your contributions, please follow the following naming convention:
 
-`feat/<issue-number>-<short-description>`
+`feat/<feature-name>`
 
-For example, if the issue number on GitHub is 6 and you are working on a feature related to adding a new component, your branch name could be `feat/6-add-...`. This naming convention helps us to easily track and associate contributions with their respective issues.
+For example, if you are working on a feature related to adding a new component, your branch name could be `feat/add-new-component`. This naming convention helps us to easily track and associate contributions with their respective features.
 
 ## Pull Requests
 
@@ -24,6 +24,14 @@ We welcome pull requests from everyone. To submit a pull request, please follow 
 2. Make your changes in the new branch.
 3. Submit a pull request to the main repository's `main` branch.
 4. Provide a clear and descriptive title for your pull request, along with a detailed description of the changes you have made, and screenshots/videos where possible.
+5. For components updates, ensure that changes are reflected in all related files, such as:
+   - `react-bits/src/demo/Backgrounds/<ComponentName>Demo.jsx`
+   - `react-bits/src/constants/ExampleConstants.js`
+   - Preview and Code pages in the documentation, so users can copy the final component code.
+
+## Component Dependencies
+
+When updating or adding new components, avoid introducing additional dependencies unless absolutely necessary. Components should remain as agnostic as possible, allowing users to fully customize them to their preferences. Most components in React Bits only use animation libraries and THREE.js at most.
 
 ## Conclusion
 
