@@ -34,7 +34,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true }) => {
         fontSize="xs"
         backgroundColor={copied ? '#3EFF5D' : '#111'}
         color={copied ? 'black' : 'white'}
-        _hover={{ backgroundColor: `${copied ? '#3EFF5D' : '#222'}` }}
+        _hover={{ backgroundColor: `${copied ? '#7cff67' : '#222'}` }}
         _active={{ backgroundColor: '#00F0FF' }}
         transition="background-color 0.3s ease"
         onClick={handleCopy}

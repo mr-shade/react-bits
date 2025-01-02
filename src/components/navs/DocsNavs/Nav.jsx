@@ -1,12 +1,14 @@
-import { Box, Button, Divider, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Icon, IconButton, Image, Spinner, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Divider, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Icon, IconButton, Image, Spinner, Text, useDisclosure } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Logo from '../../../assets/logos/reactbits-logo.svg';
+import github from '../../../assets/common/icon-github.svg';
+import docs from '../../../assets/common/icon-docs.svg';
 import { ArrowForwardIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { IoLogoGithub } from "react-icons/io";
 import { TiStarFullOutline } from "react-icons/ti";
 import { useEffect, useState } from 'react';
 import { getStarsCount } from '../../../utils/utils';
 import { BlurText } from '../../../content/TextAnimations/BlurText/BlurText';
+import Fade from '../../../content/Animations/Fade/Fade';
 
 const Nav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,17 +43,26 @@ const Nav = () => {
 
         {/* Links for larger screens */}
         <Flex display={{ base: 'none', md: 'flex' }} alignItems="center" gap={8}>
-          <Button as="a" href='https://github.com/DavidHDev/react-bits' rel='noreferrer' target='_blank' bg="white" color="black" fontSize="xs" h={8} _hover={{ bg: 'white', transform: 'scale(0.95)' }}>
-            <Icon as={IoLogoGithub} />
-            &nbsp;Star on GitHub
-            <Icon ml={2} mr={0.5} as={TiStarFullOutline} />
-            {stars ? <BlurText delay={20} text={String(stars)} /> : <Box><Spinner boxSize={2} /></Box>}
-          </Button>
-          <Link to="/text-animations/split-text" mx={2} fontWeight="bold">
-            Docs
-          </Link>
+          <Fade blur>
+            <Button as="a" href='https://github.com/DavidHDev/react-bits' rel='noreferrer' target='_blank' bg="white" color="black" fontSize="xs" h={8} _hover={{ bg: 'white', transform: 'scale(0.95)' }}>
+              <Text ml={1}>Star on GitHub</Text>
+              <Icon ml={2} mr={0.5} as={TiStarFullOutline} />
+              {stars ? <BlurText delay={20} text={String(stars)} /> : <Box><Spinner boxSize={2} /></Box>}
+            </Button>
+          </Fade>
+
           <Link to="https://github.com/DavidHDev/react-bits" target='_blank' mx={2} fontWeight="bold">
-            GitHub<ArrowForwardIcon boxSize={5} transform={"rotate(-45deg)"} position="relative" top="-1px" />
+            <Flex gap={1}>
+              <img src={github} />
+              GitHub
+            </Flex>
+          </Link>
+          <Link to="/text-animations/split-text" mx={2} fontWeight="bold">
+            <Flex gap={1}>
+              <img src={docs} />
+              Docs
+            </Flex>
+
           </Link>
         </Flex>
       </Flex>
