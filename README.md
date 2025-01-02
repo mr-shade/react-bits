@@ -10,6 +10,15 @@ Welcome to React Bits, your go-to for animated React components, and other goodi
 	<br>
 </div>
 
+## About
+
+React Bits is a library of animated and interactive React components designed to make your UI development faster and more engaging. From text animations to responsive layouts, React Bits has got you covered.
+
+## Key Features
+- A variety of animated text and UI components
+- Customizable and lightweight with minimal dependencies
+- Designed to integrate seamlessly with any React project
+
 ## Links
 
 - [Official Website](https://reactbits.dev/)
