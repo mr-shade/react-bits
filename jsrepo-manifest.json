@@ -1,0 +1,489 @@
+[
+	{
+		"name": "Animations",
+		"blocks": [
+			{
+				"name": "AnimatedContainer",
+				"directory": "src/content/Animations/AnimatedContainer",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"AnimatedContainer.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "BlobCursor",
+				"directory": "src/content/Animations/BlobCursor",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"BlobCursor.jsx",
+					"BlobCursor.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Crosshair",
+				"directory": "src/content/Animations/Crosshair",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Crosshair.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"gsap@^3.12.5"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Fade",
+				"directory": "src/content/Animations/Fade",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Fade.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "FollowCursor",
+				"directory": "src/content/Animations/FollowCursor",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"FollowCursor.jsx",
+					"FollowCursor.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4",
+					"react-use-gesture@^9.1.3"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Magnet",
+				"directory": "src/content/Animations/Magnet",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Magnet.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "MagnetLines",
+				"directory": "src/content/Animations/MagnetLines",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"MagnetLines.jsx",
+					"MagnetLines.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "StarBorder",
+				"directory": "src/content/Animations/StarBorder",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"StarBorder.jsx",
+					"StarBorder.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	},
+	{
+		"name": "Backgrounds",
+		"blocks": [
+			{
+				"name": "GridMotion",
+				"directory": "src/content/Backgrounds/GridMotion",
+				"category": "Backgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"GridMotion.jsx",
+					"GridMotion.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"gsap@^3.12.5"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Hyperspeed",
+				"directory": "src/content/Backgrounds/Hyperspeed",
+				"category": "Backgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Hyperspeed.jsx",
+					"Hyperspeed.scss",
+					"HyperSpeedPresets.js"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"three@^0.167.1",
+					"postprocessing@^6.36.0"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Squares",
+				"directory": "src/content/Backgrounds/Squares",
+				"category": "Backgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Squares.jsx",
+					"Squares.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Waves",
+				"directory": "src/content/Backgrounds/Waves",
+				"category": "Backgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Waves.jsx",
+					"Waves.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	},
+	{
+		"name": "Components",
+		"blocks": [
+			{
+				"name": "BounceCards",
+				"directory": "src/content/Components/BounceCards",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"BounceCards.jsx",
+					"BounceCards.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"gsap@^3.12.5"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "DecayCard",
+				"directory": "src/content/Components/DecayCard",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"DecayCard.jsx",
+					"DecayCard.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"gsap@^3.12.5"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Dock",
+				"directory": "src/content/Components/Dock",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Dock.jsx",
+					"Dock.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "ElasticSlider",
+				"directory": "src/content/Components/ElasticSlider",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ElasticSlider.jsx",
+					"ElasticSlider.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24",
+					"@chakra-ui/react@^2.8.2",
+					"react-icons@^5.2.1"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Masonry",
+				"directory": "src/content/Components/Masonry",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Masonry.jsx",
+					"Masonry.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "RollingGallery",
+				"directory": "src/content/Components/RollingGallery",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"RollingGallery.jsx",
+					"RollingGallery.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "SpotlightCard",
+				"directory": "src/content/Components/SpotlightCard",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"SpotlightCard.jsx",
+					"SpotlightCard.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Stack",
+				"directory": "src/content/Components/Stack",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Stack.jsx",
+					"Stack.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4",
+					"react-use-gesture@^9.1.3"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Tilted Scroll",
+				"directory": "src/content/Components/Tilted Scroll",
+				"category": "Components",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"TiltedScroll.jsx",
+					"TiltedScroll.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	},
+	{
+		"name": "TextAnimations",
+		"blocks": [
+			{
+				"name": "BlurText",
+				"directory": "src/content/TextAnimations/BlurText",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"BlurText.jsx",
+					"BlurText.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "CountUp",
+				"directory": "src/content/TextAnimations/CountUp",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"CountUp.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "GradientText",
+				"directory": "src/content/TextAnimations/GradientText",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"GradientText.jsx",
+					"GradientText.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "ShinyText",
+				"directory": "src/content/TextAnimations/ShinyText",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ShinyText.jsx",
+					"ShinyText.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "SplitText",
+				"directory": "src/content/TextAnimations/SplitText",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"SplitText.jsx",
+					"SplitText.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "WaveText",
+				"directory": "src/content/TextAnimations/WaveText",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"WaveText.jsx",
+					"WaveText.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	}
+]
