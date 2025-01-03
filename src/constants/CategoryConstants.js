@@ -87,6 +87,8 @@ export const CATEGORIES = [
   }
 ];
 
+export const NEW = ['Bounce Cards', 'Waves'];
+
 // Used for landing page showcased components
 export const SHOWCASE = [
   {

@@ -20,7 +20,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Logo from '../../../assets/logos/reactbits-logo.svg';
 import { useRef, useState } from 'react';
-import { CATEGORIES } from '../../../constants/CategoryConstants';
+import { CATEGORIES, NEW } from '../../../constants/CategoryConstants';
 
 const scrollToTop = () => window.scrollTo(0, 0);
 
@@ -100,6 +100,8 @@ const Category = ({ category, handleClick, location }) => {
         {category.subcategories.map(sub => {
           const path = `/${formatForURL(category.name)}/${formatForURL(sub)}`;
           const isActive = location.pathname === path;
+          const isNew = NEW.includes(sub);
+
 
           return (
             <Link
@@ -108,7 +110,7 @@ const Category = ({ category, handleClick, location }) => {
               to={path}
               onClick={handleClick}
             >
-              {sub}
+              {isNew && <span className='new-tag'>New</span>} {sub}
             </Link>
           )
         }
