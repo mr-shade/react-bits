@@ -120,6 +120,21 @@
 				"_imports_": {}
 			},
 			{
+				"name": "SplashCursor",
+				"directory": "src/content/Animations/SplashCursor",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"SplashCursor.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
 				"name": "StarBorder",
 				"directory": "src/content/Animations/StarBorder",
 				"category": "Animations",
@@ -361,8 +376,8 @@
 				"_imports_": {}
 			},
 			{
-				"name": "Tilted Scroll",
-				"directory": "src/content/Components/Tilted Scroll",
+				"name": "TiltedScroll",
+				"directory": "src/content/Components/TiltedScroll",
 				"category": "Components",
 				"tests": false,
 				"subdirectory": true,
