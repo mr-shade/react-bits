@@ -29,7 +29,7 @@ jobs:
         run: npm install
 
       - name: Build jsrepo-manifest.json
-        run: npm build:registry
+        run: npm run build:registry
 
       - name: Create pull request with changes
         uses: peter-evans/create-pull-request@v7
