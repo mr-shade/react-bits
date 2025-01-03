@@ -5,11 +5,10 @@ import { AnimatedContainer } from '../../../content/Animations/AnimatedContainer
 import Fade from '../../../content/Animations/Fade/Fade';
 import Squares from '../../../content/Backgrounds/Squares/Squares';
 import Hyperspeed from '../../../content/Backgrounds/Hyperspeed/Hyperspeed';
-import DecayCard from '../../../content/Components/DecayCard/DecayCard';
-import decayDemo from '../../../assets/decay-demo.svg';
 import ShinyText from '../../../content/TextAnimations/ShinyText/ShinyText';
 import GradientText from '../../../content/TextAnimations/GradientText/GradientText';
 import { useNavigate } from 'react-router-dom';
+import Waves from '../../../content/Backgrounds/Waves/Waves';
 
 const LandingComponentNav = () => {
   const navigate = useNavigate();
@@ -60,9 +59,8 @@ const LandingComponentNav = () => {
         </div>
       </AnimatedContainer>
       <AnimatedContainer>
-        <div className="square feat-2" onClick={() => navigate('/components/decay-card')}>
-          <DecayCard width={'100%'} height={'100%'} image={decayDemo}>
-          </DecayCard>
+        <div className="square feat-2" onClick={() => navigate('/backgrounds/waves')}>
+          <Waves lineColor='#ff9346' xGap={8} yGap={8}/>
         </div>
       </AnimatedContainer>
       <Fade blur>
