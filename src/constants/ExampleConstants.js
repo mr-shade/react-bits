@@ -22,7 +22,7 @@ export const SplitText = ({ text, className = '', delay = 100 }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current); // Unobserve after triggering the animation
+          observer.unobserve(ref.current);
         }
       },
       { threshold: 0.1, rootMargin: '-100px' }
@@ -79,7 +79,7 @@ export const SplitText = ({ text, className = '', delay = 100 }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current); // Unobserve after triggering the animation
+          observer.unobserve(ref.current);
         }
       },
       { threshold: 0.1, rootMargin: '-100px' }
@@ -145,7 +145,7 @@ export const BlurText = ({ text, delay = 200, className = '' }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current); // Unobserve after triggering the animation
+          observer.unobserve(ref.current);
         }
       },
       { threshold: 0.1 }
@@ -197,7 +197,7 @@ export const BlurText = ({ text, delay = 200, className = '' }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current); // Unobserve after triggering the animation
+          observer.unobserve(ref.current);
         }
       },
       { threshold: 0.1 }
@@ -406,7 +406,7 @@ export const AnimatedContainer = ({ children, distance = 100, direction = 'verti
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current); // Unobserve after triggering the animation
+          observer.unobserve(ref.current);
         }
       },
       { threshold: 0.1 }
@@ -454,7 +454,7 @@ const Fade = ({ children, blur = false }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current); // Unobserve after triggering the animation
+          observer.unobserve(ref.current);
         }
       },
       { threshold: 0.1 }
@@ -866,7 +866,6 @@ export default function FollowCursor() {
 
   useEffect(() => {
     if (!isMobile()) {
-      // For desktop: Add mouse move listener to follow cursor
       const handleMouseMove = (event) => {
         const px = event.clientX;
         const py = event.clientY;
@@ -880,15 +879,12 @@ export default function FollowCursor() {
         });
       };
 
-      // Add event listener
       window.addEventListener("mousemove", handleMouseMove);
 
-      // Clean up listener on component unmount
       return () => {
         window.removeEventListener("mousemove", handleMouseMove);
       };
     } else {
-      // Prevent default gestures on iOS
       const preventDefault = (e) => e.preventDefault();
       document.addEventListener("gesturestart", preventDefault);
       document.addEventListener("gesturechange", preventDefault);
@@ -900,7 +896,6 @@ export default function FollowCursor() {
     }
   }, [api, y, x]);
 
-  // Apply gestures for mobile drag
   useGesture(
     {
       onDrag: ({ active, offset: [x, y] }) =>
@@ -910,7 +905,6 @@ export default function FollowCursor() {
     { domTarget, eventOptions: { passive: false }, enabled: isMobile() }
   );
 
-  // Handle wheel gesture for desktop
   useGesture(
     {
       onWheel: ({ event, offset: [, y] }) => {
@@ -1011,10 +1005,9 @@ const Magnet = ({ children, padding = 100, disabled = false }) => {
         const distX = Math.abs(centerX - e.clientX);
         const distY = Math.abs(centerY - e.clientY);
 
-        // Check if the mouse is within the padding area
         if (distX < width / 2 + padding && distY < height / 2 + padding) {
           setIsActive(true);
-          // Calculate the offset
+
           const offsetX = (e.clientX - centerX) / 2;
           const offsetY = (e.clientY - centerY) / 2;
           setPosition({ x: offsetX, y: offsetY });
@@ -1025,10 +1018,8 @@ const Magnet = ({ children, padding = 100, disabled = false }) => {
       }
     };
 
-    // Attach mouse move event listener
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Clean up event listener on component unmount
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
@@ -1052,6 +1043,206 @@ const Magnet = ({ children, padding = 100, disabled = false }) => {
 export default Magnet;`
   },
 
+  // ! MAGNET LINES ------------------------------------------------------------------------
+  magnetLines: {
+    usage: `import MagnetLines from './MagnetLines';
+
+<MagnetLines
+  rows={9}
+  columns={9}
+  containerSize="60vmin"
+  lineColor="tomato"
+  lineWidth="0.8vmin"
+  lineHeight="5vmin"
+  baseAngle={0}
+  style={{ margin: "2rem auto" }}
+/>`,
+    code: `import { useRef, useEffect } from "react";
+import "./MagnetLines.css";
+
+export default function MagnetLines({
+  rows = 9,
+  columns = 9,
+  containerSize = "80vmin",
+  lineColor = "#efefef",
+  lineWidth = "1vmin",
+  lineHeight = "6vmin",
+  baseAngle = -10,
+  className = "",
+  style = {}
+}) {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const items = container.querySelectorAll("span");
+
+    const onPointerMove = (pointer) => {
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const centerX = rect.x + rect.width / 2;
+        const centerY = rect.y + rect.height / 2;
+
+        const b = pointer.x - centerX;
+        const a = pointer.y - centerY;
+        const c = Math.sqrt(a * a + b * b) || 1;
+        const r =
+          (Math.acos(b / c) * 180) / Math.PI * (pointer.y > centerY ? 1 : -1);
+
+        item.style.setProperty("--rotate", \`\${r}deg\`);
+      });
+    };
+
+    window.addEventListener("pointermove", onPointerMove);
+
+    if (items.length) {
+      const middleIndex = Math.floor(items.length / 2);
+      const rect = items[middleIndex].getBoundingClientRect();
+      onPointerMove({ x: rect.x, y: rect.y });
+    }
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+    };
+  }, []);
+
+  const total = rows * columns;
+  const spans = Array.from({ length: total }, (_, i) => (
+    <span
+      key={i}
+      style={{
+        "--rotate": \`\${baseAngle}deg\`,
+        backgroundColor: lineColor,
+        width: lineWidth,
+        height: lineHeight
+      }}
+    />
+  ));
+
+  return (
+    <div
+      ref={containerRef}
+      className={\`magnetLines-container \${className}\`}
+      style={{
+        display: "grid",
+        gridTemplateColumns: \`repeat(\${columns}, 1fr)\`,
+        gridTemplateRows: \`repeat(\${rows}, 1fr)\`,
+        width: containerSize,
+        height: containerSize,
+        ...style
+      }}
+    >
+      {spans}
+    </div>
+  );
+}`,
+    css: `.magnetLines-container {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+
+  /* Center each span in its grid cell */
+  justify-items: center;
+  align-items: center;
+
+  width: 80vmin;
+  height: 80vmin;
+}
+
+.magnetLines-container span {
+  display: block;
+  transform-origin: center; /* so rotation pivots at the center */
+  will-change: transform;
+  transform: rotate(var(--rotate));
+}`,
+    tailwind: `import { useRef, useEffect } from "react";
+
+export default function MagnetLines({
+  rows = 9,
+  columns = 9,
+  containerSize = "80vmin",
+  lineColor = "#efefef",
+  lineWidth = "1vmin",
+  lineHeight = "6vmin",
+  baseAngle = -10,
+  className = "",
+  style = {}
+}) {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const items = container.querySelectorAll("span");
+
+    const onPointerMove = (pointer) => {
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const centerX = rect.x + rect.width / 2;
+        const centerY = rect.y + rect.height / 2;
+
+        const b = pointer.x - centerX;
+        const a = pointer.y - centerY;
+        const c = Math.sqrt(a * a + b * b) || 1;
+        const r =
+          ((Math.acos(b / c) * 180) / Math.PI) * (pointer.y > centerY ? 1 : -1);
+
+        item.style.setProperty("--rotate", \`\${r}deg\`);
+      });
+    };
+
+    window.addEventListener("pointermove", onPointerMove);
+
+    if (items.length) {
+      const middleIndex = Math.floor(items.length / 2);
+      const rect = items[middleIndex].getBoundingClientRect();
+      onPointerMove({ x: rect.x, y: rect.y });
+    }
+
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+    };
+  }, []);
+
+  // Create a grid’s worth of spans
+  const total = rows * columns;
+  const spans = Array.from({ length: total }, (_, i) => (
+    <span
+      key={i}
+      className="block origin-center"
+      style={{
+        backgroundColor: lineColor,
+        width: lineWidth,
+        height: lineHeight,
+        "--rotate": \`\${baseAngle}deg\`,
+        transform: "rotate(var(--rotate))",
+        willChange: "transform"
+      }}
+    />
+  ));
+
+  return (
+    <div
+      ref={containerRef}
+      className={\`grid place-items-center \${className}\`}
+      style={{
+        gridTemplateColumns: \`repeat(\${columns}, 1fr)\`,
+        gridTemplateRows: \`repeat(\${rows}, 1fr)\`,
+        width: containerSize,
+        height: containerSize,
+        ...style
+      }}
+    >
+      {spans}
+    </div>
+  );
+}`
+  },
+
   // ! DOCK ------------------------------------------------------------------------
 
   dock: {
@@ -1061,7 +1252,7 @@ export default Magnet;`
 <Dock collapsible={false} position="left" responsive="bottom" />`,
     code: `import { useState, useEffect } from 'react';
 import { useSpring, animated } from '@react-spring/web';
-import './Dock.css'; // Import your CSS for styling
+import './Dock.css';
 
 const Dock = ({ position = 'bottom', collapsible = false, responsive = 'bottom' }) => {
   const [hoverIndex, setHoverIndex] = useState(null);
@@ -1090,17 +1281,16 @@ const Dock = ({ position = 'bottom', collapsible = false, responsive = 'bottom' 
     }
   };
 
-  // Update position based on screen size and responsive prop
   useEffect(() => {
     const updatePosition = () => {
-      if (responsive && window.innerWidth <= 768) { // Adjust threshold as needed
+      if (responsive && window.innerWidth <= 768) {
         setCurrentPosition(responsive);
       } else {
         setCurrentPosition(position);
       }
     };
 
-    updatePosition(); // Initial update
+    updatePosition();
 
     window.addEventListener('resize', updatePosition);
     return () => window.removeEventListener('resize', updatePosition);
@@ -1293,7 +1483,7 @@ function Masonry({ data }) {
       } else if (window.matchMedia('(min-width: 600px)').matches) {
         setColumns(3);
       } else {
-        setColumns(1); // Breakpoint for mobile devices
+        setColumns(1);
       }
     };
 
@@ -1312,7 +1502,7 @@ function Masonry({ data }) {
       }
     };
 
-    handleResize(); // Set initial width
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [ref]);
@@ -1329,7 +1519,7 @@ function Masonry({ data }) {
   }, [columns, data, width]);
 
   const transitions = useTransition(gridItems, {
-    keys: (item) => item.id, // Use a unique key based on the id
+    keys: (item) => item.id,
     from: ({ x, y, width, height }) => ({ x, y, width, height, opacity: 0 }),
     enter: ({ x, y, width, height }) => ({ x, y, width, height, opacity: 1 }),
     update: ({ x, y, width, height }) => ({ x, y, width, height }),
@@ -1338,14 +1528,13 @@ function Masonry({ data }) {
     trail: 25,
   });
 
-  // Render the grid
   return (
     <div ref={ref} className='masonry' style={{ height: Math.max(...heights) }}>
       {transitions((style, item) => (
         <a.div key={item.id} style={style}>
           <div
             style={{
-              backgroundColor: '#ffffff', // Set background if needed
+              backgroundColor: '#ffffff',
               width: '100%',
               height: '100%',
               backgroundImage: \`url(\${item.image})\`,
@@ -1485,10 +1674,10 @@ module.exports = {
     usage: `import GradientText from './GradientText'
     
 <GradientText
-  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]} // Custom gradient colors
-  animationSpeed={3} // Custom animation speed in seconds
-  showBorder={false} // Show or hide border
-  className="custom-class" // Add one or more custom classes
+  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+  animationSpeed={3}
+  showBorder={false}
+  className="custom-class"
 >
   Add a splash of color!
 </GradientText>`,
@@ -1497,9 +1686,9 @@ module.exports = {
 export default function GradientText({
   children,
   className = "",
-  colors = ["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"], // Default colors
-  animationSpeed = 8, // Default animation speed in seconds
-  showBorder = false, // Default overlay visibility
+  colors = ["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"],
+  animationSpeed = 8,
+  showBorder = false,
 }) {
   const gradientStyle = {
     backgroundImage: \`linear-gradient(to right, \${colors.join(", ")})\`,
@@ -1582,13 +1771,13 @@ export default function GradientText({
     tailwind: `export default function GradientText({
   children,
   className = "",
-  colors = ["#ffaa40", "#9c40ff", "#ffaa40"], // Default colors
-  animationSpeed = 8, // Default animation speed in seconds
-  showBorder = false, // Default overlay visibility
+  colors = ["#ffaa40", "#9c40ff", "#ffaa40"],
+  animationSpeed = 8,
+  showBorder = false,
 }) {
   const gradientStyle = {
     backgroundImage: \`linear-gradient(to right, \${colors.join(", ")})\`,
-    animationDuration: \`\${animationSpeed}s\`, // This will be applied directly to the style
+    animationDuration: \`\${animationSpeed}s\`,
   };
 
   return (
@@ -1601,7 +1790,6 @@ export default function GradientText({
           style={{
             ...gradientStyle,
             backgroundSize: "300% 100%",
-            // Direct animation style will override Tailwind animation duration
           }}
         >
           <div
@@ -1644,7 +1832,7 @@ module.exports = {
         },
       },
       animation: {
-        gradient: 'gradient 8s linear infinite', // Use the keyframes defined above
+        gradient: 'gradient 8s linear infinite'
       },
     },
   },
@@ -1832,7 +2020,7 @@ export default function BounceCards({
     
 <Squares 
   speed={0.5} 
-  size={40} //pixels
+  size={40}
   direction='diagonal' // up, down, left, right, diagonal
   borderColor='#fff'
   hoverFillColor='#222'
@@ -2131,7 +2319,6 @@ export default Squares;`
     code: `import { useRef, useEffect } from "react";
 import './Waves.css';
 
-// Noise + Grad (unchanged)
 class Grad {
   constructor(x, y, z) {
     this.x = x; this.y = y; this.z = z;
@@ -2251,7 +2438,6 @@ export default function Waves({
       const lines = linesRef.current, mouse = mouseRef.current, noise = noiseRef.current;
       lines.forEach((pts) => {
         pts.forEach((p) => {
-          // Wave noise
           const move = noise.perlin2(
             (p.x + time * waveSpeedX) * 0.002,
             (p.y + time * waveSpeedY) * 0.0015
@@ -2259,7 +2445,6 @@ export default function Waves({
           p.wave.x = Math.cos(move) * waveAmpX;
           p.wave.y = Math.sin(move) * waveAmpY;
 
-          // Mouse effect
           const dx = p.x - mouse.sx, dy = p.y - mouse.sy;
           const dist = Math.hypot(dx, dy), l = Math.max(175, mouse.vs);
           if (dist < l) {
@@ -2268,14 +2453,14 @@ export default function Waves({
             p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00065;
             p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065;
           }
-          // Tension + friction
+
           p.cursor.vx += (0 - p.cursor.x) * tension;
           p.cursor.vy += (0 - p.cursor.y) * tension;
           p.cursor.vx *= friction;
           p.cursor.vy *= friction;
           p.cursor.x += p.cursor.vx * 2;
           p.cursor.y += p.cursor.vy * 2;
-          // Clamp
+
           p.cursor.x = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.x));
           p.cursor.y = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.y));
         });
@@ -2310,10 +2495,10 @@ export default function Waves({
 
     function tick(t) {
       const mouse = mouseRef.current;
-      // Smooth mouse
+
       mouse.sx += (mouse.x - mouse.sx) * 0.1;
       mouse.sy += (mouse.y - mouse.sy) * 0.1;
-      // Velocity
+
       const dx = mouse.x - mouse.lx, dy = mouse.y - mouse.ly;
       const d = Math.hypot(dx, dy);
       mouse.v = d;
@@ -2321,7 +2506,7 @@ export default function Waves({
       mouse.vs = Math.min(100, mouse.vs);
       mouse.lx = mouse.x; mouse.ly = mouse.y;
       mouse.a = Math.atan2(dy, dx);
-      // Animate circle
+
       container.style.setProperty("--x", \`\${mouse.sx}px\`);
       container.style.setProperty("--y", \`\${mouse.sy}px\`);
 
@@ -2415,7 +2600,6 @@ export default function Waves({
 }`,
     tailwind: `import React, { useRef, useEffect } from "react";
 
-// Noise + Grad (unchanged)
 class Grad {
   constructor(x, y, z) {
     this.x = x; this.y = y; this.z = z;
@@ -2537,7 +2721,6 @@ export default function Waves({
       const noise = noiseRef.current;
       lines.forEach((pts) => {
         pts.forEach((p) => {
-          // Wave noise
           const move = noise.perlin2(
             (p.x + time * waveSpeedX) * 0.002,
             (p.y + time * waveSpeedY) * 0.0015
@@ -2545,7 +2728,6 @@ export default function Waves({
           p.wave.x = Math.cos(move) * waveAmpX;
           p.wave.y = Math.sin(move) * waveAmpY;
 
-          // Mouse effect
           const dx = p.x - mouse.sx, dy = p.y - mouse.sy;
           const dist = Math.hypot(dx, dy), l = Math.max(175, mouse.vs);
           if (dist < l) {
@@ -2554,14 +2736,14 @@ export default function Waves({
             p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00065;
             p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065;
           }
-          // Tension + friction
+
           p.cursor.vx += (0 - p.cursor.x) * tension;
           p.cursor.vy += (0 - p.cursor.y) * tension;
           p.cursor.vx *= friction;
           p.cursor.vy *= friction;
           p.cursor.x += p.cursor.vx * 2;
           p.cursor.y += p.cursor.vy * 2;
-          // Clamp
+
           p.cursor.x = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.x));
           p.cursor.y = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.y));
         });
@@ -2596,10 +2778,10 @@ export default function Waves({
 
     function tick(t) {
       const mouse = mouseRef.current;
-      // Smooth mouse
+
       mouse.sx += (mouse.x - mouse.sx) * 0.1;
       mouse.sy += (mouse.y - mouse.sy) * 0.1;
-      // Velocity
+
       const dx = mouse.x - mouse.lx, dy = mouse.y - mouse.ly;
       const d = Math.hypot(dx, dy);
       mouse.v = d;
@@ -2607,7 +2789,7 @@ export default function Waves({
       mouse.vs = Math.min(100, mouse.vs);
       mouse.lx = mouse.x; mouse.ly = mouse.y;
       mouse.a = Math.atan2(dy, dx);
-      // Animate circle
+
       container.style.setProperty("--x", \`\${mouse.sx}px\`);
       container.style.setProperty("--y", \`\${mouse.sy}px\`);
 
@@ -2665,8 +2847,6 @@ export default function Waves({
         backgroundColor,
         ...style
       }}
-      // Tailwind classes: fill entire area, position absolute,
-      // hide overflow, plus any custom classes passed in
       className={\`absolute top-0 left-0 w-full h-full overflow-hidden \${className}\`}
     >
       {/* 
@@ -2707,10 +2887,8 @@ const Component = () => {
     code: `import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-// Linear interpolation function
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-// Function to get mouse position relative to the container or viewport
 const getMousePos = (e, container) => {
   if (container) {
     const bounds = container.getBoundingClientRect();
@@ -2723,14 +2901,12 @@ const getMousePos = (e, container) => {
 };
 
 const Crosshair = ({ color = 'white', containerRef = null }) => {
-  // Refs for DOM elements
   const cursorRef = useRef(null);
   const lineHorizontalRef = useRef(null);
   const lineVerticalRef = useRef(null);
   const filterXRef = useRef(null);
   const filterYRef = useRef(null);
 
-  // Track mouse position
   let mouse = { x: 0, y: 0 };
 
   useEffect(() => {
@@ -2761,7 +2937,6 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       ty: { previous: 0, current: 0, amt: 0.15 },
     };
 
-    // Initialize gsap settings
     gsap.set([lineHorizontalRef.current, lineVerticalRef.current], { opacity: 0 });
 
     const onMouseMove = () => {
@@ -2804,11 +2979,9 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       turbulence: 0,
     });
 
-    // Functions to control timeline
     const enter = () => tl.restart();
     const leave = () => tl.progress(1).kill();
 
-    // Render loop for animation
     const render = () => {
       renderedStyles.tx.current = mouse.x;
       renderedStyles.ty.current = mouse.y;
@@ -2823,7 +2996,6 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       requestAnimationFrame(render);
     };
 
-    // Add link mouse effects
     const links = containerRef?.current
       ? containerRef.current.querySelectorAll('a')
       : document.querySelectorAll('a');
@@ -2833,7 +3005,6 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       link.addEventListener('mouseleave', leave);
     });
 
-    // Cleanup event listeners on unmount
     return () => {
       target.removeEventListener('mousemove', handleMouseMove);
       target.removeEventListener('mousemove', onMouseMove);
@@ -2902,10 +3073,8 @@ export default Crosshair;`,
     tailwind: `import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-// Linear interpolation function
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-// Function to get mouse position relative to the container or viewport
 const getMousePos = (e, container) => {
   if (container) {
     const bounds = container.getBoundingClientRect();
@@ -2918,14 +3087,12 @@ const getMousePos = (e, container) => {
 };
 
 const Crosshair = ({ color = "white", containerRef = null }) => {
-  // Refs for DOM elements
   const cursorRef = useRef(null);
   const lineHorizontalRef = useRef(null);
   const lineVerticalRef = useRef(null);
   const filterXRef = useRef(null);
   const filterYRef = useRef(null);
 
-  // Track mouse position
   let mouse = { x: 0, y: 0 };
 
   useEffect(() => {
@@ -2959,7 +3126,6 @@ const Crosshair = ({ color = "white", containerRef = null }) => {
       ty: { previous: 0, current: 0, amt: 0.15 },
     };
 
-    // Initialize gsap settings
     gsap.set([lineHorizontalRef.current, lineVerticalRef.current], {
       opacity: 0,
     });
@@ -2983,7 +3149,6 @@ const Crosshair = ({ color = "white", containerRef = null }) => {
 
     const primitiveValues = { turbulence: 0 };
 
-    // Timeline for turbulence effect
     const tl = gsap
       .timeline({
         paused: true,
@@ -3012,11 +3177,9 @@ const Crosshair = ({ color = "white", containerRef = null }) => {
         turbulence: 0,
       });
 
-    // Functions to control timeline
     const enter = () => tl.restart();
     const leave = () => tl.progress(1).kill();
 
-    // Render loop for animation
     const render = () => {
       renderedStyles.tx.current = mouse.x;
       renderedStyles.ty.current = mouse.y;
@@ -3035,7 +3198,6 @@ const Crosshair = ({ color = "white", containerRef = null }) => {
       requestAnimationFrame(render);
     };
 
-    // Add link mouse effects
     const links = containerRef?.current
       ? containerRef.current.querySelectorAll("a")
       : document.querySelectorAll("a");
@@ -3045,7 +3207,6 @@ const Crosshair = ({ color = "white", containerRef = null }) => {
       link.addEventListener("mouseleave", leave);
     });
 
-    // Cleanup event listeners on unmount
     return () => {
       target.removeEventListener("mousemove", handleMouseMove);
       target.removeEventListener("mousemove", onMouseMove);
@@ -3123,7 +3284,7 @@ export default function CountUp({
   from = 0,
   direction = "up",
   delay = 0,
-  duration = 2, // Duration of the animation in seconds
+  duration = 2,
   className = "",
   startWhen = true,
   separator = "",
@@ -3133,9 +3294,8 @@ export default function CountUp({
   const ref = useRef(null);
   const motionValue = useMotionValue(direction === "down" ? to : from);
 
-  // Calculate damping and stiffness based on duration
-  const damping = 20 + 40 * (1 / duration); // Adjust this formula for finer control
-  const stiffness = 100 * (1 / duration);   // Adjust this formula for finer control
+  const damping = 20 + 40 * (1 / duration);
+  const stiffness = 100 * (1 / duration);
 
   const springValue = useSpring(motionValue, {
     damping,
@@ -3144,14 +3304,12 @@ export default function CountUp({
 
   const isInView = useInView(ref, { once: true, margin: "0px" });
 
-  // Set initial text content to the initial value based on direction
   useEffect(() => {
     if (ref.current) {
       ref.current.textContent = String(direction === "down" ? to : from);
     }
   }, [from, to, direction]);
 
-  // Start the animation when in view and startWhen is true
   useEffect(() => {
     if (isInView && startWhen) {
       if (typeof onStart === "function") {
@@ -3175,7 +3333,6 @@ export default function CountUp({
     }
   }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration]);
 
-  // Update text content with formatted number on spring value change
   useEffect(() => {
     const unsubscribe = springValue.on("change", (latest) => {
       if (ref.current) {
@@ -3835,7 +3992,7 @@ const Hyperspeed = ({ effectOptions = {
         this.camera.position.y = 8;
         this.camera.position.x = 0;
         this.scene = new THREE.Scene();
-        this.scene.background = null;  // Ensure scene background is transparent
+        this.scene.background = null;
 
         let fog = new THREE.Fog(
           options.colors.background,
@@ -4123,7 +4280,7 @@ const Hyperspeed = ({ effectOptions = {
           let length = random(options.carLightsLength);
           let speed = random(this.speed);
 
-          let carLane = i % options.lanesPerRoad;  // Fix lane assignment to spread across lanes
+          let carLane = i % options.lanesPerRoad;
           let laneX = carLane * laneWidth - options.roadWidth / 2 + laneWidth / 2;
 
           let carWidth = random(options.carWidthPercentage) * laneWidth;
@@ -4500,20 +4657,15 @@ const Hyperspeed = ({ effectOptions = {
     \`;
 
     const roadMarkings_fragment = \`
-      uv.y = mod(uv.y + uTime * 0.05, 1.);  // Adjust speed of markings
+      uv.y = mod(uv.y + uTime * 0.05, 1.);
       float laneWidth = 1.0 / uLanes;
       float brokenLineWidth = laneWidth * uBrokenLinesWidthPercentage;
       float laneEmptySpace = 1. - uBrokenLinesLengthPercentage;
 
-      float brokenLines = step(1.0 - brokenLineWidth, fract(uv.x * 2.0)) * step(laneEmptySpace, fract(uv.y * 10.0));  // Dashes in the middle
-      float sideLines = step(1.0 - brokenLineWidth, fract((uv.x - laneWidth * (uLanes - 1.0)) * 2.0)) + step(brokenLineWidth, uv.x); // Side continuous lines
+      float brokenLines = step(1.0 - brokenLineWidth, fract(uv.x * 2.0)) * step(laneEmptySpace, fract(uv.y * 10.0));
+      float sideLines = step(1.0 - brokenLineWidth, fract((uv.x - laneWidth * (uLanes - 1.0)) * 2.0)) + step(brokenLineWidth, uv.x);
 
       brokenLines = mix(brokenLines, sideLines, uv.x);
-      // color = mix(color, uBrokenLinesColor, brokenLines);
-
-      // vec2 noiseFreq = vec2(4., 7000.);
-      // float roadNoise = random(floor(uv * noiseFreq) / noiseFreq) * 0.02 - 0.01; 
-      // color += roadNoise;
     \`;
 
     const roadFragment = roadBaseFragment
@@ -4621,7 +4773,6 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
     return \`rotate3d(0, 1, 0, \${value}deg)\`;
   });
 
-  // Autoplay effect with adjusted timing
   useEffect(() => {
     if (autoplay) {
       autoplayRef.current = setInterval(() => {
@@ -4645,11 +4796,10 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Pause on hover with smooth transition
   const handleMouseEnter = () => {
     if (autoplay && pauseOnHover) {
       clearInterval(autoplayRef.current);
-      controls.stop(); // Stop the animation smoothly
+      controls.stop();
     }
   };
 
@@ -5184,7 +5334,6 @@ function Slider({
         newValue = Math.round(newValue / stepSize) * stepSize;
       }
 
-      // Clamp the value between startingValue and maxValue
       newValue = Math.min(Math.max(newValue, startingValue), maxValue);
       setValue(newValue);
       clientX.jump(e.clientX);
@@ -5201,7 +5350,6 @@ function Slider({
   };
 
   const getRangePercentage = () => {
-    // Calculate percentage based on startingValue and maxValue
     const totalRange = maxValue - startingValue;
     if (totalRange === 0) return 0;
 
@@ -5291,7 +5439,6 @@ function Slider({
   );
 }
 
-// Sigmoid-based decay function
 function decay(value, max) {
   if (max === 0) {
     return 0;
@@ -5624,7 +5771,6 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
   const rowRefs = useRef([]); // Array of refs for each row
   const mouseXRef = useRef(window.innerWidth / 2);
 
-  // Ensure the grid has 28 items (4 rows x 7 columns) by default
   const totalItems = 28;
   const defaultItems = Array.from({ length: totalItems }, (_, index) => \`Item \${index + 1}\`);
   const combinedItems = items.length > 0 ? items.slice(0, totalItems) : defaultItems;
@@ -5638,8 +5784,8 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
 
     const updateMotion = () => {
       const maxMoveAmount = 300;
-      const baseDuration = 0.8; // Base duration for inertia
-      const inertiaFactors = [0.6, 0.4, 0.3, 0.2]; // Different inertia for each row, outer rows slower
+      const baseDuration = 0.8;
+      const inertiaFactors = [0.6, 0.4, 0.3, 0.2];
 
       rowRefs.current.forEach((row, index) => {
         if (row) {
@@ -5663,7 +5809,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      removeAnimationLoop(); // Properly remove the ticker listener
+      removeAnimationLoop();
     };
   }, []);
 
@@ -5680,7 +5826,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
             <div
               key={rowIndex}
               className="row"
-              ref={(el) => (rowRefs.current[rowIndex] = el)} // Set each row's ref
+              ref={(el) => (rowRefs.current[rowIndex] = el)}
             >
               {[...Array(7)].map((_, itemIndex) => {
                 const content = combinedItems[rowIndex * 7 + itemIndex];
@@ -5737,7 +5883,7 @@ export default GridMotion;`,
   background: url(../../../assets/noise.png);
   background-size: 250px;
   pointer-events: none;
-  z-index: 4; // Ensure noise is on top
+  z-index: 4;
 }
 
 .grid {
@@ -5792,7 +5938,7 @@ export default GridMotion;`,
 .row__item-content {
   padding: 1rem;
   text-align: center;
-  z-index: 1; // Ensure content is on top of the background
+  z-index: 1;
 }
 
 .fullview {
@@ -5873,10 +6019,8 @@ const DecayCard = ({ width = 300, height = 400, image = 'https://images.unsplash
         0.1
       );
 
-      // Apply elastic bounds to limit movement within 50px in any direction
       const bound = 50;
 
-      // Elastic effect: the further it is outside the bound, the stronger the pull back
       if (targetX > bound) targetX = bound + (targetX - bound) * 0.2;
       if (targetX < -bound) targetX = -bound + (targetX + bound) * 0.2;
       if (targetY > bound) targetY = bound + (targetY - bound) * 0.2;

@@ -19,6 +19,7 @@ export const CATEGORIES = [
       'Animated Container',
       'Blob Cursor',
       'Follow Cursor',
+      'Magnet Lines',
       // 'Trail Cursor',
       // 'Emoji Cursor',
       // 'Wave Cursor',
@@ -87,7 +88,7 @@ export const CATEGORIES = [
   }
 ];
 
-export const NEW = ['Bounce Cards', 'Waves'];
+export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines'];
 
 // Used for landing page showcased components
 export const SHOWCASE = [
