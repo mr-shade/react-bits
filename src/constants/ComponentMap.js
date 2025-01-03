@@ -22,6 +22,7 @@ import GridMotionDemo from "../demo/Backgrounds/GridMotionDemo";
 import DecayCardDemo from "../demo/Components/DecayCardDemo";
 import TiltedScrollDemo from "../demo/Components/TiltedScrollDemo";
 import BounceCardsDemo from "../demo/Components/BounceCardsDemo";
+import WavesDemo from "../demo/Backgrounds/WavesDemo";
 
 export const componentMap = {
   'split-text': SplitTextDemo,
@@ -47,6 +48,7 @@ export const componentMap = {
   'grid-motion': GridMotionDemo,
   'decay-card': DecayCardDemo,
   'tilted-scroll': TiltedScrollDemo,
-  'bounce-cards': BounceCardsDemo
+  'bounce-cards': BounceCardsDemo,
+  'waves': WavesDemo
   // Map other subcategories to their components here
 };

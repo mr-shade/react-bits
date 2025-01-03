@@ -76,6 +76,7 @@ export const CATEGORIES = [
       'Hyperspeed',
       'Grid Motion',
       'Squares',
+      'Waves'
       // 'Particles',
       // 'Grain',
       // 'Threads',
