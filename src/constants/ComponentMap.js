@@ -24,6 +24,7 @@ import TiltedScrollDemo from "../demo/Components/TiltedScrollDemo";
 import BounceCardsDemo from "../demo/Components/BounceCardsDemo";
 import WavesDemo from "../demo/Backgrounds/WavesDemo";
 import MagnetLinesDemo from "../demo/Animations/MagnetLinesDemo";
+import SplashCursorDemo from "../demo/Animations/SplashCursorDemo";
 
 export const componentMap = {
   'split-text': SplitTextDemo,
@@ -51,6 +52,7 @@ export const componentMap = {
   'tilted-scroll': TiltedScrollDemo,
   'bounce-cards': BounceCardsDemo,
   'waves': WavesDemo,
-  'magnet-lines': MagnetLinesDemo
+  'magnet-lines': MagnetLinesDemo,
+  'splash-cursor': SplashCursorDemo
   // Map other subcategories to their components here
 };
