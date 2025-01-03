@@ -30,6 +30,7 @@ export const CATEGORIES = [
       // 'Spotlights',
       'Magnet',
       'Fade',
+      'Splash Cursor',
       // 'Persistent Drag', 
       // 'Beam Border',
       'Star Border',
@@ -88,7 +89,7 @@ export const CATEGORIES = [
   }
 ];
 
-export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines'];
+export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines', 'Splash Cursor'];
 
 // Used for landing page showcased components
 export const SHOWCASE = [
