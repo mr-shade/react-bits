@@ -7,7 +7,7 @@ import {
   TabPanels,
   TabPanel,
   Flex,
-  Icon,
+  Icon
 } from "@chakra-ui/react";
 import { FiCode, FiEye, FiHeart } from "react-icons/fi";
 import ContributionSection from "./ContributionSection";
@@ -28,6 +28,7 @@ const TabbedLayout = ({ children }) => {
   const contentMap = {
     PreviewTab: null,
     CodeTab: null
+    // CliTab: null
   };
 
   React.Children.forEach(children, (child) => {
@@ -36,20 +37,27 @@ const TabbedLayout = ({ children }) => {
     } else if (child.type === CodeTab) {
       contentMap.CodeTab = child;
     }
+    // else if (child.type === CliTab) {
+    //   contentMap.CliTab = child;
+    // }
   });
 
   return (
     <Tabs mt={4} variant="unstyled">
       <TabList justifyContent="space-between">
-        <Flex>
+        <Flex wrap='wrap' gap='0.5rem'>
           <Tab sx={tabStyles}>
             <Icon as={FiEye} />
             &nbsp;Preview
           </Tab>
-          <Tab sx={{ ...tabStyles, marginLeft: "0.5rem" }}>
+          <Tab sx={tabStyles}>
             <Icon as={FiCode} />
             &nbsp;Code
           </Tab>
+          {/* <Tab sx={{ ...tabStyles, marginRight: "0.5rem" }}>
+            <Icon as={FiTerminal} />
+            &nbsp;CLI
+          </Tab> */}
         </Flex>
         <Tab sx={tabStyles}>
           <Icon as={FiHeart} />
@@ -60,6 +68,7 @@ const TabbedLayout = ({ children }) => {
       <TabPanels>
         <TabPanel p={0}>{contentMap.PreviewTab}</TabPanel>
         <TabPanel p={0}>{contentMap.CodeTab}</TabPanel>
+        {/* <TabPanel p={0}>{contentMap.CliTab}</TabPanel> */}
         <TabPanel p={0}>
           <ContributionSection />
         </TabPanel>
@@ -71,5 +80,6 @@ const TabbedLayout = ({ children }) => {
 // Helper components to wrap tab content
 const PreviewTab = ({ children }) => <>{children}</>;
 const CodeTab = ({ children }) => <>{children}</>;
+// const CliTab = ({ children }) => <>{children}</>;
 
 export { TabbedLayout, PreviewTab, CodeTab };

@@ -1,9 +1,11 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import CodeExample from '../../components/code/CodeExample';
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
 import RollingGallery from "../../content/Components/RollingGallery/RollingGallery";
+import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
+import Dependencies from "../../components/code/Dependencies";
 
 const ThreeDGalleryDemo = () => {
   const { rollingGallery } = CODE_EXAMPLES;
@@ -33,12 +35,7 @@ const ThreeDGalleryDemo = () => {
           </Flex>
         </Box>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>framer-motion</span>
-        </div>
-
-        <h2 className="demo-title-extra">Component API</h2>
+        <Dependencies dependencyList={['framer-motion']} />
         <PropTable data={propData} />
       </PreviewTab>
 

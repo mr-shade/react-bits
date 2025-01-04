@@ -1,22 +1,20 @@
+import { useState } from "react";
 import { Box, Select, Text } from "@chakra-ui/react";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
-import { useState } from "react";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
+
+import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
 import PropTable from "../../components/common/PropTable";
 import CodeExample from "../../components/code/CodeExample";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+import Dependencies from "../../components/code/Dependencies";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const HyperspeedDemo = () => {
-  const [activePreset, setActivePreset] = useState('one');
-
-  const [counter, setCounter] = useState(0);
-
-  const reRender = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
-
   const { hyperspeed } = CODE_EXAMPLES;
+
+  const [activePreset, setActivePreset] = useState('one');
+  const [key, forceRerender] = useForceRerender();
 
   const propData = [
     {
@@ -32,13 +30,13 @@ const HyperspeedDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={500} cursor="pointer" mb={4}>
           <Text background={'linear-gradient(to bottom, #444, #111)'} backgroundClip="text" position="absolute" fontWeight={900} top={6} fontSize='4rem'>Click Me</Text>
-          <Hyperspeed key={counter} effectOptions={hyperspeedPresets[activePreset]} />
+          <Hyperspeed key={key} effectOptions={hyperspeedPresets[activePreset]} />
         </Box>
 
         <h2 className="demo-title-extra">Preset</h2>
         <Select defaultValue="one" rounded="xl" w={'300px'} onChange={(e) => {
           setActivePreset(e.target.value);
-          reRender();
+          forceRerender();
         }}>
           <option value='one'>Cyberpunk</option>
           <option value='two'>Akira</option>
@@ -47,13 +45,7 @@ const HyperspeedDemo = () => {
           <option value='five'>Highway</option>
         </Select>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>three</span>
-          <span>postprocessing</span>
-        </div>
-
-        <h2 className="demo-title-extra">Component API</h2>
+        <Dependencies dependencyList={['three, postprocessing']} />
         <PropTable data={propData} />
       </PreviewTab>
 

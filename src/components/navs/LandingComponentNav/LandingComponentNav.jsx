@@ -1,14 +1,17 @@
-import Magnet from '../../../content/Animations/Magnet/Magnet';
-import arrow from '../../../assets/common/icon-arrow.svg';
+import { useNavigate } from 'react-router-dom';
 import './LandingComponentNav.scss';
-import { AnimatedContainer } from '../../../content/Animations/AnimatedContainer/AnimatedContainer';
+
+import AnimatedContainer from '../../../content/Animations/AnimatedContainer/AnimatedContainer';
+import Magnet from '../../../content/Animations/Magnet/Magnet';
 import Fade from '../../../content/Animations/Fade/Fade';
+
 import Squares from '../../../content/Backgrounds/Squares/Squares';
 import Hyperspeed from '../../../content/Backgrounds/Hyperspeed/Hyperspeed';
 import ShinyText from '../../../content/TextAnimations/ShinyText/ShinyText';
 import GradientText from '../../../content/TextAnimations/GradientText/GradientText';
-import { useNavigate } from 'react-router-dom';
 import Waves from '../../../content/Backgrounds/Waves/Waves';
+
+import arrow from '../../../assets/common/icon-arrow.svg';
 
 const LandingComponentNav = () => {
   const navigate = useNavigate();
@@ -60,7 +63,7 @@ const LandingComponentNav = () => {
       </AnimatedContainer>
       <AnimatedContainer>
         <div className="square feat-2" onClick={() => navigate('/backgrounds/waves')}>
-          <Waves lineColor='#ff9346' xGap={8} yGap={8}/>
+          <Waves lineColor='#ff9346' xGap={8} yGap={8} />
         </div>
       </AnimatedContainer>
       <Fade blur>

@@ -1,30 +1,29 @@
 import { useState } from "react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import RefreshButton from "../../components/common/RefreshButton";
-import { AnimatedContainer } from '../../content/Animations/AnimatedContainer/AnimatedContainer';
-import CodeExample from "../../components/code/CodeExample";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
+import AnimatedContainer from '../../content/Animations/AnimatedContainer/AnimatedContainer';
+import RefreshButton from "../../components/common/RefreshButton";
+import CodeExample from "../../components/code/CodeExample";
+import Dependencies from "../../components/code/Dependencies";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const AnimatedContainerDemo = () => {
-  const [counter, setCounter] = useState(0);
+  const { animatedContainer } = CODE_EXAMPLES;
+  
   const [direction, setDirection] = useState('vertical');
   const [distance, setDistance] = useState(100);
   const [reverse, setReverse] = useState(false);
+  const [key, forceRerender] = useForceRerender();
 
-  const reRender = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
-
-  const { animatedContainer } = CODE_EXAMPLES;
 
   return (
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={200} overflow="hidden">
-          <RefreshButton onClick={reRender} />
-          <AnimatedContainer key={counter} reverse={reverse} direction={direction} distance={distance}>
+          <RefreshButton onClick={forceRerender} />
+          <AnimatedContainer key={key} reverse={reverse} direction={direction} distance={distance}>
             <Flex fontSize="xl" fontWeight="bolder" justifyContent="center" alignItems="center" color="black" h={100} borderRadius="xl" w={200} bg={"#fff"}>Container</Flex>
           </AnimatedContainer>
         </Box>
@@ -37,7 +36,7 @@ const AnimatedContainerDemo = () => {
               h={8}
               onClick={() => {
                 setDirection(direction === 'vertical' ? 'horizontal' : 'vertical');
-                reRender();
+                forceRerender();
               }}
             >
               Direction: <Text color={"#a1a1aa"}>&nbsp;{String(direction)}</Text>
@@ -47,7 +46,7 @@ const AnimatedContainerDemo = () => {
               h={8}
               onClick={() => {
                 setDistance(distance === 100 ? 50 : 100);
-                reRender();
+                forceRerender();
               }}
             >
               Distance: <Text color="#a1a1aa">&nbsp;{String(distance)}</Text>
@@ -57,7 +56,7 @@ const AnimatedContainerDemo = () => {
               h={8}
               onClick={() => {
                 setReverse(!reverse);
-                reRender();
+                forceRerender();
               }}
             >
               Reverse: <Text color={reverse ? "lightgreen" : "coral"}>&nbsp;{String(reverse)}</Text>
@@ -65,10 +64,7 @@ const AnimatedContainerDemo = () => {
           </Flex>
         </div>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>@react-spring/web</span>
-        </div>
+        <Dependencies dependencyList={['@react-spring/web']} />
       </PreviewTab>
 
       <CodeTab>

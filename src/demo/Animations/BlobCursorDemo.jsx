@@ -1,16 +1,19 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import BlobCursor from "../../content/Animations/BlobCursor/BlobCursor";
-import { WarningIcon } from "@chakra-ui/icons";
 import { useState } from "react";
-import CodeExample from '../../components/code/CodeExample';
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import BlobCursor from "../../content/Animations/BlobCursor/BlobCursor";
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from "../../components/code/Dependencies";
 
 const BlobCursorDemo = () => {
+  const { blobCursor } = CODE_EXAMPLES;
+  
   const [shape, setShape] = useState('circle');
   const [color, setColor] = useState('#00f0ff');
 
-  const { blobCursor } = CODE_EXAMPLES;
 
   return (
     <TabbedLayout>
@@ -47,10 +50,7 @@ const BlobCursorDemo = () => {
           <WarningIcon position="relative" /> Not supported on Safari
         </p>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>@react-spring/web</span>
-        </div>
+        <Dependencies dependencyList={['@react-spring/web']} />
       </PreviewTab>
 
       <CodeTab>

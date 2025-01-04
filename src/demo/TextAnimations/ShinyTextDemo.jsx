@@ -1,12 +1,14 @@
-import { Box, Flex, Input } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import CodeExample from "../../components/code/CodeExample";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import ShinyText from "../../content/TextAnimations/ShinyText/ShinyText";
 import { useState } from "react";
+import { Box, Flex, Input } from "@chakra-ui/react";
+import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import ShinyText from "../../content/TextAnimations/ShinyText/ShinyText";
+import CodeExample from "../../components/code/CodeExample";
 
 const ShinyTextDemo = () => {
   const { shinyText } = CODE_EXAMPLES;
+
   const [speed, setSpeed] = useState(1);
 
   return (

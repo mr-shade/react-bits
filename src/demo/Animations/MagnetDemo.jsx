@@ -1,14 +1,16 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import CodeExample from "../../components/code/CodeExample";
-import Magnet from "../../content/Animations/Magnet/Magnet";
 import { useState } from "react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { InfoOutlineIcon } from '@chakra-ui/icons';
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import Magnet from "../../content/Animations/Magnet/Magnet";
+import CodeExample from "../../components/code/CodeExample";
 
 const MagnetDemo = () => {
-  const [disabled, setDisabled] = useState(false);
   const { magnet } = CODE_EXAMPLES;
+
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <TabbedLayout>

@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 
-export const AnimatedContainer = ({ children, distance = 100, direction = 'vertical', reverse = false }) => {
+const AnimatedContainer = ({ children, distance = 100, direction = 'vertical', reverse = false }) => {
   const [inView, setInView] = useState(false);
   const ref = useRef();
 
@@ -38,3 +38,5 @@ export const AnimatedContainer = ({ children, distance = 100, direction = 'verti
     </animated.div>
   );
 };
+
+export default AnimatedContainer;

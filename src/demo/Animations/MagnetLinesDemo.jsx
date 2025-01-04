@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
-
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import MagnetLines from "../../content/Animations/MagnetLines/MagnetLines";
@@ -70,10 +70,9 @@ const MagnetLinesDemo = () => {
     <TabbedLayout>
       <PreviewTab>
         <Flex overflow="hidden" justifyContent="center" pb={'1em'} alignItems="center" className="demo-container">
-          <MagnetLines rows={10} columns={12} containerSize="40vmin" lineWidth="2px" lineHeight="50px"/>
+          <MagnetLines rows={10} columns={12} containerSize="40vmin" lineWidth="2px" lineHeight="30px"/>
         </Flex>
 
-        <h2 className="demo-title-extra">Component API</h2>
         <PropTable data={propData} />
       </PreviewTab>
 

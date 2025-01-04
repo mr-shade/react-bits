@@ -1,9 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import CodeExample from '../../components/code/CodeExample';
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
 import DecayCard from "../../content/Components/DecayCard/DecayCard";
+import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
+import Dependencies from "../../components/code/Dependencies";
 
 const DecayCardDemo = () => {
   const { decayCard } = CODE_EXAMPLES;
@@ -38,12 +40,7 @@ const DecayCardDemo = () => {
           </DecayCard>
         </Box>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>gsap</span>
-        </div>
-
-        <h2 className="demo-title-extra">Component API</h2>
+        <Dependencies dependencyList={['gsap']} />
         <PropTable data={propData} />
       </PreviewTab>
 

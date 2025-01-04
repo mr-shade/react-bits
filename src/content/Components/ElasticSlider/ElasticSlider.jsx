@@ -13,7 +13,7 @@ import './ElasticSlider.scss';
 
 const MAX_OVERFLOW = 50;
 
-export function ElasticSlider({
+export default function ElasticSlider({
   defaultValue = 50,
   startingValue = 0,
   maxValue = 100,

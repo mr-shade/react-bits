@@ -1,8 +1,9 @@
 import { Flex } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import CodeExample from '../../components/code/CodeExample';
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
 import Waves from "../../content/Backgrounds/Waves/Waves";
+import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 
 const WavesDemo = () => {
@@ -98,7 +99,6 @@ const WavesDemo = () => {
           />
         </Flex>
 
-        <h2 className="demo-title-extra">Component API</h2>
         <PropTable data={propData} />
       </PreviewTab>
 

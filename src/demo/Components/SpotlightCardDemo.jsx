@@ -1,10 +1,11 @@
 import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import CodeExample from '../../components/code/CodeExample';
-import SpotlightCard from "../../content/Components/SpotlightCard/SpotlightCard";
 import { VscSparkleFilled } from "react-icons/vsc";
 import { FaLock } from "react-icons/fa6";
+import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import SpotlightCard from "../../content/Components/SpotlightCard/SpotlightCard";
+import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 
 const SpotlightCardDemo = () => {
@@ -51,7 +52,6 @@ const SpotlightCardDemo = () => {
           </SpotlightCard>
         </Box>
 
-        <h2 className="demo-title-extra">Component API</h2>
         <PropTable data={propData} />
       </PreviewTab>
 

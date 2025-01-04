@@ -1,37 +1,25 @@
-import { Box, Button, Flex, Icon } from "@chakra-ui/react";
-
 import { useState } from "react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import RefreshButton from "../../components/common/RefreshButton";
+import { Link } from "react-router-dom";
+import { Box, Button, Flex, Icon } from "@chakra-ui/react";
+import { TbFlame } from "react-icons/tb";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import CodeExample from '../../components/code/CodeExample';
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
 import CountUp from "../../content/TextAnimations/CountUp/CountUp";
 import GradientText from "../../content/TextAnimations/GradientText/GradientText";
-import { TbFlame } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import RefreshButton from "../../components/common/RefreshButton";
+import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
+import Dependencies from "../../components/code/Dependencies";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const CountUpDemo = () => {
   const { countup } = CODE_EXAMPLES;
-  const [counter, setCounter] = useState(0);
-  const [counter2, setCounter2] = useState(0);
-  const [counter3, setCounter3] = useState(0);
 
   const [startCounting, setStartCounting] = useState(false);
-  // const [startCounting2, setStartCounting2] = useState(false);
-
-  const reRender = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
-
-  const reRender2 = () => {
-    setCounter2((prevCounter) => prevCounter + 1);
-  };
-
-  const reRender3 = () => {
-    setCounter3((prevCounter) => prevCounter + 1);
-  };
-
+  const [keyDefault, forceRerenderDefault] = useForceRerender();
+  const [keyProgramatically, forceRerenderProgramatically] = useForceRerender();
+  const [keyGradient, forceRerenderGradient] = useForceRerender();
 
   const propData = [
     {
@@ -101,10 +89,8 @@ const CountUpDemo = () => {
       <PreviewTab>
         <h2 className="demo-title-extra">Default</h2>
         <Box position="relative" className="demo-container" minH={200}>
-          {/* <Button onClick={() => setStartCounting(true)}>Start Counting</Button> */}
-
           <CountUp
-            key={counter}
+            key={keyDefault}
             from={0}
             to={100}
             separator=","
@@ -113,7 +99,7 @@ const CountUpDemo = () => {
             className="count-up-text"
           />
 
-          <RefreshButton onClick={reRender} />
+          <RefreshButton onClick={forceRerenderDefault} />
         </Box>
 
         <h2 className="demo-title-extra">Start programatically</h2>
@@ -121,7 +107,7 @@ const CountUpDemo = () => {
           <Button onClick={() => setStartCounting(true)}>Count to 500!</Button>
 
           <CountUp
-            key={counter2}
+            key={keyProgramatically}
             from={100}
             to={500}
             startWhen={startCounting}
@@ -129,7 +115,7 @@ const CountUpDemo = () => {
             className="count-up-text"
           />
 
-          {startCounting && <RefreshButton onClick={reRender2} />}
+          {startCounting && <RefreshButton onClick={forceRerenderProgramatically} />}
         </Flex>
 
         <h2 className="demo-title-extra"><Icon as={TbFlame} position="relative" top={'4px'} />Hot tip</h2>
@@ -143,12 +129,9 @@ const CountUpDemo = () => {
 
         </p>
         <Flex direction="column" justifyContent="center" alignItems="center" position="relative" className="demo-container" minH={200}>
-          {/* <Button onClick={() => setStartCounting2(true)}>Start</Button> */}
-
           <GradientText>
             <CountUp
-              key={counter3}
-              // startWhen={startCounting2}
+              key={keyGradient}
               from={0}
               to={100}
               separator=","
@@ -157,15 +140,10 @@ const CountUpDemo = () => {
             />
           </GradientText>
 
-          <RefreshButton onClick={reRender3} />
+          <RefreshButton onClick={forceRerenderGradient} />
         </Flex>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>framer-motion</span>
-        </div>
-
-        <h2 className="demo-title-extra">Component API</h2>
+        <Dependencies dependencyList={['framer-motion']} />
         <PropTable data={propData} />
       </PreviewTab>
 

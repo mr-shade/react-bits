@@ -1,10 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import CodeExample from "../../components/code/CodeExample";
-import FollowCursor from "../../content/Animations/FollowCursor/FollowCursor";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
+import FollowCursor from "../../content/Animations/FollowCursor/FollowCursor";
+import CodeExample from "../../components/code/CodeExample";
+import Dependencies from "../../components/code/Dependencies";
 
 const FollowCursorDemo = () => {
   const { followCursor } = CODE_EXAMPLES;
@@ -20,11 +21,7 @@ const FollowCursorDemo = () => {
           <InfoOutlineIcon position="relative" /> Hover for desktop, drag for mobile.
         </p>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>@react-spring/web</span>
-          <span>react-use-gesture</span>
-        </div>
+        <Dependencies dependencyList={['@react-spring/web', 'react-use-gesture']} />
       </PreviewTab>
 
       <CodeTab>

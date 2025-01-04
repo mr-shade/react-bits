@@ -1,29 +1,27 @@
-import { Box, Button, ButtonGroup, Divider, Flex, Text } from "@chakra-ui/react";
-import Dock from "../../content/Components/Dock/Dock";
 import { useState } from "react";
+import { Box, Button, ButtonGroup, Divider, Flex, Text } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import CodeExample from "../../components/code/CodeExample";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import Dock from "../../content/Components/Dock/Dock";
+import CodeExample from "../../components/code/CodeExample";
+import Dependencies from "../../components/code/Dependencies";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const DockDemo = () => {
+  const { dock } = CODE_EXAMPLES;
+
   const [position, setPosition] = useState('bottom');
   const [responsive, setResponsive] = useState('bottom');
   const [collapsible, setCollapsible] = useState(false);
-
-  const [counter, setCounter] = useState(0);
-
-  const reRender = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
-
-  const { dock } = CODE_EXAMPLES;
+  const [key, forceRerender] = useForceRerender();
 
   return (
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={400}>
-          <Dock key={counter} position={position} collapsible={collapsible} responsive={responsive} />
+          <Dock key={key} position={position} collapsible={collapsible} responsive={responsive} />
         </Box>
 
         <Box className="preview-options">
@@ -34,7 +32,7 @@ const DockDemo = () => {
               h={8}
               onClick={() => {
                 setCollapsible(!collapsible);
-                reRender();
+                forceRerender();
               }}
             >
               Collapsible: <Text color={collapsible ? "lightgreen" : "coral"}>&nbsp;{String(collapsible)}</Text>
@@ -146,10 +144,7 @@ const DockDemo = () => {
           <InfoOutlineIcon position="relative" />The `responsive` prop overrides the `position` on mobile (under 768px) devices.
         </p>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>@react-spring/web</span>
-        </div>
+        <Dependencies dependencyList={['@react-spring/web']} />
       </PreviewTab>
 
       <CodeTab>

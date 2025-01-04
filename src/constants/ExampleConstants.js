@@ -4,7 +4,7 @@ export const CODE_EXAMPLES = {
   // ! SPLIT-TEXT ------------------------------------------------------------------------
   splitText: {
     installation: `npm install @react-spring/web`,
-    usage: `import { SplitText } from "./SplitText";
+    usage: `import SplitText from "./SplitText";
 
 <SplitText text="Hello!" className="custom-class" delay={50} />`,
     code: `import { useSprings, animated } from '@react-spring/web';
@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import './SplitText.css';
 
-export const SplitText = ({ text, className = '', delay = 100 }) => {
+const SplitText = ({ text, className = '', delay = 100 }) => {
   const letters = text.split('');
   const [inView, setInView] = useState(false);
   const ref = useRef();
@@ -56,7 +56,9 @@ export const SplitText = ({ text, className = '', delay = 100 }) => {
       ))}
     </p>
   );
-};`,
+};
+
+export default SplitText;`,
     css: `.letter {
   display: inline-block;
   will-change: transform, opacity;
@@ -69,7 +71,7 @@ export const SplitText = ({ text, className = '', delay = 100 }) => {
     tailwind: `import { useSprings, animated } from '@react-spring/web';
 import { useEffect, useRef, useState } from 'react';
 
-export const SplitText = ({ text, className = '', delay = 100 }) => {
+const SplitText = ({ text, className = '', delay = 100 }) => {
   const letters = text.split('');
   const [inView, setInView] = useState(false);
   const ref = useRef();
@@ -121,13 +123,14 @@ export const SplitText = ({ text, className = '', delay = 100 }) => {
     </p>
   );
 };
-`
+
+export default SplitText;`
   },
 
   // ! BLUR-TEXT ------------------------------------------------------------------------
   blurText: {
     installation: `npm install @react-spring/web`,
-    usage: `import { BlurText } from "./BlurText";
+    usage: `import BlurText from "./BlurText";
 
 <BlurText text="Isn't this so cool?!" className="custom-class" delay={50} />`,
     code: `import { useRef, useEffect, useState } from 'react';
@@ -135,7 +138,7 @@ import { useSprings, animated } from '@react-spring/web';
 
 import './BlurText.css';
 
-export const BlurText = ({ text, delay = 200, className = '' }) => {
+const BlurText = ({ text, delay = 200, className = '' }) => {
   const words = text.split(' ');
   const [inView, setInView] = useState(false);
   const ref = useRef();
@@ -179,7 +182,9 @@ export const BlurText = ({ text, delay = 200, className = '' }) => {
       ))}
     </p>
   );
-};`,
+};
+
+export default BlurText;`,
     css: `.word {
   display: inline-block;
   will-change: transform, filter, opacity;
@@ -187,7 +192,7 @@ export const BlurText = ({ text, delay = 200, className = '' }) => {
     tailwind: `import { useRef, useEffect, useState } from 'react';
 import { useSprings, animated } from '@react-spring/web';
 
-export const BlurText = ({ text, delay = 200, className = '' }) => {
+const BlurText = ({ text, delay = 200, className = '' }) => {
   const words = text.split(' ');
   const [inView, setInView] = useState(false);
   const ref = useRef();
@@ -235,7 +240,9 @@ export const BlurText = ({ text, delay = 200, className = '' }) => {
       ))}
     </p>
   );
-};`
+};
+
+export default BlurText;`
   },
 
   // ! BLOB-CURSOR ------------------------------------------------------------------------
@@ -397,7 +404,7 @@ export default function BlobCursor({ blobType = 'circle', fillColor = '#00f0ff' 
     code: `import { useRef, useEffect, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 
-export const AnimatedContainer = ({ children, distance = 100, direction = 'vertical', reverse = false }) => {
+const AnimatedContainer = ({ children, distance = 100, direction = 'vertical', reverse = false }) => {
   const [inView, setInView] = useState(false);
   const ref = useRef();
 
@@ -433,7 +440,9 @@ export const AnimatedContainer = ({ children, distance = 100, direction = 'verti
       {children}
     </animated.div>
   );
-};`
+};
+
+export default AnimatedContainer;`
   },
 
   // ! FADE ------------------------------------------------------------------------

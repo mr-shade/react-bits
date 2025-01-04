@@ -1,9 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import SplashCursor from "../../content/Animations/SplashCursor/SplashCursor";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
-import SplashCursor from "../../content/Animations/SplashCursor/SplashCursor";
 
 const SplashCursorDemo = () => {
   const { splashCursor } = CODE_EXAMPLES;
@@ -102,7 +103,7 @@ const SplashCursorDemo = () => {
           <Flex overflow="hidden" justifyContent="center" flexDirection={'column'} minH={300} p={0} alignItems="center" className="demo-container" position={'relative'} zIndex={10}>
             <Text fontSize={'3rem'} textAlign="center" opacity={0.5} fontWeight={900} userSelect={'none'}>Move Your Cursor</Text>
           </Flex>
-          <h2 className="demo-title-extra">Component API</h2>
+
           <PropTable data={propData} />
         </PreviewTab>
 

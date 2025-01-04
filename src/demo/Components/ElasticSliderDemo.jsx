@@ -1,10 +1,12 @@
 import { Box, Icon } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import CodeExample from '../../components/code/CodeExample';
-import { ElasticSlider } from "../../content/Components/ElasticSlider/ElasticSlider";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import ElasticSlider from "../../content/Components/ElasticSlider/ElasticSlider";
 import PropTable from "../../components/common/PropTable";
+import Dependencies from "../../components/code/Dependencies";
+import CodeExample from '../../components/code/CodeExample';
 
 const ElasticSliderDemo = () => {
   const { elasticSlider } = CODE_EXAMPLES;
@@ -84,12 +86,7 @@ const ElasticSliderDemo = () => {
           />
         </Box>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>framer-motion</span>
-        </div>
-
-        <h2 className="demo-title-extra">Component API</h2>
+        <Dependencies dependencyList={['framer-motion']} />
         <PropTable data={propData} />
       </PreviewTab>
 

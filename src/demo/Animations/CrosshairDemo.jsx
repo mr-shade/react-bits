@@ -1,18 +1,21 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
-
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import CodeExample from '../../components/code/CodeExample';
-import Crosshair from "../../content/Animations/Crosshair/Crosshair";
 import { useRef, useState } from "react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import Crosshair from "../../content/Animations/Crosshair/Crosshair";
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from "../../components/code/Dependencies";
 
 const CrosshairDemo = () => {
-  const containerRef = useRef(null);
-  const [linkText, setLinkText] = useState('Aim.. aand..')
-  const [color, setColor] = useState('#ffffff');
   const { crosshair } = CODE_EXAMPLES;
 
+  const [linkText, setLinkText] = useState('Aim.. aand..')
+  const [color, setColor] = useState('#ffffff');
   const [targeted, setTargeted] = useState(true);
+
+  const containerRef = useRef(null);
+
 
   return (
     <TabbedLayout>
@@ -55,10 +58,7 @@ const CrosshairDemo = () => {
           </Flex>
         </div>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>gsap</span>
-        </div>
+        <Dependencies dependencyList={['gsap']} />
       </PreviewTab>
 
       <CodeTab>

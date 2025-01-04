@@ -1,11 +1,15 @@
 import { Box } from "@chakra-ui/react";
-import Masonry from "../../content/Components/Masonry/Masonry";
+import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import Masonry from "../../content/Components/Masonry/Masonry";
 import CodeExample from '../../components/code/CodeExample';
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import Dependencies from "../../components/code/Dependencies";
 
 const MasonryDemo = () => {
+  const { masonry } = CODE_EXAMPLES;
+
   const data = [
     { id: 1, image: 'https://picsum.photos/id/10/200/300', height: 400 },
     { id: 2, image: 'https://picsum.photos/id/14/200/300', height: 300 },
@@ -19,8 +23,6 @@ const MasonryDemo = () => {
     { id: 10, image: 'https://picsum.photos/id/103/200/300', height: 400 }
   ];
 
-  const { masonry } = CODE_EXAMPLES;
-
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -32,10 +34,7 @@ const MasonryDemo = () => {
           <InfoOutlineIcon position="relative" />Preview best viewed on desktop, try resizing the window!
         </p>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>@react-spring/web</span>
-        </div>
+        <Dependencies dependencyList={['@react-spring/web']} />
       </PreviewTab>
 
       <CodeTab>

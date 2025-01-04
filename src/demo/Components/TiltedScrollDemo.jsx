@@ -1,8 +1,9 @@
 import { Flex } from "@chakra-ui/react";
+import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
 import TiltedScroll from "../../content/Components/TiltedScroll/TiltedScroll";
 import CodeExample from '../../components/code/CodeExample';
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 const TiltedScrollDemo = () => {
   const { tiltedScroll } = CODE_EXAMPLES;

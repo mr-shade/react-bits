@@ -1,32 +1,26 @@
 import { Box } from "@chakra-ui/react";
-
-import { useState } from "react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import RefreshButton from "../../components/common/RefreshButton";
-import WaveText from "../../content/TextAnimations/WaveText/WaveText";
-import CodeExample from '../../components/code/CodeExample';
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
+import WaveText from "../../content/TextAnimations/WaveText/WaveText";
+import RefreshButton from "../../components/common/RefreshButton";
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from "../../components/code/Dependencies";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const WaveTextDemo = () => {
   const { waveText } = CODE_EXAMPLES;
-  const [counter, setCounter] = useState(0);
-
-  const reRender = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
+  const [key, forceRerender] = useForceRerender();
 
   return (
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container">
-          <WaveText key={counter} />
-          <RefreshButton onClick={reRender} />
+          <WaveText key={key} />
+          <RefreshButton onClick={forceRerender} />
         </Box>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>@react-spring/web</span>
-        </div>
+        <Dependencies dependencyList={['@react-spring/web']} />
       </PreviewTab>
 
       <CodeTab>

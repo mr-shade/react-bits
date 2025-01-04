@@ -1,13 +1,15 @@
-import { Box, Button, Divider, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Icon, IconButton, Image, Spinner, Text, useDisclosure } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Box, Button, Divider, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Icon, IconButton, Image, Spinner, Text, useDisclosure } from '@chakra-ui/react';
+import { ArrowForwardIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { TiStarFullOutline } from "react-icons/ti";
+import { getStarsCount } from '../../../utils/utils';
+
 import Logo from '../../../assets/logos/reactbits-logo.svg';
 import github from '../../../assets/common/icon-github.svg';
 import docs from '../../../assets/common/icon-docs.svg';
-import { ArrowForwardIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { TiStarFullOutline } from "react-icons/ti";
-import { useEffect, useState } from 'react';
-import { getStarsCount } from '../../../utils/utils';
-import { BlurText } from '../../../content/TextAnimations/BlurText/BlurText';
+
+import BlurText from '../../../content/TextAnimations/BlurText/BlurText';
 import Fade from '../../../content/Animations/Fade/Fade';
 
 const Nav = () => {

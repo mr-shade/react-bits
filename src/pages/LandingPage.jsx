@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { getStarsCount } from "../utils/utils";
-import Header from "../components/navs/Header/Header";
-import LandingComponentNav from "../components/navs/LandingComponentNav/LandingComponentNav";
-import { AnimatedContainer } from "../content/Animations/AnimatedContainer/AnimatedContainer";
+import { useNavigate } from "react-router-dom";
 import { useSingleEffect } from "react-haiku";
+import { getStarsCount } from "../utils/utils";
+import { Link, Spinner } from "@chakra-ui/react";
+
 import star from '../assets/common/icon-star.svg';
+import Header from "../components/navs/Header/Header";
 import github from '../assets/common/icon-github.svg';
 import docs from '../assets/common/icon-docs.svg';
+
 import Fade from "../content/Animations/Fade/Fade";
-import { Link, Spinner } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import LandingComponentNav from "../components/navs/LandingComponentNav/LandingComponentNav";
+import AnimatedContainer from "../content/Animations/AnimatedContainer/AnimatedContainer";
 
 const LandingPage = () => {
   const [stars, setStars] = useState(0);
   const [activeBeams, setActiveBeams] = useState([]);
-  const activeBeamsRef = useRef([]); // Ref for managing active beams
+  const activeBeamsRef = useRef([]);
   const isMounted = useRef(false);
   const navigate = useNavigate();
 

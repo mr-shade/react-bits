@@ -1,20 +1,18 @@
 import { Flex } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
-import CodeExample from '../../components/code/CodeExample';
 import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
+
 import BounceCards from "../../content/Components/BounceCards/BounceCards";
-import { useState } from "react";
+import CodeExample from '../../components/code/CodeExample';
 import RefreshButton from "../../components/common/RefreshButton";
 import PropTable from "../../components/common/PropTable";
+import Dependencies from "../../components/code/Dependencies";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const BounceCardsDemo = () => {
   const { bounceCards } = CODE_EXAMPLES;
 
-  const [counter, setCounter] = useState(0);
-
-  const reRender = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
+  const [key, forceRerender] = useForceRerender();
 
   const images = [
     "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=500&auto=format",
@@ -88,7 +86,7 @@ const BounceCardsDemo = () => {
       <PreviewTab>
         <Flex overflow="hidden" justifyContent="center" alignItems="center" minH={'400px'} position="relative" pb={"4em"} className="demo-container">
           <BounceCards
-            key={counter}
+            key={key}
             className="custom-class"
             images={images}
             containerWidth={500}
@@ -98,15 +96,10 @@ const BounceCardsDemo = () => {
             easeType="elastic.out(1, 0.5)"
             transformStyles={transformStyles}
           />
-          <RefreshButton onClick={reRender} />
+          <RefreshButton onClick={forceRerender} />
         </Flex>
 
-        <h2 className="demo-title-extra">Dependencies</h2>
-        <div className="demo-details">
-          <span>gsap</span>
-        </div>
-
-        <h2 className="demo-title-extra">Component API</h2>
+        <Dependencies dependencyList={['gsap']} />
         <PropTable data={propData} />
       </PreviewTab>
 
