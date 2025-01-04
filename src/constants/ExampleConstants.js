@@ -4460,7 +4460,7 @@ export default function BounceCards({
     
 <Squares 
   speed={0.5} 
-  size={40}
+  squareSize={40}
   direction='diagonal' // up, down, left, right, diagonal
   borderColor='#fff'
   hoverFillColor='#222'
