@@ -181,9 +181,9 @@
 				"subdirectory": true,
 				"list": true,
 				"files": [
+					"HyperSpeedPresets.js",
 					"Hyperspeed.jsx",
-					"Hyperspeed.scss",
-					"HyperSpeedPresets.js"
+					"Hyperspeed.scss"
 				],
 				"localDependencies": [],
 				"dependencies": [

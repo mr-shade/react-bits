@@ -45,7 +45,7 @@ const HyperspeedDemo = () => {
           <option value='five'>Highway</option>
         </Select>
 
-        <Dependencies dependencyList={['three, postprocessing']} />
+        <Dependencies dependencyList={['three', 'postprocessing']} />
         <PropTable data={propData} />
       </PreviewTab>
 
