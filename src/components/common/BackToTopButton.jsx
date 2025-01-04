@@ -15,8 +15,8 @@ const BackToTopButton = () => {
     '🦸‍♂️  Avengers, assemble!',
     '🗡️  It’s dangerous to go alone! Take this.',
     '📜  A wizard is never late.',
-    '💍  Foul Tarnished, in search for the Elden Ring!',
-    '🐊  See you later, aligator.',
+    '💍  Foul Tarnished, in search of the Elden Ring!',
+    '🐊  See you later, alligator.',
     '🔥  Dracarys!'
   ];
 
