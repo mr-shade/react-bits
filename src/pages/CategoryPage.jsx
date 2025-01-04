@@ -5,6 +5,8 @@ import { useEffect, useRef } from 'react';
 import { Box } from '@chakra-ui/react';
 import { decodeLabel } from '../utils/utils';
 
+import BackToTopButton from '../components/common/BackToTopButton';
+
 const CategoryPage = () => {
   const { category, subcategory } = useParams(); // Extract category and subcategory from the URL
   const scrollRef = useRef(null);
@@ -31,6 +33,8 @@ const CategoryPage = () => {
           Follow the project on <a href="https://github.com/DavidHDev/react-bits" target="_blank" rel="noreferrer">GitHub</a> for regular updates.
         </p>
       )}
+
+      <BackToTopButton />
     </Box>
   );
 }
