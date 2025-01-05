@@ -1,3 +1,7 @@
+// Highlighted sidebar items
+export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines', 'Splash Cursor'];
+export const UPDATED = ['Animated Content', 'Fade Content'];
+
 // Used for main sidebar navigation
 export const CATEGORIES = [
   {
@@ -17,20 +21,20 @@ export const CATEGORIES = [
     name: 'Animations',
     subcategories: [
       'Animated Content',
-      'Blob Cursor',
-      'Follow Cursor',
-      'Magnet Lines',
+      'Fade Content',
       // 'Trail Cursor',
       // 'Emoji Cursor',
       // 'Wave Cursor',
       // 'Liquid Cursor',
       // 'Distortion Cursor',
-      'Crosshair',
       // 'Crystal Ball',
       // 'Spotlights',
+      'Magnet Lines',
       'Magnet',
-      'Fade',
+      'Crosshair',
       'Splash Cursor',
+      'Follow Cursor',
+      'Blob Cursor',
       // 'Persistent Drag', 
       // 'Beam Border',
       'Star Border',
@@ -86,20 +90,5 @@ export const CATEGORIES = [
       // 'Dots',
       // 'Waves'
     ],
-  }
-];
-
-export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines', 'Splash Cursor'];
-export const UPDATED = ['Animated Content'];
-
-// Used for landing page showcased components
-export const SHOWCASE = [
-  {
-    name: 'Text Animations',
-    subcategories: ['Split Text', 'Blur Text', 'Wave Text'],
-  },
-  {
-    name: 'Animations',
-    subcategories: ['Animated Container', 'Blob Cursor', 'Follow Cursor'],
   }
 ];

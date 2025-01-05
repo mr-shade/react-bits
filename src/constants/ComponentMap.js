@@ -2,7 +2,7 @@ import AnimatedContentDemo from "../demo/Animations/AnimatedContentDemo";
 import BlobCursorDemo from "../demo/Animations/BlobCursorDemo";
 import BlurTextDemo from "../demo/TextAnimations/BlurTextDemo";
 import DockDemo from "../demo/Components/DockDemo";
-import FadeDemo from "../demo/Animations/FadeDemo";
+import FadeContentDemo from "../demo/Animations/FadeContentDemo";
 import FollowCursorDemo from "../demo/Animations/FollowCursorDemo";
 import MagnetDemo from "../demo/Animations/MagnetDemo";
 import MasonryDemo from "../demo/Components/MasonryDemo";
@@ -33,7 +33,7 @@ export const componentMap = {
   'animated-content': AnimatedContentDemo,
   'follow-cursor': FollowCursorDemo,
   'magnet': MagnetDemo,
-  'fade': FadeDemo,
+  'fade-content': FadeContentDemo,
   'stack': StackDemo,
   'dock': DockDemo,
   'masonry': MasonryDemo,

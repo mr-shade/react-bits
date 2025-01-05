@@ -9,7 +9,7 @@ import Header from "../components/navs/Header/Header";
 import github from '../assets/common/icon-github.svg';
 import docs from '../assets/common/icon-docs.svg';
 
-import Fade from "../content/Animations/Fade/Fade";
+import FadeContent from "../content/Animations/FadeContent/FadeContent";
 import LandingComponentNav from "../components/navs/LandingComponentNav/LandingComponentNav";
 import AnimatedContent from "../content/Animations/AnimatedContent/AnimatedContent";
 
@@ -107,7 +107,7 @@ const LandingPage = () => {
 
             <Link href="https://github.com/DavidHDev/react-bits" target="_blank" className="landing-button">
               <img src={github} alt="github octocat" /> Star On GitHub <div className="button-divider"></div> <img className="star-icon" src={star} alt="5 pointed star" />
-              {stars ? <Fade blur><span>{String(stars)}</span></Fade> : <Spinner boxSize={3} />}
+              {stars ? <FadeContent blur><span>{String(stars)}</span></FadeContent> : <Spinner boxSize={3} />}
             </Link>
 
             <div className="landing-button docs-button" onClick={() => navigate('/text-animations/split-text')}>
@@ -170,9 +170,9 @@ const LandingPage = () => {
       </div>
 
       <div className="author">
-        <Fade blur>
+        <FadeContent blur>
           Made with 🤍 by <Link href="https://davidhaz.com/" target="_blank">this guy</Link>
-        </Fade>
+        </FadeContent>
       </div>
     </section>
   );

@@ -64,11 +64,11 @@ This project is always open to improvements and contributions, you can check the
 
 ### ANIMATIONS
 
-- [Animated Container](https://www.reactbits.dev/animations/animated-container)
+- [Animated Content](https://www.reactbits.dev/animations/animated-content)
+- [Fade Content](https://www.reactbits.dev/animations/fade-content)
 - [Blob Cursor](https://www.reactbits.dev/animations/blob-cursor)
 - [Follow Cursor](https://www.reactbits.dev/animations/follow-cursor)
 - [Magnet](https://www.reactbits.dev/animations/magnet)
-- [Fade](https://www.reactbits.dev/animations/fade)
 - more
 
 ### COMPONENTS

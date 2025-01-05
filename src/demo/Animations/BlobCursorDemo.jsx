@@ -10,7 +10,7 @@ import Dependencies from "../../components/code/Dependencies";
 
 const BlobCursorDemo = () => {
   const { blobCursor } = CODE_EXAMPLES;
-  
+
   const [shape, setShape] = useState('circle');
   const [color, setColor] = useState('#00f0ff');
 
@@ -47,7 +47,7 @@ const BlobCursorDemo = () => {
         </div>
 
         <p className="demo-extra-info">
-          <WarningIcon position="relative" /> Not supported on Safari
+          <WarningIcon position="relative" /> SVG filters are not fully supported on Safari.
         </p>
 
         <Dependencies dependencyList={['@react-spring/web']} />

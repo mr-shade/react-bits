@@ -4,20 +4,20 @@ import github from '../../../assets/common/icon-github.svg';
 import docs from '../../../assets/common/icon-docs.svg';
 import { Flex, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import Fade from '../../../content/Animations/Fade/Fade';
+import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
 
 const Header = () => {
   return (
     <header className="app-header">
       <nav className="header-content">
-        <Fade blur>
+        <FadeContent blur>
           <Link className='logo' to="/">
             <img src={reactbitslogo} alt="The shape of a 3 point atom, representing a fraction of ReactJS" />
           </Link>
-        </Fade>
+        </FadeContent>
 
         <Flex gap="8px" className='menu-items'>
-          <Fade blur>
+          <FadeContent blur>
             <Text
               as="a"
               fontWeight={500}
@@ -28,9 +28,9 @@ const Header = () => {
             >
               <img src={github} className='link-github' alt='minimal github octocat logo' /> GitHub
             </Text>
-          </Fade>
+          </FadeContent>
 
-          <Fade blur>
+          <FadeContent blur>
             <Text
               as={Link}
               fontWeight={500}
@@ -39,7 +39,7 @@ const Header = () => {
             >
               <img src={docs} alt='dotted icon representing a closed book' /> Docs
             </Text>
-          </Fade>
+          </FadeContent>
         </Flex>
       </nav>
     </header>

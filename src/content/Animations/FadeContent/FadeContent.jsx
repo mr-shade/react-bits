@@ -1,31 +1,40 @@
 import { useRef, useEffect, useState } from 'react';
 
-const Fade = ({ children, blur = false }) => {
+const FadeContent = ({
+  children,
+  blur = false,
+  duration = 1000,
+  easing = 'ease-out',
+  threshold = 0.1,
+  initialOpacity = 0,
+}) => {
   const [inView, setInView] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
+    if (!ref.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current); // Unobserve after triggering the animation
+          observer.unobserve(ref.current);
         }
       },
-      { threshold: 0.1 }
+      { threshold }
     );
 
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
   return (
     <div
       ref={ref}
       style={{
-        opacity: inView ? 1 : 0,
-        transition: 'opacity 1s ease-out, filter 1s ease-out',
+        opacity: inView ? 1 : initialOpacity,
+        transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,
         filter: blur ? (inView ? 'blur(0px)' : 'blur(10px)') : 'none',
       }}
     >
@@ -34,4 +43,4 @@ const Fade = ({ children, blur = false }) => {
   );
 };
 
-export default Fade;
+export default FadeContent;

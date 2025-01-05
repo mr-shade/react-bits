@@ -3,7 +3,7 @@ import './LandingComponentNav.scss';
 
 import AnimatedContent from '../../../content/Animations/AnimatedContent/AnimatedContent';
 import Magnet from '../../../content/Animations/Magnet/Magnet';
-import Fade from '../../../content/Animations/Fade/Fade';
+import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
 
 import Squares from '../../../content/Backgrounds/Squares/Squares';
 import Hyperspeed from '../../../content/Backgrounds/Hyperspeed/Hyperspeed';
@@ -66,7 +66,7 @@ const LandingComponentNav = () => {
           <Waves lineColor='#ff9346' xGap={8} yGap={8} />
         </div>
       </AnimatedContent>
-      <Fade blur>
+      <FadeContent blur>
         <div className="circle link" onClick={() => navigate('/text-animations/split-text')}>
           <Magnet padding={25}>
             <div className="docs-link">
@@ -75,7 +75,7 @@ const LandingComponentNav = () => {
             </div>
           </Magnet>
         </div>
-      </Fade>
+      </FadeContent>
       <AnimatedContent reverse>
         <div className="square feat-3" onClick={() => navigate('/text-animations/shiny-text')}>
           <ShinyText text="Bringing you shine" disabled={false} speed={3} className='shiny-button' />

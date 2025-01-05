@@ -55,14 +55,14 @@
 				"_imports_": {}
 			},
 			{
-				"name": "Fade",
-				"directory": "src/content/Animations/Fade",
+				"name": "FadeContent",
+				"directory": "src/content/Animations/FadeContent",
 				"category": "Animations",
 				"tests": false,
 				"subdirectory": true,
 				"list": true,
 				"files": [
-					"Fade.jsx"
+					"FadeContent.jsx"
 				],
 				"localDependencies": [],
 				"dependencies": [],
