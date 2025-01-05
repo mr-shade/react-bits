@@ -1,86 +1,115 @@
-import { useState } from 'react';
-import { useSprings, animated, to as interpolate } from '@react-spring/web';
-import { useDrag } from 'react-use-gesture';
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useState } from "react";
+import "./Stack.scss";
 
-import './Stack.scss';
+function CardRotate({ children, onSendToBack, sensitivity }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [60, -60]);
+  const rotateY = useTransform(x, [-100, 100], [-60, 60]);
 
-const cards = ['🍎', '🍊', '🍋', '🍐', '🍏', '🍉'];
-
-const to = (i) => ({
-  x: 0,
-  y: i * -4,
-  scale: 1,
-  rot: -10 + Math.random() * 20,
-  delay: i * 100,
-});
-const from = () => ({ x: 0, rot: 0, scale: 1.5, y: -1000 });
-
-const trans = (r, s) =>
-  `rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`;
-
-function Stack() {
-  const [gone] = useState(() => new Set());
-  const [props, api] = useSprings(cards.length, (i) => ({
-    ...to(i),
-    from: from(i),
-  }));
-  const bind = useDrag(
-    ({ args: [index], down, movement: [mx], direction: [xDir], velocity }) => {
-      const trigger = velocity > 0.2;
-      const dir = xDir < 0 ? -1 : 1;
-      if (!down && trigger) gone.add(index);
-      api.start((i) => {
-        if (index !== i) return;
-        const isGone = gone.has(index);
-        const x = isGone
-          ? (200 + window.innerWidth) * dir
-          : down
-            ? mx
-            : 0;
-        const rot = mx / 100 + (isGone ? dir * 10 * velocity : 0);
-        const scale = down ? 1.1 : 1;
-        return {
-          x,
-          rot,
-          scale,
-          delay: undefined,
-          config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
-        };
-      });
-      if (!down && gone.size === cards.length)
-        setTimeout(() => {
-          gone.clear();
-          api.start((i) => to(i));
-        }, 600);
+  function handleDragEnd(_, info) {
+    if (
+      Math.abs(info.offset.x) > sensitivity ||
+      Math.abs(info.offset.y) > sensitivity
+    ) {
+      onSendToBack();
+    } else {
+      x.set(0);
+      y.set(0);
     }
-  );
+  }
+
   return (
-    <>
-      {props.map(({ x, y, rot, scale }, i) => (
-        <animated.div className='stack' key={i} style={{ x, y }}>
-          {/* Update the card content to display whatever you want */}
-          <animated.div
-            {...bind(i)}
-            style={{
-              transform: interpolate([rot, scale], trans),
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '300px',
-              height: '300px',
-              backgroundColor: '#060606',
-              border: '1px solid #ffffff1c',
-              borderRadius: '10px',
-              fontSize: '90px', // Adjust font size as needed
-              fontWeight: 'bold',
-            }}
-          >
-            {cards[i]}
-          </animated.div>
-        </animated.div>
-      ))}
-    </>
+    <motion.div
+      className="card-rotate"
+      style={{ x, y, rotateX, rotateY }}
+      drag
+      dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
+      dragElastic={0.6}
+      whileTap={{ cursor: "grabbing" }}
+      onDragEnd={handleDragEnd}
+    >
+      {children}
+    </motion.div>
   );
 }
 
-export default Stack;
+export default function Stack({
+  randomRotation = false,
+  sensitivity = 200,
+  cardDimensions = { width: 208, height: 208 },
+  cardsData = [],
+  animationConfig = { stiffness: 260, damping: 20 },
+}) {
+  const [cards, setCards] = useState(
+    cardsData.length
+      ? cardsData
+      : [
+        { id: 1, img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format" },
+        { id: 2, img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format" },
+        { id: 3, img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format" },
+        { id: 4, img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format" }
+      ]
+  );
+
+  const sendToBack = (id) => {
+    setCards((prev) => {
+      const newCards = [...prev];
+      const index = newCards.findIndex((card) => card.id === id);
+      const [card] = newCards.splice(index, 1);
+      newCards.unshift(card);
+      return newCards;
+    });
+  };
+
+  return (
+    <div
+      className="stack-container"
+      style={{
+        width: cardDimensions.width,
+        height: cardDimensions.height,
+        perspective: 600,
+      }}
+    >
+      {cards.map((card, index) => {
+        const randomRotate = randomRotation
+          ? Math.random() * 10 - 5 // Random degree between -5 and 5
+          : 0;
+
+        return (
+          <CardRotate
+            key={card.id}
+            onSendToBack={() => sendToBack(card.id)}
+            sensitivity={sensitivity}
+          >
+            <motion.div
+              className="card"
+              animate={{
+                rotateZ: (cards.length - index - 1) * 4 + randomRotate,
+                scale: 1 + index * 0.06 - cards.length * 0.06,
+                transformOrigin: "90% 90%",
+              }}
+              initial={false}
+              transition={{
+                type: "spring",
+                stiffness: animationConfig.stiffness,
+                damping: animationConfig.damping,
+              }}
+              style={{
+                width: cardDimensions.width,
+                height: cardDimensions.height,
+              }}
+            >
+              <img
+                src={card.img}
+                alt={`card-${card.id}`}
+                className="card-image"
+              />
+            </motion.div>
+          </CardRotate>
+        );
+      })}
+    </div>
+  );
+}
