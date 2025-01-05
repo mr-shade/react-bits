@@ -393,22 +393,43 @@ export default function BlobCursor({ blobType = 'circle', fillColor = '#00f0ff' 
 }`
   },
 
-  // ! ANIMATED-CONTAINER ------------------------------------------------------------------------
-  animatedContainer: {
+  // ! ANIMATED-CONTENT ------------------------------------------------------------------------
+  animatedContent: {
     installation: `npm install @react-spring/web`,
-    usage: `import AnimatedContainer from './AnimatedContainer'
+    usage: `import AnimatedContent from './AnimatedContent'
 
-<AnimatedContainer reverse={true} direction='vertical' distance={100}>
-    {/* Anything placed inside this container will be animated into view */}
-</AnimatedContainer>`,
-    code: `import { useRef, useEffect, useState } from 'react';
-import { useSpring, animated } from '@react-spring/web';
+<AnimatedContent
+  distance={150}
+  direction="horizontal"
+  reverse={false}
+  config={{ tension: 80, friction: 20 }}
+  initialOpacity={0.2}
+  animateOpacity
+  scale={1.1}
+  threshold={0.2}
+>
+  <div>Content to Animate</div>
+</AnimatedContent>`,
+    code: `import { useRef, useEffect, useState } from "react";
+import { useSpring, animated } from "@react-spring/web";
 
-const AnimatedContainer = ({ children, distance = 100, direction = 'vertical', reverse = false }) => {
+const AnimatedContent = ({
+  children,
+  distance = 100,
+  direction = "vertical",
+  reverse = false,
+  config = { tension: 50, friction: 25 },
+  initialOpacity = 0,
+  animateOpacity = true,
+  scale = 1,
+  threshold = 0.1,
+}) => {
   const [inView, setInView] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
+    if (!ref.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -416,23 +437,28 @@ const AnimatedContainer = ({ children, distance = 100, direction = 'vertical', r
           observer.unobserve(ref.current);
         }
       },
-      { threshold: 0.1 }
+      { threshold }
     );
 
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
   const directions = {
     vertical: "Y",
-    horizontal: "X"
-  }
+    horizontal: "X",
+  };
 
   const springProps = useSpring({
-    from: { transform: \`translate\${directions[direction]}(\${reverse ? \`-\${distance}px\` : \`\${distance}px\`})\` },
-    to: inView ? { transform: \`translate\${directions[direction]}(0px)\` } : \`translate\${directions[direction]}(\${reverse && '-'}\${distance}px)\`,
-    config: { tension: 50, friction: 25 },
+    from: {
+      transform: \`translate\${directions[direction]}(\${reverse ? \`-\${distance}px\` : \`\${distance}px\`}) scale(\${scale})\`,
+      opacity: animateOpacity ? initialOpacity : 1,
+    },
+    to: inView
+      ? { transform: "translateY(0px) scale(1)", opacity: 1 }
+      : undefined,
+    config,
   });
 
   return (
@@ -442,7 +468,7 @@ const AnimatedContainer = ({ children, distance = 100, direction = 'vertical', r
   );
 };
 
-export default AnimatedContainer;`
+export default AnimatedContent;`
   },
 
   // ! FADE ------------------------------------------------------------------------

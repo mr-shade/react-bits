@@ -20,7 +20,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Logo from '../../../assets/logos/reactbits-logo.svg';
 import { useRef, useState } from 'react';
-import { CATEGORIES, NEW } from '../../../constants/CategoryConstants';
+import { CATEGORIES, NEW, UPDATED } from '../../../constants/CategoryConstants';
 
 const scrollToTop = () => window.scrollTo(0, 0);
 
@@ -101,6 +101,7 @@ const Category = ({ category, handleClick, location }) => {
           const path = `/${formatForURL(category.name)}/${formatForURL(sub)}`;
           const isActive = location.pathname === path;
           const isNew = NEW.includes(sub);
+          const isUpdated = UPDATED.includes(sub);
 
 
           return (
@@ -110,7 +111,9 @@ const Category = ({ category, handleClick, location }) => {
               to={path}
               onClick={handleClick}
             >
-              {isNew && <span className='new-tag'>New</span>} {sub}
+              {sub}
+              {isNew && <span className='new-tag'>New</span>}
+              {isUpdated && <span className='updated-tag'>Updated</span>}
             </Link>
           )
         }

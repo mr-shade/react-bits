@@ -11,7 +11,7 @@ import docs from '../assets/common/icon-docs.svg';
 
 import Fade from "../content/Animations/Fade/Fade";
 import LandingComponentNav from "../components/navs/LandingComponentNav/LandingComponentNav";
-import AnimatedContainer from "../content/Animations/AnimatedContainer/AnimatedContainer";
+import AnimatedContent from "../content/Animations/AnimatedContent/AnimatedContent";
 
 const LandingPage = () => {
   const [stars, setStars] = useState(0);
@@ -62,7 +62,7 @@ const LandingPage = () => {
     <section className="landing-wrapper">
       <Header />
       <div className="type-logo">
-        <AnimatedContainer reverse>
+        <AnimatedContent reverse>
           <svg width="1517" height="346" viewBox="0 0 1517 346" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path className="letter-r" d="M0.886719 274.586V82.8803H48.0524L52.9972 118.255C57.8152 109.886 63.6475 102.786 70.4941 96.9539C77.3407 91.1216 85.3285 86.5571 94.4573 83.2606C103.586 79.9641 113.476 78.3158 124.126 78.3158V134.61H106.249C98.6414 134.61 91.5412 135.498 84.9481 137.273C78.6086 139.048 73.0299 141.964 68.2119 146.021C63.6475 149.825 60.0974 155.15 57.5616 161.997C55.2794 168.59 54.1383 176.958 54.1383 187.101V274.586H0.886719Z" fill="white" />
             <path d="M231.786 279.15C212.514 279.15 195.397 275.093 180.436 266.979C165.728 258.61 154.19 247.073 145.822 232.365C137.454 217.404 133.27 200.16 133.27 180.635C133.27 160.856 137.327 143.359 145.442 128.144C153.81 112.676 165.348 100.504 180.055 91.6287C195.017 82.7535 212.387 78.3158 232.166 78.3158C251.184 78.3158 267.794 82.4999 281.994 90.868C296.448 99.2361 307.606 110.52 315.467 124.721C323.581 138.921 327.638 155.277 327.638 173.788C327.638 176.324 327.512 179.113 327.258 182.156C327.258 185.199 327.004 188.496 326.497 192.046H176.276V159.715H273.626C272.865 148.05 268.554 138.794 260.693 131.948C253.086 124.848 243.577 121.297 232.166 121.297C223.544 121.297 215.683 123.326 208.583 127.383C201.483 131.441 195.904 137.4 191.847 145.261C187.79 153.122 185.761 163.138 185.761 175.31V186.34C185.761 196.23 187.663 204.978 191.466 212.586C195.27 219.94 200.595 225.645 207.442 229.702C214.289 233.76 222.276 235.788 231.405 235.788C240.534 235.788 248.015 233.886 253.847 230.083C259.933 226.279 264.497 221.334 267.54 215.248H321.933C318.383 227.167 312.297 237.944 303.675 247.58C295.307 257.216 285.037 264.95 272.865 270.782C260.694 276.361 247 279.15 231.786 279.15Z" fill="white" />
@@ -91,13 +91,13 @@ const LandingPage = () => {
             <circle cx="1285.16" cy="238.802" r="18.1435" fill="white" />
             <path d="M1323.6 238.329C1323.6 248.35 1324.9 257.867 1314.88 257.867C1304.86 257.867 1296.74 249.744 1296.74 239.724C1296.74 229.704 1304.86 223.59 1314.88 223.59C1325.4 223.59 1323.6 228.309 1323.6 238.329Z" fill="white" />
           </svg>
-        </AnimatedContainer>
+        </AnimatedContent>
       </div>
 
       <div className="hero-info">
         <LandingComponentNav />
 
-        <AnimatedContainer>
+        <AnimatedContent>
           <div className="headline">
             <div className="divider"></div>
             <p>
@@ -114,7 +114,7 @@ const LandingPage = () => {
               <img src={docs} alt="github octocat" /> Read Docs
             </div>
           </div>
-        </AnimatedContainer>
+        </AnimatedContent>
       </div>
 
       <div className="perspective-grid">

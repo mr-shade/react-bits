@@ -16,7 +16,7 @@ export const CATEGORIES = [
   {
     name: 'Animations',
     subcategories: [
-      'Animated Container',
+      'Animated Content',
       'Blob Cursor',
       'Follow Cursor',
       'Magnet Lines',
@@ -90,6 +90,7 @@ export const CATEGORIES = [
 ];
 
 export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines', 'Splash Cursor'];
+export const UPDATED = ['Animated Content'];
 
 // Used for landing page showcased components
 export const SHOWCASE = [

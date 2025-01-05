@@ -1,4 +1,4 @@
-import AnimatedContainerDemo from "../demo/Animations/AnimatedContainerDemo";
+import AnimatedContentDemo from "../demo/Animations/AnimatedContentDemo";
 import BlobCursorDemo from "../demo/Animations/BlobCursorDemo";
 import BlurTextDemo from "../demo/TextAnimations/BlurTextDemo";
 import DockDemo from "../demo/Components/DockDemo";
@@ -30,7 +30,7 @@ export const componentMap = {
   'split-text': SplitTextDemo,
   'blur-text': BlurTextDemo,
   'blob-cursor': BlobCursorDemo,
-  'animated-container': AnimatedContainerDemo,
+  'animated-content': AnimatedContentDemo,
   'follow-cursor': FollowCursorDemo,
   'magnet': MagnetDemo,
   'fade': FadeDemo,

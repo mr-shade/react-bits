@@ -3,14 +3,14 @@
 		"name": "Animations",
 		"blocks": [
 			{
-				"name": "AnimatedContainer",
-				"directory": "src/content/Animations/AnimatedContainer",
+				"name": "AnimatedContent",
+				"directory": "src/content/Animations/AnimatedContent",
 				"category": "Animations",
 				"tests": false,
 				"subdirectory": true,
 				"list": true,
 				"files": [
-					"AnimatedContainer.jsx"
+					"AnimatedContent.jsx"
 				],
 				"localDependencies": [],
 				"dependencies": [

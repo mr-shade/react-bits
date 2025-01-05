@@ -71,13 +71,26 @@
 
   .new-tag {
     color: #00d9ff;
-    margin-right: .6em;
+    margin-left: .6em;
     font-size: 10px;
     border-radius: 6px;
     border: 1px solid #00d9ff74;
     background-color: #00d9ff2c;
-    font-weight: 600;
-    padding: .2em .6em;
+    font-weight: 500;
+    padding: .2em .4em;
+    opacity: 1;
+    text-decoration: none !important;
+  }
+
+  .updated-tag {
+    color: #ff9346;
+    margin-left: .6em;
+    font-size: 10px;
+    border-radius: 6px;
+    border: 1px solid #ff934677;
+    background-color: #ff934626;
+    font-weight: 500;
+    padding: .2em .4em;
     opacity: 1;
     text-decoration: none !important;
   }

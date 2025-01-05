@@ -18,7 +18,32 @@ const customTheme = extendTheme({
         backgroundColor: '#060606'
       }
     }
-  }
+  },
+  components: {
+    Slider: {
+      baseStyle: {
+        thumb: {
+          bg: "#fff",
+          _focus: {
+            boxShadow: "none"
+          },
+        },
+      },
+      variants: {
+        solid: {
+          track: {
+            bg: "#222",
+          },
+          filledTrack: {
+            bg: "#fff",
+          },
+        },
+      },
+      defaultProps: {
+        variant: "solid",
+      },
+    },
+  },
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
