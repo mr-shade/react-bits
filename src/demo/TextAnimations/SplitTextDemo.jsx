@@ -9,12 +9,12 @@ import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
+import { toast } from "sonner";
 
 const SplitTextDemo = () => {
   const { splitText } = CODE_EXAMPLES;
 
   const [delay, setDelay] = useState(100);
-  const [threshold, setThreshold] = useState(0.1);
   const [easing, setEasing] = useState("easeOutCubic");
 
   const [key, forceRerender] = useForceRerender();
@@ -82,6 +82,10 @@ const SplitTextDemo = () => {
     },
   ];
 
+  const handleAnimationComplete = () => {
+    toast('✅ Animation finished');
+  };
+
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -91,9 +95,9 @@ const SplitTextDemo = () => {
             key={key}
             text='Hello!'
             delay={delay}
-            threshold={threshold}
             easing={easing}
             className="split-text-demo"
+            onLetterAnimationComplete={handleAnimationComplete}ƒ
           />
         </Box>
 
@@ -118,27 +122,6 @@ const SplitTextDemo = () => {
               <SliderThumb />
             </Slider>
             <Text fontSize="sm">{delay}ms</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Threshold:</Text>
-            <Slider
-              min={0.1}
-              max={0.9}
-              step={0.1}
-              value={threshold}
-              onChange={(val) => {
-                setThreshold(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{threshold.toFixed(1)}</Text>
           </Flex>
 
           <Flex gap={4} align="center" mt={4}>
