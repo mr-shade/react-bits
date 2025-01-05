@@ -6,16 +6,40 @@ export const CODE_EXAMPLES = {
     installation: `npm install @react-spring/web`,
     usage: `import SplitText from "./SplitText";
 
-<SplitText text="Hello!" className="custom-class" delay={50} />`,
+const handleAnimationComplete = () => {
+  console.log('All letters have animated!');
+};
+
+<SplitText
+  text="Hello, Tailwind!"
+  className="text-2xl font-semibold text-center"
+  delay={150}
+  animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+  animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+  easing="easeOutCubic"
+  threshold={0.2}
+  rootMargin="-50px"
+  onLetterAnimationComplete={handleAnimationComplete}
+/>`,
     code: `import { useSprings, animated } from '@react-spring/web';
 import { useEffect, useRef, useState } from 'react';
 
-import './SplitText.css';
-
-const SplitText = ({ text, className = '', delay = 100 }) => {
+const SplitText = ({
+  text = '',
+  className = '',
+  delay = 100,
+  animationFrom = { opacity: 0, transform: 'translate3d(0,40px,0)' },
+  animationTo = { opacity: 1, transform: 'translate3d(0,0,0)' },
+  easing = 'easeOutCubic',
+  threshold = 0.1,
+  rootMargin = '-100px',
+  textAlign = 'center',
+  onLetterAnimationComplete,
+}) => {
   const letters = text.split('');
   const [inView, setInView] = useState(false);
   const ref = useRef();
+  const animatedCount = useRef(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,32 +49,47 @@ const SplitText = ({ text, className = '', delay = 100 }) => {
           observer.unobserve(ref.current);
         }
       },
-      { threshold: 0.1, rootMargin: '-100px' }
+      { threshold, rootMargin }
     );
 
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, []);
+  }, [threshold, rootMargin]);
 
   const springs = useSprings(
     letters.length,
     letters.map((_, i) => ({
-      from: { opacity: 0, transform: 'translate3d(0,40px,0)' },
+      from: animationFrom,
       to: inView
         ? async (next) => {
-          await next({ opacity: 1, transform: 'translate3d(0,-10px,0)' });
-          await next({ opacity: 1, transform: 'translate3d(0,0,0)' });
+          await next(animationTo);
+          animatedCount.current += 1;
+          if (animatedCount.current === letters.length && onLetterAnimationComplete) {
+            onLetterAnimationComplete();
+          }
         }
-        : { opacity: 0, transform: 'translate3d(0,40px,0)' },
+        : animationFrom,
       delay: i * delay,
+      config: { easing },
     }))
   );
 
   return (
-    <p className={\`split-parent \${className}\`} ref={ref}>
+    <p
+      ref={ref}
+      className={\`split-parent \${className}\`}
+      style={{ textAlign, display: 'inline', overflow: 'hidden' }}
+    >
       {springs.map((props, index) => (
-        <animated.span key={index} style={props} className="letter">
+        <animated.span
+          key={index}
+          style={{
+            ...props,
+            display: 'inline-block',
+            willChange: 'transform, opacity',
+          }}
+        >
           {letters[index] === ' ' ? '\u00A0' : letters[index]}
         </animated.span>
       ))}
@@ -59,22 +98,25 @@ const SplitText = ({ text, className = '', delay = 100 }) => {
 };
 
 export default SplitText;`,
-    css: `.letter {
-  display: inline-block;
-  will-change: transform, opacity;
-}
-
-.split-parent {
-  display: inline;
-  overflow: hidden;
-}`,
     tailwind: `import { useSprings, animated } from '@react-spring/web';
 import { useEffect, useRef, useState } from 'react';
 
-const SplitText = ({ text, className = '', delay = 100 }) => {
+const SplitText = ({
+  text = '',
+  className = '',
+  delay = 100,
+  animationFrom = { opacity: 0, transform: 'translate3d(0,40px,0)' },
+  animationTo = { opacity: 1, transform: 'translate3d(0,0,0)' },
+  easing = 'easeOutCubic',
+  threshold = 0.1,
+  rootMargin = '-100px',
+  textAlign = 'center',
+  onLetterAnimationComplete,
+}) => {
   const letters = text.split('');
   const [inView, setInView] = useState(false);
   const ref = useRef();
+  const animatedCount = useRef(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -84,40 +126,45 @@ const SplitText = ({ text, className = '', delay = 100 }) => {
           observer.unobserve(ref.current);
         }
       },
-      { threshold: 0.1, rootMargin: '-100px' }
+      { threshold, rootMargin }
     );
 
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, []);
+  }, [threshold, rootMargin]);
 
   const springs = useSprings(
     letters.length,
     letters.map((_, i) => ({
-      from: { opacity: 0, transform: 'translate3d(0,40px,0)' },
+      from: animationFrom,
       to: inView
         ? async (next) => {
-            await next({ opacity: 1, transform: 'translate3d(0,-10px,0)' });
-            await next({ opacity: 1, transform: 'translate3d(0,0,0)' });
+          await next(animationTo);
+          animatedCount.current += 1;
+          if (animatedCount.current === letters.length && onLetterAnimationComplete) {
+            onLetterAnimationComplete();
           }
-        : { opacity: 0, transform: 'translate3d(0,40px,0)' },
+        }
+        : animationFrom,
       delay: i * delay,
+      config: { easing },
     }))
   );
 
   return (
     <p
-      className={\`inline-block overflow-hidden \${className}\`}
       ref={ref}
+      className={\`split-parent overflow-hidden inline \${className}\`}
+      style={{ textAlign }}
     >
       {springs.map((props, index) => (
         <animated.span
           key={index}
           style={props}
-          className="inline-block transform will-change-transform will-change-opacity"
+          className="inline-block transform transition-opacity will-change-transform"
         >
-          {letters[index] === ' ' ? ' ' : letters[index]}
+          {letters[index] === ' ' ? '\u00A0' : letters[index]}
         </animated.span>
       ))}
     </p>
