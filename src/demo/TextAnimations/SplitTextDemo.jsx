@@ -82,10 +82,6 @@ const SplitTextDemo = () => {
     },
   ];
 
-  const handleAnimationComplete = () => {
-    toast('✅ Animation finished');
-  };
-
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -97,7 +93,7 @@ const SplitTextDemo = () => {
             delay={delay}
             easing={easing}
             className="split-text-demo"
-            onLetterAnimationComplete={handleAnimationComplete}ƒ
+            onLetterAnimationComplete={() => toast('✅ Animation Finished!')}
           />
         </Box>
 
