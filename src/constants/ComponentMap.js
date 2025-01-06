@@ -25,6 +25,7 @@ import BounceCardsDemo from "../demo/Components/BounceCardsDemo";
 import WavesDemo from "../demo/Backgrounds/WavesDemo";
 import MagnetLinesDemo from "../demo/Animations/MagnetLinesDemo";
 import SplashCursorDemo from "../demo/Animations/SplashCursorDemo";
+import DecryptedTextDemo from "../demo/TextAnimations/DecryptedTextDemo";
 
 export const componentMap = {
   'split-text': SplitTextDemo,
@@ -53,6 +54,7 @@ export const componentMap = {
   'bounce-cards': BounceCardsDemo,
   'waves': WavesDemo,
   'magnet-lines': MagnetLinesDemo,
-  'splash-cursor': SplashCursorDemo
+  'splash-cursor': SplashCursorDemo,
+  'decrypted-text': DecryptedTextDemo
   // Map other subcategories to their components here
 };

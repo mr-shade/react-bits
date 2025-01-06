@@ -431,6 +431,23 @@
 				"_imports_": {}
 			},
 			{
+				"name": "DecryptedText",
+				"directory": "src/content/TextAnimations/DecryptedText",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"DecryptedText.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
 				"name": "GradientText",
 				"directory": "src/content/TextAnimations/GradientText",
 				"category": "TextAnimations",
@@ -704,6 +721,23 @@
 				"localDependencies": [],
 				"dependencies": [
 					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "DecryptedText",
+				"directory": "src/tailwind/TailwindTextAnimations/DecryptedText",
+				"category": "TailwindTextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"DecryptedText.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
 				],
 				"devDependencies": [],
 				"_imports_": {}
