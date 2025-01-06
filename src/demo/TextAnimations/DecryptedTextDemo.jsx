@@ -4,7 +4,6 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Select,
   Slider,
   SliderTrack,
@@ -28,7 +27,6 @@ import useForceRerender from "../../hooks/useForceRerender";
 const DecryptedTextDemo = () => {
   const { decryptedText } = CODE_EXAMPLES;
 
-  const [text, setText] = useState("Welcome to The Matrix.");
   const [speed, setspeed] = useState(60);
   const [maxIterations, setMaxIterations] = useState(10);
   const [sequential, setSequential] = useState(true);
@@ -55,20 +53,51 @@ const DecryptedTextDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" minH={400} overflow="hidden">
+        <Box position="relative" justifyContent='flex-start' py={6} className="demo-container" overflow="hidden">
           <RefreshButton onClick={forceRerender} />
-          <DecryptedText
-            key={key}
-            text={text}
-            speed={speed}
-            maxIterations={maxIterations}
-            sequential={sequential}
-            revealDirection={revealDirection}
-            parentClassName="decrypted-text"
-            useOriginalCharsOnly={useOriginalCharsOnly}
-            animateOn={animateOn}
-            onAnimationComplete={() => toast("✅ Animation Finished!")}
-          />
+          <Flex pl={6} m={8} direction='column' key={key}>
+            <DecryptedText
+              speed={speed}
+              text='Ahoy, matey!'
+              maxIterations={maxIterations}
+              sequential={sequential}
+              revealDirection={revealDirection}
+              parentClassName="decrypted-text"
+              useOriginalCharsOnly={useOriginalCharsOnly}
+              animateOn={animateOn}
+            />
+            <DecryptedText
+              speed={speed}
+              text='Set yer eyes on this'
+              maxIterations={maxIterations}
+              sequential={sequential}
+              revealDirection={revealDirection}
+              parentClassName="decrypted-text"
+              useOriginalCharsOnly={useOriginalCharsOnly}
+              animateOn={animateOn}
+            />
+            <DecryptedText
+              speed={speed}
+              text='And try tinkerin’ round’'
+              maxIterations={maxIterations}
+              sequential={sequential}
+              revealDirection={revealDirection}
+              parentClassName="decrypted-text"
+              useOriginalCharsOnly={useOriginalCharsOnly}
+              animateOn={animateOn}
+            />
+            <DecryptedText
+              speed={speed}
+              text='with these here props, arr!'
+              maxIterations={maxIterations}
+              sequential={sequential}
+              revealDirection={revealDirection}
+              parentClassName="decrypted-text"
+              useOriginalCharsOnly={useOriginalCharsOnly}
+              animateOn={animateOn}
+              onAnimationComplete={() => toast("✅ Animation Finished!")}
+            />
+          </Flex>
         </Box>
 
         <Flex
@@ -94,22 +123,6 @@ const DecryptedTextDemo = () => {
                 <option value="hover">hover</option>
                 <option value="view">view</option>
               </Select>
-            </FormControl>
-
-            <FormControl width="auto">
-              <FormLabel mb="2" >
-                Text
-              </FormLabel>
-              <Input
-                width="auto"
-                minW="150px"
-                value={text}
-                maxLength={50}
-                onChange={(e) => {
-                  setText(e.target.value);
-                  forceRerender();
-                }}
-              />
             </FormControl>
 
             <FormControl width="auto">

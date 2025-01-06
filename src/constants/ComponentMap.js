@@ -26,6 +26,7 @@ import WavesDemo from "../demo/Backgrounds/WavesDemo";
 import MagnetLinesDemo from "../demo/Animations/MagnetLinesDemo";
 import SplashCursorDemo from "../demo/Animations/SplashCursorDemo";
 import DecryptedTextDemo from "../demo/TextAnimations/DecryptedTextDemo";
+import NoiseDemo from "../demo/Animations/NoiseDemo";
 
 export const componentMap = {
   'split-text': SplitTextDemo,
@@ -55,6 +56,7 @@ export const componentMap = {
   'waves': WavesDemo,
   'magnet-lines': MagnetLinesDemo,
   'splash-cursor': SplashCursorDemo,
-  'decrypted-text': DecryptedTextDemo
+  'decrypted-text': DecryptedTextDemo,
+  'noise': NoiseDemo
   // Map other subcategories to their components here
 };

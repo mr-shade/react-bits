@@ -120,6 +120,22 @@
 				"_imports_": {}
 			},
 			{
+				"name": "Noise",
+				"directory": "src/content/Animations/Noise",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Noise.jsx",
+					"Noise.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
 				"name": "SplashCursor",
 				"directory": "src/content/Animations/SplashCursor",
 				"category": "Animations",
@@ -155,6 +171,19 @@
 	{
 		"name": "Backgrounds",
 		"blocks": [
+			{
+				"name": "Fireflies",
+				"directory": "src/content/Backgrounds/Fireflies",
+				"category": "Backgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
 			{
 				"name": "GridMotion",
 				"directory": "src/content/Backgrounds/GridMotion",
@@ -546,6 +575,21 @@
 				"list": true,
 				"files": [
 					"MagnetLines.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Noise",
+				"directory": "src/tailwind/TailwindAnimations/Noise",
+				"category": "TailwindAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Noise.jsx"
 				],
 				"localDependencies": [],
 				"dependencies": [],

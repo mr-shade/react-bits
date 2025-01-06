@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines', 'Splash Cursor', 'Decrypted Text'];
+export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines', 'Splash Cursor', 'Decrypted Text', 'Noise'];
 export const UPDATED = ['Animated Content', 'Fade Content', 'Stack'];
 
 // Used for main sidebar navigation
@@ -31,6 +31,7 @@ export const CATEGORIES = [
       // 'Spotlights',
       'Magnet Lines',
       'Magnet',
+      'Noise',
       'Crosshair',
       'Splash Cursor',
       'Follow Cursor',

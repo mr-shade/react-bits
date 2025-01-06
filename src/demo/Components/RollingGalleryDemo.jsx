@@ -8,7 +8,7 @@ import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const ThreeDGalleryDemo = () => {
+const RollingGalleryDemo = () => {
   const { rollingGallery } = CODE_EXAMPLES;
 
   const propData = [
@@ -51,4 +51,4 @@ const ThreeDGalleryDemo = () => {
   );
 };
 
-export default ThreeDGalleryDemo;
+export default RollingGalleryDemo;
