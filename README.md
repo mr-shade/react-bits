@@ -1,5 +1,5 @@
 <div align="center">
-Welcome to React Bits, your go-to for animated React components, and other goodies!
+Welcome to React Bits, the go-to open source library for high quality animated React components!
 </div>
 
 <div align="center">
@@ -12,9 +12,9 @@ Welcome to React Bits, your go-to for animated React components, and other goodi
 
 ## About
 
-React Bits is a library of animated and interactive React components designed to make your UI development faster and more engaging. From text animations to responsive layouts, React Bits has got you covered.
+React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow. From simple text animations to complex 3D components, React Bits provides everything you need to create unique and impactful websites.
 
-The main idea behind this project is to keep dependencies to a minimum and just offer code that you can plug into your projects without much hassle - this is why most components you will find here only use an animation library for smoother animations and shorter code and nothing else - the rest is up to you to customize according to your own needs.
+The project embraces simplicity as its core philosophy—it maintains minimal dependencies and offers code that integrates seamlessly into your projects. Components often rely on zero dependencies or in some cases, a single animation library, for smooth effects and cleaner code, leaving plenty of room for customization.
 
 ## Key Features
 - A variety of animated text and UI components
@@ -22,13 +22,40 @@ The main idea behind this project is to keep dependencies to a minimum and just 
 - Designed to integrate seamlessly with any React project
 
 ## Links
+* [Official Docs](https://reactbits.dev/)
 
-- [Official Website](https://reactbits.dev/)
+## Installing Components Via CLI - <a href="https://jsrepo.dev"><img src="https://jsrepo.dev/badges/jsrepo.svg" width="50" alt="jsrepo"></a>
+
+#### One-Time Installation
+```bash
+npx jsrepo add github/davidhdev/react-bits/<CategoryName>/<ComponentName>
+
+# Example: npx jsrepo add github/davidhdev/react-bits/TextAnimations/SplitText
+```
+
+#### One-Time Installation (Tailwind)
+```bash
+npx jsrepo add github/davidhdev/react-bits/Tailwind<CategoryName>/<ComponentName>
+
+# Example: npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/SplitText
+```
+
+#### Full CLI Setup
+```bash
+# 1. Initialize a config file for your project
+npx jsrepo init --project --repos github/davidhdev/react-bits
+
+# 2. Browse & add components from the list
+npx jsrepo add
+
+# 3. Or just add a specific component
+npx jsrepo add <CategoryName>/<ComponentName>
+
+# Optionally, install jsrepo globally to remove 'npx' from the commands
+npm i -g jsrepo
+```
 
 ## Running The Project Locally
-
-The setup for this project is very straightforward <br>
-<br>
 
 #### Clone The Project (fork for contributions)
 
