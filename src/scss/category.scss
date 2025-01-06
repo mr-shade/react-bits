@@ -56,6 +56,10 @@
   border-radius: 20px !important;
   background: #060606 !important;
   font-size: 14px !important;
+
+  .language-bash {
+    color: #b6b6b6 !important;
+  }
 }
 
 .demo-container {
@@ -184,6 +188,29 @@
   align-items: center;
   gap: 0.5em;
   color: #a1a1aa;
+}
+
+.jsrepo-info a {
+  text-decoration: underline;
+}
+
+.cli-divider {
+  position: relative;
+  margin: 4em auto 3em auto;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #222, transparent);
+
+  &::before {
+    content: "Or";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #060606;
+    padding: 0 1em;
+    color: #a1a1aa;
+  }
 }
 
 .coming-soon {

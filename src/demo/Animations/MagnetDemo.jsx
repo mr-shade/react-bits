@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { InfoOutlineIcon } from '@chakra-ui/icons';
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import Magnet from "../../content/Animations/Magnet/Magnet";
 import CodeExample from "../../components/code/CodeExample";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const MagnetDemo = () => {
   const { magnet } = CODE_EXAMPLES;
@@ -56,6 +57,10 @@ const MagnetDemo = () => {
       <CodeTab>
         <CodeExample codeObject={magnet} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={magnet.cliDefault} />
+      </CliTab>
     </TabbedLayout>
 
   );

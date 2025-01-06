@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { ArrowDownIcon, ArrowUpIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import { Box, Button, ButtonGroup, Flex, Input } from "@chakra-ui/react";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import Squares from "../../content/Backgrounds/Squares/Squares";
 import CodeExample from "../../components/code/CodeExample";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const SquaresDemo = () => {
   const { squares } = CODE_EXAMPLES;
@@ -141,6 +142,10 @@ const SquaresDemo = () => {
       <CodeTab>
         <CodeExample codeObject={squares} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={squares.cliDefault} cliTailwind={squares.cliTailwind} />
+      </CliTab>
     </TabbedLayout>
 
   );

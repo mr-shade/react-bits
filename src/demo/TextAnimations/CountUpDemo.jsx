@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Button, Flex, Icon } from "@chakra-ui/react";
 import { TbFlame } from "react-icons/tb";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import CountUp from "../../content/TextAnimations/CountUp/CountUp";
@@ -12,6 +12,7 @@ import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const CountUpDemo = () => {
   const { countup } = CODE_EXAMPLES;
@@ -150,6 +151,10 @@ const CountUpDemo = () => {
       <CodeTab>
         <CodeExample codeObject={countup} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={countup.cliDefault} />
+      </CliTab>
     </TabbedLayout>
   );
 };

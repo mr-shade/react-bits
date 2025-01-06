@@ -6,7 +6,7 @@ const CodeExample = ({ codeObject }) => {
   return (
     <>
       {Object.entries(codeObject).map(([key, codeString]) => {
-        if (key === 'tailwind' || key === 'css') return null;
+        if (['tailwind', 'css', 'cliDefault', 'cliTailwind'].includes(key)) return null;
 
         const hasNoCss = !codeObject.tailwind && !codeObject.css;
 

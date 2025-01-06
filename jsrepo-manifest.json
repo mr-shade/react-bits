@@ -369,8 +369,7 @@
 				],
 				"localDependencies": [],
 				"dependencies": [
-					"@react-spring/web@^9.7.4",
-					"react-use-gesture@^9.1.3"
+					"framer-motion@^11.3.24"
 				],
 				"devDependencies": [],
 				"_imports_": {}
@@ -491,6 +490,263 @@
 				"files": [
 					"WaveText.jsx",
 					"WaveText.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	},
+	{
+		"name": "TailwindAnimations",
+		"blocks": [
+			{
+				"name": "Crosshair",
+				"directory": "src/tailwind/TailwindAnimations/Crosshair",
+				"category": "TailwindAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Crosshair.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"gsap@^3.12.5"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "MagnetLines",
+				"directory": "src/tailwind/TailwindAnimations/MagnetLines",
+				"category": "TailwindAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"MagnetLines.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "SplashCursor",
+				"directory": "src/tailwind/TailwindAnimations/SplashCursor",
+				"category": "TailwindAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"SplashCursor.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "StarBorder",
+				"directory": "src/tailwind/TailwindAnimations/StarBorder",
+				"category": "TailwindAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"StarBorder.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	},
+	{
+		"name": "TailwindBackgrounds",
+		"blocks": [
+			{
+				"name": "Squares",
+				"directory": "src/tailwind/TailwindBackgrounds/Squares",
+				"category": "TailwindBackgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Squares.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Waves",
+				"directory": "src/tailwind/TailwindBackgrounds/Waves",
+				"category": "TailwindBackgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Waves.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	},
+	{
+		"name": "TailwindComponents",
+		"blocks": [
+			{
+				"name": "BounceCards",
+				"directory": "src/tailwind/TailwindComponents/BounceCards",
+				"category": "TailwindComponents",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"BounceCards.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"gsap@^3.12.5"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "ElasticSlider",
+				"directory": "src/tailwind/TailwindComponents/ElasticSlider",
+				"category": "TailwindComponents",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ElasticSlider.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "SpotlightCard",
+				"directory": "src/tailwind/TailwindComponents/SpotlightCard",
+				"category": "TailwindComponents",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"SpotlightCard.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "Stack",
+				"directory": "src/tailwind/TailwindComponents/Stack",
+				"category": "TailwindComponents",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Stack.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "TiltedScroll",
+				"directory": "src/tailwind/TailwindComponents/TiltedScroll",
+				"category": "TailwindComponents",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"TiltedScroll.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			}
+		]
+	},
+	{
+		"name": "TailwindTextAnimations",
+		"blocks": [
+			{
+				"name": "BlurText",
+				"directory": "src/tailwind/TailwindTextAnimations/BlurText",
+				"category": "TailwindTextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"BlurText.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "GradientText",
+				"directory": "src/tailwind/TailwindTextAnimations/GradientText",
+				"category": "TailwindTextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"GradientText.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "ShinyText",
+				"directory": "src/tailwind/TailwindTextAnimations/ShinyText",
+				"category": "TailwindTextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ShinyText.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "SplitText",
+				"directory": "src/tailwind/TailwindTextAnimations/SplitText",
+				"category": "TailwindTextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"SplitText.jsx"
 				],
 				"localDependencies": [],
 				"dependencies": [

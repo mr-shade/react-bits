@@ -3,6 +3,8 @@
 export const CODE_EXAMPLES = {
   // ! SPLIT-TEXT ------------------------------------------------------------------------
   splitText: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/SplitText`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/SplitText`,
     installation: `npm install @react-spring/web`,
     usage: `import SplitText from "./SplitText";
 
@@ -177,6 +179,8 @@ export default SplitText;`
   // ! BLUR-TEXT ------------------------------------------------------------------------
   blurText: {
     installation: `npm install @react-spring/web`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/BlurText`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/BlurText`,
     usage: `import BlurText from "./BlurText";
 
 const handleAnimationComplete = () => {
@@ -377,6 +381,7 @@ export default BlurText;`
   // ! BLOB-CURSOR ------------------------------------------------------------------------
   blobCursor: {
     installation: `npm i @react-spring/web`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/BlobCursor`,
     usage: `import BlobCursor from './BlobCursor'
     
 <BlobCursor />`,
@@ -525,6 +530,7 @@ export default function BlobCursor({ blobType = 'circle', fillColor = '#00f0ff' 
   // ! ANIMATED-CONTENT ------------------------------------------------------------------------
   animatedContent: {
     installation: `npm install @react-spring/web`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/AnimatedContent`,
     usage: `import AnimatedContent from './AnimatedContent'
 
 <AnimatedContent
@@ -602,6 +608,7 @@ export default AnimatedContent;`
 
   // ! FADE-CONTENT ------------------------------------------------------------------------
   fadeContent: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/FadeContent`,
     usage: `import FadeContent from './FadeContent'
     
  <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
@@ -657,6 +664,8 @@ export default FadeContent;`
 
   // ! SPLASH CURSOR ------------------------------------------------------------------------
   splashCursor: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/SplashCursor`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/SplashCursor`,
     usage: `import SplashCursor from './SplashCursor'
 
 <SplashCursor />`,
@@ -3088,6 +3097,8 @@ export default SplashCursor;`
 
   // ! TILTED-SCROLL ------------------------------------------------------------------------
   tiltedScroll: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/TiltedScroll`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/TiltedScroll`,
     usage: `import TiltedScroll from './TiltedScroll'
 
 <TiltedScroll />`,
@@ -3278,6 +3289,8 @@ module.exports = {
   // ! STACK ------------------------------------------------------------------------
   stack: {
     installation: `npm i framer-motion`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/Stack`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/Stack`,
     usage: `import Stack from './Stack'
 
 const images = [
@@ -3548,6 +3561,7 @@ export default function Stack({
   // ! FOLLOW-CURSOR ------------------------------------------------------------------------
   followCursor: {
     installation: `npm i @react-spring/web react-use-gesture`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/FollowCursor`,
     usage: `import FollowCursor from './FollowCursor'
 
 <FollowCursor />`,
@@ -3703,6 +3717,7 @@ export default function FollowCursor() {
 
   // ! MAGNET ------------------------------------------------------------------------
   magnet: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/Magnet`,
     usage: `import Magnet from './Magnet'
 
 <Magnet padding={50} disabled={false}>
@@ -3768,8 +3783,10 @@ const Magnet = ({ children, padding = 100, disabled = false }) => {
 export default Magnet;`
   },
 
-  // ! MAGNET LINES ------------------------------------------------------------------------
+  // ! MAGNET-LINES ------------------------------------------------------------------------
   magnetLines: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/MagnetLines`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/MagnetLines`,
     usage: `import MagnetLines from './MagnetLines';
 
 <MagnetLines
@@ -3972,6 +3989,7 @@ export default function MagnetLines({
 
   dock: {
     installation: `npm i @react-spring/web`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/Dock`,
     usage: `import Dock from './Dock';
 
 <Dock collapsible={false} position="left" responsive="bottom" />`,
@@ -4175,6 +4193,7 @@ export default Dock;`,
   // ! MAGNET ------------------------------------------------------------------------
   masonry: {
     installation: `npm i @react-spring/web`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/Masonry`,
     usage: `import Masonry from './Masonry'
     
 const data = [
@@ -4309,6 +4328,8 @@ export default Masonry;`,
 
   // ! SHINY-TEXT ------------------------------------------------------------------------
   shinyText: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/ShinyText`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/ShinyText`,
     usage: `import ShinyText from './ShinyText';
     
 <ShinyText text="Just some shiny text!" disabled={false} speed={3} className='custom-class' />`,
@@ -4396,6 +4417,8 @@ module.exports = {
 
   // ! GRADIENT-TEXT ------------------------------------------------------------------------
   gradientText: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/GradientText`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/GradientText`,
     usage: `import GradientText from './GradientText'
     
 <GradientText
@@ -4568,6 +4591,8 @@ module.exports = {
   // ! BOUNCE CARDS ------------------------------------------------------------------------
   bounceCards: {
     installation: `npm i gsap`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/BounceCards`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/BounceCards`,
     usage: `import BounceCards from './BounceCards'
 
 const images = [
@@ -4741,6 +4766,8 @@ export default function BounceCards({
 
   // ! SQUARES ------------------------------------------------------------------------
   squares: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/Squares`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindBackgrounds/Squares`,
     usage: `import Squares from './Squares';
     
 <Squares 
@@ -5026,6 +5053,8 @@ export default Squares;`
   },
 
   waves: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/Waves`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindBackgrounds/Waves`,
     usage: `import Waves from './Waves';
 
 <Waves
@@ -5323,7 +5352,7 @@ export default function Waves({
   width: 100%;
   height: 100%;
 }`,
-    tailwind: `import React, { useRef, useEffect } from "react";
+    tailwind: `import { useRef, useEffect } from "react";
 
 class Grad {
   constructor(x, y, z) {
@@ -5597,6 +5626,8 @@ export default function Waves({
   // ! CROSSHAIR ------------------------------------------------------------------------
   crosshair: {
     installation: `npm i gsap`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/Crosshair`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/Crosshair`,
     usage: `import { useRef } from 'react';
 import Crosshair from './Crosshair';
 
@@ -5991,6 +6022,7 @@ export default Crosshair;`
   // ! COUNT UP ------------------------------------------------------------------------
   countup: {
     installation: `npm i framer-motion`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/CountUp`,
     usage: `import CountUp from './CountUp'
 
 <CountUp
@@ -6087,6 +6119,7 @@ export default function CountUp({
   // ! HYPERSPEED------------------------------------------------
   hyperspeed: {
     installation: `npm i three postprocessing`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/Hyperspeed`,
     usage: `import Hyperspeed from './Hyperspeed';
 
 // the component will fill the height/width of its parent container, edit the CSS to change this
@@ -7462,6 +7495,7 @@ canvas {
 
   rollingGallery: {
     installation: `npm i framer-motion`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/RollingGallery`,
     usage: `import RollingGallery from './RollingGallery'
     
 <RollingGallery autoplay={true} pauseOnHover={true} />`,
@@ -7667,6 +7701,8 @@ export default RollingGallery;`,
 
   // !SPOTLIGHT-CARD -------------------------------------------------
   spotlightCard: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/SpotlightCard`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/SpotlightCard`,
     usage: `import SpotlightCard from './SpotlightCard';
     
 <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
@@ -7793,6 +7829,8 @@ export default SpotlightCard;`
   // !STAR-BORDER -------------------------------------------------
 
   starBorder: {
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/StarBorder`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/StarBorder`,
     usage: `import StarBorder from './StarBorder'
     
 <StarBorder
@@ -7900,9 +7938,7 @@ export default StarBorder;`,
     opacity: 0;
   }
 }`,
-    tailwind: `import React from "react";
-
-const StarBorder = ({
+    tailwind: `const StarBorder = ({
   as: Component = "button",
   className = "",
   color = "white",
@@ -7961,6 +7997,8 @@ module.exports = {
   //! ELASTIC-SLIDER-----------------------------------------------------------------------
   elasticSlider: {
     installation: `npm i framer-motion`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/ElasticSlider`,
+    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/ElasticSlider`,
     usage: `import ElasticSlider from './ElasticSlider'
     
 <ElasticSlider
@@ -8455,6 +8493,7 @@ function decay(value, max) {
   // !GRID-MOTION ------------------------------------------------------------------------
   gridMotion: {
     installation: `npm i gsap`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/GridMotion`,
     usage: `import GridMotion from './GridMotion';
     
 // note: you'll need to make sure the parent container of this component is sized properly
@@ -8683,6 +8722,7 @@ export default GridMotion;`,
   // ! DECAY-CARD ------------------------------------------------------------------------
   decayCard: {
     installation: `npm i gsap`,
+    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/DecayCard`,
     usage: `import DecayCard from './DecayCard';
 
 <DecayCard width={200} height={300} image="https://...">

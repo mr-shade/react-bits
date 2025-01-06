@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
@@ -9,6 +9,7 @@ import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from '../../components/common/PropTable';
+import CliInstallation from "../../components/code/CliInstallation";
 
 const AnimatedContentDemo = () => {
   const { animatedContent } = CODE_EXAMPLES;
@@ -279,6 +280,10 @@ const AnimatedContentDemo = () => {
       <CodeTab>
         <CodeExample codeObject={animatedContent} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={animatedContent.cliDefault} />
+      </CliTab>
     </TabbedLayout>
   );
 };

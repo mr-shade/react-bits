@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Box, Button, ButtonGroup, Divider, Flex, Text } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import Dock from "../../content/Components/Dock/Dock";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const DockDemo = () => {
   const { dock } = CODE_EXAMPLES;
@@ -151,6 +152,9 @@ const DockDemo = () => {
         <CodeExample codeObject={dock} />
       </CodeTab>
 
+      <CliTab>
+        <CliInstallation cliDefault={dock.cliDefault} />
+      </CliTab>
     </TabbedLayout>
   );
 }

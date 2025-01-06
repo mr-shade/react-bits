@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
@@ -8,6 +8,7 @@ import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const StackDemo = () => {
   const { stack } = CODE_EXAMPLES;
@@ -158,6 +159,10 @@ const StackDemo = () => {
       <CodeTab>
         <CodeExample codeObject={stack} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={stack.cliDefault} cliTailwind={stack.cliTailwind} />
+      </CliTab>
     </TabbedLayout>
   );
 };

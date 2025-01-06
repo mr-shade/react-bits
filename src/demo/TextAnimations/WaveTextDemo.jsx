@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import WaveText from "../../content/TextAnimations/WaveText/WaveText";
@@ -7,6 +7,7 @@ import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const WaveTextDemo = () => {
   const { waveText } = CODE_EXAMPLES;
@@ -26,8 +27,11 @@ const WaveTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={waveText} />
       </CodeTab>
-    </TabbedLayout>
 
+      <CliTab>
+        <CliInstallation cliDefault={waveText.cliDefault} />
+      </CliTab>
+    </TabbedLayout>
   );
 }
 

@@ -124,6 +124,7 @@
 
       .shiny-text,
       .animated-gradient-text {
+        white-space: nowrap !important;
         flex: none !important;
         width: fit-content !important;
         max-width: none !important;

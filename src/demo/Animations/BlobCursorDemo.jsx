@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import BlobCursor from "../../content/Animations/BlobCursor/BlobCursor";
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
+import CliInstallation from '../../components/code/CliInstallation';
 
 const BlobCursorDemo = () => {
   const { blobCursor } = CODE_EXAMPLES;
@@ -56,6 +57,10 @@ const BlobCursorDemo = () => {
       <CodeTab>
         <CodeExample codeObject={blobCursor} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={blobCursor.cliDefault} />
+      </CliTab>
     </TabbedLayout>
   );
 }

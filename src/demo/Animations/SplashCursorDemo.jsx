@@ -1,10 +1,11 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import SplashCursor from "../../content/Animations/SplashCursor/SplashCursor";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const SplashCursorDemo = () => {
   const { splashCursor } = CODE_EXAMPLES;
@@ -110,6 +111,10 @@ const SplashCursorDemo = () => {
         <CodeTab>
           <CodeExample codeObject={splashCursor} />
         </CodeTab>
+
+        <CliTab>
+          <CliInstallation cliDefault={splashCursor.cliDefault} cliTailwind={splashCursor.cliTailwind} />
+        </CliTab>
       </TabbedLayout>
 
       <SplashCursor />

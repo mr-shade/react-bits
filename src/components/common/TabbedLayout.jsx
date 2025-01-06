@@ -9,7 +9,7 @@ import {
   Flex,
   Icon
 } from "@chakra-ui/react";
-import { FiCode, FiEye, FiHeart } from "react-icons/fi";
+import { FiCode, FiEye, FiHeart, FiTerminal } from "react-icons/fi";
 import ContributionSection from "./ContributionSection";
 
 const tabStyles = {
@@ -27,8 +27,8 @@ const tabStyles = {
 const TabbedLayout = ({ children }) => {
   const contentMap = {
     PreviewTab: null,
-    CodeTab: null
-    // CliTab: null
+    CodeTab: null,
+    CliTab: null
   };
 
   React.Children.forEach(children, (child) => {
@@ -36,10 +36,9 @@ const TabbedLayout = ({ children }) => {
       contentMap.PreviewTab = child;
     } else if (child.type === CodeTab) {
       contentMap.CodeTab = child;
+    } else if (child.type === CliTab) {
+      contentMap.CliTab = child;
     }
-    // else if (child.type === CliTab) {
-    //   contentMap.CliTab = child;
-    // }
   });
 
   return (
@@ -54,10 +53,10 @@ const TabbedLayout = ({ children }) => {
             <Icon as={FiCode} />
             &nbsp;Code
           </Tab>
-          {/* <Tab sx={{ ...tabStyles, marginRight: "0.5rem" }}>
+          <Tab sx={{ ...tabStyles, marginRight: "0.5rem" }}>
             <Icon as={FiTerminal} />
             &nbsp;CLI
-          </Tab> */}
+          </Tab>
         </Flex>
         <Tab sx={tabStyles}>
           <Icon as={FiHeart} />
@@ -68,7 +67,7 @@ const TabbedLayout = ({ children }) => {
       <TabPanels>
         <TabPanel p={0}>{contentMap.PreviewTab}</TabPanel>
         <TabPanel p={0}>{contentMap.CodeTab}</TabPanel>
-        {/* <TabPanel p={0}>{contentMap.CliTab}</TabPanel> */}
+        <TabPanel p={0}>{contentMap.CliTab}</TabPanel>
         <TabPanel p={0}>
           <ContributionSection />
         </TabPanel>
@@ -80,6 +79,6 @@ const TabbedLayout = ({ children }) => {
 // Helper components to wrap tab content
 const PreviewTab = ({ children }) => <>{children}</>;
 const CodeTab = ({ children }) => <>{children}</>;
-// const CliTab = ({ children }) => <>{children}</>;
+const CliTab = ({ children }) => <>{children}</>;
 
-export { TabbedLayout, PreviewTab, CodeTab };
+export { TabbedLayout, PreviewTab, CodeTab, CliTab };

@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import Crosshair from "../../content/Animations/Crosshair/Crosshair";
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const CrosshairDemo = () => {
   const { crosshair } = CODE_EXAMPLES;
@@ -15,7 +16,6 @@ const CrosshairDemo = () => {
   const [targeted, setTargeted] = useState(true);
 
   const containerRef = useRef(null);
-
 
   return (
     <TabbedLayout>
@@ -64,6 +64,10 @@ const CrosshairDemo = () => {
       <CodeTab>
         <CodeExample codeObject={crosshair} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={crosshair.cliDefault} cliTailwind={crosshair.cliTailwind}/>
+      </CliTab>
     </TabbedLayout>
   );
 };

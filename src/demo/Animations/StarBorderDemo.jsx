@@ -1,10 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import StarBorder from "../../content/Animations/StarBorder/StarBorder";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const StarBorderDemo = () => {
   const { starBorder } = CODE_EXAMPLES;
@@ -61,6 +62,10 @@ const StarBorderDemo = () => {
       <CodeTab>
         <CodeExample codeObject={starBorder} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={starBorder.cliDefault} cliTailwind={starBorder.cliTailwind} />
+      </CliTab>
     </TabbedLayout>
   );
 };

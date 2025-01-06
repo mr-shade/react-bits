@@ -1,11 +1,12 @@
 import { Box } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import Masonry from "../../content/Components/Masonry/Masonry";
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const MasonryDemo = () => {
   const { masonry } = CODE_EXAMPLES;
@@ -41,6 +42,9 @@ const MasonryDemo = () => {
         <CodeExample codeObject={masonry} />
       </CodeTab>
 
+      <CliTab>
+        <CliInstallation cliDefault={masonry.cliDefault} />
+      </CliTab>
     </TabbedLayout>
   );
 }

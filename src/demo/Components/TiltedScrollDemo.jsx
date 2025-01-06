@@ -1,9 +1,10 @@
 import { Flex } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import TiltedScroll from "../../content/Components/TiltedScroll/TiltedScroll";
 import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from "../../components/code/CliInstallation";
 
 const TiltedScrollDemo = () => {
   const { tiltedScroll } = CODE_EXAMPLES;
@@ -19,8 +20,11 @@ const TiltedScrollDemo = () => {
       <CodeTab>
         <CodeExample codeObject={tiltedScroll} />
       </CodeTab>
-    </TabbedLayout>
 
+      <CliTab>
+        <CliInstallation cliDefault={tiltedScroll.cliDefault} cliTailwind={tiltedScroll.cliTailwind}/>
+      </CliTab>
+    </TabbedLayout>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
@@ -10,6 +10,7 @@ import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import { toast } from "sonner";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const SplitTextDemo = () => {
   const { splitText } = CODE_EXAMPLES;
@@ -144,6 +145,10 @@ const SplitTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={splitText} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={splitText.cliDefault} cliTailwind={splitText.cliTailwind} />
+      </CliTab>
     </TabbedLayout>
   );
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Select, Text } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
 
@@ -9,6 +9,7 @@ import PropTable from "../../components/common/PropTable";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const HyperspeedDemo = () => {
   const { hyperspeed } = CODE_EXAMPLES;
@@ -52,6 +53,10 @@ const HyperspeedDemo = () => {
       <CodeTab>
         <CodeExample codeObject={hyperspeed} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={hyperspeed.cliDefault} />
+      </CliTab>
     </TabbedLayout>
   );
 };

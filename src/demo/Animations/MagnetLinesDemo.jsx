@@ -1,10 +1,11 @@
 import { Flex } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import MagnetLines from "../../content/Animations/MagnetLines/MagnetLines";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const MagnetLinesDemo = () => {
   const { magnetLines } = CODE_EXAMPLES;
@@ -79,6 +80,10 @@ const MagnetLinesDemo = () => {
       <CodeTab>
         <CodeExample codeObject={magnetLines} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={magnetLines.cliDefault} cliTailwind={magnetLines.cliTailwind}/>
+      </CliTab>
     </TabbedLayout>
   );
 };

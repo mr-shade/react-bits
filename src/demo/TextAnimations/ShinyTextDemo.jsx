@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Box, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
-import { CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import ShinyText from "../../content/TextAnimations/ShinyText/ShinyText";
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
+import CliInstallation from "../../components/code/CliInstallation";
 
 const ShinyTextDemo = () => {
   const { shinyText } = CODE_EXAMPLES;
@@ -83,6 +84,10 @@ const ShinyTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={shinyText} />
       </CodeTab>
+
+      <CliTab>
+        <CliInstallation cliDefault={shinyText.cliDefault} cliTailwind={shinyText.cliTailwind}/>
+      </CliTab>
     </TabbedLayout>
   );
 };
