@@ -1,54 +1,75 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const Magnet = ({ children, padding = 100, disabled = false }) => {
+const Magnet = ({
+  children,
+  /** Distance around the magnet where the mouse can activate it. */
+  padding = 100,
+  /** Disables the magnet effect entirely. */
+  disabled = false,
+  /** Controls how strong the magnet pull is. Higher = less offset. */
+  magnetStrength = 2,
+  /** Transition when the magnet is active (mouse in range). */
+  activeTransition = "transform 0.3s ease-out",
+  /** Transition when the magnet is inactive (mouse out of range). */
+  inactiveTransition = "transform 0.5s ease-in-out",
+  /** Optional class for the outer wrapper. */
+  wrapperClassName = "",
+  /** Optional class for the moving/inner element. */
+  innerClassName = "",
+  ...props
+}) => {
   const [isActive, setIsActive] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const magnetRef = useRef(null);
 
   useEffect(() => {
     if (disabled) {
-      // Reset position when disabled
       setPosition({ x: 0, y: 0 });
       return;
     }
 
     const handleMouseMove = (e) => {
-      if (magnetRef.current) {
-        const { left, top, width, height } = magnetRef.current.getBoundingClientRect();
-        const centerX = left + width / 2;
-        const centerY = top + height / 2;
-        const distX = Math.abs(centerX - e.clientX);
-        const distY = Math.abs(centerY - e.clientY);
+      if (!magnetRef.current) return;
 
-        // Check if the mouse is within the padding area
-        if (distX < width / 2 + padding && distY < height / 2 + padding) {
-          setIsActive(true);
-          // Calculate the offset
-          const offsetX = (e.clientX - centerX) / 2;
-          const offsetY = (e.clientY - centerY) / 2;
-          setPosition({ x: offsetX, y: offsetY });
-        } else {
-          setIsActive(false);
-          setPosition({ x: 0, y: 0 });
-        }
+      const { left, top, width, height } = magnetRef.current.getBoundingClientRect();
+      const centerX = left + width / 2;
+      const centerY = top + height / 2;
+
+      const distX = Math.abs(centerX - e.clientX);
+      const distY = Math.abs(centerY - e.clientY);
+
+      if (distX < width / 2 + padding && distY < height / 2 + padding) {
+        setIsActive(true);
+
+        const offsetX = (e.clientX - centerX) / magnetStrength;
+        const offsetY = (e.clientY - centerY) / magnetStrength;
+        setPosition({ x: offsetX, y: offsetY });
+      } else {
+        setIsActive(false);
+        setPosition({ x: 0, y: 0 });
       }
     };
 
-    // Attach mouse move event listener
     window.addEventListener("mousemove", handleMouseMove);
-
-    // Clean up event listener on component unmount
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [padding, disabled]);
+  }, [padding, disabled, magnetStrength]);
+
+  const transitionStyle = isActive ? activeTransition : inactiveTransition;
 
   return (
-    <div ref={magnetRef} style={{ position: "relative", display: "inline-block" }}>
+    <div
+      ref={magnetRef}
+      className={wrapperClassName}
+      style={{ position: "relative", display: "inline-block" }}
+      {...props}
+    >
       <div
+        className={innerClassName}
         style={{
           transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-          transition: isActive ? "transform 0.3s ease-out" : "transform 0.5s ease-in-out",
+          transition: transitionStyle,
           willChange: "transform",
         }}
       >
