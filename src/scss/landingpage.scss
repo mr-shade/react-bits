@@ -203,9 +203,11 @@
 
   .author {
     position: relative;
-    margin-top: 8em;
-    opacity: 0.5;
-    padding-bottom: 6em;
+    margin-top: 6em;
+    justify-self: flex-end;
+    opacity: 1;
+    color: #a6a6a6;
+    padding-bottom: 4em;
   }
 }
 
