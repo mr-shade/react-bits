@@ -144,8 +144,8 @@ const CountUpDemo = () => {
           <RefreshButton onClick={forceRerenderGradient} />
         </Flex>
 
-        <Dependencies dependencyList={['framer-motion']} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={['framer-motion']} />
       </PreviewTab>
 
       <CodeTab>

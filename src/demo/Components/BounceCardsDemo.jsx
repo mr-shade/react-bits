@@ -73,12 +73,6 @@ const BounceCardsDemo = () => {
       type: 'string',
       default: '"elastic.out(1, 0.8)"',
       description: 'The easing function to use for the animation.',
-    },
-    {
-      name: 'transformStyles',
-      type: 'array',
-      default: '["rotate(10deg) translate(-170px)", "rotate(5deg) translate(-85px)", "rotate(-3deg)", "rotate(-10deg) translate(85px)", "rotate(2deg) translate(170px)"]',
-      description: 'An array of CSS transform strings for each card in the stack.',
     }
   ];
 
@@ -100,8 +94,8 @@ const BounceCardsDemo = () => {
           <RefreshButton onClick={forceRerender} />
         </Flex>
 
-        <Dependencies dependencyList={['gsap']} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={['gsap']} />
       </PreviewTab>
 
       <CodeTab>

@@ -128,8 +128,8 @@ const VariableProximityDemo = () => {
           </Flex>
         </Box>
 
-        <Dependencies dependencyList={['framer-motion']} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={['framer-motion']} />
       </PreviewTab>
 
       <CodeTab>

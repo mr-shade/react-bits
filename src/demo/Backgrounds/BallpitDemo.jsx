@@ -14,7 +14,7 @@ import Ballpit from "../../content/Backgrounds/Ballpit/Ballpit";
 const BallpitDemo = () => {
   const { ballpit } = CODE_EXAMPLES;
 
-  const [count, setCount] = useState(200);
+  const [count, setCount] = useState(100);
   const [gravity, setGravity] = useState(0.5);
   const [friction, setFriction] = useState(0.9975);
   const [wallBounce, setWallBounce] = useState(0.95);
@@ -79,12 +79,6 @@ const BallpitDemo = () => {
       description: "Sets the intensity of the main light source.",
     },
     {
-      name: "materialParams",
-      type: "object",
-      default: "{ metalness: 0.5, roughness: 0.5, clearcoat: 1, clearcoatRoughness: 0.15 }",
-      description: "Defines material parameters for the balls.",
-    },
-    {
       name: "minSize",
       type: "number",
       default: "0.5",
@@ -133,7 +127,9 @@ const BallpitDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={500} maxH={500} overflow="hidden">
           <RefreshButton onClick={forceRerender} />
+          <Text fontSize='200px' fontWeight={900} color="#222" position="absolute" zIndex={0}>Balls.</Text>
           <Ballpit
+            className="ballpit-demo"
             key={key}
             count={count}
             gravity={gravity}
@@ -245,8 +241,8 @@ const BallpitDemo = () => {
           </Flex>
         </div>
 
-        <Dependencies dependencyList={["three"]} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={["three"]} />
       </PreviewTab>
 
       <CodeTab>

@@ -152,8 +152,8 @@ const StackDemo = () => {
           </Flex>
         </div>
 
-        <Dependencies dependencyList={["framer-motion"]} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={["framer-motion"]} />
       </PreviewTab>
 
       <CodeTab>

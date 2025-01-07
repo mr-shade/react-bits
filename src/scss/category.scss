@@ -78,10 +78,19 @@
   justify-content: center;
 }
 
+div:has(> .props-table) {
+  border: 1px solid #222;
+  border-radius: 10px;
+}
+
 .split-text-demo,
 .blur-text-demo {
   font-size: 6rem;
   font-weight: bolder;
+}
+
+.ballpit-demo {
+  position: relative;
 }
 
 .decrypted-text {
@@ -193,12 +202,6 @@
       transition: 0.3s ease;
     }
   }
-}
-
-.preview-options {
-  margin-top: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid #ffffff1c;
 }
 
 .demo-extra-info {

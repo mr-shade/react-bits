@@ -138,8 +138,8 @@ const SplitTextDemo = () => {
           </Flex>
         </div>
 
-        <Dependencies dependencyList={["@react-spring/web"]} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={["@react-spring/web"]} />
       </PreviewTab>
 
       <CodeTab>

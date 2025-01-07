@@ -41,8 +41,8 @@ const DecayCardDemo = () => {
           </DecayCard>
         </Box>
 
-        <Dependencies dependencyList={['gsap']} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={['gsap']} />
       </PreviewTab>
 
       <CodeTab>

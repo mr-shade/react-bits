@@ -102,8 +102,8 @@ const GridMotionDemo = () => {
           <GridMotion items={items} />
         </Box>
 
-        <Dependencies dependencyList={['gsap']} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={['gsap']} />
       </PreviewTab>
 
       <CodeTab>

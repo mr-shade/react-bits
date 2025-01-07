@@ -43,7 +43,6 @@ const DecryptedTextDemo = () => {
     { name: "sequential", type: "boolean", default: "false", description: "Whether to reveal one character at a time in sequence." },
     { name: "revealDirection", type: `"start" | "end" | "center"`, default: `"start"`, description: "From which position characters begin to reveal in sequential mode." },
     { name: "useOriginalCharsOnly", type: "boolean", default: "false", description: "Restrict scrambling to only the characters already in the text." },
-    { name: "characters", type: "string", default: `"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+"`, description: "Characters used if not restricting to original text." },
     { name: "className", type: "string", default: '""', description: "CSS class for revealed characters." },
     { name: "parentClassName", type: "string", default: '""', description: "CSS class for the main characters container." },
     { name: "encryptedClassName", type: "string", default: '""', description: "CSS class for encrypted characters." },
@@ -226,8 +225,8 @@ const DecryptedTextDemo = () => {
           </Flex>
         </Flex>
 
-        <Dependencies dependencyList={["framer-motion"]} />
         <PropTable data={propData} />
+        <Dependencies dependencyList={["framer-motion"]} />
       </PreviewTab>
 
       <CodeTab>

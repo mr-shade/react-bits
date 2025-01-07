@@ -21,6 +21,7 @@ import TrueFocus from "../../content/TextAnimations/TrueFocus/TrueFocus";
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import Dependencies from "../../components/code/Dependencies";
 
 const TrueFocusDemo = () => {
   const { trueFocus } = CODE_EXAMPLES;
@@ -182,6 +183,7 @@ const TrueFocusDemo = () => {
         </Flex>
 
         <PropTable data={propData} />
+        <Dependencies dependencyList={['framer-motion']} />
       </PreviewTab>
 
       <CodeTab>
