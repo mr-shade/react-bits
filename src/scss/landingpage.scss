@@ -8,6 +8,12 @@
   justify-content: center;
   padding: 0 4em;
 
+  // .ballpit-box {
+  //   position: fixed;
+  //   height: 100vh;
+  //   z-index: 0;
+  // }
+
   .type-logo {
     position: relative;
     z-index: 2;
@@ -203,6 +209,7 @@
 
   .author {
     position: relative;
+    z-index: 1;
     margin-top: 6em;
     justify-self: flex-end;
     opacity: 1;

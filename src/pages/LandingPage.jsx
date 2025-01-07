@@ -176,6 +176,26 @@ const LandingPage = () => {
           Made with 🤍 by <Link href="https://davidhaz.com/" target="_blank">this guy</Link>
         </FadeContent>
       </div>
+
+      {/* <Box bottom={0} position="fixed" width="100%" overflow="hidden" className="ballpit-box">
+        <Ballpit
+          maxSize={0.7}
+          count={60}
+          gravity={0.8}
+          friction={0.99}
+          wallBounce={0.9}
+          followCursor={false}
+          colors={[0xffffff, 0x000000, 0x000000]}
+          lightIntensity={50}
+          materialParams={{
+            metalness: 0.9,
+            roughness: 0.4,
+            clearcoat: 0.2,
+            clearcoatRoughness: 0.1,
+          }}
+        />
+      </Box> */}
+
     </section>
   );
 };
