@@ -57,9 +57,75 @@ const BallpitDemo = () => {
     {
       name: "colors",
       type: "array",
-      default: "[0xffffff, 0x000000, 0x00d8ff]",
+      default: "[0, 0, 0]",
       description: "Defines the colors of the balls.",
     },
+    {
+      name: "ambientColor",
+      type: "number",
+      default: "16777215",
+      description: "Sets the ambient light color.",
+    },
+    {
+      name: "ambientIntensity",
+      type: "number",
+      default: "1",
+      description: "Controls the intensity of ambient light.",
+    },
+    {
+      name: "lightIntensity",
+      type: "number",
+      default: "200",
+      description: "Sets the intensity of the main light source.",
+    },
+    {
+      name: "materialParams",
+      type: "object",
+      default: "{ metalness: 0.5, roughness: 0.5, clearcoat: 1, clearcoatRoughness: 0.15 }",
+      description: "Defines material parameters for the balls.",
+    },
+    {
+      name: "minSize",
+      type: "number",
+      default: "0.5",
+      description: "Specifies the minimum size of the balls.",
+    },
+    {
+      name: "maxSize",
+      type: "number",
+      default: "1",
+      description: "Specifies the maximum size of the balls.",
+    },
+    {
+      name: "size0",
+      type: "number",
+      default: "1",
+      description: "Initial size value for the cursor ball.",
+    },
+    {
+      name: "maxVelocity",
+      type: "number",
+      default: "0.15",
+      description: "Limits the maximum velocity of the balls.",
+    },
+    {
+      name: "maxX",
+      type: "number",
+      default: "5",
+      description: "Defines the maximum X-coordinate boundary.",
+    },
+    {
+      name: "maxY",
+      type: "number",
+      default: "5",
+      description: "Defines the maximum Y-coordinate boundary.",
+    },
+    {
+      name: "maxZ",
+      type: "number",
+      default: "2",
+      description: "Defines the maximum Z-coordinate boundary.",
+    }
   ];
 
   return (
