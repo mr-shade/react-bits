@@ -1,5 +1,5 @@
 export const getLanguage = (key) => {
-  if (key === 'code' || key === 'usage' || key === 'tailwind' || key === 'presets') return 'jsx';
+  if (key === 'code' || key === 'usage' || key === 'tailwind' || key === 'presets' || key === 'utility') return 'jsx';
   if (key === 'installation') return 'bash';
   if (key === 'css') return 'css';
 }
@@ -14,19 +14,6 @@ export const getStarsCount = async () => {
     return null;
   }
 };
-
-// Function to generate random linear gradients
-export const getRandomGradient = () => {
-  const colors = [
-    '#80DEEA', // Lighter Teal
-    '#4DD0E1', // Teal
-    '#26C6DA', // Darker Teal
-    '#00BCD4'  // Cyan
-  ];
-
-  const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
-  return `linear-gradient(135deg, ${randomColor()}, ${randomColor()})`;
-}
 
 export const decodeLabel = (label) => label
   .split('-')

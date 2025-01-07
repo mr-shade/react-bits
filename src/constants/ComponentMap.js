@@ -29,6 +29,7 @@ import DecryptedTextDemo from "../demo/TextAnimations/DecryptedTextDemo";
 import NoiseDemo from "../demo/Animations/NoiseDemo";
 import TrueFocusDemo from "../demo/TextAnimations/TrueFocusDemo";
 import VariableProximityDemo from "../demo/TextAnimations/VariableProximityDemo";
+import BallpitDemo from "../demo/Backgrounds/BallpitDemo";
 
 export const componentMap = {
   'split-text': SplitTextDemo,
@@ -61,6 +62,7 @@ export const componentMap = {
   'decrypted-text': DecryptedTextDemo,
   'noise': NoiseDemo,
   'true-focus': TrueFocusDemo,
-  'variable-proximity': VariableProximityDemo
+  'variable-proximity': VariableProximityDemo,
+  'ballpit': BallpitDemo
   // Map other subcategories to their components here
 };

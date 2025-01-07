@@ -172,15 +172,20 @@
 		"name": "Backgrounds",
 		"blocks": [
 			{
-				"name": "Fireflies",
-				"directory": "src/content/Backgrounds/Fireflies",
+				"name": "Ballpit",
+				"directory": "src/content/Backgrounds/Ballpit",
 				"category": "Backgrounds",
 				"tests": false,
 				"subdirectory": true,
 				"list": true,
-				"files": [],
+				"files": [
+					"Ballpit.jsx",
+					"ballpit-utility.js"
+				],
 				"localDependencies": [],
-				"dependencies": [],
+				"dependencies": [
+					"three@^0.167.1"
+				],
 				"devDependencies": [],
 				"_imports_": {}
 			},
@@ -649,6 +654,24 @@
 	{
 		"name": "TailwindBackgrounds",
 		"blocks": [
+			{
+				"name": "Ballpit",
+				"directory": "src/tailwind/TailwindBackgrounds/Ballpit",
+				"category": "TailwindBackgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"Ballpit.jsx",
+					"ballpit-utility.js"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"three@^0.167.1"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
 			{
 				"name": "Squares",
 				"directory": "src/tailwind/TailwindBackgrounds/Squares",

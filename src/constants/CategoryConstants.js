@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Decrypted Text', 'Noise', 'True Focus', 'Variable Proximity'];
+export const NEW = ['Decrypted Text', 'Noise', 'True Focus', 'Variable Proximity', 'Ballpit'];
 export const UPDATED = ['Stack'];
 
 // Used for main sidebar navigation
@@ -40,7 +40,7 @@ export const CATEGORIES = [
       'Blob Cursor',
       // 'Persistent Drag', 
       // 'Beam Border',
-      'Star Border',
+      'Star Border'
       // 'Lens Blur,
       // 'Marbles',
       // 'Clump',
@@ -83,11 +83,11 @@ export const CATEGORIES = [
     name: 'Backgrounds',
     subcategories: [
       'Hyperspeed',
+      'Ballpit',
       'Grid Motion',
       'Squares',
       'Waves'
       // 'Particles',
-      // 'Grain',
       // 'Threads',
       // 'Gradient',
       // 'Dots',
