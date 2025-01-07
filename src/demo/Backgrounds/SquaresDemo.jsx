@@ -12,7 +12,7 @@ const SquaresDemo = () => {
   const { squares } = CODE_EXAMPLES;
 
   const [direction, setDirection] = useState('diagonal');
-  const [borderColor, setBorderColor] = useState('#333');
+  const [borderColor, setBorderColor] = useState('#222');
   const [hoverColor, setHoverColor] = useState('#222222');
   const [speed, setSpeed] = useState(0.5);
   const [size, setSize] = useState(40);

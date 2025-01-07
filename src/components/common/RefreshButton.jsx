@@ -5,8 +5,8 @@ const RefreshButton = ({ onClick }) => {
   return (
     <Button
       transition="background-color 0.3s ease"
-      _active={{ backgroundColor: '#333' }}
-      _hover={{ backgroundColor: '#333' }}
+      _active={{ backgroundColor: '#222' }}
+      _hover={{ backgroundColor: '#222' }}
       backgroundColor='#222'
       position="absolute"
       onClick={onClick}
