@@ -1,6 +1,6 @@
 // Highlighted sidebar items
-export const NEW = ['Bounce Cards', 'Waves', 'Magnet Lines', 'Splash Cursor', 'Decrypted Text', 'Noise'];
-export const UPDATED = ['Animated Content', 'Fade Content', 'Stack'];
+export const NEW = ['Decrypted Text', 'Noise', 'True Focus'];
+export const UPDATED = ['Stack'];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
@@ -12,6 +12,7 @@ export const CATEGORIES = [
       'Shiny Text',
       'Gradient Text',
       'Decrypted Text',
+      'True Focus',
       // 'Flip Text',
       // 'Word Cloud',
       'Count Up'

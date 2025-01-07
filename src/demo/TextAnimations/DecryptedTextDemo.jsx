@@ -53,9 +53,9 @@ const DecryptedTextDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" justifyContent='flex-start' py={6} className="demo-container" overflow="hidden">
+        <Box position="relative" justifyContent='flex-start' py={{ md: 6, sm: 4 }} className="demo-container" overflow="hidden">
           <RefreshButton onClick={forceRerender} />
-          <Flex pl={6} m={8} direction='column' key={key}>
+          <Flex pl={{ md: 6, sm: 3 }} m={{ md: 8, sm: 2 }} direction='column' key={key}>
             <DecryptedText
               speed={speed}
               text='Ahoy, matey!'

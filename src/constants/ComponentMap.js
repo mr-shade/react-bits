@@ -27,6 +27,7 @@ import MagnetLinesDemo from "../demo/Animations/MagnetLinesDemo";
 import SplashCursorDemo from "../demo/Animations/SplashCursorDemo";
 import DecryptedTextDemo from "../demo/TextAnimations/DecryptedTextDemo";
 import NoiseDemo from "../demo/Animations/NoiseDemo";
+import TrueFocusDemo from "../demo/TextAnimations/TrueFocusDemo";
 
 export const componentMap = {
   'split-text': SplitTextDemo,
@@ -57,6 +58,7 @@ export const componentMap = {
   'magnet-lines': MagnetLinesDemo,
   'splash-cursor': SplashCursorDemo,
   'decrypted-text': DecryptedTextDemo,
-  'noise': NoiseDemo
+  'noise': NoiseDemo,
+  'true-focus': TrueFocusDemo
   // Map other subcategories to their components here
 };

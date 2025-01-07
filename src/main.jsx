@@ -42,7 +42,7 @@ const customTheme = extendTheme({
       defaultProps: {
         variant: "solid",
       },
-    },
+    }
   },
 });
 

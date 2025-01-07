@@ -527,6 +527,24 @@
 				"_imports_": {}
 			},
 			{
+				"name": "TrueFocus",
+				"directory": "src/content/TextAnimations/TrueFocus",
+				"category": "TextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"TrueFocus.jsx",
+					"TrueFocus.scss"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
 				"name": "WaveText",
 				"directory": "src/content/TextAnimations/WaveText",
 				"category": "TextAnimations",
@@ -829,6 +847,23 @@
 				"localDependencies": [],
 				"dependencies": [
 					"@react-spring/web@^9.7.4"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "TrueFocus",
+				"directory": "src/tailwind/TailwindTextAnimations/TrueFocus",
+				"category": "TailwindTextAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"TrueFocus.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
 				],
 				"devDependencies": [],
 				"_imports_": {}
