@@ -88,6 +88,14 @@
   cursor: pointer;
 }
 
+.variable-proximity-demo {
+  max-width: 20ch;
+  line-height: 100%;
+  font-size: 4rem !important;
+  cursor: pointer;
+  text-align: center;
+}
+
 .shiny-text-demo {
   font-weight: 300;
 }
@@ -256,6 +264,14 @@
 
   .decrypted-text {
     font-size: 1rem;
+  }
+
+  .variable-proximity-demo {
+    max-width: 20ch;
+    line-height: 100%;
+    font-size: 1.6rem !important;
+    cursor: pointer;
+    text-align: center;
   }
 }
 

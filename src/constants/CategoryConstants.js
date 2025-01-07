@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Decrypted Text', 'Noise', 'True Focus'];
+export const NEW = ['Decrypted Text', 'Noise', 'True Focus', 'Variable Proximity'];
 export const UPDATED = ['Stack'];
 
 // Used for main sidebar navigation
@@ -15,6 +15,7 @@ export const CATEGORIES = [
       'True Focus',
       // 'Flip Text',
       // 'Word Cloud',
+      'Variable Proximity',
       'Count Up'
     ]
   },
