@@ -228,6 +228,23 @@
 				"_imports_": {}
 			},
 			{
+				"name": "ShapeBlur",
+				"directory": "src/content/Backgrounds/ShapeBlur",
+				"category": "Backgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ShapeBlur.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"three@^0.167.1"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
 				"name": "Squares",
 				"directory": "src/content/Backgrounds/Squares",
 				"category": "Backgrounds",
@@ -664,6 +681,23 @@
 				"files": [
 					"Ballpit.jsx",
 					"ballpit-utility.js"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"three@^0.167.1"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
+				"name": "ShapeBlur",
+				"directory": "src/tailwind/TailwindBackgrounds/ShapeBlur",
+				"category": "TailwindBackgrounds",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ShapeBlur.jsx"
 				],
 				"localDependencies": [],
 				"dependencies": [

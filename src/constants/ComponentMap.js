@@ -30,6 +30,7 @@ import NoiseDemo from "../demo/Animations/NoiseDemo";
 import TrueFocusDemo from "../demo/TextAnimations/TrueFocusDemo";
 import VariableProximityDemo from "../demo/TextAnimations/VariableProximityDemo";
 import BallpitDemo from "../demo/Backgrounds/BallpitDemo";
+import ShapeBlurDemo from "../demo/Backgrounds/ShapeBlurDemo";
 
 export const componentMap = {
   'split-text': SplitTextDemo,
@@ -63,6 +64,7 @@ export const componentMap = {
   'noise': NoiseDemo,
   'true-focus': TrueFocusDemo,
   'variable-proximity': VariableProximityDemo,
-  'ballpit': BallpitDemo
+  'ballpit': BallpitDemo,
+  'shape-blur': ShapeBlurDemo
   // Map other subcategories to their components here
 };
