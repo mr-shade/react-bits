@@ -4,11 +4,18 @@ export const getLanguage = (key) => {
   if (key === 'css') return 'css';
 }
 
+const formatNumber = (num) => {
+  if (num < 1000) return num.toString();
+
+  const rounded = Math.ceil(num / 100) * 100;
+  return new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(rounded);
+};
+
 export const getStarsCount = async () => {
   try {
     const response = await fetch('https://api.github.com/repos/DavidHDev/react-bits');
     const data = await response.json();
-    return data.stargazers_count;
+    return String(formatNumber(data.stargazers_count)).toLowerCase();
   } catch (error) {
     console.error('Error fetching stargazers count:', error);
     return null;

@@ -66,12 +66,12 @@
 
       .landing-button {
         cursor: pointer;
-        min-width: 320px;
-        font-weight: 400;
+        min-width: 250px;
+        font-weight: 500;
         background-color: #0d0d0d;
         border: 1px solid #222;
-        font-size: 22px;
-        padding: 0.6em;
+        font-size: 18px;
+        padding: 1em;
         border-radius: 20px;
 
         display: flex;
@@ -80,9 +80,9 @@
         transition: 0.3s ease;
         box-shadow: 0 5px 0 transparent;
 
-        .star-icon {
-          animation: rotate360 3s infinite linear;
-        }
+        // .star-icon {
+        //   animation: rotate360 3s infinite linear;
+        // }
 
         &:hover {
           text-decoration: none;
@@ -101,14 +101,15 @@
         }
 
         img {
-          margin-right: 0.3em;
+          margin-right: 0.5em;
           transition: 0.3s ease;
         }
 
         span {
           position: relative;
-          top: -1.5px;
           font-size: 16px;
+          color: #00d8ff;
+          font-weight: 700;
         }
 
         .chakra-spinner span {

@@ -108,7 +108,7 @@ const LandingPage = () => {
 
 
             <Link href="https://github.com/DavidHDev/react-bits" target="_blank" className="landing-button">
-              <img src={github} alt="github octocat" /> Star On GitHub <div className="button-divider"></div> <img className="star-icon" src={star} alt="5 pointed star" />
+              <img src={github} alt="github octocat" /> Star on GitHub <div className="button-divider"></div> <img className="star-icon" src={star} alt="5 pointed star" />
               {stars ? <FadeContent blur><span>{String(stars)}</span></FadeContent> : <Spinner boxSize={3} />}
             </Link>
           </div>
