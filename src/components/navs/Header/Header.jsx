@@ -1,10 +1,13 @@
-import './Header.scss';
+import { Flex, Text } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+
 import reactbitslogo from '../../../assets/logos/reactbits-logo.svg';
 import github from '../../../assets/common/icon-github.svg';
 import docs from '../../../assets/common/icon-docs.svg';
-import { Flex, Text } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+
 import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
+
+import './Header.scss';
 
 const Header = () => {
   return (

@@ -1,8 +1,16 @@
 export const getLanguage = (key) => {
-  if (key === 'code' || key === 'usage' || key === 'tailwind' || key === 'presets' || key === 'utility') return 'jsx';
-  if (key === 'installation') return 'bash';
-  if (key === 'css') return 'css';
-}
+  const languages = {
+    code: 'jsx',
+    usage: 'jsx',
+    tailwind: 'jsx',
+    presets: 'jsx',
+    utility: 'jsx',
+    installation: 'bash',
+    css: 'css',
+  };
+
+  return languages[key];
+};
 
 const formatNumber = (num) => {
   if (num < 1000) return num.toString();

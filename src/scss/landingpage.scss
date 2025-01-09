@@ -1,34 +1,28 @@
 .landing-wrapper {
   display: flex;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
   padding: 0 4em;
-
-  // .ballpit-box {
-  //   position: fixed;
-  //   height: 100vh;
-  //   z-index: 0;
-  // }
 
   .type-logo {
     position: relative;
     z-index: 2;
     width: 100%;
+    max-width: 1440px;
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 1440px;
     margin-top: 80px;
-  }
 
-  .type-logo svg {
-    width: 100%;
-    height: auto;
+    svg {
+      width: 100%;
+      height: auto;
+    }
   }
 
   .hero-info {
@@ -55,13 +49,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-      }
 
-      .divider {
-        margin-bottom: 1.5em;
-        width: 30%;
-        height: 1px;
-        background: linear-gradient(to right, transparent, #fff, transparent);
+        .divider {
+          margin-bottom: 1.5em;
+          width: 30%;
+          height: 1px;
+          background: linear-gradient(to right, transparent, #fff, transparent);
+        }
       }
 
       .landing-button {
@@ -73,24 +67,16 @@
         font-size: 18px;
         padding: 1em;
         border-radius: 20px;
-
         display: flex;
         align-items: center;
         justify-content: center;
         transition: 0.3s ease;
         box-shadow: 0 5px 0 transparent;
 
-        // .star-icon {
-        //   animation: rotate360 3s infinite linear;
-        // }
-
         &:hover {
-          text-decoration: none;
           transform: scale(0.95) rotate(-5deg);
-          border: 1px solid #00d8ff;
+          border-color: #00d8ff;
           box-shadow: 0 5px 0 #00d8ff;
-          transition: 0.3s ease;
-          animation: none;
         }
 
         .button-divider {
@@ -106,7 +92,6 @@
         }
 
         span {
-          position: relative;
           font-size: 16px;
           color: #00d8ff;
           font-weight: 700;
@@ -126,10 +111,10 @@
       p {
         line-height: 120%;
         font-weight: 400;
-        position: relative;
         font-size: 22px;
         color: #fff;
         max-width: 25ch;
+        position: relative;
 
         &::before {
           content: "Now With CLI Support!";
@@ -144,7 +129,6 @@
           padding: 0.5em 1.25em;
           font-size: 12px;
           border-radius: 20px;
-          z-index: 2;
         }
 
         span {
@@ -157,35 +141,35 @@
   .perspective-grid {
     position: absolute;
     left: 50%;
-    opacity: 0.4;
-    transform: translateX(-50%);
-    z-index: 0;
     bottom: 0;
+    transform: translateX(-50%);
+    opacity: 0.4;
+    z-index: 0;
 
-    &::before {
-      content: "";
-      width: 100%;
-      height: 400px;
-      background: linear-gradient(to bottom, #060606, transparent);
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-
+    &::before,
     &::after {
       content: "";
       width: 100%;
-      height: 200px;
-      background: linear-gradient(to top, #060606, transparent);
       position: absolute;
       left: 0;
+    }
+
+    &::before {
+      height: 400px;
+      top: 0;
+      background: linear-gradient(to bottom, #060606, transparent);
+    }
+
+    &::after {
+      height: 200px;
       bottom: 0;
+      background: linear-gradient(to top, #060606, transparent);
     }
   }
 
   .vertical {
     stroke: #b3b3b3;
-    stroke-width: 1.36036;
+    stroke-width: 1.36;
   }
 
   .beam {
@@ -193,29 +177,16 @@
     stroke-width: 3px;
     border-radius: 50px;
     stroke-dasharray: 100 1000;
-    stroke-dashoffset: 0;
     animation: beamAnimation 2s linear infinite;
   }
 
-  @keyframes beamAnimation {
-    0% {
-      opacity: 1;
-      stroke-dashoffset: 1000;
-    }
-    100% {
-      opacity: 0;
-      stroke-dashoffset: 0;
-    }
-  }
-
   .author {
-    position: relative;
-    z-index: 1;
     margin-top: 6em;
     justify-self: flex-end;
     opacity: 1;
     color: #a6a6a6;
     padding-bottom: 4em;
+    z-index: 1;
   }
 }
 
@@ -242,33 +213,28 @@
       flex-direction: column-reverse;
 
       .headline {
-        margin-top: 1em;
         text-align: center;
 
         .landing-bottom {
           flex-direction: column;
           gap: 1em;
 
-          p {
-            &::before {
-              display: none !important;
-            }
+          p::before {
+            display: none !important;
           }
         }
 
         .divider {
-          margin: 1em 0 2em 0;
+          margin: 1em 0 2em;
         }
 
         .landing-button {
           min-width: 500px;
 
           &:hover {
-            text-decoration: none;
             transform: scale(0.95);
-            border: 1px solid #222;
+            border-color: #222;
             box-shadow: none;
-            transition: 0.3s ease;
           }
         }
 
@@ -284,17 +250,11 @@
   .landing-wrapper {
     .hero-info {
       .headline {
-        margin-top: 1em;
         font-size: 24px;
 
         .landing-button {
           width: 100%;
-          min-width: auto;
           font-size: 18px;
-
-          span {
-            top: 0;
-          }
         }
       }
     }
@@ -305,10 +265,30 @@
   .landing-wrapper {
     .hero-info {
       .headline {
-        margin-top: 1em;
         font-size: 18px;
       }
     }
+  }
+}
+
+@keyframes beamAnimation {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(3deg);
   }
 }
 
@@ -318,17 +298,5 @@
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes shake {
-  0% {
-    transform: rotate(-5deg);
-  }
-  50% {
-    transform: rotate(3deg);
-  }
-  100% {
-    transform: rotate(-5deg);
   }
 }

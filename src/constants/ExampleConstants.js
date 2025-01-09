@@ -3620,7 +3620,7 @@ const TiltedScroll = () => {
       <div className="inner-container">
         <div className="scroll-grid">
           {items.map((item) => (
-            <div key={item.id} className="grid-item">
+            <div key={item.id} className="tilted-grid-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -3676,7 +3676,7 @@ export default TiltedScroll;`,
   grid-template-columns: repeat(2, 1fr);
 }
 
-.grid-item {
+.tilted-grid-item {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -3688,12 +3688,12 @@ export default TiltedScroll;`,
   transition: 0.3s ease;
 }
 
-.grid-item:hover {
+.tilted-grid-item:hover {
   transform: translate(-0.25rem, -0.25rem) scale(1.025);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.grid-item.dark {
+.tilted-grid-item.dark {
   border-color: #fff;
 }
 
@@ -10019,7 +10019,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
           background: \`radial-gradient(circle, \${gradientColor} 0%, transparent 100%)\`,
         }}
       >
-        <div className="grid">
+        <div className="gridMotion-container">
           {[...Array(4)].map((_, rowIndex) => (
             <div
               key={rowIndex}
@@ -10084,7 +10084,7 @@ export default GridMotion;`,
   z-index: 4;
 }
 
-.grid {
+.gridMotion-container {
   gap: 1rem;
   flex: none;
   position: relative;

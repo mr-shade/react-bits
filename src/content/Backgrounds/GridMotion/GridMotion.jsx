@@ -58,7 +58,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
           background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`,
         }}
       >
-        <div className="grid">
+        <div className="gridMotion-container">
           {[...Array(4)].map((_, rowIndex) => (
             <div
               key={rowIndex}

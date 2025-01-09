@@ -17,7 +17,7 @@ const TiltedScroll = () => {
       <div className="inner-container">
         <div className="scroll-grid">
           {items.map((item) => (
-            <div key={item.id} className="grid-item">
+            <div key={item.id} className="tilted-grid-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

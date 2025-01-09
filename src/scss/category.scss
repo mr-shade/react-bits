@@ -29,7 +29,7 @@
 .category-page {
   width: calc(100% - 250px);
   position: absolute;
-  right: 0px;
+  right: 0;
   padding: 5em 0 6em 1em;
   min-height: 100vh;
 
@@ -60,10 +60,10 @@
   .language-bash {
     color: #b6b6b6 !important;
   }
-}
 
-.code-highlighter:has(.language-bash) {
-  padding: 1.25em !important;
+  &:has(.language-bash) {
+    padding: 1.25em !important;
+  }
 }
 
 .demo-container {
@@ -123,7 +123,6 @@ div:has(> .props-table) {
 
   &:hover {
     background-color: #222;
-    transition: 0.3s ease;
   }
 }
 
@@ -145,7 +144,7 @@ div:has(> .props-table) {
 
 .demo-title-extra,
 .demo-title-contribute {
-  margin: 1em 0 0.5em 0;
+  margin: 1em 0 0.5em;
   font-size: 1.4rem;
   font-weight: 900;
 }
@@ -176,14 +175,12 @@ div:has(> .props-table) {
 
   &:hover {
     color: #00f0ff;
-    transition: 0.5s ease;
   }
 }
 
 .demo-details {
   font-size: 1.6rem;
-  margin-bottom: 1em;
-  margin-top: 0em;
+  margin: 0 0 1em;
   display: flex;
   gap: 0.3em;
 
@@ -199,14 +196,12 @@ div:has(> .props-table) {
     &:hover {
       cursor: pointer;
       background-color: #111;
-      transition: 0.3s ease;
     }
   }
 }
 
 .demo-extra-info {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin: 1em 0;
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -219,7 +214,7 @@ div:has(> .props-table) {
 
 .cli-divider {
   position: relative;
-  margin: 4em auto 3em auto;
+  margin: 4em auto 3em;
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, transparent, #222, transparent);
@@ -236,11 +231,9 @@ div:has(> .props-table) {
   }
 }
 
-.coming-soon {
-  a {
-    color: #00f0ff;
-    text-decoration: underline;
-  }
+.coming-soon a {
+  color: #00f0ff;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 767px) {
@@ -250,9 +243,7 @@ div:has(> .props-table) {
 
   .category-page {
     width: 100%;
-    padding-top: 6em;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding: 6em 1em 0;
 
     .main-category {
       font-size: 1rem;
@@ -274,11 +265,7 @@ div:has(> .props-table) {
   }
 
   .variable-proximity-demo {
-    max-width: 20ch;
-    line-height: 100%;
     font-size: 1.6rem !important;
-    cursor: pointer;
-    text-align: center;
   }
 }
 
