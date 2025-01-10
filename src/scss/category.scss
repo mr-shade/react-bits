@@ -16,6 +16,25 @@
     padding: 0;
     max-width: 1440px;
     margin: 0 auto;
+
+    .logo {
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        height: 35px;
+        bottom: -35px;
+        width: 100%;
+        background: linear-gradient(to bottom, #060606, transparent);
+      }
+
+      &::after {
+        top: -35px;
+        background: linear-gradient(to top, #060606, transparent);
+      }
+    }
   }
 }
 

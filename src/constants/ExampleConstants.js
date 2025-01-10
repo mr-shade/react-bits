@@ -7077,8 +7077,10 @@ const Component = () => {
     code: `import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
+// Linear interpolation function
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
+// Function to get mouse position relative to the container or viewport
 const getMousePos = (e, container) => {
   if (container) {
     const bounds = container.getBoundingClientRect();
@@ -7091,12 +7093,14 @@ const getMousePos = (e, container) => {
 };
 
 const Crosshair = ({ color = 'white', containerRef = null }) => {
+  // Refs for DOM elements
   const cursorRef = useRef(null);
   const lineHorizontalRef = useRef(null);
   const lineVerticalRef = useRef(null);
   const filterXRef = useRef(null);
   const filterYRef = useRef(null);
 
+  // Track mouse position
   let mouse = { x: 0, y: 0 };
 
   useEffect(() => {
@@ -7156,12 +7160,16 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
         lineVerticalRef.current.style.filter = \`url(#filter-noise-y)\`;
       },
       onUpdate: () => {
-        filterXRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
-        filterYRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+        if (filterXRef.current && filterYRef.current) {
+          filterXRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+          filterYRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+        }
       },
       onComplete: () => {
-        lineHorizontalRef.current.style.filter = lineVerticalRef.current.style.filter = 'none';
-      },
+        if (lineHorizontalRef.current && lineVerticalRef.current) {
+          lineHorizontalRef.current.style.filter = lineVerticalRef.current.style.filter = 'none';
+        }
+      }
     }).to(primitiveValues, {
       duration: 0.5,
       ease: 'power1',
@@ -7180,8 +7188,10 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
         renderedStyles[key].previous = lerp(renderedStyles[key].previous, renderedStyles[key].current, renderedStyles[key].amt);
       }
 
-      gsap.set(lineVerticalRef.current, { x: renderedStyles.tx.previous });
-      gsap.set(lineHorizontalRef.current, { y: renderedStyles.ty.previous });
+      if (lineHorizontalRef.current && lineHorizontalRef.current) {
+        gsap.set(lineVerticalRef.current, { x: renderedStyles.tx.previous });
+        gsap.set(lineHorizontalRef.current, { y: renderedStyles.ty.previous });
+      }
 
       requestAnimationFrame(render);
     };
@@ -7347,18 +7357,16 @@ const Crosshair = ({ color = "white", containerRef = null }) => {
           lineVerticalRef.current.style.filter = \`url(#filter-noise-y)\`;
         },
         onUpdate: () => {
-          filterXRef.current.setAttribute(
-            "baseFrequency",
-            primitiveValues.turbulence
-          );
-          filterYRef.current.setAttribute(
-            "baseFrequency",
-            primitiveValues.turbulence
-          );
+          if (filterXRef.current && filterYRef.current) {
+            filterXRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+            filterYRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+          }
         },
         onComplete: () => {
-          lineHorizontalRef.current.style.filter = lineVerticalRef.current.style.filter = "none";
-        },
+          if (lineHorizontalRef.current && lineVerticalRef.current) {
+            lineHorizontalRef.current.style.filter = lineVerticalRef.current.style.filter = 'none';
+          }
+        }
       })
       .to(primitiveValues, {
         duration: 0.5,
@@ -7382,8 +7390,10 @@ const Crosshair = ({ color = "white", containerRef = null }) => {
         );
       }
 
-      gsap.set(lineVerticalRef.current, { x: renderedStyles.tx.previous });
-      gsap.set(lineHorizontalRef.current, { y: renderedStyles.ty.previous });
+      if (lineHorizontalRef.current && lineHorizontalRef.current) {
+        gsap.set(lineVerticalRef.current, { x: renderedStyles.tx.previous });
+        gsap.set(lineHorizontalRef.current, { y: renderedStyles.ty.previous });
+      }
 
       requestAnimationFrame(render);
     };

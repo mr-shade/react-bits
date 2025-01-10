@@ -85,12 +85,16 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
         lineVerticalRef.current.style.filter = `url(#filter-noise-y)`;
       },
       onUpdate: () => {
-        filterXRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
-        filterYRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+        if (filterXRef.current && filterYRef.current) {
+          filterXRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+          filterYRef.current.setAttribute('baseFrequency', primitiveValues.turbulence);
+        }
       },
       onComplete: () => {
-        lineHorizontalRef.current.style.filter = lineVerticalRef.current.style.filter = 'none';
-      },
+        if (lineHorizontalRef.current && lineVerticalRef.current) {
+          lineHorizontalRef.current.style.filter = lineVerticalRef.current.style.filter = 'none';
+        }
+      }
     }).to(primitiveValues, {
       duration: 0.5,
       ease: 'power1',
@@ -98,11 +102,9 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       turbulence: 0,
     });
 
-    // Functions to control timeline
     const enter = () => tl.restart();
     const leave = () => tl.progress(1).kill();
 
-    // Render loop for animation
     const render = () => {
       renderedStyles.tx.current = mouse.x;
       renderedStyles.ty.current = mouse.y;
@@ -111,8 +113,10 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
         renderedStyles[key].previous = lerp(renderedStyles[key].previous, renderedStyles[key].current, renderedStyles[key].amt);
       }
 
-      gsap.set(lineVerticalRef.current, { x: renderedStyles.tx.previous });
-      gsap.set(lineHorizontalRef.current, { y: renderedStyles.ty.previous });
+      if (lineHorizontalRef.current && lineHorizontalRef.current) {
+        gsap.set(lineVerticalRef.current, { x: renderedStyles.tx.previous });
+        gsap.set(lineHorizontalRef.current, { y: renderedStyles.ty.previous });
+      }
 
       requestAnimationFrame(render);
     };
