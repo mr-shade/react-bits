@@ -11035,6 +11035,7 @@ const fragmentShader = /* glsl */\`
 
 
 const ShapeBlur = ({
+  className = '',
   variation = 0,
   pixelRatioProp = 2,
   shapeSize = 1.2,
@@ -11152,7 +11153,7 @@ const ShapeBlur = ({
     circleEdge
   ]);
 
-  return <div ref={mountRef} style={{ width: '100%', height: '100%' }} />;
+  return <div className={className} ref={mountRef} style={{ width: '100%', height: '100%' }} />;
 };
 
 export default ShapeBlur;`,
@@ -11285,6 +11286,7 @@ const fragmentShader = /* glsl */\`
 
 
 const ShapeBlur = ({
+  className = '',
   variation = 0,
   pixelRatioProp = 2,
   shapeSize = 1.2,
@@ -11402,7 +11404,7 @@ const ShapeBlur = ({
     circleEdge
   ]);
 
-  return <div ref={mountRef} className='w-full h-full' />;
+  return <div ref={mountRef} className={\`w-full h-full \${className}\`} />;
 };
 
 export default ShapeBlur;`

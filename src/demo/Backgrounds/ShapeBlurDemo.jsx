@@ -76,6 +76,7 @@ const ShapeBlurDemo = () => {
           p={0}
         >
           <ShapeBlur
+            className="shapeblur-demo"
             variation={0}
             pixelRatioProp={window.devicePixelRatio || 1}
             shapeSize={shapeSize}
@@ -84,6 +85,9 @@ const ShapeBlurDemo = () => {
             circleSize={circleSize}
             circleEdge={circleEdge}
           />
+          <Text position="absolute" left='50%' top='50%' transform='translate(-50%, -50%)' fontSize='6rem' fontWeight={900} zIndex={0} color='#222'>
+            Hover Me.
+          </Text>
         </Box>
 
         <Box mt={4}>

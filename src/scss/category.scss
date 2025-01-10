@@ -112,6 +112,12 @@ div:has(> .props-table) {
   position: relative;
 }
 
+.shapeblur-demo {
+  position: relative;
+  mix-blend-mode: difference;
+  z-index: 2;
+}
+
 .decrypted-text {
   font-size: 2rem;
   display: inline-block;
