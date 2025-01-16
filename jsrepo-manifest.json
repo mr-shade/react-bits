@@ -38,6 +38,21 @@
 				"_imports_": {}
 			},
 			{
+				"name": "ClickSpark",
+				"directory": "src/content/Animations/ClickSpark",
+				"category": "Animations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ClickSpark.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
 				"name": "Crosshair",
 				"directory": "src/content/Animations/Crosshair",
 				"category": "Animations",
@@ -589,6 +604,21 @@
 	{
 		"name": "TailwindAnimations",
 		"blocks": [
+			{
+				"name": "ClickSpark",
+				"directory": "src/tailwind/TailwindAnimations/ClickSpark",
+				"category": "TailwindAnimations",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"ClickSpark.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [],
+				"devDependencies": [],
+				"_imports_": {}
+			},
 			{
 				"name": "Crosshair",
 				"directory": "src/tailwind/TailwindAnimations/Crosshair",
