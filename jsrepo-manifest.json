@@ -776,6 +776,23 @@
 				"_imports_": {}
 			},
 			{
+				"name": "RollingGallery",
+				"directory": "src/tailwind/TailwindComponents/RollingGallery",
+				"category": "TailwindComponents",
+				"tests": false,
+				"subdirectory": true,
+				"list": true,
+				"files": [
+					"RollingGallery.jsx"
+				],
+				"localDependencies": [],
+				"dependencies": [
+					"framer-motion@^11.3.24"
+				],
+				"devDependencies": [],
+				"_imports_": {}
+			},
+			{
 				"name": "SpotlightCard",
 				"directory": "src/tailwind/TailwindComponents/SpotlightCard",
 				"category": "TailwindComponents",
