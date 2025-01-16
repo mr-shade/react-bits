@@ -67,11 +67,13 @@ const DecayCard = ({ width = 300, height = 400, image = 'https://images.unsplash
       imgValues.imgTransforms.y = targetY;
       imgValues.imgTransforms.rz = targetRz;
 
-      gsap.set(svgRef.current, {
-        x: imgValues.imgTransforms.x,
-        y: imgValues.imgTransforms.y,
-        rotateZ: imgValues.imgTransforms.rz,
-      });
+      if (svgRef.current) {
+        gsap.set(svgRef.current, {
+          x: imgValues.imgTransforms.x,
+          y: imgValues.imgTransforms.y,
+          rotateZ: imgValues.imgTransforms.rz,
+        });
+      }
 
       const cursorTravelledDistance = distance(
         cachedCursor.current.x,
@@ -85,7 +87,9 @@ const DecayCard = ({ width = 300, height = 400, image = 'https://images.unsplash
         0.06
       );
 
-      gsap.set(displacementMapRef.current, { attr: { scale: imgValues.displacementScale } });
+      if (displacementMapRef.current) {
+        gsap.set(displacementMapRef.current, { attr: { scale: imgValues.displacementScale } });
+      }
 
       cachedCursor.current = { ...cursor.current };
 

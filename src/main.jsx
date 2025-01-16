@@ -6,6 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { ChakraProvider } from '@chakra-ui/react'
 import { customTheme } from './utils/customTheme.js';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ChakraProvider theme={customTheme}>
@@ -13,4 +14,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <App />
     </HelmetProvider>
   </ChakraProvider>,
+)
+
+// attempted fix for syntax highligting render bug
+ReactDOM.createRoot(document.createElement('div')).render(
+  // eslint-disable-next-line react/no-children-prop
+  <SyntaxHighlighter language="" children={''} />
 )
