@@ -30,7 +30,7 @@ const CliInstallation = ({ cliDefault, cliTailwind }) => {
             <p className="demo-extra-info">1. Initialize a config file for your project</p>
             <CodeHighlighter
               language="bash"
-              codeString={`npx jsrepo init --project --repos github/davidhdev/react-bits`}
+              codeString={`npx jsrepo init https://reactbits.dev/default`}
             />
 
             <p className="demo-extra-info">2. Browse & add components from the list</p>

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:registry": "npx jsrepo build",
+    "build:registry": "npm run build:registry:default && npm run build:registry:tailwind",
+    "build:registry:default": "npx jsrepo build --dirs ./src/content --output-dir ./public/default",
+    "build:registry:tailwind": "npx jsrepo build --dirs ./src/tailwind --output-dir ./public/tailwind",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

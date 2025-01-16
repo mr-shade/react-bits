@@ -1,9 +1,6 @@
 {
 	"$schema": "https://unpkg.com/jsrepo@1.23.2/schemas/registry-config.json",
-	"dirs": [
-		"./src/content",
-    "./src/tailwind"
-	],
+	"dirs": [],
 	"doNotListBlocks": [],
 	"doNotListCategories": [],
 	"listBlocks": [],
