@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { Box, Select, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
 
-import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
 import PropTable from "../../components/common/PropTable";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const HyperspeedDemo = () => {
-  const { hyperspeed } = CODE_EXAMPLES;
+import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
+import { hyperspeed } from '../../constants/code/Backgrounds/hyperspeedCode';
 
+const HyperspeedDemo = () => {
   const [activePreset, setActivePreset] = useState('one');
   const [key, forceRerender] = useForceRerender();
 

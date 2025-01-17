@@ -13,10 +13,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { TabbedLayout, PreviewTab, CodeTab, CliTab } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 import { toast } from "sonner";
 
-import DecryptedText from "../../content/TextAnimations/DecryptedText/DecryptedText";
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
@@ -24,9 +22,10 @@ import PropTable from "../../components/common/PropTable";
 import RefreshButton from "../../components/common/RefreshButton";
 import useForceRerender from "../../hooks/useForceRerender";
 
-const DecryptedTextDemo = () => {
-  const { decryptedText } = CODE_EXAMPLES;
+import DecryptedText from "../../content/TextAnimations/DecryptedText/DecryptedText";
+import { decryptedText } from '../../constants/code/TextAnimations/decryptedTextCode';
 
+const DecryptedTextDemo = () => {
   const [speed, setspeed] = useState(60);
   const [maxIterations, setMaxIterations] = useState(10);
   const [sequential, setSequential] = useState(true);

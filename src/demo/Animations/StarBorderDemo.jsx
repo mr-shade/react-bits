@@ -1,15 +1,14 @@
 import { Box, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import StarBorder from "../../content/Animations/StarBorder/StarBorder";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const StarBorderDemo = () => {
-  const { starBorder } = CODE_EXAMPLES;
+import StarBorder from "../../content/Animations/StarBorder/StarBorder";
+import { starBorder } from '../../constants/code/Animations/starBorderCode';
 
+const StarBorderDemo = () => {
   const propData = [
     {
       name: 'as',

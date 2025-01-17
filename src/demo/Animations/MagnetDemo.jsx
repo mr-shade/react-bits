@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { Box, Button, Flex, Text, Slider, SliderTrack, SliderFilledTrack, SliderThumb, FormControl, FormLabel } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import Magnet from "../../content/Animations/Magnet/Magnet";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 
-const MagnetDemo = () => {
-  const { magnet } = CODE_EXAMPLES;
+import Magnet from "../../content/Animations/Magnet/Magnet";
+import { magnet } from '../../constants/code/Animations/magnetCode';
 
+const MagnetDemo = () => {
   const [disabled, setDisabled] = useState(false);
   const [padding, setPadding] = useState(100);
   const [magnetStrength, setMagnetStrength] = useState(2);

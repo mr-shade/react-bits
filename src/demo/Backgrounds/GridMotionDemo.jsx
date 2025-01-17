@@ -1,16 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import GridMotion from "../../content/Backgrounds/GridMotion/GridMotion";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const GridMotionDemo = () => {
-  const { gridMotion } = CODE_EXAMPLES;
+import GridMotion from "../../content/Backgrounds/GridMotion/GridMotion";
+import { gridMotion } from '../../constants/code/Backgrounds/gridMotionCode';
 
+const GridMotionDemo = () => {
   const propData = [
     {
       name: 'items',

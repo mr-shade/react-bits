@@ -2,15 +2,14 @@ import { useState } from "react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { ArrowDownIcon, ArrowUpIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import { Box, Button, ButtonGroup, Flex, Input } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import Squares from "../../content/Backgrounds/Squares/Squares";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const SquaresDemo = () => {
-  const { squares } = CODE_EXAMPLES;
+import Squares from "../../content/Backgrounds/Squares/Squares";
+import { squares } from '../../constants/code/Backgrounds/squaresCode';
 
+const SquaresDemo = () => {
   const [direction, setDirection] = useState('diagonal');
   const [borderColor, setBorderColor] = useState('#222');
   const [hoverColor, setHoverColor] = useState('#222222');

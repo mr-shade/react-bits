@@ -1,16 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import FollowCursor from "../../content/Animations/FollowCursor/FollowCursor";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const FollowCursorDemo = () => {
-  const { followCursor } = CODE_EXAMPLES;
+import FollowCursor from "../../content/Animations/FollowCursor/FollowCursor";
+import { followCursor } from '../../constants/code/Animations/followCursorCode';
 
+const FollowCursorDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>

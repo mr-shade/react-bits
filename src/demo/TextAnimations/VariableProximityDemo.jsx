@@ -15,17 +15,16 @@ import {
   SliderThumb,
   Text
 } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import PropTable from "../../components/common/PropTable";
-import VariableProximity from "../../content/TextAnimations/VariableProximity/VariableProximity";
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 
-const VariableProximityDemo = () => {
-  const { variableProximity } = CODE_EXAMPLES;
+import VariableProximity from "../../content/TextAnimations/VariableProximity/VariableProximity";
+import { variableProximity } from '../../constants/code/TextAnimations/variableProximityCode';
 
+const VariableProximityDemo = () => {
   const containerRef = useRef(null);
 
   const [radius, setRadius] = useState(100);

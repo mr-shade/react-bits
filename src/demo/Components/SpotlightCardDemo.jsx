@@ -2,16 +2,15 @@ import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
 import { VscSparkleFilled } from "react-icons/vsc";
 import { FaLock } from "react-icons/fa6";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import SpotlightCard from "../../content/Components/SpotlightCard/SpotlightCard";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const SpotlightCardDemo = () => {
-  const { spotlightCard } = CODE_EXAMPLES;
+import SpotlightCard from "../../content/Components/SpotlightCard/SpotlightCard";
+import { spotlightCard } from '../../constants/code/Components/spotlightCardCode';
 
+const SpotlightCardDemo = () => {
   const propData = [
     {
       name: 'spotlightColor',

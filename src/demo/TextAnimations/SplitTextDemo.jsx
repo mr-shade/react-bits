@@ -1,23 +1,21 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import SplitText from "../../content/TextAnimations/SplitText/SplitText";
-import RefreshButton from "../../components/common/RefreshButton";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
+import RefreshButton from "../../components/common/RefreshButton";
+import Dependencies from "../../components/code/Dependencies";
+import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
-import { toast } from "sonner";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const SplitTextDemo = () => {
-  const { splitText } = CODE_EXAMPLES;
+import SplitText from "../../content/TextAnimations/SplitText/SplitText";
+import { splitText } from '../../constants/code/TextAnimations/splitTextCode';
 
+const SplitTextDemo = () => {
   const [delay, setDelay] = useState(100);
   const [easing, setEasing] = useState("easeOutCubic");
-
   const [key, forceRerender] = useForceRerender();
 
   const propData = [

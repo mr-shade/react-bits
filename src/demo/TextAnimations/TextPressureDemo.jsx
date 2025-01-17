@@ -22,9 +22,8 @@ import useForceRerender from '../../hooks/useForceRerender';
 import RefreshButton from '../../components/common/RefreshButton';
 
 import TextPressure from '../../content/TextAnimations/TextPressure/TextPressure';
-import { CODE_EXAMPLES } from '../../constants/ExampleConstants';
+import { textPressure } from '../../constants/code/TextAnimations/textPressureCode';
 
-// This is the prop data for building a PropTable
 const propData = [
   {
     name: 'text',
@@ -113,8 +112,6 @@ const propData = [
 ];
 
 const TextPressureDemo = () => {
-  const { textPressure } = CODE_EXAMPLES;
-
   const [text, setText] = useState('Hello!');
   const [flex, setFlex] = useState(true);
   const [alpha, setAlpha] = useState(false);
@@ -149,21 +146,19 @@ const TextPressureDemo = () => {
           </Box>
         </Box>
 
-        {/* UI controls to toggle the props and text input */}
         <div className="preview-options">
-          <Flex alignItems='center' gap={4}>
-            <Box>
-              <Input
-                value={text}
-                onChange={(e) => {
-                  setText(e.target.value);
-                  forceRerender();
-                }}
-                maxLength={11}
-                placeholder="Enter some text"
-                width="300px"
-              />
-            </Box>
+          <Flex alignItems='center' gap={4} flexWrap="wrap">
+            <Input
+              width="100%"
+              maxWidth='200px'
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+                forceRerender();
+              }}
+              maxLength={11}
+              placeholder="Enter some text"
+            />
 
             {/* Text Color */}
             <Flex gap={4} align="center">

@@ -9,6 +9,7 @@
     "build:registry": "npm run build:registry:default && npm run build:registry:tailwind",
     "build:registry:default": "npx jsrepo build --dirs ./src/content --output-dir ./public/default",
     "build:registry:tailwind": "npx jsrepo build --dirs ./src/tailwind --output-dir ./public/tailwind",
+    "new:component": "node scripts/generateComponent.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

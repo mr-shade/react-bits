@@ -1,16 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import Masonry from "../../content/Components/Masonry/Masonry";
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const MasonryDemo = () => {
-  const { masonry } = CODE_EXAMPLES;
+import Masonry from "../../content/Components/Masonry/Masonry";
+import { masonry } from '../../constants/code/Components/masonryCode';
 
+const MasonryDemo = () => {
   const data = [
     { id: 1, image: 'https://picsum.photos/id/10/200/300', height: 400 },
     { id: 2, image: 'https://picsum.photos/id/14/200/300', height: 300 },

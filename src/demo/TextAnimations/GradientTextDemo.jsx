@@ -2,16 +2,15 @@ import { useState } from "react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Box, Button, Flex, Input, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import GradientText from "../../content/TextAnimations/GradientText/GradientText";
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const GradientTextDemo = () => {
-  const { gradientText } = CODE_EXAMPLES;
+import GradientText from "../../content/TextAnimations/GradientText/GradientText";
+import { gradientText } from '../../constants/code/TextAnimations/gradientTextCode';
 
+const GradientTextDemo = () => {
   const [colors, setColors] = useState('#40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa');
   const [speed, setSpeed] = useState(3);
   const [showBorder, setShowBorder] = useState(true);

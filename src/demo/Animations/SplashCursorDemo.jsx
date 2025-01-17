@@ -1,15 +1,14 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import SplashCursor from "../../content/Animations/SplashCursor/SplashCursor";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const SplashCursorDemo = () => {
-  const { splashCursor } = CODE_EXAMPLES;
+import SplashCursor from "../../content/Animations/SplashCursor/SplashCursor";
+import { splashCursor } from '../../constants/code/Animations/splashCursorCode';
 
+const SplashCursorDemo = () => {
   const propData = [
     {
       name: "SIM_RESOLUTION",

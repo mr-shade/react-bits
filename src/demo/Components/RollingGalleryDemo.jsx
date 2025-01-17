@@ -1,16 +1,15 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import RollingGallery from "../../content/Components/RollingGallery/RollingGallery";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const RollingGalleryDemo = () => {
-  const { rollingGallery } = CODE_EXAMPLES;
+import RollingGallery from "../../content/Components/RollingGallery/RollingGallery";
+import { rollingGallery } from '../../constants/code/Components/rollingGalleryCode';
 
+const RollingGalleryDemo = () => {
   const propData = [
     {
       name: 'autoplay',

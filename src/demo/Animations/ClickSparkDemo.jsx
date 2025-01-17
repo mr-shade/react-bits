@@ -11,17 +11,16 @@ import {
 } from "@chakra-ui/react";
 
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import ClickSpark from "../../content/Animations/ClickSpark/ClickSpark";
 import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const ClickSparkDemo = () => {
-  const { clickSpark } = CODE_EXAMPLES;
+import ClickSpark from "../../content/Animations/ClickSpark/ClickSpark";
+import { clickSpark } from '../../constants/code/Animations/clickSparkExample';
 
+const ClickSparkDemo = () => {
   const [sparkColor, setSparkColor] = useState("#ffffff");
   const [sparkSize, setSparkSize] = useState(10);
   const [sparkRadius, setSparkRadius] = useState(15);

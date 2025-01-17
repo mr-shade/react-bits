@@ -1,15 +1,14 @@
 import { Flex } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import Waves from "../../content/Backgrounds/Waves/Waves";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const WavesDemo = () => {
-  const { waves } = CODE_EXAMPLES;
+import Waves from "../../content/Backgrounds/Waves/Waves";
+import { waves } from '../../constants/code/Backgrounds/wavesCode';
 
+const WavesDemo = () => {
   const propData = [
     {
       name: "lineColor",

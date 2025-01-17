@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
@@ -9,11 +8,11 @@ import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+
 import Ballpit from "../../content/Backgrounds/Ballpit/Ballpit";
+import { ballpit } from '../../constants/code/Backgrounds/ballpitCode';
 
 const BallpitDemo = () => {
-  const { ballpit } = CODE_EXAMPLES;
-
   const [count, setCount] = useState(100);
   const [gravity, setGravity] = useState(0.5);
   const [friction, setFriction] = useState(0.9975);

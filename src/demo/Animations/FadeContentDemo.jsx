@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import FadeContent from "../../content/Animations/FadeContent/FadeContent";
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const FadeDemo = () => {
-  const { fadeContent } = CODE_EXAMPLES;
+import FadeContent from "../../content/Animations/FadeContent/FadeContent";
+import { fadeContent } from '../../constants/code/Animations/fadeContentCode';
 
+const FadeDemo = () => {
   const [blur, setBlur] = useState(false);
   const [duration, setDuration] = useState(1000);
   const [easing, setEasing] = useState("ease-out");

@@ -2,17 +2,16 @@ import { useState } from "react";
 import { Box, Button, ButtonGroup, Divider, Flex, Text } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import Dock from "../../content/Components/Dock/Dock";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const DockDemo = () => {
-  const { dock } = CODE_EXAMPLES;
+import Dock from "../../content/Components/Dock/Dock";
+import { dock } from '../../constants/code/Components/dockCode';
 
+const DockDemo = () => {
   const [position, setPosition] = useState('bottom');
   const [responsive, setResponsive] = useState('bottom');
   const [collapsible, setCollapsible] = useState(false);

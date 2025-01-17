@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import AnimatedContent from '../../content/Animations/AnimatedContent/AnimatedContent';
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
@@ -11,9 +9,10 @@ import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from '../../components/common/PropTable';
 import CliInstallation from "../../components/code/CliInstallation";
 
-const AnimatedContentDemo = () => {
-  const { animatedContent } = CODE_EXAMPLES;
+import AnimatedContent from '../../content/Animations/AnimatedContent/AnimatedContent';
+import { animatedContent } from '../../constants/code/Animations/animatedContentCode';
 
+const AnimatedContentDemo = () => {
   const [direction, setDirection] = useState("vertical");
   const [distance, setDistance] = useState(100);
   const [reverse, setReverse] = useState(false);

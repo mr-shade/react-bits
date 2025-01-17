@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { Box, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import ShinyText from "../../content/TextAnimations/ShinyText/ShinyText";
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const ShinyTextDemo = () => {
-  const { shinyText } = CODE_EXAMPLES;
+import ShinyText from "../../content/TextAnimations/ShinyText/ShinyText";
+import { shinyText } from '../../constants/code/TextAnimations/shinyTextCode';
 
+const ShinyTextDemo = () => {
   const [speed, setSpeed] = useState(3);
 
   const propData = [

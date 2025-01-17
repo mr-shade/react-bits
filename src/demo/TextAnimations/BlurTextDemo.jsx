@@ -1,20 +1,19 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import BlurText from "../../content/TextAnimations/BlurText/BlurText";
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
-import { toast } from "sonner";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const BlurTextDemo = () => {
-  const { blurText } = CODE_EXAMPLES;
+import BlurText from "../../content/TextAnimations/BlurText/BlurText";
+import { blurText } from '../../constants/code/TextAnimations/blurTextCode';
 
+const BlurTextDemo = () => {
   const [animateBy, setAnimateBy] = useState("words");
   const [direction, setDirection] = useState("top");
   const [delay, setDelay] = useState(200);
@@ -138,7 +137,7 @@ const BlurTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={blurText.cliDefault} cliTailwind={blurText.cliTailwind}/>
+        <CliInstallation cliDefault={blurText.cliDefault} cliTailwind={blurText.cliTailwind} />
       </CliTab>
     </TabbedLayout>
   );

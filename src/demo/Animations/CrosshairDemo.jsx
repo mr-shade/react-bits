@@ -1,16 +1,15 @@
 import { useRef, useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import Crosshair from "../../content/Animations/Crosshair/Crosshair";
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const CrosshairDemo = () => {
-  const { crosshair } = CODE_EXAMPLES;
+import Crosshair from "../../content/Animations/Crosshair/Crosshair";
+import { crosshair } from '../../constants/code/Animations/crosshairCode';
 
+const CrosshairDemo = () => {
   const [linkText, setLinkText] = useState('Aim.. aand..')
   const [color, setColor] = useState('#ffffff');
   const [targeted, setTargeted] = useState(true);

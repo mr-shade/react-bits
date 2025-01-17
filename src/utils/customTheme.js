@@ -37,6 +37,29 @@ export const customTheme = extendTheme({
       defaultProps: {
         variant: "solid",
       },
+    },
+    Switch: {
+      baseStyle: {
+        track: {
+          _checked: {
+            bg: "#00d8ff",
+          },
+          _focus: {
+            boxShadow: "0 0 0 3px rgba(0, 216, 255, 0.5)",
+          },
+          _active: {
+            bg: "#00d8ff",
+          },
+        },
+        thumb: {
+          _checked: {
+            bg: "white",
+          },
+          _active: {
+            bg: "white",
+          },
+        },
+      },
     }
-  },
+  }
 });

@@ -15,17 +15,16 @@ import {
   PreviewTab,
   TabbedLayout,
 } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import TrueFocus from "../../content/TextAnimations/TrueFocus/TrueFocus";
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 import Dependencies from "../../components/code/Dependencies";
 
-const TrueFocusDemo = () => {
-  const { trueFocus } = CODE_EXAMPLES;
+import TrueFocus from "../../content/TextAnimations/TrueFocus/TrueFocus";
+import { trueFocus } from '../../constants/code/TextAnimations/trueFocusCode';
 
+const TrueFocusDemo = () => {
   const [manualMode, setManualMode] = useState(false);
   const [blurAmount, setBlurAmount] = useState(5);
   const [animationDuration, setAnimationDuration] = useState(0.5);

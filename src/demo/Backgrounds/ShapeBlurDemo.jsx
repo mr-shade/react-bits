@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
-import ShapeBlur from "../../content/Backgrounds/ShapeBlur/ShapeBlur";
 import Dependencies from '../../components/code/Dependencies';
 
-const ShapeBlurDemo = () => {
-  const { shapeBlur } = CODE_EXAMPLES;
+import ShapeBlur from "../../content/Backgrounds/ShapeBlur/ShapeBlur";
+import { shapeBlur } from '../../constants/code/Backgrounds/shapeBlurCode';
 
+const ShapeBlurDemo = () => {
   const [shapeSize, setShapeSize] = useState(1.0);
   const [roundness, setRoundness] = useState(0.5);
   const [borderSize, setBorderSize] = useState(0.05);

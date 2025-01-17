@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { Box, Button, Flex, Icon } from "@chakra-ui/react";
 import { TbFlame } from "react-icons/tb";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import CountUp from "../../content/TextAnimations/CountUp/CountUp";
 import GradientText from "../../content/TextAnimations/GradientText/GradientText";
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from '../../components/code/CodeExample';
@@ -14,9 +12,10 @@ import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const CountUpDemo = () => {
-  const { countup } = CODE_EXAMPLES;
+import CountUp from "../../content/TextAnimations/CountUp/CountUp";
+import { countup } from '../../constants/code/TextAnimations/countUpCode';
 
+const CountUpDemo = () => {
   const [startCounting, setStartCounting] = useState(false);
   const [keyDefault, forceRerenderDefault] = useForceRerender();
   const [keyProgramatically, forceRerenderProgramatically] = useForceRerender();

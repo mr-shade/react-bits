@@ -1,6 +1,6 @@
 import { useEffect, useRef, Suspense, lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import { componentMap } from '../constants/ComponentMap';
+import { componentMap } from '../constants/Components';
 import { decodeLabel } from '../utils/utils';
 import { Helmet } from 'react-helmet-async';
 import { Box } from '@chakra-ui/react';

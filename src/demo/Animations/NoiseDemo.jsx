@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Box, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { CODE_EXAMPLES } from "../../constants/ExampleConstants";
 
-import Noise from "../../content/Animations/Noise/Noise";
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-const NoiseDemo = () => {
-  const { noise } = CODE_EXAMPLES;
+import Noise from "../../content/Animations/Noise/Noise";
+import { noise } from '../../constants/code/Animations/noiseCode';
 
+const NoiseDemo = () => {
   const [patternSize, setPatternSize] = useState(250);
   const [patternScaleX, setPatternScaleX] = useState(1);
   const [patternScaleY, setPatternScaleY] = useState(1);
