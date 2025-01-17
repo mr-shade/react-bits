@@ -7059,8 +7059,8 @@ export default function Waves({
 
   // ! CLICK-SPARK ------------------------------------------------------------------------
   clickSpark: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/ClickSpark`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/ClickSpark`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/ClickSpark`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/ClickSpark`,
     usage: `import ClickSpark from './ClickSpark';
 
 <ClickSpark
