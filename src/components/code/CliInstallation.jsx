@@ -28,9 +28,15 @@ const CliInstallation = ({ cliDefault, cliTailwind }) => {
           </AccordionButton>
           <AccordionPanel px={6} pb={4}>
             <p className="demo-extra-info">1. Initialize a config file for your project</p>
+
             <CodeHighlighter
               language="bash"
               codeString={`npx jsrepo init https://reactbits.dev/default`}
+            />
+            <p className="demo-extra-info">Or</p>
+            <CodeHighlighter
+              language="bash"
+              codeString={`npx jsrepo init https://reactbits.dev/tailwind`}
             />
 
             <p className="demo-extra-info">2. Browse & add components from the list</p>

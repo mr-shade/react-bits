@@ -21,6 +21,7 @@ const textAnimations = {
   'decrypted-text': () => import("../demo/TextAnimations/DecryptedTextDemo"),
   'true-focus': () => import("../demo/TextAnimations/TrueFocusDemo"),
   'variable-proximity': () => import("../demo/TextAnimations/VariableProximityDemo"),
+  'text-pressure': () => import("../demo/TextAnimations/TextPressureDemo"),
 };
 
 const components = {
