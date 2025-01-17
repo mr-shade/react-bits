@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "build:registry && vite build",
+    "build": "npm run build:registry && vite build",
     "build:registry": "npm run build:registry:default && npm run build:registry:tailwind",
     "build:registry:default": "npx jsrepo build --dirs ./src/content --output-dir ./public/default",
     "build:registry:tailwind": "npx jsrepo build --dirs ./src/tailwind --output-dir ./public/tailwind",
