@@ -18,7 +18,7 @@ import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
 import ClickSpark from "../../content/Animations/ClickSpark/ClickSpark";
-import { clickSpark } from '../../constants/code/Animations/clickSparkExample';
+import { clickSpark } from '../../constants/code/Animations/clickSparkCode';
 
 const ClickSparkDemo = () => {
   const [sparkColor, setSparkColor] = useState("#ffffff");
