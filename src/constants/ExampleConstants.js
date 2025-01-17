@@ -3,8 +3,8 @@
 export const CODE_EXAMPLES = {
   // ! SPLIT-TEXT ------------------------------------------------------------------------
   splitText: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/SplitText`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/SplitText`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/SplitText`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/SplitText`,
     installation: `npm install @react-spring/web`,
     usage: `import SplitText from "./SplitText";
 
@@ -179,8 +179,8 @@ export default SplitText;`
   // ! BLUR-TEXT ------------------------------------------------------------------------
   blurText: {
     installation: `npm install @react-spring/web`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/BlurText`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/BlurText`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/BlurText`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/BlurText`,
     usage: `import BlurText from "./BlurText";
 
 const handleAnimationComplete = () => {
@@ -380,8 +380,8 @@ export default BlurText;`
   // ! DECRYPTED-TEXT ------------------------------------------------------------------------
   decryptedText: {
     installation: `npm i framer-motion`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/DecryptedText`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/DecryptedText`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/DecryptedText`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/DecryptedText`,
     usage: `import DecryptedText from './DecryptedText;'
 
 {/* Example 1: Defaults (hover to decrypt) */}
@@ -879,7 +879,7 @@ export default function DecryptedText({
   // ! BLOB-CURSOR ------------------------------------------------------------------------
   blobCursor: {
     installation: `npm i @react-spring/web`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/BlobCursor`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/BlobCursor`,
     usage: `import BlobCursor from './BlobCursor'
     
 <BlobCursor />`,
@@ -1028,7 +1028,7 @@ export default function BlobCursor({ blobType = 'circle', fillColor = '#00f0ff' 
   // ! ANIMATED-CONTENT ------------------------------------------------------------------------
   animatedContent: {
     installation: `npm install @react-spring/web`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/AnimatedContent`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/AnimatedContent`,
     usage: `import AnimatedContent from './AnimatedContent'
 
 <AnimatedContent
@@ -1106,7 +1106,7 @@ export default AnimatedContent;`
 
   // ! FADE-CONTENT ------------------------------------------------------------------------
   fadeContent: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/FadeContent`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/FadeContent`,
     usage: `import FadeContent from './FadeContent'
     
  <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
@@ -1162,8 +1162,8 @@ export default FadeContent;`
 
   // ! SPLASH CURSOR ------------------------------------------------------------------------
   splashCursor: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/SplashCursor`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/SplashCursor`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/SplashCursor`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/SplashCursor`,
     usage: `import SplashCursor from './SplashCursor'
 
 <SplashCursor />`,
@@ -3595,8 +3595,8 @@ export default SplashCursor;`
 
   // ! TILTED-SCROLL ------------------------------------------------------------------------
   tiltedScroll: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/TiltedScroll`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/TiltedScroll`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/TiltedScroll`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/TiltedScroll`,
     usage: `import TiltedScroll from './TiltedScroll'
 
 <TiltedScroll />`,
@@ -3787,8 +3787,8 @@ module.exports = {
   // ! STACK ------------------------------------------------------------------------
   stack: {
     installation: `npm i framer-motion`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/Stack`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/Stack`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/Stack`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/Stack`,
     usage: `import Stack from './Stack'
 
 const images = [
@@ -4059,7 +4059,7 @@ export default function Stack({
   // ! FOLLOW-CURSOR ------------------------------------------------------------------------
   followCursor: {
     installation: `npm i @react-spring/web react-use-gesture`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/FollowCursor`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/FollowCursor`,
     usage: `import FollowCursor from './FollowCursor'
 
 <FollowCursor />`,
@@ -4215,7 +4215,7 @@ export default function FollowCursor() {
 
   // ! MAGNET ------------------------------------------------------------------------
   magnet: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/Magnet`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/Magnet`,
     usage: `import Magnet from './Magnet'
 
 <Magnet padding={50} disabled={false} magnetStrength={50}>
@@ -4307,8 +4307,8 @@ export default Magnet;`
 
   // ! MAGNET-LINES ------------------------------------------------------------------------
   magnetLines: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/MagnetLines`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/MagnetLines`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/MagnetLines`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/MagnetLines`,
     usage: `import MagnetLines from './MagnetLines';
 
 <MagnetLines
@@ -4509,8 +4509,8 @@ export default function MagnetLines({
 
   // ! NOISE -----------------------------------------------------------------------
   noise: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/Noise`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/Noise`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/Noise`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/Noise`,
     usage: `import Noise from './Noise;'
 
 <div style={{width: '600px', height: '400px', position: 'relative', overflow: 'hidden'}}>
@@ -4674,7 +4674,7 @@ export default Noise;`
 
   dock: {
     installation: `npm i @react-spring/web`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/Dock`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/Dock`,
     usage: `import Dock from './Dock';
 
 <Dock collapsible={false} position="left" responsive="bottom" />`,
@@ -4878,7 +4878,7 @@ export default Dock;`,
   // ! MAGNET ------------------------------------------------------------------------
   masonry: {
     installation: `npm i @react-spring/web`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/Masonry`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/Masonry`,
     usage: `import Masonry from './Masonry'
     
 const data = [
@@ -5013,8 +5013,8 @@ export default Masonry;`,
 
   // ! SHINY-TEXT ------------------------------------------------------------------------
   shinyText: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/ShinyText`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/ShinyText`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/ShinyText`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/ShinyText`,
     usage: `import ShinyText from './ShinyText';
     
 <ShinyText text="Just some shiny text!" disabled={false} speed={3} className='custom-class' />`,
@@ -5102,8 +5102,8 @@ module.exports = {
 
   // ! GRADIENT-TEXT ------------------------------------------------------------------------
   gradientText: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/GradientText`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/GradientText`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/GradientText`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/GradientText`,
     usage: `import GradientText from './GradientText'
     
 <GradientText
@@ -5277,8 +5277,8 @@ module.exports = {
 
   trueFocus: {
     installation: `npm i framer-motion`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/TrueFocus`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/TrueFocus`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/TrueFocus`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/TrueFocus`,
     usage: `import TrueFocus from './TrueFocus';
 
 <TrueFocus 
@@ -5622,8 +5622,8 @@ export default TrueFocus;`
 
   variableProximity: {
     installation: `npm i framer-motion`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/VariableProximity`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/VariableProximity`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/VariableProximity`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/VariableProximity`,
     usage: `import { useRef } from 'react';
 import VariableProximity from './VariableProximity';
 
@@ -6027,8 +6027,8 @@ export default VariableProximity;`
   // ! BOUNCE CARDS ------------------------------------------------------------------------
   bounceCards: {
     installation: `npm i gsap`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/BounceCards`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/BounceCards`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/BounceCards`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/BounceCards`,
     usage: `import BounceCards from './BounceCards'
 
 const images = [
@@ -6202,8 +6202,8 @@ export default function BounceCards({
 
   // ! SQUARES ------------------------------------------------------------------------
   squares: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/Squares`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindBackgrounds/Squares`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/Squares`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/Squares`,
     usage: `import Squares from './Squares';
     
 <Squares 
@@ -6489,8 +6489,8 @@ export default Squares;`
   },
 
   waves: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/Waves`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindBackgrounds/Waves`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/Waves`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/Waves`,
     usage: `import Waves from './Waves';
 
 <Waves
@@ -7059,8 +7059,8 @@ export default function Waves({
 
   // ! CLICK-SPARK ------------------------------------------------------------------------
   clickSpark: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/ClickSpark`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/ClickSpark`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/ClickSpark`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/ClickSpark`,
     usage: `import ClickSpark from './ClickSpark';
 
 <ClickSpark
@@ -7356,8 +7356,8 @@ export default function Waves({
   // ! CROSSHAIR ------------------------------------------------------------------------
   crosshair: {
     installation: `npm i gsap`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/Crosshair`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/Crosshair`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/Crosshair`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/Crosshair`,
     usage: `import { useRef } from 'react';
 import Crosshair from './Crosshair';
 
@@ -7762,7 +7762,7 @@ export default Crosshair;`
   // ! COUNT UP ------------------------------------------------------------------------
   countup: {
     installation: `npm i framer-motion`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/TextAnimations/CountUp`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/CountUp`,
     usage: `import CountUp from './CountUp'
 
 <CountUp
@@ -7859,7 +7859,7 @@ export default function CountUp({
   // ! HYPERSPEED------------------------------------------------
   hyperspeed: {
     installation: `npm i three postprocessing`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/Hyperspeed`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/Hyperspeed`,
     usage: `import Hyperspeed from './Hyperspeed';
 
 // the component will fill the height/width of its parent container, edit the CSS to change this
@@ -9235,8 +9235,8 @@ canvas {
 
   rollingGallery: {
     installation: `npm i framer-motion`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/RollingGallery`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/RollingGallery`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/RollingGallery`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/RollingGallery`,
     usage: `import RollingGallery from './RollingGallery'
     
 <RollingGallery autoplay={true} pauseOnHover={true} />`,
@@ -9592,8 +9592,8 @@ export default RollingGallery;`
 
   // !SPOTLIGHT-CARD -------------------------------------------------
   spotlightCard: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/SpotlightCard`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/SpotlightCard`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/SpotlightCard`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/SpotlightCard`,
     usage: `import SpotlightCard from './SpotlightCard';
     
 <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
@@ -9720,8 +9720,8 @@ export default SpotlightCard;`
   // !STAR-BORDER -------------------------------------------------
 
   starBorder: {
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Animations/StarBorder`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindAnimations/StarBorder`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/StarBorder`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/StarBorder`,
     usage: `import StarBorder from './StarBorder'
     
 <StarBorder
@@ -9888,8 +9888,8 @@ module.exports = {
   //! ELASTIC-SLIDER-----------------------------------------------------------------------
   elasticSlider: {
     installation: `npm i framer-motion`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/ElasticSlider`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindComponents/ElasticSlider`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/ElasticSlider`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/ElasticSlider`,
     usage: `import ElasticSlider from './ElasticSlider'
     
 <ElasticSlider
@@ -10384,7 +10384,7 @@ function decay(value, max) {
   // !GRID-MOTION ------------------------------------------------------------------------
   gridMotion: {
     installation: `npm i gsap`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/GridMotion`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/GridMotion`,
     usage: `import GridMotion from './GridMotion';
     
 // note: you'll need to make sure the parent container of this component is sized properly
@@ -10613,8 +10613,8 @@ export default GridMotion;`,
   // ! BALLPIT ------------------------------------------------------------------------
   ballpit: {
     installation: `npm i three`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/Ballpit`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindBackgrounds/Ballpit`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/Ballpit`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/Ballpit`,
     usage: `import Ballpit from './Ballpit;'
 
 <div style={{position: 'relative', overflow: 'hidden', minHeight: '500px', maxHeight: '500px', width: '100%'}}>
@@ -11338,8 +11338,8 @@ export default Ballpit;`
   // ! SHAPE-BLUR ------------------------------------------------------------------------
   shapeBlur: {
     installation: `npm i three`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Backgrounds/ShapeBlur`,
-    cliTailwind: `npx jsrepo add github/davidhdev/react-bits/TailwindBackgrounds/ShapeBlur`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/ShapeBlur`,
+    cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/ShapeBlur`,
     usage: `import ShapeBlur from './ShapeBlur';
 
 <div style={{position: 'relative', height: '500px', overflow: 'hidden'}}>
@@ -11860,7 +11860,7 @@ export default ShapeBlur;`
   // ! DECAY-CARD ------------------------------------------------------------------------
   decayCard: {
     installation: `npm i gsap`,
-    cliDefault: `npx jsrepo add github/davidhdev/react-bits/Components/DecayCard`,
+    cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/DecayCard`,
     usage: `import DecayCard from './DecayCard';
 
 <DecayCard width={200} height={300} image="https://...">

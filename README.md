@@ -28,22 +28,23 @@ The project embraces simplicity as its core philosophy—it maintains minimal de
 
 #### One-Time Installation
 ```bash
-npx jsrepo add github/davidhdev/react-bits/<CategoryName>/<ComponentName>
+npx jsrepo add https://reactbits.dev/default/<CategoryName>/<ComponentName>
 
-# Example: npx jsrepo add github/davidhdev/react-bits/TextAnimations/SplitText
+# Example: npx jsrepo add https://reactbits.dev/default/TextAnimations/SplitText
 ```
 
 #### One-Time Installation (Tailwind)
 ```bash
-npx jsrepo add github/davidhdev/react-bits/Tailwind<CategoryName>/<ComponentName>
+npx jsrepo add https://reactbits.dev/tailwind/<CategoryName>/<ComponentName>
 
-# Example: npx jsrepo add github/davidhdev/react-bits/TailwindTextAnimations/SplitText
+# Example: npx jsrepo add https://reactbits.dev/tailwind/TailwindTextAnimations/SplitText
 ```
 
 #### Full CLI Setup
 ```bash
 # 1. Initialize a config file for your project
-npx jsrepo init --project --repos github/davidhdev/react-bits
+npx jsrepo init https://reactbits.dev/default/ # default
+npx jsrepo init https://reactbits.dev/tailwind/ # tailwind
 
 # 2. Browse & add components from the list
 npx jsrepo add
