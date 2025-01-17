@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Decrypted Text', 'Noise', 'True Focus', 'Variable Proximity', 'Ballpit', 'Shape Blur'];
+export const NEW = ['Noise', 'Variable Proximity', 'Ballpit', 'Shape Blur', 'Click Spark'];
 export const UPDATED = ['Stack'];
 
 // Used for main sidebar navigation
@@ -32,6 +32,7 @@ export const CATEGORIES = [
       // 'Crystal Ball',
       // 'Spotlights',
       'Magnet Lines',
+      'Click Spark',
       'Magnet',
       'Noise',
       'Crosshair',

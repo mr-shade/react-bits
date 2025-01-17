@@ -9,6 +9,7 @@ const animations = {
   'noise': () => import("../demo/Animations/NoiseDemo"),
   'magnet-lines': () => import("../demo/Animations/MagnetLinesDemo"),
   'splash-cursor': () => import("../demo/Animations/SplashCursorDemo"),
+  'click-spark': () => import("../demo/Animations/ClickSparkDemo"),
 };
 
 const textAnimations = {
