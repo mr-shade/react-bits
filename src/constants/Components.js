@@ -22,6 +22,7 @@ const textAnimations = {
   'true-focus': () => import("../demo/TextAnimations/TrueFocusDemo"),
   'variable-proximity': () => import("../demo/TextAnimations/VariableProximityDemo"),
   'text-pressure': () => import("../demo/TextAnimations/TextPressureDemo"),
+  'ascii-text': () => import("../demo/TextAnimations/ASCIITextDemo"),
 };
 
 const components = {

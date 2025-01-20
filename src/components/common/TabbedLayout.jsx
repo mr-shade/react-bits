@@ -42,7 +42,7 @@ const TabbedLayout = ({ children }) => {
   });
 
   return (
-    <Tabs mt={4} variant="unstyled">
+    <Tabs mt={4} variant="unstyled" isLazy lazyBehavior="unmountOnExit">
       <TabList justifyContent="space-between">
         <Flex wrap='wrap' gap='0.5rem'>
           <Tab sx={tabStyles}>

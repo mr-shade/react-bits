@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Noise', 'Variable Proximity', 'Ballpit', 'Shape Blur', 'Click Spark', 'Text Pressure'];
+export const NEW = ['Noise', 'Variable Proximity', 'Ballpit', 'Shape Blur', 'Click Spark', 'Text Pressure', 'ASCII Text'];
 export const UPDATED = ['Stack'];
 
 // Used for main sidebar navigation
@@ -14,6 +14,7 @@ export const CATEGORIES = [
       'Gradient Text',
       'Decrypted Text',
       'True Focus',
+      'ASCII Text',
       // 'Flip Text',
       // 'Word Cloud',
       'Variable Proximity',
