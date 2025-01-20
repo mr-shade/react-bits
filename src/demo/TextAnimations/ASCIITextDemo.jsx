@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -15,10 +15,11 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
+import useForceRerender from "../../hooks/useForceRerender";
 
 import ASCIIText from "../../content/TextAnimations/ASCIIText/ASCIIText";
-
 import { asciiText } from "../../constants/code/TextAnimations/asciiTextCode";
+import { WarningTwoIcon } from "@chakra-ui/icons";
 
 const propData = [
   {
@@ -66,13 +67,20 @@ const propData = [
 ];
 
 const ASCIITextDemo = () => {
-  const [text, setText] = useState("react_bits");
+  const [text, setText] = useState("Hey!");
   const [enableWaves, setEnableWaves] = useState(true);
   const [asciiFontSize, setAsciiFontSize] = useState(8);
+
+  const [key, forceRerender] = useForceRerender();
 
   const dependencyList = [
     "three"
   ];
+
+  useEffect(() => {
+    forceRerender();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <TabbedLayout>
@@ -87,9 +95,12 @@ const ASCIITextDemo = () => {
         >
           {/* The ASCII scene with live props */}
           <ASCIIText
+            key={key}
             text={text}
             enableWaves={enableWaves}
             asciiFontSize={asciiFontSize}
+            textFontSize={250}
+            planeBaseHeight={12}
           />
         </Box>
 
@@ -101,7 +112,10 @@ const ASCIITextDemo = () => {
               <FormLabel fontSize="sm">Text</FormLabel>
               <Input
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => {
+                  setText(e.target.value);
+                  forceRerender();
+                }}
                 placeholder="Enter text..."
               />
             </FormControl>
@@ -114,7 +128,10 @@ const ASCIITextDemo = () => {
                 min={1}
                 max={64}
                 step={1}
-                onChange={(_, valNumber) => setAsciiFontSize(valNumber || 1)}
+                onChange={(_, valNumber) => {
+                  setAsciiFontSize(valNumber || 1);
+                  forceRerender();
+                }}
               >
                 <NumberInputField />
               </NumberInput>
@@ -133,6 +150,10 @@ const ASCIITextDemo = () => {
             </FormControl>
           </Flex>
         </Box>
+
+        <p className="demo-extra-info" style={{ marginTop: "1rem" }}>
+          <WarningTwoIcon position="relative" />Warning: the demo page can get laggy from too many re-renders!
+        </p>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={dependencyList} />
