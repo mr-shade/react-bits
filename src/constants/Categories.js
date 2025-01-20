@@ -1,6 +1,6 @@
 // Highlighted sidebar items
-export const NEW = ['Noise', 'Variable Proximity', 'Ballpit', 'Shape Blur', 'Click Spark', 'Text Pressure', 'ASCII Text'];
-export const UPDATED = ['Stack'];
+export const NEW = ['Noise', 'Variable Proximity', 'Ballpit', 'Shape Blur', 'Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card'];
+export const UPDATED = [''];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
@@ -55,6 +55,7 @@ export const CATEGORIES = [
       'Stack',
       'Dock',
       'Masonry',
+      'Pixel Card',
       // 'Bento', 
       // 'Global Search',
       // 'Gradient Input',

@@ -35,6 +35,7 @@ const components = {
   'decay-card': () => import("../demo/Components/DecayCardDemo"),
   'tilted-scroll': () => import("../demo/Components/TiltedScrollDemo"),
   'bounce-cards': () => import("../demo/Components/BounceCardsDemo"),
+  'pixel-card': () => import("../demo/Components/PixelCardDemo"),
 };
 
 const backgrounds = {
