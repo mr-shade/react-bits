@@ -36,6 +36,7 @@ const components = {
   'tilted-scroll': () => import("../demo/Components/TiltedScrollDemo"),
   'bounce-cards': () => import("../demo/Components/BounceCardsDemo"),
   'pixel-card': () => import("../demo/Components/PixelCardDemo"),
+  'logo-wall': () => import("../demo/Components/LogoWallDemo"),
 };
 
 const backgrounds = {

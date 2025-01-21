@@ -98,11 +98,9 @@ const ClickSparkDemo = () => {
           {/* Spark Color */}
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Spark Color:</Text>
-            <Input
+            <input
               type="color"
               value={sparkColor}
-              width="60px"
-              padding={0}
               onChange={(e) => {
                 setSparkColor(e.target.value);
                 forceRerender();

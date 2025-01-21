@@ -163,11 +163,10 @@ const TextPressureDemo = () => {
             {/* Text Color */}
             <Flex gap={4} align="center">
               <Text fontSize="sm">Text Color</Text>
-              <Input
+              <input
                 type="color"
                 value={textColor}
                 width="60px"
-                padding={0}
                 onChange={(e) => {
                   setTextColor(e.target.value);
                   forceRerender();
@@ -178,11 +177,10 @@ const TextPressureDemo = () => {
             {/* Stroke Color */}
             <Flex gap={4} align="center">
               <Text fontSize="sm">Stroke Color</Text>
-              <Input
+              <input
                 type="color"
                 value={strokeColor}
                 width="60px"
-                padding={0}
                 onChange={(e) => {
                   setStrokeColor(e.target.value);
                   forceRerender();

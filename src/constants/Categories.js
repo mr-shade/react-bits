@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Noise', 'Variable Proximity', 'Ballpit', 'Shape Blur', 'Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card'];
+export const NEW = ['Ballpit', 'Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall'];
 export const UPDATED = [''];
 
 // Used for main sidebar navigation
@@ -65,6 +65,7 @@ export const CATEGORIES = [
       // 'Trail Card',
       // 'Dynamic Background',
       'Decay Card',
+      'Logo Wall',
       // 'List Reveal',
       'Elastic Slider',
       // 'Liquid Menu',
