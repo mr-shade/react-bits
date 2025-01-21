@@ -10,6 +10,7 @@ const animations = {
   'magnet-lines': () => import("../demo/Animations/MagnetLinesDemo"),
   'splash-cursor': () => import("../demo/Animations/SplashCursorDemo"),
   'click-spark': () => import("../demo/Animations/ClickSparkDemo"),
+  'pixel-transition': () => import("../demo/Animations/PixelTransitionDemo"),
 };
 
 const textAnimations = {

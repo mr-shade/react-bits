@@ -105,6 +105,7 @@ const ASCIITextDemo = () => {
         </Box>
 
         <Box mb={6}>
+          <h2 className="demo-title-extra">Options</h2>
           <Flex alignItems="center" gap={4} flexWrap="wrap" mb={4}>
 
             {/* Text */}

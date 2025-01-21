@@ -6,8 +6,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Text,
-  Input,
+  Text
 } from "@chakra-ui/react";
 
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";

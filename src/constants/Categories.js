@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Ballpit', 'Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall'];
+export const NEW = ['Ballpit', 'Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition'];
 export const UPDATED = [''];
 
 // Used for main sidebar navigation
@@ -29,6 +29,7 @@ export const CATEGORIES = [
       // 'Trail Cursor',
       // 'Emoji Cursor',
       // 'Wave Cursor',
+      'Pixel Transition',
       // 'Liquid Cursor',
       // 'Distortion Cursor',
       // 'Crystal Ball',
