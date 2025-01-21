@@ -77,7 +77,7 @@ const propData = [
 ];
 
 const PixelTransitionDemo = () => {
-  const [gridSize, setGridSize] = useState(12);
+  const [gridSize, setGridSize] = useState(8);
   const [pixelColor, setPixelColor] = useState("#ffffff");
   const [animationStepDuration, setAnimationStepDuration] = useState(0.4);
   const [key, forceRerender] = useForceRerender();
