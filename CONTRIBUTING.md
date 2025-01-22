@@ -26,8 +26,10 @@ We welcome pull requests from everyone. To submit a pull request, please follow 
 4. Provide a clear and descriptive title for your pull request, along with a detailed description of the changes you have made, and screenshots/videos where possible.
 5. For components updates, ensure that changes are reflected in all related files, such as:
    - `react-bits/src/demo/Backgrounds/<ComponentName>Demo.jsx`
-   - `react-bits/src/constants/ExampleConstants.js`
+   - `react-bits/src/constants/code/<componentName>Code.js`
    - Preview and Code pages in the documentation, so users can copy the final component code.
+6. Before you open a pull request, please make sure that your changes are tested locally, and everything looks good on desktop and mobile, also check the console for errors, and so on, so that we can keep this library at the highest quality possible.
+7. Any pull requests that fail to meet these requirements will be denied, so please make sure you respect them so that your work can go through.
 
 ## Component Dependencies
 
