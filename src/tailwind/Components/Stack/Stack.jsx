@@ -40,6 +40,7 @@ export default function Stack({
   cardDimensions = { width: 208, height: 208 },
   cardsData = [],
   animationConfig = { stiffness: 260, damping: 20 },
+  sendToBackOnClick = false
 }) {
   const [cards, setCards] = useState(
     cardsData.length
@@ -84,6 +85,7 @@ export default function Stack({
           >
             <motion.div
               className="absolute w-full h-full rounded-lg overflow-hidden"
+              onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
                 rotateZ: (cards.length - index - 1) * 4 + randomRotate,
                 scale: 1 + index * 0.06 - cards.length * 0.06,

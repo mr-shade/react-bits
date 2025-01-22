@@ -38,6 +38,12 @@ const StackDemo = () => {
       description: "Defines the width and height of the cards.",
     },
     {
+      name: "sendToBackOnClick",
+      type: "boolean",
+      default: "false",
+      description: "When enabled, the also stack shifts to the next card on click.",
+    },
+    {
       name: "cardsData",
       type: "array",
       default: "[]",
