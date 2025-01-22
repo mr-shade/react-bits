@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Ballpit', 'Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition'];
+export const NEW = ['Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition', 'Falling Text'];
 export const UPDATED = [''];
 
 // Used for main sidebar navigation
@@ -12,6 +12,7 @@ export const CATEGORIES = [
       'Shiny Text',
       'Text Pressure',
       'Gradient Text',
+      'Falling Text',
       'Decrypted Text',
       'True Focus',
       'ASCII Text',

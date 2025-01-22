@@ -24,6 +24,7 @@ const textAnimations = {
   'variable-proximity': () => import("../demo/TextAnimations/VariableProximityDemo"),
   'text-pressure': () => import("../demo/TextAnimations/TextPressureDemo"),
   'ascii-text': () => import("../demo/TextAnimations/ASCIITextDemo"),
+  'falling-text': () => import("../demo/TextAnimations/FallingTextDemo"),
 };
 
 const components = {
