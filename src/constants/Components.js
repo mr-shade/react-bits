@@ -39,6 +39,7 @@ const components = {
   'bounce-cards': () => import("../demo/Components/BounceCardsDemo"),
   'pixel-card': () => import("../demo/Components/PixelCardDemo"),
   'logo-wall': () => import("../demo/Components/LogoWallDemo"),
+  'tilted-card': () => import("../demo/Components/TiltedCardDemo"),
 };
 
 const backgrounds = {

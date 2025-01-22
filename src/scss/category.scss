@@ -112,6 +112,19 @@ div:has(> .props-table) {
   position: relative;
 }
 
+.tilted-card-demo-text {
+  font-family: 'DM Sans';
+  font-weight: 900;
+  text-transform: capitalize;
+  box-shadow: 0 5px 30px #06060659;
+  border-radius: 15px;
+  color: #fff; 
+  background: rgba(0,0,0,0.4);
+  padding: 0.5rem 1em;
+  letter-spacing: -.5px;
+  margin: 2em;
+}
+
 .shapeblur-demo {
   position: relative;
   mix-blend-mode: difference;
