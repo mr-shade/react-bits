@@ -1,6 +1,6 @@
 // Highlighted sidebar items
-export const NEW = ['Click Spark', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition', 'Falling Text', 'Tilted Card'];
-export const UPDATED = [''];
+export const NEW = ['Infinite Scroll', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition', 'Falling Text', 'Tilted Card'];
+export const UPDATED = ['Infinite Scroll'];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
@@ -63,7 +63,7 @@ export const CATEGORIES = [
       // 'Global Search',
       // 'Gradient Input',
       'Spotlight Card',
-      'Tilted Scroll',
+      'Infinite Scroll',
       // 'Blur Card',
       // 'Trail Card',
       // 'Dynamic Background',
