@@ -39,3 +39,5 @@ export const forceChakraDarkTheme = () => {
   localStorage.setItem('chakra-ui-color-mode', 'dark');
   console.info('Successfully set dark color mode.');
 };
+
+export const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0')}`;

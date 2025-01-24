@@ -49,6 +49,7 @@ const backgrounds = {
   'waves': () => import("../demo/Backgrounds/WavesDemo"),
   'ballpit': () => import("../demo/Backgrounds/BallpitDemo"),
   'shape-blur': () => import("../demo/Backgrounds/ShapeBlurDemo"),
+  'letter-glitch': () => import("../demo/Backgrounds/LetterGlitchDemo")
 };
 
 export const componentMap = {
