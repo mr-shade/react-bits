@@ -62,7 +62,7 @@ const LetterGlitchDemo = () => {
             outerVignette={showOuterVignette}
             smooth={smooth}
           />
-          {showCenterText && <Text fontSize='7rem' fontWeight={900} position="absolute" zIndex={0} color="#fff" mixBlendMode="color-dodge">react_bits</Text>}
+          {showCenterText && <Text fontSize='clamp(4rem, 4vw, 8rem)' fontWeight={900} position="absolute" zIndex={0} color="#fff" mixBlendMode="color-dodge">react_bits</Text>}
         </Box>
 
         <div className="preview-options">
