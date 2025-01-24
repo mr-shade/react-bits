@@ -1,5 +1,15 @@
 import { extendTheme } from "@chakra-ui/react";
 
+export const toastStyles = {
+  style: {
+    fontSize: '12px',
+    borderRadius: '0.75rem',
+    border: '1px solid #222',
+    color: '#fff',
+    backgroundColor: '#060606'
+  }
+};
+
 export const customTheme = extendTheme({
   config: {
     initialColorMode: 'dark',

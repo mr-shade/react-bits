@@ -35,11 +35,11 @@ const Sidebar = () => {
   return (
     <>
       <Box display={{ md: 'none' }} position="fixed" top={0} left={0} zIndex="overlay" p={"1em"} w={"100%"} bgColor={'#060606'}>
-        <Flex alignItems="center" gap={"1em"}>
-          <IconButton ref={btnRef} icon={<HamburgerIcon />} onClick={() => setDrawerOpen(true)} />
+        <Flex alignItems="center" gap={"1em"} justifyContent="space-between" transition=".2s ease" transform={isDrawerOpen ? 'translateY(-200%)' : 'none'}>
           <Link to="/">
-            <Image src={Logo} height="25px" />
+            <Image src={Logo} height="25px" alt='React Bits logo' />
           </Link>
+          <IconButton borderRadius='10px' border="1px solid #fff" bg="#060606" ref={btnRef} icon={<HamburgerIcon />} onClick={() => setDrawerOpen(true)} />
         </Flex>
       </Box>
 
@@ -47,16 +47,17 @@ const Sidebar = () => {
         <DrawerOverlay />
         <DrawerContent className='sidebar-mobile'>
           <DrawerHeader py={0} h={"72px"} borderBottomWidth="1px" className='sidebar-logo'>
-            <Flex alignItems="center">
+            <Flex alignItems="center" justifyContent="space-between">
+              <Link to="/">
+                <Image height="25px" src={Logo} alt="Bits Logo" />
+              </Link>
               <IconButton
+                borderRadius='10px' border="1px solid #fff" bg="#060606"
                 size="md"
                 icon={<CloseIcon boxSize={3} />}
                 aria-label="Close Menu"
                 onClick={() => setDrawerOpen(false)}
               />
-              <Link to="/">
-                <Image height="25px" ml={'1em'} src={Logo} alt="Bits Logo" />
-              </Link>
             </Flex>
           </DrawerHeader>
           <DrawerBody pb={'6em'}>
@@ -66,10 +67,13 @@ const Sidebar = () => {
               ))}
             </VStack>
             <Divider my={4} />
-            <p>Useful Links</p>
+            <Text color="#a6a6a6" mb={3}>Useful Links</Text>
             <Flex direction="column">
               <Link to="https://github.com/DavidHDev/react-bits" target='_blank' display="block" mb={2} onClick={() => setDrawerOpen(false)}>
                 GitHub<ArrowForwardIcon boxSize={7} transform={"rotate(-45deg)"} position="relative" top="-1px" />
+              </Link>
+              <Link to="/showcase" display="block" mb={2} onClick={() => setDrawerOpen(false)}>
+                Showcase<ArrowForwardIcon boxSize={7} transform={"rotate(-45deg)"} position="relative" top="-1px" />
               </Link>
               <Link to="https://davidhaz.com/" target='_blank' display="block" mb={2} onClick={() => setDrawerOpen(false)}>
                 Who made this?<ArrowForwardIcon boxSize={7} transform={"rotate(-45deg)"} position="relative" top="-1px" />

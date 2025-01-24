@@ -7,6 +7,7 @@ const FadeContent = ({
   easing = 'ease-out',
   threshold = 0.1,
   initialOpacity = 0,
+  className = ''
 }) => {
   const [inView, setInView] = useState(false);
   const ref = useRef();
@@ -32,6 +33,7 @@ const FadeContent = ({
   return (
     <div
       ref={ref}
+      className={className}
       style={{
         opacity: inView ? 1 : initialOpacity,
         transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,

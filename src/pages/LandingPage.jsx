@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSingleEffect } from "react-haiku";
+import { useMediaQuery, useSingleEffect } from "react-haiku";
 import { getStarsCount } from "../utils/utils";
 import { Link, Spinner } from "@chakra-ui/react";
 
@@ -18,6 +18,8 @@ const LandingPage = () => {
   const [activeBeams, setActiveBeams] = useState([]);
   const activeBeamsRef = useRef([]);
   const navigate = useNavigate();
+
+  const isMobile = useMediaQuery('(max-width: 1024px)');
 
   useSingleEffect(() => {
     const fetchStars = async () => {
@@ -51,7 +53,7 @@ const LandingPage = () => {
     <section className="landing-wrapper">
       <Header />
       <div className="type-logo">
-        <AnimatedContent initialOpacity={1} scale={0.8}>
+        <AnimatedContent initialOpacity={isMobile ? 0 : 1} scale={0.8} reverse={isMobile}>
           <HeroType />
         </AnimatedContent>
       </div>
@@ -61,13 +63,14 @@ const LandingPage = () => {
 
         <div className="headline">
           <div className="landing-bottom">
+            <div className="divider"></div>
             <FadeContent blur duration={1000}>
               <p>
                 Handpicked animated components collection for{" "}
                 <span>creative developers</span>
               </p>
             </FadeContent>
-
+            <div className="divider"></div>
             <Link
               href="https://github.com/DavidHDev/react-bits"
               target="_blank"
