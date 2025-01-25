@@ -1,14 +1,22 @@
-import { Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import Header from "../components/navs/Header/Header";
 import '../scss/showcase.scss';
 import FadeContent from "../content/Animations/FadeContent/FadeContent";
-import sad from "../assets/common/icon-sad.svg";
 import logo from "../assets/logos/reactbits-logo.svg";
 import { useEffect, useState } from "react";
 import Confetti from 'react-confetti';
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const ShowcasePage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const showcaseItems = [
+    {
+      name: 'Devraj',
+      url: 'https://devrajchatribin.com/about',
+      using: '<CountUp />'
+    }
+  ];
 
   useEffect(() => {
     setTimeout(() => {
@@ -36,22 +44,25 @@ const ShowcasePage = () => {
 
       <FadeContent blur duration={1000} className="fade-grid">
         <div className="grid-container">
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
+          <Box as="a" href='https://docs.google.com/forms/d/e/1FAIpQLSdlzugJovfr5HPon3YAi8YYSSRuackqX8XIXSeeQmSQypNc7w/viewform?usp=dialog' target="_blank" rel='noreferrer' className="grid-item add-yours">
+            <AiOutlinePlusCircle className="add-icon" />
+            <Text>Submit New Project</Text>
+          </Box>
 
-          <div className="nothing-yet">
-            <img src={sad} className="sad-icon" alt="emoji/face displaying a sad expression" />
-            <Text className="nothing-yet-title">Nothing here yet!</Text>
-            <Text className="nothing-yet-subtitle">Built some cool stuff with the help of React Bits? Be the first to showcase your work!</Text>
-            <Button as="a" href='https://docs.google.com/forms/d/e/1FAIpQLSdlzugJovfr5HPon3YAi8YYSSRuackqX8XIXSeeQmSQypNc7w/viewform?usp=dialog' border="1px solid #ffffff1c" rel='noreferrer' target='_blank' fontSize="sm" fontWeight={400} h={10} bg="#080808" color="white" _hover={{ bg: '#111', transform: 'scale(0.95)' }}>
-              <Text>Submit My Project</Text>
-            </Button>
-          </div>
+          {showcaseItems.map((item, index) =>
+            <Box as="a" href={item.url} rel="noreferrer" target="_blank" className="grid-item" key={item.url}>
+              <img className="showcase-img" src={`https://davidhaz.com/react-bits-showcase/showcase-${index + 1}.webp`} alt={`Showcase website submitted by: ${item.name ? item.name : 'Anonymous'}`} />
+              <div className="showcase-info">
+                {item.name && <Text className="author">{item.name}</Text>}
+                <Text className="using">Using {item.using}</Text>
+              </div>
+            </Box>
+          )}
+
+          <div className="grid-item"></div>
+          <div className="grid-item"></div>
+          <div className="grid-item"></div>
+          <div className="grid-item"></div>
         </div>
       </FadeContent>
     </section >

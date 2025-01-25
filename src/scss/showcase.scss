@@ -24,7 +24,7 @@
     font-size: 4rem;
     font-weight: 900;
     margin-bottom: 0.2em;
-    margin-right: .2em;
+    margin-right: 0.2em;
     white-space: nowrap;
 
     span {
@@ -45,11 +45,11 @@
 
   .grid-container {
     position: relative;
-    margin: 4em 0;
+    margin: 8em 0;
     display: grid;
     width: 100%;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 200px;
+    grid-auto-rows: 300px;
     gap: 20px; // Ensures uniform spacing
 
     // &::before {
@@ -64,47 +64,105 @@
     .grid-item {
       border: 1px solid rgba(166, 166, 166, 0.1);
       background: #080808;
-      border-radius: 10px;
-      min-width: 200px;
+      border-radius: 25px;
+      grid-row: span 1;
       transition: transform 0.3s ease-in-out;
+      position: relative;
+
+      &:hover {
+        transform: scale(0.9);
+        transition: 0.3s ease;
+
+        .showcase-info {
+          transform: scale(0.9);
+          transition: 0.3s ease;
+        }
+      }
+
+      .showcase-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left;
+        border-radius: 25px;
+      }
+
+      .showcase-info {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2em;
+        z-index: 3;
+        transition: 0.3s ease;
+
+        .author {
+          font-weight: 900;
+          font-size: 2rem;
+        }
+
+        .using {
+          letter-spacing: -0.5px;
+          color: #a6a6a6;
+        }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        border-radius: 25px;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(to top, #060606 33%, transparent);
+      }
     }
 
-    // Offset specific columns while maintaining spacing
-    .grid-item:nth-child(1) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(2) {
-      grid-row: span 2;
-    }
-    .grid-item:nth-child(3) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(4) {
-      grid-row: span 2;
-    }
-    .grid-item:nth-child(5) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(6) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(7) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(8) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(9) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(10) {
-      grid-row: span 2;
-    }
-    .grid-item:nth-child(11) {
-      grid-row: span 1;
-    }
-    .grid-item:nth-child(12) {
-      grid-row: span 2;
+    .add-yours {
+      cursor: pointer;
+      gap: 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-weight: 500;
+      color: #a6a6a6 !important;
+
+      &::before {
+        content: "";
+        position: absolute;
+        border-radius: 25px;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        background: none;
+      }
+
+      &:hover {
+        font-size: 1.2rem;
+        background-color: #0d0d0d;
+        transition: 0.3s ease;
+
+        .add-icon {
+          font-size: 1.2rem;
+          transition: 0.3s ease;
+        }
+      }
+
+      font-size: 1rem;
+      transition: 0.3s ease;
+
+      .add-icon {
+        font-size: 1rem;
+        transition: 0.3s ease;
+      }
     }
 
     // Responsive grid adjustments
@@ -172,7 +230,7 @@
 
     .title {
       font-size: 2rem;
-      margin-bottom: .6em;
+      margin-bottom: 0.6em;
     }
   }
 }
