@@ -48,7 +48,7 @@ const ShowcasePage = () => {
             <img src={sad} className="sad-icon" alt="emoji/face displaying a sad expression" />
             <Text className="nothing-yet-title">Nothing here yet!</Text>
             <Text className="nothing-yet-subtitle">Built some cool stuff with the help of React Bits? Be the first to showcase your work!</Text>
-            <Button as="a" href='https://form.typeform.com/to/a3uPqXqY' border="1px solid #ffffff1c" rel='noreferrer' target='_blank' fontSize="sm" fontWeight={400} h={10} bg="#080808" color="white" _hover={{ bg: '#111', transform: 'scale(0.95)' }}>
+            <Button as="a" href='https://docs.google.com/forms/d/e/1FAIpQLSdlzugJovfr5HPon3YAi8YYSSRuackqX8XIXSeeQmSQypNc7w/viewform?usp=dialog' border="1px solid #ffffff1c" rel='noreferrer' target='_blank' fontSize="sm" fontWeight={400} h={10} bg="#080808" color="white" _hover={{ bg: '#111', transform: 'scale(0.95)' }}>
               <Text>Submit My Project</Text>
             </Button>
           </div>

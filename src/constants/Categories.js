@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Infinite Scroll', 'Letter Glitch', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition', 'Falling Text', 'Tilted Card'];
+export const NEW = ['Infinite Scroll', 'Grid Distortion', 'Letter Glitch', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition', 'Falling Text', 'Tilted Card'];
 export const UPDATED = ['Infinite Scroll'];
 
 // Used for main sidebar navigation
@@ -91,6 +91,7 @@ export const CATEGORIES = [
     subcategories: [
       'Shape Blur',
       'Hyperspeed',
+      'Grid Distortion',
       'Ballpit',
       'Grid Motion',
       'Squares',
