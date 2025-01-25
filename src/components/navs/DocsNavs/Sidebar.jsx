@@ -39,7 +39,7 @@ const Sidebar = () => {
           <Link to="/">
             <Image src={Logo} height="25px" alt='React Bits logo' />
           </Link>
-          <IconButton borderRadius='10px' border="1px solid #fff" bg="#060606" ref={btnRef} icon={<HamburgerIcon />} onClick={() => setDrawerOpen(true)} />
+          <IconButton borderRadius='10px' border="1px solid #ffffff1c" bg="#060606" ref={btnRef} icon={<HamburgerIcon />} onClick={() => setDrawerOpen(true)} />
         </Flex>
       </Box>
 
@@ -52,7 +52,7 @@ const Sidebar = () => {
                 <Image height="25px" src={Logo} alt="Bits Logo" />
               </Link>
               <IconButton
-                borderRadius='10px' border="1px solid #fff" bg="#060606"
+                borderRadius='10px' border="1px solid #ffffff1c" bg="#060606"
                 size="md"
                 icon={<CloseIcon boxSize={3} />}
                 aria-label="Close Menu"
