@@ -13,7 +13,8 @@ const SplitText = ({
   textAlign = 'center',
   onLetterAnimationComplete,
 }) => {
-  const letters = text.split('');
+  const words = text.split(' ').map(word => word.split(''));
+  const letters = words.flat();
   const [inView, setInView] = useState(false);
   const ref = useRef();
   const animatedCount = useRef(0);
@@ -56,16 +57,27 @@ const SplitText = ({
     <p
       ref={ref}
       className={`split-parent overflow-hidden inline ${className}`}
-      style={{ textAlign }}
+      style={{ textAlign, whiteSpace: 'normal', wordWrap: 'break-word' }}
     >
-      {springs.map((props, index) => (
-        <animated.span
-          key={index}
-          style={props}
-          className="inline-block transform transition-opacity will-change-transform"
-        >
-          {letters[index] === ' ' ? '\u00A0' : letters[index]}
-        </animated.span>
+      {words.map((word, wordIndex) => (
+        <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+          {word.map((letter, letterIndex) => {
+            const index = words
+              .slice(0, wordIndex)
+              .reduce((acc, w) => acc + w.length, 0) + letterIndex;
+
+            return (
+              <animated.span
+                key={index}
+                style={springs[index]}
+                className="inline-block transform transition-opacity will-change-transform"
+              >
+                {letter}
+              </animated.span>
+            );
+          })}
+          <span style={{ display: 'inline-block', width: '0.3em' }}>&nbsp;</span>
+        </span>
       ))}
     </p>
   );
