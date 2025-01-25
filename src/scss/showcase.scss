@@ -14,12 +14,18 @@
     width: 100%;
   }
 
+  .title-logo {
+    min-width: 340px;
+  }
+
   .title {
     text-align: center;
     line-height: 100%;
     font-size: 4rem;
     font-weight: 900;
     margin-bottom: 0.2em;
+    margin-right: .2em;
+    white-space: nowrap;
 
     span {
       &:nth-child(3),
@@ -155,5 +161,34 @@
 @media (max-width: 1024px) {
   .showcase-wrapper {
     padding: 140px 2em 0 2em;
+  }
+}
+
+@media (max-width: 697px) {
+  .showcase-wrapper {
+    .title-logo {
+      min-width: 170px;
+    }
+
+    .title {
+      font-size: 2rem;
+      margin-bottom: .6em;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .showcase-wrapper {
+    .title-logo {
+      min-width: 150px;
+    }
+
+    .title {
+      font-size: 1.6rem;
+    }
+
+    .sub-text {
+      font-size: 16px;
+    }
   }
 }

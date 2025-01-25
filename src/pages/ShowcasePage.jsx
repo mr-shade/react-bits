@@ -1,16 +1,35 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import Header from "../components/navs/Header/Header";
-import BlurText from "../content/TextAnimations/BlurText/BlurText";
 import '../scss/showcase.scss';
 import FadeContent from "../content/Animations/FadeContent/FadeContent";
 import sad from "../assets/common/icon-sad.svg";
+import logo from "../assets/logos/reactbits-logo.svg";
+import { useEffect, useState } from "react";
+import Confetti from 'react-confetti';
 
 const ShowcasePage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 1000)
+  }, [])
+
   return (
     <section className="showcase-wrapper">
       <Header />
+      {isLoaded && <Confetti recycle={false} colors={["#00d8ff"]} gravity={0.5} frameRate={60} numberOfPieces={100} />}
 
-      <BlurText className="title" text="Built with React Bits" />
+      <Flex>
+        <FadeContent blur duration={1000}>
+          <Text className="title">Built with</Text>
+        </FadeContent>
+
+        <FadeContent blur duration={1000}>
+          <Image className="title-logo" src={logo} />
+        </FadeContent>
+      </Flex>
       <FadeContent blur duration={1000}>
         <Text className="sub-text">Discover how other developers are using React Bits to build awesome user experiences</Text>
       </FadeContent>
