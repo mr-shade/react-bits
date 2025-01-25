@@ -217,8 +217,16 @@
 }
 
 @media (max-width: 1024px) {
+  .grid-container {
+    margin: 4em 0 !important;
+  }
+
   .showcase-wrapper {
     padding: 140px 2em 0 2em;
+  }
+
+  .showcase-info {
+    padding: 1em !important;
   }
 }
 
