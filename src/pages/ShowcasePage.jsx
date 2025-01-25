@@ -19,7 +19,7 @@ const ShowcasePage = () => {
   return (
     <section className="showcase-wrapper">
       <Header />
-      {isLoaded && <Confetti recycle={false} colors={["#00d8ff"]} gravity={0.5} frameRate={60} numberOfPieces={100} />}
+      {isLoaded && <Confetti run={window.innerWidth > 1000} recycle={false} colors={["#00d8ff"]} gravity={0.5} frameRate={60} numberOfPieces={100} />}
 
       <Flex>
         <FadeContent blur duration={1000}>
