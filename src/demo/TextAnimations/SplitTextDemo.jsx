@@ -150,12 +150,7 @@ const SplitTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={splitText.cliDefault}
-          cliTailwind={splitText.cliTailwind}
-          cliTsDefault={splitText.cliTsDefault}
-          cliTsTailwind={splitText.cliTsTailwind}
-        />
+        <CliInstallation {...splitText} />
       </CliTab>
     </TabbedLayout>
   );
