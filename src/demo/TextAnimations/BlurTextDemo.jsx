@@ -1,7 +1,21 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import {
+  CliTab,
+  CodeTab,
+  PreviewTab,
+  TabbedLayout,
+} from "../../components/common/TabbedLayout";
+import {
+  Box,
+  Button,
+  Flex,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Text,
+} from "@chakra-ui/react";
 
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
@@ -11,7 +25,7 @@ import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
 import BlurText from "../../content/TextAnimations/BlurText/BlurText";
-import { blurText } from '../../constants/code/TextAnimations/blurTextCode';
+import { blurText } from "../../constants/code/TextAnimations/blurTextCode";
 
 const BlurTextDemo = () => {
   const [animateBy, setAnimateBy] = useState("words");
@@ -37,7 +51,8 @@ const BlurTextDemo = () => {
       name: "direction",
       type: "string",
       default: '"top"',
-      description: "Direction from which the words/letters appear ('top' or 'bottom').",
+      description:
+        "Direction from which the words/letters appear ('top' or 'bottom').",
     },
     {
       name: "delay",
@@ -68,7 +83,12 @@ const BlurTextDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" minH={400} overflow="hidden">
+        <Box
+          position="relative"
+          className="demo-container"
+          minH={400}
+          overflow="hidden"
+        >
           <RefreshButton onClick={forceRerender} />
           <BlurText
             key={key}
@@ -76,7 +96,7 @@ const BlurTextDemo = () => {
             animateBy={animateBy}
             direction={direction}
             delay={delay}
-            onAnimationComplete={() => toast('✅ Animation Finished!')}
+            onAnimationComplete={() => toast("✅ Animation Finished!")}
             className="blur-text-demo"
           />
         </Box>
@@ -137,7 +157,12 @@ const BlurTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={blurText.cliDefault} cliTailwind={blurText.cliTailwind} />
+        <CliInstallation
+          cliDefault={blurText.cliDefault}
+          cliTailwind={blurText.cliTailwind}
+          cliTsDefault={blurText.cliTsDefault}
+          cliTsTailwind={blurText.cliTsTailwind}
+        />
       </CliTab>
     </TabbedLayout>
   );
