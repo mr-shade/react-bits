@@ -84,15 +84,20 @@ const SplitTextDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" minH={400} overflow="hidden">
+        <Box
+          position="relative"
+          className="demo-container"
+          minH={400}
+          overflow="hidden"
+        >
           <RefreshButton onClick={forceRerender} />
           <SplitText
             key={key}
-            text='Hello!'
+            text="Hello!"
             delay={delay}
             easing={easing}
             className="split-text-demo"
-            onLetterAnimationComplete={() => toast('✅ Animation Finished!')}
+            onLetterAnimationComplete={() => toast("✅ Animation Finished!")}
           />
         </Box>
 
@@ -145,7 +150,12 @@ const SplitTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={splitText.cliDefault} cliTailwind={splitText.cliTailwind} />
+        <CliInstallation
+          cliDefault={splitText.cliDefault}
+          cliTailwind={splitText.cliTailwind}
+          cliTsDefault={splitText.cliTsDefault}
+          cliTsTailwind={splitText.cliTsTailwind}
+        />
       </CliTab>
     </TabbedLayout>
   );
