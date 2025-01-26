@@ -157,12 +157,7 @@ const BlurTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={blurText.cliDefault}
-          cliTailwind={blurText.cliTailwind}
-          cliTsDefault={blurText.cliTsDefault}
-          cliTsTailwind={blurText.cliTsTailwind}
-        />
+        <CliInstallation {...blurText} />
       </CliTab>
     </TabbedLayout>
   );
