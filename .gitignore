@@ -13,6 +13,8 @@ dist-ssr
 *.local
 public/default
 public/tailwind
+public/ts/default
+public/ts/tailwind
 
 # Editor directories and files
 .vscode/*

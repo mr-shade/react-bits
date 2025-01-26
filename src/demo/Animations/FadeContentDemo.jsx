@@ -51,6 +51,12 @@ const FadeDemo = () => {
       default: 0,
       description: 'The starting opacity of the component before it enters the viewport.',
     },
+    {
+      name: 'className',
+      type: 'string',
+      default: '',
+      description: 'Custom class(es) to be added to the container.',
+    },
   ];
 
   return (
@@ -183,7 +189,7 @@ const FadeDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={fadeContent.cliDefault} />
+        <CliInstallation {...fadeContent} />
       </CliTab>
     </TabbedLayout>
   );

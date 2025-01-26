@@ -26,25 +26,51 @@ The project embraces simplicity as its core philosophy—it maintains minimal de
 
 ## Installing Components Via CLI - <a href="https://jsrepo.dev"><img src="https://jsrepo.dev/badges/jsrepo.svg" width="50" alt="jsrepo"></a>
 
-#### One-Time Installation
+
+
+## One-Time Installation
+
+### JavaScript
+
+#### Vanilla CSS
 ```bash
 npx jsrepo add https://reactbits.dev/default/<CategoryName>/<ComponentName>
 
 # Example: npx jsrepo add https://reactbits.dev/default/TextAnimations/SplitText
 ```
 
-#### One-Time Installation (Tailwind)
+#### Tailwind
 ```bash
 npx jsrepo add https://reactbits.dev/tailwind/<CategoryName>/<ComponentName>
 
-# Example: npx jsrepo add https://reactbits.dev/tailwind/TailwindTextAnimations/SplitText
+# Example: npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/SplitText
 ```
 
-#### Full CLI Setup
+### TypeScript
+
+#### Vanilla CSS
+```bash
+npx jsrepo add https://reactbits.dev/default/<CategoryName>/<ComponentName>
+
+# Example: npx jsrepo add https://reactbits.dev/ts/default/TextAnimations/SplitText
+```
+
+#### Tailwind
+```bash
+npx jsrepo add https://reactbits.dev/tailwind/<CategoryName>/<ComponentName>
+
+# Example: npx jsrepo add https://reactbits.dev/ts/tailwind/TextAnimations/SplitText
+```
+
+## Full CLI Setup
 ```bash
 # 1. Initialize a config file for your project
-npx jsrepo init https://reactbits.dev/default/ # default
+npx jsrepo init https://reactbits.dev/default/ # css
 npx jsrepo init https://reactbits.dev/tailwind/ # tailwind
+
+# TS Support is still WIP
+npx jsrepo init https://reactbits.dev/ts/default/ # ts + css
+npx jsrepo init https://reactbits.dev/ts/tailwind/ # ts + tailwind
 
 # 2. Browse & add components from the list
 npx jsrepo add

@@ -281,7 +281,7 @@ const AnimatedContentDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={animatedContent.cliDefault} />
+        <CliInstallation {...animatedContent} />
       </CliTab>
     </TabbedLayout>
   );

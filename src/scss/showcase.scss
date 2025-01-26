@@ -132,6 +132,8 @@
       flex-direction: column;
       font-weight: 500;
       color: #a6a6a6 !important;
+      transition: 0.3s ease;
+      font-size: 1rem;
 
       &::before {
         content: "";
@@ -156,12 +158,9 @@
         }
       }
 
-      font-size: 1rem;
-      transition: 0.3s ease;
-
       .add-icon {
-        font-size: 1rem;
         transition: 0.3s ease;
+        font-size: 1rem;
       }
     }
 

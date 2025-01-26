@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:registry && vite build",
-    "build:registry": "npm run build:registry:default && npm run build:registry:tailwind",
+    "build:registry": "npm run build:registry:default && npm run build:registry:tailwind && npm run build:registry:ts-default && npm run build:registry:ts-tailwind",
     "build:registry:default": "npx jsrepo build --dirs ./src/content --output-dir ./public/default",
     "build:registry:tailwind": "npx jsrepo build --dirs ./src/tailwind --output-dir ./public/tailwind",
+    "build:registry:ts-default": "npx jsrepo build --dirs ./src/ts-default --output-dir ./public/ts/default",
+    "build:registry:ts-tailwind": "npx jsrepo build --dirs ./src/ts-tailwind --output-dir ./public/ts/tailwind",
     "new:component": "node scripts/generateComponent.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -41,12 +43,13 @@
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "jsrepo": "^1.26.2",
+    "typescript": "^5.7.3",
     "vite": "^5.3.4"
   }
 }

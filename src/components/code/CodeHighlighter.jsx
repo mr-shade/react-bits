@@ -18,7 +18,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
     }
   };
 
-  const codeLines = codeString.split('\n').length;
+  const codeLines = codeString?.split('\n').length;
   const shouldCollapse = codeLines > maxLines;
 
   return (
@@ -34,7 +34,8 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           showLineNumbers={showLineNumbers}
           className="code-highlighter"
         >
-          {codeString}
+          {codeString || `// Oops! ☹️
+// Looks like this is still work in progress, please check back later!`}
         </SyntaxHighlighter>
 
         {/* Overlay gradient when collapsed */}
