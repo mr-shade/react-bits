@@ -26,11 +26,7 @@ The project embraces simplicity as its core philosophy—it maintains minimal de
 
 ## Installing Components Via CLI - <a href="https://jsrepo.dev"><img src="https://jsrepo.dev/badges/jsrepo.svg" width="50" alt="jsrepo"></a>
 
-
-
-## One-Time Installation
-
-### JavaScript
+### JavaScript (One-Time Installation)
 
 #### Vanilla CSS
 ```bash
@@ -46,7 +42,7 @@ npx jsrepo add https://reactbits.dev/tailwind/<CategoryName>/<ComponentName>
 # Example: npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/SplitText
 ```
 
-### TypeScript
+### TypeScript (One-Time Installation)
 
 #### Vanilla CSS
 ```bash
