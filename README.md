@@ -50,14 +50,14 @@ npx jsrepo add https://reactbits.dev/tailwind/<CategoryName>/<ComponentName>
 
 #### Vanilla CSS
 ```bash
-npx jsrepo add https://reactbits.dev/default/<CategoryName>/<ComponentName>
+npx jsrepo add https://reactbits.dev/ts/default/<CategoryName>/<ComponentName>
 
 # Example: npx jsrepo add https://reactbits.dev/ts/default/TextAnimations/SplitText
 ```
 
 #### Tailwind
 ```bash
-npx jsrepo add https://reactbits.dev/tailwind/<CategoryName>/<ComponentName>
+npx jsrepo add https://reactbits.dev/ts/tailwind/<CategoryName>/<ComponentName>
 
 # Example: npx jsrepo add https://reactbits.dev/ts/tailwind/TextAnimations/SplitText
 ```
