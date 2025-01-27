@@ -263,10 +263,7 @@ const TextPressureDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={textPressure.cliDefault}
-          cliTailwind={textPressure.cliTailwind}
-        />
+        <CliInstallation {...textPressure} />
       </CliTab>
     </TabbedLayout>
   );

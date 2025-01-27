@@ -2,6 +2,8 @@ import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/TextAnimations/TextPressure/TextPressure.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/TextPressure/TextPressure.jsx?raw';
+import tsCode from '@ts-default/TextAnimations/TextPressure/TextPressure.tsx?raw';
+import tsTailwind from '@ts-tailwind/TextAnimations/TextPressure/TextPressure.tsx?raw';
 
 export const textPressure = {
   ...(generateCliCommands('TextAnimations/TextPressure', ['default', 'tailwind'])),
@@ -26,5 +28,7 @@ export const textPressure = {
   />
 </div>`,
   code,
-  tailwind
+  tailwind,
+  tsCode,
+  tsTailwind
 }

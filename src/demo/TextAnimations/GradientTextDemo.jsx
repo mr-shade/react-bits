@@ -148,7 +148,7 @@ const GradientTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={gradientText.cliDefault} cliTailwind={gradientText.cliTailwind} />
+        <CliInstallation {...gradientText} />
       </CliTab>
     </TabbedLayout>
   );
