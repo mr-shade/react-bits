@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import Matter from "matter-js";
-import "./FallingText.scss";
+import "./FallingText.css";
 
 const FallingText = ({
   text = '',

@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useTransition, a } from '@react-spring/web';
 
-import './Masonry.scss';
+import './Masonry.css';
 
 function Masonry({ data }) {
   const [columns, setColumns] = useState(2);

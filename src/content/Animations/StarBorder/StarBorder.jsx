@@ -1,4 +1,4 @@
-import "./StarBorder.scss";
+import "./StarBorder.css";
 
 const StarBorder = ({
   as: Component = "button",

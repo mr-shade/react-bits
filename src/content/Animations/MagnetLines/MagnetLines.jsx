@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import "./MagnetLines.scss";
+import "./MagnetLines.css";
 
 export default function MagnetLines({
   rows = 9,

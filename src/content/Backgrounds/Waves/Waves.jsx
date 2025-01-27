@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import './Waves.scss';
+import './Waves.css';
 
 // Noise + Grad (unchanged)
 class Grad {

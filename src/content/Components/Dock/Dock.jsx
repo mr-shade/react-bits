@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSpring, animated } from '@react-spring/web';
-import './Dock.scss'; // Import your CSS for styling
+import './Dock.css';
 
 const Dock = ({ position = 'bottom', collapsible = false, responsive = 'bottom' }) => {
   const [hoverIndex, setHoverIndex] = useState(null);
@@ -29,10 +29,9 @@ const Dock = ({ position = 'bottom', collapsible = false, responsive = 'bottom' 
     }
   };
 
-  // Update position based on screen size and responsive prop
   useEffect(() => {
     const updatePosition = () => {
-      if (responsive && window.innerWidth <= 768) { // Adjust threshold as needed
+      if (responsive && window.innerWidth <= 768) {
         setCurrentPosition(responsive);
       } else {
         setCurrentPosition(position);

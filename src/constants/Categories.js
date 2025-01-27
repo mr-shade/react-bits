@@ -1,6 +1,6 @@
 // Highlighted sidebar items
-export const NEW = ['Infinite Scroll', 'Grid Distortion', 'Letter Glitch', 'Text Pressure', 'ASCII Text', 'Pixel Card', 'Logo Wall', 'Pixel Transition', 'Falling Text', 'Tilted Card'];
-export const UPDATED = ['Infinite Scroll'];
+export const NEW = ['Grid Distortion', 'Letter Glitch', 'Pixel Card', 'Pixel Transition', 'Tilted Card'];
+export const UPDATED = [''];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [

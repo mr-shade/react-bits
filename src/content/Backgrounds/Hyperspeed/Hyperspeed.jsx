@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from 'three';
 import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect, SMAAPreset } from 'postprocessing';
 
-import './Hyperspeed.scss';
+import './Hyperspeed.css';
 
 const Hyperspeed = ({ effectOptions = {
   onSpeedUp: () => { },
@@ -1082,6 +1082,7 @@ const Hyperspeed = ({ effectOptions = {
       const myApp = new App(container, effectOptions);
       myApp.loadAssets().then(myApp.init);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

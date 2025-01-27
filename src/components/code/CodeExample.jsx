@@ -8,12 +8,10 @@ const CodeExample = ({ codeObject }) => {
       {Object.entries(codeObject).map(([key, codeString]) => {
         if (['tailwind', 'css', 'tsTailwind', 'tsCode', 'cliDefault', 'cliTailwind', 'cliTsTailwind', 'cliTsDefault'].includes(key)) return null;
 
-        const hasNoCss = !codeObject.tailwind && !codeObject.css;
-
         return key === 'code' || key === 'tsCode' ? (
           <div key={codeString}>
             <h2 className="demo-title">{key}</h2>
-            <CodeOptions key={codeString} hasNoCss={hasNoCss}>
+            <CodeOptions key={codeString}>
               {/* JavaScript Tailwind Code */}
               <TailwindTab>
                 <CodeHighlighter language="jsx" codeString={codeObject.tailwind} />
