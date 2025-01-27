@@ -492,5 +492,5 @@ return (
     </span>
   </motion.span>
 )
-}`,
-};
+}`
+}
