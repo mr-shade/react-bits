@@ -2,8 +2,8 @@ export const shapeBlur = {
   installation: `npm i three`,
   cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/ShapeBlur`,
   cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/ShapeBlur`,
-  cliTsDefault: `npx jsrepo add https://reactbits.dev/ts-default/Backgrounds/ShapeBlur`,
-  cliTsTailwind: `npx jsrepo add https://reactbits.dev/ts-tailwind/Backgrounds/ShapeBlur`,
+  cliTsDefault: `npx jsrepo add https://reactbits.dev/ts/default/Backgrounds/ShapeBlur`,
+  cliTsTailwind: `npx jsrepo add https://reactbits.dev/ts/tailwind/Backgrounds/ShapeBlur`,
   usage: `import ShapeBlur from './ShapeBlur';
 
 <div style={{position: 'relative', height: '500px', overflow: 'hidden'}}>
