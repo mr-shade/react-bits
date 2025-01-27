@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Animations/MagnetLines/MagnetLines.jsx?raw';
 import css from '@content/Animations/MagnetLines/MagnetLines.css?raw';
 import tailwind from '@tailwind/Animations/MagnetLines/MagnetLines.jsx?raw';
 
 export const magnetLines = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/MagnetLines`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/MagnetLines`,
+  ...(generateCliCommands('Animations/MagnetLines', ['default', 'tailwind'])),
   usage: `import MagnetLines from './MagnetLines';
 
 <MagnetLines

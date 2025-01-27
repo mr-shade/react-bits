@@ -1,9 +1,10 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Animations/ClickSpark/ClickSpark.jsx?raw';
 import tailwind from '@tailwind/Animations/ClickSpark/ClickSpark.jsx?raw';
 
 export const clickSpark = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/ClickSpark`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/ClickSpark`,
+  ...(generateCliCommands('Animations/ClickSpark', ['default', 'tailwind'])),
   usage: `import ClickSpark from './ClickSpark';
 
 <ClickSpark

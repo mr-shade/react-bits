@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Backgrounds/Waves/Waves.jsx?raw';
 import css from '@content/Backgrounds/Waves/Waves.css?raw';
 import tailwind from '@tailwind/Backgrounds/Waves/Waves.jsx?raw';
 
 export const waves = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/Waves`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/Waves`,
+  ...(generateCliCommands('Backgrounds/Waves', ['default', 'tailwind'])),
   usage: `import Waves from './Waves';
 
 <Waves

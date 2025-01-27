@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Components/Stack/Stack.jsx?raw';
 import css from '@content/Components/Stack/Stack.css?raw';
 import tailwind from '@tailwind/Components/Stack/Stack.jsx?raw';
 
 export const stack = {
+  ...(generateCliCommands('Components/Stack', ['default', 'tailwind'])),
   installation: `npm i framer-motion`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/Stack`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/Stack`,
   usage: `import Stack from './Stack'
 
 const images = [

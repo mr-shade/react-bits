@@ -1,9 +1,10 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Backgrounds/LetterGlitch/LetterGlitch.jsx?raw';
 import tailwind from '@tailwind/Backgrounds/LetterGlitch/LetterGlitch.jsx?raw';
 
 export const letterGlitch = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/LetterGlitch`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/LetterGlitch`,
+  ...(generateCliCommands('Backgrounds/LetterGlitch', ['default', 'tailwind'])),
   usage: `import LetterGlitch from './LetterGlitch';
   
 <LetterGlitch

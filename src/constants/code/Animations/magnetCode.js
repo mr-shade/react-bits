@@ -1,7 +1,9 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import magnetCode from '../../../content/Animations/Magnet/Magnet.jsx?raw';
 
 export const magnet = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/Magnet`,
+  ...(generateCliCommands('Animations/Magnet', ['default'])),
   usage: `import Magnet from './Magnet'
 
 <Magnet padding={50} disabled={false} magnetStrength={50}>

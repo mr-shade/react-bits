@@ -1,9 +1,10 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/ASCIIText/ASCIIText.jsx?raw';
 
 export const asciiText = {
+  ...(generateCliCommands('TextAnimations/ASCIIText', ['default', 'tailwind'])),
   installation: `npm i three`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/ASCIIText`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/ASCIIText`,
   usage: `import ASCIIText from './ASCIIText';
 <ASCIIText
   text='hello_world'

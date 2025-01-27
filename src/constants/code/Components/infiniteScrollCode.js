@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Components/InfiniteScroll/InfiniteScroll.jsx?raw';
 import css from '@content/Components/InfiniteScroll/InfiniteScroll.css?raw';
 import tailwind from '@tailwind/Components/InfiniteScroll/InfiniteScroll.jsx?raw';
 
 export const infiniteScroll = {
+  ...(generateCliCommands('Components/InfiniteScroll', ['default', 'tailwind'])),
   installation: `npm i gsap`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/InfiniteScroll`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/InfiniteScroll`,
   usage: `import InfiniteScroll from './InfiniteScroll';
   
 const items = [

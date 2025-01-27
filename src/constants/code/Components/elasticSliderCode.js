@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Components/ElasticSlider/ElasticSlider.jsx?raw';
 import css from '@content/Components/ElasticSlider/ElasticSlider.css?raw';
 import tailwind from '@tailwind/Components/ElasticSlider/ElasticSlider.jsx?raw';
 
 export const elasticSlider = {
+  ...(generateCliCommands('Components/ElasticSlider', ['default', 'tailwind'])),
   installation: `npm i framer-motion`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/ElasticSlider`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/ElasticSlider`,
   usage: `import ElasticSlider from './ElasticSlider'
   
 <ElasticSlider

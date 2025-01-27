@@ -1,9 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Backgrounds/GridMotion/GridMotion.jsx?raw';
 import css from '@content/Backgrounds/GridMotion/GridMotion.css?raw';
 
 export const gridMotion = {
+  ...(generateCliCommands('Backgrounds/GridMotion', ['default'])),
   installation: `npm i gsap`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/GridMotion`,
   usage: `import GridMotion from './GridMotion';
   
 // note: you'll need to make sure the parent container of this component is sized properly

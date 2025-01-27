@@ -1,9 +1,10 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/TextPressure/TextPressure.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/TextPressure/TextPressure.jsx?raw';
 
 export const textPressure = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/TextPressure`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/TextPressure`,
+  ...(generateCliCommands('TextAnimations/TextPressure', ['default', 'tailwind'])),
   usage: `import TextPressure from './TextPressure';
 
 // Note:

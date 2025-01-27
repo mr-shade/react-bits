@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/FallingText/FallingText.jsx?raw';
 import css from '@content/TextAnimations/FallingText/FallingText.css?raw';
 import tailwind from '@tailwind/TextAnimations/FallingText/FallingText.jsx?raw';
 
 export const fallingText = {
+  ...(generateCliCommands('TextAnimations/FallingText', ['default', 'tailwind'])),
   installation: `npm i matter-js`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/FallingText`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/FallingText`,
   usage: `import FallingText from './FallingText';
   
 <FallingText

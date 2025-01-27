@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/VariableProximity/VariableProximity.jsx?raw';
 import css from '@content/TextAnimations/VariableProximity/VariableProximity.css?raw';
 import tailwind from '@tailwind/TextAnimations/VariableProximity/VariableProximity.jsx?raw';
 
 export const variableProximity = {
+  ...(generateCliCommands('TextAnimations/VariableProximity', ['default', 'tailwind'])),
   installation: `npm i framer-motion`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/VariableProximity`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/VariableProximity`,
   usage: `import { useRef } from 'react';
 import VariableProximity from './VariableProximity';
 

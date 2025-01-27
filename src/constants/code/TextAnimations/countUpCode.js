@@ -1,8 +1,10 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/CountUp/CountUp.jsx?raw';
 
 export const countup = {
+  ...(generateCliCommands('TextAnimations/CountUp', ['default'])),
   installation: `npm i framer-motion`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/CountUp`,
   usage: `import CountUp from './CountUp'
 
 <CountUp

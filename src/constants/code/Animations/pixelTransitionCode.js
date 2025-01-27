@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Animations/PixelTransition/PixelTransition.jsx?raw';
 import css from '@content/Animations/PixelTransition/PixelTransition.css?raw';
 import tailwind from '@tailwind/Animations/PixelTransition/PixelTransition.jsx?raw';
 
 export const pixelTransition = {
+  ...(generateCliCommands('Animations/PixelTransition', ['default', 'tailwind'])),
   installation: `npm i gsap`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/PixelTransition`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/PixelTransition`,
   usage: `import PixelTransition from './PixelTransition';
 
 <PixelTransition

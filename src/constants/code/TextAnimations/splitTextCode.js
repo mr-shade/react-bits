@@ -1,15 +1,14 @@
 // Fun fact: this is the first component ever made for React Bits!
 
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/SplitText/SplitText.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/SplitText/SplitText.jsx?raw';
 import tsCode from '@ts-default/TextAnimations/SplitText/SplitText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/SplitText/SplitText.tsx?raw';
 
 export const splitText = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/SplitText`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/SplitText`,
-  cliTsDefault: `npx jsrepo add https://reactbits.dev/ts/default/TextAnimations/SplitText`,
-  cliTsTailwind: `npx jsrepo add https://reactbits.dev/ts/tailwind/TextAnimations/SplitText`,
+  ...(generateCliCommands('TextAnimations/SplitText')),
   installation: `npm install @react-spring/web`,
   usage: `import SplitText from "./SplitText";
 

@@ -1,10 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import presets from '@content/Backgrounds/Hyperspeed/HyperSpeedPresets.js?raw';
 import code from '@content/Backgrounds/Hyperspeed/Hyperspeed.jsx?raw';
 import css from '@content/Backgrounds/Hyperspeed/Hyperspeed.css?raw';
 
 export const hyperspeed = {
+  ...(generateCliCommands('Backgrounds/Hyperspeed', ['default'])),
   installation: `npm i three postprocessing`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/Hyperspeed`,
   usage: `import Hyperspeed from './Hyperspeed';
 
 // the component will fill the height/width of its parent container, edit the CSS to change this

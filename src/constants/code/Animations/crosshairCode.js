@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Animations/Crosshair/Crosshair.jsx?raw';
 import tailwind from '@tailwind/Animations/Crosshair/Crosshair.jsx?raw';
 
 export const crosshair = {
+  ...(generateCliCommands('Animations/Crosshair', ['default', 'tailwind'])),
   installation: `npm i gsap`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/Crosshair`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/Crosshair`,
   usage: `import { useRef } from 'react';
 import Crosshair from './Crosshair';
 

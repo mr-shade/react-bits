@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Components/TiltedCard/TiltedCard.jsx?raw';
 import css from '@content/Components/TiltedCard/TiltedCard.css?raw';
 import tailwind from '@tailwind/Components/TiltedCard/TiltedCard.jsx?raw';
 
 export const tiltedCard = {
+  ...(generateCliCommands('Components/TiltedCard', ['default', 'tailwind'])),
   installation: `npm i framer-motion`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/TiltedCard`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/TiltedCard`,
   usage: `import TiltedCard from './TiltedCard';
 
 <TiltedCard

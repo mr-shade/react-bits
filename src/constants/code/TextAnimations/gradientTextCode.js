@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/GradientText/GradientText.jsx?raw';
 import css from '@content/TextAnimations/GradientText/GradientText.css?raw';
 import tailwind from '@tailwind/TextAnimations/GradientText/GradientText.jsx?raw';
 
 export const gradientText = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/GradientText`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/GradientText`,
+  ...(generateCliCommands('TextAnimations/GradientText', ['default', 'tailwind'])),
   usage: `import GradientText from './GradientText'
   
 <GradientText

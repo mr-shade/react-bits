@@ -85,7 +85,7 @@ const ShinyTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={shinyText.cliDefault} cliTailwind={shinyText.cliTailwind}/>
+        <CliInstallation {...shinyText} />
       </CliTab>
     </TabbedLayout>
   );

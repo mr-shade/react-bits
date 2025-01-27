@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Animations/StarBorder/StarBorder.jsx?raw';
 import css from '@content/Animations/StarBorder/StarBorder.css?raw';
 import tailwind from '@tailwind/Animations/StarBorder/StarBorder.jsx?raw';
 
 export const starBorder = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/StarBorder`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/StarBorder`,
+  ...(generateCliCommands('Animations/StarBorder', ['default', 'tailwind'])),
   usage: `import StarBorder from './StarBorder'
   
 <StarBorder

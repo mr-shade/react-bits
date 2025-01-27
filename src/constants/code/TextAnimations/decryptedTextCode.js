@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/TextAnimations/DecryptedText/DecryptedText.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/DecryptedText/DecryptedText.jsx?raw';
 
 export const decryptedText = {
+  ...(generateCliCommands('TextAnimations/DecryptedText', ['default', 'tailwind'])),
   installation: `npm i framer-motion`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/TextAnimations/DecryptedText`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/DecryptedText`,
   usage: `import DecryptedText from './DecryptedText;'
 
 {/* Example 1: Defaults (hover to decrypt) */}

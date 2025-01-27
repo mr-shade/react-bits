@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Components/LogoWall/LogoWall.jsx?raw';
 import css from '@content/Components/LogoWall/LogoWall.css?raw';
 import tailwind from '@tailwind/Components/LogoWall/LogoWall.jsx?raw';
 
 export const logoWall = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/LogoWall`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/LogoWall`,
+  ...(generateCliCommands('Components/LogoWall', ['default', 'tailwind'])),
   usage: `import LogoWall from './LogoWall';
 import reactbits from "../../assets/logos/reactbits-icon.svg";
 

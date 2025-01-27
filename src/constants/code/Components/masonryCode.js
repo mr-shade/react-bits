@@ -1,9 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Components/Masonry/Masonry.jsx?raw';
 import css from '@content/Components/Masonry/Masonry.css?raw';
 
 export const masonry = {
+  ...(generateCliCommands('Components/Masonry', ['default'])),
   installation: `npm i @react-spring/web`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/Masonry`,
   usage: `import Masonry from './Masonry'
   
 const data = [

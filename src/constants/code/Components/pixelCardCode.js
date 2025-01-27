@@ -1,10 +1,11 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Components/PixelCard/PixelCard.jsx?raw';
 import css from '@content/Components/PixelCard/PixelCard.css?raw';
 import tailwind from '@tailwind/Components/PixelCard/PixelCard.jsx?raw';
 
 export const pixelCard = {
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Components/PixelCard`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Components/PixelCard`,
+  ...(generateCliCommands('Components/PixelCard', ['default', 'tailwind'])),
   usage: `import PixelCard from './PixelCard';
 
 <PixelCard variant="pink">

@@ -1,11 +1,12 @@
+import { generateCliCommands } from '@/utils/utils';
+
 import code from '@content/Backgrounds/GridDistortion/GridDistortion.jsx?raw';
 import css from '@content/Backgrounds/GridDistortion/GridDistortion.css?raw';
 import tailwind from '@tailwind/Backgrounds/GridDistortion/GridDistortion.jsx?raw';
 
 export const gridDistortion = {
+  ...(generateCliCommands('Backgrounds/GridDistortion', ['default', 'tailwind'])),
   installation: `npm i three`,
-  cliDefault: `npx jsrepo add https://reactbits.dev/default/Backgrounds/GridDistortion`,
-  cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Backgrounds/GridDistortion`,
   usage: `import GridDistortion from './GridDistortion';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>
