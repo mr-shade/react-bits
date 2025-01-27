@@ -24,7 +24,7 @@
   background: url(../../../assets/noise.png);
   background-size: 250px;
   pointer-events: none;
-  z-index: 4; // Ensure noise is on top
+  z-index: 4;
 }
 
 .gridMotion-container {
@@ -79,7 +79,7 @@
 .row__item-content {
   padding: 1rem;
   text-align: center;
-  z-index: 1; // Ensure content is on top of the background
+  z-index: 1;
 }
 
 .fullview {
