@@ -192,7 +192,7 @@ const ShapeBlurDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={shapeBlur.cliDefault} cliTailwind={shapeBlur.cliTailwind} />
+        <CliInstallation {...shapeBlur} />
       </CliTab>
     </TabbedLayout>
   );
