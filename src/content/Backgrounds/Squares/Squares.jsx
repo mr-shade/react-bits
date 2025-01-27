@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import './Squares.scss';
+import './Squares.css';
 
 const Squares = ({
   direction = 'right',

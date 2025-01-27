@@ -1,200 +1,23 @@
+import code from '@content/Animations/MagnetLines/MagnetLines.jsx?raw';
+import css from '@content/Animations/MagnetLines/MagnetLines.css?raw';
+import tailwind from '@tailwind/Animations/MagnetLines/MagnetLines.jsx?raw';
+
 export const magnetLines = {
   cliDefault: `npx jsrepo add https://reactbits.dev/default/Animations/MagnetLines`,
   cliTailwind: `npx jsrepo add https://reactbits.dev/tailwind/Animations/MagnetLines`,
   usage: `import MagnetLines from './MagnetLines';
 
 <MagnetLines
-rows={9}
-columns={9}
-containerSize="60vmin"
-lineColor="tomato"
-lineWidth="0.8vmin"
-lineHeight="5vmin"
-baseAngle={0}
-style={{ margin: "2rem auto" }}
+  rows={9}
+  columns={9}
+  containerSize="60vmin"
+  lineColor="tomato"
+  lineWidth="0.8vmin"
+  lineHeight="5vmin"
+  baseAngle={0}
+  style={{ margin: "2rem auto" }}
 />`,
-  code: `import { useRef, useEffect } from "react";
-import "./MagnetLines.css";
-
-export default function MagnetLines({
-rows = 9,
-columns = 9,
-containerSize = "80vmin",
-lineColor = "#efefef",
-lineWidth = "1vmin",
-lineHeight = "6vmin",
-baseAngle = -10,
-className = "",
-style = {}
-}) {
-const containerRef = useRef(null);
-
-useEffect(() => {
-  const container = containerRef.current;
-  if (!container) return;
-
-  const items = container.querySelectorAll("span");
-
-  const onPointerMove = (pointer) => {
-    items.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      const centerX = rect.x + rect.width / 2;
-      const centerY = rect.y + rect.height / 2;
-
-      const b = pointer.x - centerX;
-      const a = pointer.y - centerY;
-      const c = Math.sqrt(a * a + b * b) || 1;
-      const r =
-        (Math.acos(b / c) * 180) / Math.PI * (pointer.y > centerY ? 1 : -1);
-
-      item.style.setProperty("--rotate", \`\${r}deg\`);
-    });
-  };
-
-  window.addEventListener("pointermove", onPointerMove);
-
-  if (items.length) {
-    const middleIndex = Math.floor(items.length / 2);
-    const rect = items[middleIndex].getBoundingClientRect();
-    onPointerMove({ x: rect.x, y: rect.y });
-  }
-
-  // Cleanup
-  return () => {
-    window.removeEventListener("pointermove", onPointerMove);
-  };
-}, []);
-
-const total = rows * columns;
-const spans = Array.from({ length: total }, (_, i) => (
-  <span
-    key={i}
-    style={{
-      "--rotate": \`\${baseAngle}deg\`,
-      backgroundColor: lineColor,
-      width: lineWidth,
-      height: lineHeight
-    }}
-  />
-));
-
-return (
-  <div
-    ref={containerRef}
-    className={\`magnetLines-container \${className}\`}
-    style={{
-      display: "grid",
-      gridTemplateColumns: \`repeat(\${columns}, 1fr)\`,
-      gridTemplateRows: \`repeat(\${rows}, 1fr)\`,
-      width: containerSize,
-      height: containerSize,
-      ...style
-    }}
-  >
-    {spans}
-  </div>
-);
-}`,
-  css: `.magnetLines-container {
-display: grid;
-grid-template-columns: repeat(var(--columns), 1fr);
-grid-template-rows: repeat(var(--rows), 1fr);
-
-/* Center each span in its grid cell */
-justify-items: center;
-align-items: center;
-
-width: 80vmin;
-height: 80vmin;
-}
-
-.magnetLines-container span {
-display: block;
-transform-origin: center; /* so rotation pivots at the center */
-will-change: transform;
-transform: rotate(var(--rotate));
-}`,
-  tailwind: `import { useRef, useEffect } from "react";
-
-export default function MagnetLines({
-rows = 9,
-columns = 9,
-containerSize = "80vmin",
-lineColor = "#efefef",
-lineWidth = "1vmin",
-lineHeight = "6vmin",
-baseAngle = -10,
-className = "",
-style = {}
-}) {
-const containerRef = useRef(null);
-
-useEffect(() => {
-  const container = containerRef.current;
-  if (!container) return;
-
-  const items = container.querySelectorAll("span");
-
-  const onPointerMove = (pointer) => {
-    items.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      const centerX = rect.x + rect.width / 2;
-      const centerY = rect.y + rect.height / 2;
-
-      const b = pointer.x - centerX;
-      const a = pointer.y - centerY;
-      const c = Math.sqrt(a * a + b * b) || 1;
-      const r =
-        ((Math.acos(b / c) * 180) / Math.PI) * (pointer.y > centerY ? 1 : -1);
-
-      item.style.setProperty("--rotate", \`\${r}deg\`);
-    });
-  };
-
-  window.addEventListener("pointermove", onPointerMove);
-
-  if (items.length) {
-    const middleIndex = Math.floor(items.length / 2);
-    const rect = items[middleIndex].getBoundingClientRect();
-    onPointerMove({ x: rect.x, y: rect.y });
-  }
-
-  return () => {
-    window.removeEventListener("pointermove", onPointerMove);
-  };
-}, []);
-
-// Create a grid’s worth of spans
-const total = rows * columns;
-const spans = Array.from({ length: total }, (_, i) => (
-  <span
-    key={i}
-    className="block origin-center"
-    style={{
-      backgroundColor: lineColor,
-      width: lineWidth,
-      height: lineHeight,
-      "--rotate": \`\${baseAngle}deg\`,
-      transform: "rotate(var(--rotate))",
-      willChange: "transform"
-    }}
-  />
-));
-
-return (
-  <div
-    ref={containerRef}
-    className={\`grid place-items-center \${className}\`}
-    style={{
-      gridTemplateColumns: \`repeat(\${columns}, 1fr)\`,
-      gridTemplateRows: \`repeat(\${rows}, 1fr)\`,
-      width: containerSize,
-      height: containerSize,
-      ...style
-    }}
-  >
-    {spans}
-  </div>
-);
-}`
+  code,
+  css,
+  tailwind
 }

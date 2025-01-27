@@ -10,13 +10,13 @@
   position: relative;
   overflow: hidden;
   display: grid;
-  placeitems: center;
-  aspectratio: 4 / 5;
+  place-items: center;
+  aspect-ratio: 4 / 5;
   border: 1px solid #27272a;
   border-radius: 25px;
   isolation: isolate;
   transition: border-color 200ms cubic-bezier(0.5, 1, 0.89, 1);
-  userselect: none;
+  user-select: none;
 }
 
 .pixel-card::before {

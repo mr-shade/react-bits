@@ -2,26 +2,22 @@ import { useRef, useEffect } from "react";
 import { useSpring, animated, to } from "@react-spring/web";
 import { useGesture } from "react-use-gesture";
 
-import './FollowCursor.scss';
+import './FollowCursor.css';
 
-// Utility functions for calculating rotations
 const calcX = (y, ly) =>
   -(y - ly - window.innerHeight / 2) / 20;
 const calcY = (x, lx) => (x - lx - window.innerWidth / 2) / 20;
 
-// Function to handle wheel translations
 const wheel = (y) => {
   const imgHeight = window.innerWidth * 0.3 - 20;
   return `translateY(${-imgHeight * (y < 0 ? 6 : 1) - (y % (imgHeight * 5))}px`;
 };
 
-// Utility to detect if the device is mobile
 const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 export default function FollowCursor() {
   const domTarget = useRef(null);
 
-  // Spring configuration for animations
   const [{ x, y, rotateX, rotateY, rotateZ, zoom, scale }, api] = useSpring(
     () => ({
       rotateX: 0,
@@ -39,7 +35,6 @@ export default function FollowCursor() {
 
   useEffect(() => {
     if (!isMobile()) {
-      // For desktop: Add mouse move listener to follow cursor
       const handleMouseMove = (event) => {
         const px = event.clientX;
         const py = event.clientY;
@@ -53,15 +48,12 @@ export default function FollowCursor() {
         });
       };
 
-      // Add event listener
       window.addEventListener("mousemove", handleMouseMove);
 
-      // Clean up listener on component unmount
       return () => {
         window.removeEventListener("mousemove", handleMouseMove);
       };
     } else {
-      // Prevent default gestures on iOS
       const preventDefault = (e) => e.preventDefault();
       document.addEventListener("gesturestart", preventDefault);
       document.addEventListener("gesturechange", preventDefault);
@@ -73,7 +65,6 @@ export default function FollowCursor() {
     }
   }, [api, y, x]);
 
-  // Apply gestures for mobile drag
   useGesture(
     {
       onDrag: ({ active, offset: [x, y] }) =>
@@ -83,7 +74,6 @@ export default function FollowCursor() {
     { domTarget, eventOptions: { passive: false }, enabled: isMobile() }
   );
 
-  // Handle wheel gesture for desktop
   useGesture(
     {
       onWheel: ({ event, offset: [, y] }) => {

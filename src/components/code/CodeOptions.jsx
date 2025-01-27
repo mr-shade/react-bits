@@ -1,9 +1,9 @@
 import { Children, useState } from "react";
 import { Tabs, TabList, Tab, TabPanels, TabPanel, Icon, Text, Flex, Select } from "@chakra-ui/react";
-import { TbBrandCss3 } from "react-icons/tb";
-import { RiTailwindCssLine, RiEmotionSadLine } from "react-icons/ri";
+import { RiEmotionSadLine, RiTailwindCssFill } from "react-icons/ri";
+import { FiCode } from "react-icons/fi";
 
-const CodeOptions = ({ children, hasNoCss = false }) => {
+const CodeOptions = ({ children }) => {
   const [isJS, setIsJS] = useState(true);
 
   const tabComponents = {
@@ -28,10 +28,8 @@ const CodeOptions = ({ children, hasNoCss = false }) => {
     const content = isJS ? categorizedTabs.JS[type] : categorizedTabs.TS[type];
     return hasValidContent(content) ? content : (
       <Flex alignItems="center" gap={2} my={6} color="#a1a1aa">
-        {hasNoCss ? <Text>This component does not use any CSS.</Text> : <>
-          <Icon as={RiEmotionSadLine} />
-          <Text>Nothing here yet!</Text>
-        </>}
+        <Text>Nothing here yet!</Text>
+        <Icon as={RiEmotionSadLine} />
       </Flex>
     );
   };
@@ -54,8 +52,8 @@ const CodeOptions = ({ children, hasNoCss = false }) => {
     <Tabs mt={4} variant="unstyled" border="none">
       <TabList mb={4} justifyContent="space-between">
         <Flex wrap="wrap" gap="0.5rem">
-          <Tab sx={tabStyles}><Icon as={TbBrandCss3} />&nbsp;CSS</Tab>
-          <Tab sx={tabStyles}><Icon as={RiTailwindCssLine} />&nbsp;Tailwind</Tab>
+          <Tab sx={tabStyles}><Icon as={FiCode} />&nbsp;Default</Tab>
+          <Tab sx={tabStyles}><Icon as={RiTailwindCssFill} />&nbsp;Tailwind</Tab>
         </Flex>
 
         <Flex alignItems="center" gap="8px">

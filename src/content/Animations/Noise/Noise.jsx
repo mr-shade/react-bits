@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import './Noise.scss';
+import './Noise.css';
 
 const Noise = ({
   patternSize = 250,

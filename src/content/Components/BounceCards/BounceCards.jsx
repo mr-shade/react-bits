@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
-import "./BounceCards.scss";
+import "./BounceCards.css";
 
 export default function BounceCards({
   className = "",

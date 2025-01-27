@@ -1,6 +1,6 @@
 import { forwardRef, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import "./VariableProximity.scss";
+import "./VariableProximity.css";
 
 function useAnimationFrame(callback) {
   useEffect(() => {

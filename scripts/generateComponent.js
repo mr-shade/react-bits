@@ -31,7 +31,7 @@ Object.values(paths).forEach((dir) => {
 
 const files = [
   path.join(paths.content, `${componentName}.jsx`),
-  path.join(paths.content, `${componentName}.scss`),
+  path.join(paths.content, `${componentName}.css`),
   path.join(paths.tailwind, `${componentName}.jsx`),
   path.join(paths.demo, `${componentName}Demo.jsx`),
   path.join(paths.constants, `${componentNameLower}Code.js`),

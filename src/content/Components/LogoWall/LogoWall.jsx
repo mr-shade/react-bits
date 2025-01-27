@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./LogoWall.scss";
+import "./LogoWall.css";
 
 function LogoWall({
   items = [],

@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { Icon } from "@chakra-ui/react";
 import { RiVolumeDownFill, RiVolumeUpFill } from "react-icons/ri";
 
-import './ElasticSlider.scss';
+import './ElasticSlider.css';
 
 const MAX_OVERFLOW = 50;
 
