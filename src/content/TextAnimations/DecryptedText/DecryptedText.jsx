@@ -5,7 +5,6 @@ const styles = {
   wrapper: {
     display: 'inline-block',
     whiteSpace: 'pre-wrap',
-    position: 'relative',
   },
   srOnly: {
     position: 'absolute',
