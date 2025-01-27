@@ -33,7 +33,6 @@ const styles = {
 wrapper: {
   display: 'inline-block',
   whiteSpace: 'pre-wrap',
-  position: 'relative',
 },
 srOnly: {
   position: 'absolute',
@@ -470,7 +469,7 @@ const hoverProps =
 return (
   <motion.span
     ref={containerRef}
-    className={\`inline-block whitespace-pre-wrap relative \${parentClassName}\`}
+    className={\`inline-block whitespace-pre-wrap \${parentClassName}\`}
     {...hoverProps}
     {...props}
   >
@@ -493,5 +492,5 @@ return (
     </span>
   </motion.span>
 )
-}`
-}
+}`,
+};
