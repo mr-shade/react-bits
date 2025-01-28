@@ -101,7 +101,7 @@ const FallingTextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={fallingText.cliDefault} cliTailwind={fallingText.cliTailwind} />
+        <CliInstallation {...fallingText} />
       </CliTab>
     </TabbedLayout>
   );
