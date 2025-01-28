@@ -2,6 +2,7 @@ import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/Animations/BlobCursor/BlobCursor.jsx?raw';
 import css from '@content/Animations/BlobCursor/BlobCursor.css?raw';
+import tsCode from '@ts-default/Animations/BlobCursor/BlobCursor.tsx?raw';
 
 export const blobCursor = {
   ...(generateCliCommands('Animations/BlobCursor', ['default'])),
@@ -10,5 +11,6 @@ export const blobCursor = {
   
 <BlobCursor />`,
   code,
-  css
+  css,
+  tsCode
 }
