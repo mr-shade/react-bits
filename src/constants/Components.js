@@ -40,6 +40,7 @@ const components = {
   'pixel-card': () => import("../demo/Components/PixelCardDemo"),
   'logo-wall': () => import("../demo/Components/LogoWallDemo"),
   'tilted-card': () => import("../demo/Components/TiltedCardDemo"),
+  'infinite-menu': () => import("../demo/Components/InfiniteMenuDemo"),
 };
 
 const backgrounds = {

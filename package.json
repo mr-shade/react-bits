@@ -24,6 +24,7 @@
     "@react-three/drei": "^9.109.5",
     "@react-three/fiber": "^8.17.5",
     "framer-motion": "^11.3.24",
+    "gl-matrix": "^3.4.3",
     "gsap": "^3.12.5",
     "matter-js": "^0.20.0",
     "postprocessing": "^6.36.0",

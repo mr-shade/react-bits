@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Grid Distortion', 'Letter Glitch', 'Pixel Card', 'Pixel Transition', 'Tilted Card'];
+export const NEW = ['Grid Distortion', 'Letter Glitch', 'Pixel Card', 'Pixel Transition', 'Tilted Card', 'Infinite Menu'];
 export const UPDATED = [''];
 
 // Used for main sidebar navigation
@@ -71,6 +71,7 @@ export const CATEGORIES = [
       'Logo Wall',
       // 'List Reveal',
       'Elastic Slider',
+      'Infinite Menu',
       // 'Liquid Menu',
       // 'Textured Glass',
       'Rolling Gallery',
