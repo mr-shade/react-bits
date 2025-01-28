@@ -1,5 +1,5 @@
 {
-	"$schema": "https://unpkg.com/jsrepo@1.23.2/schemas/registry-config.json",
+	"$schema": "https://unpkg.com/jsrepo@1.29.1/schemas/registry-config.json",
 	"dirs": [],
 	"doNotListBlocks": [],
 	"doNotListCategories": [],
