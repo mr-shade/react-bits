@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/FallingText/FallingText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/FallingText/FallingText.tsx?raw';
 
 export const fallingText = {
-  ...(generateCliCommands('TextAnimations/FallingText', ['default', 'tailwind'])),
+  ...(generateCliCommands('TextAnimations/FallingText')),
   installation: `npm i matter-js`,
   usage: `import FallingText from './FallingText';
   
