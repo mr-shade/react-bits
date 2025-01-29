@@ -165,10 +165,7 @@ const ASCIITextDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={asciiText.cliDefault}
-          cliTailwind={asciiText.cliTailwind}
-        />
+        <CliInstallation {...asciiText} />
       </CliTab>
     </TabbedLayout>
   );
