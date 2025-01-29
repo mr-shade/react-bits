@@ -152,7 +152,7 @@ const CountUpDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={countup.cliDefault} />
+        <CliInstallation {...countup} />
       </CliTab>
     </TabbedLayout>
   );
