@@ -136,7 +136,7 @@ const VariableProximityDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={variableProximity.cliDefault} cliTailwind={variableProximity.cliTailwind} />
+        <CliInstallation {...variableProximity} />
       </CliTab>
     </TabbedLayout>
   );
