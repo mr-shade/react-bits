@@ -1,0 +1,66 @@
+.dock-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+}
+
+.dock-container.left {
+  justify-content: flex-start;
+  align-items: center;
+  left: 1rem;
+}
+
+.dock-container.right {
+  justify-content: flex-end;
+  align-items: center;
+  right: 1rem;
+}
+
+.dock-container.top {
+  justify-content: center;
+  align-items: flex-start;
+  top: 1rem;
+}
+
+.dock-container.bottom {
+  justify-content: center;
+  align-items: flex-end;
+  bottom: 1rem;
+}
+
+.dock {
+  display: flex;
+  pointer-events: auto;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  padding: 0.75rem;
+  border-radius: 20px;
+  transition: all 200ms ease-out;
+}
+
+.dock-item {
+  background-color: #060606;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  display: flex;
+  position: relative;
+  z-index: 0;
+  font-size: 1.5em;
+  align-items: center;
+  justify-content: center;
+  transition: all 100ms ease-out;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.dock-item:hover {
+  z-index: 2;
+  background-color: #111;
+  transition-property: background-color;
+  transition-duration: 300ms;
+}
