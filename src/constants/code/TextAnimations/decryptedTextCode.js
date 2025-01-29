@@ -2,9 +2,11 @@ import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/TextAnimations/DecryptedText/DecryptedText.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/DecryptedText/DecryptedText.jsx?raw';
+import tsCode from '@ts-default/TextAnimations/DecryptedText/DecryptedText.tsx?raw';
+import tsTailwind from '@ts-tailwind/TextAnimations/DecryptedText/DecryptedText.tsx?raw';
 
 export const decryptedText = {
-  ...(generateCliCommands('TextAnimations/DecryptedText', ['default', 'tailwind'])),
+  ...(generateCliCommands('TextAnimations/DecryptedText')),
   installation: `npm i framer-motion`,
   usage: `import DecryptedText from './DecryptedText;'
 
@@ -31,5 +33,7 @@ encryptedClassName="encrypted"
 />
 </div>`,
   code,
-  tailwind
+  tailwind,
+  tsCode,
+  tsTailwind
 }
