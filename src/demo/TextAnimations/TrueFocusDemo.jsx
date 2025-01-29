@@ -190,10 +190,7 @@ const TrueFocusDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={trueFocus.cliDefault}
-          cliTailwind={trueFocus.cliTailwind}
-        />
+        <CliInstallation {...trueFocus} />
       </CliTab>
     </TabbedLayout>
   );
