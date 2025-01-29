@@ -526,10 +526,16 @@ export default function FlyingPosters({
       }
     };
 
+    const handleTouchMove = (e) => {
+      e.preventDefault(); // Prevents touch-based scrolling
+    };
+
     canvasEl.addEventListener("wheel", handleWheel, { passive: false });
+    canvasEl.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      canvasEl.removeEventListener("wheel", handleWheel, { passive: false });
+      canvasEl.removeEventListener("wheel", handleWheel);
+      canvasEl.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 

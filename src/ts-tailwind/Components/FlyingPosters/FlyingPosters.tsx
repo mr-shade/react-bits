@@ -619,21 +619,24 @@ export default function FlyingPosters({
     if (!canvasRef.current) return;
 
     const canvasEl = canvasRef.current;
-    const handleWheel = (e: Event) => {
+
+    const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      const wheelEvent = e as WheelEvent;
-      instanceRef.current?.onWheel(wheelEvent);
+      if (instanceRef.current) {
+        instanceRef.current.onWheel(e);
+      }
     };
 
-    const listenerOptions: AddEventListenerOptions = {
-      passive: false,
-      capture: false,
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault(); // Prevents touch-based scrolling
     };
 
-    canvasEl.addEventListener("wheel", handleWheel, listenerOptions);
+    canvasEl.addEventListener("wheel", handleWheel, { passive: false });
+    canvasEl.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      canvasEl.removeEventListener("wheel", handleWheel, listenerOptions);
+      canvasEl.removeEventListener("wheel", handleWheel);
+      canvasEl.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
