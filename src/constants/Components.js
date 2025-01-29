@@ -41,6 +41,7 @@ const components = {
   'logo-wall': () => import("../demo/Components/LogoWallDemo"),
   'tilted-card': () => import("../demo/Components/TiltedCardDemo"),
   'infinite-menu': () => import("../demo/Components/InfiniteMenuDemo"),
+  'flying-posters': () => import("../demo/Components/FlyingPostersDemo"),
 };
 
 const backgrounds = {
