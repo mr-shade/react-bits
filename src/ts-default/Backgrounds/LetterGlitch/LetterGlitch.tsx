@@ -1,10 +1,17 @@
 import { useRef, useEffect } from 'react';
+
 const LetterGlitch = ({
-  glitchColors = ['#2b4539', '#61dca3', '#61b3dc'],
+  glitchColors= ['#2b4539', '#61dca3', '#61b3dc'],
   glitchSpeed = 50,
   centerVignette = false,
   outerVignette = true,
   smooth = true,
+}:{
+  glitchColors:string[],
+  glitchSpeed: number,
+  centerVignette: boolean,
+  outerVignette: boolean,
+  smooth: boolean
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
