@@ -6,8 +6,8 @@ const LetterGlitch = ({
   centerVignette = false,
   outerVignette = true,
   smooth = true,
-}:{
-  glitchColors:string[],
+}: {
+  glitchColors: string[],
   glitchSpeed: number,
   centerVignette: boolean,
   outerVignette: boolean,
@@ -40,7 +40,7 @@ const LetterGlitch = ({
     return glitchColors[Math.floor(Math.random() * glitchColors.length)];
   };
 
-  const hexToRgb = (hex:string) => {
+  const hexToRgb = (hex: string) => {
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, (m, r, g, b) => {
       return r + r + g + g + b + b;
@@ -54,7 +54,7 @@ const LetterGlitch = ({
     } : null;
   };
 
-  const interpolateColor = (start:{ r: number; g: number; b: number }, end:{ r: number; g: number; b: number }, factor:number) => {
+  const interpolateColor = (start: { r: number; g: number; b: number }, end: { r: number; g: number; b: number }, factor: number) => {
     const result = {
       r: Math.round(start.r + (end.r - start.r) * factor),
       g: Math.round(start.g + (end.g - start.g) * factor),
@@ -63,13 +63,13 @@ const LetterGlitch = ({
     return `rgb(${result.r}, ${result.g}, ${result.b})`;
   };
 
-  const calculateGrid = (width:number, height:number) => {
+  const calculateGrid = (width: number, height: number) => {
     const columns = Math.ceil(width / charWidth);
     const rows = Math.ceil(height / charHeight);
     return { columns, rows };
   };
 
-  const initializeLetters = (columns:number, rows:number) => {
+  const initializeLetters = (columns: number, rows: number) => {
     grid.current = { columns, rows };
     const totalLetters = columns * rows;
     letters.current = Array.from({ length: totalLetters }, () => ({
@@ -180,7 +180,7 @@ const LetterGlitch = ({
     resizeCanvas();
     animate();
 
-    let resizeTimeout:NodeJS.Timeout;
+    let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
