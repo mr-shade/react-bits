@@ -11,6 +11,7 @@ const animations = {
   'splash-cursor': () => import("../demo/Animations/SplashCursorDemo"),
   'click-spark': () => import("../demo/Animations/ClickSparkDemo"),
   'pixel-transition': () => import("../demo/Animations/PixelTransitionDemo"),
+  'image-trail': () => import("../demo/Animations/ImageTrailDemo"),
 };
 
 const textAnimations = {
