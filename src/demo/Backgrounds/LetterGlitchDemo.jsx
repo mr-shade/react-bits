@@ -160,7 +160,7 @@ const LetterGlitchDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={letterGlitch.cliDefault} cliTailwind={letterGlitch.cliTailwind} />
+      <CliInstallation {...letterGlitch} />
       </CliTab>
     </TabbedLayout>
   );
