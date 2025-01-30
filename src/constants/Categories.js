@@ -1,6 +1,6 @@
 // Highlighted sidebar items
 export const NEW = ['Grid Distortion', 'Letter Glitch', 'Tilted Card', 'Infinite Menu', 'Flying Posters', 'Image Trail'];
-export const UPDATED = [''];
+export const UPDATED = ['Follow Cursor'];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
