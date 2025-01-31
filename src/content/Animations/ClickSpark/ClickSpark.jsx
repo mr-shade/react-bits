@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 const ClickSpark = ({
   sparkColor = "#fff",
@@ -20,14 +20,22 @@ const ClickSpark = ({
     const parent = canvas.parentElement;
     if (!parent) return;
 
+    let resizeTimeout;
+
     const resizeCanvas = () => {
       const { width, height } = parent.getBoundingClientRect();
-      canvas.width = width;
-      canvas.height = height;
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
     };
 
-    // Observe size changes
-    const ro = new ResizeObserver(resizeCanvas);
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resizeCanvas, 100); // Debounce by 100ms
+    };
+
+    const ro = new ResizeObserver(handleResize);
     ro.observe(parent);
 
     // Initial sizing
@@ -36,20 +44,12 @@ const ClickSpark = ({
     // Cleanup
     return () => {
       ro.disconnect();
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-
-    let animationId;
-
-    /**
-     * Easing helper.
-     */
-    const easeFunc = (t) => {
+  const easeFunc = useCallback(
+    (t) => {
       switch (easing) {
         case "linear":
           return t;
@@ -57,10 +57,19 @@ const ClickSpark = ({
           return t * t;
         case "ease-in-out":
           return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-        default: // "ease-out"
+        default:
           return t * (2 - t);
       }
-    };
+    },
+    [easing]
+  );
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let animationId;
 
     const draw = (timestamp) => {
       if (!startTimeRef.current) {
@@ -106,7 +115,15 @@ const ClickSpark = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easing, extraScale]);
+  }, [
+    sparkColor,
+    sparkSize,
+    sparkRadius,
+    sparkCount,
+    duration,
+    easeFunc,
+    extraScale,
+  ]);
 
   const handleClick = (e) => {
     const canvas = canvasRef.current;
@@ -133,7 +150,10 @@ const ClickSpark = ({
         width: "100%",
         height: "100%",
         display: "block",
-        userSelect: "none"
+        userSelect: "none",
+        position: "absolute", // Ensure the canvas doesn't affect parent size
+        top: 0,
+        left: 0,
       }}
       onClick={handleClick}
     />
