@@ -7,11 +7,10 @@ import Magnet from '../../../content/Animations/Magnet/Magnet';
 import AnimatedContent from '../../../content/Animations/AnimatedContent/AnimatedContent';
 import Squares from '../../../content/Backgrounds/Squares/Squares';
 import Hyperspeed from '../../../content/Backgrounds/Hyperspeed/Hyperspeed';
-import ShinyText from '../../../content/TextAnimations/ShinyText/ShinyText';
-import GradientText from '../../../content/TextAnimations/GradientText/GradientText';
 import Waves from '../../../content/Backgrounds/Waves/Waves';
 
 import { hyperspeedPresets } from '../../../content/Backgrounds/Hyperspeed/HyperSpeedPresets';
+import LetterGlitch from '../../../content/Backgrounds/LetterGlitch/LetterGlitch';
 
 const LandingComponentNav = () => {
   const navigate = useNavigate();
@@ -51,17 +50,13 @@ const LandingComponentNav = () => {
         </div>
       </AnimatedContent>
       <AnimatedContent reverse initialOpacity={0}>
-        <div className="square feat-3" onClick={() => navigate('/text-animations/shiny-text')}>
-          <ShinyText text="Bringing you shine" disabled={false} speed={3} className='shiny-button' />
-          <p>&</p>
-          <GradientText
-            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-            animationSpeed={3}
-            showBorder={false}
-            className="shiny-button"
-          >
-            A splash of color!
-          </GradientText>
+        <div className="square feat-3" onClick={() => navigate('/backgrounds/letter-glitch')}>
+          <LetterGlitch
+            glitchSpeed={10}
+            centerVignette={false}
+            outerVignette={true}
+            smooth={true}
+          />
         </div>
       </AnimatedContent>
       <AnimatedContent reverse initialOpacity={0}>

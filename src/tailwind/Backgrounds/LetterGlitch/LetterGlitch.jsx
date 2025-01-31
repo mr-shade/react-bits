@@ -90,12 +90,13 @@ const LetterGlitch = ({
     canvas.style.height = `${rect.height}px`;
 
     if (context.current) {
-      context.current.scale(dpr, dpr);
+      context.current.setTransform(dpr, 0, 0, dpr, 0, 0); // Properly scale without stacking transforms
     }
 
     const { columns, rows } = calculateGrid(rect.width, rect.height);
     initializeLetters(columns, rows);
-    drawLetters();
+
+    drawLetters(); // Ensure letters are drawn after resizing
   };
 
   const drawLetters = () => {
@@ -115,12 +116,17 @@ const LetterGlitch = ({
   };
 
   const updateLetters = () => {
+    if (!letters.current || letters.current.length === 0) return; // Prevent accessing empty array
+
     const updateCount = Math.max(1, Math.floor(letters.current.length * 0.05));
 
     for (let i = 0; i < updateCount; i++) {
       const index = Math.floor(Math.random() * letters.current.length);
+      if (!letters.current[index]) continue; // Skip if index is invalid
+
       letters.current[index].char = getRandomChar();
       letters.current[index].targetColor = getRandomColor();
+
       if (!smooth) {
         letters.current[index].color = letters.current[index].targetColor;
         letters.current[index].colorProgress = 1;
@@ -175,10 +181,13 @@ const LetterGlitch = ({
     animate();
 
     let resizeTimeout;
+
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
+        cancelAnimationFrame(animationRef.current); // Stop animation loop during resize
         resizeCanvas();
+        animate(); // Restart after resizing
       }, 100);
     };
 
@@ -189,7 +198,7 @@ const LetterGlitch = ({
       window.removeEventListener('resize', handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [glitchColors, glitchSpeed, smooth]);
+  }, [glitchSpeed, smooth]);
 
   return (
     <div className="relative w-full h-full bg-black overflow-hidden">
