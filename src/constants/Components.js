@@ -12,6 +12,7 @@ const animations = {
   'click-spark': () => import("../demo/Animations/ClickSparkDemo"),
   'pixel-transition': () => import("../demo/Animations/PixelTransitionDemo"),
   'image-trail': () => import("../demo/Animations/ImageTrailDemo"),
+  'pixel-trail': () => import("../demo/Animations/PixelTrailDemo"),
 };
 
 const textAnimations = {
