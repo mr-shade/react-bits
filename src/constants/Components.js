@@ -43,6 +43,7 @@ const components = {
   'tilted-card': () => import("../demo/Components/TiltedCardDemo"),
   'infinite-menu': () => import("../demo/Components/InfiniteMenuDemo"),
   'flying-posters': () => import("../demo/Components/FlyingPostersDemo"),
+  'flowing-menu': () => import("../demo/Components/FlowingMenuDemo"),
 };
 
 const backgrounds = {
