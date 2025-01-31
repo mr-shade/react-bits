@@ -4,7 +4,7 @@ import code from '@content/Animations/Crosshair/Crosshair.jsx?raw';
 import tailwind from '@tailwind/Animations/Crosshair/Crosshair.jsx?raw';
 
 export const crosshair = {
-  ...(generateCliCommands('Animations/Crosshair', ['default', 'tailwind'])),
+  ...(generateCliCommands('Animations/Crosshair')),
   installation: `npm i gsap`,
   usage: `import { useRef } from 'react';
 import Crosshair from './Crosshair';
