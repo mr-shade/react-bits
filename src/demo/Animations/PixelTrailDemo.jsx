@@ -45,7 +45,7 @@ const PixelTrailDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={400} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
           <RefreshButton onClick={forceRerender} />
           <PixelTrail
             key={key}
