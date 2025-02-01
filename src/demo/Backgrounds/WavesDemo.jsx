@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Select } from "@chakra-ui/react";
+import { Flex, Select, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
@@ -102,11 +102,11 @@ const WavesDemo = () => {
         </Flex>
 
 
-        <h2 className="demo-title-extra">Colors</h2>
-        <Flex direction="row" alignItems="center" gap={10}  mt={4}>
+        <h2 className="demo-title-extra">Options</h2>
+        <Flex direction="row" alignItems="center" gap={4}  mt={4}>
+          <Text>Color</Text>
           <Select defaultValue="#ffffff" rounded="xl" w={'300px'} onChange={(e) => {
             setColor(e.target.value);
-            forceRerender();
           }}>
             <option value='#ffffff'>White</option>
             <option value='#16e16e'>Green</option>
