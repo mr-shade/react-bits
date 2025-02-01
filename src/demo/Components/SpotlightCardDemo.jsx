@@ -45,7 +45,7 @@ const SpotlightCardDemo = () => {
           <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
             <Flex h={'100%'} direction="column" alignItems='flex-start' justifyContent="center">
               <Icon mb={3} boxSize={8} as={FaLock} />
-              <Text fontWeight={600} fontSize={'1.4rem'} letterSpacing={'-.5px'}>Ehhanced Security</Text>
+              <Text fontWeight={600} fontSize={'1.4rem'} letterSpacing={'-.5px'}>Enhanced Security</Text>
               <Text color='#a1a1aa' fontSize={'14px'} mt={1} mb={8} >Our state of the art software offers peace of mind through strict security measures.</Text>
               <Button border={'1px solid #222'} background={'linear-gradient(to bottom, #222, #111)'} _hover={{ background: 'linear-gradient(to bottom, #222, #111)' }} rounded="xl" px={6}>Learn more</Button>
             </Flex>

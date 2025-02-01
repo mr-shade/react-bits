@@ -1,6 +1,6 @@
-import { Flex } from "@chakra-ui/react";
+import { useState } from "react";
+import { Flex, Select } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
@@ -9,6 +9,8 @@ import Waves from "../../content/Backgrounds/Waves/Waves";
 import { waves } from '../../constants/code/Backgrounds/wavesCode';
 
 const WavesDemo = () => {
+  const [color, setColor] = useState('#fff');
+
   const propData = [
     {
       name: "lineColor",
@@ -95,8 +97,32 @@ const WavesDemo = () => {
       <PreviewTab>
         <Flex overflow="hidden" justifyContent="center" alignItems="center" minH={400} position="relative" pb={"4em"} className="demo-container">
           <Waves
-            lineColor="#fff"
+            lineColor={color}
           />
+        </Flex>
+
+
+        <h2 className="demo-title-extra">Colors</h2>
+        <Flex direction="row" alignItems="center" gap={10}  mt={4}>
+          <Select defaultValue="#fff" rounded="xl" w={'300px'} onChange={(e) => {
+            setColor(e.target.value);
+            forceRerender();
+          }}>
+            <option value='#fff'>White</option>
+            <option value='#16e16e'>Green</option>
+            <option value='#00b4d8'>Blue</option>
+            <option value='#ffd60a'>Yellow</option>
+            <option value='#390099'>Highway</option>
+          </Select>
+
+          <Flex gap={2} alignItems="center">
+            <input
+              type="color"
+              value="#ffffff"
+              onChange={(e) => setColor(e.target.value)}
+              style={{ width: '60px' }}
+            />
+          </Flex>
         </Flex>
 
         <PropTable data={propData} />
