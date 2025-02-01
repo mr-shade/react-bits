@@ -9,7 +9,7 @@ import Waves from "../../content/Backgrounds/Waves/Waves";
 import { waves } from '../../constants/code/Backgrounds/wavesCode';
 
 const WavesDemo = () => {
-  const [color, setColor] = useState('#fff');
+  const [color, setColor] = useState('#ffffff');
 
   const propData = [
     {
@@ -104,11 +104,11 @@ const WavesDemo = () => {
 
         <h2 className="demo-title-extra">Colors</h2>
         <Flex direction="row" alignItems="center" gap={10}  mt={4}>
-          <Select defaultValue="#fff" rounded="xl" w={'300px'} onChange={(e) => {
+          <Select defaultValue="#ffffff" rounded="xl" w={'300px'} onChange={(e) => {
             setColor(e.target.value);
             forceRerender();
           }}>
-            <option value='#fff'>White</option>
+            <option value='#ffffff'>White</option>
             <option value='#16e16e'>Green</option>
             <option value='#00b4d8'>Blue</option>
             <option value='#ffd60a'>Yellow</option>
@@ -118,7 +118,7 @@ const WavesDemo = () => {
           <Flex gap={2} alignItems="center">
             <input
               type="color"
-              value="#ffffff"
+              value={color}
               onChange={(e) => setColor(e.target.value)}
               style={{ width: '60px' }}
             />
