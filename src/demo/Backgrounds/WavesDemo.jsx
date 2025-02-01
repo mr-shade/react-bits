@@ -112,7 +112,7 @@ const WavesDemo = () => {
             <option value='#16e16e'>Green</option>
             <option value='#00b4d8'>Blue</option>
             <option value='#ffd60a'>Yellow</option>
-            <option value='#390099'>Highway</option>
+            <option value='#390099'>Purple</option>
           </Select>
 
           <Flex gap={2} alignItems="center">
