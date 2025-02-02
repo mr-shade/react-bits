@@ -1,4 +1,4 @@
-import {useRef, useEffect} from "react";
+import {useRef, useEffect, useCallback} from "react";
 
 interface ClickSparkProps {
     sparkColor?: string;
@@ -8,6 +8,13 @@ interface ClickSparkProps {
     duration?: number;
     easing?: "linear" | "ease-in" | "ease-out" | "ease-in-out";
     extraScale?: number;
+}
+
+interface Spark {
+    x: number;
+    y: number;
+    angle: number;
+    startTime: number;
 }
 
 const ClickSpark: React.FC<ClickSparkProps> = ({
@@ -20,14 +27,6 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     extraScale = 1.0,
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-
-    interface Spark {
-        x: number;
-        y: number;
-        angle: number;
-        startTime: number;
-    }
-
     const sparksRef = useRef<Spark[]>([]); // Stores spark data
     const startTimeRef = useRef<number | null>(null); // Tracks initial timestamp for animation
 
@@ -38,10 +37,19 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         const parent = canvas.parentElement;
         if (!parent) return;
 
+        let resizeTimeout : NodeJS.Timeout;
+
         const resizeCanvas = () => {
-            const {width, height} = parent.getBoundingClientRect();
-            canvas.width = width;
-            canvas.height = height;
+            const { width, height } = parent.getBoundingClientRect();
+            if (canvas.width !== width || canvas.height !== height) {
+                canvas.width = width;
+                canvas.height = height;
+            }
+        };
+
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeCanvas, 100); // Debounce by 100ms
         };
 
         // Observe size changes
@@ -54,8 +62,26 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         // Cleanup
         return () => {
             ro.disconnect();
+            clearTimeout(resizeTimeout);
         };
     }, []);
+
+
+    const easeFunc = useCallback(
+        (t: number) => {
+            switch (easing) {
+                case "linear":
+                    return t;
+                case "ease-in":
+                    return t * t;
+                case "ease-in-out":
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                default:
+                    return t * (2 - t);
+            }
+        },
+        [easing]
+    );
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -64,22 +90,6 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         if (!ctx) return;
 
         let animationId: number;
-
-        /**
-         * Easing helper.
-         */
-        const easeFunc = (t: number): number => {
-            switch (easing) {
-                case "linear":
-                    return t;
-                case "ease-in":
-                    return t * t;
-                case "ease-in-out":
-                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                default: // "ease-out"
-                    return t * (2 - t);
-            }
-        };
 
         const draw = (timestamp: number) => {
             if (!startTimeRef.current) {
@@ -107,14 +117,12 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
                 const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle);
 
                 // Draw the spark line
-                if (ctx) {
-                    ctx.strokeStyle = sparkColor;
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(x1, y1);
-                    ctx.lineTo(x2, y2);
-                    ctx.stroke();
-                }
+                ctx.strokeStyle = sparkColor;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
 
                 return true;
             });
