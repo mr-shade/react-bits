@@ -6,7 +6,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-radius: 1.25rem; /* 20px */
+  border-radius: 1.25rem;
+  /* 20px */
   font-weight: 500;
   backdrop-filter: blur(10px);
   transition: box-shadow 0.5s ease-out;
@@ -25,30 +26,32 @@
   border-radius: inherit;
   z-index: 0;
   pointer-events: none;
+}
 
-  &:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-radius: inherit;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #060606;
-    z-index: -1;
-  }
+.gradient-overlay::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: inherit;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #060606;
+  z-index: -1;
 }
 
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }

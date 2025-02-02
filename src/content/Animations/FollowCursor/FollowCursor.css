@@ -12,12 +12,12 @@
     opacity 0.5s;
   will-change: transform;
   touch-action: none;
+}
 
-  &::before {
-    content: 'Literally me when working on React Bits.';
-    position: absolute;
-    width: 15ch;
-    bottom: -60px;
-    color: #fff;
-  }
+.card::before {
+  content: 'Literally me when working on React Bits.';
+  position: absolute;
+  width: 15ch;
+  bottom: -60px;
+  color: #fff;
 }

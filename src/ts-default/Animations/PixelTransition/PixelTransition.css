@@ -1,6 +1,6 @@
 .pixelated-image-card {
   background-color: #222;
-  color: var(--color-primary, #fff);
+  color: #fff;
   border-radius: 15px;
   border: 2px solid #fff;
   width: 300px;
