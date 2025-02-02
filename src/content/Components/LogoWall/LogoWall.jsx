@@ -14,7 +14,7 @@ function LogoWall({
   const [isPaused, setIsPaused] = useState(false);
 
   const wrapperClass = [
-    "wrapper",
+    "logoWall-wrapper",
     direction === "vertical" && "wrapper--vertical"
   ]
     .filter(Boolean)

@@ -7,7 +7,7 @@
   --duration: 60s;
 }
 
-.wrapper {
+.logoWall-wrapper {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
