@@ -63,7 +63,7 @@ const StarBorderDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={starBorder.cliDefault} cliTailwind={starBorder.cliTailwind} />
+        <CliInstallation {...starBorder} />
       </CliTab>
     </TabbedLayout>
   );
