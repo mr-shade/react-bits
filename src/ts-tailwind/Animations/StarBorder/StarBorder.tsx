@@ -2,7 +2,6 @@ import React from "react";
 
 type StarBorderProps<T extends React.ElementType> = React.PropsWithChildren<{
   as?: T;
-  className?: string;
   color?: string;
   speed?: `${number}s` | number;
 }> & React.ComponentProps<T>;
