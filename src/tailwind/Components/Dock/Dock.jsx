@@ -22,7 +22,7 @@ const Dock = ({ position = "bottom", collapsible = false, responsive = "bottom" 
 
   const [springs, api] = useSprings(
     DOCK_ITEMS.length,
-    (index) => ({
+    () => ({
       scale: 1,
       translate: "translateX(0px) translateY(0px)",
       config: { tension: 200, friction: 15 },
