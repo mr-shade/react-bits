@@ -81,7 +81,7 @@ const MagnetLinesDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={magnetLines.cliDefault} cliTailwind={magnetLines.cliTailwind} />
+        <CliInstallation {...magnetLines} />
       </CliTab>
     </TabbedLayout>
   );

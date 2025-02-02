@@ -1,6 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, ReactNode, HTMLAttributes } from "react";
 
-const Magnet = ({
+interface MagnetProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  padding?: number;
+  disabled?: boolean;
+  magnetStrength?: number;
+  activeTransition?: string;
+  inactiveTransition?: string;
+  wrapperClassName?: string;
+  innerClassName?: string;
+}
+
+const Magnet: React.FC<MagnetProps> = ({
   children,
   padding = 100,
   disabled = false,
@@ -11,9 +22,9 @@ const Magnet = ({
   innerClassName = "",
   ...props
 }) => {
-  const [isActive, setIsActive] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const magnetRef = useRef(null);
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const magnetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (disabled) {
@@ -21,7 +32,7 @@ const Magnet = ({
       return;
     }
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (!magnetRef.current) return;
 
       const { left, top, width, height } = magnetRef.current.getBoundingClientRect();
@@ -33,7 +44,6 @@ const Magnet = ({
 
       if (distX < width / 2 + padding && distY < height / 2 + padding) {
         setIsActive(true);
-
         const offsetX = (e.clientX - centerX) / magnetStrength;
         const offsetY = (e.clientY - centerY) / magnetStrength;
         setPosition({ x: offsetX, y: offsetY });

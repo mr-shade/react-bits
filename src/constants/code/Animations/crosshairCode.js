@@ -2,9 +2,11 @@ import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/Animations/Crosshair/Crosshair.jsx?raw';
 import tailwind from '@tailwind/Animations/Crosshair/Crosshair.jsx?raw';
+import tsCode from '@ts-default/Animations/Crosshair/Crosshair.tsx?raw';
+import tsTailwind from '@ts-tailwind/Animations/Crosshair/Crosshair.tsx?raw';
 
 export const crosshair = {
-  ...(generateCliCommands('Animations/Crosshair', ['default', 'tailwind'])),
+  ...(generateCliCommands('Animations/Crosshair')),
   installation: `npm i gsap`,
   usage: `import { useRef } from 'react';
 import Crosshair from './Crosshair';
@@ -19,5 +21,7 @@ return (
 )
 };`,
   code,
-  tailwind
+  tailwind,
+  tsCode,
+  tsTailwind
 }

@@ -174,7 +174,7 @@ const MagnetDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={magnet.cliDefault} />
+        <CliInstallation {...magnet} />
       </CliTab>
     </TabbedLayout>
   );

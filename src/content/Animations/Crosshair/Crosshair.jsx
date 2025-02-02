@@ -1,10 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-// Linear interpolation function
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-// Function to get mouse position relative to the container or viewport
 const getMousePos = (e, container) => {
   if (container) {
     const bounds = container.getBoundingClientRect();
@@ -17,14 +15,12 @@ const getMousePos = (e, container) => {
 };
 
 const Crosshair = ({ color = 'white', containerRef = null }) => {
-  // Refs for DOM elements
   const cursorRef = useRef(null);
   const lineHorizontalRef = useRef(null);
   const lineVerticalRef = useRef(null);
   const filterXRef = useRef(null);
   const filterYRef = useRef(null);
 
-  // Track mouse position
   let mouse = { x: 0, y: 0 };
 
   useEffect(() => {
@@ -55,7 +51,6 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       ty: { previous: 0, current: 0, amt: 0.15 },
     };
 
-    // Initialize gsap settings
     gsap.set([lineHorizontalRef.current, lineVerticalRef.current], { opacity: 0 });
 
     const onMouseMove = () => {
@@ -77,7 +72,6 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
 
     const primitiveValues = { turbulence: 0 };
 
-    // Timeline for turbulence effect
     const tl = gsap.timeline({
       paused: true,
       onStart: () => {
@@ -121,7 +115,6 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       requestAnimationFrame(render);
     };
 
-    // Add link mouse effects
     const links = containerRef?.current
       ? containerRef.current.querySelectorAll('a')
       : document.querySelectorAll('a');
@@ -131,7 +124,6 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
       link.addEventListener('mouseleave', leave);
     });
 
-    // Cleanup event listeners on unmount
     return () => {
       target.removeEventListener('mousemove', handleMouseMove);
       target.removeEventListener('mousemove', onMouseMove);

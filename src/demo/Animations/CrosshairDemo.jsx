@@ -65,7 +65,7 @@ const CrosshairDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={crosshair.cliDefault} cliTailwind={crosshair.cliTailwind}/>
+        <CliInstallation {...crosshair} />
       </CliTab>
     </TabbedLayout>
   );

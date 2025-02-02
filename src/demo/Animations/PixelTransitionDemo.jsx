@@ -186,10 +186,7 @@ const PixelTransitionDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={pixelTransition.cliDefault}
-          cliTailwind={pixelTransition.cliTailwind}
-        />
+        <CliInstallation {...pixelTransition} />
       </CliTab>
     </TabbedLayout>
   );

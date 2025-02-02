@@ -165,7 +165,7 @@ const NoiseDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={noise.cliDefault} cliTailwind={noise.cliTailwind} />
+        <CliInstallation {...noise} />
       </CliTab>
     </TabbedLayout>
   );
