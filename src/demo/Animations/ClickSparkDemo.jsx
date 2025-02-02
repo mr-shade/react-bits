@@ -16,8 +16,8 @@ import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-import ClickSpark from "../../content/Animations/ClickSpark/ClickSpark";
 import { clickSpark } from '../../constants/code/Animations/clickSparkCode';
+import ClickSpark from "../../ts-default/Animations/ClickSpark/ClickSpark";
 
 const ClickSparkDemo = () => {
   const [sparkColor, setSparkColor] = useState("#ffffff");
@@ -226,10 +226,7 @@ const ClickSparkDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={clickSpark.cliDefault}
-          cliTailwind={clickSpark.cliTailwind}
-        />
+        <CliInstallation {...clickSpark} />
       </CliTab>
     </TabbedLayout>
   );
