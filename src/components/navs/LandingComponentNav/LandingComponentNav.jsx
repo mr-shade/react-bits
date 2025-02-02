@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './LandingComponentNav.scss';
+import './LandingComponentNav.css';
 
 import arrow from '../../../assets/common/icon-arrow.svg';
 

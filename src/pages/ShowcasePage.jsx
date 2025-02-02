@@ -1,11 +1,12 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import Header from "../components/navs/Header/Header";
-import '../scss/showcase.scss';
 import FadeContent from "../content/Animations/FadeContent/FadeContent";
 import logo from "../assets/logos/reactbits-logo.svg";
 import { useEffect, useState } from "react";
 import Confetti from 'react-confetti';
 import { AiOutlinePlusCircle } from "react-icons/ai";
+
+import '../css/showcase.css';
 
 const ShowcasePage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
