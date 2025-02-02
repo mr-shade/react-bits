@@ -108,6 +108,23 @@ div:has(> .props-table) {
   font-weight: bolder;
 }
 
+.rotating-text-demo-container {
+  white-space: pre;
+  font-size: clamp(2rem, 6vw, 6rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .rotating-text-demo {
+    display: inline-block;
+    color: #060606;
+    background-color: #00f0ff;
+    padding: 0 0.4em;
+    border-radius: 15px;
+    transition: width 0.3s ease;
+  }
+}
+
 .ballpit-demo {
   position: relative;
 }

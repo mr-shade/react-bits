@@ -2,6 +2,7 @@
 @import "./scss/sidebar.scss";
 @import "./scss/category.scss";
 @import "./scss/landing.scss";
+@import "tailwindcss";
 
 *,
 *::before,

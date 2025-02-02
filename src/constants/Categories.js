@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Grid Distortion', 'Letter Glitch', 'Infinite Menu', 'Flying Posters', 'Image Trail', 'Flowing Menu', 'Pixel Trail'];
+export const NEW = ['Grid Distortion', 'Letter Glitch', 'Infinite Menu', 'Flying Posters', 'Image Trail', 'Flowing Menu', 'Pixel Trail', 'Rotating Text'];
 export const UPDATED = ['Follow Cursor'];
 
 // Used for main sidebar navigation
@@ -16,6 +16,7 @@ export const CATEGORIES = [
       'Decrypted Text',
       'True Focus',
       'ASCII Text',
+      'Rotating Text',
       // 'Flip Text',
       // 'Word Cloud',
       'Variable Proximity',

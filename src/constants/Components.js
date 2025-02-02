@@ -27,6 +27,7 @@ const textAnimations = {
   'text-pressure': () => import("../demo/TextAnimations/TextPressureDemo"),
   'ascii-text': () => import("../demo/TextAnimations/ASCIITextDemo"),
   'falling-text': () => import("../demo/TextAnimations/FallingTextDemo"),
+  'rotating-text': () => import("../demo/TextAnimations/RotatingTextDemo"),
 };
 
 const components = {
