@@ -188,7 +188,7 @@ const FollowCursor = ({
   };
 
   return (
-    <div className={`container ${className}`} ref={containerRef}>
+    <div className={`follow-cursor-container ${className}`} ref={containerRef}>
       <animated.div
         ref={domTarget}
         className="card"
