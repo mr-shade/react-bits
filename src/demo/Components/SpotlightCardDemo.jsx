@@ -60,7 +60,7 @@ const SpotlightCardDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={spotlightCard.cliDefault} cliTailwind={spotlightCard.cliTailwind}/>
+        <CliInstallation {...spotlightCard} />
       </CliTab>
     </TabbedLayout>
   );
