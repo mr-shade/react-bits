@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Grid Distortion', 'Letter Glitch', 'Infinite Menu', 'Flying Posters', 'Image Trail', 'Flowing Menu', 'Pixel Trail', 'Rotating Text'];
+export const NEW = ['Grid Distortion', 'Infinite Menu', 'Flying Posters', 'Image Trail', 'Flowing Menu', 'Pixel Trail', 'Rotating Text', 'Circular Gallery'];
 export const UPDATED = ['Follow Cursor'];
 
 // Used for main sidebar navigation
@@ -64,6 +64,7 @@ export const CATEGORIES = [
       'Pixel Card',
       // 'Bento', 
       // 'Global Search',
+      'Circular Gallery',
       // 'Gradient Input',
       'Spotlight Card',
       'Flying Posters',

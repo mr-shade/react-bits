@@ -46,6 +46,7 @@ const components = {
   'infinite-menu': () => import("../demo/Components/InfiniteMenuDemo"),
   'flying-posters': () => import("../demo/Components/FlyingPostersDemo"),
   'flowing-menu': () => import("../demo/Components/FlowingMenuDemo"),
+  'circular-gallery': () => import("../demo/Components/CircularGalleryDemo"),
 };
 
 const backgrounds = {
