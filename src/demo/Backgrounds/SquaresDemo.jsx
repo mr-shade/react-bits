@@ -143,7 +143,7 @@ const SquaresDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={squares.cliDefault} cliTailwind={squares.cliTailwind} />
+        <CliInstallation {...squares} />
       </CliTab>
     </TabbedLayout>
 
