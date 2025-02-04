@@ -47,6 +47,7 @@ const components = {
   'flying-posters': () => import("../demo/Components/FlyingPostersDemo"),
   'flowing-menu': () => import("../demo/Components/FlowingMenuDemo"),
   'circular-gallery': () => import("../demo/Components/CircularGalleryDemo"),
+  'stepper': () => import("../demo/Components/StepperDemo"),
 };
 
 const backgrounds = {

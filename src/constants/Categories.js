@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Grid Distortion', 'Infinite Menu', 'Flying Posters', 'Image Trail', 'Flowing Menu', 'Pixel Trail', 'Rotating Text', 'Circular Gallery'];
+export const NEW = ['Stepper', 'Infinite Menu', 'Flying Posters', 'Image Trail', 'Flowing Menu', 'Pixel Trail', 'Rotating Text', 'Circular Gallery'];
 export const UPDATED = ['Follow Cursor'];
 
 // Used for main sidebar navigation
@@ -81,6 +81,7 @@ export const CATEGORIES = [
       // 'Liquid Menu',
       // 'Textured Glass',
       'Rolling Gallery',
+      'Stepper',
       'Bounce Cards'
       // 'Expandable Card',
       // 'Progress Lines',

@@ -49,7 +49,7 @@ input[type="color"]::-moz-color-swatch {
   border: none;
 }
 
-.chakra-select:focus-visible {
+.chakra-select:focus-visible, .chakra-select:focus-visible {
   border-color: #00d8ff !important;
   box-shadow: 0 0 0 1px rgba(0, 216, 255, 0.5) !important;
 }
