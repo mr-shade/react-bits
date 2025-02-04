@@ -9,8 +9,6 @@ import {
   SMAAPreset,
 } from "postprocessing";
 
-import "./Hyperspeed.css";
-
 interface Distortion {
   uniforms: Record<string, { value: any }>;
   getDistortion: string;
@@ -484,7 +482,9 @@ class CarLights {
     );
     const geometry = new THREE.TubeGeometry(curve, 40, 1, 8, false);
 
-    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as any) as THREE.InstancedBufferGeometry;
+    const instanced = new THREE.InstancedBufferGeometry().copy(
+      geometry as any
+    ) as THREE.InstancedBufferGeometry;
     instanced.instanceCount = options.lightPairsPerRoadWay * 2;
 
     const laneWidth = options.roadWidth / options.lanesPerRoad;
@@ -657,7 +657,9 @@ class LightsSticks {
   init() {
     const options = this.options;
     const geometry = new THREE.PlaneGeometry(1, 1);
-    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as any) as THREE.InstancedBufferGeometry;
+    const instanced = new THREE.InstancedBufferGeometry().copy(
+      geometry as any
+    ) as THREE.InstancedBufferGeometry;
     const totalSticks = options.totalSideLightSticks;
     instanced.instanceCount = totalSticks;
 
@@ -1096,7 +1098,7 @@ class App {
     const smaaPass = new EffectPass(
       this.camera,
       new SMAAEffect({
-        preset: SMAAPreset.MEDIUM
+        preset: SMAAPreset.MEDIUM,
       })
     );
     this.renderPass.renderToScreen = false;
@@ -1268,7 +1270,13 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div id="lights" ref={hyperspeed}></div>;
+  return (
+    <div
+      id="lights"
+      className="w-full h-full overflow-hidden absolute"
+      ref={hyperspeed}
+    ></div>
+  );
 };
 
 export default Hyperspeed;
