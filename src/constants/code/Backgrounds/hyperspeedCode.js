@@ -3,6 +3,7 @@ import { generateCliCommands } from '@/utils/utils';
 import presets from '@content/Backgrounds/Hyperspeed/HyperSpeedPresets.js?raw';
 import code from '@content/Backgrounds/Hyperspeed/Hyperspeed.jsx?raw';
 import css from '@content/Backgrounds/Hyperspeed/Hyperspeed.css?raw';
+import tsCode from '@ts-default/Backgrounds/Hyperspeed/Hyperspeed.tsx?raw'
 
 export const hyperspeed = {
   ...(generateCliCommands('Backgrounds/Hyperspeed', ['default'])),
@@ -53,5 +54,6 @@ export const hyperspeed = {
 />`,
   presets,
   code,
-  css
+  css,
+  tsCode
 }
