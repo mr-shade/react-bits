@@ -84,7 +84,7 @@ export default function Stack({
             sensitivity={sensitivity}
           >
             <motion.div
-              className="absolute w-full h-full rounded-lg overflow-hidden"
+              className="rounded-2xl overflow-hidden border-4 border-white"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
                 rotateZ: (cards.length - index - 1) * 4 + randomRotate,
@@ -105,7 +105,7 @@ export default function Stack({
               <img
                 src={card.img}
                 alt={`card-${card.id}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover pointer-events-none"
               />
             </motion.div>
           </CardRotate>
