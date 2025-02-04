@@ -1,13 +1,20 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useState } from "react";
+import "./Stack.css";
 
-function CardRotate({ children, onSendToBack, sensitivity }) {
+interface CardRotateProps {
+  children: React.ReactNode;
+  onSendToBack: () => void;
+  sensitivity: number;
+}
+
+function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-100, 100], [60, -60]);
   const rotateY = useTransform(x, [-100, 100], [-60, 60]);
 
-  function handleDragEnd(_, info) {
+  function handleDragEnd(_: never, info: { offset: { x: number; y: number } }) {
     if (
       Math.abs(info.offset.x) > sensitivity ||
       Math.abs(info.offset.y) > sensitivity
@@ -21,7 +28,7 @@ function CardRotate({ children, onSendToBack, sensitivity }) {
 
   return (
     <motion.div
-      className="absolute cursor-grab"
+      className="card-rotate"
       style={{ x, y, rotateX, rotateY }}
       drag
       dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
@@ -34,6 +41,15 @@ function CardRotate({ children, onSendToBack, sensitivity }) {
   );
 }
 
+interface StackProps {
+  randomRotation?: boolean;
+  sensitivity?: number;
+  cardDimensions?: { width: number; height: number };
+  sendToBackOnClick?: boolean;
+  cardsData?: { id: number; img: string }[];
+  animationConfig?: { stiffness: number; damping: number };
+}
+
 export default function Stack({
   randomRotation = false,
   sensitivity = 200,
@@ -41,7 +57,7 @@ export default function Stack({
   cardsData = [],
   animationConfig = { stiffness: 260, damping: 20 },
   sendToBackOnClick = false
-}) {
+}: StackProps) {
   const [cards, setCards] = useState(
     cardsData.length
       ? cardsData
@@ -53,7 +69,7 @@ export default function Stack({
       ]
   );
 
-  const sendToBack = (id) => {
+  const sendToBack = (id: number) => {
     setCards((prev) => {
       const newCards = [...prev];
       const index = newCards.findIndex((card) => card.id === id);
@@ -65,7 +81,7 @@ export default function Stack({
 
   return (
     <div
-      className="relative"
+      className="stack-container"
       style={{
         width: cardDimensions.width,
         height: cardDimensions.height,
@@ -84,7 +100,7 @@ export default function Stack({
             sensitivity={sensitivity}
           >
             <motion.div
-              className="rounded-2xl overflow-hidden border-4 border-white"
+              className="card"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
                 rotateZ: (cards.length - index - 1) * 4 + randomRotate,
@@ -105,7 +121,7 @@ export default function Stack({
               <img
                 src={card.img}
                 alt={`card-${card.id}`}
-                className="w-full h-full object-cover pointer-events-none"
+                className="card-image"
               />
             </motion.div>
           </CardRotate>

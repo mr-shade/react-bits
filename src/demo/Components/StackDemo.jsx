@@ -166,7 +166,7 @@ const StackDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={stack.cliDefault} cliTailwind={stack.cliTailwind} />
+        <CliInstallation {...stack} />
       </CliTab>
     </TabbedLayout>
   );

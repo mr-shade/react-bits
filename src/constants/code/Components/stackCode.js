@@ -3,9 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Components/Stack/Stack.jsx?raw';
 import css from '@content/Components/Stack/Stack.css?raw';
 import tailwind from '@tailwind/Components/Stack/Stack.jsx?raw';
+import tsCode from '@ts-default/Components/Stack/Stack.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/Stack/Stack.tsx?raw';
 
 export const stack = {
-  ...(generateCliCommands('Components/Stack', ['default', 'tailwind'])),
+  ...(generateCliCommands('Components/Stack')),
   installation: `npm i framer-motion`,
   usage: `import Stack from './Stack'
 
@@ -25,5 +27,7 @@ const images = [
 />`,
   code,
   css,
-  tailwind
+  tailwind,
+  tsCode,
+  tsTailwind
 }
