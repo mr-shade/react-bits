@@ -112,7 +112,7 @@ const SplashCursorDemo = () => {
         </CodeTab>
 
         <CliTab>
-          <CliInstallation cliDefault={splashCursor.cliDefault} cliTailwind={splashCursor.cliTailwind} />
+          <CliInstallation {...splashCursor} />
         </CliTab>
       </TabbedLayout>
 
