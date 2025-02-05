@@ -2,9 +2,12 @@ import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/Components/Masonry/Masonry.jsx?raw';
 import css from '@content/Components/Masonry/Masonry.css?raw';
+import tailwind from '@tailwind/Components/Masonry/Masonry.jsx?raw';
+import tsCode from '@ts-default/Components/Masonry/Masonry.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/Masonry/Masonry.tsx?raw';
 
 export const masonry = {
-  ...(generateCliCommands('Components/Masonry', ['default'])),
+  ...(generateCliCommands('Components/Masonry')),
   installation: `npm i @react-spring/web`,
   usage: `import Masonry from './Masonry'
   
@@ -23,5 +26,8 @@ const data = [
 
 <Masonry data={data} />`,
   code,
-  css
+  css,
+  tailwind,
+  tsCode,
+  tsTailwind
 }

@@ -249,7 +249,7 @@ const BallpitDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={ballpit.cliDefault} cliTailwind={ballpit.cliTailwind} />
+        <CliInstallation {...ballpit} />
       </CliTab>
     </TabbedLayout>
   );

@@ -110,7 +110,7 @@ const GridMotionDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={gridMotion.cliDefault} />
+        <CliInstallation {...gridMotion} />
       </CliTab>
     </TabbedLayout>
   );

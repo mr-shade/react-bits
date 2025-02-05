@@ -49,7 +49,7 @@ const DecayCardDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={decayCard.cliDefault} />
+        <CliInstallation {...decayCard} />
       </CliTab>
     </TabbedLayout>
   );

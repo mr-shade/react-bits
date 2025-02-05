@@ -95,7 +95,7 @@ const ElasticSliderDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={elasticSlider.cliDefault} cliTailwind={elasticSlider.cliTailwind}/>
+        <CliInstallation {...elasticSlider} />
       </CliTab>
     </TabbedLayout>
   );

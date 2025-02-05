@@ -2,9 +2,12 @@ import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/Components/DecayCard/DecayCard.jsx?raw';
 import css from '@content/Components/DecayCard/DecayCard.css?raw';
+import tailwind from '@tailwind/Components/DecayCard/DecayCard.jsx?raw';
+import tsCode from '@ts-default/Components/DecayCard/DecayCard.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/DecayCard/DecayCard.tsx?raw';
 
 export const decayCard = {
-  ...(generateCliCommands('Components/DecayCard', ['default'])),
+  ...(generateCliCommands('Components/DecayCard')),
   installation: `npm i gsap`,
   usage: `import DecayCard from './DecayCard';
 
@@ -12,5 +15,8 @@ export const decayCard = {
   <h2>The<br/>Open Sea</h2>
 </DecayCard>`,
   code,
-  css
+  css,
+  tailwind,
+  tsCode,
+  tsTailwind
 }

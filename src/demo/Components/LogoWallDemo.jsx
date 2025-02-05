@@ -184,7 +184,7 @@ const LogoWallDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={logoWall.cliDefault} cliTailwind={logoWall.cliTailwind} />
+        <CliInstallation {...logoWall} />
       </CliTab>
     </TabbedLayout>
   );

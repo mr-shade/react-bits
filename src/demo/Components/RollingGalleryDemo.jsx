@@ -44,7 +44,7 @@ const RollingGalleryDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={rollingGallery.cliDefault} />
+        <CliInstallation {...rollingGallery} />
       </CliTab>
     </TabbedLayout>
   );

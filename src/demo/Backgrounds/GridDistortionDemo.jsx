@@ -162,7 +162,7 @@ const GridDistortionDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={gridDistortion.cliDefault} cliTailwind={gridDistortion.cliTailwind} />
+        <CliInstallation {...gridDistortion} />
       </CliTab>
     </TabbedLayout>
   );

@@ -1,11 +1,12 @@
 import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/Backgrounds/Ballpit/Ballpit.jsx?raw';
-import utility from '@content/Backgrounds/Ballpit/ballpit-utility.js?raw';
 import tailwind from '@tailwind/Backgrounds/Ballpit/Ballpit.jsx?raw';
+import tsCode from '@ts-default/Backgrounds/Ballpit/Ballpit.tsx?raw';
+import tsTailwind from '@ts-tailwind/Backgrounds/Ballpit/Ballpit.tsx?raw';
 
 export const ballpit = {
-  ...(generateCliCommands('Backgrounds/Ballpit', ['default', 'tailwind'])),
+  ...(generateCliCommands('Backgrounds/Ballpit')),
   installation: `npm i three`,
   usage: `import Ballpit from './Ballpit;'
 
@@ -18,7 +19,8 @@ export const ballpit = {
     followCursor={true}
   />
 </div>`,
-  utility,
   code,
-  tailwind
+  tailwind,
+  tsCode,
+  tsTailwind
 }

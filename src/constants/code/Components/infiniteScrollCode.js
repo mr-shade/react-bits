@@ -3,9 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Components/InfiniteScroll/InfiniteScroll.jsx?raw';
 import css from '@content/Components/InfiniteScroll/InfiniteScroll.css?raw';
 import tailwind from '@tailwind/Components/InfiniteScroll/InfiniteScroll.jsx?raw';
+import tsCode from '@ts-default/Components/InfiniteScroll/InfiniteScroll.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/InfiniteScroll/InfiniteScroll.tsx?raw';
 
 export const infiniteScroll = {
-  ...(generateCliCommands('Components/InfiniteScroll', ['default', 'tailwind'])),
+  ...(generateCliCommands('Components/InfiniteScroll')),
   installation: `npm i gsap`,
   usage: `import InfiniteScroll from './InfiniteScroll';
   
@@ -39,5 +41,7 @@ const items = [
 </div>`,
   code,
   css,
-  tailwind
+  tailwind,
+  tsCode,
+  tsTailwind
 }

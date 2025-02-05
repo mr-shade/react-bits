@@ -246,7 +246,7 @@ const InfiniteScrollDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation liDefault={infiniteScroll.cliDefault} cliTailwind={infiniteScroll.cliTailwind} />
+        <CliInstallation {...infiniteScroll} />
       </CliTab>
     </TabbedLayout>
   );

@@ -3,9 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Components/LogoWall/LogoWall.jsx?raw';
 import css from '@content/Components/LogoWall/LogoWall.css?raw';
 import tailwind from '@tailwind/Components/LogoWall/LogoWall.jsx?raw';
+import tsCode from '@ts-default/Components/LogoWall/LogoWall.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/LogoWall/LogoWall.tsx?raw';
 
 export const logoWall = {
-  ...(generateCliCommands('Components/LogoWall', ['default', 'tailwind'])),
+  ...(generateCliCommands('Components/LogoWall')),
   usage: `import LogoWall from './LogoWall';
 import reactbits from "../../assets/logos/reactbits-icon.svg";
 
@@ -32,5 +34,7 @@ const logoImgs = [
 </div>`,
   code,
   css,
-  tailwind
+  tailwind,
+  tsCode,
+  tsTailwind
 }
