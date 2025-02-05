@@ -54,6 +54,7 @@ const backgrounds = {
   'aurora': () => import("../demo/Backgrounds/AuroraDemo"),
   'squares': () => import("../demo/Backgrounds/SquaresDemo"),
   'hyperspeed': () => import("../demo/Backgrounds/HyperspeedDemo"),
+  'iridescence': () => import("../demo/Backgrounds/IridescenceDemo"),
   'grid-motion': () => import("../demo/Backgrounds/GridMotionDemo"),
   'waves': () => import("../demo/Backgrounds/WavesDemo"),
   'ballpit': () => import("../demo/Backgrounds/BallpitDemo"),
