@@ -12,7 +12,7 @@ export const aurora = {
   usage: `import Aurora from './Aurora';
   
 <Aurora
-  colors={["#3A29FF", "#FF94B4", "#FF3232"]}
+  colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
   speed={0.5}
 />`,
   code,
