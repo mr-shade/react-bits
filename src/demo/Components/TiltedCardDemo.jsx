@@ -188,10 +188,7 @@ const TiltedCardDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={tiltedCard.cliDefault}
-          cliTailwind={tiltedCard.cliTailwind}
-        />
+        <CliInstallation {...tiltedCard} />
       </CliTab>
     </TabbedLayout>
   );
