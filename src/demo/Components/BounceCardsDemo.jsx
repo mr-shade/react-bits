@@ -102,7 +102,7 @@ const BounceCardsDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={bounceCards.cliDefault} cliTailwind={bounceCards.cliTailwind} cliTsTailwind={bounceCards.cliTsTailwind} />
+        <CliInstallation cliDefault={bounceCards.cliDefault} cliTailwind={bounceCards.cliTailwind} cliTsTailwind={bounceCards.cliTsTailwind} cliTsDefault={bounceCards.cliTsDefault} />
       </CliTab>
     </TabbedLayout>
 
