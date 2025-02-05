@@ -16,6 +16,11 @@ const ShowcasePage = () => {
       name: 'Devraj',
       url: 'https://devrajchatribin.com/about',
       using: '<CountUp />'
+    },
+    {
+      name: 'Abdullah Shafiq',
+      url: 'https://resume-tex.vercel.app',
+      using: '<Squares />'
     }
   ];
 
