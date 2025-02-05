@@ -51,6 +51,7 @@ const components = {
 };
 
 const backgrounds = {
+  'aurora': () => import("../demo/Backgrounds/AuroraDemo"),
   'squares': () => import("../demo/Backgrounds/SquaresDemo"),
   'hyperspeed': () => import("../demo/Backgrounds/HyperspeedDemo"),
   'grid-motion': () => import("../demo/Backgrounds/GridMotionDemo"),

@@ -8,6 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/Stepper/Stepper.tsx?raw';
 
 export const stepper = {
   ...(generateCliCommands('Components/Stepper')),
+  installation: `npm i framer-motion`,
   usage: `import Stepper, { Step } from './Stepper';
   
 <Stepper
