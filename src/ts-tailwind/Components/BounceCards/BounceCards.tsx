@@ -1,6 +1,17 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
 
+interface BounceCardsProps {
+  className?: string;
+  images?: string[];
+  containerWidth?: number;
+  containerHeight?: number;
+  animationDelay?: number;
+  animationStagger?: number;
+  easeType?: string;
+  transformStyles?: string[];
+}
+
 export default function BounceCards({
   className = "",
   images = [],
@@ -16,7 +27,7 @@ export default function BounceCards({
     "rotate(-10deg) translate(85px)",
     "rotate(2deg) translate(170px)"
   ]
-}) {
+}: BounceCardsProps) {
   useEffect(() => {
     gsap.fromTo(
       ".card",
