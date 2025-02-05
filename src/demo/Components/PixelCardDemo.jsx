@@ -103,7 +103,7 @@ const PixelCardDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={pixelCard.cliDefault} cliTailwind={pixelCard.cliTailwind} />
+        <CliInstallation {...pixelCard} />
       </CliTab>
     </TabbedLayout>
   );

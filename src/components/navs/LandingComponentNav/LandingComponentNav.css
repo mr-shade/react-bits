@@ -32,7 +32,7 @@
   font-size: 24px;
   position: absolute;
   left: 50%;
-  top: 60%;
+  top: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
   background: linear-gradient(to top, #0d0d0d, #0d0d0da7);
@@ -80,7 +80,7 @@
 }
 
 .component-nav-container div .feat-1::before {
-  content: "<Hyperspeed />";
+  content: "<Aurora />";
 }
 
 .component-nav-container div .feat-2 {

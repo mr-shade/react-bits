@@ -6,32 +6,18 @@ import arrow from '../../../assets/common/icon-arrow.svg';
 import Magnet from '../../../content/Animations/Magnet/Magnet';
 import AnimatedContent from '../../../content/Animations/AnimatedContent/AnimatedContent';
 import Squares from '../../../content/Backgrounds/Squares/Squares';
-import Hyperspeed from '../../../content/Backgrounds/Hyperspeed/Hyperspeed';
 import Waves from '../../../content/Backgrounds/Waves/Waves';
-
-import { hyperspeedPresets } from '../../../content/Backgrounds/Hyperspeed/HyperSpeedPresets';
 import LetterGlitch from '../../../content/Backgrounds/LetterGlitch/LetterGlitch';
+import Aurora from '../../../content/Backgrounds/Aurora/Aurora';
 
 const LandingComponentNav = () => {
   const navigate = useNavigate();
-  const preset = hyperspeedPresets.four;
-
-  preset.colors = {
-    roadColor: 0x080808,
-    islandColor: 0x0a0a0a,
-    background: 0x000000,
-    shoulderLines: 0x131318,
-    brokenLines: 0x131318,
-    leftCars: [0xff87b2, 0xff87b2, 0xff87b2],
-    rightCars: [0xff87b2, 0xff87b2, 0xff87b2],
-    sticks: 0xA4E3E6,
-  }
 
   return (
     <nav className="component-nav-container">
       <AnimatedContent reverse initialOpacity={0}>
-        <div className="circle feat-1" onClick={() => navigate('/backgrounds/hyperspeed')}>
-          <Hyperspeed effectOptions={preset} />
+        <div className="circle feat-1" onClick={() => navigate('/backgrounds/aurora')}>
+          <Aurora speed={2} colorStops={['#ff87b2', '#ff87b2', '#ff87b2']} />
         </div>
       </AnimatedContent>
       <AnimatedContent reverse initialOpacity={0}>
