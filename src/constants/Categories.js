@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Iridescence', 'Infinite Menu', 'Flying Posters', 'Pixel Trail', 'Circular Gallery', 'Aurora'];
+export const NEW = ['Orb', 'Iridescence', 'Infinite Menu', 'Flying Posters', 'Pixel Trail', 'Circular Gallery', 'Aurora'];
 export const UPDATED = [''];
 
 // Used for main sidebar navigation
@@ -103,6 +103,7 @@ export const CATEGORIES = [
       'Iridescence',
       'Grid Distortion',
       'Ballpit',
+      'Orb',
       'Grid Motion',
       'Squares',
       'Letter Glitch',

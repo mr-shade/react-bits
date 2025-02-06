@@ -61,6 +61,7 @@ const backgrounds = {
   'shape-blur': () => import("../demo/Backgrounds/ShapeBlurDemo"),
   'letter-glitch': () => import("../demo/Backgrounds/LetterGlitchDemo"),
   'grid-distortion': () => import("../demo/Backgrounds/GridDistortionDemo"),
+  'orb': () => import("../demo/Backgrounds/OrbDemo"),
 };
 
 export const componentMap = {
