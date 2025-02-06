@@ -54,7 +54,7 @@ const HyperspeedDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={hyperspeed.cliDefault} />
+        <CliInstallation {...hyperspeed} />
       </CliTab>
     </TabbedLayout>
   );

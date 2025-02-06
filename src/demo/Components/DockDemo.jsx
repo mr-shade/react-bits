@@ -8,7 +8,7 @@ import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";
 
-import Dock from "../../content/Components/Dock/Dock";
+import Dock from "../../ts-default/Components/Dock/Dock";
 import { dock } from '../../constants/code/Components/dockCode';
 
 const DockDemo = () => {
@@ -152,7 +152,7 @@ const DockDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={dock.cliDefault} />
+        <CliInstallation {...dock} />
       </CliTab>
     </TabbedLayout>
   );

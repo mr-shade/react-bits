@@ -229,10 +229,7 @@ const FollowCursorDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation
-          cliDefault={followCursor.cliDefault}
-          cliTailwind={followCursor.cliTailwind}
-        />
+        <CliInstallation {...followCursor} />
       </CliTab>
     </TabbedLayout>
   );

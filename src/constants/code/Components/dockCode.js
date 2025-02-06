@@ -7,7 +7,7 @@ import tsCode from "@ts-default/Components/Dock/Dock.tsx?raw"
 import tsTailwind from "@ts-tailwind/Components/Dock/Dock.tsx?raw"
 
 export const dock = {
-  ...generateCliCommands("Components/Dock",['default', 'ts/default', 'ts/tailwind']),
+  ...generateCliCommands("Components/Dock"),
   installation: `npm i @react-spring/web`,
   usage: `import Dock from './Dock';
 
@@ -16,5 +16,5 @@ export const dock = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 }

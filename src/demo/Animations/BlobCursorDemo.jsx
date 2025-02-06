@@ -14,7 +14,6 @@ const BlobCursorDemo = () => {
   const [shape, setShape] = useState('circle');
   const [color, setColor] = useState('#00f0ff');
 
-
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -58,7 +57,7 @@ const BlobCursorDemo = () => {
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={blobCursor.cliDefault} />
+        <CliInstallation {...blobCursor} />
       </CliTab>
     </TabbedLayout>
   );
