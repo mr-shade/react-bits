@@ -129,7 +129,7 @@
 }
 
 .landing-wrapper .hero-info .headline p::before {
-  content: "TypeScript Support Added!";
+  content: "JS or TS - Pick Your Poison! 🧪";
   animation: shake 1s linear infinite;
   font-weight: 700;
   position: absolute;
