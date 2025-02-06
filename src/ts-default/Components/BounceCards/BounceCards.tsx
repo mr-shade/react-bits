@@ -1,6 +1,17 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
+import "./BounceCards.css";
 
+interface BounceCardsProps {
+    className?: string;
+    images?: string[];
+    containerWidth?: number;
+    containerHeight?: number;
+    animationDelay?: number;
+    animationStagger?: number;
+    easeType?: string;
+    transformStyles?: string[];
+  }
 export default function BounceCards({
   className = "",
   images = [],
@@ -16,7 +27,8 @@ export default function BounceCards({
     "rotate(-10deg) translate(85px)",
     "rotate(2deg) translate(170px)"
   ]
-}) {
+}:BounceCardsProps) {
+    
   useEffect(() => {
     gsap.fromTo(
       ".card",
@@ -32,27 +44,23 @@ export default function BounceCards({
 
   return (
     <div
-      className={`relative flex items-center justify-center ${className}`}
+      className={`bounceCardsContainer ${className}`}
       style={{
+        position: "relative",
         width: containerWidth,
         height: containerHeight
       }}
     >
       {images.map((src, idx) => (
         <div
+          className="card"
           key={idx}
-          className="card absolute w-[200px] aspect-square border-8 border-white rounded-[30px] overflow-hidden"
           style={{
-            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
             transform:
               transformStyles[idx] !== undefined ? transformStyles[idx] : "none"
           }}
         >
-          <img
-            className="w-full h-full object-cover"
-            src={src}
-            alt={`card-${idx}`}
-          />
+          <img className="image" src={src} alt={`card-${idx}`} />
         </div>
       ))}
     </div>
