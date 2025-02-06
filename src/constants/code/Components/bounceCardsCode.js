@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/BounceCards/BounceCards.tsx?raw';
 import tsTailwind from "@ts-tailwind/Components/BounceCards/BounceCards.tsx?raw";
 
 export const bounceCards = {
-  ...(generateCliCommands("Components/BounceCards"))
+  ...(generateCliCommands("Components/BounceCards")),
   installation: `npm i gsap`,
   usage: `import BounceCards from './BounceCards'
 
