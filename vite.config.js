@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
+import safeParser from 'postcss-safe-parser'
 
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite'
@@ -24,4 +25,9 @@ export default defineConfig({
       '@ts-tailwind': path.resolve(__dirname, 'src/ts-tailwind'),
     },
   },
+  css: {
+    postcss: {
+      parser: safeParser
+    }
+  }
 })
