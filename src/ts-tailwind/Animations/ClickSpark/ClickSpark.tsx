@@ -1,4 +1,4 @@
-import {useRef, useEffect, useCallback} from "react";
+import React, {useRef, useEffect, useCallback} from "react";
 
 interface ClickSparkProps {
   sparkColor?: string;
@@ -53,7 +53,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     };
 
     // Observe size changes
-    const ro = new ResizeObserver(resizeCanvas);
+    const ro = new ResizeObserver(handleResize);
     ro.observe(parent);
 
     // Initial sizing
@@ -135,7 +135,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easing, extraScale]);
+  }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
 
   const handleClick = (e: React.MouseEvent<HTMLCanvasElement>): void => {
     const canvas = canvasRef.current;

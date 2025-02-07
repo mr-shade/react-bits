@@ -35,6 +35,7 @@ const ClickSpark = ({
       resizeTimeout = setTimeout(resizeCanvas, 100); // Debounce by 100ms
     };
 
+    // Observe size changes
     const ro = new ResizeObserver(handleResize);
     ro.observe(parent);
 
