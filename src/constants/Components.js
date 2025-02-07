@@ -62,6 +62,7 @@ const backgrounds = {
   'letter-glitch': () => import("../demo/Backgrounds/LetterGlitchDemo"),
   'grid-distortion': () => import("../demo/Backgrounds/GridDistortionDemo"),
   'orb': () => import("../demo/Backgrounds/OrbDemo"),
+  'liquid-chrome': () => import("../demo/Backgrounds/LiquidChromeDemo"),
 };
 
 export const componentMap = {

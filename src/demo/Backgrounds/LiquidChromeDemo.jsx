@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
 
@@ -6,43 +5,53 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-import useForceRerender from "../../hooks/useForceRerender";
 
-import Iridescence from "../../content/Backgrounds/Iridescence/Iridescence";
-import { iridescence } from "../../constants/code/Backgrounds/iridescenceCode";
+import LiquidChrome from "../../content/Backgrounds/LiquidChrome/LiquidChrome";
+import { liquidChrome } from "../../constants/code/Backgrounds/liquidChromeCode";
+import { useState } from "react";
 
-const IridescenceDemo = () => {
-  const [colors, setColors] = useState([1, 1, 1]);
-
-  const [speed, setSpeed] = useState(1);
-  const [mouseInteraction, setMouseInteraction] = useState(true);
-
-  const [key, forceRerender] = useForceRerender();
+const LiquidChromeDemo = () => {
+  const [speed, setSpeed] = useState(0.3);
+  const [baseColor, setBaseColor] = useState([0.1, 0.1, 0.1]);
+  const [interactive, setInteractive] = useState(true);
+  const [amplitude, setAmplitude] = useState(0.3);
 
   const propData = [
     {
-      name: "color",
-      type: "Array<number>",
-      default: "[0.3, 0.2, 0.5]",
-      description: "Base color as an array of RGB values (each between 0 and 1)."
+      name: "baseColor",
+      type: "RGB array (number[3])",
+      default: "[0.1, 0.1, 0.1]",
+      description: "Base color of the component. Specify as an RGB array."
     },
     {
       name: "speed",
       type: "number",
       default: "1.0",
-      description: "Speed multiplier for the animation."
+      description: "Animation speed multiplier."
     },
     {
       name: "amplitude",
       type: "number",
-      default: "0.1",
-      description: "Amplitude for the mouse-driven effect."
+      default: "0.6",
+      description: "Amplitude of the distortion."
     },
     {
-      name: "mouseReact",
+      name: "frequencyX",
+      type: "number",
+      default: "2.5",
+      description: "Frequency modifier for the x distortion."
+    },
+    {
+      name: "frequencyY",
+      type: "number",
+      default: "1.5",
+      description: "Frequency modifier for the y distortion."
+    },
+    {
+      name: "interactive",
       type: "boolean",
-      default: "false",
-      description: "Enable or disable mouse interaction with the shader."
+      default: "true",
+      description: "Enable mouse/touch interaction."
     }
   ];
 
@@ -50,7 +59,7 @@ const IridescenceDemo = () => {
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
-          <Iridescence key={key} speed={speed} color={colors} mouseReact={mouseInteraction} />
+          <LiquidChrome baseColor={baseColor} amplitude={amplitude} speed={speed} interactive={interactive} />
         </Box>
 
         <div className="preview-options">
@@ -61,12 +70,12 @@ const IridescenceDemo = () => {
             <Flex gap={4} align="center" mt={2} background="#0D0D0D" pl={4} pr={10} py={4} borderRadius={16} position="relative">
               <Text fontSize="sm">R</Text>
               <Slider
-                min={0}
-                max={1}
-                step={0.1}
-                value={colors[0]}
+                min={0.1}
+                max={0.5}
+                step={0.01}
+                value={baseColor[0]}
                 onChange={(val) => {
-                  setColors(prev => {
+                  setBaseColor(prev => {
                     const newColors = [...prev];
                     newColors[0] = val;
                     return newColors;
@@ -80,18 +89,18 @@ const IridescenceDemo = () => {
                 </SliderTrack>
                 <SliderThumb />
               </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{colors[0]}</Text>
+              <Text position="absolute" right={3.5} fontSize="sm">{baseColor[0]}</Text>
             </Flex>
 
             <Flex gap={4} align="center" mt={2} background="#0D0D0D" pl={4} pr={10} py={4} borderRadius={16} position="relative">
               <Text fontSize="sm">G</Text>
               <Slider
-                min={0}
-                max={1}
-                step={0.1}
-                value={colors[1]}
+                min={0.1}
+                max={0.5}
+                step={0.01}
+                value={baseColor[1]}
                 onChange={(val) => {
-                  setColors(prev => {
+                  setBaseColor(prev => {
                     const newColors = [...prev];
                     newColors[1] = val;
                     return newColors;
@@ -105,18 +114,18 @@ const IridescenceDemo = () => {
                 </SliderTrack>
                 <SliderThumb />
               </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{colors[1]}</Text>
+              <Text position="absolute" right={3.5} fontSize="sm">{baseColor[1]}</Text>
             </Flex>
 
             <Flex gap={4} align="center" mt={2} background="#0D0D0D" pl={4} pr={10} py={4} borderRadius={16} position="relative">
               <Text fontSize="sm">B</Text>
               <Slider
-                min={0}
-                max={1}
-                step={0.1}
-                value={colors[2]}
+                min={0.1}
+                max={0.5}
+                step={0.01}
+                value={baseColor[2]}
                 onChange={(val) => {
-                  setColors(prev => {
+                  setBaseColor(prev => {
                     const newColors = [...prev];
                     newColors[2] = val;
                     return newColors;
@@ -130,7 +139,7 @@ const IridescenceDemo = () => {
                 </SliderTrack>
                 <SliderThumb />
               </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{colors[2]}</Text>
+              <Text position="absolute" right={3.5} fontSize="sm">{baseColor[2]}</Text>
             </Flex>
           </Flex>
 
@@ -138,12 +147,11 @@ const IridescenceDemo = () => {
             <Text fontSize="sm">Speed</Text>
             <Slider
               min={0}
-              max={2}
-              step={0.1}
+              max={5}
+              step={0.01}
               value={speed}
               onChange={(val) => {
                 setSpeed(val);
-                forceRerender();
               }}
               width="200px"
             >
@@ -156,15 +164,35 @@ const IridescenceDemo = () => {
           </Flex>
 
           <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Mouse Interaction</Text>
+            <Text fontSize="sm">Amplitude</Text>
+            <Slider
+              min={0.1}
+              max={1}
+              step={0.01}
+              value={amplitude}
+              onChange={(val) => {
+                setAmplitude(val);
+              }}
+              width="200px"
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <Text fontSize="sm">{amplitude}</Text>
+          </Flex>
+
+          <Flex gap={4} align="center" mt={4}>
+            <Text fontSize="sm">Interactive</Text>
             <Switch
-              isChecked={mouseInteraction}
+              isChecked={interactive}
               onChange={(e) => {
-                setMouseInteraction(e.target.checked);
-                forceRerender();
+                setInteractive(e.target.checked);
               }}
             />
           </Flex>
+
         </div>
 
         <PropTable data={propData} />
@@ -172,14 +200,14 @@ const IridescenceDemo = () => {
       </PreviewTab>
 
       <CodeTab>
-        <CodeExample codeObject={iridescence} />
+        <CodeExample codeObject={liquidChrome} />
       </CodeTab>
 
       <CliTab>
-        <CliInstallation {...iridescence} />
+        <CliInstallation {...liquidChrome} />
       </CliTab>
     </TabbedLayout>
   );
 };
 
-export default IridescenceDemo;
+export default LiquidChromeDemo;
