@@ -1,116 +1,166 @@
-import { useState, useEffect, useCallback } from "react"
-import { useSpring, animated, useSprings } from "@react-spring/web"
+"use client";
 
-const Dock = ({ position = "bottom", collapsible = false, responsive = "bottom" }) => {
-  const [hoverIndex, setHoverIndex] = useState(null)
-  const [isDockVisible, setDockVisible] = useState(!collapsible)
-  const [currentPosition, setCurrentPosition] = useState(position)
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import {
+  Children,
+  cloneElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-  const DOCK_ITEMS = ["🍕", "🍔", "🌭", "🌮", "🌯"]
+function DockItem({
+  children,
+  className = "",
+  onClick,
+  mouseX,
+  spring,
+  distance,
+  magnification,
+  baseItemSize,
+}) {
+  const ref = useRef(null);
+  const isHovered = useMotionValue(0);
 
-  const getTranslateValue = useCallback((position, isHovered) => {
-    if (!isHovered) return "translateX(0px) translateY(0px)"
+  const mouseDistance = useTransform(mouseX, (val) => {
+    const rect = ref.current?.getBoundingClientRect() ?? {
+      x: 0,
+      width: baseItemSize,
+    };
+    return val - rect.x - baseItemSize / 2;
+  });
 
-    const translations = {
-      left: "translateX(5px) translateY(0px)",
-      right: "translateX(-5px) translateY(0px)",
-      top: "translateX(0px) translateY(5px)",
-      bottom: "translateX(0px) translateY(-5px)",
-    }
-    return translations[position]
-  }, [])
-
-  const [springs, api] = useSprings(
-    DOCK_ITEMS.length,
-    () => ({
-      scale: 1,
-      translate: "translateX(0px) translateY(0px)",
-      config: { tension: 200, friction: 15 },
-    }),
-    [currentPosition],
-  )
-
-  useEffect(() => {
-    api.start((index) => {
-      const isHovered = index === hoverIndex
-      const isNeighbor = hoverIndex !== null && Math.abs(hoverIndex - index) === 1
-
-      return {
-        scale: isHovered ? 1.5 : isNeighbor ? 1.3 : 1,
-        translate: getTranslateValue(currentPosition, isHovered),
-        immediate: false,
-      }
-    })
-  }, [hoverIndex, currentPosition, api, getTranslateValue])
-
-  const handleMouseEnter = useCallback((index) => {
-    setHoverIndex(index)
-  }, [])
-
-  const handleMouseLeave = useCallback(() => {
-    setHoverIndex(null)
-  }, [])
-
-  const handleParentMouseEnter = useCallback(() => {
-    if (collapsible) setDockVisible(true)
-  }, [collapsible])
-
-  const handleParentMouseLeave = useCallback(() => {
-    if (collapsible) setDockVisible(false)
-  }, [collapsible])
-
-  useEffect(() => {
-    const updatePosition = () => {
-      setCurrentPosition(responsive && window.innerWidth <= 768 ? responsive : position)
-    }
-
-    updatePosition()
-    window.addEventListener("resize", updatePosition)
-    return () => window.removeEventListener("resize", updatePosition)
-  }, [position, responsive])
-
-  const getDockStyle = useCallback((position) => {
-    const styles = {
-      left: "flex-col items-start justify-center h-full left-4",
-      right: "flex-col items-end justify-center h-full right-4",
-      top: "flex-row items-start justify-center w-full top-4",
-      bottom: "flex-row items-end justify-center w-full bottom-4",
-    }
-    return styles[position] || styles.bottom
-  }, [])
-
-  const visibilitySpring = useSpring({
-    opacity: isDockVisible ? 1 : 0,
-    config: { tension: 120, friction: 14 },
-  })
+  const targetSize = useTransform(
+    mouseDistance,
+    [-distance, 0, distance],
+    [baseItemSize, magnification, baseItemSize]
+  );
+  const size = useSpring(targetSize, spring);
 
   return (
-    <div
-      className={`absolute w-full h-full pointer-events-none flex ${getDockStyle(currentPosition)}`}
-      onMouseEnter={handleParentMouseEnter}
-      onMouseLeave={handleParentMouseLeave}
+    <motion.div
+      ref={ref}
+      style={{
+        width: size,
+        height: size,
+      }}
+      onHoverStart={() => isHovered.set(1)}
+      onHoverEnd={() => isHovered.set(0)}
+      onFocus={() => isHovered.set(1)}
+      onBlur={() => isHovered.set(0)}
+      onClick={onClick}
+      className={`relative inline-flex items-center justify-center rounded-full bg-[#060606] border-neutral-700 border-2 shadow-md ${className}`}
+      tabIndex={0}
+      role="button"
+      aria-haspopup="true"
     >
-      <animated.div
-        className="flex pointer-events-auto border border-white/[0.11] p-3 rounded-[20px] transition-all duration-200 ease-out"
-        style={visibilitySpring}
-      >
-        {springs.map((springs, index) => (
-          <animated.div
-            key={DOCK_ITEMS[index]}
-            className="bg-[#060606] m-[5px] w-[50px] h-[50px] p-[10px] rounded-[10px] border border-white/[0.11] flex relative z-0 text-[1.5em] items-center justify-center transition-all duration-100 ease-out cursor-pointer pointer-events-auto hover:z-[2] hover:bg-[#111] hover:transition-colors hover:duration-300"
-            style={{
-              transform: springs.scale.to((s) => `${springs.translate.get()} scale(${s})`),
-            }}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-          >
-            {DOCK_ITEMS[index]}
-          </animated.div>
-        ))}
-      </animated.div>
-    </div>
-  )
+      {Children.map(children, (child) =>
+        cloneElement(child, { isHovered })
+      )}
+    </motion.div>
+  );
 }
 
-export default Dock
+function DockLabel({ children, className = "", ...rest }) {
+  const { isHovered } = rest;
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = isHovered.on("change", (latest) => {
+      setIsVisible(latest === 1);
+    });
+    return () => unsubscribe();
+  }, [isHovered]);
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: -10 }}
+          exit={{ opacity: 0, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className={`${className} absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-neutral-700 bg-[#060606] px-2 py-0.5 text-xs text-white`}
+          role="tooltip"
+          style={{ x: "-50%" }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function DockIcon({ children, className = "" }) {
+  return (
+    <div className={`flex items-center justify-center ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+export default function Dock({
+  items,
+  className = "",
+  spring = { mass: 0.1, stiffness: 150, damping: 12 },
+  magnification = 70,
+  distance = 200,
+  panelHeight = 64,
+  dockHeight = 256,
+  baseItemSize = 50,
+}) {
+  const mouseX = useMotionValue(Infinity);
+  const isHovered = useMotionValue(0);
+
+  const maxHeight = useMemo(
+    () => Math.max(dockHeight, magnification + magnification / 2 + 4),
+    [magnification, dockHeight]
+  );
+  const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
+  const height = useSpring(heightRow, spring);
+
+  return (
+    <motion.div
+      style={{ height, scrollbarWidth: "none" }}
+      className="mx-2 flex max-w-full items-center"
+    >
+      <motion.div
+        onMouseMove={({ pageX }) => {
+          isHovered.set(1);
+          mouseX.set(pageX);
+        }}
+        onMouseLeave={() => {
+          isHovered.set(0);
+          mouseX.set(Infinity);
+        }}
+        className={`${className} absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border-neutral-700 border-2 pb-2 px-4`}
+        style={{ height: panelHeight }}
+        role="toolbar"
+        aria-label="Application dock"
+      >
+        {items.map((item, index) => (
+          <DockItem
+            key={index}
+            onClick={item.onClick}
+            className={item.className}
+            mouseX={mouseX}
+            spring={spring}
+            distance={distance}
+            magnification={magnification}
+            baseItemSize={baseItemSize}
+          >
+            <DockIcon>{item.icon}</DockIcon>
+            <DockLabel>{item.label}</DockLabel>
+          </DockItem>
+        ))}
+      </motion.div>
+    </motion.div>
+  );
+}

@@ -1,126 +1,205 @@
-import type React from "react"
-import { useState, useEffect } from "react"
-import { useSpring, animated, useSprings } from "@react-spring/web"
-import "./Dock.css"
+"use client";
 
-type Position = "bottom" | "top" | "left" | "right"
-type FlexDirection = "row" | "column"
+import {
+  motion,
+  MotionValue,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  type SpringOptions,
+  AnimatePresence,
+} from "framer-motion";
+import React, {
+  Children,
+  cloneElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-interface DockProps {
-  position?: Position
-  collapsible?: boolean
-  responsive?: Position
-}
+import "./Dock.css";
 
-const Dock: React.FC<DockProps> = ({ position = "bottom", collapsible = false, responsive = "bottom" }) => {
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null)
-  const [isDockVisible, setDockVisible] = useState(!collapsible)
-  const [currentPosition, setCurrentPosition] = useState<Position>(position)
+export type DockItemData = {
+  icon: React.ReactNode;
+  label: React.ReactNode;
+  onClick: () => void;
+  className?: string;
+};
 
-  const dockItems = ["🍕", "🍔", "🌭", "🌮", "🌯"]
+export type DockProps = {
+  items: DockItemData[];
+  className?: string;
+  distance?: number;
+  panelHeight?: number;
+  baseItemSize?: number;
+  dockHeight?: number;
+  magnification?: number;
+  spring?: SpringOptions;
+};
 
-  const handleMouseEnter = (index: number) => {
-    setHoverIndex(index)
-  }
+type DockItemProps = {
+  className?: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+  mouseX: MotionValue;
+  spring: SpringOptions;
+  distance: number;
+  baseItemSize: number;
+  magnification: number;
+};
 
-  const handleMouseLeave = () => {
-    setHoverIndex(null)
-  }
+function DockItem({
+  children,
+  className = "",
+  onClick,
+  mouseX,
+  spring,
+  distance,
+  magnification,
+  baseItemSize,
+}: DockItemProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isHovered = useMotionValue(0);
 
-  const handleParentMouseEnter = () => {
-    if (collapsible) {
-      setDockVisible(true)
-    }
-  }
+  const mouseDistance = useTransform(mouseX, (val) => {
+    const rect = ref.current?.getBoundingClientRect() ?? {
+      x: 0,
+      width: baseItemSize,
+    };
+    return val - rect.x - baseItemSize / 2;
+  });
 
-  const handleParentMouseLeave = () => {
-    if (collapsible) {
-      setDockVisible(false)
-    }
-  }
-
-  useEffect(() => {
-    const updatePosition = () => {
-      if (responsive && window.innerWidth <= 768) {
-        setCurrentPosition(responsive)
-      } else {
-        setCurrentPosition(position)
-      }
-    }
-
-    updatePosition()
-    window.addEventListener("resize", updatePosition)
-    return () => window.removeEventListener("resize", updatePosition)
-  }, [position, responsive])
-
-  const getDockStyle = () => {
-    const direction: FlexDirection = currentPosition === "left" || currentPosition === "right" ? "column" : "row"
-    return { flexDirection: direction }
-  }
-
-  const getTranslateValue = (index: number) => {
-    if (hoverIndex === index) {
-      switch (currentPosition) {
-        case "left":
-          return "translateX(5px) translateY(0px)"
-        case "right":
-          return "translateX(-5px) translateY(0px)"
-        case "top":
-          return "translateX(0px) translateY(5px)"
-        case "bottom":
-          return "translateX(0px) translateY(-5px)"
-        default:
-          return "translateX(0px) translateY(0px)"
-      }
-    }
-    return "translateX(0px) translateY(0px)"
-  }
-
-  const springs = useSprings(
-    dockItems.length,
-    dockItems.map((_, index) => ({
-      transform:
-        hoverIndex === index
-          ? `scale(1.5) ${getTranslateValue(index)}`
-          : hoverIndex !== null && Math.abs(hoverIndex - index) === 1
-            ? `scale(1.3) translateX(0px) translateY(0px)`
-            : `scale(1) translateX(0px) translateY(0px)`,
-      config: { tension: 200, friction: 15 }
-    }))
-  )
-
-  const visibilitySpring = useSpring({
-    opacity: isDockVisible ? 1 : 0,
-    config: { tension: 120, friction: 14 },
-  })
+  const targetSize = useTransform(
+    mouseDistance,
+    [-distance, 0, distance],
+    [baseItemSize, magnification, baseItemSize]
+  );
+  const size = useSpring(targetSize, spring);
 
   return (
-    <div
-      className={`dock-container ${currentPosition}`}
-      onMouseEnter={handleParentMouseEnter}
-      onMouseLeave={handleParentMouseLeave}
+    <motion.div
+      ref={ref}
+      style={{
+        width: size,
+        height: size,
+      }}
+      onHoverStart={() => isHovered.set(1)}
+      onHoverEnd={() => isHovered.set(0)}
+      onFocus={() => isHovered.set(1)}
+      onBlur={() => isHovered.set(0)}
+      onClick={onClick}
+      className={`dock-item ${className}`}
+      tabIndex={0}
+      role="button"
+      aria-haspopup="true"
     >
-      <animated.div 
-        className="dock" 
-        style={{ 
-          ...visibilitySpring,
-          ...getDockStyle() as any
-        }}
-      >
-        {springs.map((props, index) => (
-          <animated.div
-            key={dockItems[index]}
-            className="dock-item"
-            style={props}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-          >
-            {dockItems[index]}
-          </animated.div>
-        ))}
-      </animated.div>
-    </div>
-  )
+      {Children.map(children, (child) =>
+        cloneElement(child as React.ReactElement, { isHovered })
+      )}
+    </motion.div>
+  );
 }
 
-export default Dock
+type DockLabelProps = {
+  className?: string;
+  children: React.ReactNode;
+};
+
+function DockLabel({ children, className = "", ...rest }: DockLabelProps) {
+  const { isHovered } = rest as { isHovered: MotionValue<number> };
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = isHovered.on("change", (latest) => {
+      setIsVisible(latest === 1);
+    });
+    return () => unsubscribe();
+  }, [isHovered]);
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: -10 }}
+          exit={{ opacity: 0, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className={`dock-label ${className}`}
+          role="tooltip"
+          style={{ x: "-50%" }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+type DockIconProps = {
+  className?: string;
+  children: React.ReactNode;
+};
+
+function DockIcon({ children, className = "" }: DockIconProps) {
+  return <div className={`dock-icon ${className}`}>{children}</div>;
+}
+
+export default function Dock({
+  items,
+  className = "",
+  spring = { mass: 0.1, stiffness: 150, damping: 12 },
+  magnification = 70,
+  distance = 200,
+  panelHeight = 68,
+  dockHeight = 256,
+  baseItemSize = 50,
+}: DockProps) {
+  const mouseX = useMotionValue(Infinity);
+  const isHovered = useMotionValue(0);
+
+  const maxHeight = useMemo(
+    () => Math.max(dockHeight, magnification + magnification / 2 + 4),
+    [magnification, dockHeight]
+  );
+  const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
+  const height = useSpring(heightRow, spring);
+
+  return (
+    <motion.div
+      style={{ height, scrollbarWidth: "none" }}
+      className="dock-outer"
+    >
+      <motion.div
+        onMouseMove={({ pageX }) => {
+          isHovered.set(1);
+          mouseX.set(pageX);
+        }}
+        onMouseLeave={() => {
+          isHovered.set(0);
+          mouseX.set(Infinity);
+        }}
+        className={`dock-panel ${className}`}
+        style={{ height: panelHeight }}
+        role="toolbar"
+        aria-label="Application dock"
+      >
+        {items.map((item, index) => (
+          <DockItem
+            key={index}
+            onClick={item.onClick}
+            className={item.className}
+            mouseX={mouseX}
+            spring={spring}
+            distance={distance}
+            magnification={magnification}
+            baseItemSize={baseItemSize}
+          >
+            <DockIcon>{item.icon}</DockIcon>
+            <DockLabel>{item.label}</DockLabel>
+          </DockItem>
+        ))}
+      </motion.div>
+    </motion.div>
+  );
+}
