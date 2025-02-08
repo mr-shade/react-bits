@@ -1,7 +1,7 @@
 name: 🐞 Bug report
 description: Help improve React Bits.
 labels: ["bug"]
-title: "bug: "
+title: "[BUG]: "
 body:
     - type: markdown
       attributes:
