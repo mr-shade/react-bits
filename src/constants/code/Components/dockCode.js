@@ -8,10 +8,22 @@ import tsTailwind from "@ts-tailwind/Components/Dock/Dock.tsx?raw"
 
 export const dock = {
   ...generateCliCommands("Components/Dock"),
-  installation: `npm i @react-spring/web`,
+  installation: `npm i framer-motion`,
   usage: `import Dock from './Dock';
 
-<Dock collapsible={false} position="left" responsive="bottom" />`,
+  const items = [
+    { icon: <VscHome size={18} />, label: 'Home', onClick: () => alert('Home!') },
+    { icon: <VscArchive size={18} />, label: 'Archive', onClick: () => alert('Archive!') },
+    { icon: <VscAccount size={18} />, label: 'Profile', onClick: () => alert('Profile!') },
+    { icon: <VscSettingsGear size={18} />, label: 'Settings', onClick: () => alert('Settings!') },
+  ];
+
+  <Dock 
+    items={items}
+    panelHeight={68}
+    baseItemSize={50}
+    magnification={70}
+  />`,
   code,
   css,
   tailwind,
