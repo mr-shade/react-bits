@@ -8,7 +8,7 @@ const ContributionSection = () => {
 
   return (
     <Box className="contribute-container">
-      <Text fontSize={{base: '1rem', md: '1.3rem'}} className="demo-title-contribute">Help us improve this component!</Text>
+      <Text fontSize={{ base: '1rem', md: '1.3rem' }} className="demo-title-contribute">Help us improve this component!</Text>
       <Flex
         gap={2}
         justifyContent="center"
@@ -18,7 +18,7 @@ const ContributionSection = () => {
         <Button
           cursor="pointer"
           as="a"
-          href={`https://github.com/DavidHDev/react-bits/issues/new?title=[BUG]:+${category}/${subcategory}&labels=bug&template=1-bug-report.yml`}
+          href={`https://github.com/DavidHDev/react-bits/issues/new?template=1-bug-report.yml&title=${encodeURIComponent(`[BUG]: ${category}/${subcategory}`)}&labels=bug`}
           rel="noreferrer"
           target="_blank"
           fontSize="sm"
@@ -36,7 +36,7 @@ const ContributionSection = () => {
         <Button
           cursor="pointer"
           as="a"
-          href={`https://github.com/DavidHDev/react-bits/issues/new?title=[FEAT]:+${category}/${subcategory}&labels=enhancement&template=2-feature-request.yml`}
+          href={`https://github.com/DavidHDev/react-bits/issues/new?template=2-feature-request.yml&title=${encodeURIComponent(`[FEAT]: ${category}/${subcategory}`)}&labels=enhancement`}
           rel="noreferrer"
           target="_blank"
           fontSize="sm"
