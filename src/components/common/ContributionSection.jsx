@@ -18,7 +18,7 @@ const ContributionSection = () => {
         <Button
           cursor="pointer"
           as="a"
-          href={`https://github.com/DavidHDev/react-bits/issues/new?title=[BUG]:+${category}/${subcategory}&labels=bug&template=bug.md`}
+          href={`https://github.com/DavidHDev/react-bits/issues/new?title=[BUG]:+${category}/${subcategory}&labels=bug&template=1-bug-report.yml`}
           rel="noreferrer"
           target="_blank"
           fontSize="sm"
