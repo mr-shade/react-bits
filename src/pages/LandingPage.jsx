@@ -66,7 +66,7 @@ const LandingPage = () => {
             <div className="divider"></div>
             <FadeContent blur duration={1000}>
               <p>
-                Handpicked animated components collection for{" "}
+                Hand-picked animated components collection for{" "}
                 <span>creative developers</span>
               </p>
             </FadeContent>
