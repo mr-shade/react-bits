@@ -11,6 +11,7 @@ interface AnimatedContentProps {
   animateOpacity?: boolean;
   scale?: number;
   threshold?: number;
+  delay?: number;
 }
 
 const AnimatedContent: React.FC<AnimatedContentProps> = ({
@@ -23,6 +24,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   animateOpacity = true,
   scale = 1,
   threshold = 0.1,
+  delay = 0,
 }) => {
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -34,8 +36,10 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
           observer.unobserve(element);
+          setTimeout(() => {
+            setInView(true);
+          }, delay);
         }
       },
       { threshold }
@@ -44,7 +48,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [threshold]);
+  }, [threshold, delay]);
 
   const directions: Record<"vertical" | "horizontal", string> = {
     vertical: "Y",
@@ -53,11 +57,16 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
 
   const springProps = useSpring({
     from: {
-      transform: `translate${directions[direction]}(${reverse ? `-${distance}px` : `${distance}px`}) scale(${scale})`,
+      transform: `translate${directions[direction]}(${
+        reverse ? `-${distance}px` : `${distance}px`
+      }) scale(${scale})`,
       opacity: animateOpacity ? initialOpacity : 1,
     },
     to: inView
-      ? { transform: "translateY(0px) scale(1)", opacity: 1 }
+      ? {
+          transform: `translate${directions[direction]}(0px) scale(1)`,
+          opacity: 1,
+        }
       : undefined,
     config,
   });

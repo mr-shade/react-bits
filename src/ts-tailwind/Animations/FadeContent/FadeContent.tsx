@@ -5,6 +5,7 @@ interface FadeContentProps {
   blur?: boolean;
   duration?: number;
   easing?: string;
+  delay?: number;
   threshold?: number;
   initialOpacity?: number;
   className?: string;
@@ -15,6 +16,7 @@ const FadeContent: React.FC<FadeContentProps> = ({
   blur = false,
   duration = 1000,
   easing = "ease-out",
+  delay = 0,
   threshold = 0.1,
   initialOpacity = 0,
   className = "",
@@ -29,8 +31,10 @@ const FadeContent: React.FC<FadeContentProps> = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
           observer.unobserve(element);
+          setTimeout(() => {
+            setInView(true);
+          }, delay);
         }
       },
       { threshold }
@@ -39,7 +43,7 @@ const FadeContent: React.FC<FadeContentProps> = ({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [threshold]);
+  }, [threshold, delay]);
 
   return (
     <div

@@ -5,12 +5,13 @@ const FadeContent = ({
   blur = false,
   duration = 1000,
   easing = 'ease-out',
+  delay = 0,
   threshold = 0.1,
   initialOpacity = 0,
   className = ''
 }) => {
   const [inView, setInView] = useState(false);
-  const ref = useRef();
+  const ref = useRef(null);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -18,8 +19,10 @@ const FadeContent = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
           observer.unobserve(ref.current);
+          setTimeout(() => {
+            setInView(true);
+          }, delay);
         }
       },
       { threshold }
@@ -28,7 +31,7 @@ const FadeContent = ({
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, [threshold]);
+  }, [threshold, delay]);
 
   return (
     <div

@@ -15,6 +15,7 @@ import { animatedContent } from '../../constants/code/Animations/animatedContent
 const AnimatedContentDemo = () => {
   const [direction, setDirection] = useState("vertical");
   const [distance, setDistance] = useState(100);
+  const [delay, setDelay] = useState(0);
   const [reverse, setReverse] = useState(false);
   const [initialOpacity, setInitialOpacity] = useState(0);
   const [animateOpacity, setAnimateOpacity] = useState(true);
@@ -37,6 +38,12 @@ const AnimatedContentDemo = () => {
       type: 'number',
       default: 100,
       description: 'Defines the distance (in pixels) the component moves during the animation.',
+    },
+    {
+      name: 'delay',
+      type: 'number',
+      default: 0,
+      description: 'Adds a delay in milliseconds before triggering the animation.',
     },
     {
       name: 'reverse',
@@ -84,6 +91,7 @@ const AnimatedContentDemo = () => {
           <AnimatedContent
             key={key}
             direction={direction}
+            delay={delay}
             distance={distance}
             reverse={reverse}
             initialOpacity={initialOpacity}
@@ -185,6 +193,27 @@ const AnimatedContentDemo = () => {
               <SliderThumb />
             </Slider>
             <Text fontSize="sm">{distance}px</Text>
+          </Flex>
+
+          <Flex gap={4} align="center" mt={4}>
+            <Text fontSize="sm">Delay:</Text>
+            <Slider
+              min={0}
+              max={2000}
+              step={100}
+              value={delay}
+              onChange={(val) => {
+                setDelay(val);
+                forceRerender();
+              }}
+              width="200px"
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <Text fontSize="sm">{delay}ms</Text>
           </Flex>
 
           <Flex gap={4} align="center" mt={4}>

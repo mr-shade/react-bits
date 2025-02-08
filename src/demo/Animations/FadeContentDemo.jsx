@@ -13,6 +13,7 @@ import { fadeContent } from '../../constants/code/Animations/fadeContentCode';
 
 const FadeDemo = () => {
   const [blur, setBlur] = useState(false);
+  const [delay, setDelay] = useState(0);
   const [duration, setDuration] = useState(1000);
   const [easing, setEasing] = useState("ease-out");
   const [threshold, setThreshold] = useState(0.1);
@@ -32,6 +33,12 @@ const FadeDemo = () => {
       type: 'number',
       default: 1000,
       description: 'Specifies the duration of the fade animation in milliseconds.',
+    },
+    {
+      name: 'delay',
+      type: 'number',
+      default: '0',
+      description: 'Adds a delay in milliseconds before triggering the animation.',
     },
     {
       name: 'easing',
@@ -67,6 +74,7 @@ const FadeDemo = () => {
             key={key}
             blur={blur}
             duration={duration}
+            delay={delay}
             easing={easing}
             threshold={threshold}
             initialOpacity={initialOpacity}
@@ -123,6 +131,27 @@ const FadeDemo = () => {
               <SliderThumb />
             </Slider>
             <Text fontSize="sm">{duration}ms</Text>
+          </Flex>
+
+          <Flex gap={4} align="center" mt={4}>
+            <Text fontSize="sm">Delay (ms):</Text>
+            <Slider
+              min={0}
+              max={2000}
+              step={100}
+              value={delay}
+              onChange={(val) => {
+                setDelay(val);
+                forceRerender();
+              }}
+              width="200px"
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <Text fontSize="sm">{delay}ms</Text>
           </Flex>
 
           <Flex gap={4} align="center" mt={4}>
