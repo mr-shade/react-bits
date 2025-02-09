@@ -66,7 +66,7 @@ const LiquidChromeDemo = () => {
           <h2 className="demo-title-extra">Options</h2>
 
           <Text fontSize="sm">Colors</Text>
-          <Flex gap={4}>
+          <Flex gap={4} wrap="wrap">
             <Flex gap={4} align="center" mt={2} background="#0D0D0D" pl={4} pr={10} py={4} borderRadius={16} position="relative">
               <Text fontSize="sm">R</Text>
               <Slider

@@ -13,6 +13,7 @@ const animations = {
   'pixel-transition': () => import("../demo/Animations/PixelTransitionDemo"),
   'image-trail': () => import("../demo/Animations/ImageTrailDemo"),
   'pixel-trail': () => import("../demo/Animations/PixelTrailDemo"),
+  'ribbons': () => import("../demo/Animations/RibbonsDemo"),
 };
 
 const textAnimations = {
