@@ -1,7 +1,7 @@
 <div align="center">
 	<br>
 	<br>
-	<img src="./src/assets/logos/reactbits-gh.svg" alt="react-bits logo" height="300">
+	<img src="./src/assets/logos/reactbits-gh.svg" alt="react-bits logo" width="1000">
 	<br>
 	<br>
 </div>
