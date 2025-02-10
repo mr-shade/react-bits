@@ -55,7 +55,7 @@ export default function Orb({
     }
     
     vec3 adjustHue(vec3 color, float hueDeg) {
-      float hueRad = hueDeg * 3.141592653589793 / 180.0;
+      float hueRad = hueDeg * 3.14159265 / 180.0;
       vec3 yiq = rgb2yiq(color);
       float cosA = cos(hueRad);
       float sinA = sin(hueRad);
@@ -65,13 +65,17 @@ export default function Orb({
       yiq.z = q;
       return yiq2rgb(yiq);
     }
-
+    
     vec3 hash33(vec3 p3) {
       p3 = fract(p3 * vec3(0.1031, 0.11369, 0.13787));
       p3 += dot(p3, p3.yxz + 19.19);
-      return -1.0 + 2.0 * fract(vec3(p3.x + p3.y, p3.x + p3.z, p3.y + p3.z) * p3.zyx);
+      return -1.0 + 2.0 * fract(vec3(
+        p3.x + p3.y,
+        p3.x + p3.z,
+        p3.y + p3.z
+      ) * p3.zyx);
     }
-
+    
     float snoise3(vec3 p) {
       const float K1 = 0.333333333;
       const float K2 = 0.166666667;
@@ -83,10 +87,12 @@ export default function Orb({
       vec3 d1 = d0 - (i1 - K2);
       vec3 d2 = d0 - (i2 - K1);
       vec3 d3 = d0 - 0.5;
-      vec4 h = max(0.6 - vec4(dot(d0, d0),
-                              dot(d1, d1),
-                              dot(d2, d2),
-                              dot(d3, d3)), 0.0);
+      vec4 h = max(0.6 - vec4(
+        dot(d0, d0),
+        dot(d1, d1),
+        dot(d2, d2),
+        dot(d3, d3)
+      ), 0.0);
       vec4 n = h * h * h * h * vec4(
         dot(d0, hash33(i)),
         dot(d1, hash33(i + i1)),
@@ -95,73 +101,60 @@ export default function Orb({
       );
       return dot(vec4(31.316), n);
     }
-
+    
     vec4 extractAlpha(vec3 colorIn) {
-      vec4 colorOut;
-      float maxValue = min(max(max(colorIn.r, colorIn.g), colorIn.b), 1.0);
-      if (maxValue > 1e-5) {
-        colorOut.rgb = colorIn.rgb * (1.0 / maxValue);
-        colorOut.a = maxValue;
-      } else {
-        colorOut = vec4(0.0);
-      }
-      return colorOut;
+      float a = max(max(colorIn.r, colorIn.g), colorIn.b);
+      return vec4(colorIn.rgb / (a + 1e-5), a);
     }
-
-    #define BG_COLOR (vec3(0.0))
-    #define time iTime
-
+    
     const vec3 baseColor1 = vec3(0.611765, 0.262745, 0.996078);
     const vec3 baseColor2 = vec3(0.298039, 0.760784, 0.913725);
     const vec3 baseColor3 = vec3(0.062745, 0.078431, 0.600000);
-
     const float innerRadius = 0.6;
     const float noiseScale = 0.65;
-
+    
     float light1(float intensity, float attenuation, float dist) {
       return intensity / (1.0 + dist * attenuation);
     }
-
+    
     float light2(float intensity, float attenuation, float dist) {
       return intensity / (1.0 + dist * dist * attenuation);
     }
-
-    void draw(out vec4 _FragColor, in vec2 uv) {
+    
+    vec4 draw(vec2 uv) {
       vec3 color1 = adjustHue(baseColor1, hue);
       vec3 color2 = adjustHue(baseColor2, hue);
       vec3 color3 = adjustHue(baseColor3, hue);
       
       float ang = atan(uv.y, uv.x);
       float len = length(uv);
-      float v0, v1, v2, v3, cl;
-      float r0, d0, n0;
-      float r, d;
+      float invLen = len > 0.0 ? 1.0 / len : 0.0;
       
-      n0 = snoise3(vec3(uv * noiseScale, time * 0.5)) * 0.5 + 0.5;
-      r0 = mix(mix(innerRadius, 1.0, 0.4), mix(innerRadius, 1.0, 0.6), n0);
-      d0 = distance(uv, r0 / len * uv);
-      v0 = light1(1.0, 10.0, d0);
+      float n0 = snoise3(vec3(uv * noiseScale, iTime * 0.5)) * 0.5 + 0.5;
+      float r0 = mix(mix(innerRadius, 1.0, 0.4), mix(innerRadius, 1.0, 0.6), n0);
+      float d0 = distance(uv, (r0 * invLen) * uv);
+      float v0 = light1(1.0, 10.0, d0);
       v0 *= smoothstep(r0 * 1.05, r0, len);
-      cl = cos(ang + time * 2.0) * 0.5 + 0.5;
+      float cl = cos(ang + iTime * 2.0) * 0.5 + 0.5;
       
-      float a = time * -1.0;
+      float a = iTime * -1.0;
       vec2 pos = vec2(cos(a), sin(a)) * r0;
-      d = distance(uv, pos);
-      v1 = light2(1.5, 5.0, d);
+      float d = distance(uv, pos);
+      float v1 = light2(1.5, 5.0, d);
       v1 *= light1(1.0, 50.0, d0);
       
-      v2 = smoothstep(1.0, mix(innerRadius, 1.0, n0 * 0.5), len);
-      v3 = smoothstep(innerRadius, mix(innerRadius, 1.0, 0.5), len);
+      float v2 = smoothstep(1.0, mix(innerRadius, 1.0, n0 * 0.5), len);
+      float v3 = smoothstep(innerRadius, mix(innerRadius, 1.0, 0.5), len);
       
       vec3 col = mix(color1, color2, cl);
       col = mix(color3, col, v0);
       col = (col + v1) * v2 * v3;
       col = clamp(col, 0.0, 1.0);
       
-      _FragColor = extractAlpha(col);
+      return extractAlpha(col);
     }
-
-    void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+    
+    vec4 mainImage(vec2 fragCoord) {
       vec2 center = iResolution.xy * 0.5;
       float size = min(iResolution.x, iResolution.y);
       vec2 uv = (fragCoord - center) / size * 2.0;
@@ -171,19 +164,16 @@ export default function Orb({
       float c = cos(angle);
       uv = vec2(c * uv.x - s * uv.y, s * uv.x + c * uv.y);
       
-      uv.x += hover * hoverIntensity * 0.1 * sin(uv.y * 10.0 + time);
-      uv.y += hover * hoverIntensity * 0.1 * sin(uv.x * 10.0 + time);
+      uv.x += hover * hoverIntensity * 0.1 * sin(uv.y * 10.0 + iTime);
+      uv.y += hover * hoverIntensity * 0.1 * sin(uv.x * 10.0 + iTime);
       
-      vec4 col;
-      draw(col, uv);
-      fragColor = col;
+      return draw(uv);
     }
-
+    
     void main() {
       vec2 fragCoord = vUv * iResolution.xy;
-      vec4 color;
-      mainImage(color, fragCoord);
-      gl_FragColor = color;
+      vec4 col = mainImage(fragCoord);
+      gl_FragColor = vec4(col.rgb * col.a, col.a);
     }
   `;
 
@@ -191,7 +181,7 @@ export default function Orb({
     const container = ctnDom.current;
     if (!container) return;
 
-    const renderer = new Renderer({ alpha: true });
+    const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     container.appendChild(gl.canvas);
@@ -220,7 +210,12 @@ export default function Orb({
 
     function resize() {
       if (!container) return;
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      const dpr = window.devicePixelRatio || 1;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      renderer.setSize(width * dpr, height * dpr);
+      gl.canvas.style.width = width + "px";
+      gl.canvas.style.height = height + "px";
       program.uniforms.iResolution.value.set(
         gl.canvas.width,
         gl.canvas.height,
@@ -271,14 +266,11 @@ export default function Orb({
       program.uniforms.hoverIntensity.value = hoverIntensity;
 
       const effectiveHover = forceHoverState ? 1 : targetHover;
-
-      program.uniforms.hover.value +=
-        (effectiveHover - program.uniforms.hover.value) * 0.1;
+      program.uniforms.hover.value += (effectiveHover - program.uniforms.hover.value) * 0.1;
 
       if (rotateOnHover && effectiveHover > 0.5) {
         currentRot += dt * rotationSpeed;
       }
-
       program.uniforms.rot.value = currentRot;
 
       renderer.render({ scene: mesh });
