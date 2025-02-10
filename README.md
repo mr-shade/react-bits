@@ -1,8 +1,4 @@
 <div align="center">
-Welcome to React Bits, the go-to open source library for high quality animated React components!
-</div>
-
-<div align="center">
 	<br>
 	<br>
 	<img src="./src/assets/logos/reactbits-logo.svg" alt="react-bits logo" height="200">
@@ -10,134 +6,53 @@ Welcome to React Bits, the go-to open source library for high quality animated R
 	<br>
 </div>
 
+<div align="center">
+  The largest & most creative library of animated React components.
+</div>
+
+<br />
+
+<div align="center">
+  <a href="https://github.com/davidhdev/react-bits/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/davidhdev/react-bits"></a>
+  <a href="https://github.com/davidhdev/react-bits/blob/main/LICENSE.md"><img alt="License" src="https://img.shields.io/badge/License-MIT-cyan.svg"></a>
+  
+</div>
+
+## Documentation
+
+Go to [reactbits.dev](https://reactbits.dev/) to view the documentation.
+
 ## About
 
-React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow. From simple text animations to complex 3D components, React Bits provides everything you need to create unique and impactful websites.
-
-The project embraces simplicity as its core philosophy—it maintains minimal dependencies and offers code that integrates seamlessly into your projects. Components often rely on zero dependencies or in some cases, a single animation library, for smooth effects and cleaner code, leaving plenty of room for customization.
+React Bits is a large collection of animated React components made to spice up your web creations. We've got animations, components, backgrounds, and awesome stuff that you won't be able to find anywhere else - all free for you to use! These components are all enhanced with customization options as props, to make it easy for you to get exactly what you need.
 
 ## Key Features
-- A variety of animated text and UI components
+- A large variaty of text animations, animations, components & backgrounds
 - Customizable and lightweight with minimal dependencies
-- Designed to integrate seamlessly with any React project
-
-## Links
-* [Official Docs](https://reactbits.dev/)
-
-## Installing Components Via CLI - <a href="https://jsrepo.dev"><img src="https://jsrepo.dev/badges/jsrepo.svg" width="50" alt="jsrepo"></a>
-
-### JavaScript (One-Time Installation)
-
-#### Vanilla CSS
-```bash
-npx jsrepo add https://reactbits.dev/default/<CategoryName>/<ComponentName>
-
-# Example: npx jsrepo add https://reactbits.dev/default/TextAnimations/SplitText
-```
-
-#### Tailwind
-```bash
-npx jsrepo add https://reactbits.dev/tailwind/<CategoryName>/<ComponentName>
-
-# Example: npx jsrepo add https://reactbits.dev/tailwind/TextAnimations/SplitText
-```
-
-### TypeScript (One-Time Installation)
-
-#### Vanilla CSS
-```bash
-npx jsrepo add https://reactbits.dev/ts/default/<CategoryName>/<ComponentName>
-
-# Example: npx jsrepo add https://reactbits.dev/ts/default/TextAnimations/SplitText
-```
-
-#### Tailwind
-```bash
-npx jsrepo add https://reactbits.dev/ts/tailwind/<CategoryName>/<ComponentName>
-
-# Example: npx jsrepo add https://reactbits.dev/ts/tailwind/TextAnimations/SplitText
-```
-
-## Full CLI Setup
-```bash
-# 1. Initialize a config file for your project
-npx jsrepo init https://reactbits.dev/default/ # css
-npx jsrepo init https://reactbits.dev/tailwind/ # tailwind
-
-# TS Support is still WIP
-npx jsrepo init https://reactbits.dev/ts/default/ # ts + css
-npx jsrepo init https://reactbits.dev/ts/tailwind/ # ts + tailwind
-
-# 2. Browse & add components from the list
-npx jsrepo add
-
-# 3. Or just add a specific component
-npx jsrepo add <CategoryName>/<ComponentName>
-
-# Optionally, install jsrepo globally to remove 'npx' from the commands
-npm i -g jsrepo
-```
-
-## Running The Project Locally
-
-#### Clone The Project (fork for contributions)
-
-```sh
-git clone https://github.com/DavidHDev/react-bits.git .
-```
-
-#### Install Dependencies
-
-```sh
-npm install
-```
-
-#### Start The Development Server
-
-```sh
-npm run dev
-```
-
-## Contributing
-
-This project is always open to improvements and contributions, you can check the [Open Issues](https://github.com/DavidHDev/react-bits/issues) if you want to contribute, and it's also possible to request to add your own improvements/ideas using the [Feature Request](https://github.com/DavidHDev/react-bits/issues/new/choose) template. Before contributing, please read the [Contribution Guide](https://github.com/DavidHDev/react-bits/blob/main/CONTRIBUTING.md) and make sure to respect the standards! Thank you for your time!
-
-## CONTENTS
-
-### TEXT ANIMATIONS
-
-- [Split Text](https://www.reactbits.dev/text-animations/split-text)
-- [Blur Text](https://www.reactbits.dev/text-animations/blur-text)
-- [Wave Text](https://www.reactbits.dev/text-animations/wave-text)
-- [Shiny Text](https://www.reactbits.dev/text-animations/shiny-text)
-- more
-
-### ANIMATIONS
-
-- [Animated Content](https://www.reactbits.dev/animations/animated-content)
-- [Fade Content](https://www.reactbits.dev/animations/fade-content)
-- [Blob Cursor](https://www.reactbits.dev/animations/blob-cursor)
-- [Follow Cursor](https://www.reactbits.dev/animations/follow-cursor)
-- [Magnet](https://www.reactbits.dev/animations/magnet)
-- more
-
-### COMPONENTS
-
-- [Stack](https://www.reactbits.dev/components/stack)
-- [Dock](https://www.reactbits.dev/components/dock)
-- [Masonry](https://www.reactbits.dev/components/masonry)
-- more
-
-### BACKGROUNDS
-
-- [Hyperspeed](https://www.reactbits.dev/backgrounds/hyperspeed)
-- [Squares](https://www.reactbits.dev/backgrounds/squares)
-- more
+- Designed to integrate seamlessly with any modern React project
+- Each component comes in 4 versions, to keep everyone happy:
+  - JS + CSS
+  - JS + Tailwind CSS
+  - TS + CSS
+  - TS + Tailwind CSS
 
 ## Maintainers
 
 [David Haz](https://github.com/DavidHDev)
 
+## Contributors
+
+<a href="https://github.com/davidhdev/react-bits/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=davidhdev/react-bits" />
+</a>
+
+## How To Contribute?
+
+Contributions are welcome! Check the [Open Issues](https://github.com/DavidHDev/react-bits/issues) to see how you can help or submit ideas using the [Feature Request template](https://github.com/DavidHDev/react-bits/issues/new?template=2-feature-request.yml). Please review the [Contribution Guide](https://github.com/DavidHDev/react-bits/blob/main/CONTRIBUTING.md) and follow our standards. Thanks for your time!
+
+## Stats
+![Alt](https://repobeats.axiom.co/api/embed/b1bf4dc0226458617adbdbf5586f2df953eb0922.svg "Repobeats analytics image")
+
 ## License
 
-MIT
+Licensed under the [MIT license](https://github.com/davidhdev/react-bits/blob/main/LICENSE.md).
