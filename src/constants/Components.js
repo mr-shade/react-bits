@@ -63,6 +63,7 @@ const backgrounds = {
   'letter-glitch': () => import("../demo/Backgrounds/LetterGlitchDemo"),
   'grid-distortion': () => import("../demo/Backgrounds/GridDistortionDemo"),
   'orb': () => import("../demo/Backgrounds/OrbDemo"),
+  'particles': () => import("../demo/Backgrounds/ParticlesDemo"),
   'liquid-chrome': () => import("../demo/Backgrounds/LiquidChromeDemo"),
 };
 
