@@ -179,9 +179,10 @@ const LandingPage = () => {
           <Flex w='100%' justifyContent="center" position="relative" top="1.6em">
             <img src={variants} />
           </Flex>
-          <Text textAlign="center" maxW='20ch' mb={6} lineHeight={1} color="#fff" fontSize="clamp(2rem, 6vw, 3rem)">
+          <Text textAlign="center" maxW='20ch' mb={4} lineHeight={1} color="#fff" fontSize="clamp(2rem, 6vw, 3rem)">
             Simply copy & paste
           </Text>
+          <Text textAlign="center" maxW={{ base: '25ch', sm: '100%' }} lineHeight={1} mb={6} fontSize="clamp(1rem, 2vw, 1.2rem)" letterSpacing='-.5px'>Pick your favourite technologies, copy, enjoy!</Text>
         </FadeContent>
 
         <FadeContent className="fade-full" blur>
