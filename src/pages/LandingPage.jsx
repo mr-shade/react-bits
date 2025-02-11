@@ -174,8 +174,8 @@ const LandingPage = () => {
 
       <Flex w="100%" justifyContent="center" alignItems="center" direction="column" mb={12} mt={12}>
         <FadeContent blur>
-          <Flex w='100%' justifyContent="center" position="relative" top="1em">
-            <Image src={variants} />
+          <Flex w='100%' justifyContent="center" position="relative" top="1.6em">
+            <img src={variants} />
           </Flex>
           <Text textAlign="center" maxW='20ch' mb={6} lineHeight={1} color="#fff" fontSize="clamp(2rem, 6vw, 3rem)">
             Simply copy & paste
@@ -214,7 +214,7 @@ const LandingPage = () => {
         <TwitterMarquee />
       </FadeContent>
 
-      <Box my="8em">
+      <Box mb="8em" mt="4em">
         <FadeContent blur>
           <Flex alignItems="center">
             Made with <Box mx={2}><FiHeart /></Box> by
