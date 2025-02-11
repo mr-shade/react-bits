@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Divider, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Icon, IconButton, Image, Spinner, Text, useDisclosure } from '@chakra-ui/react';
 import { ArrowForwardIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { TiStarFullOutline } from "react-icons/ti";
-import { getStarsCount } from '../../../utils/utils';
+import { useStars } from '../../../hooks/useStars';
 
 import Logo from '../../../assets/logos/reactbits-logo.svg';
 
@@ -12,18 +11,7 @@ import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
 
 const Nav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [stars, setStars] = useState(0);
-
-  useEffect(() => {
-    const fetchStars = async () => {
-      const count = await getStarsCount();
-      setTimeout(() => {
-        setStars(count);
-      }, 1000);
-    };
-
-    fetchStars();
-  }, []);
+  const stars = useStars();
 
   return (
     <Box zIndex={100} className='main-nav'>
@@ -50,20 +38,6 @@ const Nav = () => {
               {stars ? <BlurText delay={20} text={String(stars)} /> : <Box><Spinner boxSize={2} /></Box>}
             </Button>
           </FadeContent>
-
-          {/* <Link to="https://github.com/DavidHDev/react-bits" target='_blank' mx={2} fontWeight="bold">
-            <Flex gap={1}>
-              <img src={github} />
-              GitHub
-            </Flex>
-          </Link>
-          <Link to="/text-animations/split-text" mx={2} fontWeight="bold">
-            <Flex gap={1}>
-              <img src={docs} />
-              Docs
-            </Flex>
-
-          </Link> */}
         </Flex>
       </Flex>
 
