@@ -21,6 +21,11 @@ const ShowcasePage = () => {
       name: 'Abdullah Shafiq',
       url: 'https://resume-tex.vercel.app',
       using: '<Squares />'
+    },
+    {
+      name: 'Oscar Hernandez',
+      url: 'https://oscarhernandez.vercel.app',
+      using: '<LetterGlitch />'
     }
   ];
 
