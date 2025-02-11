@@ -25,6 +25,8 @@ const ShowcasePage = () => {
   ];
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     setTimeout(() => {
       setIsLoaded(true);
     }, 1000)

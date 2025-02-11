@@ -62,6 +62,8 @@ const LandingPage = () => {
   }, []);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setIsVisible(false);
@@ -209,7 +211,7 @@ const LandingPage = () => {
       <FadeContent blur>
         <Flex w="100%" justifyContent="center" alignItems='center' mt='4em' direction="column">
           <Text textAlign="center" lineHeight={1.6} fontSize="clamp(1.2rem, 4vw, 3rem)">Here{"'"}s what others are saying</Text>
-          <Text textAlign="center" maxW={{base: '25ch', sm: '100%'}} lineHeight={1.6} fontSize="clamp(1rem, 2vw, 1.2rem)" letterSpacing='-.5px'>They think React Bits is cool, maybe you will too!</Text>
+          <Text textAlign="center" maxW={{ base: '25ch', sm: '100%' }} lineHeight={1.6} fontSize="clamp(1rem, 2vw, 1.2rem)" letterSpacing='-.5px'>They think React Bits is cool, maybe you will too!</Text>
         </Flex>
         <TwitterMarquee />
       </FadeContent>
