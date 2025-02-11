@@ -41,8 +41,8 @@ const CliInstallation = (cliData) => {
             {[
               { label: "JavaScript (Default)", path: "default" },
               { label: "JavaScript (Tailwind)", path: "tailwind" },
-              { label: "TypeScript (Default)[WIP]", path: "ts/default" },
-              { label: "TypeScript (Tailwind)[WIP]", path: "ts/tailwind" },
+              { label: "TypeScript (Default)", path: "ts/default" },
+              { label: "TypeScript (Tailwind)", path: "ts/tailwind" },
             ].map(({ label, path }) => (
               <div key={path}>
                 <p className="demo-extra-info">{label}</p>
