@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../components/common/TabbedLayout";
-import { Box, Flex, Image, Link, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import { HeroType, PerspectiveGrid } from "../components/svg/SvgComponents";
 import { clickSpark } from "../constants/code/Animations/clickSparkCode";
 import { useMediaQuery, useSingleEffect } from "react-haiku";
