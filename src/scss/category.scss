@@ -11,50 +11,39 @@
   position: fixed;
   padding: 0 2em;
   height: 70px;
+  background: #060606;
   left: 0;
 
-  &::before {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 30%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #333);
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
-    width: 30%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, #060606);
-  }
-
   .nav-items {
+    position: relative;
     height: 70px;
     padding: 0;
     max-width: 1440px;
     margin: 0 auto;
 
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #222, transparent);
+    }
+    &::after {
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -50px;
+      z-index: -1;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(to bottom, #060606, transparent);
+    }
+
     .logo {
       position: relative;
-
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        height: 35px;
-        bottom: -35px;
-        width: 100%;
-        background: linear-gradient(to bottom, #060606, transparent);
-      }
-      &::after {
-        top: -35px;
-        background: linear-gradient(to top, #060606, transparent);
-      }
     }
   }
 }
@@ -70,7 +59,7 @@
   width: calc(100% - 200px);
   position: absolute;
   right: 0;
-  padding: 5em 0 6em 1em;
+  padding: 8em 0 6em 1em;
   min-height: 100vh;
 
   .main-category {
