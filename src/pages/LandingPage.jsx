@@ -1,14 +1,14 @@
-import Header from "../components/navs/Header/Header";
-import LandingFooter from "../components/landing/LandingFooter";
-import LandingTestimonials from "../components/landing/LandingTestimonials";
-import LandingDemo from "../components/landing/LandingDemo";
-import LandingStats from "../components/landing/LandingStats";
+import LandingHeader from "../components/landing/LandingHeader/LandingHeader";
 import LandingHero from "../components/landing/LandingHero";
+import LandingStats from "../components/landing/LandingStats";
+import LandingDemo from "../components/landing/LandingDemo";
+import LandingTestimonials from "../components/landing/LandingTestimonials";
+import LandingFooter from "../components/landing/LandingFooter";
 
 const LandingPage = () => {
   return (
     <section className="landing-wrapper">
-      <Header />
+      <LandingHeader />
       <LandingHero />
       <LandingStats />
       <LandingDemo />

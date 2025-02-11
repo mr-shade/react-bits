@@ -9,9 +9,9 @@ import docs from '../../../assets/common/icon-docs.svg';
 
 import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
 
-import './Header.css';
+import './LandingHeader.scss';
 
-const Header = () => {
+const LandingHeader = () => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const { pathname } = useLocation();
 
@@ -71,4 +71,4 @@ const Header = () => {
   );
 }
 
-export default Header;
+export default LandingHeader;

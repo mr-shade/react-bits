@@ -1,7 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import './LandingComponentNav.css';
-
-import arrow from '../../../assets/common/icon-arrow.svg';
 
 import Magnet from '../../../content/Animations/Magnet/Magnet';
 import AnimatedContent from '../../../content/Animations/AnimatedContent/AnimatedContent';
@@ -10,7 +7,10 @@ import Waves from '../../../content/Backgrounds/Waves/Waves';
 import LetterGlitch from '../../../content/Backgrounds/LetterGlitch/LetterGlitch';
 import Aurora from '../../../content/Backgrounds/Aurora/Aurora';
 
-const LandingComponentNav = () => {
+import arrow from '../../../assets/common/icon-arrow.svg';
+import './HeroShowcase.scss';
+
+const HeroShowcase = () => {
   const navigate = useNavigate();
 
   return (
@@ -54,4 +54,4 @@ const LandingComponentNav = () => {
   );
 }
 
-export default LandingComponentNav;
+export default HeroShowcase;

@@ -18,9 +18,9 @@ import { ArrowForwardIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import { Link, useLocation } from 'react-router-dom';
 
-import Logo from '../../../assets/logos/reactbits-logo.svg';
+import Logo from '../../assets/logos/reactbits-logo.svg';
 import { useRef, useState } from 'react';
-import { CATEGORIES, NEW, UPDATED } from '../../../constants/Categories';
+import { CATEGORIES, NEW, UPDATED } from '../../constants/Categories';
 
 const scrollToTop = () => window.scrollTo(0, 0);
 

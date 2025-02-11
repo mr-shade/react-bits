@@ -4,8 +4,8 @@ import { Toaster } from 'sonner'
 import { forceChakraDarkTheme } from './utils/utils';
 import { toastStyles } from './utils/customTheme';
 
-import Nav from './components/navs/DocsNavs/Nav';
-import Sidebar from './components/navs/DocsNavs/Sidebar';
+import Header from './components/navs/Header';
+import Sidebar from './components/navs/Sidebar';
 
 import LandingPage from './pages/LandingPage'
 import CategoryPage from './pages/CategoryPage'
@@ -23,7 +23,7 @@ export default function App() {
         <Route exact path="/showcase" element={<ShowcasePage />} />
         <Route path="/:category/:subcategory" element={
           <main className='app-container'>
-            <Nav />
+            <Header />
 
             <section className='category-wrapper'>
               <Sidebar />

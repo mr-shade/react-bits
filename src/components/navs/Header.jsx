@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { Box, Button, Divider, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Icon, IconButton, Image, Spinner, Text, useDisclosure } from '@chakra-ui/react';
 import { ArrowForwardIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { TiStarFullOutline } from "react-icons/ti";
-import { useStars } from '../../../hooks/useStars';
+import { useStars } from '../../hooks/useStars';
 
-import Logo from '../../../assets/logos/reactbits-logo.svg';
+import Logo from '../../assets/logos/reactbits-logo.svg';
 
-import BlurText from '../../../content/TextAnimations/BlurText/BlurText';
-import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
+import BlurText from '../../content/TextAnimations/BlurText/BlurText';
+import FadeContent from '../../content/Animations/FadeContent/FadeContent';
 
-const Nav = () => {
+const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const stars = useStars();
 
@@ -80,4 +80,4 @@ const Nav = () => {
   );
 }
 
-export default Nav;
+export default Header;

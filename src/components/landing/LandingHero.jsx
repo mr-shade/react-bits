@@ -9,8 +9,7 @@ import { useScrollVisibility } from "../../hooks/useScrollVisibility";
 
 import AnimatedContent from "../../content/Animations/AnimatedContent/AnimatedContent";
 import FadeContent from "../../content/Animations/FadeContent/FadeContent";
-import LandingComponentNav from "../navs/LandingComponentNav/LandingComponentNav";
-
+import HeroShowcase from "./HeroShowcase/HeroShowcase";
 
 import githubIcon from "../../assets/common/icon-github.svg";
 import starIcon from "../../assets/common/icon-star.svg";
@@ -34,7 +33,7 @@ const LandingHero = () => {
       </div>
 
       <div className="hero-info">
-        <LandingComponentNav />
+        <HeroShowcase />
         <div className="headline">
           <div className="landing-bottom">
             <div className="divider"></div>
