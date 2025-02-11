@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Confetti from 'react-confetti';
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-import '../css/showcase.css';
+import '../scss/showcase.scss';
 
 const ShowcasePage = () => {
   const [isLoaded, setIsLoaded] = useState(false);

@@ -1,8 +1,7 @@
 @import "tailwindcss";
-@import "./css/sidebar.css";
-@import "./css/category.css";
-@import "./css/landing.css";
-
+@import "./scss/sidebar.scss";
+@import "./scss/category.scss";
+@import "./scss/landing.scss";
 
 *,
 *::before,
@@ -32,8 +31,8 @@ input[type="color"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   padding: 0;
-  width: 60px; /* Adjust as needed */
-  height: 30px; /* Adjust as needed */
+  width: 60px;
+  height: 30px; 
   background-color: transparent;
   cursor: pointer;
 }
