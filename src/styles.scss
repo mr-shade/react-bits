@@ -1,7 +1,7 @@
 @import "tailwindcss";
-@import "./scss/sidebar.scss";
-@import "./scss/category.scss";
-@import "./scss/landing.scss";
+@import "./scss/sidebar";
+@import "./scss/category";
+@import "./scss/landing";
 
 *,
 *::before,
@@ -32,23 +32,24 @@ input[type="color"] {
   -moz-appearance: none;
   padding: 0;
   width: 60px;
-  height: 30px; 
+  height: 30px;
   background-color: transparent;
   cursor: pointer;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+  }
+
+  &::-moz-color-swatch {
+    border: none;
+  }
 }
 
-input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-  border: none;
-}
-
-input[type="color"]::-moz-color-swatch {
-  border: none;
-}
-
-.chakra-select:focus-visible, .chakra-select:focus-visible {
+.chakra-select:focus-visible {
   border-color: #00d8ff !important;
   box-shadow: 0 0 0 1px rgba(0, 216, 255, 0.5) !important;
 }
@@ -59,7 +60,7 @@ a {
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   margin: 0;
   min-width: 100%;
 }
