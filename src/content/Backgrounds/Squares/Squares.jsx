@@ -7,6 +7,7 @@ const Squares = ({
   borderColor = '#999',
   squareSize = 40,
   hoverFillColor = '#222',
+  className = ''
 }) => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
@@ -63,7 +64,7 @@ const Squares = ({
         Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height, 2)) / 2
       );
       gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      gradient.addColorStop(1, '#060606');
+      // gradient.addColorStop(1, '#060606'); uncomment for gradient
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -128,7 +129,7 @@ const Squares = ({
     };
   }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, squareSize]);
 
-  return <canvas ref={canvasRef} className="squares-canvas"></canvas>;
+  return <canvas ref={canvasRef} className={`squares-canvas ${className}`}></canvas>;
 };
 
 export default Squares;

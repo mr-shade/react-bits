@@ -3,10 +3,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   position: relative;
   overflow-x: hidden;
   padding: 0 4em;
+}
+
+.hero-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .landing-wrapper .type-logo {
@@ -18,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 90px;
 }
 
 .landing-wrapper .type-logo svg {
@@ -171,7 +179,7 @@
 }
 
 .landing-wrapper .perspective-grid::after {
-  height: 200px;
+  height: 400px;
   bottom: 0;
   background: linear-gradient(to top, #060606, transparent);
 }
@@ -308,11 +316,18 @@
   }
 }
 
+@media (max-height: 850px) {
+  .hero-content {
+    justify-content: flex-start;
+  }
+}
+
 @keyframes beamAnimation {
   0% {
     opacity: 1;
     stroke-dashoffset: 1000;
   }
+
   100% {
     opacity: 0;
     stroke-dashoffset: 0;
@@ -320,10 +335,12 @@
 }
 
 @keyframes shake {
+
   0%,
   100% {
     transform: rotate(-5deg);
   }
+
   50% {
     transform: rotate(3deg);
   }
@@ -333,7 +350,200 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* INFO */
+
+.stats-content {
+  width: 100%;
+  position: relative;
+  max-width: 1080px;
+  border-radius: 50px;
+  margin-top: 6em;
+  background-color: #060606;
+}
+
+.stats-content .inner-content {
+  height: 250px;
+  background: #060606;
+  border-radius: 25px;
+}
+
+.stats-first,
+.stats-second,
+.stats-third {
+  position: relative;
+}
+
+.stats-second {
+  border: 1px solid #00d8ff;
+}
+
+.stats-third {
+  border: 1px solid #fff;
+}
+
+.stats-first::before {
+  position: absolute;
+  z-index: 2;
+  border-radius: 25px;
+  content: '';
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(to right, #00d8ff, transparent);
+}
+
+.stats-squares {
+  opacity: 0.1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.stats-particles {
+  left: 0;
+  z-index: 3;
+  top: 0;
+  position: absolute !important;
+  border-radius: 25px !important;
+  height: 100% !important;
+}
+
+.stats-particles canvas {
+  height: 100%;
+  border-radius: 25px !important;
+}
+
+.scroll-indicator {
+  width: 1px;
+  height: 50px;
+  /* container height */
+  margin: 20px auto;
+  /* centers the indicator */
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.scroll-indicator::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #00d8ff;
+  /* adjust the color as needed */
+  animation: drawLine 2s infinite;
+}
+
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  display: flex;
+  max-width: 1440px;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.tweet-card {
+  flex: none;
+  width: 300px; /* Fixed width for each card */
+  height: 170px;
+  margin-right: 20px;
+  transition: 0.3s ease;
+}
+
+.tweet-card:hover {
+  transform: scale(1.1);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.gradient-overlay {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #060606, transparent, #060606);
+}
+
+@keyframes drawLine {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+
+  50% {
+    height: 100%;
+    opacity: 1;
+  }
+
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.demo-landing::-webkit-scrollbar {
+  display: none;
+}
+
+.demo-landing {
+  width: 100%;
+}
+
+.landing-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.landing-tabs .chakra-tabs__tablist {
+  display: flex;
+}
+
+.landing-tabs pre {
+  margin-top: 1.15em !important;
+  height: 230px !important;
+}
+
+.landing-tabs .code-copy {
+  position: absolute;
+  
+  top: 2em;
+  right: 1em;
+}
+
+.landing-tabs .demo-title {
+  display: none !important;
+}
+
+.landing-tabs .contribute-tab {
+  display: none !important;
+}
+
+.landing-tabs .cli-tab {
+  display: none !important;
+}
+
+.fade-full {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1080px;
 }

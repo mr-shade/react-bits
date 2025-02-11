@@ -6,8 +6,6 @@ import { TiStarFullOutline } from "react-icons/ti";
 import { getStarsCount } from '../../../utils/utils';
 
 import Logo from '../../../assets/logos/reactbits-logo.svg';
-import github from '../../../assets/common/icon-github.svg';
-import docs from '../../../assets/common/icon-docs.svg';
 
 import BlurText from '../../../content/TextAnimations/BlurText/BlurText';
 import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
@@ -46,14 +44,14 @@ const Nav = () => {
         {/* Links for larger screens */}
         <Flex display={{ base: 'none', md: 'flex' }} alignItems="center" gap={8}>
           <FadeContent blur>
-            <Button as="a" href='https://github.com/DavidHDev/react-bits' rel='noreferrer' target='_blank' bg="white" color="black" fontSize="xs" h={8} _hover={{ bg: 'white', transform: 'scale(0.95)' }}>
+            <Button as="a" href='https://github.com/DavidHDev/react-bits' rel='noreferrer' target='_blank' bg="white" color="black" padding="0 .6em" fontSize="xs" h={8} _hover={{ bg: 'white', transform: 'scale(0.95)' }}>
               <Text ml={1}>Star on GitHub</Text>
               <Icon ml={2} mr={0.5} as={TiStarFullOutline} />
               {stars ? <BlurText delay={20} text={String(stars)} /> : <Box><Spinner boxSize={2} /></Box>}
             </Button>
           </FadeContent>
 
-          <Link to="https://github.com/DavidHDev/react-bits" target='_blank' mx={2} fontWeight="bold">
+          {/* <Link to="https://github.com/DavidHDev/react-bits" target='_blank' mx={2} fontWeight="bold">
             <Flex gap={1}>
               <img src={github} />
               GitHub
@@ -65,7 +63,7 @@ const Nav = () => {
               Docs
             </Flex>
 
-          </Link>
+          </Link> */}
         </Flex>
       </Flex>
 

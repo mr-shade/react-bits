@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  max-width: 1440px;
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
@@ -22,11 +21,10 @@
 .showcase-wrapper .title {
   text-align: center;
   line-height: 100%;
-  font-size: 4rem;
   font-weight: 900;
+  font-size: 4rem;
   margin-bottom: 0.2em;
   margin-right: 0.2em;
-  white-space: nowrap;
 }
 
 .showcase-wrapper .title span:nth-child(3),
@@ -44,24 +42,14 @@
 
 .showcase-wrapper .grid-container {
   position: relative;
-  margin: 8em 0;
+  margin: 8em auto 8em auto;
   display: grid;
   width: 100%;
+  max-width: 1440px;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 300px;
   gap: 20px;
 }
-
-/*
-.showcase-wrapper .grid-container::before {
-  content: "";
-  width: 100%;
-  bottom: 0;
-  height: 50%;
-  background: linear-gradient(to top, #060606, transparent);
-  position: absolute;
-}
-*/
 
 .showcase-wrapper .grid-container .grid-item {
   border: 1px solid rgba(166, 166, 166, 0.1);

@@ -76,6 +76,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
         position="absolute"
         top={4}
         right={2.5}
+        className="code-copy"
         rounded="xl"
         fontWeight={500}
         backgroundColor={copied ? '#3EFF5D' : '#060606'}

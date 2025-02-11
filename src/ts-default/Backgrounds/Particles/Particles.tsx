@@ -228,7 +228,6 @@ const Particles: React.FC<ParticlesProps> = ({
     particleCount,
     particleSpread,
     speed,
-    particleColors,
     moveParticlesOnHover,
     particleHoverFactor,
     alphaParticles,

@@ -24,7 +24,7 @@ const tabStyles = {
   "&:hover": { bg: "#222" },
 };
 
-const TabbedLayout = ({ children }) => {
+const TabbedLayout = ({ children, className }) => {
   const contentMap = {
     PreviewTab: null,
     CodeTab: null,
@@ -42,7 +42,7 @@ const TabbedLayout = ({ children }) => {
   });
 
   return (
-    <Tabs mt={4} variant="unstyled" isLazy lazyBehavior="unmountOnExit">
+    <Tabs mt={4} variant="unstyled" isLazy lazyBehavior="unmountOnExit" className={className} w='100%'>
       <TabList justifyContent="space-between">
         <Flex wrap='wrap' gap='0.5rem'>
           <Tab sx={tabStyles}>
@@ -53,12 +53,12 @@ const TabbedLayout = ({ children }) => {
             <Icon as={FiCode} />
             &nbsp;Code
           </Tab>
-          <Tab sx={{ ...tabStyles, marginRight: "0.5rem" }}>
+          <Tab sx={{ ...tabStyles, marginRight: "0.5rem" }} className="cli-tab">
             <Icon as={FiTerminal} />
             &nbsp;CLI
           </Tab>
         </Flex>
-        <Tab sx={tabStyles}>
+        <Tab sx={tabStyles} className="contribute-tab">
           <Icon as={FiHeart} />
           &nbsp;Contribute
         </Tab>

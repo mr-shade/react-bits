@@ -46,7 +46,7 @@
 }
 
 .category-page {
-  width: calc(100% - 250px);
+  width: calc(100% - 200px);
   position: absolute;
   right: 0;
   padding: 5em 0 6em 1em;
