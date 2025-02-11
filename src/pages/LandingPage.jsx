@@ -136,13 +136,13 @@ const LandingPage = () => {
               </Text>
             </FadeContent>
           </Flex>
-          <Flex justifyContent="space-between" gap={6} h='250px' alignItems="center" mb={6}>
-            <Flex w='50%' h="100%" justifyContent="flex-end" alignItems="flex-start" direction="column" bg="#00d8ff" px={8} py={6} className="stats-first" borderRadius='25px'>
+          <Flex justifyContent="space-between" gap={6} alignItems="center" mb={6} direction={{ base: 'column', sm: 'row' }}>
+            <Flex w={{ base: '100%', sm: '50%' }} h="250px" justifyContent="flex-end" alignItems="flex-start" direction="column" bg="#00d8ff" px={8} py={6} className="stats-first" borderRadius='25px'>
               <Text
                 position="relative"
                 zIndex={4}
                 color="#060606"
-                fontSize="clamp(4rem, 14vw, 10rem)"
+                fontSize="clamp(4rem, 14vw, 8rem)"
                 fontWeight={900}
                 m={0}
                 lineHeight={0.9}
@@ -152,12 +152,12 @@ const LandingPage = () => {
               <Text position="relative" zIndex={2} fontSize='clamp(1rem, 2vw, 1.2rem)' color="#060606" m={0}>Components</Text>
               <Squares className="stats-squares" speed={0.2} borderColor="#060606" direction="diagonal" squareSize={40} />
             </Flex>
-            <Flex w='50%' h="100%" justifyContent="flex-end" alignItems="flex-start" direction="column" px={8} py={6} className="stats-second" borderRadius='25px'>
+            <Flex w={{ base: '100%', sm: '50%' }} h="250px" justifyContent="flex-end" alignItems="flex-start" direction="column" px={8} py={6} className="stats-second" borderRadius='25px'>
               <Text
                 position="relative"
                 zIndex={2}
                 color="#00d8ff"
-                fontSize="clamp(4rem, 14vw, 10rem)"
+                fontSize="clamp(4rem, 14vw, 8rem)"
                 fontWeight={900}
                 m={0}
                 lineHeight={0.9}
@@ -207,9 +207,9 @@ const LandingPage = () => {
 
 
       <FadeContent blur>
-        <Flex w="100%" justifyContent="center" mt='4em' direction="column">
-          <Text textAlign="center" lineHeight={1.6} fontSize="clamp(1.2rem, 3vw, 2rem)">Here{"'"}s what others are saying</Text>
-          <Text textAlign="center" lineHeight={1.6} fontSize="clamp(1.2rem, 3vw, 1.4rem)" letterSpacing='-.5px'>They think React Bits is cool, maybe you will too!</Text>
+        <Flex w="100%" justifyContent="center" alignItems='center' mt='4em' direction="column">
+          <Text textAlign="center" lineHeight={1.6} fontSize="clamp(1.2rem, 4vw, 3rem)">Here{"'"}s what others are saying</Text>
+          <Text textAlign="center" maxW={{base: '25ch', sm: '100%'}} lineHeight={1.6} fontSize="clamp(1rem, 2vw, 1.2rem)" letterSpacing='-.5px'>They think React Bits is cool, maybe you will too!</Text>
         </Flex>
         <TwitterMarquee />
       </FadeContent>
