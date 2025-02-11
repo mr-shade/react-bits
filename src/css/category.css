@@ -9,11 +9,34 @@
   background: linear-gradient(to bottom, #060606, transparent);
   width: 100%;
   position: fixed;
-  padding: 0 4em;
+  padding: 0 2em;
+  height: 70px;
   left: 0;
 }
 
+.main-nav::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #333);
+}
+
+.main-nav::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, #060606);
+}
+
 .main-nav .nav-items {
+  height: 70px;
   padding: 0;
   max-width: 1440px;
   margin: 0 auto;

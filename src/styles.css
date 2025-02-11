@@ -68,7 +68,7 @@ body {
 .app-container {
   min-height: 100vh;
   display: flex;
-  padding: 0 4em;
+  padding: 0 2em;
 }
 
 .back-to-top {
