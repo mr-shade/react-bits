@@ -5,10 +5,10 @@ import AnimatedContent from '../../../content/Animations/AnimatedContent/Animate
 import Squares from '../../../content/Backgrounds/Squares/Squares';
 import Waves from '../../../content/Backgrounds/Waves/Waves';
 import LetterGlitch from '../../../content/Backgrounds/LetterGlitch/LetterGlitch';
-import Aurora from '../../../content/Backgrounds/Aurora/Aurora';
 
 import arrow from '../../../assets/common/icon-arrow.svg';
 import './HeroShowcase.scss';
+import MetaBalls from '../../../content/Animations/MetaBalls/MetaBalls';
 
 const HeroShowcase = () => {
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ const HeroShowcase = () => {
   return (
     <nav className="component-nav-container">
       <AnimatedContent reverse initialOpacity={0}>
-        <div className="circle feat-1" onClick={() => navigate('/backgrounds/aurora')}>
-          <Aurora speed={2} colorStops={['#ff87b2', '#ff87b2', '#ff87b2']} />
+        <div className="circle feat-1" onClick={() => navigate('/animations/meta-balls')}>
+          <MetaBalls color='#ff87b2' cursorBallColor='#ff87b2' />
         </div>
       </AnimatedContent>
       <AnimatedContent reverse initialOpacity={0}>
