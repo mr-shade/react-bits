@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import "./scss/misc";
-@import "./scss/sidebar";
-@import "./scss/category";
-@import "./scss/landing";
+@import "./css/misc.css";
+@import "./css/sidebar.css";
+@import "./css/category.css";
+@import "./css/landing.css";
 
 *,
 *::before,
@@ -36,18 +36,18 @@ input[type="color"] {
   height: 30px;
   background-color: transparent;
   cursor: pointer;
+}
 
-  &::-webkit-color-swatch-wrapper {
-    padding: 0;
-  }
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
 
-  &::-webkit-color-swatch {
-    border: none;
-  }
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
 
-  &::-moz-color-swatch {
-    border: none;
-  }
+input[type="color"]::-moz-color-swatch {
+  border: none;
 }
 
 .chakra-select:focus-visible {

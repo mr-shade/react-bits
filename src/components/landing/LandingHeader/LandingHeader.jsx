@@ -9,7 +9,7 @@ import docs from '../../../assets/common/icon-docs.svg';
 
 import FadeContent from '../../../content/Animations/FadeContent/FadeContent';
 
-import './LandingHeader.scss';
+import './LandingHeader.css';
 
 const LandingHeader = () => {
   const isMobile = useMediaQuery('(max-width: 1024px)');

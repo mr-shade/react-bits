@@ -28,7 +28,7 @@ const HyperspeedDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" minH={500} cursor="pointer" mb={4}>
+        <Box position="relative" className="demo-container" h={500} cursor="pointer" p={0} mb={4}>
           <Text background={'linear-gradient(to bottom, #444, #111)'} backgroundClip="text" position="absolute" fontWeight={900} top={6} fontSize='4rem'>Click Me</Text>
           <Hyperspeed key={key} effectOptions={hyperspeedPresets[activePreset]} />
         </Box>

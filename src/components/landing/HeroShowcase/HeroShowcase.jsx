@@ -7,7 +7,7 @@ import Waves from '../../../content/Backgrounds/Waves/Waves';
 import LetterGlitch from '../../../content/Backgrounds/LetterGlitch/LetterGlitch';
 
 import arrow from '../../../assets/common/icon-arrow.svg';
-import './HeroShowcase.scss';
+import './HeroShowcase.css';
 import MetaBalls from '../../../content/Animations/MetaBalls/MetaBalls';
 
 const HeroShowcase = () => {

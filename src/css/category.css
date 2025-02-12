@@ -13,39 +13,40 @@
   height: 70px;
   background: #060606;
   left: 0;
+}
 
-  .nav-items {
-    position: relative;
-    height: 70px;
-    padding: 0;
-    max-width: 1440px;
-    margin: 0 auto;
+.main-nav .nav-items {
+  position: relative;
+  height: 70px;
+  padding: 0;
+  max-width: 1440px;
+  margin: 0 auto;
+}
 
-    &::before {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #222, transparent);
-    }
-    &::after {
-      pointer-events: none;
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: -50px;
-      z-index: -1;
-      width: 100%;
-      height: 50px;
-      background: linear-gradient(to bottom, #060606, transparent);
-    }
+.main-nav .nav-items::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #222, transparent);
+}
 
-    .logo {
-      position: relative;
-    }
-  }
+.main-nav .nav-items::after {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  z-index: -1;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, #060606, transparent);
+}
+
+.main-nav .nav-items .logo {
+  position: relative;
 }
 
 .category-name {
@@ -61,22 +62,23 @@
   right: 0;
   padding: 8em 0 6em 1em;
   min-height: 100vh;
+}
 
-  .main-category {
-    text-transform: uppercase;
-    opacity: 0.5;
-    letter-spacing: -0.5px;
-    font-size: 1rem;
-    font-weight: 300;
-    margin: 0;
-  }
-  .sub-category {
-    margin-bottom: 0.5em;
-    line-height: 1em;
-    font-size: 4.5rem;
-    color: #fff;
-    font-weight: 900;
-  }
+.category-page .main-category {
+  text-transform: uppercase;
+  opacity: 0.5;
+  letter-spacing: -0.5px;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.category-page .sub-category {
+  margin-bottom: 0.5em;
+  line-height: 1em;
+  font-size: 4.5rem;
+  color: #fff;
+  font-weight: 900;
 }
 
 .code-highlighter {
@@ -84,13 +86,14 @@
   border-radius: 20px !important;
   background: #060606 !important;
   font-size: 14px !important;
+}
 
-  .language-bash {
-    color: #b6b6b6 !important;
-  }
-  &:has(.language-bash) {
-    padding: 1.25em !important;
-  }
+.code-highlighter .language-bash {
+  color: #b6b6b6 !important;
+}
+
+.code-highlighter:has(.language-bash) {
+  padding: 1.25em !important;
 }
 
 .demo-container {
@@ -122,15 +125,15 @@ div:has(> .props-table) {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  .rotating-text-demo {
-    display: inline-block;
-    color: #060606;
-    background-color: #00f0ff;
-    padding: 0 0.4em;
-    border-radius: 15px;
-    transition: width 0.3s ease;
-  }
+.rotating-text-demo-container .rotating-text-demo {
+  display: inline-block;
+  color: #060606;
+  background-color: #00f0ff;
+  padding: 0 0.4em;
+  border-radius: 15px;
+  transition: width 0.3s ease;
 }
 
 .ballpit-demo {
@@ -183,25 +186,26 @@ div:has(> .props-table) {
   padding: 0.4em 1.2em;
   border-radius: 50px;
   transition: 0.3s ease;
+}
 
-  &:hover {
-    background-color: #222;
-  }
+.shiny-button:hover {
+  background-color: #222;
 }
 
 .demo-title {
   font-weight: bolder;
   margin-top: 0.5em;
   font-size: 2rem;
+}
 
-  span {
-    font-size: 0.8rem;
-    color: #a1a1aa;
-    font-weight: 500;
-  }
-  &::first-letter {
-    text-transform: uppercase;
-  }
+.demo-title span {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+  font-weight: 500;
+}
+
+.demo-title::first-letter {
+  text-transform: uppercase;
 }
 
 .demo-title-extra,
@@ -230,13 +234,14 @@ div:has(> .props-table) {
   background: linear-gradient(to bottom, #111, #060606) !important;
   border: 1px solid #222;
   transition: 0.5s ease;
+}
 
-  span {
-    color: #a1a1aa;
-  }
-  &:hover {
-    color: #00f0ff;
-  }
+.contribute-button span {
+  color: #a1a1aa;
+}
+
+.contribute-button:hover {
+  color: #00f0ff;
 }
 
 .demo-details {
@@ -244,21 +249,21 @@ div:has(> .props-table) {
   margin: 0 0 1em;
   display: flex;
   gap: 0.3em;
+}
 
-  span {
-    background-color: #222;
-    white-space: nowrap;
-    color: #fff;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    padding: 0.5em 1em;
-    transition: 0.3s ease;
+.demo-details span {
+  background-color: #222;
+  white-space: nowrap;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  padding: 0.5em 1em;
+  transition: 0.3s ease;
+}
 
-    &:hover {
-      cursor: pointer;
-      background-color: #111;
-    }
-  }
+.demo-details span:hover {
+  cursor: pointer;
+  background-color: #111;
 }
 
 .demo-extra-info {
@@ -269,10 +274,8 @@ div:has(> .props-table) {
   color: #a1a1aa;
 }
 
-.jsrepo-info {
-  a {
-    text-decoration: underline;
-  }
+.jsrepo-info a {
+  text-decoration: underline;
 }
 
 .cli-divider {
@@ -281,49 +284,52 @@ div:has(> .props-table) {
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, transparent, #222, transparent);
-
-  &::before {
-    content: "Or";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #060606;
-    padding: 0 1em;
-    color: #a1a1aa;
-  }
 }
 
-.coming-soon {
-  a {
-    color: #00f0ff;
-    text-decoration: underline;
-  }
+.cli-divider::before {
+  content: "Or";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #060606;
+  padding: 0 1em;
+  color: #a1a1aa;
+}
+
+.coming-soon a {
+  color: #00f0ff;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 767px) {
   .category-wrapper {
     position: static;
   }
+
   .category-page {
     width: 100%;
     padding: 6em 1em 0;
-
-    .main-category {
-      font-size: 1rem;
-    }
-    .sub-category {
-      font-size: 3rem;
-    }
   }
+
+  .category-page .main-category {
+    font-size: 1rem;
+  }
+
+  .category-page .sub-category {
+    font-size: 3rem;
+  }
+
   .split-text-demo,
   .blur-text-demo {
     font-size: 2rem;
     font-weight: bolder;
   }
+
   .decrypted-text {
     font-size: 1rem;
   }
+
   .variable-proximity-demo {
     font-size: 1.6rem !important;
   }
