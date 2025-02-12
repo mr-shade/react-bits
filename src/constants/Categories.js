@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Orb', 'Particles', 'Ribbons', 'Iridescence', 'Infinite Menu', 'Flying Posters', 'Pixel Trail', 'Circular Gallery', 'Aurora', 'Liquid Chrome'];
+export const NEW = ['Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls'];
 export const UPDATED = ['Dock'];
 
 // Used for main sidebar navigation
@@ -45,6 +45,7 @@ export const CATEGORIES = [
       'Image Trail',
       'Ribbons',
       'Splash Cursor',
+      'Meta Balls',
       'Follow Cursor',
       'Blob Cursor',
       // 'Persistent Drag', 
