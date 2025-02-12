@@ -7,7 +7,7 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 
-import RotatingText from "../../ts-default/TextAnimations/RotatingText/RotatingText";
+import RotatingText from "../../content/TextAnimations/RotatingText/RotatingText";
 import { rotatingText } from "../../constants/code/TextAnimations/rotatingTextCode";
 
 const RotatingTextDemo = () => {
@@ -126,9 +126,9 @@ const RotatingTextDemo = () => {
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={400} maxH={400} overflow="hidden">
-          <div className="w-full h-full text-2xl sm:text-3xl md:text-5xl flex flex-row items-center justify-center dark:text-muted text-foreground font-light overflow-hidden p-12 sm:p-20 md:p-24">
+          <div className="rotating-text-demo">
             <LayoutGroup>
-              <motion.p className="flex whitespace-pre font-[900]" layout>
+              <motion.p className="rotating-text-ptag" layout>
                 <motion.span
                   className="pt-0.5 sm:pt-1 md:pt-2"
                   layout
@@ -138,13 +138,13 @@ const RotatingTextDemo = () => {
                 </motion.span>
                 <RotatingText
                   texts={words}
-                  mainClassName="px-2 sm:px-2 md:px-3 bg-cyan-300 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                  mainClassName="rotating-text-main"
                   staggerFrom={"last"}
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   exit={{ y: "-120%" }}
                   staggerDuration={0.025}
-                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  splitLevelClassName="rotating-text-split"
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
                   rotationInterval={2000}
                 />
