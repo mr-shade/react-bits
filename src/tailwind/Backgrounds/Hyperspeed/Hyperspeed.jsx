@@ -1084,7 +1084,7 @@ const Hyperspeed = ({ effectOptions = {
   }, []);
 
   return (
-    <div id="lights" className="w-full h-full overflow-hidden absolute" ref={hyperspeed}></div>
+    <div id="lights" className="w-full h-full" ref={hyperspeed}></div>
   );
 }
 

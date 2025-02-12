@@ -9,7 +9,7 @@ import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";
 
-import Hyperspeed from "../../ts-tailwind/Backgrounds/Hyperspeed/Hyperspeed";
+import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
 import { hyperspeed } from '../../constants/code/Backgrounds/hyperspeedCode';
 
 const HyperspeedDemo = () => {

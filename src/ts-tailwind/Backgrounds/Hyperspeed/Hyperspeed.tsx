@@ -1273,7 +1273,7 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
   return (
     <div
       id="lights"
-      className="w-full h-full overflow-hidden absolute"
+      className="w-full h-full"
       ref={hyperspeed}
     ></div>
   );
