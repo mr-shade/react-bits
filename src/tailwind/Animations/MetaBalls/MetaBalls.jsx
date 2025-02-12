@@ -108,7 +108,7 @@ const MetaBalls = ({
   cursorBallSize = 3,
   cursorBallColor = "#ffffff",
 }) => {
-  const containerRef = useRef < HTMLDivElement > (null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
