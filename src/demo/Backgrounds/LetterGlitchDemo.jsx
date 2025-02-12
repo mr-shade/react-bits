@@ -9,6 +9,7 @@ import PropTable from "../../components/common/PropTable";
 
 import LetterGlitch from "../../content/Backgrounds/LetterGlitch/LetterGlitch";
 import { letterGlitch } from "../../constants/code/Backgrounds/letterGlitchCode";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const LetterGlitchDemo = () => {
   const [smooth, setSmooth] = useState(true);
@@ -17,6 +18,8 @@ const LetterGlitchDemo = () => {
   const [showCenterText, setShowCenterText] = useState(true);
   const [showCenterVignette, setShowCenterVignette] = useState(true);
   const [showOuterVignette, setShowOuterVignette] = useState(false);
+
+  const [key, forceRerender] = useForceRerender();
 
   const propData = [
     {
@@ -56,6 +59,7 @@ const LetterGlitchDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden" p={0}>
           <LetterGlitch
+            key={key}
             glitchColors={colors}
             glitchSpeed={speed}
             centerVignette={showCenterVignette}
@@ -145,6 +149,7 @@ const LetterGlitchDemo = () => {
               h={8}
               onClick={() => {
                 setColors([randomHex(), randomHex(), randomHex()])
+                forceRerender();
               }}
             >
               Randomize Colors
