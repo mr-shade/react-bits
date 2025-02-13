@@ -50,6 +50,7 @@ const components = {
   'flowing-menu': () => import("../demo/Components/FlowingMenuDemo"),
   'circular-gallery': () => import("../demo/Components/CircularGalleryDemo"),
   'stepper': () => import("../demo/Components/StepperDemo"),
+  'carousel': () => import("../demo/Components/CarouselDemo"),
 };
 
 const backgrounds = {
