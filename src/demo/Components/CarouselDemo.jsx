@@ -17,7 +17,7 @@ const CarouselDemo = () => {
   const [autoplayDelay, setAutoplayDelay] = useState(3000);
   const [pauseOnHover, setPauseOnHover] = useState(false);
   const [loop, setLoop] = useState(false);
-  const [round, setRound] = useState(true);
+  const [round, setRound] = useState(false);
 
   const [key, forceRerender] = useForceRerender();
 
