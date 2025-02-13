@@ -2,7 +2,7 @@
 .carousel-container {
   position: relative;
   overflow: hidden;
-  border: 1px solid #222;
+  border: 1px solid #555;
   border-radius: 24px;
   padding: 16px;
   /* This padding is taken into account for item width */
@@ -23,9 +23,9 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  border: 1px solid #222;
+  border: 1px solid #555;
   border-radius: calc(var(--outer-r) - var(--p-distance));
-  background-color: #222;
+  background-color: #0D0D0D;
   overflow: hidden;
   cursor: grab;
 }
@@ -35,12 +35,14 @@
 }
 
 .carousel-container.round {
-  border: 1px solid #fff;
+  border: 1px solid #555;
 }
 
 .carousel-item.round {
-  background-color: #060606;
-  border: none;
+  background-color: #0D0D0D;
+  position: relative;
+  bottom: .1em;
+  border: 1px solid #555;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -80,13 +82,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #060606;
+  background-color: #fff;
 }
 
 .carousel-icon {
   height: 16px;
   width: 16px;
-  color: #fff;
+  color: #060606;
 }
 
 .carousel-item-content {

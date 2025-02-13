@@ -9,6 +9,8 @@ import p4 from "../../assets/photos/4.jpg";
 import p5 from "../../assets/photos/5.jpg";
 import p6 from "../../assets/photos/6.jpg";
 import p7 from "../../assets/photos/7.jpg";
+import p8 from "../../assets/photos/8.jpg";
+import p9 from "../../assets/photos/9.jpg";
 
 function wrap(min, max, value) {
   const range = max - min;
@@ -20,10 +22,10 @@ const MotionDiv = motion.div;
 const defaultTweets = [
   {
     photo: p1,
-    username: "@Fernando_Her85",
-    name: "Fernando",
-    text: "Para los que trabajan en React, tírenle un ojo a este recurso!",
-    link: "https://x.com/Fernando_Her85/status/1885371613513744474"
+    username: "@GibsonSMurray",
+    name: "Gibson",
+    text: "reactbits.dev has got to be the most artistic ui component lib I've seen in a while 🤌",
+    link: "https://x.com/GibsonSMurray/status/1889909058838339626"
   },
   {
     photo: p2,
@@ -34,10 +36,10 @@ const defaultTweets = [
   },
   {
     photo: p3,
-    username: "@Traccey001",
-    name: "Tracy💻",
-    text: "This React library is absolutely amazing!!!",
-    link: "https://x.com/Traccey001/status/1875450691805966422"
+    username: "@Logreg_n_coffee",
+    name: "Rui",
+    text: "Literally the coolest react library in React",
+    link: "https://x.com/Logreg_n_coffee/status/1889573533425991992",
   },
   {
     photo: p4,
@@ -66,6 +68,20 @@ const defaultTweets = [
     name: "Maurício Pradella ⚡️",
     text: "Just fell in love with React Bits",
     link: "https://x.com/pradella/status/1884584121340457163"
+  },
+  {
+    photo: p8,
+    username: "@Fernando_Her85",
+    name: "Fernando",
+    text: "Para los que trabajan en React, tírenle un ojo a este recurso!",
+    link: "https://x.com/Fernando_Her85/status/1885371613513744474"
+  },
+  {
+    photo: p9,
+    username: "@Traccey001",
+    name: "Tracy💻",
+    text: "This React library is absolutely amazing!!!",
+    link: "https://x.com/Traccey001/status/1875450691805966422"
   }
 ];
 
@@ -89,7 +105,7 @@ const Card = ({ tweet, rotation, isFirst, onPause, onResume }) => (
     onMouseEnter={onPause}
     onMouseLeave={onResume}
   >
-    <Flex gap={6} alignItems="center" mb={6}>
+    <Flex gap={4} alignItems="center" mb={6}>
       <Image src={tweet.photo} alt={tweet.username} borderRadius="full" boxSize="50px" />
       <Flex direction="column">
         <Text fontWeight={900}>{tweet.name}</Text>
