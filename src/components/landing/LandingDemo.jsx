@@ -1,13 +1,12 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../common/TabbedLayout";
-import { clickSpark } from "../../constants/code/Animations/clickSparkCode";
+import { CodeTab, PreviewTab, TabbedLayout } from "../common/TabbedLayout";
 
 import FadeContent from "../../content/Animations/FadeContent/FadeContent";
-import ClickSpark from "../../content/Animations/ClickSpark/ClickSpark";
-import CliInstallation from "../code/CliInstallation";
 import CodeExample from "../code/CodeExample";
 
 import variants from "../../assets/common/variants.svg";
+import Iridescence from "../../content/Backgrounds/Iridescence/Iridescence";
+import { iridescenceMock } from "../../constants/code/Backgrounds/iridescenceCode";
 
 const LandingDemo = () => (
   <Flex w="100%" justifyContent="center" alignItems="center" direction="column" mb={12} mt={12}>
@@ -50,25 +49,24 @@ const LandingDemo = () => (
               maxW={1080}
               overflow="hidden"
             >
-              <ClickSpark />
+              <Iridescence mouseReact={false} color={[0, 1, 1]} />
               <Text
                 position="absolute"
                 fontWeight={900}
                 fontSize="2rem"
+                mixBlendMode={"color-burn"}
+                letterSpacing={-2}
                 textAlign="center"
-                color="#222"
+                color="#555"
                 userSelect="none"
               >
-                Click Around
+                {"<Iridescence />"}
               </Text>
             </Box>
           </PreviewTab>
           <CodeTab>
-            <CodeExample codeObject={clickSpark} />
+            <CodeExample codeObject={iridescenceMock} />
           </CodeTab>
-          <CliTab>
-            <CliInstallation {...clickSpark} />
-          </CliTab>
         </TabbedLayout>
       </Flex>
     </FadeContent>
