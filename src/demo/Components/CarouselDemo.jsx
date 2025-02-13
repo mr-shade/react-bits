@@ -94,7 +94,7 @@ const CarouselDemo = () => {
 
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Width</Text>
-            <Slider min={250} max={400} step={10} value={width} onChange={(val) => { setWidth(val); forceRerender(); }} width="140px">
+            <Slider min={250} max={330} step={10} value={width} onChange={(val) => { setWidth(val); forceRerender(); }} width="140px">
               <SliderTrack>
                 <SliderFilledTrack />
               </SliderTrack>
