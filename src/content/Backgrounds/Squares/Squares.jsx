@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import './Squares.css';
 
 const Squares = ({
@@ -14,7 +14,7 @@ const Squares = ({
   const numSquaresX = useRef();
   const numSquaresY = useRef();
   const gridOffset = useRef({ x: 0, y: 0 });
-  const [hoveredSquare, setHoveredSquare] = useState(null);
+  const hoveredSquare = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,9 +42,9 @@ const Squares = ({
           const squareY = y - (gridOffset.current.y % squareSize);
 
           if (
-            hoveredSquare &&
-            Math.floor((x - startX) / squareSize) === hoveredSquare.x &&
-            Math.floor((y - startY) / squareSize) === hoveredSquare.y
+            hoveredSquare.current &&
+            Math.floor((x - startX) / squareSize) === hoveredSquare.current.x &&
+            Math.floor((y - startY) / squareSize) === hoveredSquare.current.y
           ) {
             ctx.fillStyle = hoverFillColor;
             ctx.fillRect(squareX, squareY, squareSize, squareSize);
@@ -61,10 +61,10 @@ const Squares = ({
         0,
         canvas.width / 2,
         canvas.height / 2,
-        Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height, 2)) / 2
+        Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2
       );
       gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      // gradient.addColorStop(1, '#060606'); uncomment for gradient
+      // gradient.addColorStop(1, '#060606'); // uncomment for gradient
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -97,7 +97,6 @@ const Squares = ({
       requestRef.current = requestAnimationFrame(updateAnimation);
     };
 
-    // Track mouse hover
     const handleMouseMove = (event) => {
       const rect = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
@@ -109,11 +108,17 @@ const Squares = ({
       const hoveredSquareX = Math.floor((mouseX + gridOffset.current.x - startX) / squareSize);
       const hoveredSquareY = Math.floor((mouseY + gridOffset.current.y - startY) / squareSize);
 
-      setHoveredSquare({ x: hoveredSquareX, y: hoveredSquareY });
+      if (
+        !hoveredSquare.current ||
+        hoveredSquare.current.x !== hoveredSquareX ||
+        hoveredSquare.current.y !== hoveredSquareY
+      ) {
+        hoveredSquare.current = { x: hoveredSquareX, y: hoveredSquareY };
+      }
     };
 
     const handleMouseLeave = () => {
-      setHoveredSquare(null);
+      hoveredSquare.current = null;
     };
 
     canvas.addEventListener('mousemove', handleMouseMove);
@@ -127,7 +132,7 @@ const Squares = ({
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, squareSize]);
+  }, [direction, speed, borderColor, hoverFillColor, squareSize]);
 
   return <canvas ref={canvasRef} className={`squares-canvas ${className}`}></canvas>;
 };
