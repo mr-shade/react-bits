@@ -1,4 +1,4 @@
-import { useRef, useEffect, MutableRefObject } from 'react';
+import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
 const vertexShader = `
@@ -102,7 +102,8 @@ class AsciiFilter {
             this.context.imageSmoothingEnabled = false;
         }
 
-        document.addEventListener('mousemove', (e) => this.onMouseMove(e), false);
+        this.onMouseMove = this.onMouseMove.bind(this);
+        document.addEventListener('mousemove', this.onMouseMove);
     }
 
     setSize(width: number, height: number) {
@@ -205,6 +206,10 @@ class AsciiFilter {
             this.pre.innerHTML = str;
         }
     }
+
+    dispose() {
+        document.removeEventListener('mousemove', this.onMouseMove);
+    }
 }
 
 interface CanvasTxtOptions {
@@ -303,6 +308,7 @@ class CanvAscii {
     renderer!: THREE.WebGLRenderer;
     filter!: AsciiFilter;
     center!: { x: number; y: number };
+    animationFrameId: number = 0;
 
     constructor(
         { text, asciiFontSize, textFontSize, textColor, planeBaseHeight, enableWaves }: CanvAsciiOptions,
@@ -325,6 +331,8 @@ class CanvAscii {
 
         this.scene = new THREE.Scene();
         this.mouse = { x: 0, y: 0 };
+
+        this.onMouseMove = this.onMouseMove.bind(this);
 
         this.setMesh();
         this.setRenderer();
@@ -378,8 +386,8 @@ class CanvAscii {
         this.container.appendChild(this.filter.domElement);
         this.setSize(this.width, this.height);
 
-        this.container.addEventListener('mousemove', (e) => this.onMouseMove(e), false);
-        this.container.addEventListener('touchmove', (e) => this.onMouseMove(e), false);
+        this.container.addEventListener('mousemove', this.onMouseMove);
+        this.container.addEventListener('touchmove', this.onMouseMove);
     }
 
     setSize(w: number, h: number) {
@@ -407,8 +415,11 @@ class CanvAscii {
     }
 
     animate() {
-        requestAnimationFrame(() => this.animate());
-        this.render();
+        const animateFrame = () => {
+            this.animationFrameId = requestAnimationFrame(animateFrame);
+            this.render();
+        };
+        animateFrame();
     }
 
     render() {
@@ -431,8 +442,31 @@ class CanvAscii {
         this.mesh.rotation.y += (y - this.mesh.rotation.y) * 0.05;
     }
 
+    clear() {
+        this.scene.traverse((object) => {
+            const obj = object as unknown as THREE.Mesh
+            if (!obj.isMesh) return;
+            [obj.material].flat().forEach((material) => {
+                material.dispose();
+                Object.keys(material).forEach((key) => {
+                    const matProp = material[key as keyof typeof material];
+                    if (matProp && typeof matProp === 'object' && 'dispose' in matProp && typeof matProp.dispose === 'function') {
+                        matProp.dispose();
+                    }
+                });
+            });
+            obj.geometry.dispose();
+        })
+        this.scene.clear();
+    }
+
     dispose() {
+        cancelAnimationFrame(this.animationFrameId);
+        this.filter.dispose();
         this.container.removeChild(this.filter.domElement);
+        this.container.removeEventListener('mousemove', this.onMouseMove);
+        this.container.removeEventListener('touchmove', this.onMouseMove);
+        this.clear();
         this.renderer.dispose();
     }
 }
