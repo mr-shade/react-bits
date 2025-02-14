@@ -31,6 +31,7 @@ const textAnimations = {
   'falling-text': () => import("../demo/TextAnimations/FallingTextDemo"),
   'rotating-text': () => import("../demo/TextAnimations/RotatingTextDemo"),
   'circular-text': () => import("../demo/TextAnimations/CircularTextDemo"),
+  'scroll-velocity': () => import("../demo/TextAnimations/ScrollVelocityDemo"),
 };
 
 const components = {

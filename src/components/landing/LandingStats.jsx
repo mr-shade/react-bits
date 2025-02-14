@@ -50,7 +50,7 @@ const LandingStats = () => (
             m={0}
             lineHeight={0.9}
           >
-            <CountUp to={50} />+
+            <CountUp to={60} />+
           </Text>
           <Text
             position="relative"

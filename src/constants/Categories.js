@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Circular Text', 'Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel'];
+export const NEW = ['Circular Text', 'Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel', 'Scroll Velocity'];
 export const UPDATED = ['Dock'];
 
 // Used for main sidebar navigation
@@ -18,6 +18,7 @@ export const CATEGORIES = [
       'True Focus',
       'ASCII Text',
       'Rotating Text',
+      'Scroll Velocity',
       // 'Flip Text',
       // 'Word Cloud',
       'Variable Proximity',
