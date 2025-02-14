@@ -19,7 +19,6 @@ import useForceRerender from "../../hooks/useForceRerender";
 
 import ASCIIText from "../../content/TextAnimations/ASCIIText/ASCIIText";
 import { asciiText } from "../../constants/code/TextAnimations/asciiTextCode";
-import { WarningTwoIcon } from "@chakra-ui/icons";
 
 const propData = [
   {
@@ -151,10 +150,6 @@ const ASCIITextDemo = () => {
             </FormControl>
           </Flex>
         </Box>
-
-        <p className="demo-extra-info" style={{ marginTop: "1rem" }}>
-          <WarningTwoIcon position="relative" />Warning: the demo page can get laggy from too many re-renders!
-        </p>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={dependencyList} />
