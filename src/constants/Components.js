@@ -30,6 +30,7 @@ const textAnimations = {
   'ascii-text': () => import("../demo/TextAnimations/ASCIITextDemo"),
   'falling-text': () => import("../demo/TextAnimations/FallingTextDemo"),
   'rotating-text': () => import("../demo/TextAnimations/RotatingTextDemo"),
+  'circular-text': () => import("../demo/TextAnimations/CircularTextDemo"),
 };
 
 const components = {

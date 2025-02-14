@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel'];
+export const NEW = ['Circular Text', 'Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel'];
 export const UPDATED = ['Dock'];
 
 // Used for main sidebar navigation
@@ -9,6 +9,7 @@ export const CATEGORIES = [
     subcategories: [
       'Split Text',
       'Blur Text',
+      'Circular Text',
       'Shiny Text',
       'Text Pressure',
       'Gradient Text',
