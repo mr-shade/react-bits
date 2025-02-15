@@ -59,23 +59,28 @@ const ShinyTextDemo = () => {
           <ShinyText text={speed < 2.5 ? '🐎 This is fast!' : '🐌 This is slow!'} disabled={false} speed={speed} className="shiny-text-demo" />
         </Box>
 
-        <Flex gap={4} align="center" mt={4}>
-          <Text fontSize="sm">Animation Speed (s):</Text>
-          <Slider
-            min={1}
-            max={5}
-            step={0.1}
-            value={speed}
-            onChange={(val) => setSpeed(val)}
-            width="200px"
-          >
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-          <Text fontSize="sm">{speed}s</Text>
-        </Flex>
+        <div className="preview-options">
+          <h2 className="demo-title-extra">Options</h2>
+          <Flex gap={4} align="center" mt={4}>
+            <Text fontSize="sm">Animation Speed (s):</Text>
+            <Slider
+              min={1}
+              max={5}
+              step={0.1}
+              value={speed}
+              onChange={(val) => setSpeed(val)}
+              width="200px"
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <Text fontSize="sm">{speed}s</Text>
+          </Flex>
+        </div>
+
+
 
         <PropTable data={propData} />
       </PreviewTab>

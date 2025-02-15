@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from '../../components/code/CodeExample';
@@ -12,15 +12,21 @@ import { decayCard } from '../../constants/code/Components/decayCardCode';
 const DecayCardDemo = () => {
   const propData = [
     {
+      name: 'children',
+      type: 'ReactNode',
+      default: '',
+      description: 'The content (JSX) to be rendered inside the card.',
+    },
+    {
       name: 'width',
       type: 'number',
-      default: 200,
+      default: '200',
       description: 'The width of the card in pixels.',
     },
     {
       name: 'height',
       type: 'number',
-      default: 300,
+      default: '300',
       description: 'The height of the card in pixels.',
     },
     {
@@ -36,7 +42,7 @@ const DecayCardDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" overflow="hidden">
           <DecayCard>
-            <h2>The<br />Open Sea</h2>
+            <Text mixBlendMode='overlay'>Decay<br />Card</Text>
           </DecayCard>
         </Box>
 

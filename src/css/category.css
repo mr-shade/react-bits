@@ -119,6 +119,11 @@ div:has(> .props-table) {
   font-weight: bolder;
 }
 
+.custom-bounceCards {
+  position: relative;
+  top: 2em;
+}
+
 .rotating-text-demo-container {
   white-space: pre;
   font-size: clamp(2rem, 6vw, 6rem);

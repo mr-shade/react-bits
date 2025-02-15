@@ -60,7 +60,7 @@ const MagnetDemo = () => {
     {
       name: 'children',
       type: 'ReactNode',
-      default: 'undefined',
+      default: '',
       description: 'The content (JSX) to be displayed inside the magnetized element.',
     },
   ];

@@ -12,11 +12,11 @@ export const bounceCards = {
   usage: `import BounceCards from './BounceCards'
 
 const images = [
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=500&auto=format",
-  "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format",
-  "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format",
-  "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format",
-  "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format"
+  "https://picsum.photos/400/400?grayscale",
+  "https://picsum.photos/500/500?grayscale",
+  "https://picsum.photos/600/600?grayscale",
+  "https://picsum.photos/700/700?grayscale",
+  "https://picsum.photos/300/300?grayscale"
 ];
 
 const transformStyles = [
@@ -28,14 +28,15 @@ const transformStyles = [
 ];
 
 <BounceCards
-  className="custom-class"
+  className="custom-bounceCards"
   images={images}
   containerWidth={500}
-  containerHeight={500}
+  containerHeight={250}
   animationDelay={1}
   animationStagger={0.08}
   easeType="elastic.out(1, 0.5)"
   transformStyles={transformStyles}
+  enableHover={false}
 />`,
   code,
   css,

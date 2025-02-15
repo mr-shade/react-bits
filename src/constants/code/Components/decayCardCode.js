@@ -11,8 +11,8 @@ export const decayCard = {
   installation: `npm i gsap`,
   usage: `import DecayCard from './DecayCard';
 
-<DecayCard width={200} height={300} image="https://...">
-  <h2>The<br/>Open Sea</h2>
+<DecayCard width={200} height={300} image="https://picsum.photos/300/400?grayscale">
+  <h2>Decay<br/>Card</h2>
 </DecayCard>`,
   code,
   css,

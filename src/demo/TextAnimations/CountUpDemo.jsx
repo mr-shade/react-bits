@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Box, Button, Flex, Icon } from "@chakra-ui/react";
-import { TbFlame } from "react-icons/tb";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import GradientText from "../../content/TextAnimations/GradientText/GradientText";
@@ -102,7 +101,7 @@ const CountUpDemo = () => {
           <RefreshButton onClick={forceRerenderDefault} />
         </Box>
 
-        <h2 className="demo-title-extra">Start programatically</h2>
+        <h2 className="demo-title-extra">Start Programatically</h2>
         <Flex direction="column" justifyContent="center" alignItems="center" position="relative" className="demo-container" minH={200}>
           <Button onClick={() => setStartCounting(true)}>Count to 500!</Button>
 
@@ -118,7 +117,7 @@ const CountUpDemo = () => {
           {startCounting && <RefreshButton onClick={forceRerenderProgramatically} />}
         </Flex>
 
-        <h2 className="demo-title-extra"><Icon as={TbFlame} position="relative" top={'4px'} />Hot tip</h2>
+        <h2 className="demo-title-extra">With Gradient</h2>
         <p className="demo-extra-info">
           <Flex>
             <span>

@@ -53,6 +53,7 @@ const components = {
   'circular-gallery': () => import("../demo/Components/CircularGalleryDemo"),
   'stepper': () => import("../demo/Components/StepperDemo"),
   'carousel': () => import("../demo/Components/CarouselDemo"),
+  'counter': () => import("../demo/Components/CounterDemo"),
 };
 
 const backgrounds = {

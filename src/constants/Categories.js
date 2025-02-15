@@ -1,6 +1,6 @@
 // Highlighted sidebar items
-export const NEW = ['Circular Text', 'Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel', 'Scroll Velocity'];
-export const UPDATED = ['Dock'];
+export const NEW = ['Circular Text', 'Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel', 'Scroll Velocity', 'Counter'];
+export const UPDATED = ['Bounce Cards', 'Dock'];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
@@ -19,8 +19,6 @@ export const CATEGORIES = [
       'ASCII Text',
       'Rotating Text',
       'Scroll Velocity',
-      // 'Flip Text',
-      // 'Word Cloud',
       'Variable Proximity',
       'Count Up'
     ]
@@ -30,14 +28,7 @@ export const CATEGORIES = [
     subcategories: [
       'Animated Content',
       'Fade Content',
-      // 'Trail Cursor',
-      // 'Emoji Cursor',
-      // 'Wave Cursor',
       'Pixel Transition',
-      // 'Liquid Cursor',
-      // 'Distortion Cursor',
-      // 'Crystal Ball',
-      // 'Spotlights',
       'Magnet Lines',
       'Click Spark',
       'Magnet',
@@ -50,12 +41,7 @@ export const CATEGORIES = [
       'Meta Balls',
       'Follow Cursor',
       'Blob Cursor',
-      // 'Persistent Drag', 
-      // 'Beam Border',
       'Star Border'
-      // 'Marbles',
-      // 'Clump',
-      // 'Ballpit'
     ]
   },
   {
@@ -66,37 +52,20 @@ export const CATEGORIES = [
       'Dock',
       'Masonry',
       'Pixel Card',
-      // 'Bento', 
-      // 'Global Search',
       'Circular Gallery',
-      // 'Gradient Input',
       'Carousel',
       'Spotlight Card',
       'Flying Posters',
       'Infinite Scroll',
-      // 'Blur Card',
-      // 'Trail Card',
-      // 'Dynamic Background',
       'Decay Card',
       'Flowing Menu',
       'Logo Wall',
-      // 'List Reveal',
       'Elastic Slider',
+      'Counter',
       'Infinite Menu',
-      // 'Liquid Menu',
-      // 'Textured Glass',
       'Rolling Gallery',
       'Stepper',
       'Bounce Cards'
-      // 'Expandable Card',
-      // 'Progress Lines',
-      // '3D Carousel',
-      // 'Hover Stack'
-      // 'Infinite Scroll'
-      // 'Marquee', 
-      // 'Avatar', 
-      // 'Avatar Group',
-      // 'Evervault Card',
     ],
   },
   {
@@ -115,11 +84,6 @@ export const CATEGORIES = [
       'Letter Glitch',
       'Particles',
       'Waves'
-      // 'Particles',
-      // 'Threads',
-      // 'Gradient',
-      // 'Dots',
-      // 'Waves'
     ],
   }
 ];
