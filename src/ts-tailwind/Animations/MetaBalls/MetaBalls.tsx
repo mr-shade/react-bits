@@ -8,7 +8,6 @@ import {
   Vec3,
   Camera,
 } from "ogl";
-import "./MetaBalls.css";
 
 type MetaBallsProps = {
   color?: string;

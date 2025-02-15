@@ -11,7 +11,6 @@ import {
 
 import "./MetaBalls.css";
 
-// Utility functions
 function parseHexColor(hex) {
   const c = hex.replace("#", "");
   const r = parseInt(c.substring(0, 2), 16) / 255;
@@ -125,7 +124,6 @@ const MetaBalls = ({
     const container = containerRef.current;
     if (!container) return;
 
-    // For maximum performance, force DPR to 1 (this may lower visual sharpness)
     const dpr = 1;
     const renderer = new Renderer({ dpr, alpha: true, premultipliedAlpha: false });
     const gl = renderer.gl;
@@ -141,7 +139,6 @@ const MetaBalls = ({
     const [r1, g1, b1] = parseHexColor(color);
     const [r2, g2, b2] = parseHexColor(cursorBallColor);
 
-    // Prepare uniform array for meta‑ball positions/radii
     const metaBallsUniform = [];
     for (let i = 0; i < 50; i++) {
       metaBallsUniform.push(new Vec3(0, 0, 0));
@@ -168,7 +165,6 @@ const MetaBalls = ({
     const scene = new Transform();
     mesh.setParent(scene);
 
-    // Precompute constant ball parameters on the CPU.
     const maxBalls = 50;
     const effectiveBallCount = Math.min(ballCount, maxBalls);
     const ballParams = [];
@@ -184,7 +180,6 @@ const MetaBalls = ({
       ballParams.push({ st, dtFactor, baseScale, toggle, radius: radiusVal });
     }
 
-    // Mouse interaction handling
     const mouseBallPos = { x: 0, y: 0 };
     let pointerInside = false;
     let pointerX = 0;
@@ -202,7 +197,6 @@ const MetaBalls = ({
     window.addEventListener("resize", resize);
     resize();
 
-    // Recalculate the container rect on every pointer move
     function onPointerMove(e) {
       if (!enableMouseInteraction) return;
       const rect = container.getBoundingClientRect();
