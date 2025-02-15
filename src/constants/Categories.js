@@ -60,7 +60,6 @@ export const CATEGORIES = [
       'Infinite Scroll',
       'Decay Card',
       'Flowing Menu',
-      'Logo Wall',
       'Elastic Slider',
       'Counter',
       'Infinite Menu',
