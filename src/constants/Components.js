@@ -54,6 +54,7 @@ const components = {
   'stepper': () => import("../demo/Components/StepperDemo"),
   'carousel': () => import("../demo/Components/CarouselDemo"),
   'counter': () => import("../demo/Components/CounterDemo"),
+  'lanyard': () => import("../demo/Components/LanyardDemo"),
 };
 
 const backgrounds = {

@@ -29,5 +29,6 @@ export default defineConfig({
     postcss: {
       parser: safeParser
     }
-  }
+  },
+  assetsInclude: ['**/*.glb']
 })

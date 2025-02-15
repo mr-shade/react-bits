@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Circular Text', 'Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel', 'Scroll Velocity', 'Counter'];
+export const NEW = ['Circular Text', 'Lanyard', 'Orb', 'Particles', 'Ribbons', 'Iridescence', 'Circular Gallery', 'Aurora', 'Liquid Chrome', 'Meta Balls', 'Carousel', 'Scroll Velocity', 'Counter'];
 export const UPDATED = ['Bounce Cards', 'Dock'];
 
 // Used for main sidebar navigation
@@ -49,6 +49,7 @@ export const CATEGORIES = [
     subcategories: [
       'Stack',
       'Tilted Card',
+      'Lanyard',
       'Dock',
       'Masonry',
       'Pixel Card',
