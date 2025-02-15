@@ -7,7 +7,7 @@ import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 
 import { metaBalls } from "../../constants/code/Animations/metaBallsCode";
-import MetaBalls from "../../ts-default/Animations/MetaBalls/MetaBalls";
+import MetaBalls from "../../content/Animations/MetaBalls/MetaBalls";
 import { useState } from "react";
 
 const MetaBallsDemo = () => {
@@ -19,7 +19,7 @@ const MetaBallsDemo = () => {
   const [clumpFactor, setClumpFactor] = useState(1);
 
   const [enableMouseInteraction, setEnableMouseInteraction] = useState(true);
-  const [hoverSmoothness, setHoverSmoothness] = useState(0.05);
+  const [hoverSmoothness, setHoverSmoothness] = useState(0.15);
   const [cursorBallSize, setCursorBallSize] = useState(2);
 
   const propData = [
