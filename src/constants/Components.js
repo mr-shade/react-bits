@@ -32,6 +32,7 @@ const textAnimations = {
   'rotating-text': () => import("../demo/TextAnimations/RotatingTextDemo"),
   'circular-text': () => import("../demo/TextAnimations/CircularTextDemo"),
   'scroll-velocity': () => import("../demo/TextAnimations/ScrollVelocityDemo"),
+  'scroll-reveal': () => import("../demo/TextAnimations/ScrollRevealDemo"),
 };
 
 const components = {
