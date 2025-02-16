@@ -108,7 +108,7 @@ const MagnetDemo = () => {
         </Box>
 
         <div className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
           <Flex gap={4} mb={3} wrap="wrap" align="center">
             <Button
               fontSize="xs"

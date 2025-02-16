@@ -93,7 +93,7 @@ const TrueFocusDemo = () => {
           <TrueFocus {...config} />
         </Box>
 
-        <h2 className="demo-title-extra">Options</h2>
+        <h2 className="demo-title-extra">Customize</h2>
         <Flex gap={4} align="flex-start" mt={4} direction="column" wrap="wrap">
           <Flex align="center" gap={2}>
             <Text fontSize="sm">Border Color</Text>

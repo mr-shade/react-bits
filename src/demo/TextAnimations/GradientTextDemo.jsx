@@ -81,7 +81,7 @@ const GradientTextDemo = () => {
         </Box>
 
         <div className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
           <Flex gap={6} wrap="wrap" align="center" mt={4}>
             {/* Colors Input */}
             <Flex gap={4} align="center">

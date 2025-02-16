@@ -55,7 +55,7 @@ const LanyardDemo = () => {
         </Box>
 
         <div className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
 
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Camera Distance</Text>

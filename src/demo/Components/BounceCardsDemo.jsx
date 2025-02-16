@@ -123,7 +123,7 @@ const BounceCardsDemo = () => {
 
         {/* Interactive Controls */}
         <Box className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
           <Flex direction="column" gap={4} mt={4}>
             {/* Toggle hover effect */}
             <Flex align="center" gap={2}>

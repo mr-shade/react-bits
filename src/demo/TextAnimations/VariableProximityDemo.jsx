@@ -92,7 +92,7 @@ const VariableProximityDemo = () => {
         </Box>
 
         <Box mt={6} className="preview-options">
-          <Text fontSize="xl" mb={2}>Options</Text>
+          <Text fontSize="xl" mb={2}>Customize</Text>
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Radius:</Text>
             <Slider

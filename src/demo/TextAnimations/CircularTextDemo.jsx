@@ -51,7 +51,7 @@ const CircularTextDemo = () => {
 
 
         <div className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
 
           <Flex alignItems="center" gap={4} flexWrap="wrap" mb={4}>
             <FormControl>

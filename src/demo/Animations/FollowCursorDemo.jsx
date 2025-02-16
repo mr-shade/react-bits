@@ -139,7 +139,7 @@ const FollowCursorDemo = () => {
         </p>
 
         <div className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
 
           {/* Offset X */}
           <Flex gap={4} align="center" mt={4}>

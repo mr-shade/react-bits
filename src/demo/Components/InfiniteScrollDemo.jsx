@@ -162,7 +162,7 @@ const InfiniteScrollDemo = () => {
         </Box>
 
         <div className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
           <Stack spacing={6}>
             <Flex align="center">
               <Text mr={2} color="#fff">

@@ -70,7 +70,7 @@ const LetterGlitchDemo = () => {
         </Box>
 
         <div className="preview-options">
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
           <Flex wrap="wrap" alignItems="center" gap={4}>
             <Flex gap={2} wrap="wrap">
               <Button

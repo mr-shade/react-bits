@@ -173,7 +173,7 @@ const DecryptedTextDemo = () => {
           my={4}
           style={{ maxWidth: "100%", overflow: "auto" }}
         >
-          <h2 className="demo-title-extra">Options</h2>
+          <h2 className="demo-title-extra">Customize</h2>
           <Flex wrap="wrap" gap={4} mb={4}>
             <FormControl width="auto">
               <FormLabel mb="2">Animate On</FormLabel>

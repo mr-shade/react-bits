@@ -102,7 +102,7 @@ const WavesDemo = () => {
         </Flex>
 
 
-        <h2 className="demo-title-extra">Options</h2>
+        <h2 className="demo-title-extra">Customize</h2>
         <Flex direction="row" alignItems="center" gap={4} mt={4}>
           <Text>Color</Text>
           <Select defaultValue="#ffffff" rounded="xl" w={'300px'} onChange={(e) => {
