@@ -1,7 +1,7 @@
 import { Renderer, Program, Mesh, Triangle } from "ogl";
 import { useEffect, useRef } from "react";
 
-import './Balatro.css';
+import "./Balatro.css";
 
 interface BalatroProps {
   spinRotation?: number;
@@ -82,7 +82,7 @@ vec4 effect(vec2 screenSize, vec2 screen_coords) {
     }
     speed += 302.2;
     
-    // Mouse influence for gentle rotation
+    // Mouse influence for gentle rotation (applied additively)
     float mouseInfluence = (uMouse.x * 2.0 - 1.0);
     speed += mouseInfluence * 0.1;
     
@@ -91,13 +91,18 @@ vec4 effect(vec2 screenSize, vec2 screen_coords) {
     uv = (vec2(uv_len * cos(new_pixel_angle) + mid.x, uv_len * sin(new_pixel_angle) + mid.y) - mid);
     
     uv *= 30.0;
-    speed = iTime * (uSpinSpeed + mouseInfluence * 2.0);
+    // Fix: Apply mouse influence additively rather than scaling with time.
+    float baseSpeed = iTime * uSpinSpeed;
+    speed = baseSpeed + mouseInfluence * 2.0;
+    
     vec2 uv2 = vec2(uv.x + uv.y);
     
     for(int i = 0; i < 5; i++) {
         uv2 += sin(max(uv.x, uv.y)) + uv;
-        uv += 0.5 * vec2(cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121),
-                          sin(uv2.x - 0.113 * speed));
+        uv += 0.5 * vec2(
+            cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121),
+            sin(uv2.x - 0.113 * speed)
+        );
         uv -= cos(uv.x + uv.y) - sin(uv.x * 0.711 - uv.y);
     }
     
