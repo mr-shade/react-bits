@@ -16,14 +16,17 @@ export const lanyard = {
 /* IMPORTANT INFO BELOW
 
 1. You MUST have the card.glb and lanyard.png files in your project and import them
-- these can be downloaded from the repo's files, in the assets folder of the repo, or by using the CLI
+- these can be downloaded from the repo's files, under src/assets/lanyard
 
 2. You can edit your card.glb file in this online .glb editor and change the texture:
 - https://modelviewer.dev/editor/
 
 4. The png file is the texture for the lanyard's band and can be edited in any image editor
 
-4. For TS users, you might need these changes:
+5. Your Vite configuration must be updated to include the following in vite.config.js:
+assetsInclude: ['**/*.glb']
+
+6. For TS users, you might need these changes:
 
 - src/global.d.ts
 export { };
