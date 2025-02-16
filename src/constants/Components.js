@@ -70,6 +70,7 @@ const backgrounds = {
   'orb': () => import("../demo/Backgrounds/OrbDemo"),
   'particles': () => import("../demo/Backgrounds/ParticlesDemo"),
   'liquid-chrome': () => import("../demo/Backgrounds/LiquidChromeDemo"),
+  'balatro': () => import("../demo/Backgrounds/BalatroDemo"),
 };
 
 export const componentMap = {
