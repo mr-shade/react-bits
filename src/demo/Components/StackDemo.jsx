@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
@@ -77,85 +80,49 @@ const StackDemo = () => {
           />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex gap={2} wrap="wrap">
-            <Button
-              fontSize="xs"
-              h={8}
-              onClick={() => {
-                setRandomRotation(!randomRotation);
-                forceRerender();
-              }}
-            >
-              Random Rotation:{" "}
-              <Text color={randomRotation ? "lightgreen" : "coral"}>&nbsp;{String(randomRotation)}</Text>
-            </Button>
-          </Flex>
+        <Customize>
+          <PreviewSwitch title="Random Rotation" isChecked={randomRotation} onChange={(e) => { setRandomRotation(e.target.checked); forceRerender() }} />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Sensitivity:</Text>
-            <Slider
-              min={100}
-              max={300}
-              step={10}
-              value={sensitivity}
-              onChange={(val) => {
-                setSensitivity(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{sensitivity}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Sensitivity"
+            min={100}
+            max={300}
+            step={10}
+            value={sensitivity}
+            onChange={(val) => {
+              setSensitivity(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Card Width:</Text>
-            <Slider
-              min={150}
-              max={300}
-              step={10}
-              value={cardWidth}
-              onChange={(val) => {
-                setCardWidth(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{cardWidth}px</Text>
-          </Flex>
+          <PreviewSlider
+            title="Card Width"
+            min={150}
+            max={300}
+            step={10}
+            value={cardWidth}
+            onChange={(val) => {
+              setCardWidth(val);
+              forceRerender();
+            }}
+            displayValue={(val) => `${val}px`}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Card Height:</Text>
-            <Slider
-              min={150}
-              max={300}
-              step={10}
-              value={cardHeight}
-              onChange={(val) => {
-                setCardHeight(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{cardHeight}px</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Card Height"
+            min={150}
+            max={300}
+            step={10}
+            value={cardHeight}
+            onChange={(val) => {
+              setCardHeight(val);
+              forceRerender();
+            }}
+            displayValue={(val) => `${val}px`}
+          />
+        </Customize>
+
+
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["framer-motion"]} />

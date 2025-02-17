@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Flex, Box, Text, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Switch } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
+import Customize from "../../components/common/Customize";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import RefreshButton from "../../components/common/RefreshButton";
 import PropTable from "../../components/common/PropTable";
@@ -121,58 +124,33 @@ const BounceCardsDemo = () => {
           <RefreshButton onClick={forceRerender} />
         </Flex>
 
-        {/* Interactive Controls */}
-        <Box className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex direction="column" gap={4} mt={4}>
-            {/* Toggle hover effect */}
-            <Flex align="center" gap={2}>
-              <Text>Enable Hover Effect</Text>
-              <Switch
-                isChecked={enableHover}
-                onChange={(e) => {setEnableHover(e.target.checked); forceRerender()}}
-              />
-            </Flex>
+        <Customize>
+          <PreviewSwitch title="Enable Hover Effect" isChecked={enableHover} onChange={(e) => { setEnableHover(e.target.checked); forceRerender() }} />
 
-            {/* Animation Delay Slider */}
-            <Flex align="center" gap={2}>
-              <Text whiteSpace="nowrap">Animation Delay</Text>
-              <Slider
-                min={.1}
-                max={2}
-                step={0.1}
-                width="150px"
-                value={animationDelay}
-                onChange={(val) => {setAnimationDelay(val); forceRerender()}}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{animationDelay.toFixed(1)}s</Text>
-            </Flex>
+          <PreviewSlider
+            title="Animation Delay"
+            min={0.1}
+            max={2}
+            step={0.1}
+            value={animationDelay}
+            onChange={(val) => {
+              setAnimationDelay(val);
+              forceRerender();
+            }}
+          />
 
-            {/* Animation Stagger Slider */}
-            <Flex align="center" gap={2}>
-              <Text whiteSpace="nowrap">Animation Stagger</Text>
-              <Slider
-                min={0}
-                max={0.3}
-                step={0.01}
-                width="150px"
-                value={animationStagger}
-                onChange={(val) => {setAnimationStagger(val); forceRerender()}}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{animationStagger.toFixed(2)}s</Text>
-            </Flex>
-          </Flex>
-        </Box>
+          <PreviewSlider
+            title="Animation Stagger"
+            min={0}
+            max={0.3}
+            step={0.01}
+            value={animationStagger}
+            onChange={(val) => {
+              setAnimationStagger(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["gsap"]} />

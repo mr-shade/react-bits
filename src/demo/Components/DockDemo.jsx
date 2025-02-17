@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { VscAccount, VscArchive, VscHome, VscSettingsGear } from "react-icons/vsc";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import PropTable from "../../components/common/PropTable";
@@ -88,72 +90,43 @@ const DockDemo = () => {
           <Dock key={key} items={items} panelHeight={panelHeight} baseItemSize={baseItemSize} magnification={magnification} />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Background Height"
+            min={30}
+            max={200}
+            step={10}
+            value={panelHeight}
+            onChange={(val) => {
+              setPanelHeight(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Background Height</Text>
-            <Slider
-              min={30}
-              max={200}
-              step={10}
-              value={panelHeight}
-              onChange={(val) => {
-                setPanelHeight(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{panelHeight}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Item Size"
+            min={20}
+            max={60}
+            step={10}
+            value={baseItemSize}
+            onChange={(val) => {
+              setBaseItemSize(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Item Size</Text>
-            <Slider
-              min={20}
-              max={60}
-              step={10}
-              value={baseItemSize}
-              onChange={(val) => {
-                setBaseItemSize(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{baseItemSize}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Magnification</Text>
-            <Slider
-              min={50}
-              max={100}
-              step={10}
-              value={magnification}
-              onChange={(val) => {
-                setMagnification(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{magnification}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Magnification"
+            min={50}
+            max={100}
+            step={10}
+            value={magnification}
+            onChange={(val) => {
+              setMagnification(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['framer-motion']} />

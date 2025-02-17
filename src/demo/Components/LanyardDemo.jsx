@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
@@ -54,38 +57,25 @@ const LanyardDemo = () => {
           <Lanyard key={key} position={[0, 0, cameraDistance]} gravity={stopGravity ? [0, 0, 0] : [0, -40, 0]} />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Camera Distance"
+            min={20}
+            max={50}
+            step={1}
+            value={cameraDistance}
+            onChange={(val) => {
+              setCameraDistance(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Camera Distance</Text>
-            <Slider
-              min={20}
-              max={50}
-              step={1}
-              value={cameraDistance}
-              onChange={(val) => {
-                setCameraDistance(val);
-                forceRerender();
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{cameraDistance}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Disable Gravity</Text>
-            <Switch
-              isChecked={stopGravity}
-              onChange={(e) => { setStopGravity(e.target.checked); }}
-            />
-          </Flex>
-        </div>
+          <PreviewSwitch
+            title="Disable Gravity"
+            isChecked={stopGravity}
+            onChange={(e) => setStopGravity(e.target.checked)}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['three', 'meshline', '@react-three/fiber', '@react-three/drei', '@react-three/rapier']} />

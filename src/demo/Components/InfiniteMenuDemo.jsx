@@ -68,7 +68,6 @@ const InfiniteMenuDemo = () => {
 
 
         <PropTable data={propData} />
-        <p className="demo-extra-info">This component can be further customized by playing around with values in its source code.</p>
         <Dependencies dependencyList={['gl-matrix']} />
       </PreviewTab>
 

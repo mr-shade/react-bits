@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Button, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
@@ -143,69 +145,34 @@ const CounterDemo = () => {
         </Box>
 
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Value"
+            min={0}
+            max={999}
+            step={1}
+            value={value}
+            onChange={(val) => setValue(val)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Value</Text>
-            <Slider
-              min={0}
-              max={999}
-              step={1}
-              value={value}
-              onChange={(val) => {
-                setValue(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{value}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Gap"
+            min={0}
+            max={50}
+            step={10}
+            value={gap}
+            onChange={(val) => setGap(val)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Gap</Text>
-            <Slider
-              min={0}
-              max={50}
-              step={10}
-              value={gap}
-              onChange={(val) => {
-                setGap(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{gap}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Font Size</Text>
-            <Slider
-              min={40}
-              max={200}
-              step={10}
-              value={fontSize}
-              onChange={(val) => {
-                setFontSize(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{fontSize}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Font Size"
+            min={40}
+            max={200}
+            step={10}
+            value={fontSize}
+            onChange={(val) => setFontSize(val)}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['framer-motion']} />

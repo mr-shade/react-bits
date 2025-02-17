@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
@@ -92,75 +94,84 @@ const FlyingPostersDemo = () => {
           </Text>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Plane Width"
+            min={300}
+            max={400}
+            step={10}
+            value={planeWidth}
+            onChange={(val) => {
+              setPlaneWidth(val);
+              forceRerender();
+            }}
+            displayValue={(val) => `${val}px`}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Plane Width</Text>
-            <Slider min={300} max={400} step={10} value={planeWidth} onChange={(val) => { setPlaneWidth(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{planeWidth}px</Text>
-          </Flex>
+          <PreviewSlider
+            title="Plane Height"
+            min={200}
+            max={350}
+            step={10}
+            value={planeHeight}
+            onChange={(val) => {
+              setPlaneHeight(val);
+              forceRerender();
+            }}
+            displayValue={(val) => `${val}px`}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Plane Height</Text>
-            <Slider min={200} max={350} step={10} value={planeHeight} onChange={(val) => { setPlaneHeight(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{planeHeight}px</Text>
-          </Flex>
+          <PreviewSlider
+            title="Distortion"
+            min={0}
+            max={10}
+            step={0.1}
+            value={distortion}
+            onChange={(val) => {
+              setDistortion(val);
+              forceRerender();
+            }}
+            displayValue={(val) => val.toFixed(1)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Distortion</Text>
-            <Slider min={0} max={10} step={0.1} value={distortion} onChange={(val) => { setDistortion(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{distortion.toFixed(1)}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Scroll Ease"
+            min={0.001}
+            max={0.05}
+            step={0.001}
+            value={scrollEase}
+            onChange={(val) => {
+              setScrollEase(val);
+              forceRerender();
+            }}
+            displayValue={(val) => val.toFixed(3)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Scroll Ease</Text>
-            <Slider min={0.001} max={0.05} step={0.001} value={scrollEase} onChange={(val) => { setScrollEase(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{scrollEase.toFixed(3)}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Camera FOV"
+            min={20}
+            max={90}
+            step={1}
+            value={cameraFov}
+            onChange={(val) => {
+              setCameraFov(val);
+              forceRerender();
+            }}
+            displayValue={(val) => `${val}°`}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Camera FOV</Text>
-            <Slider min={20} max={90} step={1} value={cameraFov} onChange={(val) => { setCameraFov(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{cameraFov}°</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Camera Z</Text>
-            <Slider min={5} max={50} step={1} value={cameraZ} onChange={(val) => { setCameraZ(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{cameraZ}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Camera Z"
+            min={5}
+            max={50}
+            step={1}
+            value={cameraZ}
+            onChange={(val) => {
+              setCameraZ(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["ogl"]} />

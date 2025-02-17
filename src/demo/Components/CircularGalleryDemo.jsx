@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
@@ -9,7 +12,6 @@ import useForceRerender from "../../hooks/useForceRerender";
 
 import CircularGallery from "../../content/Components/CircularGallery/CircularGallery";
 import { circularGallery } from "../../constants/code/Components/circularGalleryCode";
-import { useState } from "react";
 
 const CircularGalleryDemo = () => {
   const [bend, setBend] = useState(1);
@@ -52,31 +54,31 @@ const CircularGalleryDemo = () => {
           <CircularGallery key={key} bend={bend} borderRadius={borderRadius} />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Bend Level"
+            min={-10}
+            max={10}
+            step={1}
+            value={bend}
+            onChange={(val) => {
+              setBend(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Bend Level</Text>
-            <Slider min={-10} max={10} step={1} value={bend} onChange={(val) => { setBend(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{bend}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Border Radius</Text>
-            <Slider min={0} max={0.5} step={0.01} value={borderRadius} onChange={(val) => { setBorderRadius(val); forceRerender(); }} width="200px">
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{borderRadius}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Border Radius"
+            min={0}
+            max={0.5}
+            step={0.01}
+            value={borderRadius}
+            onChange={(val) => {
+              setBorderRadius(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />

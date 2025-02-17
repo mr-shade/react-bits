@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Text, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Switch } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import PropTable from "../../components/common/PropTable";
@@ -122,62 +125,29 @@ const TiltedCardDemo = () => {
           />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex direction="column" gap={2} mt={4}>
-            <Flex align="center" gap={2}>
-              <Text>Rotate Amplitude</Text>
-              <Slider
-                min={0}
-                max={30}
-                step={1}
-                value={rotateAmplitude}
-                onChange={setRotateAmplitude}
-                width="150px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{rotateAmplitude}</Text>
-            </Flex>
+        <Customize className="preview-options">
+          <PreviewSlider
+            title="Rotate Amplitude"
+            min={0}
+            max={30}
+            step={1}
+            value={rotateAmplitude}
+            onChange={setRotateAmplitude}
+          />
 
-            <Flex align="center" gap={2}>
-              <Text>Scale on Hover</Text>
-              <Slider
-                min={1}
-                max={1.5}
-                step={0.05}
-                value={scaleOnHover}
-                onChange={setScaleOnHover}
-                width="150px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{scaleOnHover.toFixed(2)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Scale on Hover"
+            min={1}
+            max={1.5}
+            step={0.05}
+            value={scaleOnHover}
+            onChange={setScaleOnHover}
+            displayValue={(val) => val.toFixed(2)}
+          />
 
-            <Flex align="center" gap={2}>
-              <Text>Show Tooltip</Text>
-              <Switch
-                isChecked={showTooltip}
-                onChange={(e) => setShowTooltip(e.target.checked)}
-              />
-            </Flex>
-
-            <Flex align="center" gap={2}>
-              <Text>Show Overlay Content</Text>
-              <Switch
-                isChecked={displayOverlayContent}
-                onChange={(e) => setDisplayOverlayContent(e.target.checked)}
-              />
-            </Flex>
-          </Flex>
-        </div>
+          <PreviewSwitch title="Show Tooltip" isChecked={showTooltip} onChange={(e) => { setShowTooltip(e.target.checked); }} />
+          <PreviewSwitch title="Show Overlay Content" isChecked={displayOverlayContent} onChange={(e) => { setDisplayOverlayContent(e.target.checked); }} />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["framer-motion"]} />

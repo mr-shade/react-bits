@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Text, Select } from "@chakra-ui/react";
 
+import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
@@ -78,7 +79,7 @@ const PixelCardDemo = () => {
           </PixelCard>
         </Box>
 
-        <Box className="preview-options" mt={6}>
+        <Customize>
           <Text color="#a6a6a6">Variant</Text>
           <Select
             mt={1}
@@ -93,7 +94,7 @@ const PixelCardDemo = () => {
               </option>
             ))}
           </Select>
-        </Box>
+        </Customize>
 
         <PropTable data={propData} />
       </PreviewTab>
@@ -105,7 +106,7 @@ const PixelCardDemo = () => {
       <CliTab>
         <CliInstallation {...pixelCard} />
       </CliTab>
-    </TabbedLayout>
+    </TabbedLayout >
   );
 };
 

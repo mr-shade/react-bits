@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
 
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
@@ -29,10 +28,6 @@ const MasonryDemo = () => {
         <Box position="relative" className="demo-container" overflow="hidden">
           <Masonry data={data} />
         </Box>
-
-        <p className="demo-extra-info">
-          <InfoOutlineIcon position="relative" />Preview best viewed on desktop, try resizing the window!
-        </p>
 
         <Dependencies dependencyList={['@react-spring/web']} />
       </PreviewTab>
