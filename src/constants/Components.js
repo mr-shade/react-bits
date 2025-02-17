@@ -56,6 +56,7 @@ const components = {
   'carousel': () => import("../demo/Components/CarouselDemo"),
   'counter': () => import("../demo/Components/CounterDemo"),
   'lanyard': () => import("../demo/Components/LanyardDemo"),
+  'glass-icons': () => import("../demo/Components/GlassIconsDemo"),
 };
 
 const backgrounds = {
