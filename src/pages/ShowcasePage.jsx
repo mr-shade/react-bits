@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
+
+import Confetti from 'react-confetti';
 import Header from "../components/landing/LandingHeader/LandingHeader";
 import FadeContent from "../content/Animations/FadeContent/FadeContent";
 import logo from "../assets/logos/reactbits-logo.svg";
-import { useEffect, useState } from "react";
-import Confetti from 'react-confetti';
-import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import '../css/showcase.css';
 
@@ -39,6 +41,9 @@ const ShowcasePage = () => {
 
   return (
     <section className="showcase-wrapper">
+      <Helmet>
+        <title>React Bits - Showcase 🎉</title>
+      </Helmet>
       <Header />
       {isLoaded && <Confetti run={window.innerWidth > 1000} recycle={false} colors={["#00d8ff"]} gravity={0.5} frameRate={60} numberOfPieces={100} />}
 
