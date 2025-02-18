@@ -76,6 +76,7 @@ const backgrounds = {
   'particles': () => import("../demo/Backgrounds/ParticlesDemo"),
   'liquid-chrome': () => import("../demo/Backgrounds/LiquidChromeDemo"),
   'balatro': () => import("../demo/Backgrounds/BalatroDemo"),
+  'threads': () => import("../demo/Backgrounds/ThreadsDemo"),
 };
 
 export const componentMap = {
