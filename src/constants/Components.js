@@ -34,6 +34,7 @@ const textAnimations = {
   'scroll-velocity': () => import("../demo/TextAnimations/ScrollVelocityDemo"),
   'scroll-reveal': () => import("../demo/TextAnimations/ScrollRevealDemo"),
   'scroll-float': () => import("../demo/TextAnimations/ScrollFloatDemo"),
+  'glitch-text': () => import("../demo/TextAnimations/GlitchTextDemo"),
 };
 
 const components = {
