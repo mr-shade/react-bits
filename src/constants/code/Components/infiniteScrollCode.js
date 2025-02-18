@@ -28,7 +28,7 @@ const items = [
   { content: <p>Paragraph Item 14</p> },
 ];
   
-<div style={{height: '500px', positon: 'relative'}}>
+<div style={{height: '500px', position: 'relative'}}>
   <InfiniteScroll
     items={items}
     isTilted={true}
