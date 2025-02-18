@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Glitch Text', 'Circular Text', 'Glass Icons', 'Scroll Reveal', 'Scroll Float', 'Lanyard', 'Particles', 'Scroll Velocity', 'Counter', 'Balatro'];
+export const NEW = ['Glitch Text', 'Fuzzy Text', 'Circular Text', 'Glass Icons', 'Scroll Reveal', 'Scroll Float', 'Lanyard', 'Particles', 'Scroll Velocity', 'Counter', 'Balatro'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -12,6 +12,7 @@ export const CATEGORIES = [
       'Circular Text',
       'Shiny Text',
       'Text Pressure',
+      'Fuzzy Text',
       'Gradient Text',
       'Falling Text',
       'Decrypted Text',
