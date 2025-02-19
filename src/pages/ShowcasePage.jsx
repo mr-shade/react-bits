@@ -28,6 +28,11 @@ const ShowcasePage = () => {
       name: 'Oscar Hernandez',
       url: 'https://oscarhernandez.vercel.app',
       using: '<LetterGlitch />'
+    },
+    {
+      name: 'Afaq Razaq',
+      url: 'https://www.evolvion.io/',
+      using: '<SpotlightCard />'
     }
   ];
 
