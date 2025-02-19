@@ -36,9 +36,9 @@
 .main-nav .nav-items::after {
   pointer-events: none;
   content: '';
-  position: absolute;
-  right: 0;
-  bottom: -50px;
+  position: fixed;
+  left: 0;
+  top: 70px;
   z-index: -1;
   width: 100%;
   height: 50px;
