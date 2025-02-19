@@ -8,6 +8,8 @@
   font-weight: 900;
   text-align: center;
   cursor: pointer;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
 }
 
 .circular-text span {

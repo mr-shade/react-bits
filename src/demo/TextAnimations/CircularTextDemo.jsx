@@ -7,7 +7,7 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 
-import CircularText from "../../ts-default/TextAnimations/CircularText/CircularText";
+import CircularText from "../../content/TextAnimations/CircularText/CircularText";
 import { circularText } from "../../constants/code/TextAnimations/circularTextCode";
 
 const CircularTextDemo = () => {

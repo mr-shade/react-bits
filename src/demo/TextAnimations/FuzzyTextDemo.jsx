@@ -73,7 +73,7 @@ const FuzzyTextDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <Flex direction='column'>
-            <FuzzyText baseIntensity={baseIntensity} hoverIntensity={hoverIntensity} enableHover={enableHover}>
+            <FuzzyText baseIntensity={baseIntensity} hoverIntensity={hoverIntensity} enableHover={enableHover} fontSize={140}>
               404
             </FuzzyText>
             <Spacer my={1} />
