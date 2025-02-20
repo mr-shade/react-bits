@@ -1,4 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { SearchProvider } from './components/context/SearchContext/SearchContext';
 import { useEffect } from 'react';
 import { Toaster } from 'sonner'
 import { forceChakraDarkTheme } from './utils/utils';
@@ -22,20 +23,20 @@ export default function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/showcase" element={<ShowcasePage />} />
         <Route path="/:category/:subcategory" element={
-          <main className='app-container'>
-            <Header />
-
-            <section className='category-wrapper'>
-              <Sidebar />
-              <CategoryPage />
-            </section>
-
-            <Toaster
-              toastOptions={toastStyles}
-              position='bottom-right'
-              visibleToasts={1}
-            />
-          </main>
+          <SearchProvider>
+            <main className='app-container'>
+              <Header />
+              <section className='category-wrapper'>
+                <Sidebar />
+                <CategoryPage />
+              </section>
+              <Toaster
+                toastOptions={toastStyles}
+                position='bottom-right'
+                visibleToasts={1}
+              />
+            </main>
+          </SearchProvider>
         } />
       </Routes>
     </Router>

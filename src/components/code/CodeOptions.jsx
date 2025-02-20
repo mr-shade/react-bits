@@ -1,10 +1,18 @@
-import { Children, useState } from "react";
+import { Children, useEffect, useState } from "react";
 import { Tabs, TabList, Tab, TabPanels, TabPanel, Icon, Text, Flex, Select } from "@chakra-ui/react";
 import { RiEmotionSadLine, RiTailwindCssFill } from "react-icons/ri";
 import { FiCode } from "react-icons/fi";
 
 const CodeOptions = ({ children }) => {
   const [isJS, setIsJS] = useState(true);
+  const [languagePreset, setLanguagePreset] = useState(null);
+
+  useEffect(() => {
+    const language = localStorage.getItem('preferredLanguage') || 'JS';
+
+    handleLanguageSelection(language);
+    setLanguagePreset(language);
+  }, [])
 
   const tabComponents = {
     JS: { css: CSSTab, tailwind: TailwindTab },
@@ -49,7 +57,7 @@ const CodeOptions = ({ children }) => {
   const selectStyles = { ...tabStyles, paddingRight: "2.2em" };
 
   return (
-    <Tabs mt={4} variant="unstyled" border="none">
+    <Tabs mt={4} variant="unstyled" border="none" opacity={languagePreset ? 1 : 0} transition={languagePreset ? "opacity 0.3s" : "none"}>
       <TabList mb={4} justifyContent="space-between">
         <Flex wrap="wrap" gap="0.5rem">
           <Tab sx={tabStyles}><Icon as={FiCode} />&nbsp;Default</Tab>
@@ -57,7 +65,12 @@ const CodeOptions = ({ children }) => {
         </Flex>
 
         <Flex alignItems="center" gap="8px">
-          <Select width="fit-content" sx={selectStyles} onChange={(e) => handleLanguageSelection(e.target.value)} defaultValue="JS">
+          <Select
+            width="fit-content"
+            sx={selectStyles}
+            onChange={(e) => handleLanguageSelection(e.target.value)}
+            defaultValue={localStorage.getItem('preferredLanguage') || 'JS'}
+          >
             <option value="JS">JS</option>
             <option value="TS">TS</option>
           </Select>
