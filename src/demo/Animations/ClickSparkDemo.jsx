@@ -77,7 +77,7 @@ const ClickSparkDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" minH={300} maxH={300} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={300} p={0} overflow="hidden">
           <ClickSpark
             key={key}
             sparkColor={sparkColor}
