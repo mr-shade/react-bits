@@ -72,6 +72,7 @@ uniform int iBallCount;
 uniform float iCursorBallSize;
 uniform vec3 iMetaBalls[50]; // Precomputed: xy = position, z = radius
 uniform float iClumpFactor;
+uniform bool enableTransparency;
 out vec4 outColor;
 const float PI = 3.14159265359;
 
@@ -101,7 +102,7 @@ void main() {
     float alpha2 = m2 / total;
     cFinal = iColor * alpha1 + iCursorColor * alpha2;
   }
-  outColor = vec4(cFinal * f, 1.0);
+  outColor = vec4(cFinal * f, enableTransparency ? f : 1.0);
 }
 `;
 
@@ -115,6 +116,7 @@ const MetaBalls = ({
   clumpFactor = 1,
   cursorBallSize = 3,
   cursorBallColor = "#ffffff",
+  enableTransparency = false,
 }) => {
   const containerRef = useRef(null);
 
@@ -125,7 +127,7 @@ const MetaBalls = ({
     const dpr = 1;
     const renderer = new Renderer({ dpr, alpha: true, premultipliedAlpha: false });
     const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(0, 0, 0, enableTransparency ? 0 : 1);
     container.appendChild(gl.canvas);
 
     const camera = new Camera(gl, {
@@ -156,6 +158,7 @@ const MetaBalls = ({
         iCursorBallSize: { value: cursorBallSize },
         iMetaBalls: { value: metaBallsUniform },
         iClumpFactor: { value: clumpFactor },
+        enableTransparency: { value: enableTransparency },
       },
     });
 
@@ -272,6 +275,7 @@ const MetaBalls = ({
     ballCount,
     clumpFactor,
     cursorBallSize,
+    enableTransparency,
   ]);
 
   return <div ref={containerRef} className="w-full h-full relative" />;
