@@ -72,6 +72,12 @@ const ClickSparkDemo = () => {
       default: 1.0,
       description: "Additional multiplier for spark distance.",
     },
+    {
+      name: "children",
+      type: "React.ReactNode",
+      default: "",
+      description: "React children to render.",
+    }
   ];
 
   return (

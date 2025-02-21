@@ -42,6 +42,12 @@ const MetaBallsDemo = () => {
       description: "Enables or disables the ball following the mouse."
     },
     {
+      name: "enableTransparency",
+      type: "boolean",
+      default: "false",
+      description: "Enables or disables transparency for the container of the animation."
+    },
+    {
       name: "hoverSmoothness",
       type: "number",
       default: "0.05",
