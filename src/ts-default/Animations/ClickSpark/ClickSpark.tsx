@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useCallback} from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 
 interface ClickSparkProps {
     sparkColor?: string;
@@ -8,6 +8,7 @@ interface ClickSparkProps {
     duration?: number;
     easing?: "linear" | "ease-in" | "ease-out" | "ease-in-out";
     extraScale?: number;
+    children?: React.ReactNode;
 }
 
 interface Spark {
@@ -25,6 +26,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     duration = 400,
     easing = "ease-out",
     extraScale = 1.0,
+    children
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const sparksRef = useRef<Spark[]>([]); // Stores spark data
@@ -137,7 +139,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         };
     }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
 
-    const handleClick = (e: React.MouseEvent<HTMLCanvasElement>): void => {
+    const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const rect = canvas.getBoundingClientRect();
@@ -156,16 +158,23 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     };
 
     return (
-        <canvas
-            ref={canvasRef}
-            style={{
-                width: "100%",
-                height: "100%",
-                display: "block",
-                userSelect: "none"
-            }}
-            onClick={handleClick}
-        />
+        <div style={{
+            width:"100%",
+            height:"100%",
+            position:"relative"
+        }}
+        onClick={handleClick}
+        >
+            <canvas
+                ref={canvasRef}
+                style={{
+                   position:"absolute",
+                   inset:0,
+                   pointerEvents:"none"
+                }}
+            />
+            {children}
+        </div>
     );
 };
 
