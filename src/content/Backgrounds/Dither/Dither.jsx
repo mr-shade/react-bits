@@ -116,7 +116,6 @@ void main() {
 }
 `;
 
-// Note: We remove an explicit "uniform vec2 resolution;" here so that we use the one provided by postprocessing.
 const ditherFragmentShader = `
 precision highp float;
 
@@ -135,7 +134,6 @@ const float bayerMatrix8x8[64] = float[64](
 );
 
 vec3 dither(vec2 uv, vec3 color) {
-  // Use the provided resolution (updated from the render target)
   int x = int(uv.x * resolution.x) % 8;
   int y = int(uv.y * resolution.y) % 8;
   float threshold = bayerMatrix8x8[y * 8 + x] - 0.25;
@@ -158,7 +156,6 @@ class RetroEffectImpl extends Effect {
     const uniforms = new Map([
       ["colorNum", new THREE.Uniform(4.0)],
       ["pixelSize", new THREE.Uniform(2.0)],
-      // Do not declare a resolution uniform here—let the postprocessing system supply it.
     ]);
     super("RetroEffect", ditherFragmentShader, { uniforms });
     this.uniforms = uniforms;
@@ -195,17 +192,15 @@ function DitheredWaves({
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { viewport, size, gl } = useThree();
 
-  // Update our wave shader resolution with integer (pixel) values.
-  const updateWaveResolution = (s) => {
-    waveUniformsRef.current.resolution.value.set(
-      Math.floor(s.width),
-      Math.floor(s.height)
-    );
-  };
-
+  // Reference for wave uniforms – initial resolution uses device pixel ratio
   const waveUniformsRef = useRef({
     time: { value: 0 },
-    resolution: { value: new THREE.Vector2(Math.floor(size.width), Math.floor(size.height)) },
+    resolution: {
+      value: new THREE.Vector2(
+        Math.floor(size.width * gl.getPixelRatio()),
+        Math.floor(size.height * gl.getPixelRatio())
+      )
+    },
     waveSpeed: { value: waveSpeed },
     waveFrequency: { value: waveFrequency },
     waveAmplitude: { value: waveAmplitude },
@@ -215,11 +210,15 @@ function DitheredWaves({
     mouseRadius: { value: mouseRadius }
   });
 
-  useFrame(({ clock, size }) => {
+  useFrame(({ clock, size, gl }) => {
     if (!disableAnimation) {
       waveUniformsRef.current.time.value = clock.getElapsedTime();
     }
-    updateWaveResolution(size);
+    const dpr = gl.getPixelRatio();
+    const width = Math.floor(size.width * dpr);
+    const height = Math.floor(size.height * dpr);
+    // Update resolution using actual drawing buffer size for consistency
+    waveUniformsRef.current.resolution.value.set(width, height);
     waveUniformsRef.current.waveSpeed.value = waveSpeed;
     waveUniformsRef.current.waveFrequency.value = waveFrequency;
     waveUniformsRef.current.waveAmplitude.value = waveAmplitude;
@@ -232,12 +231,13 @@ function DitheredWaves({
     if (effect.current) {
       effect.current.colorNum = colorNum;
       effect.current.pixelSize = pixelSize;
-      // Update the dither effect's resolution uniform using the actual drawing buffer size.
-      if (effect.current.uniforms && effect.current.uniforms.resolution) {
-        effect.current.uniforms.resolution.value.set(
-          gl.domElement.width,
-          gl.domElement.height
-        );
+      // Guard the resolution update: only update if the uniform exists
+      if (
+        effect.current.uniforms &&
+        effect.current.uniforms.resolution &&
+        effect.current.uniforms.resolution.value
+      ) {
+        effect.current.uniforms.resolution.value.set(width, height);
       }
     }
   });
@@ -288,14 +288,16 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1
 }) {
-  // https://github.com/DavidHDev/react-bits/issues/118
-  // For some reason the padding is needed on macOS to prevent the canvas from being too bright, but not needed on windows to prevent artifacts in the shader.
-  const isMac = navigator.userAgentData ? navigator.userAgentData.platform.toLowerCase() === 'macos' : /macintosh|mac os x/i.test(navigator.userAgent);
+  // For macOS, a tiny padding is added to adjust brightness.
+  // On Windows, consistent resolution updates help prevent flickering.
+  const isMac = navigator.userAgentData
+    ? navigator.userAgentData.platform.toLowerCase() === "macos"
+    : /macintosh|mac os x/i.test(navigator.userAgent);
 
   return (
     <Canvas
       className="dither-container"
-      style={{ padding: isMac ? '1px' : 0 }}
+      style={{ padding: isMac ? "1px" : "0px" }}
       camera={{ position: [0, 0, 6] }}
       dpr={window.devicePixelRatio}
       gl={{ antialias: true }}
