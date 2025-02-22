@@ -231,7 +231,6 @@ function DitheredWaves({
     if (effect.current) {
       effect.current.colorNum = colorNum;
       effect.current.pixelSize = pixelSize;
-      // Guard the resolution update: only update if the uniform exists
       if (
         effect.current.uniforms &&
         effect.current.uniforms.resolution &&
@@ -242,11 +241,13 @@ function DitheredWaves({
     }
   });
 
+  // Scale mouse coordinates by devicePixelRatio for consistency with resolution
   const handlePointerMove = (e) => {
     if (!enableMouseInteraction) return;
     const rect = gl.domElement.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const dpr = gl.getPixelRatio();
+    const x = (e.clientX - rect.left) * dpr;
+    const y = (e.clientY - rect.top) * dpr;
     setMousePos({ x, y });
   };
 
@@ -288,8 +289,6 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1
 }) {
-  // For macOS, a tiny padding is added to adjust brightness.
-  // On Windows, consistent resolution updates help prevent flickering.
   const isMac = navigator.userAgentData
     ? navigator.userAgentData.platform.toLowerCase() === "macos"
     : /macintosh|mac os x/i.test(navigator.userAgent);
