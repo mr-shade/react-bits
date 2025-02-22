@@ -31,9 +31,8 @@ uniform float waveAmplitude;
 uniform vec3 waveColor;
 uniform vec2 mousePos;
 uniform int enableMouseInteraction;
-uniform float mouseRadius; // New uniform for controlling radius
+uniform float mouseRadius;
 
-// -------------------- Perlin Noise Helpers --------------------
 vec4 mod289(vec4 x) {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
@@ -46,8 +45,6 @@ vec4 taylorInvSqrt(vec4 r) {
 vec2 fade(vec2 t) {
   return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
 }
-
-// Classic Perlin noise
 float cnoise(vec2 P) {
   vec4 Pi = floor(P.xyxy) + vec4(0.0, 0.0, 1.0, 1.0);
   vec4 Pf = fract(P.xyxy) - vec4(0.0, 0.0, 1.0, 1.0);
@@ -82,8 +79,6 @@ float cnoise(vec2 P) {
   float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
   return 2.3 * n_xy;
 }
-
-// fBm with adjustable frequency/amplitude factor
 const int OCTAVES = 8;
 float fbm(vec2 p) {
   float value = 0.0;
@@ -108,13 +103,10 @@ void main() {
   uv.x *= resolution.x / resolution.y;
   float f = pattern(uv);
 
-  // Mouse-based radial distortion if enabled
   if (enableMouseInteraction == 1) {
-    // Convert mousePos from [0..resolution] into [-0.5..0.5] space
     vec2 mouseNDC = (mousePos / resolution - 0.5) * vec2(1.0, -1.0);
     mouseNDC.x *= resolution.x / resolution.y;
     float dist = length(uv - mouseNDC);
-    // Use smoothstep to fade out the effect over mouseRadius
     float effect = 1.0 - smoothstep(0.0, mouseRadius, dist);
     f -= 0.5 * effect;
   }
@@ -142,6 +134,7 @@ const float bayerMatrix8x8[64] = float[64](
 );
 
 vec3 dither(vec2 uv, vec3 color) {
+  // Using the built-in resolution uniform from postprocessing
   int x = int(uv.x * resolution.x) % 8;
   int y = int(uv.y * resolution.y) % 8;
   float threshold = bayerMatrix8x8[y * 8 + x] - 0.25;
@@ -282,6 +275,8 @@ export default function Dither({
     <Canvas
       className="dither-container"
       camera={{ position: [0, 0, 6] }}
+      dpr={window.devicePixelRatio}
+      gl={{ antialias: true }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}
