@@ -15,6 +15,7 @@ const animations = {
   'pixel-trail': () => import("../demo/Animations/PixelTrailDemo"),
   'ribbons': () => import("../demo/Animations/RibbonsDemo"),
   'meta-balls': () => import("../demo/Animations/MetaBallsDemo"),
+  'metallic-paint': () => import("../demo/Animations/MetallicPaintDemo"),
 };
 
 const textAnimations = {
