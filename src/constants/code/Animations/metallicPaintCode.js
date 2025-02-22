@@ -12,6 +12,8 @@ export const metallicPaint = {
 import { useState, useEffect } from 'react';
 
 // replace with your own SVG
+// NOTE: your SVG should have a bit of padding around the shape, to keep it from being cut off
+// it should also have white fill color, to allow the metallic effect to show through
 import logo from '../../assets/logos/react-bits-solid-white.svg';
 
 const Component = () => {
