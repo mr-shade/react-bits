@@ -194,12 +194,7 @@ function DitheredWaves({
 
   const waveUniformsRef = useRef({
     time: { value: 0 },
-    resolution: {
-      value: new THREE.Vector2(
-        Math.floor(size.width * gl.getPixelRatio()),
-        Math.floor(size.height * gl.getPixelRatio())
-      )
-    },
+    resolution: { value: new THREE.Vector2(0, 0) },
     waveSpeed: { value: waveSpeed },
     waveFrequency: { value: waveFrequency },
     waveAmplitude: { value: waveAmplitude },
@@ -211,11 +206,19 @@ function DitheredWaves({
 
   useEffect(() => {
     const dpr = gl.getPixelRatio();
-    const width = Math.floor(size.width * dpr);
-    const height = Math.floor(size.height * dpr);
-    waveUniformsRef.current.resolution.value.set(width, height);
-    if (effect.current && effect.current.uniforms && effect.current.uniforms.resolution) {
-      effect.current.uniforms.resolution.value.set(width, height);
+    const newWidth = Math.floor(size.width * dpr);
+    const newHeight = Math.floor(size.height * dpr);
+    const currentRes = waveUniformsRef.current.resolution.value;
+    if (currentRes.x !== newWidth || currentRes.y !== newHeight) {
+      currentRes.set(newWidth, newHeight);
+      if (
+        effect.current &&
+        effect.current.uniforms &&
+        effect.current.uniforms.resolution &&
+        effect.current.uniforms.resolution.value
+      ) {
+        effect.current.uniforms.resolution.value.set(newWidth, newHeight);
+      }
     }
   }, [size, gl]);
 
