@@ -288,9 +288,14 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1
 }) {
+  // https://github.com/DavidHDev/react-bits/issues/118
+  // For some reason the padding is needed on macOS to prevent the canvas from being too bright, but not needed on windows to prevent artifacts in the shader.
+  const isMac = navigator.userAgentData ? navigator.userAgentData.platform.toLowerCase() === 'macos' : /macintosh|mac os x/i.test(navigator.userAgent);
+
   return (
     <Canvas
       className="dither-container"
+      style={{ padding: isMac ? '1px' : 0 }}
       camera={{ position: [0, 0, 6] }}
       dpr={window.devicePixelRatio}
       gl={{ antialias: true }}
