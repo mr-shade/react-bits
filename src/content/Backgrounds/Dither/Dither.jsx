@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { EffectComposer, wrapEffect } from "@react-three/postprocessing";
 import { Effect } from "postprocessing";
@@ -192,7 +192,6 @@ function DitheredWaves({
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { viewport, size, gl } = useThree();
 
-  // Reference for wave uniforms – initial resolution uses device pixel ratio
   const waveUniformsRef = useRef({
     time: { value: 0 },
     resolution: {
@@ -210,15 +209,20 @@ function DitheredWaves({
     mouseRadius: { value: mouseRadius }
   });
 
-  useFrame(({ clock, size, gl }) => {
-    if (!disableAnimation) {
-      waveUniformsRef.current.time.value = clock.getElapsedTime();
-    }
+  useEffect(() => {
     const dpr = gl.getPixelRatio();
     const width = Math.floor(size.width * dpr);
     const height = Math.floor(size.height * dpr);
-    // Update resolution using actual drawing buffer size for consistency
     waveUniformsRef.current.resolution.value.set(width, height);
+    if (effect.current && effect.current.uniforms && effect.current.uniforms.resolution) {
+      effect.current.uniforms.resolution.value.set(width, height);
+    }
+  }, [size, gl]);
+
+  useFrame(({ clock }) => {
+    if (!disableAnimation) {
+      waveUniformsRef.current.time.value = clock.getElapsedTime();
+    }
     waveUniformsRef.current.waveSpeed.value = waveSpeed;
     waveUniformsRef.current.waveFrequency.value = waveFrequency;
     waveUniformsRef.current.waveAmplitude.value = waveAmplitude;
@@ -231,17 +235,9 @@ function DitheredWaves({
     if (effect.current) {
       effect.current.colorNum = colorNum;
       effect.current.pixelSize = pixelSize;
-      if (
-        effect.current.uniforms &&
-        effect.current.uniforms.resolution &&
-        effect.current.uniforms.resolution.value
-      ) {
-        effect.current.uniforms.resolution.value.set(width, height);
-      }
     }
   });
 
-  // Scale mouse coordinates by devicePixelRatio for consistency with resolution
   const handlePointerMove = (e) => {
     if (!enableMouseInteraction) return;
     const rect = gl.domElement.getBoundingClientRect();
