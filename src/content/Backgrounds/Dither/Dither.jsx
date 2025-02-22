@@ -116,6 +116,7 @@ void main() {
 }
 `;
 
+// Note: We remove an explicit "uniform vec2 resolution;" here so that we use the one provided by postprocessing.
 const ditherFragmentShader = `
 precision highp float;
 
@@ -134,7 +135,7 @@ const float bayerMatrix8x8[64] = float[64](
 );
 
 vec3 dither(vec2 uv, vec3 color) {
-  // Using the built-in resolution uniform from postprocessing
+  // Use the provided resolution (updated from the render target)
   int x = int(uv.x * resolution.x) % 8;
   int y = int(uv.y * resolution.y) % 8;
   float threshold = bayerMatrix8x8[y * 8 + x] - 0.25;
@@ -157,6 +158,7 @@ class RetroEffectImpl extends Effect {
     const uniforms = new Map([
       ["colorNum", new THREE.Uniform(4.0)],
       ["pixelSize", new THREE.Uniform(2.0)],
+      // Do not declare a resolution uniform here—let the postprocessing system supply it.
     ]);
     super("RetroEffect", ditherFragmentShader, { uniforms });
     this.uniforms = uniforms;
@@ -193,9 +195,17 @@ function DitheredWaves({
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { viewport, size, gl } = useThree();
 
+  // Update our wave shader resolution with integer (pixel) values.
+  const updateWaveResolution = (s) => {
+    waveUniformsRef.current.resolution.value.set(
+      Math.floor(s.width),
+      Math.floor(s.height)
+    );
+  };
+
   const waveUniformsRef = useRef({
     time: { value: 0 },
-    resolution: { value: new THREE.Vector2(size.width, size.height) },
+    resolution: { value: new THREE.Vector2(Math.floor(size.width), Math.floor(size.height)) },
     waveSpeed: { value: waveSpeed },
     waveFrequency: { value: waveFrequency },
     waveAmplitude: { value: waveAmplitude },
@@ -209,7 +219,7 @@ function DitheredWaves({
     if (!disableAnimation) {
       waveUniformsRef.current.time.value = clock.getElapsedTime();
     }
-    waveUniformsRef.current.resolution.value.set(size.width, size.height);
+    updateWaveResolution(size);
     waveUniformsRef.current.waveSpeed.value = waveSpeed;
     waveUniformsRef.current.waveFrequency.value = waveFrequency;
     waveUniformsRef.current.waveAmplitude.value = waveAmplitude;
@@ -222,6 +232,13 @@ function DitheredWaves({
     if (effect.current) {
       effect.current.colorNum = colorNum;
       effect.current.pixelSize = pixelSize;
+      // Update the dither effect's resolution uniform using the actual drawing buffer size.
+      if (effect.current.uniforms && effect.current.uniforms.resolution) {
+        effect.current.uniforms.resolution.value.set(
+          gl.domElement.width,
+          gl.domElement.height
+        );
+      }
     }
   });
 
