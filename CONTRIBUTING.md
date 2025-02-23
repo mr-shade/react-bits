@@ -30,10 +30,6 @@ We welcome pull requests from everyone as long as they respeect the quality stan
 6. Before you open a pull request, please make sure that your changes are tested locally, and everything looks good on desktop and mobile, also check the console for errors, and so on, so that we can keep this library at the highest quality possible.
 7. Any pull requests that fail to meet these requirements will be denied, so please make sure you respect them so that your work can go through.
 
-## Component Dependencies
-
-When updating or adding new components, avoid introducing additional dependencies unless absolutely necessary. Components should remain as agnostic as possible, allowing users to fully customize them to their preferences. Most components in React Bits only use animation libraries and THREE.js at most.
-
 ## Conclusion
 
 I appreciate your interest in contributing! By following these guidelines, you can help us maintain a healthy and productive open-source community. I value your contributions and look forward to your pull requests!
