@@ -60,6 +60,7 @@ const components = {
   'counter': () => import("../demo/Components/CounterDemo"),
   'lanyard': () => import("../demo/Components/LanyardDemo"),
   'glass-icons': () => import("../demo/Components/GlassIconsDemo"),
+  'animated-list': () => import("../demo/Components/AnimatedListDemo"),
 };
 
 const backgrounds = {
