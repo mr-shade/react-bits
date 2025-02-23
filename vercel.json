@@ -1,8 +1,5 @@
 {
   "rewrites": [
       {"source": "/(.*)", "destination": "/"}
-  ],
-  "build": {
-    "ignoreCommand": "git diff --quiet $VERCEL_GIT_PREVIOUS_SHA $VERCEL_GIT_COMMIT -- . ':!ui' || exit 1"
-  }
+  ]
 }
