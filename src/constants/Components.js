@@ -80,6 +80,7 @@ const backgrounds = {
   'balatro': () => import("../demo/Backgrounds/BalatroDemo"),
   'threads': () => import("../demo/Backgrounds/ThreadsDemo"),
   'dither': () => import("../demo/Backgrounds/DitherDemo"),
+  'lightning': () => import("../demo/Backgrounds/LightningDemo"),
 };
 
 export const componentMap = {

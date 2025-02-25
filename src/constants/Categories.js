@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Dither', 'Animated List', 'Metallic Paint', 'Threads', 'Fuzzy Text', 'Circular Text', 'Glass Icons', 'Lanyard', 'Scroll Velocity', 'Balatro'];
+export const NEW = ['Dither', 'Animated List', 'Metallic Paint', 'Threads', 'Fuzzy Text', 'Circular Text', 'Glass Icons', 'Lanyard', 'Scroll Velocity', 'Lightning'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -79,6 +79,7 @@ export const CATEGORIES = [
     name: 'Backgrounds',
     subcategories: [
       'Aurora',
+      'Lightning',
       'Balatro',
       'Dither',
       'Shape Blur',
