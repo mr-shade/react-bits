@@ -63,15 +63,15 @@ class Noise {
 const Waves = ({
   lineColor = "black",
   backgroundColor = "transparent",
-  waveSpeedX = 0.0125,   // per-frame horizontal speed factor
-  waveSpeedY = 0.005,    // per-frame vertical speed factor
-  waveAmpX = 32,         // horizontal amplitude
-  waveAmpY = 16,         // vertical amplitude
-  xGap = 10,             // horizontal gap between lines
-  yGap = 32,             // vertical gap between points
-  friction = 0.925,      // friction for cursor effect
-  tension = 0.005,       // tension for cursor effect
-  maxCursorMove = 100,   // clamp for cursor x/y
+  waveSpeedX = 0.0125,
+  waveSpeedY = 0.005,
+  waveAmpX = 32,
+  waveAmpY = 16,
+  xGap = 10,
+  yGap = 32,
+  friction = 0.925,
+  tension = 0.005,
+  maxCursorMove = 100,
   style = {},
   className = ""
 }) => {
@@ -84,11 +84,12 @@ const Waves = ({
   const mouseRef = useRef({
     x: -10, y: 0, lx: 0, ly: 0, sx: 0, sy: 0, v: 0, vs: 0, a: 0, set: false
   });
-
   const configRef = useRef({
     lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY,
     friction, tension, maxCursorMove, xGap, yGap
   });
+  const frameIdRef = useRef(null);
+
   useEffect(() => {
     configRef.current = { lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap };
   }, [lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap]);
@@ -203,7 +204,7 @@ const Waves = ({
 
       movePoints(t);
       drawLines();
-      requestAnimationFrame(tick);
+      frameIdRef.current = requestAnimationFrame(tick);
     }
 
     function onResize() {
@@ -228,7 +229,7 @@ const Waves = ({
 
     setSize();
     setLines();
-    requestAnimationFrame(tick);
+    frameIdRef.current = requestAnimationFrame(tick);
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove, { passive: false });
@@ -237,6 +238,7 @@ const Waves = ({
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
+      cancelAnimationFrame(frameIdRef.current);
     };
   }, []);
 

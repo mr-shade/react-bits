@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Flex, Select, Text } from "@chakra-ui/react";
+import { Flex, Select, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
@@ -100,7 +100,6 @@ const WavesDemo = () => {
             lineColor={color}
           />
         </Flex>
-
 
         <h2 className="demo-title-extra">Customize</h2>
         <Flex direction="row" alignItems="center" gap={4} mt={4}>

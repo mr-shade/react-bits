@@ -187,7 +187,6 @@ const Waves: React.FC<WavesProps> = ({
     a: 0,
     set: false,
   });
-
   const configRef = useRef<Config>({
     lineColor,
     waveSpeedX,
@@ -200,6 +199,7 @@ const Waves: React.FC<WavesProps> = ({
     xGap,
     yGap,
   });
+  const frameIdRef = useRef<number | null>(null);
 
   useEffect(() => {
     configRef.current = {
@@ -371,7 +371,7 @@ const Waves: React.FC<WavesProps> = ({
 
       movePoints(t);
       drawLines();
-      requestAnimationFrame(tick);
+      frameIdRef.current = requestAnimationFrame(tick);
     }
 
     function onResize() {
@@ -401,7 +401,7 @@ const Waves: React.FC<WavesProps> = ({
 
     setSize();
     setLines();
-    requestAnimationFrame(tick);
+    frameIdRef.current = requestAnimationFrame(tick);
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove, { passive: false });
@@ -410,6 +410,9 @@ const Waves: React.FC<WavesProps> = ({
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
+      if (frameIdRef.current !== null) {
+        cancelAnimationFrame(frameIdRef.current);
+      }
     };
   }, []);
 
