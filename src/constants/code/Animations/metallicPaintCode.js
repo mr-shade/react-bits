@@ -13,8 +13,8 @@ import { useState, useEffect } from 'react';
 
 // replace with your own SVG
 // NOTE: your SVG should have a bit of padding around the shape, to keep it from being cut off
-// it should also have white fill color, to allow the metallic effect to show through
-import logo from '../../assets/logos/react-bits-solid-white.svg';
+// it should also have black fill color, to allow the metallic effect to show through the mask
+import logo from '../../assets/logos/react-bits-solid-black.svg';
 
 const Component = () => {
   const [imageData, setImageData] = useState(null);
