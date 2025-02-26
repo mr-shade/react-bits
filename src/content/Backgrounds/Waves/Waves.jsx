@@ -1,13 +1,13 @@
 import { useRef, useEffect } from "react";
 import './Waves.css';
 
-// Noise + Grad (unchanged)
 class Grad {
   constructor(x, y, z) {
     this.x = x; this.y = y; this.z = z;
   }
   dot2(x, y) { return this.x * x + this.y * y; }
 }
+
 class Noise {
   constructor(seed = 0) {
     this.grad3 = [
@@ -60,7 +60,7 @@ class Noise {
   }
 }
 
-export default function Waves({
+const Waves = ({
   lineColor = "black",
   backgroundColor = "transparent",
   waveSpeedX = 0.0125,   // per-frame horizontal speed factor
@@ -74,7 +74,7 @@ export default function Waves({
   maxCursorMove = 100,   // clamp for cursor x/y
   style = {},
   className = ""
-}) {
+}) => {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
@@ -85,7 +85,16 @@ export default function Waves({
     x: -10, y: 0, lx: 0, ly: 0, sx: 0, sy: 0, v: 0, vs: 0, a: 0, set: false
   });
 
+  const configRef = useRef({
+    lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY,
+    friction, tension, maxCursorMove, xGap, yGap
+  });
   useEffect(() => {
+    configRef.current = { lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap };
+  }, [lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap]);
+
+  useEffect(() => {
+    console.log("Waves mounted");
     const canvas = canvasRef.current;
     const container = containerRef.current;
     ctxRef.current = canvas.getContext("2d");
@@ -100,6 +109,7 @@ export default function Waves({
       const { width, height } = boundingRef.current;
       linesRef.current = [];
       const oWidth = width + 200, oHeight = height + 30;
+      const { xGap, yGap } = configRef.current;
       const totalLines = Math.ceil(oWidth / xGap);
       const totalPoints = Math.ceil(oHeight / yGap);
       const xStart = (width - xGap * totalLines) / 2;
@@ -108,7 +118,8 @@ export default function Waves({
         const pts = [];
         for (let j = 0; j <= totalPoints; j++) {
           pts.push({
-            x: xStart + xGap * i, y: yStart + yGap * j,
+            x: xStart + xGap * i,
+            y: yStart + yGap * j,
             wave: { x: 0, y: 0 },
             cursor: { x: 0, y: 0, vx: 0, vy: 0 }
           });
@@ -119,9 +130,9 @@ export default function Waves({
 
     function movePoints(time) {
       const lines = linesRef.current, mouse = mouseRef.current, noise = noiseRef.current;
+      const { waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove } = configRef.current;
       lines.forEach((pts) => {
         pts.forEach((p) => {
-          // Wave noise
           const move = noise.perlin2(
             (p.x + time * waveSpeedX) * 0.002,
             (p.y + time * waveSpeedY) * 0.0015
@@ -129,7 +140,6 @@ export default function Waves({
           p.wave.x = Math.cos(move) * waveAmpX;
           p.wave.y = Math.sin(move) * waveAmpY;
 
-          // Mouse effect
           const dx = p.x - mouse.sx, dy = p.y - mouse.sy;
           const dist = Math.hypot(dx, dy), l = Math.max(175, mouse.vs);
           if (dist < l) {
@@ -138,14 +148,13 @@ export default function Waves({
             p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00065;
             p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065;
           }
-          // Tension + friction
+
           p.cursor.vx += (0 - p.cursor.x) * tension;
           p.cursor.vy += (0 - p.cursor.y) * tension;
           p.cursor.vx *= friction;
           p.cursor.vy *= friction;
           p.cursor.x += p.cursor.vx * 2;
           p.cursor.y += p.cursor.vy * 2;
-          // Clamp
           p.cursor.x = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.x));
           p.cursor.y = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.y));
         });
@@ -163,7 +172,7 @@ export default function Waves({
       const ctx = ctxRef.current;
       ctx.clearRect(0, 0, width, height);
       ctx.beginPath();
-      ctx.strokeStyle = lineColor;
+      ctx.strokeStyle = configRef.current.lineColor;
       linesRef.current.forEach((points) => {
         let p1 = moved(points[0], false);
         ctx.moveTo(p1.x, p1.y);
@@ -180,10 +189,8 @@ export default function Waves({
 
     function tick(t) {
       const mouse = mouseRef.current;
-      // Smooth mouse
       mouse.sx += (mouse.x - mouse.sx) * 0.1;
       mouse.sy += (mouse.y - mouse.sy) * 0.1;
-      // Velocity
       const dx = mouse.x - mouse.lx, dy = mouse.y - mouse.ly;
       const d = Math.hypot(dx, dy);
       mouse.v = d;
@@ -191,7 +198,6 @@ export default function Waves({
       mouse.vs = Math.min(100, mouse.vs);
       mouse.lx = mouse.x; mouse.ly = mouse.y;
       mouse.a = Math.atan2(dy, dx);
-      // Animate circle
       container.style.setProperty("--x", `${mouse.sx}px`);
       container.style.setProperty("--y", `${mouse.sy}px`);
 
@@ -201,7 +207,8 @@ export default function Waves({
     }
 
     function onResize() {
-      setSize(); setLines();
+      setSize();
+      setLines();
     }
     function onMouseMove(e) { updateMouse(e.pageX, e.pageY); }
     function onTouchMove(e) {
@@ -231,11 +238,7 @@ export default function Waves({
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
     };
-  }, [
-    lineColor, backgroundColor, waveSpeedX, waveSpeedY,
-    waveAmpX, waveAmpY, friction, tension, maxCursorMove,
-    xGap, yGap
-  ]);
+  }, []);
 
   return (
     <div
@@ -249,7 +252,9 @@ export default function Waves({
         ...style
       }}
     >
-      <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "100%" }} />
+      <canvas ref={canvasRef} className="waves-canvas" />
     </div>
   );
 }
+
+export default Waves;
