@@ -9,7 +9,7 @@ import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 
-import Folder from "../../ts-tailwind/Components/Folder/Folder";
+import Folder from "../../content/Components/Folder/Folder";
 import { folder } from "../../constants/code/Components/folderCode";
 
 const FolderDemo = () => {
