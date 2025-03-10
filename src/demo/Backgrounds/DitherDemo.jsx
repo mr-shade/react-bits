@@ -10,13 +10,13 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 
-import Dither from "../../ts-default/Backgrounds/Dither/Dither";
+import Dither from "../../content/Backgrounds/Dither/Dither";
 import { dither } from "../../constants/code/Backgrounds/ditherCode";
 
 const DitherDemo = () => {
   const [colors, setColors] = useState([0.5, 0.5, 0.5]);
   const [mouseRadius, setMouseRadius] = useState(0.3);
-  const [colorNum, setColorNum] = useState(2);
+  const [colorNum, setColorNum] = useState(4);
   const [waveAmplitude, setWaveAmplitude] = useState(0.3);
   const [waveFrequency, setWaveFrequency] = useState(3);
   const [waveSpeed, setWaveSpeed] = useState(0.05);
@@ -178,9 +178,9 @@ const DitherDemo = () => {
 
           <PreviewSlider
             title="Color Intensity"
-            min={1}
-            max={2}
-            step={0.01}
+            min={2.5}
+            max={40}
+            step={0.1}
             value={colorNum}
             onChange={(val) => {
               setColorNum(val);
