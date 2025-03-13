@@ -62,6 +62,7 @@ const components = {
   'glass-icons': () => import("../demo/Components/GlassIconsDemo"),
   'animated-list': () => import("../demo/Components/AnimatedListDemo"),
   'folder': () => import("../demo/Components/FolderDemo"),
+  'gooey-nav': () => import("../demo/Components/GooeyNavDemo"),
 };
 
 const backgrounds = {
