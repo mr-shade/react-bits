@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Dither', 'Animated List', 'Gooey Nav', 'Threads', 'Lightning', 'Folder'];
+export const NEW = ['Dither', 'Animated List', 'Gooey Nav', 'Threads', 'Lightning', 'Folder', 'Text Cursor'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -15,6 +15,7 @@ export const CATEGORIES = [
       'Fuzzy Text',
       'Gradient Text',
       'Falling Text',
+      'Text Cursor',
       'Decrypted Text',
       'True Focus',
       'Scroll Float',

@@ -37,6 +37,7 @@ const textAnimations = {
   'scroll-float': () => import("../demo/TextAnimations/ScrollFloatDemo"),
   'glitch-text': () => import("../demo/TextAnimations/GlitchTextDemo"),
   'fuzzy-text': () => import("../demo/TextAnimations/FuzzyTextDemo"),
+  'text-cursor': () => import("../demo/TextAnimations/TextCursorDemo"),
 };
 
 const components = {
