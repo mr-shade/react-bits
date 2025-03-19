@@ -315,15 +315,9 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1,
 }: DitherProps) {
-  const isMac =
-    (navigator as any).userAgentData
-      ? (navigator as any).userAgentData.platform.toLowerCase() === "macos"
-      : /macintosh|mac os x/i.test(navigator.userAgent);
-
   return (
     <Canvas
       className="dither-container"
-      style={{ padding: isMac ? "1px" : "2px" }}
       camera={{ position: [0, 0, 6] }}
       dpr={window.devicePixelRatio}
       gl={{ antialias: true, preserveDrawingBuffer: true }}
