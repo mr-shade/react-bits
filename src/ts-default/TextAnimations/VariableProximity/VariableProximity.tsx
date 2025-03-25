@@ -76,6 +76,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
     const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
     const interpolatedSettingsRef = useRef<string[]>([]);
     const mousePositionRef = useMousePositionRef(containerRef);
+    const lastPositionRef = useRef<{ x: number | null; y: number | null }>({ x: null, y: null });
 
     const parsedSettings = useMemo(() => {
         const parseSettings = (settingsStr: string) =>
@@ -113,6 +114,11 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
 
     useAnimationFrame(() => {
         if (!containerRef?.current) return;
+        const { x, y } = mousePositionRef.current;
+        if (lastPositionRef.current.x === x && lastPositionRef.current.y === y) {
+          return;
+        }
+        lastPositionRef.current = { x, y };
         const containerRect = containerRef.current.getBoundingClientRect();
 
         letterRefs.current.forEach((letterRef, index) => {
