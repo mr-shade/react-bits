@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useEffect, MutableRefObject, RefObject } from "react";
+import { forwardRef, useMemo, useRef, useEffect, MutableRefObject, RefObject, HTMLAttributes} from "react";
 import { motion } from "framer-motion";
 import "./VariableProximity.css";
 
@@ -46,7 +46,7 @@ function useMousePositionRef(containerRef: RefObject<HTMLElement>) {
     return positionRef;
 }
 
-interface VariableProximityProps {
+interface VariableProximityProps extends HTMLAttributes<HTMLSpanElement>{
     label: string;
     fromFontVariationSettings: string;
     toFontVariationSettings: string;
@@ -56,7 +56,6 @@ interface VariableProximityProps {
     className?: string;
     onClick?: () => void;
     style?: React.CSSProperties;
-    [key: string]: any;
 }
 
 const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((props, ref) => {
