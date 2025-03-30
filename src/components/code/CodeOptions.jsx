@@ -28,7 +28,10 @@ const CodeOptions = ({ children }) => {
     return acc;
   }, { JS: { css: null, tailwind: null }, TS: { css: null, tailwind: null } });
 
-  const handleLanguageSelection = (language) => setIsJS(language === "JS");
+  const handleLanguageSelection = (language) => {
+    setIsJS(language === "JS")
+    localStorage.setItem('preferredLanguage', language)
+  };
 
   const hasValidContent = (content) => content?.props?.children;
 
