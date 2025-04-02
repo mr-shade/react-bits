@@ -4,7 +4,6 @@ import { RiEmotionSadLine, RiTailwindCssFill } from "react-icons/ri";
 import { FiCode } from "react-icons/fi";
 
 const CodeOptions = ({ children }) => {
-  const [isJS, setIsJS] = useState(true);
   const [languagePreset, setLanguagePreset] = useState(null);
 
   useEffect(() => {
@@ -29,14 +28,14 @@ const CodeOptions = ({ children }) => {
   }, { JS: { css: null, tailwind: null }, TS: { css: null, tailwind: null } });
 
   const handleLanguageSelection = (language) => {
-    setIsJS(language === "JS")
+    setLanguagePreset(language)
     localStorage.setItem('preferredLanguage', language)
   };
 
   const hasValidContent = (content) => content?.props?.children;
 
   const renderTabContent = (type) => {
-    const content = isJS ? categorizedTabs.JS[type] : categorizedTabs.TS[type];
+    const content = languagePreset==="JS" ? categorizedTabs.JS[type] : categorizedTabs.TS[type];
     return hasValidContent(content) ? content : (
       <Flex alignItems="center" gap={2} my={6} color="#a1a1aa">
         <Text>Nothing here yet!</Text>
