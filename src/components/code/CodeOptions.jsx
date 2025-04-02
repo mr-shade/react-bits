@@ -60,7 +60,7 @@ const CodeOptions = ({ children }) => {
             width="fit-content"
             sx={selectStyles}
             onChange={(e) => setLanguagePreset(e.target.value)}
-            defaultValue={languagePreset}
+            value={languagePreset}
           >
             <option value="JS">JS</option>
             <option value="TS">TS</option>
