@@ -2,16 +2,10 @@ import { Children, useEffect, useState } from "react";
 import { Tabs, TabList, Tab, TabPanels, TabPanel, Icon, Text, Flex, Select } from "@chakra-ui/react";
 import { RiEmotionSadLine, RiTailwindCssFill } from "react-icons/ri";
 import { FiCode } from "react-icons/fi";
+import { useLanguage } from '../context/LanguageContext/useLanguage';
 
 const CodeOptions = ({ children }) => {
-  const [languagePreset, setLanguagePreset] = useState(null);
-
-  useEffect(() => {
-    const language = localStorage.getItem('preferredLanguage') || 'JS';
-
-    handleLanguageSelection(language);
-    setLanguagePreset(language);
-  }, [])
+  const { languagePreset, setLanguagePreset } = useLanguage();
 
   const tabComponents = {
     JS: { css: CSSTab, tailwind: TailwindTab },
@@ -27,15 +21,10 @@ const CodeOptions = ({ children }) => {
     return acc;
   }, { JS: { css: null, tailwind: null }, TS: { css: null, tailwind: null } });
 
-  const handleLanguageSelection = (language) => {
-    setLanguagePreset(language)
-    localStorage.setItem('preferredLanguage', language)
-  };
-
   const hasValidContent = (content) => content?.props?.children;
 
   const renderTabContent = (type) => {
-    const content = languagePreset==="JS" ? categorizedTabs.JS[type] : categorizedTabs.TS[type];
+    const content = languagePreset === "JS" ? categorizedTabs.JS[type] : categorizedTabs.TS[type];
     return hasValidContent(content) ? content : (
       <Flex alignItems="center" gap={2} my={6} color="#a1a1aa">
         <Text>Nothing here yet!</Text>
@@ -70,8 +59,8 @@ const CodeOptions = ({ children }) => {
           <Select
             width="fit-content"
             sx={selectStyles}
-            onChange={(e) => handleLanguageSelection(e.target.value)}
-            defaultValue={localStorage.getItem('preferredLanguage') || 'JS'}
+            onChange={(e) => setLanguagePreset(e.target.value)}
+            defaultValue={languagePreset}
           >
             <option value="JS">JS</option>
             <option value="TS">TS</option>
