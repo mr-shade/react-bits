@@ -210,7 +210,7 @@ const Waves = ({
       setSize();
       setLines();
     }
-    function onMouseMove(e) { updateMouse(e.pageX, e.pageY); }
+    function onMouseMove(e) { updateMouse(e.clientX, e.clientY); }
     function onTouchMove(e) {
       const touch = e.touches[0];
       updateMouse(touch.clientX, touch.clientY);
@@ -218,7 +218,7 @@ const Waves = ({
     function updateMouse(x, y) {
       const mouse = mouseRef.current, b = boundingRef.current;
       mouse.x = x - b.left;
-      mouse.y = y - b.top + window.scrollY;
+      mouse.y = y - b.top;
       if (!mouse.set) {
         mouse.sx = mouse.x; mouse.sy = mouse.y;
         mouse.lx = mouse.x; mouse.ly = mouse.y;

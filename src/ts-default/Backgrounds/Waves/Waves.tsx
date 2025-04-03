@@ -379,7 +379,7 @@ const Waves: React.FC<WavesProps> = ({
       setLines();
     }
     function onMouseMove(e: MouseEvent) {
-      updateMouse(e.pageX, e.pageY);
+      updateMouse(e.clientX, e.clientY);
     }
     function onTouchMove(e: TouchEvent) {
       const touch = e.touches[0];
@@ -389,7 +389,7 @@ const Waves: React.FC<WavesProps> = ({
       const mouse = mouseRef.current;
       const b = boundingRef.current;
       mouse.x = x - b.left;
-      mouse.y = y - b.top + window.scrollY;
+      mouse.y = y - b.top;
       if (!mouse.set) {
         mouse.sx = mouse.x;
         mouse.sy = mouse.y;
