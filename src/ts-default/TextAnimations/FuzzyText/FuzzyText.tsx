@@ -21,7 +21,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
   baseIntensity = 0.18,
   hoverIntensity = 0.5,
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement & { cleanupFuzzyText?: () => void}>(null);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -181,7 +181,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
         }
       };
 
-      (canvas as any).cleanupFuzzyText = cleanup;
+      canvas.cleanupFuzzyText = cleanup;
     };
 
     init();
@@ -189,8 +189,8 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
     return () => {
       isCancelled = true;
       window.cancelAnimationFrame(animationFrameId);
-      if (canvas && (canvas as any).cleanupFuzzyText) {
-        (canvas as any).cleanupFuzzyText();
+      if (canvas && canvas.cleanupFuzzyText) {
+        canvas.cleanupFuzzyText();
       }
     };
   }, [
