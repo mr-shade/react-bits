@@ -24,7 +24,7 @@ import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-import BlurText from "../../content/TextAnimations/BlurText/BlurText";
+import BlurText from "../../ts-tailwind/TextAnimations/BlurText/BlurText";
 import { blurText } from "../../constants/code/TextAnimations/blurTextCode";
 
 const BlurTextDemo = () => {
@@ -59,6 +59,12 @@ const BlurTextDemo = () => {
       type: "number",
       default: "200",
       description: "Delay between animations for each word/letter (in ms).",
+    },
+    {
+      name: "stepDuration",
+      type: "number",
+      default: "0.35",
+      description: "The time taken for each letter/word to animate (in seconds).",
     },
     {
       name: "threshold",

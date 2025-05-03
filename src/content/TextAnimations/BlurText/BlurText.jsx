@@ -1,39 +1,39 @@
-import { useRef, useEffect, useState } from 'react';
-import { useSprings, animated } from '@react-spring/web';
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState, useMemo } from 'react';
+
+const buildKeyframes = (from, steps) => {
+  const keys = new Set([
+    ...Object.keys(from),
+    ...steps.flatMap((s) => Object.keys(s)),
+  ]);
+
+  const keyframes = {};
+  keys.forEach((k) => {
+    keyframes[k] = [from[k], ...steps.map((s) => s[k])];
+  });
+  return keyframes;
+};
 
 const BlurText = ({
   text = '',
   delay = 200,
   className = '',
-  animateBy = 'words', // 'words' or 'letters'
-  direction = 'top', // 'top' or 'bottom'
+  animateBy = 'words',
+  direction = 'top',
   threshold = 0.1,
   rootMargin = '0px',
   animationFrom,
   animationTo,
-  easing = 'easeOutCubic',
+  easing = (t) => t,
   onAnimationComplete,
+  stepDuration = 0.35,
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
-  const ref = useRef();
-  const animatedCount = useRef(0);
-
-  const defaultFrom =
-    direction === 'top'
-      ? { filter: 'blur(10px)', opacity: 0, transform: 'translate3d(0,-50px,0)' }
-      : { filter: 'blur(10px)', opacity: 0, transform: 'translate3d(0,50px,0)' };
-
-  const defaultTo = [
-    {
-      filter: 'blur(5px)',
-      opacity: 0.5,
-      transform: direction === 'top' ? 'translate3d(0,5px,0)' : 'translate3d(0,-5px,0)',
-    },
-    { filter: 'blur(0px)', opacity: 1, transform: 'translate3d(0,0,0)' },
-  ];
+  const ref = useRef(null);
 
   useEffect(() => {
+    if (!ref.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,47 +43,72 @@ const BlurText = ({
       },
       { threshold, rootMargin }
     );
-
     observer.observe(ref.current);
-
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threshold, rootMargin]);
 
-  const springs = useSprings(
-    elements.length,
-    elements.map((_, i) => ({
-      from: animationFrom || defaultFrom,
-      to: inView
-        ? async (next) => {
-          for (const step of (animationTo || defaultTo)) {
-            await next(step);
-          }
-          animatedCount.current += 1;
-          if (animatedCount.current === elements.length && onAnimationComplete) {
-            onAnimationComplete();
-          }
-        }
-        : animationFrom || defaultFrom,
-      delay: i * delay,
-      config: { easing },
-    }))
+  const defaultFrom = useMemo(
+    () =>
+      direction === 'top'
+        ? { filter: 'blur(10px)', opacity: 0, y: -50 }
+        : { filter: 'blur(10px)', opacity: 0, y: 50 },
+    [direction]
+  );
+
+  const defaultTo = useMemo(
+    () => [
+      {
+        filter: 'blur(5px)',
+        opacity: 0.5,
+        y: direction === 'top' ? 5 : -5,
+      },
+      { filter: 'blur(0px)', opacity: 1, y: 0 },
+    ],
+    [direction]
+  );
+
+  const fromSnapshot = animationFrom ?? defaultFrom;
+  const toSnapshots = animationTo ?? defaultTo;
+
+  const stepCount = toSnapshots.length + 1;
+  const totalDuration = stepDuration * (stepCount - 1);
+  const times = Array.from({ length: stepCount }, (_, i) =>
+    stepCount === 1 ? 0 : i / (stepCount - 1)
   );
 
   return (
-    <p ref={ref} className={`blur-text ${className}`}>
-      {springs.map((props, index) => (
-        <animated.span
-          key={index}
-          style={{
-            ...props,
-            display: 'inline-block',
-            willChange: 'transform, filter, opacity',
-          }}
-        >
-          {elements[index] === ' ' ? '\u00A0' : elements[index]}
-          {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
-        </animated.span>
-      ))}
+    <p
+      ref={ref}
+      className={className}
+      style={{ display: 'flex', flexWrap: 'wrap' }}
+    >
+      {elements.map((segment, index) => {
+        const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
+
+        const spanTransition = {
+          duration: totalDuration,
+          times,
+          delay: (index * delay) / 1000,
+        };
+        (spanTransition).ease = easing;
+
+        return (
+          <motion.span
+            className="inline-block will-change-[transform,filter,opacity]"
+            key={index}
+            initial={fromSnapshot}
+            animate={inView ? animateKeyframes : fromSnapshot}
+            transition={spanTransition}
+            onAnimationComplete={
+              index === elements.length - 1 ? onAnimationComplete : undefined
+            }
+          >
+            {segment === ' ' ? '\u00A0' : segment}
+            {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
+          </motion.span>
+        );
+      })}
     </p>
   );
 };
