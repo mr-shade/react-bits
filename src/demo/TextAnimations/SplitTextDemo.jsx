@@ -10,8 +10,8 @@ import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
-import SplitText from "../../content/TextAnimations/SplitText/SplitText";
 import { splitText } from '../../constants/code/TextAnimations/splitTextCode';
+import SplitText from "../../ts-tailwind/TextAnimations/SplitText/SplitText";
 
 const SplitTextDemo = () => {
   const [delay, setDelay] = useState(100);
