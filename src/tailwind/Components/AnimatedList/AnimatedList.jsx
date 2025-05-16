@@ -109,8 +109,8 @@ const AnimatedList = ({
         }`}
         onScroll={handleScroll}
         style={{
-          scrollbarWidth: 'thin',
-          scrollbarColor: '#222 #060606',
+          scrollbarWidth: displayScrollbar ? "thin" : "none",
+          scrollbarColor: "#222 #060606",
         }}
       >
         {items.map((item, index) => (
