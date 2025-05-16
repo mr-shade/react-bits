@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, HTMLMotionProps } from 'framer-motion'
 
-interface DecryptedTextProps {
+interface DecryptedTextProps extends HTMLMotionProps<'span'> {
     text: string
     speed?: number
     maxIterations?: number
@@ -13,7 +13,6 @@ interface DecryptedTextProps {
     encryptedClassName?: string
     parentClassName?: string
     animateOn?: 'view' | 'hover'
-    [key: string]: any
 }
 
 export default function DecryptedText({
