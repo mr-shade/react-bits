@@ -182,7 +182,7 @@ export default function PixelCard({
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const pixelsRef = useRef<Pixel[]>([]);
-    const animationRef = useRef<any>(null);
+    const animationRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(null);
     const timePreviousRef = useRef(performance.now());
     const reducedMotion = useRef(
         window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -264,7 +264,9 @@ export default function PixelCard({
     };
 
     const handleAnimation = (name: keyof Pixel) => {
-        cancelAnimationFrame(animationRef.current);
+        if (animationRef.current !== null) {
+            cancelAnimationFrame(animationRef.current);
+        }
         animationRef.current = requestAnimationFrame(() => doAnimate(name));
     };
 
@@ -289,8 +291,10 @@ export default function PixelCard({
         }
         return () => {
             observer.disconnect();
-            cancelAnimationFrame(animationRef.current);
-        };
+            if (animationRef.current !== null) {
+                cancelAnimationFrame(animationRef.current);
+            }
+            };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
 
