@@ -67,6 +67,7 @@ const components = {
 };
 
 const backgrounds = {
+  'silk': () => import("../demo/Backgrounds/SilkDemo"),
   'aurora': () => import("../demo/Backgrounds/AuroraDemo"),
   'squares': () => import("../demo/Backgrounds/SquaresDemo"),
   'hyperspeed': () => import("../demo/Backgrounds/HyperspeedDemo"),

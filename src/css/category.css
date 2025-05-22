@@ -232,7 +232,7 @@ div:has(> .props-table) {
 }
 
 .contribute-container {
-  background: linear-gradient(to bottom, #111, #060606);
+  background: #060606;
   border: 1px solid #161616;
   border-radius: 20px;
   margin-top: 1em;
@@ -240,7 +240,7 @@ div:has(> .props-table) {
 }
 
 .contribute-button {
-  background: linear-gradient(to bottom, #111, #060606) !important;
+  background-color: #060606 !important;
   border: 1px solid #222;
   transition: 0.5s ease;
 }
@@ -250,7 +250,7 @@ div:has(> .props-table) {
 }
 
 .contribute-button:hover {
-  color: #00f0ff;
+  color: #00d8ff;
 }
 
 .demo-details {

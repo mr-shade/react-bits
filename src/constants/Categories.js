@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = [];
+export const NEW = ['Silk'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -81,6 +81,7 @@ export const CATEGORIES = [
   {
     name: 'Backgrounds',
     subcategories: [
+      'Silk',
       'Aurora',
       'Lightning',
       'Balatro',
