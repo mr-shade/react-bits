@@ -710,7 +710,7 @@ export default function CircularGallery({
       app.destroy();
     };
   }, [items, bend, textColor, borderRadius, font]);
-  <div
+  return <div
     className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing"
     ref={containerRef}
   />;
