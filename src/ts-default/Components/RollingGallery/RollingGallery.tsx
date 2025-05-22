@@ -50,12 +50,18 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
   const controls = useAnimation();
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const handleDrag = (_: any, info: PanInfo): void => {
+  const handleDrag = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ): void => {
     controls.stop();
     rotation.set(rotation.get() + info.offset.x * dragFactor);
   };
 
-  const handleDragEnd = (_: any, info: PanInfo): void => {
+  const handleDragEnd = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ): void => {
     controls.start({
       rotateY: rotation.get() + info.velocity.x * dragFactor,
       transition: {
