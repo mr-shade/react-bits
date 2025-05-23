@@ -86,6 +86,7 @@ const backgrounds = {
   'threads': () => import("../demo/Backgrounds/ThreadsDemo"),
   'dither': () => import("../demo/Backgrounds/DitherDemo"),
   'lightning': () => import("../demo/Backgrounds/LightningDemo"),
+  'dot-grid': () => import("../demo/Backgrounds/DotGridDemo"),
 };
 
 export const componentMap = {

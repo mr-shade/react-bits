@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Silk', 'Scrambled Text'];
+export const NEW = ['Silk', 'Scrambled Text', 'Dot Grid'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -88,6 +88,7 @@ export const CATEGORIES = [
       'Balatro',
       'Dither',
       'Shape Blur',
+      'Dot Grid',
       'Threads',
       'Hyperspeed',
       'Iridescence',

@@ -74,7 +74,7 @@ const ScrambledTextDemo = () => {
             speed={speed}
             scrambleChars={scrambleChars}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique pariatur dignissimos porro eius quam doloremque et enim velit nobis maxime.
+            Once you hover over me, you will see the effect in action! You can customize the radius, duration, and speed of the scramble effect.
           </ScrambledText>
         </Box>
 

@@ -121,7 +121,7 @@ div:has(> .props-table) {
 
 .scrambled-text-demo {
   max-width: 600px;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bolder;
   color: #00f0ff;
 }
