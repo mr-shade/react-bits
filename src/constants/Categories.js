@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Silk'];
+export const NEW = ['Silk', 'Scrambled Text'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -21,6 +21,7 @@ export const CATEGORIES = [
       'Scroll Float',
       'Scroll Reveal',
       'ASCII Text',
+      'Scrambled Text',
       'Rotating Text',
       'Glitch Text',
       'Scroll Velocity',

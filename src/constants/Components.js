@@ -38,6 +38,7 @@ const textAnimations = {
   'glitch-text': () => import("../demo/TextAnimations/GlitchTextDemo"),
   'fuzzy-text': () => import("../demo/TextAnimations/FuzzyTextDemo"),
   'text-cursor': () => import("../demo/TextAnimations/TextCursorDemo"),
+  'scrambled-text': () => import("../demo/TextAnimations/ScrambledTextDemo"),
 };
 
 const components = {
