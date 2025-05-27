@@ -1,17 +1,22 @@
-import { useRef, useEffect, useState, ReactNode } from "react";
-import { useSpring, animated, SpringConfig } from "@react-spring/web";
+import React, { useRef, useEffect, ReactNode } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface AnimatedContentProps {
   children: ReactNode;
   distance?: number;
   direction?: "vertical" | "horizontal";
   reverse?: boolean;
-  config?: SpringConfig;
+  duration?: number;
+  ease?: string | ((progress: number) => number);
   initialOpacity?: number;
   animateOpacity?: boolean;
   scale?: number;
   threshold?: number;
   delay?: number;
+  onComplete?: () => void;
 }
 
 const AnimatedContent: React.FC<AnimatedContentProps> = ({
@@ -19,63 +24,66 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   distance = 100,
   direction = "vertical",
   reverse = false,
-  config = { tension: 50, friction: 25 },
+  duration = 0.8,
+  ease = "power3.out",
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
   threshold = 0.1,
   delay = 0,
+  onComplete,
 }) => {
-  const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+    const el = ref.current;
+    if (!el) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          observer.unobserve(element);
-          setTimeout(() => {
-            setInView(true);
-          }, delay);
-        }
-      },
-      { threshold }
-    );
+    const axis = direction === "horizontal" ? "x" : "y";
+    const offset = reverse ? -distance : distance;
+    const startPct = (1 - threshold) * 100;
 
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [threshold, delay]);
-
-  const directions: Record<"vertical" | "horizontal", string> = {
-    vertical: "Y",
-    horizontal: "X",
-  };
-
-  const springProps = useSpring({
-    from: {
-      transform: `translate${directions[direction]}(${
-        reverse ? `-${distance}px` : `${distance}px`
-      }) scale(${scale})`,
+    gsap.set(el, {
+      [axis]: offset,
+      scale,
       opacity: animateOpacity ? initialOpacity : 1,
-    },
-    to: inView
-      ? {
-          transform: `translate${directions[direction]}(0px) scale(1)`,
-          opacity: 1,
-        }
-      : undefined,
-    config,
-  });
+    });
 
-  return (
-    <animated.div ref={ref} style={springProps}>
-      {children}
-    </animated.div>
-  );
+    gsap.to(el, {
+      [axis]: 0,
+      scale: 1,
+      opacity: 1,
+      duration,
+      ease,
+      delay,
+      onComplete,
+      scrollTrigger: {
+        trigger: el,
+        start: `top ${startPct}%`,
+        toggleActions: "play none none none",
+        once: true,
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf(el);
+    };
+  }, [
+    distance,
+    direction,
+    reverse,
+    duration,
+    ease,
+    initialOpacity,
+    animateOpacity,
+    scale,
+    threshold,
+    delay,
+    onComplete,
+  ]);
+
+  return <div ref={ref}>{children}</div>;
 };
 
 export default AnimatedContent;

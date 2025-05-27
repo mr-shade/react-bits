@@ -7,18 +7,20 @@ import tsTailwind from '@ts-tailwind/Animations/AnimatedContent/AnimatedContent.
 
 export const animatedContent = {
   ...(generateCliCommands('Animations/AnimatedContent')),
-  installation: `npm install @react-spring/web`,
+  installation: `npm install gsap`,
   usage: `import AnimatedContent from './AnimatedContent'
 
 <AnimatedContent
   distance={150}
   direction="horizontal"
   reverse={false}
-  config={{ tension: 80, friction: 20 }}
+  duration={1.2}
+  ease="bounce.out"
   initialOpacity={0.2}
   animateOpacity
   scale={1.1}
   threshold={0.2}
+  delay={0.3}
 >
   <div>Content to Animate</div>
 </AnimatedContent>`,
