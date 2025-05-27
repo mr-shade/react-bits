@@ -46,7 +46,6 @@ export const CATEGORIES = [
       'Ribbons',
       'Splash Cursor',
       'Meta Balls',
-      'Follow Cursor',
       'Blob Cursor',
       'Star Border'
     ]
