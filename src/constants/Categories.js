@@ -61,7 +61,6 @@ export const CATEGORIES = [
       'Lanyard',
       'Dock',
       'Gooey Nav',
-      'Masonry',
       'Pixel Card',
       'Circular Gallery',
       'Carousel',

@@ -44,7 +44,6 @@ const textAnimations = {
 const components = {
   'stack': () => import("../demo/Components/StackDemo"),
   'dock': () => import("../demo/Components/DockDemo"),
-  'masonry': () => import("../demo/Components/MasonryDemo"),
   'rolling-gallery': () => import("../demo/Components/RollingGalleryDemo"),
   'spotlight-card': () => import("../demo/Components/SpotlightCardDemo"),
   'elastic-slider': () => import("../demo/Components/ElasticSliderDemo"),
