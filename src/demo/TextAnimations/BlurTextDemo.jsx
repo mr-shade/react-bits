@@ -155,7 +155,7 @@ const BlurTextDemo = () => {
         </div>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["@react-spring/web"]} />
+        <Dependencies dependencyList={["framer-motion"]} />
       </PreviewTab>
 
       <CodeTab>
