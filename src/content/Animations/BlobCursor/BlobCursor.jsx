@@ -1,69 +1,117 @@
-import { useTrail, animated } from '@react-spring/web'
-import { useRef, useEffect, useCallback } from 'react';
+"use client";
 
-import './BlobCursor.css';
+import { useRef, useEffect, useCallback } from "react";
+import gsap from "gsap";
+import "./BlobCursor.css";
 
-const fast = { tension: 1200, friction: 40 };
-const slow = { mass: 10, tension: 200, friction: 50 };
-const trans = (x, y) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`;
+export default function BlobCursor({
+  blobType = "circle",
+  fillColor = "#00f0ff",
+  trailCount = 3,
+  sizes = [60, 125, 75],
+  innerSizes = [20, 35, 25],
+  innerColor = "rgba(255,255,255,0.8)",
+  opacities = [0.6, 0.6, 0.6],
+  shadowColor = "rgba(0,0,0,0.75)",
+  shadowBlur = 5,
+  shadowOffsetX = 10,
+  shadowOffsetY = 10,
+  filterId = "blob",
+  filterStdDeviation = 30,
+  filterColorMatrixValues = "1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 35 -10",
+  useFilter = true,
+  fastDuration = 0.1,
+  slowDuration = 0.5,
+  fastEase = "power3.out",
+  slowEase = "power1.out",
+  zIndex = 100,
+}) {
+  const containerRef = useRef(null);
+  const blobsRef = useRef([]);
 
-export default function BlobCursor({ blobType = 'circle', fillColor = '#00f0ff' }) {
-  const [trail, api] = useTrail(3, i => ({
-    xy: [0, 0],
-    config: i === 0 ? fast : slow,
-  }));
-
-  const ref = useRef();
-
-  const updatePosition = useCallback(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      return { left: rect.left, top: rect.top };
-    }
-    return { left: 0, top: 0 };
+  const updateOffset = useCallback(() => {
+    if (!containerRef.current) return { left: 0, top: 0 };
+    const rect = containerRef.current.getBoundingClientRect();
+    return { left: rect.left, top: rect.top };
   }, []);
 
-  const handleMove = e => {
-    const { left, top } = updatePosition();
-    const x = e.clientX || (e.touches && e.touches[0].clientX);
-    const y = e.clientY || (e.touches && e.touches[0].clientY);
-    api.start({ xy: [x - left, y - top] });
-  };
+  const handleMove = useCallback(
+    (e) => {
+      const { left, top } = updateOffset();
+      const x = "clientX" in e ? e.clientX : e.touches[0].clientX;
+      const y = "clientY" in e ? e.clientY : e.touches[0].clientY;
+
+      blobsRef.current.forEach((el, i) => {
+        if (!el) return;
+        const isLead = i === 0;
+        gsap.to(el, {
+          x: x - left,
+          y: y - top,
+          duration: isLead ? fastDuration : slowDuration,
+          ease: isLead ? fastEase : slowEase,
+        });
+      });
+    },
+    [updateOffset, fastDuration, slowDuration, fastEase, slowEase]
+  );
 
   useEffect(() => {
-    const handleResize = () => {
-      updatePosition();
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [updatePosition]);
+    const onResize = () => updateOffset();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [updateOffset]);
 
   return (
-    <div className='container'>
-      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
-        <filter id="blob">
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
-          <feColorMatrix
-            in="blur"
-            values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 35 -10"
-          />
-        </filter>
-      </svg>
+    <div
+      ref={containerRef}
+      className="blob-container"
+      style={{ zIndex }}
+      onMouseMove={handleMove}
+      onTouchMove={handleMove}
+    >
+      {useFilter && (
+        <svg style={{ position: "absolute", width: 0, height: 0 }}>
+          <filter id={filterId}>
+            <feGaussianBlur
+              in="SourceGraphic"
+              result="blur"
+              stdDeviation={filterStdDeviation}
+            />
+            <feColorMatrix in="blur" values={filterColorMatrixValues} />
+          </filter>
+        </svg>
+      )}
+
       <div
-        ref={ref}
-        className='main'
-        onMouseMove={handleMove}
-        onTouchMove={handleMove}
+        className="blob-main"
+        style={{ filter: useFilter ? `url(#${filterId})` : undefined }}
       >
-        {trail.map((props, index) => (
-          <animated.div key={index} style={{
-            transform: props.xy.to(trans),
-            borderRadius: blobType === 'circle' ? '50%' : '0%',
-            backgroundColor: fillColor
-          }} />
+        {Array.from({ length: trailCount }).map((_, i) => (
+          <div
+            key={i}
+            ref={(el) => (blobsRef.current[i] = el)}
+            className="blob"
+            style={{
+              width: sizes[i],
+              height: sizes[i],
+              borderRadius: blobType === "circle" ? "50%" : "0%",
+              backgroundColor: fillColor,
+              opacity: opacities[i],
+              boxShadow: `${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px 0 ${shadowColor}`,
+            }}
+          >
+            <div
+              className="inner-dot"
+              style={{
+                width: innerSizes[i],
+                height: innerSizes[i],
+                top: (sizes[i] - innerSizes[i]) / 2,
+                left: (sizes[i] - innerSizes[i]) / 2,
+                backgroundColor: innerColor,
+                borderRadius: blobType === "circle" ? "50%" : "0%",
+              }}
+            />
+          </div>
         ))}
       </div>
     </div>

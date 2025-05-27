@@ -87,7 +87,7 @@ const Header = () => {
               width="fit-content"
               fontWeight={600}
               onChange={(e) => setLanguagePreset(e.target.value)}
-              value={languagePreset}
+              value={languagePreset || "JS"}
             >
               <option value="JS">JS</option>
               <option value="TS">TS</option>
