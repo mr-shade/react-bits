@@ -20,7 +20,6 @@
 		"@chakra-ui/react": "^2.8.2",
 		"@emotion/react": "^11.13.0",
 		"@emotion/styled": "^11.13.0",
-		"@react-spring/web": "^9.7.4",
 		"@react-three/drei": "^9.121.4",
 		"@react-three/fiber": "^8.17.14",
 		"@react-three/postprocessing": "^2.19.1",
