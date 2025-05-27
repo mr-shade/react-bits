@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Customize";
 
 import ShapeBlur from "../../content/Backgrounds/ShapeBlur/ShapeBlur";
 import { shapeBlur } from '../../constants/code/Backgrounds/shapeBlurCode';
@@ -89,99 +91,52 @@ const ShapeBlurDemo = () => {
           </Text>
         </Box>
 
-        <Box mt={4}>
-          <Flex direction="column" gap={4}>
-            <Flex align="center" gap={4}>
-              <Text w="120px">Shape Size:</Text>
-              <Slider
-                min={0.1}
-                max={2}
-                step={0.1}
-                value={shapeSize}
-                onChange={(val) => setShapeSize(val)}
-                width="200px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{shapeSize.toFixed(1)}</Text>
-            </Flex>
+        <Customize>
+          <PreviewSlider
+            title="Shape Size"
+            min={0.1}
+            max={2}
+            step={0.1}
+            value={shapeSize}
+            onChange={setShapeSize}
+          />
 
-            <Flex align="center" gap={4}>
-              <Text w="120px">Roundness:</Text>
-              <Slider
-                min={0}
-                max={1}
-                step={0.05}
-                value={roundness}
-                onChange={(val) => setRoundness(val)}
-                width="200px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{roundness.toFixed(2)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Roundness"
+            min={0}
+            max={1}
+            step={0.05}
+            value={roundness}
+            onChange={setRoundness}
+          />
 
-            <Flex align="center" gap={4}>
-              <Text w="120px">Border Size:</Text>
-              <Slider
-                min={0.01}
-                max={0.2}
-                step={0.005}
-                value={borderSize}
-                onChange={(val) => setBorderSize(val)}
-                width="200px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{borderSize.toFixed(3)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Border Size"
+            min={0.01}
+            max={0.2}
+            step={0.005}
+            value={borderSize}
+            onChange={setBorderSize}
+          />
 
-            <Flex align="center" gap={4}>
-              <Text w="120px">Circle Size:</Text>
-              <Slider
-                min={0.1}
-                max={0.5}
-                step={0.01}
-                value={circleSize}
-                onChange={(val) => setCircleSize(val)}
-                width="200px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{circleSize.toFixed(2)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Circle Size"
+            min={0.1}
+            max={0.5}
+            step={0.01}
+            value={circleSize}
+            onChange={setCircleSize}
+          />
 
-            <Flex align="center" gap={4}>
-              <Text w="120px">Circle Edge:</Text>
-              <Slider
-                min={0.1}
-                max={2}
-                step={0.1}
-                value={circleEdge}
-                onChange={(val) => setCircleEdge(val)}
-                width="200px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text>{circleEdge.toFixed(1)}</Text>
-            </Flex>
-          </Flex>
-        </Box>
+          <PreviewSlider
+            title="Circle Edge"
+            min={0.1}
+            max={2}
+            step={0.1}
+            value={circleEdge}
+            onChange={setCircleEdge}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['three']} />

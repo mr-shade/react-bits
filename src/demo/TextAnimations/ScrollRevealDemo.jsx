@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { gsap } from "gsap";
 
 import useForceRerender from "../../hooks/useForceRerender";
@@ -8,6 +8,9 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import ScrollReveal from "../../content/TextAnimations/ScrollReveal/ScrollReveal";
 import { scrollReveal } from "../../constants/code/TextAnimations/scrollRevealCode";
@@ -130,87 +133,57 @@ const ScrollRevealDemo = () => {
           </Box>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSwitch
+            title="Enable Blur"
+            isChecked={enableBlur}
+            onChange={(e) => {
+              containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+              setEnableBlur(e.target.checked);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Enable Blur</Text>
-            <Switch
-              isChecked={enableBlur}
-              onChange={(e) => {
-                containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-                setEnableBlur(e.target.checked);
-                forceRerender();
-              }}
-            />
-          </Flex>
+          <PreviewSlider
+            title="Blur Strength"
+            min={0}
+            max={15}
+            step={1}
+            value={blurStrength}
+            onChange={(val) => {
+              containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+              setBlurStrength(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Blur Strength</Text>
-            <Slider
-              min={0}
-              max={15}
-              step={1}
-              value={blurStrength}
-              onChange={(val) => {
-                containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-                setBlurStrength(val);
-                forceRerender();
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{blurStrength}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Starting Opacity"
+            min={0}
+            max={1}
+            step={0.1}
+            value={baseOpacity}
+            onChange={(val) => {
+              containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+              setBaseOpacity(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Starting Opacity</Text>
-            <Slider
-              min={0}
-              max={1}
-              step={0.1}
-              value={baseOpacity}
-              onChange={(val) => {
-                containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-                setBaseOpacity(val);
-                forceRerender();
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{baseOpacity}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Starting Rotation</Text>
-            <Slider
-              min={0}
-              max={10}
-              step={1}
-              value={baseRotation}
-              onChange={(val) => {
-                containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-                setBaseRotation(val);
-                forceRerender();
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{baseRotation}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Starting Rotation"
+            min={0}
+            max={10}
+            step={1}
+            value={baseRotation}
+            onChange={(val) => {
+              containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+              setBaseRotation(val);
+              forceRerender();
+            }}
+            valueUnit="°"
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['gsap']} />

@@ -2,10 +2,6 @@ import { useState } from "react";
 import {
   Box,
   Flex,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   Text
 } from "@chakra-ui/react";
 
@@ -15,6 +11,8 @@ import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Customize";
 
 import { clickSpark } from '../../constants/code/Animations/clickSparkCode';
 import ClickSpark from "../../ts-default/Animations/ClickSpark/ClickSpark";
@@ -97,9 +95,7 @@ const ClickSparkDemo = () => {
           <Text position='absolute' fontWeight={900} fontSize='2rem' textAlign='center' color='#222' userSelect='none'>Click Around!</Text>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-
+        <Customize>
           {/* Spark Color */}
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Spark Color:</Text>
@@ -113,116 +109,67 @@ const ClickSparkDemo = () => {
             />
           </Flex>
 
-          {/* Spark Size */}
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Spark Size:</Text>
-            <Slider
-              min={5}
-              max={60}
-              step={1}
-              value={sparkSize}
-              onChange={(val) => {
-                setSparkSize(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{sparkSize}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Spark Size"
+            min={5}
+            max={60}
+            step={1}
+            value={sparkSize}
+            onChange={(val) => {
+              setSparkSize(val);
+              forceRerender();
+            }}
+          />
 
-          {/* Spark Radius */}
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Spark Radius:</Text>
-            <Slider
-              min={10}
-              max={200}
-              step={5}
-              value={sparkRadius}
-              onChange={(val) => {
-                setSparkRadius(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{sparkRadius}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Spark Radius"
+            min={10}
+            max={200}
+            step={5}
+            value={sparkRadius}
+            onChange={(val) => {
+              setSparkRadius(val);
+              forceRerender();
+            }}
+          />
 
-          {/* Spark Count */}
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Spark Count:</Text>
-            <Slider
-              min={1}
-              max={20}
-              step={1}
-              value={sparkCount}
-              onChange={(val) => {
-                setSparkCount(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{sparkCount}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Spark Count"
+            min={1}
+            max={20}
+            step={1}
+            value={sparkCount}
+            onChange={(val) => {
+              setSparkCount(val);
+              forceRerender();
+            }}
+          />
 
-          {/* Duration */}
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Duration (ms):</Text>
-            <Slider
-              min={200}
-              max={2000}
-              step={100}
-              value={duration}
-              onChange={(val) => {
-                setDuration(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{duration}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Duration"
+            min={200}
+            max={2000}
+            step={100}
+            value={duration}
+            valueUnit="ms"
+            onChange={(val) => {
+              setDuration(val);
+              forceRerender();
+            }}
+          />
 
-          {/* Extra Scale */}
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Extra Scale:</Text>
-            <Slider
-              min={0.5}
-              max={2}
-              step={0.1}
-              value={extraScale}
-              onChange={(val) => {
-                setExtraScale(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{extraScale.toFixed(1)}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Extra Scale"
+            min={0.5}
+            max={2}
+            step={0.1}
+            value={extraScale}
+            onChange={(val) => {
+              setExtraScale(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
       </PreviewTab>

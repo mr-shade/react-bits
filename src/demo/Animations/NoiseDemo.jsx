@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import RefreshButton from "../../components/common/RefreshButton";
@@ -7,6 +7,8 @@ import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Customize";
 
 import Noise from "../../content/Animations/Noise/Noise";
 import { noise } from '../../constants/code/Animations/noiseCode';
@@ -69,93 +71,56 @@ const NoiseDemo = () => {
           <RefreshButton onClick={forceRerender} />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Pattern Size"
+            min={50}
+            max={500}
+            step={10}
+            value={patternSize}
+            valueUnit="px"
+            onChange={(val) => {
+              setPatternSize(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Pattern Size:</Text>
-            <Slider
-              min={50}
-              max={500}
-              step={10}
-              value={patternSize}
-              onChange={(val) => {
-                setPatternSize(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{patternSize}px</Text>
-          </Flex>
+          <PreviewSlider
+            title="Scale X"
+            min={0.1}
+            max={5}
+            step={0.1}
+            value={patternScaleX}
+            onChange={(val) => {
+              setPatternScaleX(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Scale X:</Text>
-            <Slider
-              min={0.1}
-              max={5}
-              step={0.1}
-              value={patternScaleX}
-              onChange={(val) => {
-                setPatternScaleX(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{patternScaleX.toFixed(1)}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Scale Y"
+            min={0.1}
+            max={5}
+            step={0.1}
+            value={patternScaleY}
+            onChange={(val) => {
+              setPatternScaleY(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Scale Y:</Text>
-            <Slider
-              min={0.1}
-              max={5}
-              step={0.1}
-              value={patternScaleY}
-              onChange={(val) => {
-                setPatternScaleY(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{patternScaleY.toFixed(1)}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Pattern Alpha:</Text>
-            <Slider
-              min={0}
-              max={25}
-              step={5}
-              value={patternAlpha}
-              onChange={(val) => {
-                setPatternAlpha(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{patternAlpha}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Pattern Alpha"
+            min={0}
+            max={25}
+            step={5}
+            value={patternAlpha}
+            onChange={(val) => {
+              setPatternAlpha(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
       </PreviewTab>

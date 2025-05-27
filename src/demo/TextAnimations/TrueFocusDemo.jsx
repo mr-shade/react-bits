@@ -2,12 +2,7 @@ import { useState } from "react";
 import {
   Box,
   Flex,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   Text,
-  Switch,
 } from "@chakra-ui/react";
 import {
   CliTab,
@@ -20,6 +15,9 @@ import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 import Dependencies from "../../components/code/Dependencies";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import TrueFocus from "../../content/TextAnimations/TrueFocus/TrueFocus";
 import { trueFocus } from '../../constants/code/TextAnimations/trueFocusCode';
@@ -93,9 +91,8 @@ const TrueFocusDemo = () => {
           <TrueFocus {...config} />
         </Box>
 
-        <h2 className="demo-title-extra">Customize</h2>
-        <Flex gap={4} align="flex-start" mt={4} direction="column" wrap="wrap">
-          <Flex align="center" gap={2}>
+        <Customize>
+          <Flex align="center" gap={2} mt={4}>
             <Text fontSize="sm">Border Color</Text>
             <input
               type="color"
@@ -111,75 +108,44 @@ const TrueFocusDemo = () => {
             />
           </Flex>
 
-          <Flex align="center" gap={2}>
-            <Text fontSize="sm">Hover Mode</Text>
-            <Switch
-              colorScheme="black"
-              border="1px solid #222"
-              borderRadius="50px"
-              isChecked={manualMode}
-              onChange={(e) => {
-                setManualMode(e.target.checked);
-              }}
-            />
-          </Flex>
+          <PreviewSwitch
+            title="Hover Mode"
+            isChecked={manualMode}
+            onChange={(e) => setManualMode(e.target.checked)}
+          />
 
-          <Flex align="center" gap={2}>
-            <Text fontSize="sm">Blur Amount</Text>
-            <Slider
-              min={0}
-              max={15}
-              step={0.5}
-              value={blurAmount}
-              onChange={(val) => setBlurAmount(val)}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{blurAmount}px</Text>
-          </Flex>
+          <PreviewSlider
+            title="Blur Amount"
+            min={0}
+            max={15}
+            step={0.5}
+            value={blurAmount}
+            valueUnit="px"
+            onChange={setBlurAmount}
+          />
 
-          <Flex align="center" gap={2}>
-            <Text fontSize="sm">Animation Duration</Text>
-            <Slider
-              min={0.1}
-              max={3}
-              step={0.1}
-              value={animationDuration}
-              onChange={(val) => setAnimationDuration(val)}
-              width="200px"
-              isDisabled={!manualMode} // Enable when in manual mode
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{animationDuration}s</Text>
-          </Flex>
+          <PreviewSlider
+            title="Animation Duration"
+            min={0.1}
+            max={3}
+            step={0.1}
+            value={animationDuration}
+            valueUnit="s"
+            isDisabled={!manualMode}
+            onChange={setAnimationDuration}
+          />
 
-          <Flex align="center" gap={2}>
-            <Text fontSize="sm">Pause Between Animations</Text>
-            <Slider
-              min={0}
-              max={5}
-              step={0.5}
-              value={pauseBetweenAnimations}
-              onChange={(val) => setPauseBetweenAnimations(val)}
-              width="200px"
-              isDisabled={manualMode} // Disable in manual mode
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{pauseBetweenAnimations}s</Text>
-          </Flex>
-        </Flex>
+          <PreviewSlider
+            title="Pause Between Animations"
+            min={0}
+            max={5}
+            step={0.5}
+            value={pauseBetweenAnimations}
+            valueUnit="s"
+            isDisabled={manualMode}
+            onChange={setPauseBetweenAnimations}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['framer-motion']} />

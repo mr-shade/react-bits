@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Box, Button, Flex, Text, Slider, SliderTrack, SliderFilledTrack, SliderThumb, FormControl, FormLabel } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import Magnet from "../../content/Animations/Magnet/Magnet";
 import { magnet } from '../../constants/code/Animations/magnetCode';
@@ -107,64 +110,32 @@ const MagnetDemo = () => {
           </Magnet>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex gap={4} mb={3} wrap="wrap" align="center">
-            <Button
-              fontSize="xs"
-              h={8}
-              onClick={() => setDisabled(!disabled)}
-            >
-              Disabled: <Text as="span" color={disabled ? "lightgreen" : "coral"} ml={1}>
-                {String(disabled)}
-              </Text>
-            </Button>
+        <Customize>
+          <PreviewSwitch
+            title="Disabled"
+            isChecked={disabled}
+            onChange={(e) => setDisabled(e.target.checked)}
+          />
 
-            <FormControl width="auto">
-              <FormLabel mb="0" fontSize="xs">
-                Padding
-              </FormLabel>
-              <Flex alignItems="center" gap={2}>
-                <Slider
-                  min={0}
-                  max={300}
-                  step={10}
-                  width="120px"
-                  value={padding}
-                  onChange={(val) => setPadding(val)}
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-                <Text fontSize="xs">{padding}px</Text>
-              </Flex>
-            </FormControl>
+          <PreviewSlider
+            title="Padding"
+            min={0}
+            max={300}
+            step={10}
+            value={padding}
+            valueUnit="px"
+            onChange={setPadding}
+          />
 
-            <FormControl width="auto">
-              <FormLabel mb="0" fontSize="xs">
-                Strength
-              </FormLabel>
-              <Flex alignItems="center" gap={2}>
-                <Slider
-                  min={1}
-                  max={10}
-                  step={1}
-                  width="120px"
-                  value={magnetStrength}
-                  onChange={(val) => setMagnetStrength(val)}
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-                <Text fontSize="xs">{magnetStrength}</Text>
-              </Flex>
-            </FormControl>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Strength"
+            min={1}
+            max={10}
+            step={1}
+            value={magnetStrength}
+            onChange={setMagnetStrength}
+          />
+        </Customize>
 
         <PropTable data={propData} />
       </PreviewTab>

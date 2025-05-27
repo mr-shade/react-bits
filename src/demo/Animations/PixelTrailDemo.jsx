@@ -3,12 +3,7 @@ import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/comm
 import {
   Box,
   Flex,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   Text,
-  Switch,
   Input
 } from "@chakra-ui/react";
 
@@ -18,6 +13,9 @@ import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import PixelTrail from "../../content/Animations/PixelTrail/PixelTrail";
 import { pixelTrail } from "../../constants/code/Animations/pixelTrailCode";
@@ -67,80 +65,42 @@ const PixelTrailDemo = () => {
           </Text>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Grid Size"
+            min={10}
+            max={100}
+            step={1}
+            value={gridSize}
+            onChange={(val) => { setGridSize(val); forceRerender(); }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Grid Size</Text>
-            <Slider
-              min={10}
-              max={100}
-              step={1}
-              value={gridSize}
-              onChange={(val) => { setGridSize(val); forceRerender(); }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{gridSize}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Trail Size"
+            min={0.05}
+            max={0.5}
+            step={0.01}
+            value={trailSize}
+            onChange={(val) => { setTrailSize(val); forceRerender(); }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Trail Size</Text>
-            <Slider
-              min={0.05}
-              max={0.5}
-              step={0.01}
-              value={trailSize}
-              onChange={(val) => { setTrailSize(val); forceRerender(); }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{trailSize.toFixed(2)}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Max Age"
+            min={100}
+            max={1000}
+            step={50}
+            value={maxAge}
+            onChange={(val) => { setMaxAge(val); forceRerender(); }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Max Age</Text>
-            <Slider
-              min={100}
-              max={1000}
-              step={50}
-              value={maxAge}
-              onChange={(val) => { setMaxAge(val); forceRerender(); }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{maxAge}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Interpolate</Text>
-            <Slider
-              min={0}
-              max={10}
-              step={0.1}
-              value={interpolate}
-              onChange={(val) => { setInterpolate(val); forceRerender(); }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{interpolate.toFixed(1)}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Interpolate"
+            min={0}
+            max={10}
+            step={0.1}
+            value={interpolate}
+            onChange={(val) => { setInterpolate(val); forceRerender(); }}
+          />
 
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Color</Text>
@@ -153,34 +113,23 @@ const PixelTrailDemo = () => {
             <Text fontSize="sm">{color}</Text>
           </Flex>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Gooey Filter</Text>
-            <Switch
-              isChecked={gooeyEnabled}
-              onChange={(e) => { setGooeyEnabled(e.target.checked); forceRerender(); }}
-            />
-          </Flex>
+          <PreviewSwitch
+            title="Gooey Filter"
+            isChecked={gooeyEnabled}
+            onChange={(e) => { setGooeyEnabled(e.target.checked); forceRerender(); }}
+          />
 
           {gooeyEnabled && (
-            <Flex gap={4} align="center" mt={4}>
-              <Text fontSize="sm">Gooey Strength</Text>
-              <Slider
-                min={1}
-                max={20}
-                step={1}
-                value={gooStrength}
-                onChange={(val) => { setGooStrength(val); forceRerender(); }}
-                width="200px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text fontSize="sm">{gooStrength}</Text>
-            </Flex>
+            <PreviewSlider
+              title="Gooey Strength"
+              min={1}
+              max={20}
+              step={1}
+              value={gooStrength}
+              onChange={(val) => { setGooStrength(val); forceRerender(); }}
+            />
           )}
-        </div>
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["@react-three/fiber", "@react-three/drei", "three"]} />

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { Box, Flex, Input, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Customize";
 
 import GradientText from "../../content/TextAnimations/GradientText/GradientText";
 import { gradientText } from '../../constants/code/TextAnimations/gradientTextCode';
@@ -78,7 +80,7 @@ const GradientTextDemo = () => {
           </Text>
         </Box>
 
-        <div className="preview-options">
+        <Customize>
           <h2 className="demo-title-extra">Customize</h2>
           <Flex gap={6} wrap="wrap" alignItems="flex-start" mt={4} direction="column">
             {/* Colors Input */}
@@ -102,26 +104,17 @@ const GradientTextDemo = () => {
               />
             </Flex>
 
-            {/* Speed Slider */}
-            <Flex gap={4} align="center">
-              <Text fontSize="sm">Speed (s)</Text>
-              <Slider
-                min={1}
-                max={10}
-                step={0.5}
-                value={speed}
-                onChange={(val) => setSpeed(val)}
-                width="200px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text fontSize="sm">{speed}s</Text>
-            </Flex>
+            <PreviewSlider
+              title="Speed (s)"
+              min={1}
+              max={10}
+              step={0.5}
+              value={speed}
+              onChange={setSpeed}
+              valueUnit="s"
+            />
           </Flex>
-        </div>
+        </Customize>
 
         <p className="demo-extra-info" style={{ marginTop: "1rem" }}>
           <InfoOutlineIcon position="relative" /> For a smoother animation, the gradient should start and end with the same color.

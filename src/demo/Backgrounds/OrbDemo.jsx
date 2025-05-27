@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { useDebounce } from "react-haiku";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import Orb from "../../content/Backgrounds/Orb/Orb";
 import { orb } from "../../constants/code/Backgrounds/orbCode";
@@ -63,70 +66,37 @@ const OrbDemo = () => {
           </Text>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Hue Shift"
+            min={0}
+            max={360}
+            step={1}
+            value={hue}
+            onChange={setHue}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Hue Shift</Text>
-            <Slider
-              min={0}
-              max={360}
-              step={1}
-              value={hue}
-              onChange={(val) => {
-                setHue(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{hue}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Hover Intensity"
+            min={0}
+            max={5}
+            step={0.01}
+            value={hoverIntensity}
+            onChange={setHoverIntensity}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Hover Intensity</Text>
-            <Slider
-              min={0}
-              max={5}
-              step={0.01}
-              value={hoverIntensity}
-              onChange={(val) => {
-                setHoverIntensity(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{hoverIntensity}</Text>
-          </Flex>
+          <PreviewSwitch
+            title="Rotate On Hover"
+            isChecked={rotateOnHover}
+            onChange={(e) => setRotateOnHover(e.target.checked)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Rotate On Hover</Text>
-            <Switch
-              isChecked={rotateOnHover}
-              onChange={(e) => {
-                setRotateOnHover(e.target.checked);
-              }}
-            />
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Force Hover State</Text>
-            <Switch
-              isChecked={forceHoverState}
-              onChange={(e) => {
-                setForceHoverState(e.target.checked);
-              }}
-            />
-          </Flex>
-
-        </div>
+          <PreviewSwitch
+            title="Force Hover State"
+            isChecked={forceHoverState}
+            onChange={(e) => setForceHoverState(e.target.checked)}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />

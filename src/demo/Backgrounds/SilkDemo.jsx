@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Text, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Input } from "@chakra-ui/react";
+import { Box, Flex, Text, Input } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
@@ -9,6 +9,7 @@ import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
 import RefreshButton from "../../components/common/RefreshButton";
+import PreviewSlider from "../../components/common/PreviewSlider";
 
 import { silkCode } from '../../constants/code/Backgrounds/silkCode';
 import Silk from '../../content/Backgrounds/Silk/Silk';
@@ -71,95 +72,65 @@ const SilkDemo = () => {
         </Box>
 
         <Customize>
-          <Flex direction="column" gap={4}>
-            <Flex align="center" gap={2}>
-              <Text fontSize="sm" w="120px">Speed:</Text>
-              <Slider
-                min={0.1}
-                max={20}
-                step={0.1}
-                value={speed}
-                onChange={(val) => {
-                  setSpeed(val);
-                  forceRerender();
-                }}
-                width="200px"
-              >
-                <SliderTrack><SliderFilledTrack /></SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text fontSize="sm" w="50px">{speed.toFixed(1)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Speed"
+            min={0.1}
+            max={20}
+            step={0.1}
+            value={speed}
+            onChange={(val) => {
+              setSpeed(val);
+              forceRerender();
+            }}
+          />
 
-            <Flex align="center" gap={2}>
-              <Text fontSize="sm" w="120px">Scale:</Text>
-              <Slider
-                min={0.1}
-                max={5}
-                step={0.1}
-                value={scale}
-                onChange={(val) => {
-                  setScale(val);
-                  forceRerender();
-                }}
-                width="200px"
-              >
-                <SliderTrack><SliderFilledTrack /></SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text fontSize="sm" w="50px">{scale.toFixed(1)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Scale"
+            min={0.1}
+            max={5}
+            step={0.1}
+            value={scale}
+            onChange={(val) => {
+              setScale(val);
+              forceRerender();
+            }}
+          />
 
-            <Flex align="center" gap={2}>
-              <Text fontSize="sm" w="120px">Noise Intensity:</Text>
-              <Slider
-                min={0}
-                max={10}
-                step={0.1}
-                value={noiseIntensity}
-                onChange={(val) => {
-                  setNoiseIntensity(val);
-                  forceRerender();
-                }}
-                width="200px"
-              >
-                <SliderTrack><SliderFilledTrack /></SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text fontSize="sm" w="50px">{noiseIntensity.toFixed(1)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Noise Intensity"
+            min={0}
+            max={10}
+            step={0.1}
+            value={noiseIntensity}
+            onChange={(val) => {
+              setNoiseIntensity(val);
+              forceRerender();
+            }}
+          />
 
-            <Flex align="center" gap={2}>
-              <Text fontSize="sm" w="120px">Rotation:</Text>
-              <Slider
-                min={0}
-                max={Math.PI * 2}
-                step={0.01}
-                value={rotation}
-                onChange={(val) => {
-                  setRotation(val);
-                  forceRerender();
-                }}
-                width="200px"
-              >
-                <SliderTrack><SliderFilledTrack /></SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text fontSize="sm" w="50px">{rotation.toFixed(2)}</Text>
-            </Flex>
+          <PreviewSlider
+            title="Rotation"
+            min={0}
+            max={Math.PI * 2}
+            step={0.01}
+            value={rotation}
+            onChange={(val) => {
+              setRotation(val);
+              forceRerender();
+            }}
+          />
 
-            <Flex align="center" gap={2}>
-              <Text fontSize="sm" w="120px">Color:</Text>
-              <Input
-                type="color"
-                value={color}
-                onChange={(e) => {
-                  setColor(e.target.value);
-                  forceRerender();
-                }}
-                width="100px"
-              />
-            </Flex>
+          <Flex align="center" gap={2} mt={4}>
+            <Text fontSize="sm">Color</Text>
+            <Input
+              type="color"
+              value={color}
+              onChange={(e) => {
+                setColor(e.target.value);
+                forceRerender();
+              }}
+              width="100px"
+            />
           </Flex>
         </Customize>
 

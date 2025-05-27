@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, IconButton, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import Ribbons from "../../content/Animations/Ribbons/Ribbons";
 import { ribbons } from "../../constants/code/Animations/ribbonsCode";
@@ -110,9 +113,7 @@ const RibbonsDemo = () => {
           />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-
+        <Customize>
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Count</Text>
             <IconButton icon={<FiMinus />} onClick={() => colors.length > 1 && setColors(colors.slice(0, -1))}></IconButton>
@@ -125,76 +126,45 @@ const RibbonsDemo = () => {
             }} />
           </Flex>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Thickness</Text>
-            <Slider
-              min={1}
-              max={60}
-              step={1}
-              value={baseThickness}
-              onChange={(val) => setBaseThickness(val)}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{baseThickness}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Thickness"
+            min={1}
+            max={60}
+            step={1}
+            value={baseThickness}
+            onChange={setBaseThickness}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Speed</Text>
-            <Slider
-              min={0.3}
-              max={0.7}
-              step={0.01}
-              value={speedMultiplier}
-              onChange={(val) => setSpeedMultiplier(val)}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{speedMultiplier}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Speed"
+            min={0.3}
+            max={0.7}
+            step={0.01}
+            value={speedMultiplier}
+            onChange={setSpeedMultiplier}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Max Age</Text>
-            <Slider
-              min={300}
-              max={1000}
-              step={100}
-              value={maxAge}
-              onChange={(val) => setMaxAge(val)}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{maxAge}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Max Age"
+            min={300}
+            max={1000}
+            step={100}
+            value={maxAge}
+            onChange={setMaxAge}
+          />
 
-          <Flex align="center" gap={2} mt={4}>
-            <Switch
-              isChecked={enableFade}
-              onChange={(e) => setEnableFade(e.target.checked)}
-            />
-            <Text>Enable Fade</Text>
-          </Flex>
+          <PreviewSwitch
+            title="Enable Fade"
+            isChecked={enableFade}
+            onChange={(e) => setEnableFade(e.target.checked)}
+          />
 
-          <Flex align="center" gap={2} mt={4}>
-            <Switch
-              isChecked={enableWaves}
-              onChange={(e) => setEnableWaves(e.target.checked)}
-            />
-            <Text>Enable Waves</Text>
-          </Flex>
-        </div>
+          <PreviewSwitch
+            title="Enable Waves"
+            isChecked={enableWaves}
+            onChange={(e) => setEnableWaves(e.target.checked)}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />

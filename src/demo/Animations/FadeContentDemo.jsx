@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import RefreshButton from "../../components/common/RefreshButton";
@@ -7,6 +7,9 @@ import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import FadeContent from "../../content/Animations/FadeContent/FadeContent";
 import { fadeContent } from '../../constants/code/Animations/fadeContentCode';
@@ -97,104 +100,65 @@ const FadeDemo = () => {
           <RefreshButton onClick={forceRerender} />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex gap={2} wrap="wrap">
-            <Button
-              fontSize="xs"
-              h={8}
-              onClick={() => {
-                setBlur(!blur);
-                forceRerender();
-              }}
-            >
-              Blur: <Text color={blur ? "lightgreen" : "coral"}>&nbsp;{String(blur)}</Text>
-            </Button>
-          </Flex>
+        <Customize>
+          <PreviewSwitch
+            title="Blur"
+            isChecked={blur}
+            onChange={(e) => {
+              setBlur(e.target.checked);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Duration (ms):</Text>
-            <Slider
-              min={500}
-              max={3000}
-              step={100}
-              value={duration}
-              onChange={(val) => {
-                setDuration(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{duration}ms</Text>
-          </Flex>
+          <PreviewSlider
+            title="Duration"
+            min={500}
+            max={3000}
+            step={100}
+            value={duration}
+            valueUnit="ms"
+            onChange={(val) => {
+              setDuration(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Delay (ms):</Text>
-            <Slider
-              min={0}
-              max={2000}
-              step={100}
-              value={delay}
-              onChange={(val) => {
-                setDelay(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{delay}ms</Text>
-          </Flex>
+          <PreviewSlider
+            title="Delay"
+            min={0}
+            max={2000}
+            step={100}
+            value={delay}
+            valueUnit="ms"
+            onChange={(val) => {
+              setDelay(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Threshold:</Text>
-            <Slider
-              min={0.1}
-              max={1}
-              step={0.1}
-              value={threshold}
-              onChange={(val) => {
-                setThreshold(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{threshold.toFixed(1)}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Threshold"
+            min={0.1}
+            max={1}
+            step={0.1}
+            value={threshold}
+            onChange={(val) => {
+              setThreshold(val);
+              forceRerender();
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Initial Opacity:</Text>
-            <Slider
-              min={0}
-              max={1}
-              step={0.1}
-              value={initialOpacity}
-              onChange={(val) => {
-                setInitialOpacity(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{initialOpacity.toFixed(1)}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Initial Opacity"
+            min={0}
+            max={1}
+            step={0.1}
+            value={initialOpacity}
+            onChange={(val) => {
+              setInitialOpacity(val);
+              forceRerender();
+            }}
+          />
 
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Easing:</Text>
@@ -208,7 +172,7 @@ const FadeDemo = () => {
               Easing: <Text color={"#a1a1aa"}>&nbsp;{String(easing)}</Text>
             </Button>
           </Flex>
-        </div>
+        </Customize>
 
         <PropTable data={propData} />
       </PreviewTab>

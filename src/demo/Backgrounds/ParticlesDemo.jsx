@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Input, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Customize";
 
 import Particles from "../../ts-default/Backgrounds/Particles/Particles";
 import { particles } from "../../constants/code/Backgrounds/particlesCode";
@@ -109,9 +112,7 @@ const ParticlesDemo = () => {
           />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-
+        <Customize>
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Color</Text>
             <Input
@@ -123,117 +124,60 @@ const ParticlesDemo = () => {
             <Text fontSize="sm">{colors}</Text>
           </Flex>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Count</Text>
-            <Slider
-              min={100}
-              max={1000}
-              step={100}
-              value={particleCount}
-              onChange={(val) => {
-                setParticleCount(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{particleCount}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Count"
+            min={100}
+            max={1000}
+            step={100}
+            value={particleCount}
+            onChange={setParticleCount}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Spread</Text>
-            <Slider
-              min={10}
-              max={100}
-              step={10}
-              value={particleSpread}
-              onChange={(val) => {
-                setParticleSpread(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{particleSpread}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Spread"
+            min={10}
+            max={100}
+            step={10}
+            value={particleSpread}
+            onChange={setParticleSpread}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Speed</Text>
-            <Slider
-              min={0}
-              max={2}
-              step={0.1}
-              value={speed}
-              onChange={(val) => {
-                setSpeed(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{speed}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Speed"
+            min={0}
+            max={2}
+            step={0.1}
+            value={speed}
+            onChange={setSpeed}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Base Size</Text>
-            <Slider
-              min={100}
-              max={1000}
-              step={100}
-              value={baseSize}
-              onChange={(val) => {
-                setBaseSize(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{baseSize}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Base Size"
+            min={100}
+            max={1000}
+            step={100}
+            value={baseSize}
+            onChange={setBaseSize}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Mouse Interaction</Text>
-            <Switch
-              isChecked={moveParticlesOnHover}
-              onChange={(e) => {
-                setMoveParticlesOnHover(e.target.checked);
-              }}
-            />
-          </Flex>
+          <PreviewSwitch
+            title="Mouse Interaction"
+            isChecked={moveParticlesOnHover}
+            onChange={(e) => setMoveParticlesOnHover(e.target.checked)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Particle Transparency</Text>
-            <Switch
-              isChecked={alphaParticles}
-              onChange={(e) => {
-                setAlphaParticles(e.target.checked);
-              }}
-            />
-          </Flex>
+          <PreviewSwitch
+            title="Particle Transparency"
+            isChecked={alphaParticles}
+            onChange={(e) => setAlphaParticles(e.target.checked)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Disable Rotation</Text>
-            <Switch
-              isChecked={disableRotation}
-              onChange={(e) => {
-                setDisableRotation(e.target.checked);
-              }}
-            />
-          </Flex>
-
-        </div>
+          <PreviewSwitch
+            title="Disable Rotation"
+            isChecked={disableRotation}
+            onChange={(e) => setDisableRotation(e.target.checked)}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />
