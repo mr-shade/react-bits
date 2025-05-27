@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { gsap } from "gsap";
 
 import useForceRerender from "../../hooks/useForceRerender";
 import CodeExample from "../../components/code/CodeExample";
@@ -17,6 +18,30 @@ const ScrollFloatDemo = () => {
   const [duration, setDuration] = useState(1);
 
   const [key, forceRerender] = useForceRerender();
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const smoothScroll = (e) => {
+      e.preventDefault();
+      const delta = e.deltaY || e.detail || e.wheelDelta;
+      const scrollAmount = delta * 2;
+      
+      gsap.to(container, {
+        scrollTop: container.scrollTop + scrollAmount,
+        duration: 2,
+        ease: "power3.out",
+        overwrite: "auto"
+      });
+    };
+
+    container.addEventListener('wheel', smoothScroll, { passive: false });
+
+    return () => {
+      container.removeEventListener('wheel', smoothScroll);
+    };
+  }, []);
 
   const propData = [
     {

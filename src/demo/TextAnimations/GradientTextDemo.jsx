@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Input, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -13,7 +13,6 @@ import { gradientText } from '../../constants/code/TextAnimations/gradientTextCo
 const GradientTextDemo = () => {
   const [colors, setColors] = useState('#40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa');
   const [speed, setSpeed] = useState(3);
-  const [showBorder, setShowBorder] = useState(true);
 
   const gradientPreview = colors.split(',').map(color => color.trim());
 
@@ -72,7 +71,6 @@ const GradientTextDemo = () => {
             <GradientText
               colors={colors.split(',')}
               animationSpeed={speed}
-              showBorder={showBorder}
               className="custom-gradient-class"
             >
               Now with a cool border!
@@ -82,14 +80,14 @@ const GradientTextDemo = () => {
 
         <div className="preview-options">
           <h2 className="demo-title-extra">Customize</h2>
-          <Flex gap={6} wrap="wrap" align="center" mt={4}>
+          <Flex gap={6} wrap="wrap" alignItems="flex-start" mt={4} direction="column">
             {/* Colors Input */}
             <Flex gap={4} align="center">
-              <Text fontSize="sm">Colors:</Text>
+              <Text fontSize="sm">Gradient</Text>
               <Input
                 fontSize="xs"
                 type="text"
-                w="auto"
+                w="280px"
                 h={8}
                 px={2}
                 onChange={(e) => setColors(e.target.value)}
@@ -98,7 +96,7 @@ const GradientTextDemo = () => {
               <Box
                 bg={`linear-gradient(to right, ${gradientPreview.join(", ")})`}
                 w="100px"
-                h="10px"
+                h="28px"
                 borderRadius="md"
                 border="1px solid #ddd"
               />
@@ -106,7 +104,7 @@ const GradientTextDemo = () => {
 
             {/* Speed Slider */}
             <Flex gap={4} align="center">
-              <Text fontSize="sm">Speed (s):</Text>
+              <Text fontSize="sm">Speed (s)</Text>
               <Slider
                 min={1}
                 max={10}
@@ -122,17 +120,6 @@ const GradientTextDemo = () => {
               </Slider>
               <Text fontSize="sm">{speed}s</Text>
             </Flex>
-
-            {/* Border Toggle */}
-            <Button
-              fontSize="sm"
-              h={8}
-              onClick={() => setShowBorder(!showBorder)}
-              colorScheme={showBorder ? "green" : "red"}
-              variant="outline"
-            >
-              {showBorder ? "Hide Border" : "Show Border"}
-            </Button>
           </Flex>
         </div>
 
