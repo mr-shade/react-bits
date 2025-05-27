@@ -1,7 +1,6 @@
 const animations = {
   'blob-cursor': () => import("../demo/Animations/BlobCursorDemo"),
   'animated-content': () => import("../demo/Animations/AnimatedContentDemo"),
-  'follow-cursor': () => import("../demo/Animations/FollowCursorDemo"),
   'magnet': () => import("../demo/Animations/MagnetDemo"),
   'fade-content': () => import("../demo/Animations/FadeContentDemo"),
   'crosshair': () => import("../demo/Animations/CrosshairDemo"),
