@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Button, Flex, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
 import useForceRerender from "../../hooks/useForceRerender";
 import RefreshButton from "../../components/common/RefreshButton";
@@ -9,76 +9,36 @@ import Dependencies from "../../components/code/Dependencies";
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
 
 import { splitText } from '../../constants/code/TextAnimations/splitTextCode';
-import SplitText from "../../ts-tailwind/TextAnimations/SplitText/SplitText";
+import SplitText from "../../tailwind/TextAnimations/SplitText/SplitText";
 
 const SplitTextDemo = () => {
-  const [delay, setDelay] = useState(100);
-  const [easing, setEasing] = useState("easeOutCubic");
+  const [delay, setDelay] = useState(10);
+  const [duration, setDuration] = useState(2);
+  const [ease, setEase] = useState("elastic.out(1, 0.3)");
+  const [splitType, setSplitType] = useState("chars");
+  const [threshold, setThreshold] = useState(0.1);
+  const [showCallback, setShowCallback] = useState(true);
+
   const [key, forceRerender] = useForceRerender();
 
   const propData = [
-    {
-      name: "text",
-      type: "string",
-      default: '""',
-      description: "The text content to animate.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: '""',
-      description: "Additional class names to style the component.",
-    },
-    {
-      name: "delay",
-      type: "number",
-      default: "100",
-      description: "Delay between animations for each letter (in ms).",
-    },
-    {
-      name: "animationFrom",
-      type: "object",
-      default: "{ opacity: 0, transform: 'translate3d(0,40px,0)' }",
-      description: "The initial animation state of each letter.",
-    },
-    {
-      name: "animationTo",
-      type: "object",
-      default: "{ opacity: 1, transform: 'translate3d(0,0,0)' }",
-      description: "The target animation state of each letter.",
-    },
-    {
-      name: "easing",
-      type: "string",
-      default: '"easeOutCubic"',
-      description: "Easing function for the animation.",
-    },
-    {
-      name: "threshold",
-      type: "number",
-      default: "0.1",
-      description: "Intersection threshold to trigger the animation.",
-    },
-    {
-      name: "rootMargin",
-      type: "string",
-      default: '"-100px"',
-      description: "Root margin for the intersection observer.",
-    },
-    {
-      name: "textAlign",
-      type: "string",
-      default: '"center"',
-      description: "Sets the text alignment (e.g., 'left', 'center', 'right').",
-    },
-    {
-      name: "onLetterAnimationComplete",
-      type: "function",
-      default: "undefined",
-      description: "Callback function triggered when all letter animations complete.",
-    },
+    { name: "text", type: "string", default: '""', description: "The text content to animate." },
+    { name: "className", type: "string", default: '""', description: "Additional class names to style the component." },
+    { name: "delay", type: "number", default: "100", description: "Delay between animations for each letter (in ms)." },
+    { name: "duration", type: "number", default: "0.6", description: "Duration of each letter animation (in seconds)." },
+    { name: "ease", type: "string", default: '"power3.out"', description: "GSAP easing function for the animation." },
+    { name: "splitType", type: "string", default: '"chars"', description: 'Split type: "chars", "words", "lines", or "words, chars".' },
+    { name: "from", type: "object", default: "{ opacity: 0, y: 40 }", description: "Initial GSAP properties for each letter/word." },
+    { name: "to", type: "object", default: "{ opacity: 1, y: 0 }", description: "Target GSAP properties for each letter/word." },
+    { name: "threshold", type: "number", default: "0.1", description: "Intersection threshold to trigger the animation (0-1)." },
+    { name: "rootMargin", type: "string", default: '"-100px"', description: "Root margin for the ScrollTrigger." },
+    { name: "textAlign", type: "string", default: '"center"', description: "Text alignment: 'left', 'center', 'right', etc." },
+    { name: "onLetterAnimationComplete", type: "function", default: "undefined", description: "Callback function when all animations complete." },
   ];
 
   return (
@@ -93,56 +53,101 @@ const SplitTextDemo = () => {
           <RefreshButton onClick={forceRerender} />
           <SplitText
             key={key}
-            text="Hello!"
+            text="Hello, you!"
             delay={delay}
-            easing={easing}
+            duration={duration}
+            ease={ease}
+            splitType={splitType}
+            threshold={threshold}
             className="split-text-demo"
-            onLetterAnimationComplete={() => toast("✅ Animation Finished!")}
+            onLetterAnimationComplete={showCallback ? () => toast("✅ Animation Finished!") : undefined}
           />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Delay (ms):</Text>
-            <Slider
-              min={50}
-              max={500}
-              step={10}
-              value={delay}
-              onChange={(val) => {
-                setDelay(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{delay}ms</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Easing:</Text>
+        <Customize>
+          <Flex gap={2} wrap="wrap">
             <Button
               fontSize="xs"
               h={8}
               onClick={() => {
-                const newEasing =
-                  easing === "easeOutCubic" ? "easeInOutCubic" : "easeOutCubic";
-                setEasing(newEasing);
+                setSplitType(
+                  splitType === "chars"
+                    ? "words"
+                    : splitType === "words"
+                      ? "lines"
+                      : "chars"
+                );
                 forceRerender();
               }}
             >
-              Easing: <Text color={"#a1a1aa"}>&nbsp;{easing}</Text>
+              Split Type: <Text color={"#a1a1aa"}>&nbsp;{splitType}</Text>
+            </Button>
+            <Button
+              fontSize="xs"
+              h={8}
+              onClick={() => {
+                setEase(
+                  ease === "power3.out"
+                    ? "bounce.out"
+                    : ease === "bounce.out"
+                      ? "elastic.out(1, 0.3)"
+                      : "power3.out"
+                );
+                forceRerender();
+              }}
+            >
+              Ease: <Text color={"#a1a1aa"}>&nbsp;{ease}</Text>
             </Button>
           </Flex>
-        </div>
+
+          <PreviewSwitch
+            title="Show Completion Toast"
+            isChecked={showCallback}
+            onChange={(e) => {
+              setShowCallback(e.target.checked);
+              forceRerender();
+            }}
+          />
+
+          <PreviewSlider
+            title="Stagger Delay (ms)"
+            min={10}
+            max={500}
+            step={10}
+            value={delay}
+            onChange={(val) => {
+              setDelay(val);
+              forceRerender();
+            }}
+          />
+
+          <PreviewSlider
+            title="Duration (s)"
+            min={0.1}
+            max={2}
+            step={0.1}
+            value={duration}
+            onChange={(val) => {
+              setDuration(val);
+              forceRerender();
+            }}
+          />
+
+          <PreviewSlider
+            title="Threshold"
+            min={0.1}
+            max={1}
+            step={0.1}
+            value={threshold}
+            onChange={(val) => {
+              setThreshold(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["@react-spring/web"]} />
+        <Dependencies dependencyList={["gsap"]} />
       </PreviewTab>
 
       <CodeTab>

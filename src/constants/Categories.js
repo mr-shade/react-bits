@@ -1,6 +1,6 @@
 // Highlighted sidebar items
 export const NEW = ['Silk', 'Scrambled Text', 'Dot Grid', 'Beams'];
-export const UPDATED = ['Blob Cursor'];
+export const UPDATED = ['Blob Cursor', 'Split Text'];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [

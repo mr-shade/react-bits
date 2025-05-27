@@ -9,7 +9,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/SplitText/SplitText.tsx?raw'
 
 export const splitText = {
   ...(generateCliCommands('TextAnimations/SplitText')),
-  installation: `npm install @react-spring/web`,
+  installation: `npm install gsap`,
   usage: `import SplitText from "./SplitText";
 
 const handleAnimationComplete = () => {
@@ -17,14 +17,17 @@ const handleAnimationComplete = () => {
 };
 
 <SplitText
-  text="Hello, Tailwind!"
+  text="Hello, GSAP!"
   className="text-2xl font-semibold text-center"
-  delay={150}
-  animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-  animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
-  easing="easeOutCubic"
-  threshold={0.2}
-  rootMargin="-50px"
+  delay={100}
+  duration={0.6}
+  ease="power3.out"
+  splitType="chars"
+  from={{ opacity: 0, y: 40 }}
+  to={{ opacity: 1, y: 0 }}
+  threshold={0.1}
+  rootMargin="-100px"
+  textAlign="center"
   onLetterAnimationComplete={handleAnimationComplete}
 />`,
   code,

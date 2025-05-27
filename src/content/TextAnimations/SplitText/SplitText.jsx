@@ -1,88 +1,117 @@
-import { useSprings, animated } from '@react-spring/web';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText as GSAPSplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, GSAPSplitText);
 
 const SplitText = ({
-  text = '',
-  className = '',
+  text,
+  className = "",
   delay = 100,
-  animationFrom = { opacity: 0, transform: 'translate3d(0,40px,0)' },
-  animationTo = { opacity: 1, transform: 'translate3d(0,0,0)' },
-  easing = 'easeOutCubic',
+  duration = 0.6,
+  ease = "power3.out",
+  splitType = "chars",
+  from = { opacity: 0, y: 40 },
+  to = { opacity: 1, y: 0 },
   threshold = 0.1,
-  rootMargin = '-100px',
-  textAlign = 'center',
+  rootMargin = "-100px",
+  textAlign = "center",
   onLetterAnimationComplete,
 }) => {
-  const words = text.split(' ').map(word => word.split(''));
-
-  const letters = words.flat();
-  const [inView, setInView] = useState(false);
-  const ref = useRef();
-  const animatedCount = useRef(0);
+  const ref = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.unobserve(ref.current);
-        }
+    const el = ref.current;
+    if (!el) return;
+
+    const absoluteLines = splitType === "lines";
+    if (absoluteLines) el.style.position = "relative";
+
+    const splitter = new GSAPSplitText(el, {
+      type: splitType,
+      absolute: absoluteLines,
+      linesClass: "split-line",
+    });
+
+    let targets;
+    switch (splitType) {
+      case "lines":
+        targets = splitter.lines;
+        break;
+      case "words":
+        targets = splitter.words;
+        break;
+      case "words, chars":
+        targets = [...splitter.words, ...splitter.chars];
+        break;
+      default:
+        targets = splitter.chars;
+    }
+
+    targets.forEach((t) => {
+      (t).style.willChange = "transform, opacity";
+    });
+
+    const startPct = (1 - threshold) * 100; // e.g. 0.1 -> 90%
+    const m = /^(-?\d+)px$/.exec(rootMargin);
+    const raw = m ? parseInt(m[1], 10) : 0;
+    const sign = raw < 0 ? `-=${Math.abs(raw)}px` : `+=${raw}px`;
+    const start = `top ${startPct}%${sign}`;
+
+    // 5) Timeline with smoothChildTiming
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start,
+        toggleActions: "play none none none",
+        once: true,
       },
-      { threshold, rootMargin }
-    );
+      smoothChildTiming: true,
+      onComplete: onLetterAnimationComplete,
+    });
 
-    observer.observe(ref.current);
+    tl.set(targets, { ...from, immediateRender: false, force3D: true });
+    tl.to(targets, {
+      ...to,
+      duration,
+      ease,
+      stagger: delay / 1000,
+      force3D: true,
+    });
 
-    return () => observer.disconnect();
-  }, [threshold, rootMargin]);
-
-  const springs = useSprings(
-    letters.length,
-    letters.map((_, i) => ({
-      from: animationFrom,
-      to: inView
-        ? async (next) => {
-          await next(animationTo);
-          animatedCount.current += 1;
-          if (animatedCount.current === letters.length && onLetterAnimationComplete) {
-            onLetterAnimationComplete();
-          }
-        }
-        : animationFrom,
-      delay: i * delay,
-      config: { easing },
-    }))
-  );
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf(targets);
+      splitter.revert();
+    };
+  }, [
+    text,
+    delay,
+    duration,
+    ease,
+    splitType,
+    from,
+    to,
+    threshold,
+    rootMargin,
+    onLetterAnimationComplete,
+  ]);
 
   return (
     <p
       ref={ref}
       className={`split-parent ${className}`}
-      style={{ textAlign, overflow: 'hidden', display: 'inline', whiteSpace: 'normal', wordWrap: 'break-word' }}
+      style={{
+        textAlign,
+        overflow: "hidden",
+        display: "inline-block",
+        whiteSpace: "normal",
+        wordWrap: "break-word",
+      }}
     >
-      {words.map((word, wordIndex) => (
-        <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-          {word.map((letter, letterIndex) => {
-            const index = words
-              .slice(0, wordIndex)
-              .reduce((acc, w) => acc + w.length, 0) + letterIndex;
-
-            return (
-              <animated.span
-                key={index}
-                style={{
-                  ...springs[index],
-                  display: 'inline-block',
-                  willChange: 'transform, opacity',
-                }}
-              >
-                {letter}
-              </animated.span>
-            );
-          })}
-          <span style={{ display: 'inline-block', width: '0.3em' }}>&nbsp;</span>
-        </span>
-      ))}
+      {text}
     </p>
   );
 };
