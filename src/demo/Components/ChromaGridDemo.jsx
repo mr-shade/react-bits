@@ -1,7 +1,6 @@
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
@@ -56,10 +55,6 @@ const ChromaGridDemo = () => {
         <Box position="relative" className="demo-container" h='auto' overflow="hidden" p={0}>
           <ChromaGrid />
         </Box>
-
-        <Customize>
-
-        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['gsap']} />
