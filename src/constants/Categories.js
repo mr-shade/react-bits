@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Silk', 'Scrambled Text', 'Dot Grid', 'Beams'];
+export const NEW = ['Silk', 'Scrambled Text', 'Dot Grid', 'Beams', 'Chroma Grid', 'Glare Hover'];
 export const UPDATED = ['Blob Cursor', 'Split Text'];
 
 // Used for main sidebar navigation
@@ -35,6 +35,7 @@ export const CATEGORIES = [
       'Animated Content',
       'Fade Content',
       'Pixel Transition',
+      'Glare Hover',
       'Magnet Lines',
       'Click Spark',
       'Magnet',
@@ -56,6 +57,7 @@ export const CATEGORIES = [
       'Animated List',
       'Stack',
       'Tilted Card',
+      'Chroma Grid',
       'Folder',
       'Lanyard',
       'Dock',

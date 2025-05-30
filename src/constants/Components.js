@@ -15,6 +15,7 @@ const animations = {
   'ribbons': () => import("../demo/Animations/RibbonsDemo"),
   'meta-balls': () => import("../demo/Animations/MetaBallsDemo"),
   'metallic-paint': () => import("../demo/Animations/MetallicPaintDemo"),
+  'glare-hover': () => import("../demo/Animations/GlareHoverDemo"),
 };
 
 const textAnimations = {
@@ -63,6 +64,7 @@ const components = {
   'animated-list': () => import("../demo/Components/AnimatedListDemo"),
   'folder': () => import("../demo/Components/FolderDemo"),
   'gooey-nav': () => import("../demo/Components/GooeyNavDemo"),
+  'chroma-grid': () => import("../demo/Components/ChromaGridDemo"),
 };
 
 const backgrounds = {
