@@ -15,8 +15,8 @@ import DotGrid from "../../content/Backgrounds/DotGrid/DotGrid";
 const DotGridDemo = () => {
   const [dotSize, setDotSize] = useState(5);
   const [gap, setGap] = useState(15);
-  const [baseColor, setBaseColor] = useState("#00d8ff");
-  const [activeColor, setActiveColor] = useState("#ff00ff");
+  const [baseColor, setBaseColor] = useState("#ffffff");
+  const [activeColor, setActiveColor] = useState("#00d8ff");
   const [proximity, setProximity] = useState(120);
   const [shockRadius, setShockRadius] = useState(250);
   const [shockStrength, setShockStrength] = useState(5);
