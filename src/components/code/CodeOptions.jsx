@@ -1,4 +1,4 @@
-import { Children, useEffect, useState } from "react";
+import { Children } from "react";
 import { Tabs, TabList, Tab, TabPanels, TabPanel, Icon, Text, Flex, Select } from "@chakra-ui/react";
 import { RiEmotionSadLine, RiTailwindCssFill } from "react-icons/ri";
 import { FiCode } from "react-icons/fi";
