@@ -419,7 +419,7 @@
     left: 12px;
     right: 12px;
     padding: 8px 10px;
-    border-radius: 10px;
+    border-radius: 50px;
   }
 
   .pc-mini-avatar {
@@ -442,7 +442,7 @@
   .pc-contact-btn {
     padding: 5px 10px;
     font-size: 10px;
-    border-radius: 6px;
+    border-radius: 50px;
   }
 }
 
