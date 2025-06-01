@@ -145,11 +145,11 @@ const ProfileCardDemo = () => {
             handle="javicodes"
             status="Online"
             contactText="Contact Me"
-            avatarUrl="/public/assets/person.png"
-            iconUrl={showIcon ? "/public/assets/iconpattern.png" : ""}
+            avatarUrl="/assets/person.png"
+            iconUrl={showIcon ? "/assets/iconpattern.png" : ""}
             showUserInfo={showUserInfo}
             showBehindGradient={showBehindGradient}
-            grainUrl="/public/assets/grain.webp"
+            grainUrl="/assets/grain.webp"
             behindGradient={customBehindGradient}
             innerGradient={customInnerGradient}
           />
