@@ -66,6 +66,7 @@ const components = {
   'gooey-nav': () => import("../demo/Components/GooeyNavDemo"),
   'chroma-grid': () => import("../demo/Components/ChromaGridDemo"),
   'profile-card': () => import("../demo/Components/ProfileCardDemo"),
+  'card-swap': () => import("../demo/Components/CardSwapDemo"),
 };
 
 const backgrounds = {
