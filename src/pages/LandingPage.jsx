@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import SplitText from "../content/TextAnimations/SplitText/SplitText";
 import FeatureCards from "../components/landing/FeatureCards/FeatureCards";
 import Testimonials from "../components/landing/Testimonials/Testimonials";
+import StartBuilding from "../components/landing/StartBuilding/StartBuilding";
 import Footer from "../components/landing/Footer/Footer";
 import PlasmaWaveV2 from "../components/landing/PlasmaWave/PlasmaWaveV2";
 import LetterGlitch from "../content/Backgrounds/LetterGlitch/LetterGlitch";
@@ -52,7 +53,7 @@ const LandingPage = () => {
             </div>
 
             <div className="hero-card hero-card-3" onClick={() => window.open("https://reactbits.dev/backgrounds/squares")}>
-              <Squares borderColor="#fff" speed={0.5} direction="diagonal" hoverFillColor="#fff" />
+              <Squares borderColor="#fff" speed={0.2} direction="diagonal" hoverFillColor="#fff" />
             </div>
           </div>
         </div>
@@ -61,6 +62,8 @@ const LandingPage = () => {
       <FeatureCards />
 
       <Testimonials />
+
+      <StartBuilding />
 
       <Footer />
     </section>

@@ -1,15 +1,7 @@
-import { Icon } from "@chakra-ui/react";
 import { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
-import {
-  FiGift,
-  FiTarget,
-  FiCopy,
-  FiLayout
-} from "react-icons/fi";
 import "./FeatureCards.css";
-import SplitText from "../../../content/TextAnimations/SplitText/SplitText";
-import FadeContent from "../../../content/Animations/FadeContent/FadeContent";
+import CountUp from "../../../content/TextAnimations/CountUp/CountUp";
 
 // Particle Animation Component
 const ParticleCard = ({ children, className = "" }) => {
@@ -40,10 +32,10 @@ const ParticleCard = ({ children, className = "" }) => {
 
   const createMemoizedParticles = useCallback(() => {
     if (particlesInitialized.current || !cardRef.current) return;
-    
+
     const rect = cardRef.current.getBoundingClientRect();
     const particleCount = 12;
-    
+
     for (let i = 0; i < particleCount; i++) {
       const particle = createParticle(
         Math.random() * rect.width,
@@ -77,7 +69,7 @@ const ParticleCard = ({ children, className = "" }) => {
 
   const animateParticles = useCallback(() => {
     if (!cardRef.current || !isHoveredRef.current) return;
-    
+
     // Create memoized particles if not initialized
     if (!particlesInitialized.current) {
       createMemoizedParticles();
@@ -86,7 +78,7 @@ const ParticleCard = ({ children, className = "" }) => {
     memoizedParticlesRef.current.forEach((particle, i) => {
       const timeoutId = setTimeout(() => {
         if (!isHoveredRef.current || !cardRef.current) return;
-        
+
         // Clone the memoized particle
         const clonedParticle = particle.cloneNode(true);
         cardRef.current.appendChild(clonedParticle);
@@ -170,12 +162,12 @@ const GlobalSpotlight = ({ gridRef }) => {
     spotlight.className = "global-spotlight";
     spotlight.style.cssText = `
       position: fixed;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(132, 0, 255, 0.12) 0%, rgba(132, 0, 255, 0.04) 40%, transparent 70%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(132, 0, 255, 0.15) 0%, rgba(132, 0, 255, 0.08) 15%, rgba(132, 0, 255, 0.04) 25%, rgba(132, 0, 255, 0.02) 40%, rgba(132, 0, 255, 0.01) 55%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
-      z-index: 100;
+      z-index: 200;
       opacity: 0;
       transform: translate(-50%, -50%);
       mix-blend-mode: screen;
@@ -185,18 +177,18 @@ const GlobalSpotlight = ({ gridRef }) => {
 
     const handleMouseMove = (e) => {
       if (!spotlightRef.current || !gridRef.current) return;
-      
+
       // Check if cursor is within the features section
       const featuresSection = gridRef.current.closest('.features-section');
       const sectionRect = featuresSection?.getBoundingClientRect();
-      const isInside = sectionRect && 
-        e.clientX >= sectionRect.left && 
-        e.clientX <= sectionRect.right && 
-        e.clientY >= sectionRect.top && 
+      const isInside = sectionRect &&
+        e.clientX >= sectionRect.left &&
+        e.clientX <= sectionRect.right &&
+        e.clientY >= sectionRect.top &&
         e.clientY <= sectionRect.bottom;
-      
+
       isInsideSectionRef.current = isInside;
-      
+
       // Only calculate if inside the section
       if (!isInside) {
         // Hide spotlight and reset glow when outside section
@@ -255,12 +247,13 @@ const GlobalSpotlight = ({ gridRef }) => {
 
       let targetOpacity = 0;
       if (minDistance <= proximityThreshold) {
-        targetOpacity = 1;
+        targetOpacity = 0.8; // Increased from 1 for better visibility with mix-blend-mode
       } else if (minDistance <= fadeThreshold) {
         const fadeRange = fadeThreshold - proximityThreshold;
         const fadeProgress = (fadeThreshold - minDistance) / fadeRange;
-        targetOpacity = Math.max(0, fadeProgress);
+        targetOpacity = Math.max(0, fadeProgress * 0.8); // Increased multiplier
       }
+
       const duration = targetOpacity > 0 ? 0.2 : 0.5;
       gsap.to(spotlightRef.current, {
         opacity: targetOpacity,
@@ -305,56 +298,44 @@ const FeatureCards = () => {
     <div className="features-section">
       <div className="features-container">
         <div className="features-header">
-            <SplitText
-              rootMargin="0"
-              threshold={0}
-              text="Zero cost, all the cool."
-              className="features-title"
-              splitType="chars"
-              delay={30}
-              duration={2}
-            />
-
-          <FadeContent blur>
-            <p className="features-subtitle">Everything you need to add flair to your websites</p>
-          </FadeContent>
+          <h3 className="features-title">Zero cost, all the cool.</h3>
+          <p className="features-subtitle">Everything you need to add flair to your websites</p>
         </div>
         <GlobalSpotlight gridRef={gridRef} />
-        <FadeContent>
-          <div className="bento-grid" ref={gridRef}>
-            <ParticleCard className="feature-card card1">
-              <div className="feature-icon">
-                <Icon as={FiGift} boxSize={8} color="white" />
-              </div>
-              <h3>100% Free &amp; Open Source</h3>
-              <p>Loved by developers around the world</p>
-            </ParticleCard>
+        <div className="bento-grid" ref={gridRef}>
+          <ParticleCard className="feature-card card1">
+            <div className="messages-gif-wrapper">
+              <img src="/assets/messages.gif" alt="Messages animation" className="messages-gif" />
+            </div>
+            <h2><CountUp to={'100'} />%</h2>
+            <h3>Free &amp; Open Source</h3>
+            <p>Loved by developers around the world</p>
+          </ParticleCard>
 
-            <ParticleCard className="feature-card card2">
-              <div className="feature-icon">
-                <Icon as={FiTarget} boxSize={8} color="white" />
-              </div>
-              <h3>80+ Curated Components</h3>
-              <p>Growing weekly &amp; only getting better</p>
-            </ParticleCard>
+          <ParticleCard className="feature-card card2">
+            <div className="components-gif-wrapper">
+              <img src="/assets/components.gif" alt="Components animation" className="components-gif" />
+            </div>
+            <h2><CountUp to={'80'} />+</h2>
+            <h3>Curated Components</h3>
+            <p>Growing weekly &amp; only getting better</p>
+          </ParticleCard>
 
-            <ParticleCard className="feature-card card4">
-              <div className="feature-icon">
-                <Icon as={FiLayout} boxSize={8} color="white" />
-              </div>
-              <h3>Dual Styling Options</h3>
-              <p>CSS or Tailwind, switch with one click</p>
-            </ParticleCard>
+          <ParticleCard className="feature-card card4">
+            <div className="switch-gif-wrapper">
+              <img src="/assets/switch.gif" alt="Switch animation" className="switch-gif" />
+            </div>
+            <h2><CountUp to={'2'} /></h2>
+            <h3>Styling Options</h3>
+            <p>CSS or Tailwind, switch with one click</p>
+          </ParticleCard>
 
-            <ParticleCard className="feature-card card5">
-              <div className="feature-icon">
-                <Icon as={FiCopy} boxSize={8} color="white" />
-              </div>
-              <h3>Copy-Paste Ready</h3>
-              <p>Zero bloat, use only what you need</p>
-            </ParticleCard>
-          </div>
-        </FadeContent>
+          <ParticleCard className="feature-card card5">
+            <h2>Zero</h2>
+            <h3>Bloat Included</h3>
+            <p>Use only what you need, when you need it</p>
+          </ParticleCard>
+        </div>
       </div>
     </div>
   );

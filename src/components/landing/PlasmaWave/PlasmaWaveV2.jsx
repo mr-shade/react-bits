@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Renderer, Camera, Transform, Program, Mesh, Geometry } from 'ogl';
 
 const vertex = /* glsl */ `
@@ -30,7 +30,7 @@ const float lt   = 0.05;
 const float pi   = 3.141592653589793;
 const float pi2  = pi * 2.0;
 const float pi_2 = pi * 0.5;
-#define MAX_STEPS 25
+#define MAX_STEPS 15
 #define A(v) mat2(cos(m.v + radians(vec4(0.0,-90.0,90.0,0.0))))
 
 void mainImage(out vec4 C, in vec2 U) {
@@ -40,7 +40,7 @@ void mainImage(out vec4 C, in vec2 U) {
   vec2  R = iResolution;
   vec2  m = vec2(0.0);
 
-  vec3 o = vec3(0.0, 0.0, -8.0);
+  vec3 o = vec3(0.0, 0.0, -7.0);
   vec3 u = normalize(vec3((U - 0.5 * R) / R.y, focalLength));
   vec3 k = vec3(0.0);
   vec3 p;
@@ -119,6 +119,7 @@ export default function PlasmaWaveV2({
   const resizeTimeoutRef = useRef(null); // For throttling resize updates
   const uniformOffset = useRef(new Float32Array([xOffset, yOffset]));
   const uniformResolution = useRef(new Float32Array([0, 0]));
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const propsRef = useRef({
     xOffset, yOffset, rotationDeg, focalLength,
@@ -195,30 +196,16 @@ export default function PlasmaWaveV2({
     });
     ro.observe(containerRef.current);
 
-    /* ---- Pointer move ---- */
-    let bendAdj1 = 0, bendAdj2 = 0;
-    let targetAdj1 = 0, targetAdj2 = 0;
-    let lastMoveTime = 0;
-
-    const onMove = e => {
-      // Throttle mouse move events for performance
-      const now = performance.now();
-      if (now - lastMoveTime < 32) return; // ~30fps for mouse events
-      lastMoveTime = now;
-      
-      const rect = gl.canvas.getBoundingClientRect();
-      const nx = (e.clientX - rect.left) / rect.width - 0.5;
-      const ny = (e.clientY - rect.top) / rect.height - 0.5;
-      targetAdj1 = ny * 0.4;
-      targetAdj2 = -nx * 0.4;
-    };
-    gl.canvas.addEventListener('pointermove', onMove, { passive: true });
-
     /* ---- RAF loop ---- */
     let start = performance.now();
     let rafId;
     let lastUpdateTime = 0;
     let frameSkipCounter = 0;
+    
+    // Set initialized state after a brief delay to ensure smooth animation
+    setTimeout(() => {
+      setIsInitialized(true);
+    }, 100);
     
     const update = now => {
       rafId = requestAnimationFrame(update);
@@ -232,8 +219,6 @@ export default function PlasmaWaveV2({
       lastUpdateTime = now;
       
       const t = (now - start) * 0.001;
-      bendAdj1 += (targetAdj1 - bendAdj1) * 0.05;
-      bendAdj2 += (targetAdj2 - bendAdj2) * 0.05;
 
       const { xOffset: xOff, yOffset: yOff, rotationDeg: rot, focalLength: fLen } = propsRef.current;
 
@@ -243,8 +228,8 @@ export default function PlasmaWaveV2({
       program.uniforms.iTime.value = t;
       program.uniforms.uRotation.value = rot * Math.PI / 180;
       program.uniforms.focalLength.value = fLen;
-      program.uniforms.bendAdj1.value = bendAdj1;
-      program.uniforms.bendAdj2.value = bendAdj2;
+      program.uniforms.bendAdj1.value = 0; // Static value since no mouse interaction
+      program.uniforms.bendAdj2.value = 0; // Static value since no mouse interaction
 
       renderer.render({ scene, camera });
     };
@@ -255,7 +240,6 @@ export default function PlasmaWaveV2({
       cancelAnimationFrame(rafId);
       clearTimeout(resizeTimeoutRef.current);
       ro.disconnect();
-      gl.canvas.removeEventListener('pointermove', onMove);
       gl.canvas.remove();
 
       gl.getExtension('WEBGL_lose_context')?.loseContext();
@@ -272,6 +256,8 @@ export default function PlasmaWaveV2({
         height: '100vh',
         overflow: 'hidden',
         position: 'absolute',
+        opacity: isInitialized ? 1 : 0,
+        transition: 'opacity 1.5s ease-in-out',
       }}
     >
       <div

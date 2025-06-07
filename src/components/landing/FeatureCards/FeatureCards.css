@@ -24,7 +24,7 @@
   letter-spacing: -2px;
   color: #fff;
   margin-bottom: .2rem;
-  background: linear-gradient(135deg, #fff 0%, #60a5fa 20%, #a855f7 40%, #8400ff 60%, #a855f7 80%, #fff 100%);
+  background: linear-gradient(135deg, #fff 0%, #8660fa 20%, #a855f7 40%, #8400ff 60%, #a855f7 80%, #fff 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -263,12 +263,29 @@
 }
 
 .feature-card h3 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 0.5rem;
   letter-spacing: -0.01em;
   flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.feature-card h2 {
+  font-size: 6rem;
+  position: relative;
+  top: 22px;
+  margin: 0;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, #8660fa 20%, #a855f7 40%, #8400ff 60%, #a855f7 80%, #fff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite;
+  z-index: 10;
 }
 
 .feature-card p {
@@ -277,6 +294,8 @@
   font-size: 0.95rem;
   text-align: left;
   max-width: 100%;
+  position: relative;
+  z-index: 10;
 }
 
 /* Particle Animation Styles */
@@ -322,6 +341,232 @@
 .global-spotlight {
   mix-blend-mode: screen;
   will-change: transform, opacity;
+  z-index: 200 !important;
+  pointer-events: none;
+}
+
+/* Components GIF Styles */
+.components-gif-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .components-gif-wrapper {
+  opacity: 1;
+}
+
+.components-gif {
+  width: 100%;
+  height: auto;
+  opacity: 0.2;
+  mix-blend-mode: lighten;
+  display: block;
+}
+
+.components-gif-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to top, #060010 0%, transparent 100%);
+  border-radius: 0 0 8px 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.components-gif-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to bottom, #060010 0%, transparent 100%);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Messages GIF Styles - positioned on right side of card1 */
+.messages-gif-wrapper {
+  position: absolute;
+  mix-blend-mode: lighten;
+  top: 0.5rem;
+  right: 1rem;
+  bottom: 1rem;
+  width: 50%;
+  border-radius: 8px;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .messages-gif-wrapper {
+  opacity: 1;
+}
+
+.messages-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  opacity: 0.3;
+  display: block;
+}
+
+.messages-gif-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to top, #060010 0%, transparent 100%);
+  border-radius: 0 0 8px 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.messages-gif-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to bottom, #060010 0%, transparent 100%);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Switch GIF Styles - positioned on right side of card4 */
+.switch-gif-wrapper {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  width: 40%;
+  mix-blend-mode: lighten;
+  border-radius: 8px;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .switch-gif-wrapper {
+  opacity: 1;
+}
+
+.switch-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  opacity: 0.3;
+  display: block;
+}
+
+.switch-gif-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to top, #060010 0%, transparent 100%);
+  border-radius: 0 0 8px 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.switch-gif-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to bottom, #060010 0%, transparent 100%);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Card Text Loop Styles */
+.card-text-loop {
+  opacity: 0.1;
+  position: absolute;
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.card-text-loop__container {
+  overflow: hidden;
+  height: 8rem;
+  width: 100%;
+  position: relative;
+}
+
+.card-text-loop__container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background: linear-gradient(to bottom, #060010 0%, transparent 100%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.card-text-loop__container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background: linear-gradient(to top, #060010 0%, transparent 100%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.card-text-loop__list {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-text-loop__item {
+  font-size: 6rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #8400ff 0%, #a855f7 50%, #8660fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 10px rgba(132, 0, 255, 0.3);
+  white-space: nowrap;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 /* Responsive: Mobile first approach */
@@ -347,6 +592,10 @@
     margin-bottom: 0.75rem;
   }
 
+  .feature-card h2 {
+    font-size: 4rem;
+  }
+
   .feature-card h3 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
@@ -355,6 +604,13 @@
   .feature-card p {
     font-size: 0.85rem;
     line-height: 1.6;
+  }
+
+  /* Hide all GIFs on mobile */
+  .components-gif-wrapper,
+  .messages-gif-wrapper,
+  .switch-gif-wrapper {
+    display: none !important;
   }
 }
 
@@ -379,6 +635,10 @@
     margin-bottom: 0.5rem;
   }
 
+  .feature-card h2 {
+    font-size: 4rem;
+  }
+
   .feature-card h3 {
     font-size: 0.95rem;
     margin-bottom: 0.4rem;
@@ -387,6 +647,13 @@
   .feature-card p {
     font-size: 0.8rem;
     line-height: 1.7;
+  }
+
+  /* Hide all GIFs on extra small screens */
+  .components-gif-wrapper,
+  .messages-gif-wrapper,
+  .switch-gif-wrapper {
+    display: none !important;
   }
 }
 
@@ -414,6 +681,13 @@
   .feature-card p {
     font-size: 0.92rem;
   }
+
+  /* Hide GIFs on medium screens (tablets) */
+  .components-gif-wrapper,
+  .messages-gif-wrapper,
+  .switch-gif-wrapper {
+    display: none !important;
+  }
 }
 
 /* Large screens optimizations */
@@ -430,15 +704,22 @@
 
   .feature-icon {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .feature-card h3 {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
 
   .feature-card p {
     font-size: 0.95rem;
+  }
+
+  /* Show GIFs only on large screens (desktop) */
+  .components-gif-wrapper,
+  .messages-gif-wrapper,
+  .switch-gif-wrapper {
+    display: block !important;
   }
 }
 

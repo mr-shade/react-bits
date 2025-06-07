@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
+  max-width: calc(1200px + 8em);
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
