@@ -217,7 +217,7 @@ const FallingText = ({
       ref={containerRef}
       className="relative z-[1] w-full h-full cursor-pointer text-center pt-8 overflow-hidden"
       onClick={trigger === "click" ? handleTrigger : undefined}
-      onMouseOver={trigger === "hover" ? handleTrigger : undefined}
+      onMouseEnter={trigger === "hover" ? handleTrigger : undefined}
     >
       <div
         ref={textRef}

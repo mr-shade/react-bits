@@ -70,9 +70,9 @@ const AnimatedContentDemo = () => {
               color="#fff"
               h={100}
               borderRadius="25px"
-              border="1px solid #222"
+              border="1px solid #271E37"
               w={200}
-              bg={"#060606"}
+              bg={"#060010"}
             >
               Animate Me
             </Flex>

@@ -9,7 +9,7 @@ const CodeCell = ({ content = '' }) => {
       width='fit-content'
       fontWeight={500}
       color='#e9e9e9'
-      backgroundColor='#222'
+      backgroundColor='#271E37'
     >
       {content}
     </Box>
@@ -22,27 +22,27 @@ const PropTable = ({ data }) => {
       <h2 className="demo-title-extra">Props</h2>
       <Box overflowX="auto" mt={6}>
         <Table variant="unstyled" colorScheme="whiteAlpha" size="sm" className='props-table'>
-          <Thead borderBottom='1px solid #222'>
-            <Tr backgroundColor='#0D0D0D' borderRadius='20px'>
-              <Th letterSpacing='-.5px' borderRight="1px solid #222" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Property</Th>
-              <Th letterSpacing='-.5px' borderRight="1px solid #222" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Type</Th>
-              <Th letterSpacing='-.5px' borderRight="1px solid #222" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Default</Th>
+          <Thead borderBottom='1px solid #271E37'>
+            <Tr backgroundColor='#170D27' borderRadius='20px'>
+              <Th letterSpacing='-.5px' borderRight="1px solid #271E37" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Property</Th>
+              <Th letterSpacing='-.5px' borderRight="1px solid #271E37" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Type</Th>
+              <Th letterSpacing='-.5px' borderRight="1px solid #271E37" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Default</Th>
               <Th letterSpacing='-.5px' textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Description</Th>
             </Tr>
           </Thead>
           <Tbody>
             {data.map((prop, index) => (
-              <Tr key={index} borderBottom={index === data.length - 1 ? 'none' : '1px solid #222'}>
-                <Td borderColor="#222" py={4} color="white" width={0} pr={8} borderRight="1px solid #222">
+              <Tr key={index} borderBottom={index === data.length - 1 ? 'none' : '1px solid #271E37'}>
+                <Td borderColor="#271E37" py={4} color="white" width={0} pr={8} borderRight="1px solid #271E37">
                   <CodeCell rightJustified content={prop.name} />
                 </Td>
-                <Td borderColor="#222" py={4} color="white" whiteSpace='nowrap' width={'120px'} borderRight="1px solid #222">
+                <Td borderColor="#271E37" py={4} color="white" whiteSpace='nowrap' width={'120px'} borderRight="1px solid #271E37">
                   <Text fontFamily='monospace' fontWeight={500}>{prop.type}</Text>
                 </Td>
-                <Td borderColor="#222" py={4} color="white" borderRight="1px solid #222" whiteSpace='nowrap'>
+                <Td borderColor="#271E37" py={4} color="white" borderRight="1px solid #271E37" whiteSpace='nowrap'>
                   <CodeCell content={prop.default && prop.default.length ? prop.default : '—'} />
                 </Td>
-                <Td borderColor="#222" py={4} color="white">
+                <Td borderColor="#271E37" py={4} color="white">
                   <Text maxW={300}>{prop.description}</Text>
                 </Td>
               </Tr>

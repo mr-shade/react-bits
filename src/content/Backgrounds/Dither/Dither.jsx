@@ -260,6 +260,7 @@ function DitheredWaves({
 }
 
 export default function Dither({
+  className = "",
   waveSpeed = 0.05,
   waveFrequency = 3,
   waveAmplitude = 0.3,
@@ -272,7 +273,7 @@ export default function Dither({
 }) {
   return (
     <Canvas
-      className="dither-container"
+      className={`dither-container ${className}`}
       camera={{ position: [0, 0, 6] }}
       dpr={window.devicePixelRatio}
       gl={{ antialias: true, preserveDrawingBuffer: true }}

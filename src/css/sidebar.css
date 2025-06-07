@@ -1,6 +1,6 @@
 .sidebar,
 .sidebar-mobile {
-  background-color: #060606 !important;
+  background-color: #060010 !important;
   min-width: 200px;
 }
 
@@ -17,12 +17,12 @@
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: #060606;
+  background: #060010;
   border-radius: 50px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: #222;
+  background: #271E37;
 }
 
 .sidebar-logo {
@@ -34,8 +34,7 @@
 
 .sidebar-logo img {
   position: relative;
-  left: -3px;
-  width: 120px;
+  height: 32px;
 }
 
 .sidebar-item {
@@ -52,18 +51,16 @@
   color: #fff;
 }
 
-.sidebar-item::before {
-  content: "";
-  width: 1px;
-  height: 16px;
-  background-color: #fff;
-  position: absolute;
-  left: -17px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-radius: 5px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.active-sidebar-item {
+  width: fit-content;
+  padding: 0.25em 0.25em 0.25em 0;
+  color: #fff;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.active-sidebar-item:hover {
+  text-decoration: none;
 }
 
 .sidebar-item .new-tag,
@@ -78,32 +75,15 @@
 }
 
 .sidebar-item .new-tag {
-  color: #00d9ff;
-  border: 1px solid #00d9ff74;
-  background-color: #00d9ff2c;
+  color: #fff;
+  border: 1px solid #5227FF;
+  background-color: rgba(82, 39, 255, 0.3);
 }
 
 .sidebar-item .updated-tag {
-  color: #ff9346;
-  border: 1px solid #ff934677;
-  background-color: #ff934626;
-}
-
-.active-sidebar-item {
-  width: fit-content;
-  padding: 0.25em 0.25em 0.25em 0;
   color: #fff;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.active-sidebar-item:hover {
-  text-decoration: none;
-}
-
-.active-sidebar-item::before {
-  opacity: 1;
-  transition: opacity 0.3s ease;
+  border: 1px solid #ffffff77;
+  background-color: #ffffff26;
 }
 
 .github-button {
@@ -117,10 +97,57 @@
 
 .github-button:hover {
   border-color: #ffffff1c;
-  background-color: #060606 !important;
+  background-color: #060010 !important;
   color: #fff;
 }
 
 .github-button:hover img {
   filter: invert(100%);
+}
+
+.cta-button-docs {
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0 0 0 1.4rem;
+  height: 40px;
+  background: linear-gradient(135deg,
+      rgba(124, 58, 237, 1),
+      rgba(24, 47, 255, 0.6));
+  background-size: 200% 200%;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: space-between;
+  transition: .3s ease;
+}
+
+.cta-button-docs span {
+  background-color: #060010;
+  margin-left: 1em;
+  margin-right: calc(1em - 6px);
+  padding-top: .1em;
+  height: 30px;
+  border-radius: 50px;
+  width: 75px;
+  font-weight: 600;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-button-docs span img {
+  margin-right: 4px;
+  width: 14px;
+  height: 14px;
+  transition: .3s ease;
 }

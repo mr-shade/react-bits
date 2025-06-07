@@ -71,7 +71,7 @@ const ShapeBlurDemo = () => {
         <Box
           position="relative"
           className="demo-container"
-          background='#060606'
+          background='#060010'
           height={500}
           overflow="hidden"
           p={0}
@@ -86,7 +86,7 @@ const ShapeBlurDemo = () => {
             circleSize={circleSize}
             circleEdge={circleEdge}
           />
-          <Text position="absolute" left='50%' top='50%' transform='translate(-50%, -50%)' fontSize='6rem' fontWeight={900} zIndex={0} color='#222'>
+          <Text position="absolute" left='50%' top='50%' transform='translate(-50%, -50%)' fontSize='6rem' fontWeight={900} zIndex={0} color='#271E37'>
             Hover Me.
           </Text>
         </Box>

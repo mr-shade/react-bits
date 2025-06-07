@@ -17,7 +17,7 @@ const FolderDemo = () => {
     {
       name: "color",
       type: "string",
-      default: "#00d8ff",
+      default: "#5227FF",
       description: "The primary color of the folder."
     },
     {
@@ -40,7 +40,7 @@ const FolderDemo = () => {
     }
   ];
 
-  const [color, setColor] = useState("#00d8ff");
+  const [color, setColor] = useState("#5227FF");
   const [size, setSize] = useState(2);
 
   const [key, forceRerender] = useForceRerender();

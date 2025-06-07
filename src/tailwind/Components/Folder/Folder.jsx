@@ -22,7 +22,7 @@ const darkenColor = (hex, percent) => {
 };
 
 const Folder = ({
-  color = "#00d8ff",
+  color = "#5227FF",
   size = 1,
   items = [],
   className = "",

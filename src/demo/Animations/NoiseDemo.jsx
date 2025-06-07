@@ -15,8 +15,8 @@ import { noise } from '../../constants/code/Animations/noiseCode';
 
 const NoiseDemo = () => {
   const [patternSize, setPatternSize] = useState(250);
-  const [patternScaleX, setPatternScaleX] = useState(1);
-  const [patternScaleY, setPatternScaleY] = useState(1);
+  const [patternScaleX, setPatternScaleX] = useState(2);
+  const [patternScaleY, setPatternScaleY] = useState(2);
   const [patternAlpha, setPatternAlpha] = useState(15);
 
   const [key, forceRerender] = useForceRerender();
@@ -57,8 +57,8 @@ const NoiseDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" background='#060606' minH={400} overflow="hidden">
-          <Text color="#111" fontSize="6rem" fontWeight={900} textAlign={'center'}>
+        <Box position="relative" className="demo-container" background='#060010' minH={400} overflow="hidden">
+          <Text color="#271E37" fontSize="6rem" fontWeight={900} textAlign={'center'}>
             Ooh, edgy!
           </Text>
           <Noise

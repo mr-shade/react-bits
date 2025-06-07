@@ -1,39 +1,38 @@
 import { Link } from 'react-router-dom';
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerOverlay,
   Flex,
-  Icon,
   IconButton,
   Image,
   Kbd,
   Select,
-  Spinner,
   Text,
   useDisclosure
 } from '@chakra-ui/react';
+
 import { ArrowForwardIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { TiStarFullOutline } from "react-icons/ti";
 import { useStars } from '../../hooks/useStars';
 import { useDeviceOS } from 'react-haiku';
 import { useSearch } from '../context/SearchContext/useSearch';
 import { useLanguage } from '../context/LanguageContext/useLanguage'
 
 
-import Logo from '../../assets/logos/reactbits-logo.svg';
-import BlurText from '../../content/TextAnimations/BlurText/BlurText';
+import Logo from '../../assets/logos/react-bits-logo.svg';
+import Star from '../../assets/common/star.svg';
 import FadeContent from '../../content/Animations/FadeContent/FadeContent';
+import { useRef } from 'react';
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { toggleSearch } = useSearch();
   const { languagePreset, setLanguagePreset } = useLanguage();
   const stars = useStars();
+  const starCountRef = useRef(null);
   const os = useDeviceOS();
 
   return (
@@ -57,17 +56,17 @@ const Header = () => {
           <FadeContent blur>
             <Flex
               fontSize="xs"
-              h={8}
-              border="1px solid #222"
-              rounded="xl"
+              h={10}
+              border="1px solid #271E37"
+              rounded="full"
               alignItems="center"
-              pr={2}
+              pr={4}
               pl={4}
               userSelect="none"
               cursor="pointer"
               transition="transform 0.3s"
               _hover={{ transform: 'scale(0.98)' }}
-              bg="#111"
+              bg="#060010"
               onClick={toggleSearch}
             >
               <Text fontSize="xs" fontWeight={600} mr={12}>Search Docs</Text>
@@ -77,13 +76,13 @@ const Header = () => {
           <FadeContent blur>
             <Select
               fontSize="xs"
-              bg="#111"
+              bg="#060010"
               cursor="pointer"
-              border="1px solid #222"
+              border="1px solid #271E37"
               transition="transform 0.3s"
-              _hover={{ transform: 'scale(0.98)', border: '1px solid #222' }}
-              h={8}
-              rounded="xl"
+              _hover={{ transform: 'scale(0.98)', border: '1px solid #271E37' }}
+              h={10}
+              rounded="full"
               width="fit-content"
               fontWeight={600}
               onChange={(e) => setLanguagePreset(e.target.value)}
@@ -94,24 +93,13 @@ const Header = () => {
             </Select>
           </FadeContent>
           <FadeContent blur>
-            <Button
-              border="1px solid #222"
-              rounded="xl"
-              as="a"
-              href="https://github.com/DavidHDev/react-bits"
-              rel="noreferrer"
-              target="_blank"
-              bg="white"
-              color="black"
-              padding="0 1.2em 0 1em"
-              fontSize="xs"
-              h={8}
-              _hover={{ bg: 'white', transform: 'scale(0.95)' }}
-            >
-              <Text fontWeight={600} ml={1}>Star on GitHub</Text>
-              <Icon ml={2} mr={0.5} as={TiStarFullOutline} />
-              {stars ? <BlurText delay={20} text={String(stars)} /> : <Box><Spinner boxSize={2} /></Box>}
-            </Button>
+            <button className="cta-button-docs" onClick={() => window.open('https://github.com/DavidHDev/react-bits', '_blank')}>
+              Star On GitHub
+              <span ref={starCountRef}>
+                <img src={Star} alt="Star Icon" />
+                {stars}
+              </span>
+            </button>
           </FadeContent>
         </Flex>
       </Flex>

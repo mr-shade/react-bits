@@ -292,7 +292,7 @@ class Media {
 }
 
 class App {
-  constructor(container, { items, bend, textColor = "#ffffff", borderRadius = 0, font = "bold 30px DM Sans" } = {}) {
+  constructor(container, { items, bend, textColor = "#ffffff", borderRadius = 0, font = "bold 30px Figtree" } = {}) {
     document.documentElement.classList.remove('no-js')
     this.container = container
     this.scroll = { ease: 0.05, current: 0, target: 0, last: 0 }
@@ -459,7 +459,7 @@ export default function CircularGallery({
   bend = 3,
   textColor = "#ffffff",
   borderRadius = 0.05,
-  font = "bold 30px DM Sans"
+  font = "bold 30px Figtree"
 }) {
   const containerRef = useRef(null)
   useEffect(() => {

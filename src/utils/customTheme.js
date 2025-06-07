@@ -4,9 +4,9 @@ export const toastStyles = {
   style: {
     fontSize: '12px',
     borderRadius: '0.75rem',
-    border: '1px solid #222',
+    border: '1px solid #271E37',
     color: '#fff',
-    backgroundColor: '#060606'
+    backgroundColor: '#060010'
   }
 };
 
@@ -19,8 +19,8 @@ export const customTheme = extendTheme({
     global: {
       'html, body': {
         minHeight: '100vh',
-        fontFamily: '"DM Sans", sans-serif',
-        backgroundColor: '#060606'
+        fontFamily: '"Figtree", sans-serif',
+        backgroundColor: '#060010'
       }
     }
   },
@@ -37,7 +37,7 @@ export const customTheme = extendTheme({
       variants: {
         solid: {
           track: {
-            bg: "#222",
+            bg: "#271E37",
           },
           filledTrack: {
             bg: "#fff",
@@ -51,14 +51,16 @@ export const customTheme = extendTheme({
     Switch: {
       baseStyle: {
         track: {
+          // Unchecked state (default)
+          bg: "#271E37",
           _checked: {
-            bg: "#00d8ff",
+            bg: "#5227FF",
           },
           _focus: {
-            boxShadow: "0 0 0 3px rgba(0, 216, 255, 0.5)",
+            boxShadow: "0 0 0 3px #271E37",
           },
           _active: {
-            bg: "#00d8ff",
+            bg: "#5227FF",
           },
         },
         thumb: {

@@ -34,14 +34,14 @@ const SquaresDemo = () => {
                 h={8}
                 bg="#a1a1aa"
                 isDisabled
-                _disabled={{ bg: '#222', cursor: 'not-allowed', _hover: { bg: '#222' } }}
+                _disabled={{ bg: '#271E37', cursor: 'not-allowed', _hover: { bg: '#271E37' } }}
               >
                 Direction
               </Button>
               <Button
-                bg={direction === 'diagonal' ? '#00f0ff' : '#111'}
-                _hover={{ backgroundColor: `${direction === "diagonal" ? '#00f0ff' : '#111'}` }}
-                color={direction === 'diagonal' ? 'black' : 'white'}
+                bg={direction === 'diagonal' ? '#5227FF' : '#170D27'}
+                _hover={{ backgroundColor: `${direction === "diagonal" ? '#5227FF' : '#170D27'}` }}
+                color='white'
                 fontSize="xs"
                 h={8}
                 onClick={() => {
@@ -51,9 +51,9 @@ const SquaresDemo = () => {
                 Diagonal
               </Button>
               <Button
-                bg={direction === 'up' ? '#00f0ff' : '#111'}
-                _hover={{ backgroundColor: `${direction === "up" ? '#00f0ff' : '#111'}` }}
-                color={direction === 'up' ? 'black' : 'white'}
+                bg={direction === 'up' ? '#5227FF' : '#170D27'}
+                _hover={{ backgroundColor: `${direction === "up" ? '#5227FF' : '#170D27'}` }}
+                color='white'
                 fontSize="xs"
                 h={8}
                 onClick={() => {
@@ -63,9 +63,9 @@ const SquaresDemo = () => {
                 Up
               </Button>
               <Button
-                bg={direction === 'right' ? '#00f0ff' : '#111'}
-                _hover={{ backgroundColor: `${direction === "right" ? '#00f0ff' : '#111'}` }}
-                color={direction === 'right' ? 'black' : 'white'}
+                bg={direction === 'right' ? '#5227FF' : '#170D27'}
+                _hover={{ backgroundColor: `${direction === "right" ? '#5227FF' : '#170D27'}` }}
+                color='white'
                 fontSize="xs"
                 h={8}
                 onClick={() => {
@@ -75,9 +75,9 @@ const SquaresDemo = () => {
                 Right
               </Button>
               <Button
-                bg={direction === 'down' ? '#00f0ff' : '#111'}
-                _hover={{ backgroundColor: `${direction === "down" ? '#00f0ff' : '#111'}` }}
-                color={direction === 'down' ? 'black' : 'white'}
+                bg={direction === 'down' ? '#5227FF' : '#170D27'}
+                _hover={{ backgroundColor: `${direction === "down" ? '#5227FF' : '#170D27'}` }}
+                color='white'
                 fontSize="xs"
                 h={8}
                 onClick={() => {
@@ -87,9 +87,9 @@ const SquaresDemo = () => {
                 Down
               </Button>
               <Button
-                bg={direction === 'left' ? '#00f0ff' : '#111'}
-                _hover={{ backgroundColor: `${direction === "left" ? '#00f0ff' : '#111'}` }}
-                color={direction === 'left' ? 'black' : 'white'}
+                bg={direction === 'left' ? '#5227FF' : '#170D27'}
+                _hover={{ backgroundColor: `${direction === "left" ? '#5227FF' : '#170D27'}` }}
+                color='white'
                 fontSize="xs"
                 h={8}
                 onClick={() => {

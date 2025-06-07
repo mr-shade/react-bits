@@ -129,6 +129,7 @@ const CounterDemo = () => {
           <Counter
             value={value}
             places={[100, 10, 1]}
+            gradientFrom="#060010"
             fontSize={fontSize}
             padding={5}
             gap={gap}
@@ -139,8 +140,8 @@ const CounterDemo = () => {
           />
 
           <Flex gap={4} bottom="1em" direction={"row"} justify={"center"} mt={4} position='absolute'>
-            <Button rounded="xl" background="#060606" border="1px solid #222" h={10} w={10} onClick={() => setValue(value - 1)}>-</Button>
-            <Button rounded="xl" background="#060606" border="1px solid #222" h={10} w={10} onClick={() => value < 999 && setValue(value + 1)}>+</Button>
+            <Button rounded="xl" background="#060010" border="1px solid #222" h={10} w={10} onClick={() => setValue(value - 1)}>-</Button>
+            <Button rounded="xl" background="#060010" border="1px solid #222" h={10} w={10} onClick={() => value < 999 && setValue(value + 1)}>+</Button>
           </Flex>
         </Box>
 

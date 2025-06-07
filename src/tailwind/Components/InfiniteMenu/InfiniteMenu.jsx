@@ -993,7 +993,7 @@ export default function InfiniteMenu({ items = [] }) {
               }
         `}
           >
-            <p className="select-none relative text-[#060606] top-[2px] text-[26px]">
+            <p className="select-none relative text-[#060010] top-[2px] text-[26px]">
               &#x2197;
             </p>
           </div>

@@ -14,9 +14,9 @@ import PreviewSlider from "../../components/common/PreviewSlider";
 import Customize from "../../components/common/Customize";
 
 const AuroraDemo = () => {
-  const [color1, setColor1] = useState('#00d8ff');
+  const [color1, setColor1] = useState('#5227FF');
   const [color2, setColor2] = useState('#7cff67');
-  const [color3, setColor3] = useState('#00d8ff');
+  const [color3, setColor3] = useState('#5227FF');
 
   const [speed, setSpeed] = useState(1);
   const [blend, setBlend] = useState(0.5);

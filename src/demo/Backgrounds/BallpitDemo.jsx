@@ -21,7 +21,7 @@ const BallpitDemo = () => {
   const [friction, setFriction] = useState(0.9975);
   const [wallBounce, setWallBounce] = useState(0.95);
   const [followCursor, setFollowCursor] = useState(false);
-  const colors = [0xffffff, 0x000000, 0x00d8ff];
+  const colors = [0xffffff, 0x000000, 0x5227FF];
 
   const [key, forceRerender] = useForceRerender();
 
@@ -129,7 +129,7 @@ const BallpitDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={500} maxH={500} overflow="hidden">
           <RefreshButton onClick={forceRerender} />
-          <Text fontSize='200px' fontWeight={900} color="#222" position="absolute" zIndex={0}>Balls.</Text>
+          <Text fontSize='200px' fontWeight={900} color="#271E37" position="absolute" zIndex={0}>Balls.</Text>
           <Ballpit
             className="ballpit-demo"
             key={key}

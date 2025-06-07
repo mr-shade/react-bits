@@ -455,7 +455,7 @@ class App {
       bend = 1,
       textColor = "#ffffff",
       borderRadius = 0,
-      font = "bold 30px DM Sans",
+      font = "bold 30px Figtree",
     }: AppConfig
   ) {
     document.documentElement.classList.remove("no-js");
@@ -694,7 +694,7 @@ export default function CircularGallery({
   bend = 3,
   textColor = "#ffffff",
   borderRadius = 0.05,
-  font = "bold 30px DM Sans",
+  font = "bold 30px Figtree",
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {

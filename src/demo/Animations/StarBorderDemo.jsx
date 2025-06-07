@@ -48,10 +48,8 @@ const StarBorderDemo = () => {
 
         <h2 className="demo-title-extra">Container, custom color</h2>
         <Box position="relative" className="demo-container">
-          <StarBorder as="div" color="cyan">
-            <div style={{ width: '200px', height: '100px', display: 'grid', placeItems: 'center' }}>
-              Hello
-            </div>
+          <StarBorder color="cyan">
+            <Text mx={0} fontSize={'1em'}>Colorful Border</Text>
           </StarBorder>
         </Box>
 

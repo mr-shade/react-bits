@@ -13,7 +13,7 @@ export const blobCursor = {
 
 <BlobCursor
   blobType="circle"
-  fillColor="#00f0ff"
+  fillColor="#5227FF"
   trailCount={3}
   sizes={[60, 125, 75]}
   innerSizes={[20, 35, 25]}

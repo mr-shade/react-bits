@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import PreviewSlider from "../../components/common/PreviewSlider";
-import logo from '../../assets/logos/react-bits-solid-black.svg';
+import logo from '../../assets/logos/react-bits-logo-small-black.svg';
 import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";

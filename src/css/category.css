@@ -6,18 +6,18 @@
 }
 
 .main-nav {
-  background: linear-gradient(to bottom, #060606, transparent);
+  background: linear-gradient(to bottom, #060010, transparent);
   width: 100%;
   position: fixed;
   padding: 0 2em;
-  height: 70px;
-  background: #060606;
+  height: 85px;
+  background: #060010;
   left: 0;
 }
 
 .main-nav .nav-items {
   position: relative;
-  height: 70px;
+  height: 85px;
   padding: 0;
   max-width: 1440px;
   margin: 0 auto;
@@ -30,7 +30,7 @@
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, #222, transparent);
+  background: linear-gradient(to right, transparent, #271E37, transparent);
 }
 
 .main-nav .nav-items::after {
@@ -42,11 +42,15 @@
   z-index: -1;
   width: 100%;
   height: 50px;
-  background: linear-gradient(to bottom, #060606, transparent);
+  background: linear-gradient(to bottom, #060010, transparent);
 }
 
 .main-nav .nav-items .logo {
   position: relative;
+}
+
+.main-nav .nav-items .logo img {
+  height: 32px;
 }
 
 .category-name {
@@ -84,7 +88,7 @@
 .code-highlighter {
   border: 1px solid #ffffff1c !important;
   border-radius: 20px !important;
-  background: #060606 !important;
+  background: #060010 !important;
   font-size: 14px !important;
 }
 
@@ -99,7 +103,7 @@
 .demo-container {
   width: 100%;
   margin-top: 1em;
-  background: #060606;
+  background: #060010;
   border: 1px solid #ffffff1c;
   padding: 1em;
   border-radius: 20px;
@@ -109,7 +113,7 @@
 }
 
 div:has(> .props-table) {
-  border: 1px solid #222;
+  border: 1px solid #271E37;
   border-radius: 20px;
 }
 
@@ -123,7 +127,7 @@ div:has(> .props-table) {
   max-width: 600px;
   font-size: 1rem;
   font-weight: bolder;
-  color: #00f0ff;
+  color: #5227FF;
 }
 
 .custom-bounceCards {
@@ -145,8 +149,8 @@ div:has(> .props-table) {
 
 .rotating-text-demo-container .rotating-text-demo {
   display: inline-block;
-  color: #060606;
-  background-color: #00f0ff;
+  color: #060010;
+  background-color: #5227FF;
   padding: 0 0.4em;
   border-radius: 15px;
   transition: width 0.3s ease;
@@ -157,10 +161,10 @@ div:has(> .props-table) {
 }
 
 .tilted-card-demo-text {
-  font-family: "DM Sans";
+  font-family: "Figtree";
   font-weight: 900;
   text-transform: capitalize;
-  box-shadow: 0 5px 30px #06060659;
+  box-shadow: 0 5px 30px #06001059;
   border-radius: 15px;
   color: #fff;
   background: rgba(0, 0, 0, 0.4);
@@ -239,7 +243,7 @@ div:has(> .props-table) {
 }
 
 .contribute-container {
-  background: #060606;
+  background: #060010;
   border: 1px solid #161616;
   border-radius: 20px;
   margin-top: 1em;
@@ -247,8 +251,8 @@ div:has(> .props-table) {
 }
 
 .contribute-button {
-  background-color: #060606 !important;
-  border: 1px solid #222;
+  background-color: #060010 !important;
+  border: 1px solid #271E37;
   transition: 0.5s ease;
 }
 
@@ -257,7 +261,7 @@ div:has(> .props-table) {
 }
 
 .contribute-button:hover {
-  color: #00d8ff;
+  background-color: #271E37 !important;
 }
 
 .demo-details {
@@ -268,7 +272,7 @@ div:has(> .props-table) {
 }
 
 .demo-details span {
-  background-color: #222;
+  background-color: #271E37;
   white-space: nowrap;
   color: #fff;
   border-radius: 50px;
@@ -299,7 +303,7 @@ div:has(> .props-table) {
   margin: 4em auto 3em;
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, #222, transparent);
+  background: linear-gradient(to right, transparent, #271E37, transparent);
 }
 
 .cli-divider::before {
@@ -308,13 +312,13 @@ div:has(> .props-table) {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #060606;
+  background-color: #060010;
   padding: 0 1em;
   color: #a1a1aa;
 }
 
 .coming-soon a {
-  color: #00f0ff;
+  color: #5227FF;
   text-decoration: underline;
 }
 
@@ -362,6 +366,9 @@ div:has(> .props-table) {
 }
 
 .custom-spotlight-card {
+  user-select: none;
+  background-color: #170D27 !important;
+  border: 1px solid #271E37 !important;
   width: 350px;
   height: 300px;
 }

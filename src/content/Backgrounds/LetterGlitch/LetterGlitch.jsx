@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 
 const LetterGlitch = ({
   glitchColors = ['#2b4539', '#61dca3', '#61b3dc'],
+  className = '',
   glitchSpeed = 50,
   centerVignette = false,
   outerVignette = true,
@@ -235,7 +236,7 @@ const LetterGlitch = ({
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} className={className}>
       <canvas ref={canvasRef} style={canvasStyle} />
       {outerVignette && <div style={outerVignetteStyle}></div>}
       {centerVignette && <div style={centerVignetteStyle}></div>}

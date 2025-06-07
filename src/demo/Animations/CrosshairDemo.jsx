@@ -23,13 +23,13 @@ const CrosshairDemo = () => {
           <Crosshair containerRef={targeted ? null : containerRef} color={color} />
 
           <Flex direction="column" justifyContent="center" alignItems="center">
-            <Text _hover={{ color: 'cyan' }} transition=".3s ease" textAlign="center" fontWeight={900} fontSize={{ base: '2rem', md: '4rem' }} as="a" href="https://github.com/DavidHDev/react-bits"
+            <Text _hover={{ color: 'magenta' }} transition=".3s ease" textAlign="center" fontWeight={900} fontSize={{ base: '2rem', md: '4rem' }} as="a" href="https://github.com/DavidHDev/react-bits"
               onMouseEnter={() => setLinkText('Shoot!!!')}
               onMouseLeave={() => setLinkText('Aim.. aand..')}
             >
               {linkText}
             </Text>
-            <Text position="relative" top="-10px" color="#444">(hover me)</Text>
+            <Text position="relative" top="-10px" color="#444">(hover the text)</Text>
           </Flex>
         </Box>
 

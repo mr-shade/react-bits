@@ -108,7 +108,7 @@ function PixelTransition({
       // Combine your own className with the Tailwind classes for styling
       className={`
         ${className}
-        bg-[#222]
+        bg-[#271E37]
         text-white
         rounded-[15px]
         border-2

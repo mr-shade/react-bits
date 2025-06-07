@@ -16,7 +16,7 @@ const DotGridDemo = () => {
   const [dotSize, setDotSize] = useState(5);
   const [gap, setGap] = useState(15);
   const [baseColor, setBaseColor] = useState("#ffffff");
-  const [activeColor, setActiveColor] = useState("#00d8ff");
+  const [activeColor, setActiveColor] = useState("#5227FF");
   const [proximity, setProximity] = useState(120);
   const [shockRadius, setShockRadius] = useState(250);
   const [shockStrength, setShockStrength] = useState(5);
@@ -39,13 +39,13 @@ const DotGridDemo = () => {
     {
       name: "baseColor",
       type: "string",
-      default: "'#00d8ff'",
+      default: "'#5227FF'",
       description: "Base color of the dots."
     },
     {
       name: "activeColor",
       type: "string",
-      default: "'#00d8ff'",
+      default: "'#5227FF'",
       description: "Color of dots when hovered or activated."
     },
     {

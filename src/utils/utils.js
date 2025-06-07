@@ -23,7 +23,7 @@ export const getStarsCount = async () => {
   try {
     const response = await fetch('https://api.github.com/repos/DavidHDev/react-bits');
     const data = await response.json();
-    return String(formatNumber(data.stargazers_count)).toLowerCase();
+    return String(formatNumber(data.stargazers_count)).toUpperCase();
   } catch (error) {
     console.error('Error fetching stargazers count:', error);
     return null;

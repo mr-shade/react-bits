@@ -142,42 +142,42 @@ const CardSwapDemo = () => {
               pauseOnHover={pauseOnHover}
             >
               <Card customClass="one">
-                <Box borderBottom="1px solid #fff">
+                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #271E37, #060606)">
                   <Text m={2}>
                     <Icon as={FaCircle} mr={2} />
                     Smooth
                   </Text>
                 </Box>
-                <Box position="relative">
-                  <video autoPlay loop muted playsInline>
+                <Box position="relative" p={2}>
+                  <video autoPlay loop muted playsInline style={{ borderRadius: '15px' }}>
                     <source src="https://cdn.dribbble.com/userupload/7053861/file/original-7956be57144058795db6bb24875bdab9.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </Box>
               </Card>
               <Card customClass="two">
-                <Box borderBottom="1px solid #fff">
+                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #271E37, #060606)">
                   <Text m={2}>
                     <Icon as={FaCode} mr={2} />
                     Reliable
                   </Text>
                 </Box>
-                <Box position="relative">
-                  <video autoPlay loop muted playsInline>
+                <Box position="relative" p={2}>
+                  <video autoPlay loop muted playsInline style={{ borderRadius: '15px' }}>
                     <source src="https://cdn.dribbble.com/userupload/7078020/file/original-b071e9063d9e3ba86a85a61b9d5a7c42.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </Box>
               </Card>
               <Card customClass="three">
-                <Box borderBottom="1px solid #fff">
+                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #271E37, #060606)">
                   <Text m={2}>
                     <Icon as={FaSliders} mr={2} />
                     Customizable
                   </Text>
                 </Box>
-                <Box position="relative">
-                  <video autoPlay loop muted playsInline>
+                <Box position="relative" p={2}>
+                  <video autoPlay loop muted playsInline style={{ borderRadius: '15px' }}>
                     <source src="https://cdn.dribbble.com/userupload/7098541/file/original-0b063b12ca835421580e6034368ad95a.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>

@@ -81,7 +81,7 @@ const TextCursorDemo = () => {
             followMouseDirection={followMouseDirection}
             randomFloat={randomFloat}
           />
-          <Text pointerEvents='none' position="absolute" textAlign='center' fontSize="4rem" fontWeight={900} userSelect="none" color='#222'>Hover Around!</Text>
+          <Text pointerEvents='none' position="absolute" textAlign='center' fontSize="4rem" fontWeight={900} userSelect="none" color='#271E37'>Hover Around!</Text>
         </Box>
 
         <Customize>

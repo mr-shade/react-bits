@@ -35,8 +35,8 @@ export interface DotGridProps {
 const DotGrid: React.FC<DotGridProps> = ({
   dotSize = 16,
   gap = 32,
-  baseColor = "#00d8ff",
-  activeColor = "#00d8ff",
+  baseColor = "#5227FF",
+  activeColor = "#5227FF",
   proximity = 150,
   speedTrigger = 100,
   shockRadius = 250,

@@ -34,15 +34,15 @@ const CodeOptions = ({ children }) => {
   };
 
   const tabStyles = {
-    _selected: { color: "#fff", bg: "#111" },
+    _selected: { color: "#fff", bg: "#170D27" },
     borderRadius: "10px",
-    bg: "#060606",
+    bg: "#060010",
     fontSize: "14px",
-    border: "1px solid #ffffff1c",
+    border: "1px solid #271E37",
     height: 9,
     padding: "0.5rem 1rem",
     transition: "background-color 0.3s",
-    "&:hover": { bg: "#222" },
+    "&:hover": { bg: "#271E37" },
   };
 
   const selectStyles = { ...tabStyles, paddingRight: "2.2em" };

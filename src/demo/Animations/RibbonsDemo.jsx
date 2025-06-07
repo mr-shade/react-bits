@@ -16,7 +16,7 @@ import { ribbons } from "../../constants/code/Animations/ribbonsCode";
 
 const RibbonsDemo = () => {
   const [baseThickness, setBaseThickness] = useState(30);
-  const [colors, setColors] = useState(['#00d8ff']);
+  const [colors, setColors] = useState(['#5227FF']);
   const [speedMultiplier, setSpeedMultiplier] = useState(0.5);
   const [maxAge, setMaxAge] = useState(500);
 
@@ -27,7 +27,7 @@ const RibbonsDemo = () => {
     {
       name: "colors",
       type: "string[]",
-      default: "['#00d8ff']",
+      default: "['#5227FF']",
       description: "An array of color strings to be used for the ribbons."
     },
     {
@@ -102,7 +102,7 @@ const RibbonsDemo = () => {
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
-          <Text position="absolute" fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color="#222">Hover Me.</Text>
+          <Text position="absolute" fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color="#271E37">Hover Me.</Text>
           <Ribbons
             baseThickness={baseThickness}
             colors={colors}

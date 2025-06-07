@@ -29,7 +29,7 @@
 
 .showcase-wrapper .title span:nth-child(3),
 .showcase-wrapper .title span:nth-child(4) {
-  color: #00d8ff;
+  color: #5227FF;
 }
 
 .showcase-wrapper .sub-text {
@@ -52,8 +52,8 @@
 }
 
 .showcase-wrapper .grid-container .grid-item {
-  border: 1px solid rgba(166, 166, 166, 0.1);
-  background: #080808;
+  border: 1px solid #271E37;
+  background: #060010;
   border-radius: 25px;
   grid-row: span 1;
   transition: transform 0.3s ease-in-out;
@@ -110,7 +110,7 @@
   height: 100%;
   bottom: 0;
   left: 0;
-  background: linear-gradient(to top, #060606 33%, transparent);
+  background: linear-gradient(to top, #060010 33%, transparent);
 }
 
 .showcase-wrapper .grid-container .add-yours {
@@ -141,7 +141,7 @@
 
 .showcase-wrapper .grid-container .add-yours:hover {
   font-size: 1.2rem;
-  background-color: #0d0d0d;
+  background-color: #0D0716;
   transition: 0.3s ease;
 }
 
@@ -156,7 +156,7 @@
 }
 
 .showcase-wrapper .nothing-yet {
-  background: linear-gradient(to bottom, #060606, transparent);
+  background: linear-gradient(to bottom, #060010, transparent);
   padding: 2em 0;
   width: 100%;
   top: 0;

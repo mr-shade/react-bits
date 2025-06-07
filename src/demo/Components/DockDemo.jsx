@@ -86,7 +86,7 @@ const DockDemo = () => {
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={400}>
-          <Text fontSize='1.2rem' fontWeight={900} color="#a7a7a7">Try it out!</Text>
+          <Text fontSize='2rem' fontWeight={900} color="#271E37">Try it out!</Text>
           <Dock key={key} items={items} panelHeight={panelHeight} baseItemSize={baseItemSize} magnification={magnification} />
         </Box>
 

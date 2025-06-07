@@ -32,8 +32,8 @@
 
 .inner-content {
   position: relative;
-  background: linear-gradient(to bottom, #060606, #111);
   border: 1px solid #222;
+  background: #000;
   color: white;
   font-size: 16px;
   text-align: center;

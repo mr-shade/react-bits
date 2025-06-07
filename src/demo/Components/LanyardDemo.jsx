@@ -53,7 +53,7 @@ const LanyardDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <RefreshButton onClick={forceRerender} />
-          <Text position="absolute" fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color="#222">Drag It!</Text>
+          <Text position="absolute" fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color="#271E37">Drag It!</Text>
           <Lanyard key={key} position={[0, 0, cameraDistance]} gravity={stopGravity ? [0, 0, 0] : [0, -40, 0]} />
         </Box>
 

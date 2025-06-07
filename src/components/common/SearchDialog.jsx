@@ -221,11 +221,11 @@ const SearchDialog = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl" blockScrollOnMount returnFocusOnClose={false}>
       <ModalOverlay bg="rgba(0, 0, 0, 0.9)" />
-      <ModalContent bg="#060606" border="1px solid #222" p={0} rounded="xl" mt="8em" mx={4}>
+      <ModalContent bg="#060010" border="1px solid #271E37" p={0} rounded="xl" mt="8em" mx={4}>
         <ModalBody p="1em">
           <InputGroup>
             <InputLeftElement pointerEvents="none" fontSize="xl">
-              <FiSearch color="#999" />
+              <FiSearch color="#271E37" />
             </InputLeftElement>
             <Input
               autoFocus
@@ -233,13 +233,13 @@ const SearchDialog = ({ isOpen, onClose }) => {
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Search the docs"
               variant="filled"
-              bg="#060606"
+              bg="#060010"
               fontSize="lg"
               borderRadius="md"
               color="white"
-              _focus={{ bg: '#060606', borderColor: 'transparent' }}
-              _hover={{ bg: '#060606' }}
-              _placeholder={{ color: '#999' }}
+              _focus={{ bg: '#060010', borderColor: 'transparent' }}
+              _hover={{ bg: '#060010' }}
+              _placeholder={{ color: '#271E37' }}
             />
           </InputGroup>
           <AnimatePresence>
@@ -252,7 +252,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                 transition={{ duration: 0.3 }}
                 style={{ overflow: 'hidden' }}
               >
-                <Box mt={3} borderTop="1px solid #222" position="relative">
+                <Box mt={3} borderTop="1px solid #271E37" position="relative">
                   <Box
                     ref={resultsRef}
                     maxH={400}
@@ -260,10 +260,10 @@ const SearchDialog = ({ isOpen, onClose }) => {
                     onScroll={handleScroll}
                     sx={{
                       '&::-webkit-scrollbar': { width: '8px' },
-                      '&::-webkit-scrollbar-track': { background: '#060606' },
-                      '&::-webkit-scrollbar-thumb': { background: '#222', borderRadius: '4px' },
+                      '&::-webkit-scrollbar-track': { background: '#060010' },
+                      '&::-webkit-scrollbar-thumb': { background: '#271E37', borderRadius: '4px' },
                       scrollbarWidth: 'thin',
-                      scrollbarColor: '#222 #060606'
+                      scrollbarColor: '#271E37 #060010'
                     }}
                   >
                     {results.length > 0 ? (
@@ -278,7 +278,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                             onMouseEnter={() => setSelectedIndex(index)}
                             onClick={() => handleSelect(result)}
                           >
-                            <Box mt={index === 0 ? 8 : 2} mr=".6em" mb={2} p="1em" bg={isSelected ? "#222" : "#111"} rounded="xl" display="flex" alignItems="center">
+                            <Box mt={index === 0 ? 8 : 2} mr=".6em" mb={2} p="1em" bg={isSelected ? "#271E37" : "#0D0716"} rounded="xl" display="flex" alignItems="center">
                               <Box mr="16px">
                                 <CategoryIcon size={24} color="#999" />
                               </Box>
@@ -299,8 +299,8 @@ const SearchDialog = ({ isOpen, onClose }) => {
                       </Text>
                     )}
                   </Box>
-                  <Box position="absolute" top={0} left={0} right={0} height="50px" bgGradient="linear(to-b, #060606, transparent)" pointerEvents="none" style={{ transition: 'opacity 0.3s ease', opacity: topGradientOpacity }} />
-                  <Box position="absolute" bottom={0} left={0} right={0} height="100px" bgGradient="linear(to-t, #060606, transparent)" pointerEvents="none" style={{ transition: 'opacity 0.3s ease', opacity: bottomGradientOpacity }} />
+                  <Box position="absolute" top={0} left={0} right={0} height="50px" bgGradient="linear(to-b, #060010, transparent)" pointerEvents="none" style={{ transition: 'opacity 0.3s ease', opacity: topGradientOpacity }} />
+                  <Box position="absolute" bottom={0} left={0} right={0} height="100px" bgGradient="linear(to-t, #060010, transparent)" pointerEvents="none" style={{ transition: 'opacity 0.3s ease', opacity: bottomGradientOpacity }} />
                 </Box>
               </motion.div>
             )}

@@ -3,6 +3,7 @@ import Matter from "matter-js";
 import "./FallingText.css";
 
 const FallingText = ({
+  className = '',
   text = '',
   highlightWords = [],
   highlightClass = "highlighted",
@@ -186,9 +187,9 @@ const FallingText = ({
   return (
     <div
       ref={containerRef}
-      className="falling-text-container"
+      className={`falling-text-container ${className}`}
       onClick={trigger === "click" ? handleTrigger : undefined}
-      onMouseOver={trigger === "hover" ? handleTrigger : undefined}
+      onMouseEnter={trigger === "hover" ? handleTrigger : undefined}
       style={{
         position: "relative",
         overflow: "hidden",

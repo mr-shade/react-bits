@@ -72,8 +72,8 @@ const PixelCardDemo = () => {
         <Box position="relative" className="demo-container" minH={500} maxH={500} overflow="hidden">
           <PixelCard variant={selectedVariant}>
             <Flex w="100%" h="100%" position="absolute" justifyContent="center" alignItems="center">
-              <Text fontSize="3rem" userSelect="none" fontWeight={900} mixBlendMode="difference" color="#a6a6a6">
-                hover me.
+              <Text fontSize="3rem" userSelect="none" fontWeight={900} mixBlendMode="screen" color="#271E37">
+                Hover Me.
               </Text>
             </Flex>
           </PixelCard>

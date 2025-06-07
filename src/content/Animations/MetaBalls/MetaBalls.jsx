@@ -109,6 +109,7 @@ void main() {
 `;
 
 const MetaBalls = ({
+  className = "",
   color = "#ffffff",
   speed = 0.3,
   enableMouseInteraction = true,
@@ -118,7 +119,7 @@ const MetaBalls = ({
   clumpFactor = 1,
   cursorBallSize = 3,
   cursorBallColor = "#ffffff",
-  enableTransparency = false,
+  enableTransparency = true,
 }) => {
   const containerRef = useRef(null);
 
@@ -282,7 +283,7 @@ const MetaBalls = ({
     enableTransparency,
   ]);
 
-  return <div ref={containerRef} className="metaballs-container" />;
+  return <div ref={containerRef} className={`metaballs-container ${className}`} />;
 };
 
 export default MetaBalls;

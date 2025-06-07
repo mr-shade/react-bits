@@ -105,7 +105,7 @@ const InfiniteScrollDemo = () => {
             position: 'realtive'
           }}
         >
-          <p style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: -1, fontSize: '3rem', fontWeight: 900, color: '#222' }}>Balls!</p>
+          <p style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: -1, fontSize: '3rem', fontWeight: 900, color: '#271E37' }}>Balls!</p>
           <Ballpit count={50} followCursor={false} />
         </div>
       ),
@@ -135,7 +135,7 @@ const InfiniteScrollDemo = () => {
           p={0}
           overflow="hidden"
           display="flex"
-          bg="#060606"
+          bg="#060010"
           justifyContent="center"
           alignItems="center"
         >

@@ -91,7 +91,7 @@ const GridDistortionDemo = () => {
           <Button
             position="absolute"
             fontSize="sm"
-            bg="#060606"
+            bg="#060010"
             borderRadius="15px"
             px={6}
             _active={{ backgroundColor: '#111' }}

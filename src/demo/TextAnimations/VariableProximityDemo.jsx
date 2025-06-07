@@ -118,7 +118,7 @@ const VariableProximityDemo = () => {
                 key={type}
                 size="sm"
                 colorScheme='gray'
-                color={type === falloff ? '#00d8ff' : 'white'}
+                bg={type === falloff ? '#5227FF' : '#271E37'}
                 onClick={() => setFalloff(type)}
               >
                 {type}

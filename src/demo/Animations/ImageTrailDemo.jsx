@@ -51,7 +51,7 @@ const ImageTrailDemo = () => {
           />
 
           <Flex position="absolute" justifyContent="center" flexDirection="column" alignItems="center">
-            <Text fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color='#222' mb={0}>
+            <Text fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color='#271E37' mb={0}>
               Hover Me.
             </Text>
             <Text fontSize="18px" fontWeight={900} color='#a6a6a6' mt={0}>
@@ -79,8 +79,8 @@ const ImageTrailDemo = () => {
                 return (
                   <Button
                     key={num}
-                    bg={isActive ? '#00f0ff' : '#111'}
-                    _hover={{ backgroundColor: isActive ? '#00f0ff' : '#111' }}
+                    bg={isActive ? '#5227FF' : '#111'}
+                    _hover={{ backgroundColor: isActive ? '#5227FF' : '#111' }}
                     color={isActive ? 'black' : 'white'}
                     fontSize="xs"
                     h={8}

@@ -58,7 +58,7 @@ const IridescenceDemo = () => {
 
           <Text fontSize="sm">Colors</Text>
           <Flex gap={4} wrap="wrap">
-            <Flex gap={4} align="center" mt={2} background="#0D0D0D" pl={4} pr={10} py={4} borderRadius={16} position="relative">
+            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
               <Text fontSize="sm">R</Text>
               <Slider
                 min={0}
@@ -83,7 +83,7 @@ const IridescenceDemo = () => {
               <Text position="absolute" right={3.5} fontSize="sm">{colors[0]}</Text>
             </Flex>
 
-            <Flex gap={4} align="center" mt={2} background="#0D0D0D" pl={4} pr={10} py={4} borderRadius={16} position="relative">
+            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
               <Text fontSize="sm">G</Text>
               <Slider
                 min={0}
@@ -108,7 +108,7 @@ const IridescenceDemo = () => {
               <Text position="absolute" right={3.5} fontSize="sm">{colors[1]}</Text>
             </Flex>
 
-            <Flex gap={4} align="center" mt={2} background="#0D0D0D" pl={4} pr={10} py={4} borderRadius={16} position="relative">
+            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
               <Text fontSize="sm">B</Text>
               <Slider
                 min={0}
