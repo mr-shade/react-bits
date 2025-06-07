@@ -11,8 +11,6 @@ const DisplayHeader = ({ activeItem }) => {
   const starCountRef = useRef(null);
   const stars = useStars();
 
-
-
   useEffect(() => {
     if (stars && starCountRef.current) {
       gsap.fromTo(starCountRef.current,

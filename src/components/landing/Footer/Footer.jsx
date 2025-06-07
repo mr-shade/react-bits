@@ -14,6 +14,7 @@ const Footer = () => {
             <p className="footer-description">A library created with <AiFillHeart className="footer-heart" /> by <a href="https://davidhaz.com/" target="_blank" className="footer-creator-link">this guy</a></p>
             <p className="footer-copyright">MIT © {new Date().getFullYear()} React Bits</p>
           </div>
+
           <div className="footer-links">
             <a href="https://github.com/react-bits" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
             <Link to="/text-animations/split-text" className="footer-link">Docs</Link>

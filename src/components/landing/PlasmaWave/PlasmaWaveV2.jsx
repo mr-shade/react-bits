@@ -45,10 +45,8 @@ void mainImage(out vec4 C, in vec2 U) {
   vec3 k = vec3(0.0);
   vec3 p;
 
-  // Pre-calculate rotation matrices outside the loop
   mat2 v = A(y), h = A(x);
   
-  // Pre-calculate time-based values
   float t1 = t * 0.7;
   float t2 = t * 0.9;
   float tSpeed1 = t * speed1;
@@ -60,12 +58,10 @@ void mainImage(out vec4 C, in vec2 U) {
     p.xz *= h;
     p.x  -= 15.0;
 
-    // Optimize wobble calculations
     float px = p.x;
     float wob1 = bend1 + bendAdj1 + sin(t1 + px * 0.8) * 0.1;
     float wob2 = bend2 + bendAdj2 + cos(t2 + px * 1.1) * 0.1;
 
-    // Optimize offset calculations
     vec2 baseOffset = vec2(px, px + pi_2);
     vec2 sinOffset = sin(baseOffset + tSpeed1) * wob1;
     vec2 cosOffset = cos(baseOffset + tSpeed2) * wob2;
@@ -77,11 +73,10 @@ void mainImage(out vec4 C, in vec2 U) {
     k.y = max(px + lt, wCos);
 
     s = min(s, min(k.x, k.y));
-    if (s < 0.001 || d > 400.0) break; // Reduced max distance
-    d += s * 0.7; // Larger step size for fewer iterations
+    if (s < 0.001 || d > 400.0) break;
+    d += s * 0.7;
   }
 
-  // Simplified color calculation
   vec3 c = max(cos(d * pi2) - s * sqrt(d) - k, 0.0);
   c.gb += 0.1;
   if (max(c.r, max(c.g, c.b)) < 0.15) discard;
@@ -101,7 +96,6 @@ void main() {
 }
 `;
 
-/* ------------------ React Component ------------------ */
 export default function PlasmaWaveV2({
   xOffset = 0,
   yOffset = 0,
@@ -116,7 +110,7 @@ export default function PlasmaWaveV2({
   const containerRef = useRef(null);
   const rendererRef = useRef(null);
   const programRef = useRef(null);
-  const resizeTimeoutRef = useRef(null); // For throttling resize updates
+  const resizeTimeoutRef = useRef(null);
   const uniformOffset = useRef(new Float32Array([xOffset, yOffset]));
   const uniformResolution = useRef(new Float32Array([0, 0]));
   const [isInitialized, setIsInitialized] = useState(false);
@@ -130,9 +124,8 @@ export default function PlasmaWaveV2({
     speed1, speed2, dir2, bend1, bend2
   };
 
-  /* ------------------ One-time init ------------------ */
   useEffect(() => {
-    const DPR_LIMIT = 1.0; // Further reduced for maximum performance
+    const DPR_LIMIT = 1.0;
     const renderer = new Renderer({
       dpr: Math.min(window.devicePixelRatio, DPR_LIMIT),
       alpha: true,
@@ -142,14 +135,13 @@ export default function PlasmaWaveV2({
       preserveDrawingBuffer: false,
       powerPreference: 'high-performance',
       premultipliedAlpha: false,
-      failIfMajorPerformanceCaveat: false, // Allow fallback to software rendering if needed
+      failIfMajorPerformanceCaveat: false
     });
     rendererRef.current = renderer;
 
     const gl = renderer.gl;
     containerRef.current.appendChild(gl.canvas);
 
-    /* ---- Scene ---- */
     const camera = new Camera(gl);
     const scene = new Transform();
 
@@ -157,7 +149,6 @@ export default function PlasmaWaveV2({
       position: { size: 2, data: new Float32Array([-1, -1, 3, -1, -1, 3]) },
     });
 
-    /* ---- Program & uniforms ---- */
     const program = new Program(gl, {
       vertex,
       fragment,
@@ -181,28 +172,24 @@ export default function PlasmaWaveV2({
     const mesh = new Mesh(gl, { geometry, program });
     mesh.setParent(scene);
 
-    /* ---- Resize observer ---- */
     const ro = new ResizeObserver(entries => {
       for (const { contentRect } of entries) {
         const { width, height } = contentRect;
-        // Throttle resize updates for performance
         clearTimeout(resizeTimeoutRef.current);
         resizeTimeoutRef.current = setTimeout(() => {
           renderer.setSize(width, height);
           uniformResolution.current[0] = width * renderer.dpr;
           uniformResolution.current[1] = height * renderer.dpr;
-        }, 200); // Increased throttle time
+        }, 200);
       }
     });
     ro.observe(containerRef.current);
 
-    /* ---- RAF loop ---- */
     let start = performance.now();
     let rafId;
     let lastUpdateTime = 0;
     let frameSkipCounter = 0;
     
-    // Set initialized state after a brief delay to ensure smooth animation
     setTimeout(() => {
       setIsInitialized(true);
     }, 100);
@@ -210,7 +197,6 @@ export default function PlasmaWaveV2({
     const update = now => {
       rafId = requestAnimationFrame(update);
       
-      // Frame skipping for performance - only update every other frame if needed
       frameSkipCounter++;
       if (frameSkipCounter % 2 === 0) return;
       
@@ -228,14 +214,13 @@ export default function PlasmaWaveV2({
       program.uniforms.iTime.value = t;
       program.uniforms.uRotation.value = rot * Math.PI / 180;
       program.uniforms.focalLength.value = fLen;
-      program.uniforms.bendAdj1.value = 0; // Static value since no mouse interaction
-      program.uniforms.bendAdj2.value = 0; // Static value since no mouse interaction
+      program.uniforms.bendAdj1.value = 0;
+      program.uniforms.bendAdj2.value = 0;
 
       renderer.render({ scene, camera });
     };
     rafId = requestAnimationFrame(update);
 
-    /* ---- Cleanup ---- */
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(resizeTimeoutRef.current);
@@ -247,7 +232,6 @@ export default function PlasmaWaveV2({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* ------------------ Render ------------------ */
   return (
     <div
       ref={containerRef}

@@ -67,7 +67,6 @@ const Testimonials = () => {
     }
   ];
 
-  // Create three arrays for different rows with different tweets
   const row1Tweets = tweets.slice(0, 3);
   const row2Tweets = tweets.slice(3, 6);
   const row3Tweets = tweets.slice(6, 9);
@@ -92,8 +91,6 @@ const Testimonials = () => {
   );
 
   const MarqueeRow = ({ tweets, direction = 'left', speed = 30 }) => {
-    // Create enough duplicates to ensure seamless looping
-    // We need at least enough content to fill the container width plus extra for smooth transitions
     const duplicatedTweets = [...tweets, ...tweets, ...tweets, ...tweets];
 
     return (

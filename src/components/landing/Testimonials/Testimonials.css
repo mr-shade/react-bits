@@ -33,7 +33,6 @@
   white-space: nowrap;
 }
 
-/* Ensure SplitText children inherit the gradient */
 .testimonials-title * {
   background: inherit;
   background-size: inherit;
@@ -75,7 +74,6 @@
   overflow: hidden;
 }
 
-/* Gradient fade effects */
 .testimonials-marquee-container::before,
 .testimonials-marquee-container::after {
   content: '';
@@ -116,8 +114,8 @@
   animation-iteration-count: infinite;
   will-change: transform;
   width: max-content;
-  transform: translateZ(0); /* Force hardware acceleration */
-  backface-visibility: hidden; /* Prevent flickering */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .testimonial-marquee-left {
@@ -211,7 +209,6 @@
   font-weight: 500;
 }
 
-/* Responsive design */
 @media (max-width: 1280px) {
   .testimonials-marquee-container {
     max-width: 1000px;

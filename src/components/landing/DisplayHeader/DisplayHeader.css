@@ -102,15 +102,6 @@
   z-index: 2;
 }
 
-.langing-nav-items a::before {
-  content: '';
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: #060010;
-  z-index: 2;
-}
-
 .cta-button {
   font-weight: 500;
   padding: 0 0 0 1.4rem;

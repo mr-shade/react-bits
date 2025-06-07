@@ -35,7 +35,6 @@
   white-space: nowrap;
 }
 
-/* Ensure SplitText children inherit the gradient */
 .features-title * {
   background: inherit;
   background-size: inherit;
@@ -70,7 +69,6 @@
   text-align: center;
 }
 
-/* Responsive adjustments for title */
 @media (max-width: 768px) {
   .features-title {
     font-size: 2.5rem;
@@ -103,7 +101,6 @@
   grid-auto-rows: auto;
 }
 
-/* Small tablet layout - 2 columns */
 @media (min-width: 480px) and (max-width: 767px) {
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -131,7 +128,6 @@
   }
 }
 
-/* Desktop layout - 4 column grid */
 @media (min-width: 50rem) {
   .bento-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -139,7 +135,6 @@
     gap: 1.5em;
   }
 
-  /* Optimized asymmetric grid layout for 4 cards */
   .card1 {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
@@ -161,7 +156,6 @@
   }
 }
 
-/* Large tablet/small desktop layout - 3 columns */
 @media (min-width: 768px) and (max-width: 49.99rem) {
   .bento-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -189,7 +183,6 @@
   }
 }
 
-/* Feature Card Base Styles */
 .feature-card {
   user-select: none;
   background: #060010;
@@ -212,7 +205,6 @@
   --glow-intensity: 0;
 }
 
-/* Glow & Border Effects */
 .feature-card::before {
   content: '';
   position: absolute;
@@ -298,7 +290,6 @@
   z-index: 10;
 }
 
-/* Particle Animation Styles */
 .particle-container {
   position: relative;
   overflow: hidden;
@@ -327,7 +318,6 @@
   z-index: -1;
 }
 
-/* Enhanced feature-card hover for particles */
 .feature-card.particle-container {
   overflow: hidden;
 }
@@ -337,7 +327,6 @@
   background: #0D0716;
 }
 
-/* Global Spotlight Effect */
 .global-spotlight {
   mix-blend-mode: screen;
   will-change: transform, opacity;
@@ -345,7 +334,6 @@
   pointer-events: none;
 }
 
-/* Components GIF Styles */
 .components-gif-wrapper {
   position: absolute;
   width: 100%;
@@ -396,7 +384,6 @@
   z-index: 2;
 }
 
-/* Messages GIF Styles - positioned on right side of card1 */
 .messages-gif-wrapper {
   position: absolute;
   mix-blend-mode: lighten;
@@ -450,7 +437,6 @@
   z-index: 2;
 }
 
-/* Switch GIF Styles - positioned on right side of card4 */
 .switch-gif-wrapper {
   position: absolute;
   top: 0;
@@ -503,73 +489,8 @@
   z-index: 2;
 }
 
-/* Card Text Loop Styles */
-.card-text-loop {
-  opacity: 0.1;
-  position: absolute;
-  right: 4rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-}
 
-.card-text-loop__container {
-  overflow: hidden;
-  height: 8rem;
-  width: 100%;
-  position: relative;
-}
 
-.card-text-loop__container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1rem;
-  background: linear-gradient(to bottom, #060010 0%, transparent 100%);
-  z-index: 20;
-  pointer-events: none;
-}
-
-.card-text-loop__container::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1rem;
-  background: linear-gradient(to top, #060010 0%, transparent 100%);
-  z-index: 20;
-  pointer-events: none;
-}
-
-.card-text-loop__list {
-  display: flex;
-  flex-direction: column;
-  will-change: transform;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.card-text-loop__item {
-  font-size: 6rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #8400ff 0%, #a855f7 50%, #8660fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 10px rgba(132, 0, 255, 0.3);
-  white-space: nowrap;
-  height: 8rem;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-/* Responsive: Mobile first approach */
 @media (max-width: 479px) {
   .features-section {
     padding: 4rem 1rem 2rem;
@@ -606,7 +527,6 @@
     line-height: 1.6;
   }
 
-  /* Hide all GIFs on mobile */
   .components-gif-wrapper,
   .messages-gif-wrapper,
   .switch-gif-wrapper {
@@ -614,7 +534,6 @@
   }
 }
 
-/* Extra small screens */
 @media (max-width: 360px) {
   .features-section {
     padding: 2.5rem 0.5rem 1rem;
@@ -649,7 +568,6 @@
     line-height: 1.7;
   }
 
-  /* Hide all GIFs on extra small screens */
   .components-gif-wrapper,
   .messages-gif-wrapper,
   .switch-gif-wrapper {
@@ -657,7 +575,6 @@
   }
 }
 
-/* Medium screens optimizations */
 @media (min-width: 768px) {
   .features-section {
     padding: 6rem 2rem 3rem;
@@ -682,7 +599,6 @@
     font-size: 0.92rem;
   }
 
-  /* Hide GIFs on medium screens (tablets) */
   .components-gif-wrapper,
   .messages-gif-wrapper,
   .switch-gif-wrapper {
@@ -690,7 +606,6 @@
   }
 }
 
-/* Large screens optimizations */
 @media (min-width: 50rem) {
   .features-section {
     padding: 8rem 2rem 4rem;
@@ -715,7 +630,6 @@
     font-size: 0.95rem;
   }
 
-  /* Show GIFs only on large screens (desktop) */
   .components-gif-wrapper,
   .messages-gif-wrapper,
   .switch-gif-wrapper {
@@ -723,7 +637,6 @@
   }
 }
 
-/* Landscape mobile optimization */
 @media (max-height: 500px) and (orientation: landscape) {
   .features-section {
     margin-top: 2em;
