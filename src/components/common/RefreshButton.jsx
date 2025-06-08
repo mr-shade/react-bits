@@ -10,7 +10,7 @@ const RefreshButton = ({ onClick }) => {
       backgroundColor='#170D27'
       position="absolute"
       onClick={onClick}
-      border="1px solid #271E37"
+      border="1px solid #392e4e"
       zIndex={2}
       color="white"
       rounded="xl"

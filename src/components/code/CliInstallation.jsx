@@ -28,7 +28,7 @@ const CliInstallation = (cliData) => {
       </Text>
 
       <Accordion allowToggle>
-        <AccordionItem border="1px solid #271E37" backgroundColor="#060010" borderRadius="20px">
+        <AccordionItem border="1px solid #392e4e" backgroundColor="#060010" borderRadius="20px">
           <AccordionButton borderTop="none" py={4} px={6}>
             <Box flex="1" m={0} textAlign="left" className="demo-title" fontSize="1rem">
               Setup Steps

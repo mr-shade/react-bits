@@ -22,24 +22,24 @@ const PropTable = ({ data }) => {
       <h2 className="demo-title-extra">Props</h2>
       <Box overflowX="auto" mt={6}>
         <Table variant="unstyled" colorScheme="whiteAlpha" size="sm" className='props-table'>
-          <Thead borderBottom='1px solid #271E37'>
+          <Thead borderBottom='1px solid #392e4e'>
             <Tr backgroundColor='#170D27' borderRadius='20px'>
-              <Th letterSpacing='-.5px' borderRight="1px solid #271E37" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Property</Th>
-              <Th letterSpacing='-.5px' borderRight="1px solid #271E37" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Type</Th>
-              <Th letterSpacing='-.5px' borderRight="1px solid #271E37" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Default</Th>
+              <Th letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Property</Th>
+              <Th letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Type</Th>
+              <Th letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Default</Th>
               <Th letterSpacing='-.5px' textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Description</Th>
             </Tr>
           </Thead>
           <Tbody>
             {data.map((prop, index) => (
-              <Tr key={index} borderBottom={index === data.length - 1 ? 'none' : '1px solid #271E37'}>
-                <Td borderColor="#271E37" py={4} color="white" width={0} pr={8} borderRight="1px solid #271E37">
+              <Tr key={index} borderBottom={index === data.length - 1 ? 'none' : '1px solid #392e4e'}>
+                <Td borderColor="#271E37" py={4} color="white" width={0} pr={8} borderRight="1px solid #392e4e">
                   <CodeCell rightJustified content={prop.name} />
                 </Td>
-                <Td borderColor="#271E37" py={4} color="white" whiteSpace='nowrap' width={'120px'} borderRight="1px solid #271E37">
+                <Td borderColor="#271E37" py={4} color="white" whiteSpace='nowrap' width={'120px'} borderRight="1px solid #392e4e">
                   <Text fontFamily='monospace' fontWeight={500}>{prop.type}</Text>
                 </Td>
-                <Td borderColor="#271E37" py={4} color="white" borderRight="1px solid #271E37" whiteSpace='nowrap'>
+                <Td borderColor="#271E37" py={4} color="white" borderRight="1px solid #392e4e" whiteSpace='nowrap'>
                   <CodeCell content={prop.default && prop.default.length ? prop.default : '—'} />
                 </Td>
                 <Td borderColor="#271E37" py={4} color="white">

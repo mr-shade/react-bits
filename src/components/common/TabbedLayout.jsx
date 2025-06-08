@@ -17,7 +17,7 @@ import ContributionSection from "./ContributionSection";
     borderRadius: "10px",
     bg: "#060010",
     fontSize: "14px",
-    border: "1px solid #271E37",
+    border: "1px solid #392e4e",
     height: 9,
     padding: "0.5rem 1rem",
     transition: "background-color 0.3s",

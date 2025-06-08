@@ -4,7 +4,7 @@ export const toastStyles = {
   style: {
     fontSize: '12px',
     borderRadius: '0.75rem',
-    border: '1px solid #271E37',
+    border: '1px solid #392e4e',
     color: '#fff',
     backgroundColor: '#060010'
   }

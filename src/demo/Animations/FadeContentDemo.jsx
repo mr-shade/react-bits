@@ -90,7 +90,7 @@ const FadeDemo = () => {
               color="#fff"
               h={100}
               borderRadius="25px"
-              border="1px solid #271E37"
+              border="1px solid #392e4e"
               w={200}
               bg={"#060010"}
             >

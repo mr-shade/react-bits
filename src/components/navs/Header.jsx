@@ -57,7 +57,7 @@ const Header = () => {
             <Flex
               fontSize="xs"
               h={10}
-              border="1px solid #271E37"
+              border="1px solid #392e4e"
               rounded="full"
               alignItems="center"
               pr={4}
@@ -78,9 +78,9 @@ const Header = () => {
               fontSize="xs"
               bg="#060010"
               cursor="pointer"
-              border="1px solid #271E37"
+              border="1px solid #392e4e"
               transition="transform 0.3s"
-              _hover={{ transform: 'scale(0.98)', border: '1px solid #271E37' }}
+              _hover={{ transform: 'scale(0.98)', border: '1px solid #392e4e' }}
               h={10}
               rounded="full"
               width="fit-content"

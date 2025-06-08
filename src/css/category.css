@@ -104,7 +104,7 @@
   width: 100%;
   margin-top: 1em;
   background: #060010;
-  border: 1px solid #ffffff1c;
+  border: 1px solid #392e4e;
   padding: 1em;
   border-radius: 20px;
   display: flex;
@@ -113,7 +113,7 @@
 }
 
 div:has(> .props-table) {
-  border: 1px solid #271E37;
+  border: 1px solid #392e4e;
   border-radius: 20px;
 }
 
@@ -252,7 +252,7 @@ div:has(> .props-table) {
 
 .contribute-button {
   background-color: #060010 !important;
-  border: 1px solid #271E37;
+  border: 1px solid #392e4e;
   transition: 0.5s ease;
 }
 
@@ -368,7 +368,7 @@ div:has(> .props-table) {
 .custom-spotlight-card {
   user-select: none;
   background-color: #170D27 !important;
-  border: 1px solid #271E37 !important;
+  border: 1px solid #392e4e !important;
   width: 350px;
   height: 300px;
 }

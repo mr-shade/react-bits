@@ -221,7 +221,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl" blockScrollOnMount returnFocusOnClose={false}>
       <ModalOverlay bg="rgba(0, 0, 0, 0.9)" />
-      <ModalContent bg="#060010" border="1px solid #271E37" p={0} rounded="xl" mt="8em" mx={4}>
+      <ModalContent bg="#060010" border="1px solid #392e4e" p={0} rounded="xl" mt="8em" mx={4}>
         <ModalBody p="1em">
           <InputGroup>
             <InputLeftElement pointerEvents="none" fontSize="xl">
@@ -252,7 +252,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                 transition={{ duration: 0.3 }}
                 style={{ overflow: 'hidden' }}
               >
-                <Box mt={3} borderTop="1px solid #271E37" position="relative">
+                <Box mt={3} borderTop="1px solid #392e4e" position="relative">
                   <Box
                     ref={resultsRef}
                     maxH={400}

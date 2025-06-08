@@ -69,7 +69,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
             height='2.5rem'
             fontWeight={500}
             backgroundColor="#060010"
-            border="1px solid #271E37"
+            border="1px solid #392e4e"
             color="white"
             _hover={{ backgroundColor: '#111' }}
             _active={{ backgroundColor: '#111' }}
@@ -90,7 +90,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           rounded="xl"
           fontWeight={500}
           backgroundColor={copied ? '#3EFF5D' : '#060010'}
-          border="1px solid #271E37"
+          border="1px solid #392e4e"
           color={copied ? 'black' : 'white'}
           _hover={{ backgroundColor: copied ? '#7cff67' : '#271E37' }}
           _active={{ backgroundColor: '#5227FF' }}
