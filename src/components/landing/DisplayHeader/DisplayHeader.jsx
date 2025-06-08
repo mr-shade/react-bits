@@ -33,9 +33,9 @@ const DisplayHeader = ({ activeItem }) => {
   return (
     <header className="header">
       <div className='header-container'>
-        <div className="logo">
+        <Link to="/" className="logo">
           <Logo />
-        </div>
+        </Link>
 
         <div className="nav-cta-group">
           <nav className="landing-nav-items" ref={navRef}>

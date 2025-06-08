@@ -159,8 +159,6 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .testimonial-card:hover {
@@ -184,9 +182,6 @@
   margin: 0;
   flex-grow: 1;
   white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 .testimonial-author {

@@ -30,6 +30,11 @@ const ShowcasePage = () => {
       name: 'Afaq Razaq',
       url: 'https://www.evolvion.io/',
       using: '<SpotlightCard />'
+    },
+    {
+      name: 'Jimmy',
+      url: 'https://about.jimmy-blog.top/',
+      using: '<Squares />'
     }
   ];
 

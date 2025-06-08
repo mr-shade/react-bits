@@ -1,18 +1,17 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { Renderer, Camera, Transform, Program, Mesh, Geometry } from 'ogl';
 
 const vertex = /* glsl */ `
-  attribute vec2 position;
-  varying vec2 vUv;
-  void main() {
-    vUv = position * 0.5 + 0.5;
-    gl_Position = vec4(position, 0.0, 1.0);
-  }
+attribute vec2 position;
+varying vec2 vUv;
+void main() {
+  vUv = position * 0.5 + 0.5;
+  gl_Position = vec4(position, 0.0, 1.0);
+}
 `;
 
 const fragment = /* glsl */ `
 precision mediump float;
-
 uniform float iTime;
 uniform vec2  iResolution;
 uniform vec2  uOffset;
@@ -25,12 +24,13 @@ uniform float bend1;
 uniform float bend2;
 uniform float bendAdj1;
 uniform float bendAdj2;
+uniform float uOpacity;
 
 const float lt   = 0.05;
 const float pi   = 3.141592653589793;
 const float pi2  = pi * 2.0;
 const float pi_2 = pi * 0.5;
-#define MAX_STEPS 15
+#define MAX_STEPS 18
 #define A(v) mat2(cos(m.v + radians(vec4(0.0,-90.0,90.0,0.0))))
 
 void mainImage(out vec4 C, in vec2 U) {
@@ -46,7 +46,7 @@ void mainImage(out vec4 C, in vec2 U) {
   vec3 p;
 
   mat2 v = A(y), h = A(x);
-  
+
   float t1 = t * 0.7;
   float t2 = t * 0.9;
   float tSpeed1 = t * speed1;
@@ -63,8 +63,8 @@ void mainImage(out vec4 C, in vec2 U) {
     float wob2 = bend2 + bendAdj2 + cos(t2 + px * 1.1) * 0.1;
 
     vec2 baseOffset = vec2(px, px + pi_2);
-    vec2 sinOffset = sin(baseOffset + tSpeed1) * wob1;
-    vec2 cosOffset = cos(baseOffset + tSpeed2) * wob2;
+    vec2 sinOffset  = sin(baseOffset + tSpeed1) * wob1;
+    vec2 cosOffset  = cos(baseOffset + tSpeed2) * wob2;
 
     float wSin = length(p.yz - sinOffset) - lt;
     float wCos = length(p.yz - cosOffset) - lt;
@@ -80,7 +80,7 @@ void mainImage(out vec4 C, in vec2 U) {
   vec3 c = max(cos(d * pi2) - s * sqrt(d) - k, 0.0);
   c.gb += 0.1;
   if (max(c.r, max(c.g, c.b)) < 0.15) discard;
-  C = vec4(c * 0.4 + c.brg * 0.6 + c * c, 1.0);
+  C = vec4(c * 0.4 + c.brg * 0.6 + c * c, uOpacity);
 }
 
 void main() {
@@ -106,42 +106,39 @@ export default function PlasmaWaveV2({
   dir2 = 1.0,
   bend1 = 0.9,
   bend2 = 0.6,
+  fadeInDuration = 2000
 }) {
   const containerRef = useRef(null);
-  const rendererRef = useRef(null);
-  const programRef = useRef(null);
-  const resizeTimeoutRef = useRef(null);
   const uniformOffset = useRef(new Float32Array([xOffset, yOffset]));
-  const uniformResolution = useRef(new Float32Array([0, 0]));
-  const [isInitialized, setIsInitialized] = useState(false);
+  const uniformResolution = useRef(new Float32Array([1, 1])); // never 0
+  const rendererRef = useRef(null);
+  const fadeStartTime = useRef(null);
 
   const propsRef = useRef({
     xOffset, yOffset, rotationDeg, focalLength,
-    speed1, speed2, dir2, bend1, bend2,
+    speed1, speed2, dir2, bend1, bend2, fadeInDuration,
   });
   propsRef.current = {
     xOffset, yOffset, rotationDeg, focalLength,
-    speed1, speed2, dir2, bend1, bend2
+    speed1, speed2, dir2, bend1, bend2, fadeInDuration,
   };
 
   useEffect(() => {
-    const DPR_LIMIT = 1.0;
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, DPR_LIMIT),
       alpha: true,
+      dpr: Math.min(window.devicePixelRatio, 1),
       antialias: false,
       depth: false,
       stencil: false,
-      preserveDrawingBuffer: false,
       powerPreference: 'high-performance',
-      premultipliedAlpha: false,
-      failIfMajorPerformanceCaveat: false
     });
     rendererRef.current = renderer;
 
     const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
     containerRef.current.appendChild(gl.canvas);
 
+    /* ---------- scene ---------- */
     const camera = new Camera(gl);
     const scene = new Transform();
 
@@ -165,48 +162,48 @@ export default function PlasmaWaveV2({
         bend2: { value: bend2 },
         bendAdj1: { value: 0 },
         bendAdj2: { value: 0 },
+        uOpacity: { value: 0 },
       },
     });
-    programRef.current = program;
+    new Mesh(gl, { geometry, program }).setParent(scene);
 
-    const mesh = new Mesh(gl, { geometry, program });
-    mesh.setParent(scene);
-
-    const ro = new ResizeObserver(entries => {
-      for (const { contentRect } of entries) {
-        const { width, height } = contentRect;
-        clearTimeout(resizeTimeoutRef.current);
-        resizeTimeoutRef.current = setTimeout(() => {
-          renderer.setSize(width, height);
-          uniformResolution.current[0] = width * renderer.dpr;
-          uniformResolution.current[1] = height * renderer.dpr;
-        }, 200);
-      }
-    });
+    const resize = () => {
+      const { width, height } =
+        containerRef.current?.getBoundingClientRect() || { width: 0, height: 0 };
+      renderer.setSize(width, height);
+      uniformResolution.current[0] = width * renderer.dpr;
+      uniformResolution.current[1] = height * renderer.dpr;
+      gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+      gl.clear(gl.COLOR_BUFFER_BIT);      // clear with transparent background
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
     ro.observe(containerRef.current);
 
-    let start = performance.now();
+    const start = performance.now();
     let rafId;
-    let lastUpdateTime = 0;
-    let frameSkipCounter = 0;
-    
-    setTimeout(() => {
-      setIsInitialized(true);
-    }, 100);
-    
-    const update = now => {
-      rafId = requestAnimationFrame(update);
-      
-      frameSkipCounter++;
-      if (frameSkipCounter % 2 === 0) return;
-      
-      const deltaTime = now - lastUpdateTime;
-      if (deltaTime < 16.67) return; // ~60fps
-      lastUpdateTime = now;
-      
-      const t = (now - start) * 0.001;
+    const loop = now => {
+      rafId = requestAnimationFrame(loop);
 
-      const { xOffset: xOff, yOffset: yOff, rotationDeg: rot, focalLength: fLen } = propsRef.current;
+      const t = (now - start) * 0.001;
+      const {
+        xOffset: xOff,
+        yOffset: yOff,
+        rotationDeg: rot,
+        focalLength: fLen,
+        fadeInDuration: fadeDur,
+      } = propsRef.current;
+
+      if (fadeStartTime.current === null && t > 0.1) {
+        fadeStartTime.current = now;
+      }
+
+      let opacity = 0;
+      if (fadeStartTime.current !== null) {
+        const fadeElapsed = now - fadeStartTime.current;
+        opacity = Math.min(fadeElapsed / fadeDur, 1);
+        opacity = 1 - Math.pow(1 - opacity, 3);
+      }
 
       uniformOffset.current[0] = xOff;
       uniformOffset.current[1] = yOff;
@@ -214,20 +211,16 @@ export default function PlasmaWaveV2({
       program.uniforms.iTime.value = t;
       program.uniforms.uRotation.value = rot * Math.PI / 180;
       program.uniforms.focalLength.value = fLen;
-      program.uniforms.bendAdj1.value = 0;
-      program.uniforms.bendAdj2.value = 0;
+      program.uniforms.uOpacity.value = opacity;
 
       renderer.render({ scene, camera });
     };
-    rafId = requestAnimationFrame(update);
+    rafId = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(rafId);
-      clearTimeout(resizeTimeoutRef.current);
       ro.disconnect();
-      gl.canvas.remove();
-
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      renderer.gl.canvas.remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -236,12 +229,12 @@ export default function PlasmaWaveV2({
     <div
       ref={containerRef}
       style={{
+        position: 'absolute',
+        inset: 0,
+        overflow: 'hidden',
         width: '100vw',
         height: '100vh',
-        overflow: 'hidden',
-        position: 'absolute',
-        opacity: isInitialized ? 1 : 0,
-        transition: 'opacity 1.5s ease-in-out',
+        background: '#000',
       }}
     >
       <div
@@ -250,7 +243,7 @@ export default function PlasmaWaveV2({
           bottom: 0,
           left: 0,
           right: 0,
-          height: '200px',
+          height: 200,
           background: 'linear-gradient(to top, #060010, transparent)',
           pointerEvents: 'none',
           zIndex: 1,

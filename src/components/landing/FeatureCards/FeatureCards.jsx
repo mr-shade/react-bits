@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import "./FeatureCards.css";
 import CountUp from "../../../content/TextAnimations/CountUp/CountUp";
 
-// Particle Animation Component
 const ParticleCard = ({ children, className = "" }) => {
   const cardRef = useRef(null);
   const particlesRef = useRef([]);
@@ -70,7 +69,6 @@ const ParticleCard = ({ children, className = "" }) => {
   const animateParticles = useCallback(() => {
     if (!cardRef.current || !isHoveredRef.current) return;
 
-    // Create memoized particles if not initialized
     if (!particlesInitialized.current) {
       createMemoizedParticles();
     }
@@ -151,7 +149,6 @@ const ParticleCard = ({ children, className = "" }) => {
   );
 };
 
-// Global Spotlight Component  
 const GlobalSpotlight = ({ gridRef }) => {
   const spotlightRef = useRef(null);
   const isInsideSectionRef = useRef(false);
@@ -162,9 +159,9 @@ const GlobalSpotlight = ({ gridRef }) => {
     spotlight.className = "global-spotlight";
     spotlight.style.cssText = `
       position: fixed;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(132, 0, 255, 0.15) 0%, rgba(132, 0, 255, 0.08) 15%, rgba(132, 0, 255, 0.04) 25%, rgba(132, 0, 255, 0.02) 40%, rgba(132, 0, 255, 0.01) 55%, transparent 70%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(132, 0, 255, 0.15) 0%, rgba(132, 0, 255, 0.08) 15%, rgba(132, 0, 255, 0.04) 25%, rgba(132, 0, 255, 0.02) 40%, rgba(132, 0, 255, 0.01) 65%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 200;
@@ -178,7 +175,6 @@ const GlobalSpotlight = ({ gridRef }) => {
     const handleMouseMove = (e) => {
       if (!spotlightRef.current || !gridRef.current) return;
 
-      // Check if cursor is within the features section
       const featuresSection = gridRef.current.closest('.features-section');
       const sectionRect = featuresSection?.getBoundingClientRect();
       const isInside = sectionRect &&
@@ -189,9 +185,7 @@ const GlobalSpotlight = ({ gridRef }) => {
 
       isInsideSectionRef.current = isInside;
 
-      // Only calculate if inside the section
       if (!isInside) {
-        // Hide spotlight and reset glow when outside section
         gsap.to(spotlightRef.current, {
           opacity: 0,
           duration: 0.3,
@@ -247,11 +241,11 @@ const GlobalSpotlight = ({ gridRef }) => {
 
       let targetOpacity = 0;
       if (minDistance <= proximityThreshold) {
-        targetOpacity = 0.8; // Increased from 1 for better visibility with mix-blend-mode
+        targetOpacity = 0.8;
       } else if (minDistance <= fadeThreshold) {
         const fadeRange = fadeThreshold - proximityThreshold;
         const fadeProgress = (fadeThreshold - minDistance) / fadeRange;
-        targetOpacity = Math.max(0, fadeProgress * 0.8); // Increased multiplier
+        targetOpacity = Math.max(0, fadeProgress * 0.8);
       }
 
       const duration = targetOpacity > 0 ? 0.2 : 0.5;
@@ -328,12 +322,6 @@ const FeatureCards = () => {
             <h2><CountUp to={'2'} /></h2>
             <h3>Styling Options</h3>
             <p>CSS or Tailwind, switch with one click</p>
-          </ParticleCard>
-
-          <ParticleCard className="feature-card card5">
-            <h2>Zero</h2>
-            <h3>Bloat Included</h3>
-            <p>Use only what you need, when you need it</p>
           </ParticleCard>
         </div>
       </div>
