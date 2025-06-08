@@ -856,6 +856,7 @@
 @media (max-width: 430px) {
   .landing-title {
     font-size: 1.6rem;
+    letter-spacing: -1px;
     text-align: center;
     max-width: 100%;
   }
@@ -875,7 +876,7 @@
 @media (max-width: 390px) {
   .landing-title {
     font-size: 1.8rem;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     text-align: center;
     max-width: 100%;
   }
@@ -920,12 +921,5 @@
   .button-arrow-circle {
     width: 26px;
     height: 26px;
-  }
-}
-
-/* Hide PlasmaWave component on mobile devices */
-@media (max-width: 768px) {
-  .hidden-mobile {
-    display: none !important;
   }
 }

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import FadeContent from "../../../content/Animations/FadeContent/FadeContent";
 import SplitText from "../../../content/TextAnimations/SplitText/SplitText";
 import DotGrid from "../../../content/Backgrounds/DotGrid/DotGrid";
@@ -6,6 +7,20 @@ import LetterGlitch from "../../../content/Backgrounds/LetterGlitch/LetterGlitch
 import Squares from "../../../content/Backgrounds/Squares/Squares";
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if we're on mobile and set state
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
   return (
     <div className="landing-content">
       <div className="hero-main-content">
@@ -49,35 +64,38 @@ const Hero = () => {
         </FadeContent>
       </div>
 
-      <div className="hero-cards-container">
-        <div className="hero-card hero-card-1" onClick={() => window.open("https://reactbits.dev/backgrounds/dot-grid")}>
-          <DotGrid
-            baseColor="#ffffff"
-            activeColor="rgba(138, 43, 226, 0.9)"
-            dotSize={6}
-            gap={16}
-            proximity={50}
-          />
-        </div>
-
-        <div className="hero-cards-row">
-          <div className="hero-card hero-card-2" onClick={() => window.open("https://reactbits.dev/backgrounds/letter-glitch")}>
-            <LetterGlitch
-              className="hero-glitch"
-              glitchColors={['#ffffff', '#999999', '#333333']}
+      {/* Don't render hero cards on mobile */}
+      {!isMobile && (
+        <div className="hero-cards-container">
+          <div className="hero-card hero-card-1" onClick={() => window.open("https://reactbits.dev/backgrounds/dot-grid")}>
+            <DotGrid
+              baseColor="#ffffff"
+              activeColor="rgba(138, 43, 226, 0.9)"
+              dotSize={6}
+              gap={16}
+              proximity={50}
             />
           </div>
 
-          <div className="hero-card hero-card-3" onClick={() => window.open("https://reactbits.dev/backgrounds/squares")}>
-            <Squares
-              borderColor="#fff"
-              speed={0.2}
-              direction="diagonal"
-              hoverFillColor="#fff"
-            />
+          <div className="hero-cards-row">
+            <div className="hero-card hero-card-2" onClick={() => window.open("https://reactbits.dev/backgrounds/letter-glitch")}>
+              <LetterGlitch
+                className="hero-glitch"
+                glitchColors={['#ffffff', '#999999', '#333333']}
+              />
+            </div>
+
+            <div className="hero-card hero-card-3" onClick={() => window.open("https://reactbits.dev/backgrounds/squares")}>
+              <Squares
+                borderColor="#fff"
+                speed={0.2}
+                direction="diagonal"
+                hoverFillColor="#fff"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
