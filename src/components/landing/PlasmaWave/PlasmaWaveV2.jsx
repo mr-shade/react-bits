@@ -30,7 +30,7 @@ const float lt   = 0.05;
 const float pi   = 3.141592653589793;
 const float pi2  = pi * 2.0;
 const float pi_2 = pi * 0.5;
-#define MAX_STEPS 18
+#define MAX_STEPS 15
 #define A(v) mat2(cos(m.v + radians(vec4(0.0,-90.0,90.0,0.0))))
 
 void mainImage(out vec4 C, in vec2 U) {
