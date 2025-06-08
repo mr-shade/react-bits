@@ -374,6 +374,7 @@
 
 .hero-glitch {
   mix-blend-mode: screen;
+  border-radius: 30px !important;
 }
 
 .hero-metaballs {
@@ -919,5 +920,12 @@
   .button-arrow-circle {
     width: 26px;
     height: 26px;
+  }
+}
+
+/* Hide PlasmaWave component on mobile devices */
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none !important;
   }
 }

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Renderer, Camera, Transform, Program, Mesh, Geometry } from 'ogl';
 
 const vertex = /* glsl */ `
@@ -108,6 +108,7 @@ export default function PlasmaWaveV2({
   bend2 = 0.6,
   fadeInDuration = 2000
 }) {
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const uniformOffset = useRef(new Float32Array([xOffset, yOffset]));
   const uniformResolution = useRef(new Float32Array([1, 1])); // never 0
@@ -124,6 +125,23 @@ export default function PlasmaWaveV2({
   };
 
   useEffect(() => {
+    // Check if we're on mobile and set state
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  useEffect(() => {
+    // Don't initialize WebGL on mobile
+    if (isMobile) {
+      return;
+    }
+
     const renderer = new Renderer({
       alpha: true,
       dpr: Math.min(window.devicePixelRatio, 1),
@@ -223,7 +241,12 @@ export default function PlasmaWaveV2({
       renderer.gl.canvas.remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isMobile]);
+
+  // Don't render the WebGL content on mobile
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div
