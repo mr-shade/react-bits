@@ -38,7 +38,7 @@
   max-width: calc(1200px + 6em);
   margin: 0 auto;
   padding: 0 4em;
-  margin-top: 200px;
+  margin-top: 250px;
   z-index: 10;
 }
 
@@ -470,7 +470,7 @@
   }
 
   .landing-content {
-    margin-top: 200px;
+    margin-top: 250px;
   }
 }
 
@@ -484,7 +484,7 @@
   }
 
   .landing-content {
-    margin-top: 200px;
+    margin-top: 250px;
   }
 }
 
@@ -498,7 +498,7 @@
   }
 
   .landing-content {
-    margin-top: 200px;
+    margin-top: 250px;
   }
 }
 
@@ -512,7 +512,7 @@
   }
 
   .landing-content {
-    margin-top: 200px;
+    margin-top: 250px;
   }
 }
 
@@ -590,6 +590,7 @@
 
   .landing-subtitle {
     font-size: 0.9rem;
+    text-align: center !important;
   }
 
   .landing-content {
@@ -604,6 +605,7 @@
 
   .landing-subtitle {
     font-size: 0.85rem;
+    text-align: center !important;
   }
 
   .landing-content {
@@ -903,7 +905,7 @@
   }
 
   .landing-content {
-    margin-top: 200px;
+    margin-top: 150px;
     align-items: center;
     padding: 0 1.5rem;
   }
