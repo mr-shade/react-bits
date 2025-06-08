@@ -16,7 +16,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-links">
-            <a href="https://github.com/react-bits" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
+            <a href="https://github.com/DavidHDev/react-bits" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
             <Link to="/text-animations/split-text" className="footer-link">Docs</Link>
             <Link to="/showcase" className="footer-link">Showcase</Link>
             <a href="https://www.jsrepo.com/" target="_blank" className="footer-link">CLI</a>

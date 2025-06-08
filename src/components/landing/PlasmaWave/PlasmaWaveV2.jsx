@@ -109,11 +109,14 @@ export default function PlasmaWaveV2({
   fadeInDuration = 2000
 }) {
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef(null);
   const uniformOffset = useRef(new Float32Array([xOffset, yOffset]));
   const uniformResolution = useRef(new Float32Array([1, 1])); // never 0
   const rendererRef = useRef(null);
   const fadeStartTime = useRef(null);
+  const lastTimeRef = useRef(0);
+  const pausedTimeRef = useRef(0);
 
   const propsRef = useRef({
     xOffset, yOffset, rotationDeg, focalLength,
@@ -129,12 +132,31 @@ export default function PlasmaWaveV2({
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile);
-    
+
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
+
+  // Intersection Observer to track visibility
+  useEffect(() => {
+    if (!containerRef.current || isMobile) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        rootMargin: '50px', // Start animation slightly before enterin gview
+        threshold: 0.1, // Trigger when 10% of the component is visible
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => observer.disconnect();
+  }, [isMobile]);
 
   useEffect(() => {
     // Don't initialize WebGL on mobile
@@ -198,12 +220,8 @@ export default function PlasmaWaveV2({
     const ro = new ResizeObserver(resize);
     ro.observe(containerRef.current);
 
-    const start = performance.now();
     let rafId;
     const loop = now => {
-      rafId = requestAnimationFrame(loop);
-
-      const t = (now - start) * 0.001;
       const {
         xOffset: xOff,
         yOffset: yOff,
@@ -212,26 +230,44 @@ export default function PlasmaWaveV2({
         fadeInDuration: fadeDur,
       } = propsRef.current;
 
-      if (fadeStartTime.current === null && t > 0.1) {
-        fadeStartTime.current = now;
+      // Only continue animation if visible
+      if (isVisible) {
+        // Resume time tracking when becoming visible
+        if (lastTimeRef.current === 0) {
+          lastTimeRef.current = now - pausedTimeRef.current;
+        }
+
+        const t = (now - lastTimeRef.current) * 0.001;
+
+        if (fadeStartTime.current === null && t > 0.1) {
+          fadeStartTime.current = now;
+        }
+
+        let opacity = 0;
+        if (fadeStartTime.current !== null) {
+          const fadeElapsed = now - fadeStartTime.current;
+          opacity = Math.min(fadeElapsed / fadeDur, 1);
+          opacity = 1 - Math.pow(1 - opacity, 3);
+        }
+
+        uniformOffset.current[0] = xOff;
+        uniformOffset.current[1] = yOff;
+
+        program.uniforms.iTime.value = t;
+        program.uniforms.uRotation.value = rot * Math.PI / 180;
+        program.uniforms.focalLength.value = fLen;
+        program.uniforms.uOpacity.value = opacity;
+
+        renderer.render({ scene, camera });
+      } else {
+        // Pause time tracking when not visible
+        if (lastTimeRef.current !== 0) {
+          pausedTimeRef.current = now - lastTimeRef.current;
+          lastTimeRef.current = 0;
+        }
       }
 
-      let opacity = 0;
-      if (fadeStartTime.current !== null) {
-        const fadeElapsed = now - fadeStartTime.current;
-        opacity = Math.min(fadeElapsed / fadeDur, 1);
-        opacity = 1 - Math.pow(1 - opacity, 3);
-      }
-
-      uniformOffset.current[0] = xOff;
-      uniformOffset.current[1] = yOff;
-
-      program.uniforms.iTime.value = t;
-      program.uniforms.uRotation.value = rot * Math.PI / 180;
-      program.uniforms.focalLength.value = fLen;
-      program.uniforms.uOpacity.value = opacity;
-
-      renderer.render({ scene, camera });
+      rafId = requestAnimationFrame(loop);
     };
     rafId = requestAnimationFrame(loop);
 
@@ -241,7 +277,7 @@ export default function PlasmaWaveV2({
       renderer.gl.canvas.remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMobile]);
+  }, [isMobile, isVisible]);
 
   // Don't render the WebGL content on mobile
   if (isMobile) {
