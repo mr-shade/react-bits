@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SplitText from "../../../content/TextAnimations/SplitText/SplitText";
-import DotGrid from "../../../tailwind/Backgrounds/DotGrid/DotGrid";
+import DotGrid from "../../../content/Backgrounds/DotGrid/DotGrid";
 import LetterGlitch from "../../../content/Backgrounds/LetterGlitch/LetterGlitch";
 import Squares from "../../../content/Backgrounds/Squares/Squares";
 import { Box } from "@chakra-ui/react";
