@@ -4,6 +4,7 @@ import SplitText from "../../../content/TextAnimations/SplitText/SplitText";
 import DotGrid from "../../../content/Backgrounds/DotGrid/DotGrid";
 import LetterGlitch from "../../../content/Backgrounds/LetterGlitch/LetterGlitch";
 import Squares from "../../../content/Backgrounds/Squares/Squares";
+import { Box } from "@chakra-ui/react";
 
 const ResponsiveSplitText = ({ isMobile, text, ...rest }) =>
   isMobile ? (
@@ -86,13 +87,15 @@ const Hero = () => {
               window.open("https://reactbits.dev/backgrounds/dot-grid")
             }
           >
-            <DotGrid
-              baseColor="#ffffff"
-              activeColor="rgba(138, 43, 226, 0.9)"
-              dotSize={6}
-              gap={16}
-              proximity={50}
-            />
+            <Box w="100%" h="100%" position="relative" className="hero-dot-grid">
+              <DotGrid
+                baseColor="#ffffff"
+                activeColor="rgba(138, 43, 226, 0.9)"
+                dotSize={8}
+                gap={16}
+                proximity={50}
+              />
+            </Box>
           </div>
 
           <div className="hero-cards-row">

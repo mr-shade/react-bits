@@ -353,6 +353,10 @@
   border-radius: 30px !important;
 }
 
+.hero-dot-grid {
+  transform: translateY(10px) translateX(7px);
+}
+
 .hero-metaballs {
   mix-blend-mode: screen;
   opacity: 1;
