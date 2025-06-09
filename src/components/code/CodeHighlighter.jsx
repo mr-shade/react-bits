@@ -83,9 +83,8 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
         <Button
           position="absolute"
           top={4}
-          right={2.5}
-          className="code-copy"
-          rounded="xl"
+          right=".6em"
+          borderRadius="8px"
           fontWeight={500}
           backgroundColor={copied ? '#6CC75D' : '#060010'}
           border="1px solid #392e4e"

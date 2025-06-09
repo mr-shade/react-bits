@@ -86,8 +86,8 @@
 }
 
 .code-highlighter {
-  border: 1px solid #ffffff1c !important;
-  border-radius: 20px !important;
+  border: 1px solid #392e4e !important;
+  border-radius: 15px !important;
   background: #060010 !important;
   font-size: 14px !important;
 }
@@ -238,13 +238,14 @@ div:has(> .props-table) {
 .demo-title-contribute {
   margin-top: 2em;
   letter-spacing: -0.5px;
+  font-weight: 600;
   margin-bottom: 1em;
   text-align: center;
 }
 
 .contribute-container {
   background: #060010;
-  border: 1px solid #161616;
+  border: 1px solid #392e4e;
   border-radius: 20px;
   margin-top: 1em;
   padding-bottom: 3em;
