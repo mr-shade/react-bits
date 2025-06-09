@@ -354,7 +354,8 @@
 }
 
 .hero-dot-grid {
-  transform: translateY(10px) translateX(7px);
+  overflow: hidden !important;
+  transform: translateY(5px) translateX(5px);
 }
 
 .hero-metaballs {
