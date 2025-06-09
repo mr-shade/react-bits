@@ -3,9 +3,8 @@ import App from './App.jsx'
 import './styles.css'
 
 import { HelmetProvider } from 'react-helmet-async';
+import { Provider } from "@/components/setup/provider"
 
-import { ChakraProvider } from '@chakra-ui/react'
-import { customTheme } from './utils/customTheme.js';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 ReactDOM.createRoot(document.createElement('div')).render(
@@ -14,9 +13,9 @@ ReactDOM.createRoot(document.createElement('div')).render(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ChakraProvider theme={customTheme}>
+  <Provider>
     <HelmetProvider>
       <App />
     </HelmetProvider>
-  </ChakraProvider>,
+  </Provider>,
 )

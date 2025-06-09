@@ -8,12 +8,9 @@ import {
 import {
   Box,
   Flex,
-  Input,
-  Switch,
-  FormControl,
-  FormLabel,
   Text
 } from '@chakra-ui/react';
+import PreviewSwitch from '../../components/common/PreviewSwitch';
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/PropTable';
@@ -23,6 +20,8 @@ import RefreshButton from '../../components/common/RefreshButton';
 
 import TextPressure from '../../content/TextAnimations/TextPressure/TextPressure';
 import { textPressure } from '../../constants/code/TextAnimations/textPressureCode';
+import Customize from '../../components/common/Customize';
+import PreviewInput from '../../components/common/PreviewInput';
 
 const propData = [
   {
@@ -146,21 +145,17 @@ const TextPressureDemo = () => {
           </Box>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex alignItems='center' gap={4} flexWrap="wrap">
-            <Input
-              width="100%"
-              maxWidth='200px'
-              value={text}
-              onChange={(e) => {
-                setText(e.target.value);
-                forceRerender();
-              }}
-              maxLength={11}
-              placeholder="Enter some text"
-            />
+        <Customize>
+          <PreviewInput
+            title="Text"
+            value={text}
+            placeholder="Your text here..."
+            width={200}
+            maxLength={10}
+            onChange={setText}
+          />
 
+          <Flex alignItems='center' gap={4} flexWrap="wrap" mt={6}>
             {/* Text Color */}
             <Flex gap={4} align="center">
               <Text fontSize="sm">Text Color</Text>
@@ -190,70 +185,58 @@ const TextPressureDemo = () => {
             </Flex>
           </Flex>
 
-          <Text mt={8} color='#999'>Animation Settings</Text>
-          <Flex gap={4} flexWrap="wrap" mt={4}>
-            <FormControl display="flex" alignItems="center" w="140px">
-              <FormLabel mb="0" fontSize="sm">Flex</FormLabel>
-              <Switch
-                isChecked={flex}
-                onChange={(e) => {
-                  setFlex(e.target.checked);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
-            <FormControl display="flex" alignItems="center" w="140px">
-              <FormLabel mb="0" fontSize="sm">Alpha</FormLabel>
-              <Switch
-                isChecked={alpha}
-                onChange={(e) => {
-                  setAlpha(e.target.checked);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
-            <FormControl display="flex" alignItems="center" w="140px">
-              <FormLabel mb="0" fontSize="sm">Stroke</FormLabel>
-              <Switch
-                isChecked={stroke}
-                onChange={(e) => {
-                  setStroke(e.target.checked);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
-            <FormControl display="flex" alignItems="center" w="140px">
-              <FormLabel mb="0" fontSize="sm">Width</FormLabel>
-              <Switch
-                isChecked={width}
-                onChange={(e) => {
-                  setWidth(e.target.checked);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
-            <FormControl display="flex" alignItems="center" w="140px">
-              <FormLabel mb="0" fontSize="sm">Weight</FormLabel>
-              <Switch
-                isChecked={weight}
-                onChange={(e) => {
-                  setWeight(e.target.checked);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
-            <FormControl display="flex" alignItems="center" w="140px">
-              <FormLabel mb="0" fontSize="sm">Italic</FormLabel>
-              <Switch
-                isChecked={italic}
-                onChange={(e) => {
-                  setItalic(e.target.checked);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
+          <Text mt={6} color='#999'>Animation Settings</Text>
+          <Flex gap={4} flexWrap="wrap">
+            <PreviewSwitch
+              title="Flex"
+              isChecked={flex}
+              onChange={(checked) => {
+                setFlex(checked);
+                forceRerender();
+              }}
+            />
+            <PreviewSwitch
+              title="Alpha"
+              isChecked={alpha}
+              onChange={(checked) => {
+                setAlpha(checked);
+                forceRerender();
+              }}
+            />
+            <PreviewSwitch
+              title="Stroke"
+              isChecked={stroke}
+              onChange={(checked) => {
+                setStroke(checked);
+                forceRerender();
+              }}
+            />
+            <PreviewSwitch
+              title="Width"
+              isChecked={width}
+              onChange={(checked) => {
+                setWidth(checked);
+                forceRerender();
+              }}
+            />
+            <PreviewSwitch
+              title="Weight"
+              isChecked={weight}
+              onChange={(checked) => {
+                setWeight(checked);
+                forceRerender();
+              }}
+            />
+            <PreviewSwitch
+              title="Italic"
+              isChecked={italic}
+              onChange={(checked) => {
+                setItalic(checked);
+                forceRerender();
+              }}
+            />
           </Flex>
-        </div>
+        </Customize>
 
         <PropTable data={propData} />
       </PreviewTab>

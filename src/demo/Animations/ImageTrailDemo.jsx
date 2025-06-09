@@ -66,10 +66,10 @@ const ImageTrailDemo = () => {
             <ButtonGroup isAttached size="sm">
               <Button
                 fontSize="xs"
+                disabled
+                border="1px solid #271E37"
                 h={8}
-                bg="#a1a1aa"
-                isDisabled
-                _disabled={{ bg: '#222', cursor: 'not-allowed', _hover: { bg: '#222' } }}
+                _disabled={{ bg: '#271E37', border: "1px solid #271E37", color: '#fff', cursor: 'not-allowed', _hover: { bg: '#222' } }}
               >
                 Variant
               </Button>
@@ -79,9 +79,10 @@ const ImageTrailDemo = () => {
                 return (
                   <Button
                     key={num}
-                    bg={isActive ? '#5227FF' : '#111'}
-                    _hover={{ backgroundColor: isActive ? '#5227FF' : '#111' }}
-                    color={isActive ? 'black' : 'white'}
+                    bg={isActive ? '#5227FF' : '#0D0716'}
+                    border="1px solid #271E37"
+                    _hover={{ backgroundColor: isActive ? '#5227FF' : '#0D0716' }}
+                    color="#fff"
                     fontSize="xs"
                     h={8}
                     onClick={() => {

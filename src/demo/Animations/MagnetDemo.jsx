@@ -114,7 +114,7 @@ const MagnetDemo = () => {
           <PreviewSwitch
             title="Disabled"
             isChecked={disabled}
-            onChange={(e) => setDisabled(e.target.checked)}
+            onChange={(checked) => setDisabled(checked)}
           />
 
           <PreviewSlider

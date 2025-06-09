@@ -73,7 +73,7 @@ const LanyardDemo = () => {
           <PreviewSwitch
             title="Disable Gravity"
             isChecked={stopGravity}
-            onChange={(e) => setStopGravity(e.target.checked)}
+            onChange={(checked) => setStopGravity(checked)}
           />
         </Customize>
 

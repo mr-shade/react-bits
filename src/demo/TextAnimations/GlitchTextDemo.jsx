@@ -80,8 +80,8 @@ const GlitchTextDemo = () => {
             }}
           />
 
-          <PreviewSwitch title="Glitch Colors" isChecked={enableShadows} onChange={(e) => { setEnableShadows(e.target.checked); forceRerender() }} />
-          <PreviewSwitch title="Glitch On Hover" isChecked={enableOnHover} onChange={(e) => { setEnableOnHover(e.target.checked); forceRerender() }} />
+          <PreviewSwitch title="Glitch Colors" isChecked={enableShadows} onChange={(checked) => { setEnableShadows(checked); forceRerender() }} />
+          <PreviewSwitch title="Glitch On Hover" isChecked={enableOnHover} onChange={(checked) => { setEnableOnHover(checked); forceRerender() }} />
         </Customize>
 
         <PropTable data={propData} />

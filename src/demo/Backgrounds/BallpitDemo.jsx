@@ -146,8 +146,8 @@ const BallpitDemo = () => {
           <PreviewSwitch
             title="Display Cursor"
             isChecked={followCursor}
-            onChange={(e) => {
-              setFollowCursor(e.target.checked);
+            onChange={(checked) => {
+              setFollowCursor(checked);
               forceRerender();
             }}
           />

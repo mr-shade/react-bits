@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Input, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
 
 import { metaBalls } from "../../constants/code/Animations/metaBallsCode";
 import MetaBalls from "../../content/Animations/MetaBalls/MetaBalls";
-import { useState } from "react";
 
 const MetaBallsDemo = () => {
   const [color, setColor] = useState("#ffffff");
@@ -102,9 +105,7 @@ const MetaBallsDemo = () => {
           />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-
+        <Customize className="preview-options">
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Color</Text>
             <Input
@@ -113,137 +114,74 @@ const MetaBallsDemo = () => {
               onChange={(e) => { setColor(e.target.value); setCursorBallColor(e.target.value) }}
               width="50px"
             />
-            <Text fontSize="sm">{color}</Text>
           </Flex>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Ball Count</Text>
-            <Slider
-              min={2}
-              max={30}
-              step={1}
-              value={ballCount}
-              onChange={(val) => {
-                setBallCount(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{ballCount}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Ball Count"
+            min={2}
+            max={30}
+            step={1}
+            value={ballCount}
+            onChange={(val) => setBallCount(val)}
+            width={150}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Speed</Text>
-            <Slider
-              min={0.1}
-              max={1}
-              step={0.1}
-              value={speed}
-              onChange={(val) => {
-                setSpeed(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{speed}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Speed"
+            min={0.1}
+            max={1}
+            step={0.1}
+            value={speed}
+            onChange={(val) => setSpeed(val)}
+            width={150}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Size</Text>
-            <Slider
-              min={10}
-              max={50}
-              step={1}
-              value={animationSize}
-              onChange={(val) => {
-                setAnimationSize(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{animationSize}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Size"
+            min={10}
+            max={50}
+            step={1}
+            value={animationSize}
+            onChange={(val) => setAnimationSize(val)}
+            width={150}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Clump Factor</Text>
-            <Slider
-              min={0.1}
-              max={2}
-              step={0.1}
-              value={clumpFactor}
-              onChange={(val) => {
-                setClumpFactor(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{clumpFactor}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Clump Factor"
+            min={0.1}
+            max={2}
+            step={0.1}
+            value={clumpFactor}
+            onChange={(val) => setClumpFactor(val)}
+            width={150}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Follow Cursor</Text>
-            <Switch
-              isChecked={enableMouseInteraction}
-              onChange={(e) => { setEnableMouseInteraction(e.target.checked); }}
-            />
-          </Flex>
+          <PreviewSwitch
+            title="Follow Cursor"
+            isChecked={enableMouseInteraction}
+            onChange={(checked) => setEnableMouseInteraction(checked)}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Cursor Smoothing</Text>
-            <Slider
-              min={0.001}
-              max={0.25}
-              step={0.001}
-              value={hoverSmoothness}
-              onChange={(val) => {
-                setHoverSmoothness(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{hoverSmoothness}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Cursor Smoothing"
+            min={0.001}
+            max={0.25}
+            step={0.001}
+            value={hoverSmoothness}
+            onChange={(val) => setHoverSmoothness(val)}
+            width={150}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Cursor Size</Text>
-            <Slider
-              min={1}
-              max={5}
-              step={1}
-              value={cursorBallSize}
-              onChange={(val) => {
-                setCursorBallSize(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{cursorBallSize}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Cursor Size"
+            min={1}
+            max={5}
+            step={1}
+            value={cursorBallSize}
+            onChange={(val) => setCursorBallSize(val)}
+            width={150}
+          />
+        </Customize>
 
 
 

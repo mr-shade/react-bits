@@ -145,8 +145,8 @@ const TiltedCardDemo = () => {
             displayValue={(val) => val.toFixed(2)}
           />
 
-          <PreviewSwitch title="Show Tooltip" isChecked={showTooltip} onChange={(e) => { setShowTooltip(e.target.checked); }} />
-          <PreviewSwitch title="Show Overlay Content" isChecked={displayOverlayContent} onChange={(e) => { setDisplayOverlayContent(e.target.checked); }} />
+          <PreviewSwitch title="Show Tooltip" isChecked={showTooltip} onChange={(checked) => { setShowTooltip(checked); }} />
+          <PreviewSwitch title="Show Overlay Content" isChecked={displayOverlayContent} onChange={(checked) => { setDisplayOverlayContent(checked); }} />
         </Customize>
 
         <PropTable data={propData} />

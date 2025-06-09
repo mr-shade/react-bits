@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { gsap } from "gsap";
 
 import useForceRerender from "../../hooks/useForceRerender";
@@ -8,6 +8,7 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSlider from "../../components/common/PreviewSlider";
 
 import ScrollFloat from "../../content/TextAnimations/ScrollFloat/ScrollFloat";
 import { scrollFloat } from "../../constants/code/TextAnimations/scrollFloatCode";
@@ -115,49 +116,33 @@ const ScrollFloatDemo = () => {
         <div className="preview-options">
           <h2 className="demo-title-extra">Customize</h2>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Stagger</Text>
-            <Slider
-              min={0.01}
-              max={0.1}
-              step={0.01}
-              value={stagger}
-              onChange={(val) => {
-                containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-                setStagger(val);
-                forceRerender();
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{stagger}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Stagger"
+            min={0.01}
+            max={0.1}
+            step={0.01}
+            value={stagger}
+            onChange={(val) => {
+              containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+              setStagger(val);
+              forceRerender();
+            }}
+            width={150}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Duration</Text>
-            <Slider
-              min={1}
-              max={10}
-              step={0.1}
-              value={duration}
-              onChange={(val) => {
-                containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-                setDuration(val);
-                forceRerender();
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{duration}</Text>
-          </Flex>
+          <PreviewSlider
+            title="Duration"
+            min={1}
+            max={10}
+            step={0.1}
+            value={duration}
+            onChange={(val) => {
+              containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+              setDuration(val);
+              forceRerender();
+            }}
+            width={150}
+          />
         </div>
 
         <PropTable data={propData} />

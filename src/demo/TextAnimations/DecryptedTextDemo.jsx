@@ -1,24 +1,7 @@
 import { useState } from "react";
-import {
-  Box,
-  Flex,
-  FormControl,
-  FormLabel,
-  Select,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  Switch,
-  Text,
-} from "@chakra-ui/react";
-import {
-  TabbedLayout,
-  PreviewTab,
-  CodeTab,
-  CliTab,
-} from "../../components/common/TabbedLayout";
+import { Box, Flex, Separator } from "@chakra-ui/react";
 import { toast } from "sonner";
+import { TabbedLayout, PreviewTab, CodeTab, CliTab } from "../../components/common/TabbedLayout";
 
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
@@ -26,16 +9,20 @@ import Dependencies from "../../components/code/Dependencies";
 import PropTable from "../../components/common/PropTable";
 import RefreshButton from "../../components/common/RefreshButton";
 import useForceRerender from "../../hooks/useForceRerender";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import PreviewSelect from "../../components/common/PreviewSelect";
+import Customize from "../../components/common/Customize";
 
 import DecryptedText from "../../content/TextAnimations/DecryptedText/DecryptedText";
 import { decryptedText } from "../../constants/code/TextAnimations/decryptedTextCode";
 
 const DecryptedTextDemo = () => {
-  const [speed, setspeed] = useState(60);
+  const [speed, setSpeed] = useState(60);
   const [maxIterations, setMaxIterations] = useState(10);
   const [sequential, setSequential] = useState(true);
-  const [revealDirection, setRevealDirection] = useState("start");
   const [useOriginalCharsOnly, setUseOriginalCharsOnly] = useState(false);
+  const [revealDirection, setRevealDirection] = useState("start");
   const [animateOn, setAnimateOn] = useState("view");
 
   const [key, forceRerender] = useForceRerender();
@@ -105,12 +92,14 @@ const DecryptedTextDemo = () => {
     },
   ];
 
+  const animateOptions = [{ label: "View", value: "view" }, { label: "Hover", value: "hover" }];
+  const directionOptions = [{ label: "Start", value: "start" }, { label: "End", value: "end" }, { label: "Center", value: "center" }];
+
   return (
     <TabbedLayout>
       <PreviewTab>
         <Box
           position="relative"
-          justifyContent="flex-start"
           py={{ md: 6, sm: 4 }}
           className="demo-container"
           overflow="hidden"
@@ -119,7 +108,10 @@ const DecryptedTextDemo = () => {
           <Flex
             pl={{ md: 6, sm: 3 }}
             m={{ md: 8, sm: 2 }}
+            w="100%"
             direction="column"
+            justifyContent="flex-start"
+            alignItems="flex-start"
             key={key}
           >
             <DecryptedText
@@ -144,7 +136,7 @@ const DecryptedTextDemo = () => {
             />
             <DecryptedText
               speed={speed}
-              text="And try tinkerin’ round’"
+              text="And try tinkerin' round'"
               maxIterations={maxIterations}
               sequential={sequential}
               revealDirection={revealDirection}
@@ -166,124 +158,84 @@ const DecryptedTextDemo = () => {
           </Flex>
         </Box>
 
-        <Flex
-          direction="column"
-          alignItems="flex-start"
-          gap={4}
-          my={4}
-          style={{ maxWidth: "100%", overflow: "auto" }}
-        >
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
           <Flex wrap="wrap" gap={4} mb={4}>
-            <FormControl width="auto">
-              <FormLabel mb="2">Animate On</FormLabel>
-              <Select
-                width="auto"
-                value={animateOn}
-                onChange={(e) => {
-                  setAnimateOn(e.target.value);
-                  forceRerender();
-                }}
-              >
-                <option value="hover">hover</option>
-                <option value="view">view</option>
-              </Select>
-            </FormControl>
+            <PreviewSwitch
+              title="Sequential"
+              isChecked={sequential}
+              onChange={(checked) => {
+                setSequential(checked);
+                forceRerender();
+              }}
+            />
 
-            <FormControl width="auto">
-              <FormLabel mb="2">Direction</FormLabel>
-              <Select
-                width="auto"
-                value={revealDirection}
-                onChange={(e) => {
-                  setRevealDirection(e.target.value);
-                  forceRerender();
-                }}
-              >
-                <option value="start">start</option>
-                <option value="end">end</option>
-                <option value="center">center</option>
-              </Select>
-            </FormControl>
+            <PreviewSwitch
+              title="Original Chars"
+              isChecked={useOriginalCharsOnly}
+              onChange={(checked) => {
+                setUseOriginalCharsOnly(checked);
+                forceRerender();
+              }}
+            />
           </Flex>
 
-          <Flex wrap="wrap" gap={4} mb={4}>
-            <FormControl width="auto">
-              <FormLabel mb="0">Speed</FormLabel>
-              <Flex alignItems="center" gap={2}>
-                <Slider
-                  min={10}
-                  max={200}
-                  step={10}
-                  width="100px"
-                  value={speed}
-                  onChange={(val) => {
-                    setspeed(val);
-                    forceRerender();
-                  }}
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-                <Text>{speed}ms</Text>
-              </Flex>
-            </FormControl>
+          <Separator borderColor="#271E37" my={4} />
 
-            <FormControl width="auto">
-              <FormLabel mb="0">Iterations</FormLabel>
-              <Flex alignItems="center" gap={2}>
-                <Slider
-                  min={1}
-                  max={50}
-                  step={1}
-                  width="100px"
-                  value={maxIterations}
-                  onChange={(val) => {
-                    setMaxIterations(val);
-                    forceRerender();
-                  }}
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-                <Text ml={2}>{maxIterations}</Text>
-              </Flex>
-            </FormControl>
+          <Flex wrap="wrap" direction="column" gap={4}>
+            <PreviewSelect
+              title="Animate On"
+              options={animateOptions}
+              value={animateOn}
+              name="animateOn"
+              width={100}
+              onChange={(val) => {
+                setAnimateOn(val);
+                forceRerender();
+              }}
+            />
+
+            <PreviewSelect
+              title="Direction"
+              options={directionOptions}
+              value={revealDirection}
+              name="direction"
+              width={100}
+              onChange={(val) => {
+                setRevealDirection(val);
+                forceRerender();
+              }}
+            />
           </Flex>
 
-          <Flex wrap="wrap" gap={4} mb={4}>
-            <FormControl width="auto" display="flex" alignItems="center">
-              <FormLabel mb="0" mr={2}>
-                Sequential
-              </FormLabel>
-              <Switch
-                mr={4}
-                isChecked={sequential}
-                onChange={() => {
-                  setSequential(!sequential);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
+          <Separator borderColor="#271E37" my={4} />
 
-            <FormControl width="auto" display="flex" alignItems="center">
-              <FormLabel mb="0" mr={2}>
-                Original Chars
-              </FormLabel>
-              <Switch
-                isChecked={useOriginalCharsOnly}
-                onChange={() => {
-                  setUseOriginalCharsOnly(!useOriginalCharsOnly);
-                  forceRerender();
-                }}
-              />
-            </FormControl>
+          <Flex wrap="wrap" direction="column" gap={4} mb={4}>
+            <PreviewSlider
+              title="Speed"
+              min={10}
+              max={200}
+              step={10}
+              value={speed}
+              valueUnit="ms"
+              onChange={(val) => {
+                setSpeed(val);
+                forceRerender();
+              }}
+            />
+
+            <PreviewSlider
+              title="Iterations"
+              min={1}
+              max={50}
+              step={1}
+              value={maxIterations}
+              onChange={(val) => {
+                setMaxIterations(val);
+                forceRerender();
+              }}
+            />
           </Flex>
-        </Flex>
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["framer-motion"]} />

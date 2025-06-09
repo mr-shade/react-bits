@@ -104,9 +104,9 @@ const CarouselDemo = () => {
             }}
           />
 
-          <PreviewSwitch title="Round Variant" isChecked={round} onChange={(e) => { setRound(e.target.checked); forceRerender() }} />
-          <PreviewSwitch title="Loop" isChecked={loop} onChange={(e) => { setLoop(e.target.checked); forceRerender() }} />
-          <PreviewSwitch title="Autoplay" isChecked={autoplay} onChange={(e) => { setAutoplay(e.target.checked); forceRerender() }} />
+          <PreviewSwitch title="Round Variant" isChecked={round} onChange={(checked) => { setRound(checked); forceRerender() }} />
+          <PreviewSwitch title="Loop" isChecked={loop} onChange={(checked) => { setLoop(checked); forceRerender() }} />
+          <PreviewSwitch title="Autoplay" isChecked={autoplay} onChange={(checked) => { setAutoplay(checked); forceRerender() }} />
 
           <PreviewSlider
             title="Delay"
@@ -125,7 +125,7 @@ const CarouselDemo = () => {
             title="Pause On Hover"
             sChecked={pauseOnHover}
             isDisabled={!autoplay}
-            onChange={(e) => { setPauseOnHover(e.target.checked); forceRerender() }}
+            onChange={(checked) => { setPauseOnHover(checked); forceRerender() }}
           />
         </Customize>
 

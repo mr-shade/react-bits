@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { WarningIcon } from "@chakra-ui/icons";
+import { FiAlertTriangle } from "react-icons/fi";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from '../../components/code/CodeExample';
@@ -85,6 +85,11 @@ const BlobCursorDemo = () => {
           <Button
             mb={2}
             fontSize="xs"
+            bg="#170D27"
+            borderRadius="10px"
+            border="1px solid #271E37"
+            _hover={{ bg: "#271E37" }}
+            color="#fff"
             h={8}
             onClick={() => setBlobType(blobType === 'circle' ? 'square' : 'circle')}
           >
@@ -196,7 +201,7 @@ const BlobCursorDemo = () => {
         </Customize>
 
         <p className="demo-extra-info" style={{ marginTop: '20px' }}>
-          <WarningIcon position="relative" top="-1px" mr="2" /> SVG filters are not fully supported on Safari. Performance may vary.
+          <FiAlertTriangle position="relative" top="-1px" mr="2" /> SVG filters are not fully supported on Safari. Performance may vary.
         </p>
 
         <PropTable data={propData} />

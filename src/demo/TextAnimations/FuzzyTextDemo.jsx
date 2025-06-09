@@ -106,7 +106,7 @@ const FuzzyTextDemo = () => {
             }}
           />
 
-          <PreviewSwitch title="Enable Hover" isChecked={enableHover} onChange={(e) => { setEnableHover(e.target.checked); }} />
+          <PreviewSwitch title="Enable Hover" isChecked={enableHover} onChange={(checked) => { setEnableHover(checked); }} />
         </Customize>
 
         <PropTable data={propData} />

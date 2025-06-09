@@ -272,10 +272,11 @@ div:has(> .props-table) {
 }
 
 .demo-details span {
-  background-color: #271E37;
+  background-color: #170D27;
+  border: 1px solid #271E37;
   white-space: nowrap;
-  color: #fff;
-  border-radius: 50px;
+  color: #B19EEF;
+  border-radius: 10px;
   font-size: 0.8rem;
   padding: 0.5em 1em;
   transition: 0.3s ease;
@@ -283,7 +284,7 @@ div:has(> .props-table) {
 
 .demo-details span:hover {
   cursor: pointer;
-  background-color: #111;
+  background-color: #271E37;
 }
 
 .demo-extra-info {

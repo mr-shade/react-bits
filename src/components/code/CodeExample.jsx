@@ -1,23 +1,37 @@
 import { getLanguage } from "../../utils/utils";
 import CodeHighlighter from "./CodeHighlighter";
-import { CodeOptions, CSSTab, TailwindTab, TSCSSTab, TSTailwindTab } from "./CodeOptions";
+import CodeOptions, {
+  CSSTab,
+  TailwindTab,
+  TSCSSTab,
+  TSTailwindTab,
+} from "./CodeOptions";
 
-const CodeExample = ({ codeObject }) => {
-  return (
-    <>
-      {Object.entries(codeObject).map(([key, codeString]) => {
-        if (['tailwind', 'css', 'tsTailwind', 'tsCode', 'cliDefault', 'cliTailwind', 'cliTsTailwind', 'cliTsDefault'].includes(key)) return null;
+const CodeExample = ({ codeObject }) => (
+  <>
+    {Object.entries(codeObject).map(([name, snippet]) => {
+      const skip = [
+        "tailwind",
+        "css",
+        "tsTailwind",
+        "tsCode",
+        "cliDefault",
+        "cliTailwind",
+        "cliTsTailwind",
+        "cliTsDefault",
+      ];
+      if (skip.includes(name)) return null;
 
-        return key === 'code' || key === 'tsCode' ? (
-          <div key={codeString}>
-            <h2 className="demo-title">{key}</h2>
-            <CodeOptions key={codeString}>
-              {/* JavaScript Tailwind Code */}
+      if (name === "code" || name === "tsCode") {
+        return (
+          <div key={name}>
+            <h2 className="demo-title">{name}</h2>
+
+            <CodeOptions>
               <TailwindTab>
                 <CodeHighlighter language="jsx" codeString={codeObject.tailwind} />
               </TailwindTab>
 
-              {/* JavaScript Default CSS Code */}
               <CSSTab>
                 <CodeHighlighter language="jsx" codeString={codeObject.code} />
                 {codeObject.css && (
@@ -28,14 +42,12 @@ const CodeExample = ({ codeObject }) => {
                 )}
               </CSSTab>
 
-              {/* TypeScript Tailwind Code */}
               {codeObject.tsTailwind && (
                 <TSTailwindTab>
                   <CodeHighlighter language="tsx" codeString={codeObject.tsTailwind} />
                 </TSTailwindTab>
               )}
 
-              {/* TypeScript Default CSS Code */}
               {codeObject.tsCode && (
                 <TSCSSTab>
                   <CodeHighlighter language="tsx" codeString={codeObject.tsCode} />
@@ -49,15 +61,17 @@ const CodeExample = ({ codeObject }) => {
               )}
             </CodeOptions>
           </div>
-        ) : (
-          <div key={codeString}>
-            <h2 className="demo-title">{key}</h2>
-            <CodeHighlighter language={getLanguage(key)} codeString={codeString} />
-          </div>
         );
-      })}
-    </>
-  );
-};
+      }
+
+      return (
+        <div key={name}>
+          <h2 className="demo-title">{name}</h2>
+          <CodeHighlighter language={getLanguage(name)} codeString={snippet} />
+        </div>
+      );
+    })}
+  </>
+);
 
 export default CodeExample;

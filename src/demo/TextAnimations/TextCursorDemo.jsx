@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import PreviewSwitch from "../../components/common/PreviewSwitch";
@@ -12,6 +12,7 @@ import useForceRerender from "../../hooks/useForceRerender";
 
 import TextCursor from "../../content/TextAnimations/TextCursor/TextCursor";
 import { textCursor } from "../../constants/code/TextAnimations/textCursorCode";
+import PreviewInput from "../../components/common/PreviewInput";
 
 const TextCursorDemo = () => {
   const [text, setText] = useState("⚛️");
@@ -85,20 +86,17 @@ const TextCursorDemo = () => {
         </Box>
 
         <Customize>
-          <FormControl w="200px">
-            <FormLabel fontSize="sm">Text</FormLabel>
-            <Input
-              value={text}
-              maxLength={10}
-              onChange={(e) => {
-                setText(e.target.value);
-              }}
-              placeholder="Enter text..."
-            />
-          </FormControl>
+          <PreviewInput
+            title="Text"
+            value={text}
+            placeholder="Enter text..."
+            width={160}
+            maxLength={10}
+            onChange={setText}
+          />
 
-          <PreviewSwitch title="Follow Mouse Direction" isChecked={followMouseDirection} onChange={(e) => { setFollowMouseDirection(e.target.checked); forceRerender(); }} />
-          <PreviewSwitch title="Enable Random Floating" isChecked={randomFloat} onChange={(e) => { setRandomFloat(e.target.checked); forceRerender(); }} />
+          <PreviewSwitch title="Follow Mouse Direction" isChecked={followMouseDirection} onChange={(checked) => { setFollowMouseDirection(checked); forceRerender(); }} />
+          <PreviewSwitch title="Enable Random Floating" isChecked={randomFloat} onChange={(checked) => { setRandomFloat(checked); forceRerender(); }} />
         </Customize>
 
         <PropTable data={propData} />

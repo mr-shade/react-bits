@@ -126,7 +126,7 @@
   height: 0.75rem;
   width: 0.75rem;
   border-radius: 9999px;
-  background-color: #060010;
+  background-color: #fff;
 }
 
 .step-number {
@@ -154,5 +154,5 @@
 .check-icon {
   height: 1rem;
   width: 1rem;
-  color: #000;
+  color: #fff;
 }

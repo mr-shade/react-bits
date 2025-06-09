@@ -188,23 +188,11 @@ const CardSwapDemo = () => {
         </Box>
 
         <Customize>
-          <Button
-            mb={2}
-            fontSize="xs"
-            h={8}
-            onClick={() => {
-              setEasing(easing === 'elastic' ? 'linear' : 'elastic');
-              forceRerender();
-            }}
-          >
-            Easing: <Text color={"#a1a1aa"}>&nbsp;{easing}</Text>
-          </Button>
-
           <PreviewSwitch
             title="Pause On Hover"
             isChecked={pauseOnHover}
-            onChange={(e) => {
-              setPauseOnHover(e.target.checked);
+            onChange={(checked) => {
+              setPauseOnHover(checked);
               forceRerender();
             }}
           />
@@ -256,6 +244,22 @@ const CardSwapDemo = () => {
               forceRerender();
             }}
           />
+
+          <Button
+            fontSize="xs"
+            bg="#170D27"
+            borderRadius="10px"
+            border="1px solid #271E37"
+            _hover={{ bg: "#271E37" }}
+            color="#fff"
+            h={8}
+            onClick={() => {
+              setEasing(easing === 'elastic' ? 'linear' : 'elastic');
+              forceRerender();
+            }}
+          >
+            Easing: <Text color={"#a1a1aa"}>&nbsp;{easing}</Text>
+          </Button>
         </Customize>
 
         <PropTable data={propData} />

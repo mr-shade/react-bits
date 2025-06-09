@@ -103,7 +103,15 @@ const CountUpDemo = () => {
 
         <h2 className="demo-title-extra">Start Programatically</h2>
         <Flex direction="column" justifyContent="center" alignItems="center" position="relative" className="demo-container" minH={200}>
-          <Button onClick={() => setStartCounting(true)}>Count to 500!</Button>
+          <Button
+            bg="#170D27"
+            borderRadius="10px"
+            border="1px solid #271E37"
+            color="#fff"
+            onClick={() => setStartCounting(true)}
+          >
+            Count to 500!
+          </Button>
 
           <CountUp
             key={keyProgramatically}

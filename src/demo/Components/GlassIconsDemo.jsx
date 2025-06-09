@@ -49,7 +49,7 @@ const GlassIconsDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch title="Colorful" isChecked={colorful} onChange={(e) => { setColorful(e.target.checked); }} />
+          <PreviewSwitch title="Colorful" isChecked={colorful} onChange={(checked) => { setColorful(checked); }} />
         </Customize>
 
         <PropTable data={propData} />

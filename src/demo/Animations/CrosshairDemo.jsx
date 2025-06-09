@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
+import Customize from "../../components/common/Customize";
+import PropTable from "../../components/common/PropTable";
 
 import Crosshair from "../../content/Animations/Crosshair/Crosshair";
 import { crosshair } from '../../constants/code/Animations/crosshairCode';
@@ -15,6 +17,11 @@ const CrosshairDemo = () => {
   const [targeted, setTargeted] = useState(true);
 
   const containerRef = useRef(null);
+
+  const propData = [
+    { name: "color", type: "string", default: "'white'", description: "Color of the crosshair lines." },
+    { name: "containerRef", type: "RefObject<HTMLElement>", default: "null", description: "Optional container ref to limit crosshair to specific element. If null, crosshair will be active on entire viewport." },
+  ];
 
   return (
     <TabbedLayout>
@@ -33,30 +40,37 @@ const CrosshairDemo = () => {
           </Flex>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex gap={2}>
-            <Button
-              fontSize="xs"
-              h={8}
-              onClick={() => {
-                setTargeted(!targeted);
+        <Customize>
+          <Flex gap={4} align="center" mt={4} mb={4}>
+            <Text fontSize="sm">Crosshair Color</Text>
+            <Input
+              type="color"
+              value={color}
+              onChange={(e) => {
+                setColor(e.target.value);
               }}
-            >
-              Active on: <Text color={targeted ? "lightgreen" : "coral"}>&nbsp;{targeted ? 'Viewport' : 'Container'}</Text>
-            </Button>
-            <Flex alignItems="center"
-              fontSize="xs"
-              h={8}
-              onClick={() => {
-
-              }}
-            >
-              Color:&nbsp;&nbsp;<input type="color" value={color} style={{ height: '22px', outline: 'none', border: 'none' }} onChange={(e) => setColor(e.target.value)} />
-            </Flex>
+              width="60px"
+              p={0}
+            />
           </Flex>
-        </div>
 
+          <Button
+            fontSize="xs"
+            bg="#170D27"
+            borderRadius="10px"
+            border="1px solid #271E37"
+            _hover={{ bg: "#271E37" }}
+            color="#fff"
+            h={8}
+            onClick={() => {
+              setTargeted(!targeted);
+            }}
+          >
+            Cursor Container <Text color={targeted ? "lightgreen" : "coral"}>&nbsp;{targeted ? 'Viewport' : 'Targeted'}</Text>
+          </Button>
+        </Customize>
+
+        <PropTable data={propData} />
         <Dependencies dependencyList={['gsap']} />
       </PreviewTab>
 

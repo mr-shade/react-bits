@@ -137,9 +137,9 @@ const ScrollRevealDemo = () => {
           <PreviewSwitch
             title="Enable Blur"
             isChecked={enableBlur}
-            onChange={(e) => {
+            onChange={(checked) => {
               containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-              setEnableBlur(e.target.checked);
+              setEnableBlur(checked);
               forceRerender();
             }}
           />

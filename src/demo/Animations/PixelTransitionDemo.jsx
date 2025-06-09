@@ -9,10 +9,6 @@ import {
 import {
   Flex,
   Text,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   Input
 } from "@chakra-ui/react";
 
@@ -20,6 +16,8 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import useForceRerender from "../../hooks/useForceRerender";
 
 import PixelTransition from "../../content/Animations/PixelTransition/PixelTransition";
@@ -116,32 +114,36 @@ const PixelTransitionDemo = () => {
           <Text mt={2} color="#a6a6a6">Psst, hover the card!</Text>
         </Flex>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Grid Size"
+            min={2}
+            max={50}
+            step={1}
+            value={gridSize}
+            onChange={(val) => {
+              setGridSize(val);
+              forceRerender();
+            }}
+            width={200}
+          />
+
+          <PreviewSlider
+            title="Animation Duration"
+            min={0.1}
+            max={2}
+            step={0.1}
+            value={animationStepDuration}
+            valueUnit="s"
+            onChange={(val) => {
+              setAnimationStepDuration(val);
+              forceRerender();
+            }}
+            width={200}
+          />
 
           <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Grid Size:</Text>
-            <Slider
-              min={2}
-              max={50}
-              step={1}
-              value={gridSize}
-              onChange={(val) => {
-                setGridSize(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{gridSize}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Pixel Color:</Text>
+            <Text fontSize="sm">Pixel Color</Text>
             <Input
               type="color"
               value={pixelColor}
@@ -152,30 +154,8 @@ const PixelTransitionDemo = () => {
               width="60px"
               p={0}
             />
-            <Text fontSize="sm">{pixelColor}</Text>
           </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Animation Duration (s):</Text>
-            <Slider
-              min={0.1}
-              max={2}
-              step={0.1}
-              value={animationStepDuration}
-              onChange={(val) => {
-                setAnimationStepDuration(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{animationStepDuration.toFixed(1)}</Text>
-          </Flex>
-        </div>
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["gsap"]} />

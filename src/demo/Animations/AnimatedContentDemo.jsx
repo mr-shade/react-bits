@@ -83,6 +83,11 @@ const AnimatedContentDemo = () => {
           <Flex gap={2} wrap="wrap">
             <Button
               fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
               h={8}
               onClick={() => {
                 setDirection(direction === "vertical" ? "horizontal" : "vertical");
@@ -93,6 +98,11 @@ const AnimatedContentDemo = () => {
             </Button>
             <Button
               fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
               h={8}
               onClick={() => {
                 setEase(ease === "power3.out" ? "bounce.out" : ease === "bounce.out" ? "elastic.out(1, 0.3)" : "power3.out");
@@ -106,8 +116,8 @@ const AnimatedContentDemo = () => {
           <PreviewSwitch
             title="Reverse Direction"
             isChecked={reverse}
-            onChange={(e) => {
-              setReverse(e.target.checked);
+            onChange={(checked) => {
+              setReverse(checked);
               forceRerender();
             }}
           />
@@ -115,8 +125,8 @@ const AnimatedContentDemo = () => {
           <PreviewSwitch
             title="Animate Opacity"
             isChecked={animateOpacity}
-            onChange={(e) => {
-              setAnimateOpacity(e.target.checked);
+            onChange={(checked) => {
+              setAnimateOpacity(checked);
               forceRerender();
             }}
           />

@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Button, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 
 import GridDistortion from "../../content/Backgrounds/GridDistortion/GridDistortion";
 import { gridDistortion } from "../../constants/code/Backgrounds/gridDistortionCode";
@@ -98,6 +100,7 @@ const GridDistortionDemo = () => {
             _hover={{ backgroundColor: '#111' }}
             right='2em'
             bottom='2em'
+            color="#fff"
             h={16}
             onClick={() => {
               !isFullScreen ? enterFullScreen() : exitFullScreen()
@@ -107,51 +110,33 @@ const GridDistortionDemo = () => {
           </Button>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
+          <PreviewSlider
+            title="Grid Size"
+            min={6}
+            max={200}
+            step={1}
+            value={grid}
+            onChange={(val) => {
+              setGrid(val);
+              forceRerender();
+            }}
+            width={200}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Grid Size</Text>
-            <Slider
-              min={6}
-              max={200}
-              step={1}
-              value={grid}
-              onChange={(val) => {
-                setGrid(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{grid}</Text>
-          </Flex>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Mouse Size</Text>
-            <Slider
-              min={0.1}
-              max={0.5}
-              step={0.01}
-              value={mouse}
-              onChange={(val) => {
-                setMouse(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{mouse}</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Mouse Size"
+            min={0.1}
+            max={0.5}
+            step={0.01}
+            value={mouse}
+            onChange={(val) => {
+              setMouse(val);
+              forceRerender();
+            }}
+            width={200}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['three']} />
@@ -164,7 +149,7 @@ const GridDistortionDemo = () => {
       <CliTab>
         <CliInstallation {...gridDistortion} />
       </CliTab>
-    </TabbedLayout>
+    </TabbedLayout >
   );
 };
 

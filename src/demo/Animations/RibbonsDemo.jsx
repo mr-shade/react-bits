@@ -116,14 +116,35 @@ const RibbonsDemo = () => {
         <Customize>
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Count</Text>
-            <IconButton icon={<FiMinus />} onClick={() => colors.length > 1 && setColors(colors.slice(0, -1))}></IconButton>
+            <IconButton
+              onClick={() => colors.length > 1 && setColors(colors.slice(0, -1))}
+              fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
+              h={10}
+            >
+              <FiMinus />
+            </IconButton>
             <Text>{colors.length}</Text>
-            <IconButton icon={<FiPlus />} onClick={() => {
-              if (colors.length < 10) {
-                const newColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
-                setColors([...colors, newColor]);
-              }
-            }} />
+            <IconButton
+              fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
+              h={10}
+              onClick={() => {
+                if (colors.length < 10) {
+                  const newColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+                  setColors([...colors, newColor]);
+                }
+              }} >
+              <FiPlus />
+            </IconButton>
           </Flex>
 
           <PreviewSlider
@@ -156,13 +177,13 @@ const RibbonsDemo = () => {
           <PreviewSwitch
             title="Enable Fade"
             isChecked={enableFade}
-            onChange={(e) => setEnableFade(e.target.checked)}
+            onChange={(checked) => setEnableFade(checked)}
           />
 
           <PreviewSwitch
             title="Enable Waves"
             isChecked={enableWaves}
-            onChange={(e) => setEnableWaves(e.target.checked)}
+            onChange={(checked) => setEnableWaves(checked)}
           />
         </Customize>
 

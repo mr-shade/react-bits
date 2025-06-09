@@ -140,8 +140,28 @@ const CounterDemo = () => {
           />
 
           <Flex gap={4} bottom="1em" direction={"row"} justify={"center"} mt={4} position='absolute'>
-            <Button rounded="xl" background="#060010" border="1px solid #222" h={10} w={10} onClick={() => setValue(value - 1)}>-</Button>
-            <Button rounded="xl" background="#060010" border="1px solid #222" h={10} w={10} onClick={() => value < 999 && setValue(value + 1)}>+</Button>
+            <Button
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
+              h={10}
+              w={10}
+              onClick={() => setValue(value - 1)}>
+              -
+            </Button>
+            <Button
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
+              h={10}
+              w={10}
+              onClick={() => value < 999 && setValue(value + 1)}>
+              +
+            </Button>
           </Flex>
         </Box>
 

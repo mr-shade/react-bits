@@ -9,10 +9,6 @@ import {
   Box,
   Button,
   Flex,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   Text
 } from "@chakra-ui/react";
 
@@ -20,6 +16,7 @@ import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
+import PreviewSlider from "../../components/common/PreviewSlider";
 
 import VariableProximity from "../../content/TextAnimations/VariableProximity/VariableProximity";
 import { variableProximity } from '../../constants/code/TextAnimations/variableProximityCode';
@@ -93,32 +90,27 @@ const VariableProximityDemo = () => {
 
         <Box mt={6} className="preview-options">
           <Text fontSize="xl" mb={2}>Customize</Text>
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Radius:</Text>
-            <Slider
-              min={50}
-              max={300}
-              step={10}
-              value={radius}
-              onChange={(val) => setRadius(val)}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{radius}px</Text>
-          </Flex>
+          <PreviewSlider
+            title="Radius"
+            min={50}
+            max={300}
+            step={10}
+            value={radius}
+            valueUnit="px"
+            onChange={(val) => setRadius(val)}
+            width={200}
+          />
 
           <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Falloff:</Text>
+            <Text fontSize="sm">Falloff</Text>
             {["linear", "exponential", "gaussian"].map((type) => (
               <Button
                 key={type}
                 size="sm"
-                colorScheme='gray'
-                bg={type === falloff ? '#5227FF' : '#271E37'}
+                color="#ffffff"
+                borderRadius="10px"
+                border={type === falloff ? '1px solid #170D27' : '1px solid #271E37'}
+                bg={type === falloff ? '#5227FF' : '#170D27'}
                 onClick={() => setFalloff(type)}
               >
                 {type}

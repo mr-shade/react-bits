@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Text, Select } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
+import PreviewSelect from "../../components/common/PreviewSelect";
 
 import { pixelCard } from "../../constants/code/Components/pixelCardCode";
 import PixelCard from "../../content/Components/PixelCard/PixelCard";
 
 const PixelCardDemo = () => {
   const [selectedVariant, setSelectedVariant] = useState("default");
-  const variants = ["default", "blue", "yellow", "pink"];
 
   const propData = [
     {
@@ -20,7 +20,7 @@ const PixelCardDemo = () => {
       type: "string",
       default: '"default"',
       description: "Defines the color scheme and animation style.",
-      options: variants.map((v) => `"${v}"`)
+      options: "default | yellow | blue | pink"
     },
     {
       name: "gap",
@@ -66,6 +66,8 @@ const PixelCardDemo = () => {
     }
   ];
 
+  const options = [{ value: "default", label: "Default" }, { value: "yellow", label: "Yellow" }, { value: "blue", label: "Blue" }, { value: "pink", label: "Pink" }];
+
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -80,20 +82,16 @@ const PixelCardDemo = () => {
         </Box>
 
         <Customize>
-          <Text color="#a6a6a6">Variant</Text>
-          <Select
-            mt={1}
-            mb={4}
-            w="200px"
+          <PreviewSelect
+            title="Variant"
+            options={options}
             value={selectedVariant}
-            onChange={(e) => setSelectedVariant(e.target.value)}
-          >
-            {variants.map((variant) => (
-              <option key={variant} value={variant}>
-                {variant.charAt(0).toUpperCase() + variant.slice(1)}
-              </option>
-            ))}
-          </Select>
+            name="variant"
+            width={150}
+            onChange={(val) => {
+              setSelectedVariant(val);
+            }}
+          />
         </Customize>
 
         <PropTable data={propData} />

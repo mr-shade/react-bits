@@ -1,99 +1,153 @@
-import { Link } from 'react-router-dom';
+import { useRef, useMemo } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import {
   Box,
-  Divider,
   Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerOverlay,
   Flex,
+  Icon,
   IconButton,
   Image,
   Kbd,
+  Portal,
   Select,
+  Separator,
   Text,
-  useDisclosure
-} from '@chakra-ui/react';
+  useDisclosure,
+  createListCollection,
+} from "@chakra-ui/react";
 
-import { ArrowForwardIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { useStars } from '../../hooks/useStars';
-import { useDeviceOS } from 'react-haiku';
-import { useSearch } from '../context/SearchContext/useSearch';
-import { useLanguage } from '../context/LanguageContext/useLanguage'
+import { FiArrowRight, FiCommand, FiMenu, FiSearch, FiStopCircle } from "react-icons/fi";
 
+import { useStars } from "../../hooks/useStars";
+import { useDeviceOS } from "react-haiku";
+import { useSearch } from "../context/SearchContext/useSearch";
+import { useLanguage } from "../context/LanguageContext/useLanguage";
 
-import Logo from '../../assets/logos/react-bits-logo.svg';
-import Star from '../../assets/common/star.svg';
-import FadeContent from '../../content/Animations/FadeContent/FadeContent';
-import { useRef } from 'react';
+import Logo from "../../assets/logos/react-bits-logo.svg";
+import Star from "../../assets/common/star.svg";
+import FadeContent from "../../content/Animations/FadeContent/FadeContent";
 
 const Header = () => {
+  const langCollection = useMemo(() => createListCollection({ items: ["JS", "TS"] }), []);
+  const { languagePreset, setLanguagePreset } = useLanguage(); // “JS” | “TS”
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { toggleSearch } = useSearch();
-  const { languagePreset, setLanguagePreset } = useLanguage();
   const stars = useStars();
   const starCountRef = useRef(null);
   const os = useDeviceOS();
 
-  return (
-    <Box zIndex={100} className='main-nav'>
-      <Flex className='nav-items' h={20} alignItems="center" justifyContent="space-between">
-        <Link to="/" className='logo'>
-          <Image src={Logo} alt="Logo" />
-        </Link>
 
-        {/* Hamburger menu button for small screens */}
+  const LanguageSelect = (
+    <Select.Root
+      collection={langCollection}
+      value={[languagePreset]}
+      onValueChange={({ value }) => setLanguagePreset(value[0])}
+      size="sm"
+      width="80px"
+    >
+      <Select.HiddenSelect name="language" />
+
+      <Select.Control>
+        <Select.Trigger
+          fontSize="12px"
+          bg="#060010"
+          border="1px solid #392e4e"
+          rounded="full"
+          h={10}
+          fontWeight={600}
+          cursor="pointer"
+          transition="transform 0.3s"
+          _hover={{ transform: "scale(0.98)" }}
+        >
+          <Select.ValueText color="#fff" pl={1} fontSize="12px" />
+        </Select.Trigger>
+        <Select.IndicatorGroup>
+          <Select.Indicator />
+        </Select.IndicatorGroup>
+      </Select.Control>
+
+      <Portal>
+        <Select.Positioner>
+          <Select.Content
+            bg="#060010"
+            border="1px solid #392e4e"
+            borderRadius="25px"
+            w="80px"
+            px={2}
+            py={2}
+            zIndex="modal"
+          >
+            {langCollection.items.map((lang) => (
+              <Select.Item
+                item={lang}
+                key={lang}
+                rounded="full"
+                px={3}
+                py={2}
+                cursor="pointer"
+                _highlighted={{ bg: "#271E37" }}
+              >
+                {lang}
+                <Select.ItemIndicator />
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Positioner>
+      </Portal>
+    </Select.Root>
+  );
+
+  return (
+    <Box zIndex={100} className="main-nav">
+      <Flex className="nav-items" h={20} alignItems="center" justifyContent="space-between" px={4}>
+        <RouterLink to="/" className="logo">
+          <Image src={Logo} alt="Logo" />
+        </RouterLink>
+
         <IconButton
-          size="md"
-          icon={<HamburgerIcon />}
           aria-label="Open Menu"
-          display={{ md: 'none' }}
+          icon={<FiMenu size="1.3em" />}
+          size="md"
+          display={{ md: "none" }}
           onClick={onOpen}
         />
 
-        {/* Links for larger screens */}
-        <Flex display={{ base: 'none', md: 'flex' }} alignItems="center" gap={2}>
+        <Flex display={{ base: "none", md: "flex" }} alignItems="center" gap={2}>
           <FadeContent blur>
             <Flex
-              fontSize="xs"
+              as="button"
+              fontSize="12px"
               h={10}
-              border="1px solid #392e4e"
+              pr={2}
+              pl={3}
               rounded="full"
-              alignItems="center"
-              pr={4}
-              pl={4}
-              userSelect="none"
-              cursor="pointer"
-              transition="transform 0.3s"
-              _hover={{ transform: 'scale(0.98)' }}
               bg="#060010"
+              border="1px solid #392e4e"
+              fontWeight={600}
+              align="center"
+              gap={1}
+              cursor="text"
+              userSelect="none"
+              transition="transform 0.3s"
+              _hover={{ transform: "scale(0.98)" }}
               onClick={toggleSearch}
             >
-              <Text fontSize="xs" fontWeight={600} mr={12}>Search Docs</Text>
-              {os === 'macOS' ? <Kbd>⌘ K</Kbd> : <Kbd>CTRL K</Kbd>}
+              <Icon as={FiSearch} boxSize={4} color="#392e4e" />
+              <Text mr={8} color="#a6a6a6">Search Docs</Text>
+              {os === "macOS" ? <Kbd fontSize="10px" px={2} borderRadius="50px"><Icon as={FiCommand} boxSize={2} mr={1} /> K</Kbd> : <Kbd fontSize="10px" px={2} borderRadius="50px">CTRL K</Kbd>}
             </Flex>
           </FadeContent>
+
+          <FadeContent blur>{LanguageSelect}</FadeContent>
+
           <FadeContent blur>
-            <Select
-              fontSize="xs"
-              bg="#060010"
-              cursor="pointer"
-              border="1px solid #392e4e"
-              transition="transform 0.3s"
-              _hover={{ transform: 'scale(0.98)', border: '1px solid #392e4e' }}
-              h={10}
-              rounded="full"
-              width="fit-content"
-              fontWeight={600}
-              onChange={(e) => setLanguagePreset(e.target.value)}
-              value={languagePreset || "JS"}
+            <button
+              className="cta-button-docs"
+              onClick={() =>
+                window.open("https://github.com/DavidHDev/react-bits", "_blank")
+              }
             >
-              <option value="JS">JS</option>
-              <option value="TS">TS</option>
-            </Select>
-          </FadeContent>
-          <FadeContent blur>
-            <button className="cta-button-docs" onClick={() => window.open('https://github.com/DavidHDev/react-bits', '_blank')}>
               Star On GitHub
               <span ref={starCountRef}>
                 <img src={Star} alt="Star Icon" />
@@ -104,49 +158,63 @@ const Header = () => {
         </Flex>
       </Flex>
 
-      {/* Drawer for mobile navigation */}
-      <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay display={{ md: 'none' }}>
-          <DrawerContent bg="black" h="100%">
-            <DrawerBody px={0} py={0}>
+      <Drawer.Root
+        placement="top"
+        open={isOpen}
+        onOpenChange={(v) => (v ? onOpen() : onClose())}
+      >
+        <Drawer.Backdrop display={{ md: "none" }}>
+          <Drawer.Content bg="black" h="100%">
+            <Drawer.Body p={0}>
               <Flex direction="column">
                 <Flex
-                  alignItems="center"
-                  justifyContent="space-between"
+                  align="center"
+                  justify="space-between"
                   h="57px"
+                  px={6}
                   mb={6}
                   borderBottom="1px solid #ffffff1c"
-                  px={6}
                 >
-                  <Image src={Logo} alt="Logo" height="25px" />
+                  <Image src={Logo} alt="Logo" h="25px" />
                   <IconButton
-                    size="md"
-                    icon={<CloseIcon boxSize={3} />}
                     aria-label="Close Menu"
-                    display={{ md: 'none' }}
+                    icon={<Icon as={FiStopCircle} boxSize={4} />}
+                    size="md"
+                    display={{ md: "none" }}
                     onClick={onClose}
                   />
                 </Flex>
-                <Flex direction="column" px={6}>
-                  <p>Useful Links</p>
-                  <Link to="/text-animations/split-text" display="block" mb={2} onClick={onClose}>
+
+                <Flex direction="column" px={6} gap={2}>
+                  <Text fontWeight="bold">Useful Links</Text>
+                  <RouterLink to="/text-animations/split-text" onClick={onClose}>
                     Docs
-                  </Link>
-                  <Link to="https://github.com/DavidHDev/react-bits" target="_blank" display="block" mb={2} onClick={onClose}>
-                    GitHub <ArrowForwardIcon boxSize={7} transform="rotate(-45deg)" position="relative" top="-1px" />
-                  </Link>
-                  <Divider />
-                  <p>Other</p>
-                  <Link to="https://davidhaz.com/" target="_blank" display="block" mb={2} onClick={onClose}>
+                  </RouterLink>
+                  <RouterLink
+                    to="https://github.com/DavidHDev/react-bits"
+                    target="_blank"
+                    onClick={onClose}
+                  >
+                    GitHub <Icon as={FiArrowRight} transform="rotate(-45deg)" ml={1} />
+                  </RouterLink>
+
+                  <Separator my={4} />
+
+                  <Text fontWeight="bold">Other</Text>
+                  <RouterLink
+                    to="https://davidhaz.com/"
+                    target="_blank"
+                    onClick={onClose}
+                  >
                     Who made this?
-                    <ArrowForwardIcon boxSize={7} transform="rotate(-45deg)" position="relative" top="-1px" />
-                  </Link>
+                    <Icon as={FiArrowRight} transform="rotate(-45deg)" ml={1} />
+                  </RouterLink>
                 </Flex>
               </Flex>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+            </Drawer.Body>
+          </Drawer.Content>
+        </Drawer.Backdrop>
+      </Drawer.Root>
     </Box>
   );
 };

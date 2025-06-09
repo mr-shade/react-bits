@@ -1,77 +1,108 @@
-import { extendTheme } from "@chakra-ui/react";
+// theme/customTheme.js  –  Chakra UI 3.20
+import {
+  createSystem,
+  defaultConfig,
+  defineSlotRecipe,
+} from "@chakra-ui/react";
 
+/* ───────── Drawer slide-in (left placement) ───────── */
+const drawerRecipe = defineSlotRecipe({
+  className: "drawer",
+  slots: ["content"],
+  base: {
+    content: {
+      w: "100vw",
+      h: "100vh",
+    },
+  },
+});
+
+/* ───────── Tabs trigger pill styling ───────── */
+const tabsRecipe = defineSlotRecipe({
+  className: "tabs",
+  slots: ["trigger"],
+  base: {
+    trigger: {
+      flex: "0 0 auto",                 // keep triggers side-by-side
+      bg: "#060010",
+      borderRadius: "10px",
+      fontSize: "14px",
+      border: "1px solid #392e4e",
+      h: 9,
+      px: "1rem",
+      transition: "background-color .3s",
+
+      _hover: { bg: "#271E37" },
+
+      /* selected state → data-state="active" */
+      "&[data-state='active']": {
+        color: "#fff",
+        bg: "#170D27",
+      },
+    },
+  },
+});
+
+/* ───────── Toast helper (unchanged) ───────── */
 export const toastStyles = {
   style: {
-    fontSize: '12px',
-    borderRadius: '0.75rem',
-    border: '1px solid #392e4e',
-    color: '#fff',
-    backgroundColor: '#060010'
-  }
+    fontSize: "12px",
+    borderRadius: "0.75rem",
+    border: "1px solid #392e4e",
+    color: "#fff",
+    backgroundColor: "#060010",
+  },
 };
 
-export const customTheme = extendTheme({
+/* ───────── Custom theme ───────── */
+export const customTheme = createSystem(defaultConfig, {
   config: {
-    initialColorMode: 'dark',
-    useSystemColorMode: false
+    initialColorMode: "dark",
+    useSystemColorMode: false,
   },
+
   styles: {
     global: {
-      'html, body': {
-        minHeight: '100vh',
+      "html, body": {
+        minHeight: "100vh",
         fontFamily: '"Figtree", sans-serif',
-        backgroundColor: '#060010'
-      }
-    }
+        backgroundColor: "#060010",
+      },
+    },
   },
+
   components: {
     Slider: {
       baseStyle: {
-        thumb: {
-          bg: "#fff",
-          _focus: {
-            boxShadow: "none"
-          },
-        },
+        thumb: { bg: "#fff", _focus: { boxShadow: "none" } },
       },
       variants: {
         solid: {
-          track: {
-            bg: "#271E37",
-          },
-          filledTrack: {
-            bg: "#fff",
-          },
+          track: { bg: "#271E37" },
+          filledTrack: { bg: "#fff" },
         },
       },
-      defaultProps: {
-        variant: "solid",
-      },
+      defaultProps: { variant: "solid" },
     },
     Switch: {
       baseStyle: {
         track: {
-          // Unchecked state (default)
           bg: "#271E37",
-          _checked: {
-            bg: "#5227FF",
-          },
-          _focus: {
-            boxShadow: "0 0 0 3px #271E37",
-          },
-          _active: {
-            bg: "#5227FF",
-          },
+          _checked: { bg: "#5227FF" },
+          _focus: { boxShadow: "0 0 0 3px #271E37" },
+          _active: { bg: "#5227FF" },
         },
         thumb: {
-          _checked: {
-            bg: "white",
-          },
-          _active: {
-            bg: "white",
-          },
+          _checked: { bg: "white" },
+          _active: { bg: "white" },
         },
       },
-    }
-  }
+    },
+  },
+
+  /* register slot-recipes so CSS is injected globally */
+  recipes: {
+    drawer: drawerRecipe,
+    tabs: tabsRecipe,
+  },
 });

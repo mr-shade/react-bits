@@ -169,7 +169,7 @@ const GlareHoverDemo = () => {
           <PreviewSwitch
             title="Play Once"
             isChecked={playOnce}
-            onChange={(e) => setPlayOnce(e.target.checked)}
+            onChange={(checked) => setPlayOnce(checked)}
           />
         </Customize>
 

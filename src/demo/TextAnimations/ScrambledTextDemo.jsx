@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react"; // Added Input from Chakra UI
+import { Box, Field, Input } from "@chakra-ui/react"; // Added Input from Chakra UI
 
 import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
@@ -79,8 +79,8 @@ const ScrambledTextDemo = () => {
         </Box>
 
         <Customize>
-          <FormControl w="200px">
-            <FormLabel fontSize="sm">Scramble Characters</FormLabel>
+          <Field.Root w="200px">
+            <Field.Label fontSize="sm">Scramble Characters</Field.Label>
             <Input
               value={scrambleChars}
               onChange={(e) => {
@@ -88,7 +88,7 @@ const ScrambledTextDemo = () => {
               }}
               placeholder=".: (default)"
             />
-          </FormControl>
+          </Field.Root>
 
           <PreviewSlider
             title="Radius"

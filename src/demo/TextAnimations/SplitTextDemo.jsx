@@ -68,6 +68,11 @@ const SplitTextDemo = () => {
           <Flex gap={2} wrap="wrap">
             <Button
               fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
               h={8}
               onClick={() => {
                 setSplitType(
@@ -80,10 +85,15 @@ const SplitTextDemo = () => {
                 forceRerender();
               }}
             >
-              Split Type: <Text color={"#a1a1aa"}>&nbsp;{splitType}</Text>
+              Split Type <Text color={"#a1a1aa"}>&nbsp;{splitType}</Text>
             </Button>
             <Button
               fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
               h={8}
               onClick={() => {
                 setEase(
@@ -103,8 +113,8 @@ const SplitTextDemo = () => {
           <PreviewSwitch
             title="Show Completion Toast"
             isChecked={showCallback}
-            onChange={(e) => {
-              setShowCallback(e.target.checked);
+            onChange={(checked) => {
+              setShowCallback(checked);
               forceRerender();
             }}
           />

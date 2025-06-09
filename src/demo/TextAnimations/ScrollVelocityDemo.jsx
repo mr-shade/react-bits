@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSlider from "../../components/common/PreviewSlider";
 
 import ScrollVelocity from "../../content/TextAnimations/ScrollVelocity/ScrollVelocity";
 import { scrollVelocity } from "../../constants/code/TextAnimations/scrollVelocityCode";
+import Customize from "../../components/common/Customize";
 
 const ScrollVelocityDemo = () => {
   const [velocity, setVelocity] = useState(100);
@@ -103,29 +105,18 @@ const ScrollVelocityDemo = () => {
           </Flex>
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Velocity</Text>
-            <Slider
-              min={10}
-              max={500}
-              step={10}
-              value={velocity}
-              onChange={(val) => {
-                setVelocity(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{velocity}</Text>
-          </Flex>
-        </div>
+        <Customize>
+          <PreviewSlider
+            title="Velocity"
+            min={10}
+            max={500}
+            step={10}
+            value={velocity}
+            onChange={(val) => {
+              setVelocity(val);
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['framer-motion']} />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
@@ -124,20 +124,20 @@ const DotGridDemo = () => {
         <Customize>
           <Flex alignItems="center" mb={4}>
             <Text fontSize="sm" mr={2}>Base Color</Text>
-            <input
+            <Input
               type="color"
               value={baseColor}
-              style={{ height: '22px', outline: 'none', border: 'none' }}
-              onChange={(e) => setBaseColor(e.target.value)}
+              onChange={(e) => { setBaseColor(e.target.value); }}
+              width="50px"
             />
           </Flex>
           <Flex alignItems="center" mb={4}>
             <Text fontSize="sm" mr={2}>Active Color</Text>
-            <input
+            <Input
               type="color"
               value={activeColor}
-              style={{ height: '22px', outline: 'none', border: 'none' }}
-              onChange={(e) => setActiveColor(e.target.value)}
+              onChange={(e) => { setActiveColor(e.target.value); }}
+              width="50px"
             />
           </Flex>
           <PreviewSlider title="Dot Size" min={2} max={50} step={1} value={dotSize} onChange={setDotSize} />

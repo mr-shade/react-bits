@@ -61,7 +61,7 @@ const PixelTrailDemo = () => {
             color="#271E37"
             fontWeight={900}
           >
-            Hover Me.
+            Move Cursor.
           </Text>
         </Box>
 
@@ -116,7 +116,7 @@ const PixelTrailDemo = () => {
           <PreviewSwitch
             title="Gooey Filter"
             isChecked={gooeyEnabled}
-            onChange={(e) => { setGooeyEnabled(e.target.checked); forceRerender(); }}
+            onChange={(checked) => { setGooeyEnabled(checked); forceRerender(); }}
           />
 
           {gooeyEnabled && (

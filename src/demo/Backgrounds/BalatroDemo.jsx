@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Image, Input, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Input, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
 
 import Balatro from "../../content/Backgrounds/Balatro/Balatro";
 import { balatro } from "../../constants/code/Backgrounds/balatroCode";
@@ -120,15 +123,13 @@ const BalatroDemo = () => {
 
         <Flex gap={4} align="center" mt={7} justifyContent='flex-end' position="absolute" right={0}>
           <Text fontSize="sm">Hide Image</Text>
-          <Switch
+          <PreviewSwitch
             isChecked={hideimage}
-            onChange={(e) => { setHideImage(e.target.checked); }}
+            onChange={(checked) => { setHideImage(checked); }}
           />
         </Flex>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-
+        <Customize>
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Colors</Text>
             <Input
@@ -137,6 +138,7 @@ const BalatroDemo = () => {
               onChange={(e) => { setColor1(e.target.value); }}
               width="50px"
             />
+
             <Input
               type="color"
               value={color3}
@@ -152,43 +154,29 @@ const BalatroDemo = () => {
             />
           </Flex>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Pixelate</Text>
-            <Slider
-              min={0}
-              max={2000}
-              step={10}
-              value={pixelFilter}
-              onChange={(val) => {
-                setPixelFilter(val);
-              }}
-              width="150px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{pixelFilter}</Text>
-          </Flex>
+          <PreviewSlider
+            min={0}
+            max={2000}
+            step={10}
+            title="Pixelation"
+            value={pixelFilter}
+            onChange={(val) => {
+              setPixelFilter(val);
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Mouse Interaction</Text>
-            <Switch
-              isChecked={mouseInteraction}
-              onChange={(e) => { setMouseInteraction(e.target.checked); }}
-            />
-          </Flex>
+          <PreviewSwitch
+            title="Enable Mouse Interaction"
+            isChecked={mouseInteraction}
+            onChange={(checked) => { setMouseInteraction(checked); }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Rotate</Text>
-            <Switch
-              isChecked={rotate}
-              onChange={(e) => { setRotate(e.target.checked); }}
-            />
-          </Flex>
-        </div>
-
+          <PreviewSwitch
+            title="Rotate"
+            isChecked={rotate}
+            onChange={(checked) => { setRotate(checked); }}
+          />
+        </Customize>
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />
       </PreviewTab>
@@ -200,7 +188,7 @@ const BalatroDemo = () => {
       <CliTab>
         <CliInstallation {...balatro} />
       </CliTab>
-    </TabbedLayout>
+    </TabbedLayout >
   );
 };
 

@@ -121,7 +121,6 @@ const ParticlesDemo = () => {
               onChange={(e) => { setColors(e.target.value); }}
               width="50px"
             />
-            <Text fontSize="sm">{colors}</Text>
           </Flex>
 
           <PreviewSlider
@@ -163,19 +162,19 @@ const ParticlesDemo = () => {
           <PreviewSwitch
             title="Mouse Interaction"
             isChecked={moveParticlesOnHover}
-            onChange={(e) => setMoveParticlesOnHover(e.target.checked)}
+            onChange={(checked) => setMoveParticlesOnHover(checked)}
           />
 
           <PreviewSwitch
             title="Particle Transparency"
             isChecked={alphaParticles}
-            onChange={(e) => setAlphaParticles(e.target.checked)}
+            onChange={(checked) => setAlphaParticles(checked)}
           />
 
           <PreviewSwitch
             title="Disable Rotation"
             isChecked={disableRotation}
-            onChange={(e) => setDisableRotation(e.target.checked)}
+            onChange={(checked) => setDisableRotation(checked)}
           />
         </Customize>
 

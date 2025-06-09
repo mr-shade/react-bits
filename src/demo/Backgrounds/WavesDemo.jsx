@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { Flex, Select, Text } from "@chakra-ui/react";
+import { Flex, Input, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 
 import Waves from "../../content/Backgrounds/Waves/Waves";
 import { waves } from '../../constants/code/Backgrounds/wavesCode';
 
 const WavesDemo = () => {
   const [color, setColor] = useState('#ffffff');
+  const [waveSpeedX, setWaveSpeedX] = useState(0.0125);
 
   const propData = [
     {
@@ -97,32 +100,33 @@ const WavesDemo = () => {
       <PreviewTab>
         <Flex overflow="hidden" justifyContent="center" alignItems="center" minH={400} position="relative" pb={"4em"} className="demo-container">
           <Waves
+            waveSpeedX={waveSpeedX}
             lineColor={color}
           />
         </Flex>
 
-        <h2 className="demo-title-extra">Customize</h2>
-        <Flex direction="row" alignItems="center" gap={4} mt={4}>
-          <Text>Color</Text>
-          <Select defaultValue="#ffffff" rounded="xl" w={'300px'} onChange={(e) => {
-            setColor(e.target.value);
-          }}>
-            <option value='#ffffff'>White</option>
-            <option value='#16e16e'>Green</option>
-            <option value='#00b4d8'>Blue</option>
-            <option value='#ffd60a'>Yellow</option>
-            <option value='#390099'>Purple</option>
-          </Select>
+        <Customize>
+          <PreviewSlider
+            min={0}
+            max={0.1}
+            step={0.01}
+            value={waveSpeedX}
+            title="Wave Speed X"
+            onChange={(val) => {
+              setWaveSpeedX(val);
+            }}
+          />
 
-          <Flex gap={2} alignItems="center">
-            <input
+          <Flex gap={4} align="center" mt={4}>
+            <Text fontSize="sm">Waves Color</Text>
+            <Input
               type="color"
               value={color}
-              onChange={(e) => setColor(e.target.value)}
-              style={{ width: '60px' }}
+              onChange={(e) => { setColor(e.target.value); }}
+              width="50px"
             />
           </Flex>
-        </Flex>
+        </Customize>
 
         <PropTable data={propData} />
       </PreviewTab>

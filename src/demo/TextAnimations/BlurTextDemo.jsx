@@ -1,21 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import {
-  CliTab,
-  CodeTab,
-  PreviewTab,
-  TabbedLayout,
-} from "../../components/common/TabbedLayout";
-import {
-  Box,
-  Button,
-  Flex,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  Text,
-} from "@chakra-ui/react";
+import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
 import RefreshButton from "../../components/common/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
@@ -23,6 +9,8 @@ import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
 
 import BlurText from "../../content/TextAnimations/BlurText/BlurText";
 import { blurText } from "../../constants/code/TextAnimations/blurTextCode";
@@ -106,12 +94,15 @@ const BlurTextDemo = () => {
             className="blur-text-demo"
           />
         </Box>
-
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize>
           <Flex gap={4} wrap="wrap">
             <Button
               fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
               h={8}
               onClick={() => {
                 setAnimateBy(animateBy === "words" ? "letters" : "words");
@@ -122,6 +113,11 @@ const BlurTextDemo = () => {
             </Button>
             <Button
               fontSize="xs"
+              bg="#170D27"
+              borderRadius="10px"
+              border="1px solid #271E37"
+              _hover={{ bg: "#271E37" }}
+              color="#fff"
               h={8}
               onClick={() => {
                 setDirection(direction === "top" ? "bottom" : "top");
@@ -132,27 +128,20 @@ const BlurTextDemo = () => {
             </Button>
           </Flex>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Delay (ms):</Text>
-            <Slider
-              min={50}
-              max={500}
-              step={10}
-              value={delay}
-              onChange={(val) => {
-                setDelay(val);
-                forceRerender();
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{delay}ms</Text>
-          </Flex>
-        </div>
+          <PreviewSlider
+            title="Delay"
+            min={50}
+            max={500}
+            step={10}
+            value={delay}
+            valueUnit="ms"
+            onChange={(val) => {
+              setDelay(val);
+              forceRerender();
+            }}
+            width={200}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={["framer-motion"]} />

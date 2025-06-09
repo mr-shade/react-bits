@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
-import {
-  Box,
-  Flex,
-  Input,
-  Switch,
-  FormControl,
-  FormLabel,
-  NumberInput,
-  NumberInputField,
-} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
+import Customize from "../../components/common/Customize";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
+import PreviewInput from "../../components/common/PreviewInput";
+import PreviewSlider from "../../components/common/PreviewSlider";
 import useForceRerender from "../../hooks/useForceRerender";
 
 import ASCIIText from "../../content/TextAnimations/ASCIIText/ASCIIText";
@@ -25,44 +21,47 @@ const propData = [
     name: "text",
     type: "string",
     default: '"Hello World!"',
-    description: "The text displayed on the plane in the ASCII scene."
+    description: "The text displayed on the plane in the ASCII scene.",
   },
   {
     name: "enableWaves",
     type: "boolean",
     default: "true",
-    description: "If false, disables the wavy text animation."
+    description: "If false, disables the wavy text animation.",
   },
   {
     name: "asciiFontSize",
     type: "number",
     default: "12",
-    description: "Size of the ASCII glyphs in the overlay."
+    description: "Size of the ASCII glyphs in the overlay.",
   },
   {
     name: "textFontSize",
     type: "number",
     default: "200",
-    description: "Pixel size for the text that’s drawn onto the plane texture."
+    description:
+      "Pixel size for the text that’s drawn onto the plane texture.",
   },
   {
     name: "planeBaseHeight",
     type: "number",
     default: "8",
-    description: "How tall the plane is in 3D. The plane width is auto-based on text aspect."
+    description:
+      "How tall the plane is in 3D. The plane width is auto-based on text aspect.",
   },
   {
     name: "textColor",
     type: "string",
     default: "#fdf9f3",
-    description: "The color of the text drawn onto the plane texture."
+    description: "The color of the text drawn onto the plane texture.",
   },
   {
     name: "strokeColor",
     type: "string",
     default: "N/A",
-    description: "Not used here, but you could add it if you want an outline effect."
-  }
+    description:
+      "Not used here, but you could add it if you want an outline effect.",
+  },
 ];
 
 const ASCIITextDemo = () => {
@@ -71,15 +70,11 @@ const ASCIITextDemo = () => {
   const [asciiFontSize, setAsciiFontSize] = useState(8);
 
   const [key, forceRerender] = useForceRerender();
-
-  const dependencyList = [
-    "three"
-  ];
+  const dependencyList = ["three"];
 
   useEffect(() => {
     forceRerender();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [forceRerender]);
 
   return (
     <TabbedLayout>
@@ -92,7 +87,6 @@ const ASCIITextDemo = () => {
           overflow="hidden"
           mb={6}
         >
-          {/* The ASCII scene with live props */}
           <ASCIIText
             key={key}
             text={text}
@@ -103,53 +97,37 @@ const ASCIITextDemo = () => {
           />
         </Box>
 
-        <Box mb={6}>
-          <h2 className="demo-title-extra">Customize</h2>
-          <Flex alignItems="center" gap={4} flexWrap="wrap" mb={4}>
+        <Customize>
+          <PreviewInput
+            title="Text"
+            value={text}
+            placeholder="Enter text..."
+            width={200}
+            maxLength={10}
+            onChange={setText}
+          />
 
-            {/* Text */}
-            <FormControl w="200px">
-              <FormLabel fontSize="sm">Text</FormLabel>
-              <Input
-                value={text}
-                onChange={(e) => {
-                  setText(e.target.value);
-                  forceRerender();
-                }}
-                placeholder="Enter text..."
-              />
-            </FormControl>
+          <PreviewSlider
+            title="Size"
+            min={1}
+            max={64}
+            step={1}
+            value={asciiFontSize}
+            onChange={(val) => {
+              setAsciiFontSize(Number(val) || 1);
+              forceRerender();
+            }}
+          />
 
-            {/* ASCII Font Size */}
-            <FormControl w="160px">
-              <FormLabel fontSize="sm">ASCII Font</FormLabel>
-              <NumberInput
-                value={asciiFontSize}
-                min={1}
-                max={64}
-                step={1}
-                onChange={(_, valNumber) => {
-                  setAsciiFontSize(valNumber || 1);
-                  forceRerender();
-                }}
-              >
-                <NumberInputField />
-              </NumberInput>
-            </FormControl>
-          </Flex>
-
-          <Flex alignItems="center" gap={4} flexWrap="wrap">
-            <FormControl display="flex" alignItems="center" w="160px">
-              <FormLabel mb="0" fontSize="sm">
-                Waves
-              </FormLabel>
-              <Switch
-                isChecked={enableWaves}
-                onChange={(e) => setEnableWaves(e.target.checked)}
-              />
-            </FormControl>
-          </Flex>
-        </Box>
+          <PreviewSwitch
+            title="Waves"
+            isChecked={enableWaves}
+            onChange={(checked) => {
+              setEnableWaves(checked);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={dependencyList} />

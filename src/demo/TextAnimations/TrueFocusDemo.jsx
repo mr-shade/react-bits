@@ -111,7 +111,7 @@ const TrueFocusDemo = () => {
           <PreviewSwitch
             title="Hover Mode"
             isChecked={manualMode}
-            onChange={(e) => setManualMode(e.target.checked)}
+            onChange={(checked) => setManualMode(checked)}
           />
 
           <PreviewSlider

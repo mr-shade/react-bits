@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Box, Select, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
 
 import PropTable from "../../components/common/PropTable";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
-import useForceRerender from "../../hooks/useForceRerender";
+import PreviewSelect from "../../components/common/PreviewSelect";
+import Customize from "../../components/common/Customize";
 import CliInstallation from "../../components/code/CliInstallation";
+import useForceRerender from "../../hooks/useForceRerender";
 
 import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
 import { hyperspeed } from '../../constants/code/Backgrounds/hyperspeedCode';
@@ -25,6 +27,14 @@ const HyperspeedDemo = () => {
     },
   ];
 
+  const options = [
+    { value: 'one', label: 'Cyberpunk' },
+    { value: 'two', label: 'Akira' },
+    { value: 'three', label: 'Golden' },
+    { value: 'four', label: 'Split' },
+    { value: 'five', label: 'Highway' }
+  ]
+
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -33,17 +43,19 @@ const HyperspeedDemo = () => {
           <Hyperspeed key={key} effectOptions={hyperspeedPresets[activePreset]} />
         </Box>
 
-        <h2 className="demo-title-extra">Preset</h2>
-        <Select defaultValue="one" rounded="xl" w={'300px'} onChange={(e) => {
-          setActivePreset(e.target.value);
-          forceRerender();
-        }}>
-          <option value='one'>Cyberpunk</option>
-          <option value='two'>Akira</option>
-          <option value='three'>Golden</option>
-          <option value='four'>Split</option>
-          <option value='five'>Highway</option>
-        </Select>
+        <Customize>
+          <PreviewSelect
+            title="Animation Preset"
+            options={options}
+            value={activePreset}
+            name="tiltDirection"
+            width={150}
+            onChange={(val) => {
+              setActivePreset(val);
+              forceRerender();
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['three', 'postprocessing']} />

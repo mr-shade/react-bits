@@ -81,7 +81,7 @@ const StackDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch title="Random Rotation" isChecked={randomRotation} onChange={(e) => { setRandomRotation(e.target.checked); forceRerender() }} />
+          <PreviewSwitch title="Random Rotation" isChecked={randomRotation} onChange={(checked) => { setRandomRotation(checked); forceRerender() }} />
 
           <PreviewSlider
             title="Sensitivity"

@@ -1,8 +1,8 @@
 // InfiniteScrollDemo.jsx
 
 import { useState } from "react";
-import {CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Text, Switch, Select, Divider } from "@chakra-ui/react";
+import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { Box, Separator } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import PreviewSwitch from "../../components/common/PreviewSwitch";
@@ -10,6 +10,7 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from "../../components/code/Dependencies";
+import PreviewSelect from "../../components/common/PreviewSelect";
 import Ballpit from "../../content/Backgrounds/Ballpit/Ballpit";
 
 import InfiniteScroll from "../../content/Components/InfiniteScroll/InfiniteScroll";
@@ -125,6 +126,9 @@ const InfiniteScrollDemo = () => {
     { content: <p>Paragraph Item 14</p> },
   ];
 
+  const autoplayOptions = [{ value: "up", label: "Up" }, { value: "down", label: "Down" }];
+  const tiltOptions = [{ value: "left", label: "Left" }, { value: "right", label: "Right" }];
+
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -144,7 +148,7 @@ const InfiniteScrollDemo = () => {
             isTilted={isTilted}
             tiltDirection={tiltDirection}
             autoplay={autoplay}
-            autoplaySpeed={0.1}
+            autoplaySpeed={1}
             autoplayDirection={autoplayDirection}
             pauseOnHover={pauseOnHover}
           />
@@ -154,52 +158,40 @@ const InfiniteScrollDemo = () => {
           <PreviewSwitch isChecked={isTilted} title="Tilt" onChange={() => setIsTilted(!isTilted)} />
 
           {isTilted && (
-            <Flex direction="column" my={4}>
-              <Text mb={2} color="#fff">
-                Tilt Direction
-              </Text>
-              <Select
-                value={tiltDirection}
-                onChange={(e) => setTiltDirection(e.target.value)}
-                width="200px"
-                size="sm"
-              >
-                <option value="left">Left</option>
-                <option value="right">Right</option>
-              </Select>
-            </Flex>
+            <PreviewSelect
+              title="Tilt Direction"
+              options={tiltOptions}
+              value={tiltDirection}
+              name="tiltDirection"
+              width={150}
+              onChange={(val) => {
+                setTiltDirection(val);
+              }}
+            />
           )}
 
-          <Divider my={4} />
+          <Separator my={4} borderColor="#271E37" />
 
           <PreviewSwitch isChecked={autoplay} title="Autoplay" onChange={() => setAutoplay(!autoplay)} />
 
           {autoplay && (
             <>
-              <Flex align="center" mt={4}>
-                <Text mr={2} color="#fff">
-                  Pause on Hover
-                </Text>
-                <Switch
-                  isChecked={pauseOnHover}
-                  onChange={() => setPauseOnHover(!pauseOnHover)}
-                  colorScheme="teal"
-                />
-              </Flex>
-              <Flex direction="column" mt={4}>
-                <Text mb={2} color="#fff">
-                  Autoplay Direction
-                </Text>
-                <Select
-                  value={autoplayDirection}
-                  onChange={(e) => setAutoplayDirection(e.target.value)}
-                  width="200px"
-                  size="sm"
-                >
-                  <option value="down">Down</option>
-                  <option value="up">Up</option>
-                </Select>
-              </Flex>
+              <PreviewSelect
+                title="Autoplay Direction"
+                options={autoplayOptions}
+                value={autoplayDirection}
+                name="autoplayDirection"
+                width={150}
+                onChange={(val) => {
+                  setAutoplayDirection(val);
+                }}
+              />
+
+              <PreviewSwitch
+                title="Pause on Hover"
+                isChecked={pauseOnHover}
+                onChange={(checked) => setPauseOnHover(checked)}
+              />
             </>
           )}
         </Customize>

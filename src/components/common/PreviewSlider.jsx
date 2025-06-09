@@ -1,36 +1,44 @@
-import { Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Flex, Slider, Text } from "@chakra-ui/react";
 
 const PreviewSlider = ({
-  title = '',
+  title = "",
   min = 0,
   max = 100,
   step = 1,
   value = 0,
-  valueUnit = '',
+  valueUnit = "",
   width = 150,
   isDisabled = false,
-  onChange
+  onChange,
 }) => {
+  const handleChange = ({ value: next }) => onChange?.(next[0]);
+
   return (
-    <Flex gap={4} align="center" mt={4}>
+    <Flex gap="4" align="center" my={6}>
       <Text fontSize="sm">{title}</Text>
-      <Slider
+      <Slider.Root
         min={min}
         max={max}
         step={step}
-        value={value}
-        onChange={(val) => onChange(val)}
-        isDisabled={isDisabled}
+        value={[value]}
+        onValueChange={handleChange}
         width={`${width}px`}
+        disabled={isDisabled}
       >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
-      <Text fontSize="sm">{value}{valueUnit && valueUnit}</Text>
+        <Slider.Control>
+          <Slider.Track>
+            <Slider.Range />
+          </Slider.Track>
+          <Slider.Thumbs />
+        </Slider.Control>
+      </Slider.Root>
+
+      <Text fontSize="sm">
+        {value}
+        {valueUnit}
+      </Text>
     </Flex>
   );
-}
+};
 
 export default PreviewSlider;

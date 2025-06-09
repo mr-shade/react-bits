@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Flex, Text, FormControl, FormLabel, Select } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 import useForceRerender from "../../hooks/useForceRerender";
 import PreviewSlider from "../../components/common/PreviewSlider";
-import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import Customize from "../../components/common/Customize";
+import PreviewSelect from "../../components/common/PreviewSelect";
 
 import FallingText from "../../content/TextAnimations/FallingText/FallingText";
 import { fallingText } from "../../constants/code/TextAnimations/fallingTextCode";
@@ -83,6 +84,13 @@ const FallingTextDemo = () => {
     }
   ];
 
+  const options = [
+    { value: "hover", label: "Hover" },
+    { value: "click", label: "Click" },
+    { value: "auto", label: "Auto" },
+    { value: "scroll", label: "Scroll" }
+  ];
+
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -104,24 +112,16 @@ const FallingTextDemo = () => {
         </Flex>
 
         <Customize>
-          <FormControl width="auto">
-            <Flex alignItems={"center"} gap={2} mb={4}>
-              <FormLabel fontSize="sm" margin={0}>Trigger</FormLabel>
-              <Select
-                width="150px"
-                value={trigger}
-                onChange={(e) => {
-                  setTrigger(e.target.value);
-                  forceRerender();
-                }}
-              >
-                <option value="hover">Hover</option>
-                <option value="click">Click</option>
-                <option value="auto">Auto</option>
-                <option value="scroll">Scroll</option>
-              </Select>
-            </Flex>
-          </FormControl>
+          <PreviewSelect
+            title="Trigger"
+            options={options}
+            value={trigger}
+            name="trigger"
+            width={150}
+            onChange={(val) => {
+              setTrigger(val);
+            }}
+          />
 
           <PreviewSlider
             title="Gravity"

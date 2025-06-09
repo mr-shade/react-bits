@@ -84,9 +84,9 @@ const AnimatedListDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch title="Fade Items" isChecked={showGradients} onChange={(e) => { setShowGradients(e.target.checked); forceRerender() }} />
-          <PreviewSwitch title="Keboard Navigation" isChecked={enableArrowNavigation} onChange={(e) => { setEnableArrowNavigation(e.target.checked); forceRerender() }} />
-          <PreviewSwitch title="Show Scrollbar" isChecked={displayScrollbar} onChange={(e) => { setDisplayScrollbar(e.target.checked); forceRerender() }} />
+          <PreviewSwitch title="Fade Items" isChecked={showGradients} onChange={(checked) => { setShowGradients(checked); forceRerender() }} />
+          <PreviewSwitch title="Keboard Navigation" isChecked={enableArrowNavigation} onChange={(checked) => { setEnableArrowNavigation(checked); forceRerender() }} />
+          <PreviewSwitch title="Show Scrollbar" isChecked={displayScrollbar} onChange={(checked) => { setDisplayScrollbar(checked); forceRerender() }} />
         </Customize>
 
         <PropTable data={propData} />

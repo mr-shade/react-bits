@@ -88,13 +88,13 @@ const OrbDemo = () => {
           <PreviewSwitch
             title="Rotate On Hover"
             isChecked={rotateOnHover}
-            onChange={(e) => setRotateOnHover(e.target.checked)}
+            onChange={(checked) => setRotateOnHover(checked)}
           />
 
           <PreviewSwitch
             title="Force Hover State"
             isChecked={forceHoverState}
-            onChange={(e) => setForceHoverState(e.target.checked)}
+            onChange={(checked) => setForceHoverState(checked)}
           />
         </Customize>
 

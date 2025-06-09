@@ -30,7 +30,7 @@ const RollingGalleryDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" bg={'#060010'} overflow='hidden' p={0}>
           <Flex h={'100%'} maxW={'600px'} alignItems="center" justifyContent="center" direction="column">
-            <Text textAlign="center" position="absolute" fontWeight={900} top={{ base: '4em', md: '1em' }} whiteSpace="nowrap" fontSize={{ base: '1.6em', md: '3rem' }}>Your trip to Thailand.</Text>
+            <Text mt={6} textAlign="center" position="absolute" fontWeight={900} top={{ base: '4em', md: '1em' }} whiteSpace="nowrap" fontSize={{ base: '1.6em', md: '3rem' }}>Your trip to Thailand.</Text>
             <RollingGallery autoplay={true} pauseOnHover={true} />
           </Flex>
         </Box>

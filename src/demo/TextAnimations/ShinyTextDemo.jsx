@@ -44,26 +44,26 @@ const ShinyTextDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <h2 className="demo-title-extra">Button Example</h2>
-        <Box position="relative" className="demo-container" minH={150}>
+        <h2 className="demo-title-extra">Basic</h2>
+        <Box position="relative" className="demo-container" minH={150} fontSize="24px">
+          <ShinyText text="Just some shiny text!" disabled={false} speed={3} className="shiny-text-demo" />
+        </Box>
+
+        <h2 className="demo-title-extra">Button Text</h2>
+        <Box position="relative" className="demo-container" minH={150} fontSize="24px">
           <div className="shiny-button">
             <ShinyText text="Shiny Button" disabled={false} speed={3} className="shiny-text-demo" />
           </div>
         </Box>
 
-        <h2 className="demo-title-extra">Text Example</h2>
-        <Box position="relative" className="demo-container" minH={150}>
-          <ShinyText text="Just some shiny text!" disabled={false} speed={3} className="shiny-text-demo" />
-        </Box>
-
         <h2 className="demo-title-extra">Configurable Speed</h2>
-        <Box position="relative" className="demo-container" minH={150}>
+        <Box position="relative" className="demo-container" minH={150} fontSize="24px">
           <ShinyText text={speed < 2.5 ? '🐎 This is fast!' : '🐌 This is slow!'} disabled={false} speed={speed} className="shiny-text-demo" />
         </Box>
 
         <Customize>
           <PreviewSlider
-            title="Animation Speed"
+            title="Animation Duration"
             min={1}
             max={5}
             step={0.1}

@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td, Box, Text } from '@chakra-ui/react';
+import { Table, Box, Text } from '@chakra-ui/react';
 
 const CodeCell = ({ content = '' }) => {
   return (
@@ -21,34 +21,34 @@ const PropTable = ({ data }) => {
     <Box mt={12}>
       <h2 className="demo-title-extra">Props</h2>
       <Box overflowX="auto" mt={6}>
-        <Table variant="unstyled" colorScheme="whiteAlpha" size="sm" className='props-table'>
-          <Thead borderBottom='1px solid #392e4e'>
-            <Tr backgroundColor='#170D27' borderRadius='20px'>
-              <Th letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Property</Th>
-              <Th letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Type</Th>
-              <Th letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Default</Th>
-              <Th letterSpacing='-.5px' textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Description</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
+        <Table.Root variant="line" size="sm" className='props-table'>
+          <Table.Header borderBottom='1px solid #392e4e'>
+            <Table.Row backgroundColor='#170D27' borderRadius='20px'>
+              <Table.ColumnHeader letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Property</Table.ColumnHeader>
+              <Table.ColumnHeader letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Type</Table.ColumnHeader>
+              <Table.ColumnHeader letterSpacing='-.5px' borderRight="1px solid #392e4e" textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Default</Table.ColumnHeader>
+              <Table.ColumnHeader letterSpacing='-.5px' textTransform={'capitalize'} fontSize={'l'} py={4} color="white">Description</Table.ColumnHeader>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
             {data.map((prop, index) => (
-              <Tr key={index} borderBottom={index === data.length - 1 ? 'none' : '1px solid #392e4e'}>
-                <Td borderColor="#271E37" py={4} color="white" width={0} pr={8} borderRight="1px solid #392e4e">
+              <Table.Row key={index} borderBottom={index === data.length - 1 ? 'none' : '1px solid #392e4e'}>
+                <Table.Cell borderColor="#271E37" py={4} color="white" width={0} pr={8} borderRight="1px solid #392e4e" bg={'#060010'}>
                   <CodeCell rightJustified content={prop.name} />
-                </Td>
-                <Td borderColor="#271E37" py={4} color="white" whiteSpace='nowrap' width={'120px'} borderRight="1px solid #392e4e">
+                </Table.Cell>
+                <Table.Cell borderColor="#271E37" py={4} color="white" whiteSpace='nowrap' width={'120px'} borderRight="1px solid #392e4e" bg={'#060010'}>
                   <Text fontFamily='monospace' fontWeight={500}>{prop.type}</Text>
-                </Td>
-                <Td borderColor="#271E37" py={4} color="white" borderRight="1px solid #392e4e" whiteSpace='nowrap'>
+                </Table.Cell>
+                <Table.Cell borderColor="#271E37" py={4} color="white" borderRight="1px solid #392e4e" whiteSpace='nowrap' bg={'#060010'}>
                   <CodeCell content={prop.default && prop.default.length ? prop.default : '—'} />
-                </Td>
-                <Td borderColor="#271E37" py={4} color="white">
+                </Table.Cell>
+                <Table.Cell borderColor="#271E37" py={4} color="white" bg={'#060010'}>
                   <Text maxW={300}>{prop.description}</Text>
-                </Td>
-              </Tr>
+                </Table.Cell>
+              </Table.Row>
             ))}
-          </Tbody>
-        </Table>
+          </Table.Body>
+        </Table.Root>
       </Box>
     </Box>
   );

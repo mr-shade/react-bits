@@ -80,7 +80,7 @@ const ThreadsDemo = () => {
             }}
           />
 
-          <PreviewSwitch title="Enable Mouse Interaction" isChecked={enableMouseInteraction} onChange={(e) => { setEnableMouseInteraction(e.target.checked); }} />
+          <PreviewSwitch title="Enable Mouse Interaction" isChecked={enableMouseInteraction} onChange={(checked) => { setEnableMouseInteraction(checked); }} />
         </Customize>
 
         <PropTable data={propData} />

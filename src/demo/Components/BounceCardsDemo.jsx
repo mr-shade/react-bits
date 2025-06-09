@@ -125,7 +125,7 @@ const BounceCardsDemo = () => {
         </Flex>
 
         <Customize>
-          <PreviewSwitch title="Enable Hover Effect" isChecked={enableHover} onChange={(e) => { setEnableHover(e.target.checked); forceRerender() }} />
+          <PreviewSwitch title="Enable Hover Effect" isChecked={enableHover} onChange={(checked) => { setEnableHover(checked); forceRerender() }} />
 
           <PreviewSlider
             title="Animation Delay"

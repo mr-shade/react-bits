@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import PreviewSwitch from "../../components/common/PreviewSwitch";
@@ -100,13 +100,14 @@ const DitherDemo = () => {
         <Customize>
           <Text fontSize="sm">Colors</Text>
           <Flex gap={4} wrap="wrap">
-            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
-              <Text fontSize="sm">R</Text>
-              <Slider
+            <Flex gap={4} align="center" mt={2} background="#170D27" px={4} borderRadius={16} position="relative">
+              <PreviewSlider
                 min={0}
                 max={1}
+                width={50}
                 step={0.1}
                 value={colors[0]}
+                title="Red"
                 onChange={(val) => {
                   setColors(prev => {
                     const newColors = [...prev];
@@ -114,24 +115,17 @@ const DitherDemo = () => {
                     return newColors;
                   });
                 }}
-                minWidth="60px"
-                maxWidth="60px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{colors[0]}</Text>
+              />
             </Flex>
 
-            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
-              <Text fontSize="sm">G</Text>
-              <Slider
+            <Flex gap={4} align="center" mt={2} background="#170D27" px={4} borderRadius={16} position="relative">
+              <PreviewSlider
                 min={0}
                 max={1}
+                width={50}
                 step={0.1}
                 value={colors[1]}
+                title="Green"
                 onChange={(val) => {
                   setColors(prev => {
                     const newColors = [...prev];
@@ -139,24 +133,17 @@ const DitherDemo = () => {
                     return newColors;
                   });
                 }}
-                minWidth="60px"
-                maxWidth="60px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{colors[1]}</Text>
+              />
             </Flex>
 
-            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
-              <Text fontSize="sm">B</Text>
-              <Slider
+            <Flex gap={4} align="center" mt={2} background="#170D27" px={4} borderRadius={16} position="relative">
+              <PreviewSlider
                 min={0}
                 max={1}
+                width={50}
                 step={0.1}
                 value={colors[2]}
+                title="Blue"
                 onChange={(val) => {
                   setColors(prev => {
                     const newColors = [...prev];
@@ -164,15 +151,7 @@ const DitherDemo = () => {
                     return newColors;
                   });
                 }}
-                minWidth="60px"
-                maxWidth="60px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{colors[2]}</Text>
+              />
             </Flex>
           </Flex>
 
@@ -209,7 +188,7 @@ const DitherDemo = () => {
             }}
           />
 
-          <PreviewSwitch title="Disable Animation" isChecked={disableAnimation} onChange={(e) => { setDisableAnimation(e.target.checked); }} />
+          <PreviewSwitch title="Disable Animation" isChecked={disableAnimation} onChange={(checked) => { setDisableAnimation(checked); }} />
           <PreviewSlider
             title="Wave Speed"
             min={0}
@@ -222,7 +201,7 @@ const DitherDemo = () => {
             }}
           />
 
-          <PreviewSwitch title="Mouse Interaction" isChecked={enableMouseInteraction} onChange={(e) => { setEnableMouseInteraction(e.target.checked); }} />
+          <PreviewSwitch title="Mouse Interaction" isChecked={enableMouseInteraction} onChange={(checked) => { setEnableMouseInteraction(checked); }} />
 
           <PreviewSlider
             title="Mouse Radius"

@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSwitch from "../../components/common/PreviewSwitch";
 
 import LiquidChrome from "../../content/Backgrounds/LiquidChrome/LiquidChrome";
 import { liquidChrome } from "../../constants/code/Backgrounds/liquidChromeCode";
-import { useState } from "react";
 
 const LiquidChromeDemo = () => {
   const [speed, setSpeed] = useState(0.3);
@@ -62,18 +65,17 @@ const LiquidChromeDemo = () => {
           <LiquidChrome baseColor={baseColor} amplitude={amplitude} speed={speed} interactive={interactive} />
         </Box>
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
-
+        <Customize>
           <Text fontSize="sm">Colors</Text>
           <Flex gap={4} wrap="wrap">
-            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
-              <Text fontSize="sm">R</Text>
-              <Slider
-                min={0.1}
-                max={0.5}
-                step={0.01}
+            <Flex gap={4} align="center" mt={2} background="#170D27" px={4} borderRadius={16} position="relative">
+              <PreviewSlider
+                min={0}
+                max={1}
+                width={50}
+                step={0.1}
                 value={baseColor[0]}
+                title="Red"
                 onChange={(val) => {
                   setBaseColor(prev => {
                     const newColors = [...prev];
@@ -81,24 +83,17 @@ const LiquidChromeDemo = () => {
                     return newColors;
                   });
                 }}
-                minWidth="60px"
-                maxWidth="60px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{baseColor[0]}</Text>
+              />
             </Flex>
 
-            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
-              <Text fontSize="sm">G</Text>
-              <Slider
-                min={0.1}
-                max={0.5}
-                step={0.01}
+            <Flex gap={4} align="center" mt={2} background="#170D27" px={4} borderRadius={16} position="relative">
+              <PreviewSlider
+                min={0}
+                max={1}
+                width={50}
+                step={0.1}
                 value={baseColor[1]}
+                title="Green"
                 onChange={(val) => {
                   setBaseColor(prev => {
                     const newColors = [...prev];
@@ -106,24 +101,17 @@ const LiquidChromeDemo = () => {
                     return newColors;
                   });
                 }}
-                minWidth="60px"
-                maxWidth="60px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{baseColor[1]}</Text>
+              />
             </Flex>
 
-            <Flex gap={4} align="center" mt={2} background="#170D27" pl={4} pr={10} py={4} borderRadius={16} position="relative">
-              <Text fontSize="sm">B</Text>
-              <Slider
-                min={0.1}
-                max={0.5}
-                step={0.01}
+            <Flex gap={4} align="center" mt={2} background="#170D27" px={4} borderRadius={16} position="relative">
+              <PreviewSlider
+                min={0}
+                max={1}
+                width={50}
+                step={0.1}
                 value={baseColor[2]}
+                title="Blue"
                 onChange={(val) => {
                   setBaseColor(prev => {
                     const newColors = [...prev];
@@ -131,69 +119,40 @@ const LiquidChromeDemo = () => {
                     return newColors;
                   });
                 }}
-                minWidth="60px"
-                maxWidth="60px"
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Text position="absolute" right={3.5} fontSize="sm">{baseColor[2]}</Text>
+              />
             </Flex>
           </Flex>
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Speed</Text>
-            <Slider
-              min={0}
-              max={5}
-              step={0.01}
-              value={speed}
-              onChange={(val) => {
-                setSpeed(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{speed}</Text>
-          </Flex>
+          <PreviewSlider
+            min={0}
+            title="Speed"
+            max={5}
+            step={0.01}
+            value={speed}
+            onChange={(val) => {
+              setSpeed(val);
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Amplitude</Text>
-            <Slider
-              min={0.1}
-              max={1}
-              step={0.01}
-              value={amplitude}
-              onChange={(val) => {
-                setAmplitude(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{amplitude}</Text>
-          </Flex>
+          <PreviewSlider
+            min={0.1}
+            title="Amplitude"
+            max={1}
+            step={0.01}
+            value={amplitude}
+            onChange={(val) => {
+              setAmplitude(val);
+            }}
+          />
 
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Interactive</Text>
-            <Switch
-              isChecked={interactive}
-              onChange={(e) => {
-                setInteractive(e.target.checked);
-              }}
-            />
-          </Flex>
-
-        </div>
+          <PreviewSwitch
+            title="Enable Interaction"
+            isChecked={interactive}
+            onChange={(checked) => {
+              setInteractive(checked);
+            }}
+          />
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />

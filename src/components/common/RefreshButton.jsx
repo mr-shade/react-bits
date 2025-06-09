@@ -1,5 +1,5 @@
-import { RepeatIcon } from "@chakra-ui/icons";
-import { Button } from '@chakra-ui/react';
+import { Button, Icon } from '@chakra-ui/react';
+import { FiRefreshCw } from 'react-icons/fi';
 
 const RefreshButton = ({ onClick }) => {
   return (
@@ -19,7 +19,7 @@ const RefreshButton = ({ onClick }) => {
       top={3}
       p={2}
     >
-      <RepeatIcon boxSize={4} />
+      <Icon as={FiRefreshCw} boxSize={4} />
     </Button>
   );
 }

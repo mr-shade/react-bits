@@ -47,7 +47,6 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           </Flex>
         }
 
-        {/* Overlay gradient when collapsed */}
         {shouldCollapse && !expanded && (
           <Box
             position="absolute"
@@ -59,7 +58,6 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           />
         )}
 
-        {/* Toggle button */}
         {shouldCollapse && (
           <Button
             position="absolute"
@@ -89,17 +87,17 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           className="code-copy"
           rounded="xl"
           fontWeight={500}
-          backgroundColor={copied ? '#3EFF5D' : '#060010'}
+          backgroundColor={copied ? '#6CC75D' : '#060010'}
           border="1px solid #392e4e"
           color={copied ? 'black' : 'white'}
-          _hover={{ backgroundColor: copied ? '#7cff67' : '#271E37' }}
+          _hover={{ backgroundColor: copied ? '#6CC75D' : '#271E37' }}
           _active={{ backgroundColor: '#5227FF' }}
           transition="background-color 0.3s ease"
           onClick={handleCopy}
         >
           {copied
-            ? <Icon as={FiCheckSquare} />
-            : <Icon as={FiCopy} />
+            ? <Icon as={FiCheckSquare} color="#fff" boxSize={4}/>
+            : <Icon as={FiCopy} color="#fff" boxSize={4}/>
           }
         </Button>
       }

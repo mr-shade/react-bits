@@ -156,8 +156,13 @@ const ProfileCardDemo = () => {
         </Box>        <Customize>
           <Button
             onClick={generateRandomGradients}
-            size="sm"
-            mb={4}
+            fontSize="xs"
+            bg="#170D27"
+            borderRadius="10px"
+            border="1px solid #271E37"
+            _hover={{ bg: "#271E37" }}
+            color="#fff"
+            h={8}
           >
             Randomize Colors
           </Button>

@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Flex, FormControl, FormLabel, Input, Select, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSelect from "../../components/common/PreviewSelect";
+import PreviewInput from "../../components/common/PreviewInput";
 
 import CircularText from "../../content/TextAnimations/CircularText/CircularText";
 import { circularText } from "../../constants/code/TextAnimations/circularTextCode";
@@ -42,6 +46,13 @@ const CircularTextDemo = () => {
     }
   ];
 
+  const options = [
+    { label: 'Slow Down', value: 'slowDown' },
+    { label: 'Speed Up', value: 'speedUp' },
+    { label: 'Pause', value: 'pause' },
+    { label: 'Go Bonkers', value: 'goBonkers' }
+  ];
+
   return (
     <TabbedLayout>
       <PreviewTab>
@@ -50,60 +61,39 @@ const CircularTextDemo = () => {
         </Box>
 
 
-        <div className="preview-options">
-          <h2 className="demo-title-extra">Customize</h2>
+        <Customize className="preview-options">
+          <PreviewInput
+            title="Text"
+            value={text}
+            placeholder="Enter text..."
+            width={220}
+            maxLength={25}
+            onChange={setText}
+          />
 
-          <Flex alignItems="center" gap={4} flexWrap="wrap" mb={4}>
-            <FormControl>
-              <FormLabel fontSize="sm">Text</FormLabel>
-              <Input
-                rounded="xl"
-                w={'300px'}
-                maxLength={25}
-                value={text}
-                onChange={(e) => {
-                  setText(e.target.value);
-                }}
-                placeholder="Enter text..."
-              />
-            </FormControl>
-          </Flex>
+          <PreviewSelect
+            title="On Hover"
+            options={options}
+            value={onHover}
+            name="setOnHover"
+            width={150}
+            onChange={(val) => {
+              setOnHover(val);
+            }}
+          />
 
-          <Flex alignItems="center" gap={4} flexWrap="wrap" mb={6}>
-            <FormControl>
-              <FormLabel fontSize="sm">On Hover</FormLabel>
-              <Select defaultValue="one" rounded="xl" w={'300px'} onChange={(e) => {
-                setOnHover(e.target.value);
-              }}>
-                <option value='speedUp'>Speed Up</option>
-                <option value='slowDown'>Slow Down</option>
-                <option value='pause'>Pause</option>
-                <option value='goBonkers'>Go Bonkers</option>
-              </Select>
-            </FormControl>
-          </Flex>
+          <PreviewSlider
+            min={1}
+            title="Spin Duration (s)"
+            max={60}
+            step={1}
+            value={spinDuration}
+            onChange={(val) => {
+              setSpinDuration(val);
+            }}
+          />
 
-          <Flex gap={4} align="center">
-            <Text fontSize="sm">Speed</Text>
-            <Slider
-              min={1}
-              max={60}
-              step={1}
-              value={spinDuration}
-              onChange={(val) => {
-                setSpinDuration(val);
-              }}
-              width="200px"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text fontSize="sm">{spinDuration}</Text>
-          </Flex>
-
-        </div>
+        </Customize>
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['framer-motion']} />

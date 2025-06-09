@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import RefreshButton from "../../components/common/RefreshButton";
@@ -18,7 +18,6 @@ const FadeDemo = () => {
   const [blur, setBlur] = useState(false);
   const [delay, setDelay] = useState(0);
   const [duration, setDuration] = useState(1000);
-  const [easing, setEasing] = useState("ease-out");
   const [threshold, setThreshold] = useState(0.1);
   const [initialOpacity, setInitialOpacity] = useState(0);
 
@@ -78,7 +77,6 @@ const FadeDemo = () => {
             blur={blur}
             duration={duration}
             delay={delay}
-            easing={easing}
             threshold={threshold}
             initialOpacity={initialOpacity}
           >
@@ -102,10 +100,10 @@ const FadeDemo = () => {
 
         <Customize>
           <PreviewSwitch
-            title="Blur"
+            title="Enable Blur"
             isChecked={blur}
-            onChange={(e) => {
-              setBlur(e.target.checked);
+            onChange={(checked) => {
+              setBlur(checked);
               forceRerender();
             }}
           />
@@ -159,19 +157,6 @@ const FadeDemo = () => {
               forceRerender();
             }}
           />
-
-          <Flex gap={4} align="center" mt={4}>
-            <Text fontSize="sm">Easing:</Text>
-            <Button
-              fontSize="xs"
-              onClick={() => {
-                setEasing(easing === "ease-out" ? "ease-in-out" : "ease-out");
-                forceRerender();
-              }}
-            >
-              Easing: <Text color={"#a1a1aa"}>&nbsp;{String(easing)}</Text>
-            </Button>
-          </Flex>
         </Customize>
 
         <PropTable data={propData} />
