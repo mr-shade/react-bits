@@ -20,8 +20,9 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import * as THREE from "three";
 
-import cardGLB from "./card.glb";
-import lanyard from "./lanyard.png";
+// replace with your own imports, see the usage snippet for details
+import cardGLB from "../../../assets/lanyard/card.glb";
+import lanyard from "../../../assets/lanyard/lanyard.png";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
