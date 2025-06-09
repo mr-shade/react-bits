@@ -53,13 +53,12 @@ const SplitText = ({
       (t).style.willChange = "transform, opacity";
     });
 
-    const startPct = (1 - threshold) * 100; // e.g. 0.1 -> 90%
+    const startPct = (1 - threshold) * 100;
     const m = /^(-?\d+)px$/.exec(rootMargin);
     const raw = m ? parseInt(m[1], 10) : 0;
     const sign = raw < 0 ? `-=${Math.abs(raw)}px` : `+=${raw}px`;
     const start = `top ${startPct}%${sign}`;
 
-    // 5) Timeline with smoothChildTiming
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: el,

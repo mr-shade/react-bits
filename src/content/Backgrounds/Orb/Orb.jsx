@@ -95,8 +95,6 @@ export default function Orb({
       return dot(vec4(31.316), n);
     }
 
-    // Instead of "extractAlpha" that normalizes the color,
-    // we keep the computed color as-is and later multiply by alpha.
     vec4 extractAlpha(vec3 colorIn) {
       float a = max(max(colorIn.r, colorIn.g), colorIn.b);
       return vec4(colorIn.rgb / (a + 1e-5), a);
@@ -222,7 +220,7 @@ export default function Orb({
     let targetHover = 0;
     let lastTime = 0;
     let currentRot = 0;
-    const rotationSpeed = 0.3; // radians per second
+    const rotationSpeed = 0.3;
 
     const handleMouseMove = (e) => {
       const rect = container.getBoundingClientRect();

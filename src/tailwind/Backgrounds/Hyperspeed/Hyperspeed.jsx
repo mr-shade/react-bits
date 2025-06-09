@@ -356,7 +356,7 @@ const Hyperspeed = ({ effectOptions = {
         this.camera.position.y = 8;
         this.camera.position.x = 0;
         this.scene = new THREE.Scene();
-        this.scene.background = null;  // Ensure scene background is transparent
+        this.scene.background = null;
 
         let fog = new THREE.Fog(
           options.colors.background,
@@ -656,7 +656,7 @@ const Hyperspeed = ({ effectOptions = {
           let length = random(options.carLightsLength);
           let speed = random(this.speed);
 
-          let carLane = i % options.lanesPerRoad;  // Fix lane assignment to spread across lanes
+          let carLane = i % options.lanesPerRoad;
           let laneX = carLane * laneWidth - options.roadWidth / 2 + laneWidth / 2;
 
           let carWidth = random(options.carWidthPercentage) * laneWidth;
@@ -1033,20 +1033,15 @@ const Hyperspeed = ({ effectOptions = {
     `;
 
     const roadMarkings_fragment = `
-      uv.y = mod(uv.y + uTime * 0.05, 1.);  // Adjust speed of markings
+      uv.y = mod(uv.y + uTime * 0.05, 1.);
       float laneWidth = 1.0 / uLanes;
       float brokenLineWidth = laneWidth * uBrokenLinesWidthPercentage;
       float laneEmptySpace = 1. - uBrokenLinesLengthPercentage;
 
-      float brokenLines = step(1.0 - brokenLineWidth, fract(uv.x * 2.0)) * step(laneEmptySpace, fract(uv.y * 10.0));  // Dashes in the middle
-      float sideLines = step(1.0 - brokenLineWidth, fract((uv.x - laneWidth * (uLanes - 1.0)) * 2.0)) + step(brokenLineWidth, uv.x); // Side continuous lines
+      float brokenLines = step(1.0 - brokenLineWidth, fract(uv.x * 2.0)) * step(laneEmptySpace, fract(uv.y * 10.0));
+      float sideLines = step(1.0 - brokenLineWidth, fract((uv.x - laneWidth * (uLanes - 1.0)) * 2.0)) + step(brokenLineWidth, uv.x);
 
       brokenLines = mix(brokenLines, sideLines, uv.x);
-      // color = mix(color, uBrokenLinesColor, brokenLines);
-
-      // vec2 noiseFreq = vec2(4., 7000.);
-      // float roadNoise = random(floor(uv * noiseFreq) / noiseFreq) * 0.02 - 0.01; 
-      // color += roadNoise;
     `;
 
     const roadFragment = roadBaseFragment

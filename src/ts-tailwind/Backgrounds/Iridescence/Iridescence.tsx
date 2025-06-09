@@ -29,7 +29,6 @@ void main() {
   float mr = min(uResolution.x, uResolution.y);
   vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
 
-  // Add a subtle offset based on the mouse position
   uv += (uMouse - vec2(0.5)) * uAmplitude;
 
   float d = -uTime * 0.5 * uSpeed;

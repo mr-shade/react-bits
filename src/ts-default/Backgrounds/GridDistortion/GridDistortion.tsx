@@ -85,7 +85,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     for (let i = 0; i < size * size; i++) {
       data[i * 4] = Math.random() * 255 - 125;
       data[i * 4 + 1] = Math.random() * 255 - 125;
-      // Leave G and A channels as 0 by default
     }
     initialDataRef.current = new Float32Array(data);
 

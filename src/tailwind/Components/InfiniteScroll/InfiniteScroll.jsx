@@ -1,5 +1,3 @@
-// InfiniteScroll.jsx
-
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
@@ -7,21 +5,17 @@ import { Observer } from "gsap/Observer";
 gsap.registerPlugin(Observer);
 
 export default function InfiniteScroll({
-  // ----- Layout / Style Props -----
-  width = "30rem",             // Width of the outer wrapper
-  maxHeight = "100%",          // Max-height of the outer wrapper
-  negativeMargin = "-0.5em",   // Negative margin to reduce spacing between items
-  // ----- Items Prop -----
-  items = [],                  // Array of items with { content: ... }
-  itemMinHeight = 150,         // Fixed height for each item
-  // ----- Tilt Props -----
-  isTilted = false,            // Whether the container is in "skewed" perspective
-  tiltDirection = "left",      // tiltDirection: "left" or "right"
-  // ----- Autoplay Props -----
-  autoplay = false,            // Whether it should automatically scroll
-  autoplaySpeed = 0.5,          // Speed (pixels/frame approx.)
-  autoplayDirection = "down",  // "down" or "up"
-  pauseOnHover = false,        // Pause autoplay on hover
+  width = "30rem",
+  maxHeight = "100%",
+  negativeMargin = "-0.5em",
+  items = [],
+  itemMinHeight = 150,
+  isTilted = false,
+  tiltDirection = "left",
+  autoplay = false,
+  autoplaySpeed = 0.5,
+  autoplayDirection = "down",
+  pauseOnHover = false,
 }) {
   const wrapperRef = useRef(null);
   const containerRef = useRef(null);
@@ -143,11 +137,9 @@ export default function InfiniteScroll({
       ref={wrapperRef}
       style={{ maxHeight }}
     >
-      {/* Gradient Overlays */}
       <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"></div>
 
-      {/* Container */}
       <div
         className="flex flex-col overscroll-contain px-4 cursor-grab origin-center"
         ref={containerRef}

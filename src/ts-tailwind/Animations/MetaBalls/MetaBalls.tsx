@@ -85,7 +85,7 @@ uniform vec3 iCursorColor;
 uniform float iAnimationSize;
 uniform int iBallCount;
 uniform float iCursorBallSize;
-uniform vec3 iMetaBalls[50]; // Precomputed: xy = position, z = radius
+uniform vec3 iMetaBalls[50];
 uniform float iClumpFactor;
 uniform bool enableTransparency;
 out vec4 outColor;

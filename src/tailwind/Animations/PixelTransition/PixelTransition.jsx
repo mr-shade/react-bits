@@ -105,7 +105,6 @@ function PixelTransition({
   return (
     <div
       ref={containerRef}
-      // Combine your own className with the Tailwind classes for styling
       className={`
         ${className}
         bg-[#271E37]

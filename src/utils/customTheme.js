@@ -1,11 +1,9 @@
-// theme/customTheme.js  –  Chakra UI 3.20
 import {
   createSystem,
   defaultConfig,
   defineSlotRecipe,
 } from "@chakra-ui/react";
 
-/* ───────── Drawer slide-in (left placement) ───────── */
 const drawerRecipe = defineSlotRecipe({
   className: "drawer",
   slots: ["content"],
@@ -17,13 +15,12 @@ const drawerRecipe = defineSlotRecipe({
   },
 });
 
-/* ───────── Tabs trigger pill styling ───────── */
 const tabsRecipe = defineSlotRecipe({
   className: "tabs",
   slots: ["trigger"],
   base: {
     trigger: {
-      flex: "0 0 auto",                 // keep triggers side-by-side
+      flex: "0 0 auto",
       bg: "#060010",
       borderRadius: "10px",
       fontSize: "14px",
@@ -34,7 +31,6 @@ const tabsRecipe = defineSlotRecipe({
 
       _hover: { bg: "#271E37" },
 
-      /* selected state → data-state="active" */
       "&[data-state='active']": {
         color: "#fff",
         bg: "#170D27",
@@ -43,7 +39,6 @@ const tabsRecipe = defineSlotRecipe({
   },
 });
 
-/* ───────── Toast helper (unchanged) ───────── */
 export const toastStyles = {
   style: {
     fontSize: "12px",
@@ -54,7 +49,6 @@ export const toastStyles = {
   },
 };
 
-/* ───────── Custom theme ───────── */
 export const customTheme = createSystem(defaultConfig, {
   config: {
     initialColorMode: "dark",
@@ -100,7 +94,6 @@ export const customTheme = createSystem(defaultConfig, {
     },
   },
 
-  /* register slot-recipes so CSS is injected globally */
   recipes: {
     drawer: drawerRecipe,
     tabs: tabsRecipe,

@@ -48,7 +48,6 @@ export default function MagnetLines({
     };
   }, []);
 
-  // Create a grid’s worth of spans
   const total = rows * columns;
   const spans = Array.from({ length: total }, (_, i) => (
     <span

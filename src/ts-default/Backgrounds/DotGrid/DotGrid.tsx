@@ -133,7 +133,6 @@ const DotGrid: React.FC<DotGridProps> = ({
           const dist = Math.hypot(x - e.clientX, y - e.clientY);
           const interp = Math.max(0, 1 - dist / proximity);
 
-          // color‐fade
           gsap.set(el, {
             backgroundColor: gsap.utils.interpolate(
               baseColor,
@@ -142,7 +141,6 @@ const DotGrid: React.FC<DotGridProps> = ({
             ),
           });
 
-          // inertia on quick swipe
           if (speed > speedTrigger && dist < proximity && !el._inertiaApplied) {
             el._inertiaApplied = true;
             const pushX = x - e.clientX + vx * 0.005;

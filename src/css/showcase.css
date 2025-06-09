@@ -189,7 +189,6 @@
   background: linear-gradient(to right, transparent, #ffffff7d, transparent);
 }
 
-/* Media Queries */
 @media (max-width: 1024px) {
   .showcase-wrapper {
     padding: 140px 2em 0;

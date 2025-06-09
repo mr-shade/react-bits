@@ -1,4 +1,3 @@
-// ContributionSection.js
 import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
 import { TbBug, TbBulb } from "react-icons/tb";
 import { useParams } from "react-router-dom";

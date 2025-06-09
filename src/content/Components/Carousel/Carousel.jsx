@@ -118,7 +118,7 @@ export default function Carousel({
     const velocity = info.velocity.x;
     if (offset < -DRAG_BUFFER || velocity < -VELOCITY_THRESHOLD) {
       if (loop && currentIndex === items.length - 1) {
-        setCurrentIndex(currentIndex + 1); // Go to clone.
+        setCurrentIndex(currentIndex + 1);
       } else {
         setCurrentIndex((prev) => Math.min(prev + 1, carouselItems.length - 1));
       }

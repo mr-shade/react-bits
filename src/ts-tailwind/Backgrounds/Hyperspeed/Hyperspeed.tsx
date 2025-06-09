@@ -515,12 +515,10 @@ class CarLights {
       const offsetY = random(options.carFloorSeparation) + radius * 1.3;
       const offsetZ = -random(options.length);
 
-      // left side
       aOffset.push(laneX - carWidth / 2);
       aOffset.push(offsetY);
       aOffset.push(offsetZ);
 
-      // right side
       aOffset.push(laneX + carWidth / 2);
       aOffset.push(offsetY);
       aOffset.push(offsetZ);
@@ -937,11 +935,6 @@ const roadMarkings_fragment = `
   float sideLines = step(1.0 - brokenLineWidth, fract((uv.x - laneWidth * (uLanes - 1.0)) * 2.0)) + step(brokenLineWidth, uv.x);
 
   brokenLines = mix(brokenLines, sideLines, uv.x);
-  // color = mix(color, uBrokenLinesColor, brokenLines);
-
-  // vec2 noiseFreq = vec2(4., 7000.);
-  // float roadNoise = random(floor(uv * noiseFreq) / noiseFreq) * 0.02 - 0.01; 
-  // color += roadNoise;
 `;
 
 const roadFragment = roadBaseFragment
@@ -1227,11 +1220,6 @@ class App {
 
     if (updateCamera) {
       this.camera.updateProjectionMatrix();
-    }
-
-    if (this.options.isHyper) {
-      // Just to show it works:
-      console.log(this.options.isHyper);
     }
   }
 

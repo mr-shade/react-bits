@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box } from "@chakra-ui/react"; // Added Input from Chakra UI
+import { Box } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";

@@ -529,7 +529,7 @@ export default function FlyingPosters({
     };
 
     const handleTouchMove = (e) => {
-      e.preventDefault(); // Prevents touch-based scrolling
+      e.preventDefault();
     };
 
     canvasEl.addEventListener("wheel", handleWheel, { passive: false });

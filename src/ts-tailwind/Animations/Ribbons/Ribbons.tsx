@@ -36,7 +36,6 @@ const Ribbons: React.FC<RibbonsProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    // Create a renderer with an alpha-enabled context.
     const renderer = new Renderer({ dpr: window.devicePixelRatio || 2, alpha: true });
     const gl = renderer.gl;
     if (Array.isArray(backgroundColor) && backgroundColor.length === 4) {
@@ -107,13 +106,11 @@ const Ribbons: React.FC<RibbonsProps> = ({
       }
       
       void main() {
-          // Pass the original uv to the fragment shader.
           vUV = uv;
           gl_Position = getPosition();
       }
     `;
 
-    // Fragment shader uses vUV.y (progress along the ribbon) for fade.
     const fragment = `
       precision highp float;
       uniform vec3 uColor;

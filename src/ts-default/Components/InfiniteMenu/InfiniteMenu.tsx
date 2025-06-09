@@ -2,8 +2,6 @@ import { FC, useRef, useState, useEffect, MutableRefObject } from "react";
 import { mat4, quat, vec2, vec3 } from "gl-matrix";
 import "./InfiniteMenu.css";
 
-// -------- Shader Sources --------
-
 const discVertShaderSource = `#version 300 es
 
 uniform mat4 uWorldMatrix;
@@ -13,7 +11,7 @@ uniform vec3 uCameraPosition;
 uniform vec4 uRotationAxisVelocity;
 
 in vec3 aModelPosition;
-in vec3 aModelNormal; // not currently used, but reserved
+in vec3 aModelNormal;
 in vec2 aModelUvs;
 in mat4 aInstanceMatrix;
 
@@ -26,28 +24,20 @@ flat out int vInstanceId;
 void main() {
     vec4 worldPosition = uWorldMatrix * aInstanceMatrix * vec4(aModelPosition, 1.);
 
-    // center of the disc in world space
     vec3 centerPos = (uWorldMatrix * aInstanceMatrix * vec4(0., 0., 0., 1.)).xyz;
     float radius = length(centerPos.xyz);
 
-    // skip the center vertex of the disc geometry
     if (gl_VertexID > 0) {
-        // stretch the disc according to the axis and velocity of the rotation
         vec3 rotationAxis = uRotationAxisVelocity.xyz;
         float rotationVelocity = min(.15, uRotationAxisVelocity.w * 15.);
-        // the stretch direction is orthogonal to the rotation axis and the position
         vec3 stretchDir = normalize(cross(centerPos, rotationAxis));
-        // the position of this vertex relative to the center position
         vec3 relativeVertexPos = normalize(worldPosition.xyz - centerPos);
-        // vertices more in line with the stretch direction get a larger offset
         float strength = dot(stretchDir, relativeVertexPos);
         float invAbsStrength = min(0., abs(strength) - 1.);
         strength = rotationVelocity * sign(strength) * abs(invAbsStrength * invAbsStrength * invAbsStrength + 1.);
-        // apply the stretch distortion
         worldPosition.xyz += stretchDir * strength;
     }
 
-    // move the vertex back to the overall sphere
     worldPosition.xyz = radius * normalize(worldPosition.xyz);
 
     gl_Position = uProjectionMatrix * uViewMatrix * worldPosition;
@@ -72,7 +62,6 @@ in float vAlpha;
 flat in int vInstanceId;
 
 void main() {
-    // Calculate which item to display based on instance ID
     int itemIndex = vInstanceId % uItemCount;
     int cellsPerRow = uAtlasSize;
     int cellX = itemIndex % cellsPerRow;
@@ -80,31 +69,24 @@ void main() {
     vec2 cellSize = vec2(1.0) / vec2(float(cellsPerRow));
     vec2 cellOffset = vec2(float(cellX), float(cellY)) * cellSize;
 
-    // Get texture dimensions and calculate aspect ratio
     ivec2 texSize = textureSize(uTex, 0);
     float imageAspect = float(texSize.x) / float(texSize.y);
-    float containerAspect = 1.0; // Assuming square container
+    float containerAspect = 1.0;
     
-    // Calculate cover scale factor
     float scale = max(imageAspect / containerAspect, 
                      containerAspect / imageAspect);
     
-    // Rotate 180 degrees and adjust UVs for cover
     vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
     st = (st - 0.5) * scale + 0.5;
     
-    // Clamp coordinates to prevent repeating
     st = clamp(st, 0.0, 1.0);
     
-    // Map to the correct cell in the atlas
     st = st * cellSize + cellOffset;
     
     outColor = texture(uTex, st);
     outColor.a *= vAlpha;
 }
 `;
-
-// -------- Geometry Classes --------
 
 class Face {
   public a: number;
@@ -357,7 +339,6 @@ class DiscGeometry extends Geometry {
     const safeSteps = Math.max(4, steps);
     const alpha = (2 * Math.PI) / safeSteps;
 
-    // center vertex
     this.addVertex(0, 0, 0);
     this.lastVertex.uv[0] = 0.5;
     this.lastVertex.uv[1] = 0.5;
@@ -376,8 +357,6 @@ class DiscGeometry extends Geometry {
     this.addFace(0, safeSteps, 1);
   }
 }
-
-// -------- WebGL Helpers --------
 
 function createShader(
   gl: WebGL2RenderingContext,
@@ -525,8 +504,6 @@ function createAndSetupTexture(
   return texture;
 }
 
-// -------- Arcball Control --------
-
 type UpdateCallback = (deltaTime: number) => void;
 
 class ArcballControl {
@@ -544,7 +521,7 @@ class ArcballControl {
 
   private pointerPos = vec2.create();
   private previousPointerPos = vec2.create();
-  private _rotationVelocity = 0; // smoother rotational velocity
+  private _rotationVelocity = 0;
   private _combinedQuat = quat.create();
 
   private readonly EPSILON = 0.1;
@@ -571,7 +548,6 @@ class ArcballControl {
       }
     });
 
-    // disable default panning in touch UIs
     canvas.style.touchAction = "none";
   }
 
@@ -584,7 +560,6 @@ class ArcballControl {
       const INTENSITY = 0.3 * timeScale;
       const ANGLE_AMPLIFICATION = 5 / timeScale;
 
-      // approximate midpoint for the pointer delta
       const midPointerPos = vec2.sub(
         vec2.create(),
         this.pointerPos,
@@ -606,7 +581,6 @@ class ArcballControl {
 
         this.quatFromVectors(a, b, this.pointerRotation, angleFactor);
       } else {
-        // smoothly return to identity if minimal movement
         quat.slerp(
           this.pointerRotation,
           this.pointerRotation,
@@ -615,7 +589,6 @@ class ArcballControl {
         );
       }
     } else {
-      // smoothly de-rotate if the user is not dragging
       const INTENSITY = 0.1 * timeScale;
       quat.slerp(
         this.pointerRotation,
@@ -635,7 +608,6 @@ class ArcballControl {
       }
     }
 
-    // combine pointer rotation with snap rotation
     const combinedQuat = quat.multiply(
       quat.create(),
       snapRotation,
@@ -694,7 +666,6 @@ class ArcballControl {
     const h = this.canvas.clientHeight;
     const s = Math.max(w, h) - 1;
 
-    // map to [-1, 1]
     const x = (2 * pos[0] - w - 1) / s;
     const y = (2 * pos[1] - h - 1) / s;
     let z = 0;
@@ -706,12 +677,9 @@ class ArcballControl {
     } else {
       z = rSq / Math.sqrt(xySq);
     }
-    // note the negative x to make it a bit more intuitive (drag right to rotate right, etc.)
     return vec3.fromValues(-x, y, z);
   }
 }
-
-// -------- InfiniteGridMenu --------
 
 interface MenuItem {
   image: string;
@@ -791,7 +759,7 @@ class InfiniteGridMenu {
 
   private movementActive = false;
 
-  private TARGET_FRAME_DURATION = 1000 / 60; // 60 fps
+  private TARGET_FRAME_DURATION = 1000 / 60;
   private SPHERE_RADIUS = 2;
 
   public camera: Camera = {
@@ -871,7 +839,7 @@ class InfiniteGridMenu {
       null,
       {
         aModelPosition: 0,
-        aModelNormal: 1, // not used in the code, but let's keep the location
+        aModelNormal: 1,
         aModelUvs: 2,
         aInstanceMatrix: 3,
       }
@@ -905,7 +873,6 @@ class InfiniteGridMenu {
       uAtlasSize: gl.getUniformLocation(this.discProgram!, "uAtlasSize"),
     };
 
-    // Geometry
     this.discGeo = new DiscGeometry(56, 1);
     this.discBuffers = this.discGeo.data;
     this.discVAO = makeVertexArray(
@@ -930,11 +897,8 @@ class InfiniteGridMenu {
     this.instancePositions = this.icoGeo.vertices.map((v) => v.position);
     this.DISC_INSTANCE_COUNT = this.icoGeo.vertices.length;
     this.initDiscInstances(this.DISC_INSTANCE_COUNT);
-
-    // Texture
     this.initTexture();
 
-    // Arcball
     this.control = new ArcballControl(this.canvas, (deltaTime) =>
       this.onControlUpdate(deltaTime)
     );
@@ -942,7 +906,6 @@ class InfiniteGridMenu {
     this.updateCameraMatrix();
     this.updateProjectionMatrix();
 
-    // Ensure correct size on first load
     this.resize();
 
     if (onInit) {
@@ -1030,7 +993,7 @@ class InfiniteGridMenu {
     );
 
     const mat4AttribSlotCount = 4;
-    const bytesPerMatrix = 16 * 4; // 16 floats, 4 bytes each
+    const bytesPerMatrix = 16 * 4;
     for (let j = 0; j < mat4AttribSlotCount; ++j) {
       const loc = this.discLocations.aInstanceMatrix + j;
       gl.enableVertexAttribArray(loc);
@@ -1065,7 +1028,6 @@ class InfiniteGridMenu {
       const finalScale = s * scale;
       const matrix = mat4.create();
 
-      // translate disc so it faces outward
       mat4.multiply(
         matrix,
         matrix,
@@ -1090,7 +1052,6 @@ class InfiniteGridMenu {
       mat4.copy(this.discInstances.matrices[ndx], matrix);
     });
 
-    // Update instance buffer
     this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.discInstances.buffer);
     this.gl.bufferSubData(
       this.gl.ARRAY_BUFFER,
@@ -1211,7 +1172,6 @@ class InfiniteGridMenu {
       this.onMovementChange(isMoving);
     }
 
-    // handle snapping to nearest item if not dragging
     if (!this.control.isPointerDown) {
       const nearestVertexIndex = this.findNearestVertexIndex();
       const itemIndex = nearestVertexIndex % Math.max(1, this.items.length);
@@ -1222,7 +1182,6 @@ class InfiniteGridMenu {
       );
       this.control.snapTargetDirection = snapDirection;
     } else {
-      // push camera back if user is dragging quickly
       cameraTargetZ += this.control.rotationVelocity * 80 + 2.5;
       damping = 7 / timeScale;
     }
@@ -1262,8 +1221,6 @@ class InfiniteGridMenu {
   }
 }
 
-// -------- Default Items --------
-
 const defaultItems: MenuItem[] = [
   {
     image: "https://picsum.photos/900/900?grayscale",
@@ -1272,8 +1229,6 @@ const defaultItems: MenuItem[] = [
     description: "",
   },
 ];
-
-// -------- React Component --------
 
 interface InfiniteMenuProps {
   items?: MenuItem[];
@@ -1325,7 +1280,6 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
     if (activeItem.link.startsWith("http")) {
       window.open(activeItem.link, "_blank");
     } else {
-      // internal route logic here
       console.log("Internal route:", activeItem.link);
     }
   };

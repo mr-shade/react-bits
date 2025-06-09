@@ -32,7 +32,6 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
 
     const items = container.querySelectorAll<HTMLSpanElement>("span");
 
-    // This helper expects an object with x and y coordinates.
     const onPointerMove = (pointer: { x: number; y: number }) => {
       items.forEach((item) => {
         const rect = item.getBoundingClientRect();
@@ -49,7 +48,6 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
       });
     };
 
-    // Create a wrapper to ensure type safety with the PointerEvent.
     const handlePointerMove = (e: PointerEvent) => {
       onPointerMove({ x: e.x, y: e.y });
     };
@@ -73,7 +71,6 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
       key={i}
       style={
         {
-          // Custom CSS property. Casting to CSSProperties to avoid TypeScript errors.
           "--rotate": `${baseAngle}deg`,
           backgroundColor: lineColor,
           width: lineWidth,

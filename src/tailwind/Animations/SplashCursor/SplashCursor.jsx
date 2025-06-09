@@ -2,7 +2,6 @@
 import { useEffect, useRef } from 'react';
 
 function SplashCursor({
-  // Add whatever props you like for customization
   SIM_RESOLUTION = 128,
   DYE_RESOLUTION = 1440,
   CAPTURE_RESOLUTION = 512,
@@ -816,7 +815,6 @@ function SplashCursor({
 
     function step(dt) {
       gl.disable(gl.BLEND);
-      // Curl
       curlProgram.bind();
       gl.uniform2f(
         curlProgram.uniforms.texelSize,
@@ -826,7 +824,6 @@ function SplashCursor({
       gl.uniform1i(curlProgram.uniforms.uVelocity, velocity.read.attach(0));
       blit(curl);
 
-      // Vorticity
       vorticityProgram.bind();
       gl.uniform2f(
         vorticityProgram.uniforms.texelSize,
@@ -840,7 +837,6 @@ function SplashCursor({
       blit(velocity.write);
       velocity.swap();
 
-      // Divergence
       divergenceProgram.bind();
       gl.uniform2f(
         divergenceProgram.uniforms.texelSize,
@@ -850,14 +846,12 @@ function SplashCursor({
       gl.uniform1i(divergenceProgram.uniforms.uVelocity, velocity.read.attach(0));
       blit(divergence);
 
-      // Clear pressure
       clearProgram.bind();
       gl.uniform1i(clearProgram.uniforms.uTexture, pressure.read.attach(0));
       gl.uniform1f(clearProgram.uniforms.value, config.PRESSURE);
       blit(pressure.write);
       pressure.swap();
 
-      // Pressure
       pressureProgram.bind();
       gl.uniform2f(
         pressureProgram.uniforms.texelSize,
@@ -871,7 +865,6 @@ function SplashCursor({
         pressure.swap();
       }
 
-      // Gradient Subtract
       gradienSubtractProgram.bind();
       gl.uniform2f(
         gradienSubtractProgram.uniforms.texelSize,
@@ -889,7 +882,6 @@ function SplashCursor({
       blit(velocity.write);
       velocity.swap();
 
-      // Advection
       advectionProgram.bind();
       gl.uniform2f(
         advectionProgram.uniforms.texelSize,
@@ -1122,7 +1114,7 @@ function SplashCursor({
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
       let color = generateColor();
-      updateFrame(); // start animation loop
+      updateFrame();
       updatePointerMoveData(pointer, posX, posY, color);
       document.body.removeEventListener('mousemove', handleFirstMouseMove);
     });
@@ -1141,7 +1133,7 @@ function SplashCursor({
       for (let i = 0; i < touches.length; i++) {
         let posX = scaleByPixelRatio(touches[i].clientX);
         let posY = scaleByPixelRatio(touches[i].clientY);
-        updateFrame(); // start animation loop
+        updateFrame();
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
       document.body.removeEventListener('touchstart', handleFirstTouchStart);

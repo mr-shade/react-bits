@@ -15,7 +15,6 @@ const GridMotion: FC<GridMotionProps> = ({
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mouseXRef = useRef<number>(window.innerWidth / 2);
 
-  // Ensure the grid has 28 items (4 rows x 7 columns) by default
   const totalItems = 28;
   const defaultItems = Array.from(
     { length: totalItems },
@@ -33,8 +32,8 @@ const GridMotion: FC<GridMotionProps> = ({
 
     const updateMotion = (): void => {
       const maxMoveAmount = 300;
-      const baseDuration = 0.8; // Base duration for inertia
-      const inertiaFactors = [0.6, 0.4, 0.3, 0.2]; // Different inertia for each row, outer rows slower
+      const baseDuration = 0.8;
+      const inertiaFactors = [0.6, 0.4, 0.3, 0.2];
 
       rowRefs.current.forEach((row, index) => {
         if (row) {
@@ -44,7 +43,6 @@ const GridMotion: FC<GridMotionProps> = ({
               maxMoveAmount / 2) *
             direction;
 
-          // Apply inertia and staggered stop
           gsap.to(row, {
             x: moveAmount,
             duration:
@@ -61,7 +59,7 @@ const GridMotion: FC<GridMotionProps> = ({
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      removeAnimationLoop(); // Properly remove the ticker listener
+      removeAnimationLoop();
     };
   }, []);
 
@@ -78,7 +76,9 @@ const GridMotion: FC<GridMotionProps> = ({
             <div
               key={rowIndex}
               className="row"
-              ref={(el) => (rowRefs.current[rowIndex] = el)} // Set each row's ref
+              ref={(el) => {
+                rowRefs.current[rowIndex] = el;
+              }}
             >
               {Array.from({ length: 7 }, (_, itemIndex) => {
                 const content = combinedItems[rowIndex * 7 + itemIndex];

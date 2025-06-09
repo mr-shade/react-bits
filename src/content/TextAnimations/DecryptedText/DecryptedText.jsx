@@ -18,22 +18,6 @@ const styles = {
   },
 }
 
-/**
- * DecryptedText
- *
- * Props:
- * - text: string
- * - speed?: number
- * - maxIterations?: number
- * - sequential?: boolean
- * - revealDirection?: "start" | "end" | "center"
- * - useOriginalCharsOnly?: boolean
- * - characters?: string
- * - className?: string          (applied to revealed/normal letters)
- * - parentClassName?: string    (applied to parent span)
- * - encryptedClassName?: string (applied to encrypted letters)
- * - animateOn?: "view" | "hover"  (default: "hover")
- */
 export default function DecryptedText({
   text,
   speed = 50,
@@ -48,12 +32,12 @@ export default function DecryptedText({
   animateOn = 'hover',
   ...props
 }) {
-  const [displayText, setDisplayText] = useState(text)
-  const [isHovering, setIsHovering] = useState(false)
-  const [isScrambling, setIsScrambling] = useState(false)
-  const [revealedIndices, setRevealedIndices] = useState(new Set())
-  const [hasAnimated, setHasAnimated] = useState(false) // for "view" mode
-  const containerRef = useRef(null)
+  const [displayText, setDisplayText] = useState(text);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isScrambling, setIsScrambling] = useState(false);
+  const [revealedIndices, setRevealedIndices] = useState(new Set());
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     let interval
@@ -184,8 +168,8 @@ export default function DecryptedText({
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !hasAnimated) {
-          setIsHovering(true) // trigger the decrypteion
-          setHasAnimated(true) // ensure it runs only once
+          setIsHovering(true)
+          setHasAnimated(true)
         }
       })
     }

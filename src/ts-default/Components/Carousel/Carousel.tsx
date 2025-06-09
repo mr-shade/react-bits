@@ -14,7 +14,7 @@ export interface CarouselItem {
   title: string;
   description: string;
   id: number;
-  icon: JSX.Element;
+  icon: React.ReactElement;
 }
 
 export interface CarouselProps {
@@ -73,7 +73,7 @@ export default function Carousel({
   pauseOnHover = false,
   loop = false,
   round = false,
-}: CarouselProps): JSX.Element {
+}: CarouselProps): React.JSX.Element {
   const containerPadding = 16;
   const itemWidth = baseWidth - containerPadding * 2;
   const trackItemOffset = itemWidth + GAP;
@@ -104,7 +104,7 @@ export default function Carousel({
       const timer = setInterval(() => {
         setCurrentIndex((prev) => {
           if (prev === items.length - 1 && loop) {
-            return prev + 1; // Animate to clone.
+            return prev + 1;
           }
           if (prev === carouselItems.length - 1) {
             return loop ? 0 : prev;
@@ -143,7 +143,7 @@ export default function Carousel({
     const velocity = info.velocity.x;
     if (offset < -DRAG_BUFFER || velocity < -VELOCITY_THRESHOLD) {
       if (loop && currentIndex === items.length - 1) {
-        setCurrentIndex(currentIndex + 1); // Go to clone.
+        setCurrentIndex(currentIndex + 1);
       } else {
         setCurrentIndex((prev) => Math.min(prev + 1, carouselItems.length - 1));
       }

@@ -44,7 +44,6 @@ export default function MagnetLines({
       onPointerMove({ x: rect.x, y: rect.y });
     }
 
-    // Cleanup
     return () => {
       window.removeEventListener("pointermove", onPointerMove);
     };

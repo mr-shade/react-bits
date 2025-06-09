@@ -49,7 +49,6 @@ const AnimatedList = ({
     );
   };
 
-  // Keyboard navigation: arrow keys, tab, and enter selection
   useEffect(() => {
     if (!enableArrowNavigation) return;
     const handleKeyDown = (e) => {
@@ -75,7 +74,6 @@ const AnimatedList = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [items, selectedIndex, onItemSelect, enableArrowNavigation]);
 
-  // Scroll the selected item into view if needed
   useEffect(() => {
     if (!keyboardNav || selectedIndex < 0 || !listRef.current) return;
     const container = listRef.current;

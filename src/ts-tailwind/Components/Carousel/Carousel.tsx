@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion";
+import React, { JSX } from "react";
+
 // replace icons with your own if needed
 import {
   FiCircle,
@@ -8,12 +10,11 @@ import {
   FiLayers,
   FiLayout,
 } from "react-icons/fi";
-
 export interface CarouselItem {
   title: string;
   description: string;
   id: number;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 export interface CarouselProps {
@@ -103,7 +104,7 @@ export default function Carousel({
       const timer = setInterval(() => {
         setCurrentIndex((prev) => {
           if (prev === items.length - 1 && loop) {
-            return prev + 1; // Animate to clone.
+            return prev + 1;
           }
           if (prev === carouselItems.length - 1) {
             return loop ? 0 : prev;

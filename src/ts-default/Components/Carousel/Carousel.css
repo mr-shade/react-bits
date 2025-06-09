@@ -1,21 +1,17 @@
-/* Container */
 .carousel-container {
   position: relative;
   overflow: hidden;
   border: 1px solid #555;
   border-radius: 24px;
   padding: 16px;
-  /* This padding is taken into account for item width */
   --outer-r: 24px;
   --p-distance: 12px;
 }
 
-/* Track */
 .carousel-track {
   display: flex;
 }
 
-/* Carousel item */
 .carousel-item {
   position: relative;
   display: flex;
@@ -108,7 +104,6 @@
   color: #fff;
 }
 
-/* Indicators */
 .carousel-indicators-container {
   display: flex;
   width: 100%;

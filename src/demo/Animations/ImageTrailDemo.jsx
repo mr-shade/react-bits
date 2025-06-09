@@ -45,7 +45,6 @@ const ImageTrailDemo = () => {
               'https://picsum.photos/id/1028/300/300',
               'https://picsum.photos/id/1029/300/300',
               'https://picsum.photos/id/1030/300/300',
-              // ...
             ]}
             variant={variant}
           />

@@ -5,9 +5,6 @@ import DotGrid from "../../../content/Backgrounds/DotGrid/DotGrid";
 import LetterGlitch from "../../../content/Backgrounds/LetterGlitch/LetterGlitch";
 import Squares from "../../../content/Backgrounds/Squares/Squares";
 
-/**
- * Drops in either SplitText (desktop) or plain text (mobile)
- */
 const ResponsiveSplitText = ({ isMobile, text, ...rest }) =>
   isMobile ? (
     <span className={rest.className}>{text}</span>
@@ -50,7 +47,6 @@ const Hero = () => {
           />
         </h1>
 
-        {/* Subtitle handled the same way */}
         <ResponsiveSplitText
           isMobile={isMobile}
           className="landing-subtitle"
@@ -82,7 +78,6 @@ const Hero = () => {
         </Link>
       </div>
 
-      {/* Don't render hero cards on mobile */}
       {!isMobile && (
         <div className="hero-cards-container">
           <div

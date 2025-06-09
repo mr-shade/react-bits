@@ -1,5 +1,3 @@
-// InfiniteScrollDemo.jsx
-
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Separator } from "@chakra-ui/react";

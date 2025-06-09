@@ -100,13 +100,11 @@ void main() {
   height = (uv.y * 2.0 - height + 0.2);
   float intensity = 0.6 * height;
   
-  // midPoint is fixed; uBlend controls the transition width.
   float midPoint = 0.20;
   float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
   
   vec3 auroraColor = intensity * rampColor;
   
-  // Premultiplied alpha output.
   fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
 }
 `;

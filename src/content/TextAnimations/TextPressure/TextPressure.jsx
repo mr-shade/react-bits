@@ -55,7 +55,6 @@ const TextPressure = ({
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
-    // Initialize mouse near center of container if it exists
     if (containerRef.current) {
       const { left, top, width, height } = containerRef.current.getBoundingClientRect();
       mouseRef.current.x = left + width / 2;
@@ -159,25 +158,21 @@ const TextPressure = ({
       }}
     >
       <style>{`
-        /* Font face if needed */
         @font-face {
           font-family: '${fontFamily}';
           src: url('${fontUrl}');
           font-style: normal;
         }
 
-        /* If flex=true => space out each character span */
         .flex {
           display: flex;
           justify-content: space-between;
         }
 
-        /* Stroke class toggles "stroke" effect on each character */
         .stroke span {
           position: relative;
-          color: ${textColor}; /* normal text color */
+          color: ${textColor};
         }
-        /* The stroke layer sits behind with text-stroke */
         .stroke span::after {
           content: attr(data-char);
           position: absolute;
@@ -185,12 +180,10 @@ const TextPressure = ({
           top: 0;
           color: transparent;
           z-index: -1;
-          /* If you'd like to shift the stroke up/down, you can add transform here */
           -webkit-text-stroke-width: 3px;
           -webkit-text-stroke-color: ${strokeColor};
         }
 
-        /* If stroke=false => no stroke class => normal text color */
         .text-pressure-title {
           color: ${textColor};
         }

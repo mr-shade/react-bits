@@ -89,7 +89,6 @@ const categoryIconMapping = {
 };
 
 const SearchDialog = ({ isOpen, onClose }) => {
-  /* ───────── state & refs ───────── */
   const [inputValue, setInputValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [topGradientOpacity, setTopGradientOpacity] = useState(0);

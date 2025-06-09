@@ -84,7 +84,6 @@ const Ribbons = ({
       }
       
       void main() {
-          // Pass the original uv to the fragment shader.
           vUV = uv;
           gl_Position = getPosition();
       }

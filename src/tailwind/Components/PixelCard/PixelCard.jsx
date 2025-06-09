@@ -95,9 +95,6 @@ function getEffectiveSpeed(value, reducedMotion) {
   }
 }
 
-/**
- *  You can change/expand these as you like.
- */
 const VARIANTS = {
   default: {
     activeColor: null,
@@ -198,7 +195,7 @@ export default function PixelCard({
     animationRef.current = requestAnimationFrame(() => doAnimate(fnName));
     const timeNow = performance.now();
     const timePassed = timeNow - timePreviousRef.current;
-    const timeInterval = 1000 / 60; // ~60 FPS
+    const timeInterval = 1000 / 60;
 
     if (timePassed < timeInterval) return;
     timePreviousRef.current = timeNow - (timePassed % timeInterval);

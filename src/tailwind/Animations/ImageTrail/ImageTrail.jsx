@@ -64,7 +64,6 @@ class ImageTrailVariant1 {
     this.lastMousePos = { x: 0, y: 0 };
     this.cacheMousePos = { x: 0, y: 0 };
 
-    // add local event listeners
     const handlePointerMove = ev => {
       const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
@@ -73,7 +72,6 @@ class ImageTrailVariant1 {
     container.addEventListener('touchmove', handlePointerMove);
 
     const initRender = ev => {
-      // first local pointer
       const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };

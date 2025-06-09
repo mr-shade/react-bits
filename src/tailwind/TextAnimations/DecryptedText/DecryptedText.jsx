@@ -1,22 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 
-/**
- * DecryptedText
- *
- * Props:
- * - text: string
- * - speed?: number
- * - maxIterations?: number
- * - sequential?: boolean
- * - revealDirection?: "start" | "end" | "center"
- * - useOriginalCharsOnly?: boolean
- * - characters?: string
- * - className?: string          (applied to revealed/normal letters)
- * - encryptedClassName?: string (applied to encrypted letters)
- * - parentClassName?: string    (applied to the top-level span container)
- * - animateOn?: "view" | "hover"  (default: "hover")
- */
 export default function DecryptedText({
   text,
   speed = 50,

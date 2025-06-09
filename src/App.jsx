@@ -19,7 +19,7 @@ function AppContent() {
   const getActiveItem = () => {
     if (location.pathname === '/') return 'home';
     if (location.pathname === '/showcase') return 'showcase';
-    return null; // For category pages or other routes
+    return null;
   };
 
   const isCategoryPage = location.pathname.match(/^\/[^/]+\/[^/]+$/);

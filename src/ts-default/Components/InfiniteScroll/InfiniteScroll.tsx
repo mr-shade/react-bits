@@ -10,21 +10,17 @@ interface InfiniteScrollItem {
 }
 
 interface InfiniteScrollProps {
-  // ----- Layout / Style Props -----
-  width?: string; // Width of the outer .wrapper
-  maxHeight?: string; // Max-height of the outer .wrapper
-  negativeMargin?: string; // Negative margin to reduce spacing between items
-  // ----- Items Prop -----
-  items?: InfiniteScrollItem[]; // Array of items with { content: ... }
-  itemMinHeight?: number; // Fixed height for each item
-  // ----- Tilt Props -----
-  isTilted?: boolean; // Whether the container is in "skewed" perspective
-  tiltDirection?: "left" | "right"; // Tilt direction: "left" or "right"
-  // ----- Autoplay Props -----
-  autoplay?: boolean; // Whether it should automatically scroll
-  autoplaySpeed?: number; // Speed (pixels/frame approx.)
-  autoplayDirection?: "down" | "up"; // "down" or "up"
-  pauseOnHover?: boolean; // Pause autoplay on hover
+  width?: string;
+  maxHeight?: string;
+  negativeMargin?: string;
+  items?: InfiniteScrollItem[];
+  itemMinHeight?: number;
+  isTilted?: boolean;
+  tiltDirection?: "left" | "right";
+  autoplay?: boolean;
+  autoplaySpeed?: number;
+  autoplayDirection?: "down" | "up";
+  pauseOnHover?: boolean;
 }
 
 const InfiniteScroll: React.FC<InfiniteScrollProps> = ({

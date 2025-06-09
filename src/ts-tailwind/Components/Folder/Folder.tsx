@@ -93,7 +93,6 @@ const Folder: React.FC<FolderProps> = ({
     "--paper-3": paper3,
   } as React.CSSProperties;
 
-  // Outer scale style
   const scaleStyle = { transform: `scale(${size})` };
 
   const getOpenTransform = (index: number) => {
@@ -123,7 +122,6 @@ const Folder: React.FC<FolderProps> = ({
             className="absolute z-0 bottom-[98%] left-0 w-[30px] h-[10px] rounded-tl-[5px] rounded-tr-[5px] rounded-bl-0 rounded-br-0"
             style={{ backgroundColor: folderBackColor }}
           ></span>
-          {/* Render papers */}
           {papers.map((item, i) => {
             let sizeClasses = "";
             if (i === 0) sizeClasses = open ? "w-[70%] h-[80%]" : "w-[70%] h-[80%]";

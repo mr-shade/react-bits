@@ -54,7 +54,6 @@ const Lightning: React.FC<LightningProps> = ({
       
       #define OCTAVE_COUNT 10
 
-      // Convert HSV to RGB.
       vec3 hsv2rgb(vec3 c) {
           vec3 rgb = clamp(abs(mod(c.x * 6.0 + vec3(0.0,4.0,2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
           return c.z * mix(vec3(1.0), rgb, c.y);
@@ -104,20 +103,15 @@ const Lightning: React.FC<LightningProps> = ({
       }
 
       void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
-          // Normalized pixel coordinates.
           vec2 uv = fragCoord / iResolution.xy;
           uv = 2.0 * uv - 1.0;
           uv.x *= iResolution.x / iResolution.y;
-          // Apply horizontal offset.
           uv.x += uXOffset;
           
-          // Adjust uv based on size and animate with speed.
           uv += 2.0 * fbm(uv * uSize + 0.8 * iTime * uSpeed) - 1.0;
           
           float dist = abs(uv.x);
-          // Compute base color using hue.
           vec3 baseColor = hsv2rgb(vec3(uHue / 360.0, 0.7, 0.8));
-          // Compute color with intensity and speed affecting time.
           vec3 col = baseColor * pow(mix(0.0, 0.07, hash11(iTime * uSpeed)) / dist, 1.0) * uIntensity;
           col = pow(col, vec3(1.0));
           fragColor = vec4(col, 1.0);

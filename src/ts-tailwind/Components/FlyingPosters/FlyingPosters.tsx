@@ -194,7 +194,6 @@ function AutoBind(self: any, { include, exclude }: AutoBindOptions = {}) {
   return self;
 }
 
-// Utility functions with TypeScript types
 function lerp(p1: number, p2: number, t: number): number {
   return p1 + (p2 - p1) * t;
 }
@@ -628,7 +627,7 @@ export default function FlyingPosters({
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault(); // Prevents touch-based scrolling
+      e.preventDefault();
     };
 
     canvasEl.addEventListener("wheel", handleWheel, { passive: false });

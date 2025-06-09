@@ -21,7 +21,7 @@ export interface ChromaGridProps {
   rows?: number;
   damping?: number;
   fadeOut?: number;
-  ease?: string; // GSAP ease
+  ease?: string;
 }
 
 type SetterFn = (v: number | string) => void;

@@ -21,7 +21,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
 
   const cylinderWidth = isScreenSizeSm ? 1100 : 1800;
   const faceCount = images.length;
-  const faceWidth = (cylinderWidth / faceCount) * 1.5; // Increased width for items
+  const faceWidth = (cylinderWidth / faceCount) * 1.5;
   const dragFactor = 0.05;
   const radius = cylinderWidth / (2 * Math.PI);
 
@@ -44,7 +44,6 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
     return `rotate3d(0, 1, 0, ${value}deg)`;
   });
 
-  // Autoplay effect with adjusted timing
   useEffect(() => {
     if (autoplay) {
       autoplayRef.current = setInterval(() => {
@@ -68,11 +67,10 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Pause on hover with smooth transition
   const handleMouseEnter = () => {
     if (autoplay && pauseOnHover) {
       clearInterval(autoplayRef.current);
-      controls.stop(); // Stop the animation smoothly
+      controls.stop();
     }
   };
 

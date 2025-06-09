@@ -6,10 +6,8 @@ import safeParser from 'postcss-safe-parser'
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite'
 
-// Convert import.meta.url to __dirname equivalent
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {

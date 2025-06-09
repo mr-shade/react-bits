@@ -55,7 +55,6 @@ const CliInstallation = ({
           border="1px solid #392e4e"
           borderRadius="20px"
         >
-          {/* ---- trigger ---- */}
           <Accordion.ItemTrigger pb={4} px={6}>
             <Box flex="1" textAlign="left" className="demo-title" fontSize="1rem">
               Setup Steps
@@ -63,7 +62,6 @@ const CliInstallation = ({
             <Accordion.ItemIndicator pt="0.6em" />
           </Accordion.ItemTrigger>
 
-          {/* ---- content ---- */}
           <Accordion.ItemContent px={6} pb={1}>
             <Text className="demo-extra-info">
               1. Initialize a config file for your project

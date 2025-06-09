@@ -14,7 +14,6 @@ const GridMotion: FC<GridMotionProps> = ({
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mouseXRef = useRef<number>(window.innerWidth / 2);
 
-  // Ensure the grid has 28 items (4 rows x 7 columns) by default
   const totalItems = 28;
   const defaultItems = Array.from(
     { length: totalItems },
@@ -32,8 +31,8 @@ const GridMotion: FC<GridMotionProps> = ({
 
     const updateMotion = (): void => {
       const maxMoveAmount = 300;
-      const baseDuration = 0.8; // Base duration for inertia
-      const inertiaFactors = [0.6, 0.4, 0.3, 0.2]; // Different inertia for each row, outer rows slower
+      const baseDuration = 0.8;
+      const inertiaFactors = [0.6, 0.4, 0.3, 0.2];
 
       rowRefs.current.forEach((row, index) => {
         if (row) {
@@ -71,7 +70,6 @@ const GridMotion: FC<GridMotionProps> = ({
           background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`,
         }}
       >
-        {/* Noise overlay */}
         <div className="absolute inset-0 pointer-events-none z-[4] bg-[url('../../../assets/noise.png')] bg-[length:250px]"></div>
         <div className="gap-4 flex-none relative w-[150vw] h-[150vh] grid grid-rows-4 grid-cols-1 rotate-[-15deg] origin-center z-[2]">
           {Array.from({ length: 4 }, (_, rowIndex) => (
@@ -79,7 +77,9 @@ const GridMotion: FC<GridMotionProps> = ({
               key={rowIndex}
               className="grid gap-4 grid-cols-7"
               style={{ willChange: "transform, filter" }}
-              ref={(el) => (rowRefs.current[rowIndex] = el)}
+              ref={(el) => {
+                if (el) rowRefs.current[rowIndex] = el;
+              }}
             >
               {Array.from({ length: 7 }, (_, itemIndex) => {
                 const content = combinedItems[rowIndex * 7 + itemIndex];

@@ -66,7 +66,6 @@ vec4 effect(vec2 screenSize, vec2 screen_coords) {
     }
     speed += 302.2;
     
-    // Mouse influence for gentle rotation (applied additively)
     float mouseInfluence = (uMouse.x * 2.0 - 1.0);
     speed += mouseInfluence * 0.1;
     
@@ -75,7 +74,6 @@ vec4 effect(vec2 screenSize, vec2 screen_coords) {
     uv = (vec2(uv_len * cos(new_pixel_angle) + mid.x, uv_len * sin(new_pixel_angle) + mid.y) - mid);
     
     uv *= 30.0;
-    // Fix: Apply mouse influence additively rather than scaling with time.
     float baseSpeed = iTime * uSpinSpeed;
     speed = baseSpeed + mouseInfluence * 2.0;
     

@@ -70,13 +70,12 @@ uniform vec3 iCursorColor;
 uniform float iAnimationSize;
 uniform int iBallCount;
 uniform float iCursorBallSize;
-uniform vec3 iMetaBalls[50]; // Precomputed: xy = position, z = radius
+uniform vec3 iMetaBalls[50];
 uniform float iClumpFactor;
 uniform bool enableTransparency;
 out vec4 outColor;
 const float PI = 3.14159265359;
 
-// Optimized: using squared distance avoids the costly sqrt()
 float getMetaBallValue(vec2 c, float r, vec2 p) {
   vec2 d = p - c;
   float dist2 = dot(d, d);

@@ -45,12 +45,11 @@ const placeNow = (el, slot, skew) =>
     force3D: true,
   });
 
-/* ───────────  Component  ─────────── */
 const CardSwap = ({
   width = 500,
   height = 400,
   cardDistance = 60,
-  verticalDistance = 70, // ← default vertical gap
+  verticalDistance = 70,
   delay = 5000,
   pauseOnHover = false,
   onCardClick,

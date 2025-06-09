@@ -499,7 +499,6 @@ export default function MetallicPaint({
     updateUniforms();
   }, [gl, params, uniforms]);
 
-  // Render every frame
   useEffect(() => {
     if (!gl || !uniforms) return;
 

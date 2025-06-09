@@ -96,7 +96,6 @@ const ClickSparkDemo = () => {
         </Box>
 
         <Customize>
-          {/* Spark Color */}
           <Flex gap={4} align="center" mt={4}>
             <Text fontSize="sm">Spark Color:</Text>
             <input

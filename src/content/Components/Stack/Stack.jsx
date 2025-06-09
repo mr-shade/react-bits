@@ -75,7 +75,7 @@ export default function Stack({
     >
       {cards.map((card, index) => {
         const randomRotate = randomRotation
-          ? Math.random() * 10 - 5 // Random degree between -5 and 5
+          ? Math.random() * 10 - 5
           : 0;
 
         return (

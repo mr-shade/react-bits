@@ -87,7 +87,6 @@ function Slider({
         newValue = Math.round(newValue / stepSize) * stepSize;
       }
 
-      // Clamp the value between startingValue and maxValue
       newValue = Math.min(Math.max(newValue, startingValue), maxValue);
       setValue(newValue);
       clientX.jump(e.clientX);
@@ -104,7 +103,6 @@ function Slider({
   };
 
   const getRangePercentage = () => {
-    // Calculate percentage based on startingValue and maxValue
     const totalRange = maxValue - startingValue;
     if (totalRange === 0) return 0;
 
@@ -194,7 +192,6 @@ function Slider({
   );
 }
 
-// Sigmoid-based decay function
 function decay(value, max) {
   if (max === 0) {
     return 0;

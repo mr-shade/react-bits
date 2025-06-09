@@ -325,7 +325,6 @@
   }
 }
 
-/* Hero Layout Styles */
 .hero-main-content {
   flex: 1;
   display: flex;
@@ -437,7 +436,6 @@
   left: 100%;
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 1440px) {
   .landing-title {
     font-size: 3.6rem;

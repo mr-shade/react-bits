@@ -54,10 +54,8 @@ const DecayCard = ({ width = 300, height = 400, image = 'https://picsum.photos/3
         0.1
       );
 
-      // Apply elastic bounds to limit movement within 50px in any direction
       const bound = 50;
 
-      // Elastic effect: the further it is outside the bound, the stronger the pull back
       if (targetX > bound) targetX = bound + (targetX - bound) * 0.2;
       if (targetX < -bound) targetX = -bound + (targetX + bound) * 0.2;
       if (targetY > bound) targetY = bound + (targetY - bound) * 0.2;

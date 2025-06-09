@@ -5,44 +5,25 @@ import gsap from "gsap";
 import "./BlobCursor.css";
 
 export interface BlobCursorProps {
-  /** 'circle' | 'square' */
   blobType?: "circle" | "square";
-  /** background color of each blob */
   fillColor?: string;
-  /** how many trailing blobs */
   trailCount?: number;
-  /** sizes (px) of each blob; length must be ≥ trailCount */
   sizes?: number[];
-  /** sizes (px) of inner dots; length must be ≥ trailCount */
   innerSizes?: number[];
-  /** background color of the inner dot */
   innerColor?: string;
-  /** opacity of each blob; length ≥ trailCount */
   opacities?: number[];
-  /** box-shadow color */
   shadowColor?: string;
-  /** box-shadow blur radius (px) */
   shadowBlur?: number;
-  /** box-shadow offsets (px) */
   shadowOffsetX?: number;
   shadowOffsetY?: number;
-  /** optional custom filter ID (for multiple instances) */
   filterId?: string;
-  /** feGaussianBlur stdDeviation */
   filterStdDeviation?: number;
-  /** feColorMatrix values */
   filterColorMatrixValues?: string;
-  /** enable the SVG filter */
   useFilter?: boolean;
-  /** GSAP duration for the lead blob */
   fastDuration?: number;
-  /** GSAP duration for the following blobs */
   slowDuration?: number;
-  /** GSAP ease for the lead blob */
   fastEase?: string;
-  /** GSAP ease for the following blobs */
   slowEase?: string;
-  /** CSS z-index of the whole thing */
   zIndex?: number;
 }
 
@@ -133,7 +114,9 @@ export default function BlobCursor({
         {Array.from({ length: trailCount }).map((_, i) => (
           <div
             key={i}
-            ref={(el) => (blobsRef.current[i] = el)}
+            ref={(el) => {
+              blobsRef.current[i] = el;
+            }}
             className="blob"
             style={{
               width: sizes[i],

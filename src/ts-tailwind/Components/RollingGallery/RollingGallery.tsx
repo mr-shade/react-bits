@@ -32,7 +32,6 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
   pauseOnHover = false,
   images = [],
 }) => {
-  // Use default images if none are provided
   const galleryImages = images.length > 0 ? images : IMGS;
 
   const [isScreenSizeSm, setIsScreenSizeSm] = useState<boolean>(
@@ -44,18 +43,15 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 3D geometry calculations
   const cylinderWidth: number = isScreenSizeSm ? 1100 : 1800;
   const faceCount: number = galleryImages.length;
   const faceWidth: number = (cylinderWidth / faceCount) * 1.5;
   const radius: number = cylinderWidth / (2 * Math.PI);
 
-  // Framer Motion values and controls
   const dragFactor: number = 0.05;
   const rotation = useMotionValue(0);
   const controls = useAnimation();
 
-  // Create a 3D transform based on the rotation motion value
   const transform = useTransform(
     rotation,
     (val: number) => `rotate3d(0,1,0,${val}deg)`

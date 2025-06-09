@@ -44,7 +44,6 @@ const TrueFocus = ({
     });
   }, [currentIndex, words.length]);
 
-  // Handlers for manual mode (hover)
   const handleMouseEnter = (index) => {
     if (manualMode) {
       setLastActiveIndex(index);

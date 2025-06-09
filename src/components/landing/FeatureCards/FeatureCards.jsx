@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import "./FeatureCards.css";
 import CountUp from "../../../content/TextAnimations/CountUp/CountUp";
 
-/* ───────────────────────── PARTICLE CARD ────────────────────────── */
 const ParticleCard = ({ children, className = "", disableAnimations = false }) => {
   const cardRef = useRef(null);
   const particlesRef = useRef([]);
@@ -12,7 +11,6 @@ const ParticleCard = ({ children, className = "", disableAnimations = false }) =
   const memoizedParticles = useRef([]);
   const particlesInit = useRef(false);
 
-  /* Helper to create / memoize particles (desktop only) */
   const createParticle = useCallback((x, y) => {
     const el = document.createElement("div");
     el.className = "particle";
@@ -33,7 +31,6 @@ const ParticleCard = ({ children, className = "", disableAnimations = false }) =
     particlesInit.current = true;
   }, [createParticle]);
 
-  /* Clear particles (desktop only) */
   const clearParticles = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
@@ -49,7 +46,6 @@ const ParticleCard = ({ children, className = "", disableAnimations = false }) =
     particlesRef.current = [];
   }, []);
 
-  /* Animate particles (desktop only) */
   const animateParticles = useCallback(() => {
     if (!cardRef.current || !isHoveredRef.current) return;
     if (!particlesInit.current) memoizeParticles();
@@ -78,7 +74,6 @@ const ParticleCard = ({ children, className = "", disableAnimations = false }) =
     });
   }, [memoizeParticles]);
 
-  /* Attach / detach listeners when animations are enabled */
   useEffect(() => {
     if (disableAnimations || !cardRef.current) return;
 
@@ -107,7 +102,6 @@ const ParticleCard = ({ children, className = "", disableAnimations = false }) =
   );
 };
 
-/* ───────────────────────── GLOBAL SPOTLIGHT ─────────────────────── */
 const GlobalSpotlight = ({ gridRef, disableAnimations = false }) => {
   const spotlightRef = useRef(null);
   const isInsideSectionRef = useRef(false);
@@ -115,7 +109,6 @@ const GlobalSpotlight = ({ gridRef, disableAnimations = false }) => {
   useEffect(() => {
     if (disableAnimations || !gridRef?.current) return;
 
-    /* Build spotlight element */
     const spotlight = document.createElement("div");
     spotlight.className = "global-spotlight";
     spotlight.style.cssText = `
@@ -127,7 +120,6 @@ const GlobalSpotlight = ({ gridRef, disableAnimations = false }) => {
     document.body.appendChild(spotlight);
     spotlightRef.current = spotlight;
 
-    /* Mouse move / leave handlers */
     const move = e => {
       if (!spotlightRef.current || !gridRef.current) return;
       const section = gridRef.current.closest(".features-section");
@@ -140,14 +132,12 @@ const GlobalSpotlight = ({ gridRef, disableAnimations = false }) => {
       isInsideSectionRef.current = inside;
       const cards = gridRef.current.querySelectorAll(".feature-card");
 
-      /* Fade out if not inside */
       if (!inside) {
         gsap.to(spotlightRef.current, { opacity: 0, duration: 0.3, ease: "power2.out" });
         cards.forEach(card => card.style.setProperty("--glow-intensity", "0"));
         return;
       }
 
-      /* Update each card’s glow */
       let minDist = Infinity;
       const prox = 100, fade = 150;
       cards.forEach(card => {
@@ -168,7 +158,6 @@ const GlobalSpotlight = ({ gridRef, disableAnimations = false }) => {
         card.style.setProperty("--glow-intensity", glow);
       });
 
-      /* Position / fade spotlight */
       gsap.to(spotlightRef.current, { left: e.clientX, top: e.clientY, duration: 0.1, ease: "power2.out" });
       const target = minDist <= prox ? 0.8 : minDist <= fade ? ((fade - minDist) / (fade - prox)) * 0.8 : 0;
       gsap.to(spotlightRef.current, { opacity: target, duration: target > 0 ? 0.2 : 0.5, ease: "power2.out" });
@@ -194,12 +183,10 @@ const GlobalSpotlight = ({ gridRef, disableAnimations = false }) => {
   return null;
 };
 
-/* ────────────────────────── MAIN FEATURE CARDS ──────────────────── */
 const FeatureCards = () => {
   const [isMobile, setIsMobile] = useState(false);
   const gridRef = useRef(null);
 
-  /* Track viewport for mobile detection */
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
     check();
@@ -215,11 +202,9 @@ const FeatureCards = () => {
           <p className="features-subtitle">Everything you need to add flair to your websites</p>
         </div>
 
-        {/* Spotlight skipped on mobile */}
         <GlobalSpotlight gridRef={gridRef} disableAnimations={isMobile} />
 
         <div className="bento-grid" ref={gridRef}>
-          {/* CARD 1 */}
           <ParticleCard className="feature-card card1" disableAnimations={isMobile}>
             <div className="messages-gif-wrapper">
               <img src="/assets/messages.gif" alt="Messages animation" className="messages-gif" />
@@ -229,7 +214,6 @@ const FeatureCards = () => {
             <p>Loved by developers around the world</p>
           </ParticleCard>
 
-          {/* CARD 2 */}
           <ParticleCard className="feature-card card2" disableAnimations={isMobile}>
             <div className="components-gif-wrapper">
               <img src="/assets/components.gif" alt="Components animation" className="components-gif" />
@@ -239,7 +223,6 @@ const FeatureCards = () => {
             <p>Growing weekly &amp; only getting better</p>
           </ParticleCard>
 
-          {/* CARD 3 */}
           <ParticleCard className="feature-card card4" disableAnimations={isMobile}>
             <div className="switch-gif-wrapper">
               <img src="/assets/switch.gif" alt="Switch animation" className="switch-gif" />

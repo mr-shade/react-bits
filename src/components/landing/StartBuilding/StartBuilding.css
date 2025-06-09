@@ -91,7 +91,6 @@
   color: #7c3aed;
 }
 
-/* Responsive Design */
 @media (max-width: 1280px) {
   .start-building-container {
     max-width: 1000px;

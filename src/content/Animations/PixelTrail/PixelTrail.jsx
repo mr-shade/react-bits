@@ -49,7 +49,7 @@ const DotMaterial = shaderMaterial(
     uniform vec2 resolution;
     uniform sampler2D mouseTrail;
     uniform float gridSize;
-    uniform vec3 pixelColor; // new color uniform
+    uniform vec3 pixelColor;
 
     vec2 coverUv(vec2 uv) {
       vec2 s = resolution.xy / max(resolution.x, resolution.y);
@@ -57,7 +57,6 @@ const DotMaterial = shaderMaterial(
       return clamp(newUv, 0.0, 1.0);
     }
 
-    /* SDF Shapes */
     float sdfCircle(vec2 p, float r) {
         return length(p - 0.5) - r;
     }
@@ -66,14 +65,11 @@ const DotMaterial = shaderMaterial(
       vec2 screenUv = gl_FragCoord.xy / resolution;
       vec2 uv = coverUv(screenUv);
 
-      // Create a grid
       vec2 gridUv = fract(uv * gridSize);
       vec2 gridUvCenter = (floor(uv * gridSize) + 0.5) / gridSize;
 
-      // Sample mouse trail
       float trail = texture2D(mouseTrail, gridUvCenter).r;
 
-      // Use the pixelColor uniform and trail value for alpha
       gl_FragColor = vec4(pixelColor, trail);
     }
   `

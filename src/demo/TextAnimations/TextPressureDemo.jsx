@@ -156,7 +156,6 @@ const TextPressureDemo = () => {
           />
 
           <Flex alignItems='center' gap={4} flexWrap="wrap" mt={6}>
-            {/* Text Color */}
             <Flex gap={4} align="center">
               <Text fontSize="sm">Text Color</Text>
               <input
@@ -170,7 +169,6 @@ const TextPressureDemo = () => {
               />
             </Flex>
 
-            {/* Stroke Color */}
             <Flex gap={4} align="center">
               <Text fontSize="sm">Stroke Color</Text>
               <input

@@ -90,13 +90,13 @@ const LetterGlitch = ({
     canvas.style.height = `${rect.height}px`;
 
     if (context.current) {
-      context.current.setTransform(dpr, 0, 0, dpr, 0, 0); // Properly scale without stacking transforms
+      context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     const { columns, rows } = calculateGrid(rect.width, rect.height);
     initializeLetters(columns, rows);
 
-    drawLetters(); // Ensure letters are drawn after resizing
+    drawLetters();
   };
 
   const drawLetters = () => {
@@ -116,13 +116,13 @@ const LetterGlitch = ({
   };
 
   const updateLetters = () => {
-    if (!letters.current || letters.current.length === 0) return; // Prevent accessing empty array
+    if (!letters.current || letters.current.length === 0) return;
 
     const updateCount = Math.max(1, Math.floor(letters.current.length * 0.05));
 
     for (let i = 0; i < updateCount; i++) {
       const index = Math.floor(Math.random() * letters.current.length);
-      if (!letters.current[index]) continue; // Skip if index is invalid
+      if (!letters.current[index]) continue;
 
       letters.current[index].char = getRandomChar();
       letters.current[index].targetColor = getRandomColor();
@@ -185,9 +185,9 @@ const LetterGlitch = ({
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        cancelAnimationFrame(animationRef.current); // Stop animation loop during resize
+        cancelAnimationFrame(animationRef.current);
         resizeCanvas();
-        animate(); // Restart after resizing
+        animate();
       }, 100);
     };
 

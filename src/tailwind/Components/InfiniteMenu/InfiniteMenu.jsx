@@ -23,28 +23,20 @@ flat out int vInstanceId;
 void main() {
     vec4 worldPosition = uWorldMatrix * aInstanceMatrix * vec4(aModelPosition, 1.);
 
-    // center of the disc in world space
     vec3 centerPos = (uWorldMatrix * aInstanceMatrix * vec4(0., 0., 0., 1.)).xyz;
     float radius = length(centerPos.xyz);
 
-    // skip the center vertex of the disc geometry
     if (gl_VertexID > 0) {
-        // stretch the disc according to the axis and velocity of the rotation
         vec3 rotationAxis = uRotationAxisVelocity.xyz;
         float rotationVelocity = min(.15, uRotationAxisVelocity.w * 15.);
-        // the stretch direction is orthogonal to the rotation axis and the position
         vec3 stretchDir = normalize(cross(centerPos, rotationAxis));
-        // the position of this vertex relative to the center position
         vec3 relativeVertexPos = normalize(worldPosition.xyz - centerPos);
-        // vertices more in line with the stretch direction get a larger offset
         float strength = dot(stretchDir, relativeVertexPos);
         float invAbsStrength = min(0., abs(strength) - 1.);
         strength = rotationVelocity * sign(strength) * abs(invAbsStrength * invAbsStrength * invAbsStrength + 1.);
-        // apply the stretch distortion
         worldPosition.xyz += stretchDir * strength;
     }
 
-    // move the vertex back to the overall sphere
     worldPosition.xyz = radius * normalize(worldPosition.xyz);
 
     gl_Position = uProjectionMatrix * uViewMatrix * worldPosition;
@@ -69,7 +61,6 @@ in float vAlpha;
 flat in int vInstanceId;
 
 void main() {
-    // Calculate which item to display based on instance ID
     int itemIndex = vInstanceId % uItemCount;
     int cellsPerRow = uAtlasSize;
     int cellX = itemIndex % cellsPerRow;
@@ -77,23 +68,18 @@ void main() {
     vec2 cellSize = vec2(1.0) / vec2(float(cellsPerRow));
     vec2 cellOffset = vec2(float(cellX), float(cellY)) * cellSize;
 
-    // Get texture dimensions and calculate aspect ratio
     ivec2 texSize = textureSize(uTex, 0);
     float imageAspect = float(texSize.x) / float(texSize.y);
-    float containerAspect = 1.0; // Assuming square container
+    float containerAspect = 1.0;
     
-    // Calculate cover scale factor
     float scale = max(imageAspect / containerAspect, 
                      containerAspect / imageAspect);
     
-    // Rotate 180 degrees and adjust UVs for cover
     vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
     st = (st - 0.5) * scale + 0.5;
     
-    // Clamp coordinates to prevent repeating
     st = clamp(st, 0.0, 1.0);
     
-    // Map to the correct cell in the atlas
     st = st * cellSize + cellOffset;
     
     outColor = texture(uTex, st);
@@ -102,12 +88,6 @@ void main() {
 `;
 
 class Face {
-  /**
-   * Creates a new triangle face by the indices of each vertex.
-   * @param {number} a Index of the first vertex
-   * @param {number} b Index of the second vertex
-   * @param {number} c Index of the third vertex
-   */
   constructor(a, b, c) {
     this.a = a;
     this.b = b;
@@ -371,27 +351,13 @@ function createAndSetupTexture(gl, minFilter, magFilter, wrapS, wrapT) {
 }
 
 class ArcballControl {
-  // flag which indicates if the user is currently dragging
   isPointerDown = false;
-
-  // orientation of the object
   orientation = quat.create();
-
-  // current pointer rotation as a quaternion
   pointerRotation = quat.create();
-
-  // velocity of rotation
   rotationVelocity = 0;
-
-  // rotation axis
   rotationAxis = vec3.fromValues(1, 0, 0);
-
-  // direction to move the snap target to (in world space)
   snapDirection = vec3.fromValues(0, 0, -1);
-
-  // direction of the target to move to the snap direction (in world space)
   snapTargetDirection;
-
   EPSILON = 0.1;
   IDENTITY_QUAT = quat.create();
 
@@ -507,7 +473,6 @@ class ArcballControl {
     const h = this.canvas.clientHeight;
     const s = Math.max(w, h) - 1;
 
-    // map to [-1, 1]
     const x = (2 * pos[0] - w - 1) / s;
     const y = (2 * pos[1] - h - 1) / s;
     let z = 0;
@@ -524,7 +489,7 @@ class ArcballControl {
 }
 
 class InfiniteGridMenu {
-  TARGET_FRAME_DURATION = 1000 / 60; // 60 fps
+  TARGET_FRAME_DURATION = 1000 / 60;
   SPHERE_RADIUS = 2;
 
   #time = 0;
@@ -549,7 +514,7 @@ class InfiniteGridMenu {
 
   nearestVertexIndex = null;
   smoothRotationVelocity = 0;
-  scaleFactor = 1.0; // default
+  scaleFactor = 1.0;
   movementActive = false;
 
   constructor(canvas, items, onActiveItemChange, onMovementChange, onInit = null) {
@@ -765,7 +730,6 @@ class InfiniteGridMenu {
       this.smoothRotationVelocity * 1.1
     );
 
-    // NEW UNIFORMS
     gl.uniform1i(this.discLocations.uItemCount, this.items.length);
     gl.uniform1i(this.discLocations.uAtlasSize, this.atlasSize);
 
@@ -926,7 +890,6 @@ export default function InfiniteMenu({ items = [] }) {
 
       {activeItem && (
         <>
-          {/* Title */}
           <h2
             className={`
           select-none
@@ -949,7 +912,6 @@ export default function InfiniteMenu({ items = [] }) {
             {activeItem.title}
           </h2>
 
-          {/* Description */}
           <p
             className={`
           select-none
@@ -969,7 +931,6 @@ export default function InfiniteMenu({ items = [] }) {
             {activeItem.description}
           </p>
 
-          {/* Action Button */}
           <div
             onClick={handleButtonClick}
             className={`

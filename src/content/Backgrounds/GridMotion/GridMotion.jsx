@@ -4,10 +4,9 @@ import './GridMotion.css';
 
 const GridMotion = ({ items = [], gradientColor = 'black' }) => {
   const gridRef = useRef(null);
-  const rowRefs = useRef([]); // Array of refs for each row
+  const rowRefs = useRef([]);
   const mouseXRef = useRef(window.innerWidth / 2);
 
-  // Ensure the grid has 28 items (4 rows x 7 columns) by default
   const totalItems = 28;
   const defaultItems = Array.from({ length: totalItems }, (_, index) => `Item ${index + 1}`);
   const combinedItems = items.length > 0 ? items.slice(0, totalItems) : defaultItems;
@@ -21,15 +20,14 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
 
     const updateMotion = () => {
       const maxMoveAmount = 300;
-      const baseDuration = 0.8; // Base duration for inertia
-      const inertiaFactors = [0.6, 0.4, 0.3, 0.2]; // Different inertia for each row, outer rows slower
+      const baseDuration = 0.8;
+      const inertiaFactors = [0.6, 0.4, 0.3, 0.2];
 
       rowRefs.current.forEach((row, index) => {
         if (row) {
           const direction = index % 2 === 0 ? 1 : -1;
           const moveAmount = ((mouseXRef.current / window.innerWidth) * maxMoveAmount - maxMoveAmount / 2) * direction;
 
-          // Apply inertia and staggered stop
           gsap.to(row, {
             x: moveAmount,
             duration: baseDuration + inertiaFactors[index % inertiaFactors.length],
@@ -46,7 +44,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      removeAnimationLoop(); // Properly remove the ticker listener
+      removeAnimationLoop();
     };
   }, []);
 
@@ -63,7 +61,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
             <div
               key={rowIndex}
               className="row"
-              ref={(el) => (rowRefs.current[rowIndex] = el)} // Set each row's ref
+              ref={(el) => (rowRefs.current[rowIndex] = el)}
             >
               {[...Array(7)].map((_, itemIndex) => {
                 const content = combinedItems[rowIndex * 7 + itemIndex];

@@ -170,7 +170,6 @@ class Media {
         uniform float uBorderRadius;
         varying vec2 vUv;
         
-        // Rounded box SDF for UV space
         float roundedBoxSDF(vec2 p, vec2 b, float r) {
           vec2 d = abs(p) - b;
           return length(max(d, vec2(0.0))) + min(max(d.x, d.y), 0.0) - r;
@@ -187,7 +186,6 @@ class Media {
           );
           vec4 color = texture2D(tMap, uv);
           
-          // Apply rounded corners (assumes vUv in [0,1])
           float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
           if(d > 0.0) {
             discard;

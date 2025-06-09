@@ -75,7 +75,6 @@ const DecayCard: React.FC<DecayCardProps> = ({
         0.1
       );
 
-      // Apply elastic bounds to limit movement within 50px in any direction
       const bound = 50;
       if (targetX > bound) targetX = bound + (targetX - bound) * 0.2;
       if (targetX < -bound) targetX = -bound + (targetX + bound) * 0.2;

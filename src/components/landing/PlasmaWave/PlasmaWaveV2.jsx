@@ -112,7 +112,7 @@ export default function PlasmaWaveV2({
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef(null);
   const uniformOffset = useRef(new Float32Array([xOffset, yOffset]));
-  const uniformResolution = useRef(new Float32Array([1, 1])); // never 0
+  const uniformResolution = useRef(new Float32Array([1, 1]));
   const rendererRef = useRef(null);
   const fadeStartTime = useRef(null);
   const lastTimeRef = useRef(0);
@@ -128,7 +128,6 @@ export default function PlasmaWaveV2({
   };
 
   useEffect(() => {
-    // Check if we're on mobile and set state
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -139,7 +138,6 @@ export default function PlasmaWaveV2({
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
-  // Intersection Observer to track visibility
   useEffect(() => {
     if (!containerRef.current || isMobile) return;
 
@@ -148,8 +146,8 @@ export default function PlasmaWaveV2({
         setIsVisible(entry.isIntersecting);
       },
       {
-        rootMargin: '50px', // Start animation slightly before enterin gview
-        threshold: 0.1, // Trigger when 10% of the component is visible
+        rootMargin: '50px',
+        threshold: 0.1,
       }
     );
 
@@ -159,7 +157,6 @@ export default function PlasmaWaveV2({
   }, [isMobile]);
 
   useEffect(() => {
-    // Don't initialize WebGL on mobile
     if (isMobile) {
       return;
     }
@@ -178,7 +175,6 @@ export default function PlasmaWaveV2({
     gl.clearColor(0, 0, 0, 0);
     containerRef.current.appendChild(gl.canvas);
 
-    /* ---------- scene ---------- */
     const camera = new Camera(gl);
     const scene = new Transform();
 
@@ -214,7 +210,7 @@ export default function PlasmaWaveV2({
       uniformResolution.current[0] = width * renderer.dpr;
       uniformResolution.current[1] = height * renderer.dpr;
       gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-      gl.clear(gl.COLOR_BUFFER_BIT);      // clear with transparent background
+      gl.clear(gl.COLOR_BUFFER_BIT);
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -230,9 +226,7 @@ export default function PlasmaWaveV2({
         fadeInDuration: fadeDur,
       } = propsRef.current;
 
-      // Only continue animation if visible
       if (isVisible) {
-        // Resume time tracking when becoming visible
         if (lastTimeRef.current === 0) {
           lastTimeRef.current = now - pausedTimeRef.current;
         }
@@ -260,7 +254,6 @@ export default function PlasmaWaveV2({
 
         renderer.render({ scene, camera });
       } else {
-        // Pause time tracking when not visible
         if (lastTimeRef.current !== 0) {
           pausedTimeRef.current = now - lastTimeRef.current;
           lastTimeRef.current = 0;
@@ -279,7 +272,6 @@ export default function PlasmaWaveV2({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile, isVisible]);
 
-  // Don't render the WebGL content on mobile
   if (isMobile) {
     return null;
   }

@@ -17,5 +17,5 @@
   position: absolute;
   user-select: none;
   white-space: nowrap;
-  font-size: 1.875rem; /* Equivalent to Tailwind's text-3xl */
+  font-size: 1.875rem;
 }

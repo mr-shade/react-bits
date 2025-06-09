@@ -30,7 +30,6 @@ const BounceCardsDemo = () => {
     "https://picsum.photos/300/300?grayscale"
   ];
 
-  // Slightly customized transform styles
   const transformStyles = [
     "rotate(5deg) translate(-150px)",
     "rotate(0deg) translate(-70px)",
@@ -39,7 +38,6 @@ const BounceCardsDemo = () => {
     "rotate(-5deg) translate(150px)"
   ];
 
-  // Updated prop table with new enableHover row
   const propData = [
     {
       name: "className",

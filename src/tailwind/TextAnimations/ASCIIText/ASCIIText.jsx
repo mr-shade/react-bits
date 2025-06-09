@@ -51,7 +51,6 @@ const PX_RATIO = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 class AsciiFilter {
   constructor(renderer, { fontSize, fontFamily, charset, invert } = {}) {
     this.renderer = renderer;
-    // container for ASCII overlay
     this.domElement = document.createElement('div');
     this.domElement.style.position = 'absolute';
     this.domElement.style.top = '0';
@@ -331,7 +330,6 @@ class CanvAscii {
 
   onMouseMove(evt) {
     const e = evt.touches ? evt.touches[0] : evt;
-    // container coords
     const bounds = this.container.getBoundingClientRect();
     const x = e.clientX - bounds.left;
     const y = e.clientY - bounds.top;
@@ -397,7 +395,6 @@ class CanvAscii {
   }
 }
 
-// =========== React component ===========
 export default function ASCIIText({
   text = 'David!',
   asciiFontSize = 8,
@@ -412,10 +409,8 @@ export default function ASCIIText({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // measure container
     const { width, height } = containerRef.current.getBoundingClientRect();
 
-    // create the ASCII scene
     asciiRef.current = new CanvAscii(
       { text, asciiFontSize, textFontSize, textColor, planeBaseHeight, enableWaves },
       containerRef.current,
@@ -448,7 +443,6 @@ export default function ASCIIText({
         height: '100%'
       }}
     >
-      {/* Inline style or move to global CSS */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
 

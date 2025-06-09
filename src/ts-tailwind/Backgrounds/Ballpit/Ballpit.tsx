@@ -28,9 +28,6 @@ import { gsap } from "gsap";
 
 gsap.registerPlugin(Observer);
 
-/* =========================================================
-   Class X – Main Three.js Setup
-   ========================================================= */
 interface XConfig {
   canvas?: HTMLCanvasElement;
   id?: string;
@@ -48,7 +45,6 @@ interface SizeData {
 }
 
 class X {
-  // Private fields
   #config: XConfig;
   #postprocessing: any;
   #resizeObserver?: ResizeObserver;
@@ -201,7 +197,6 @@ class X {
         2 * Math.tan(fovRad / 2) * this.camera.position.length();
       this.size.wWidth = this.size.wHeight * this.camera.aspect;
     } else if ((this.camera as any).isOrthographicCamera) {
-      // Cast to any to access orthographic properties
       const cam = this.camera as any;
       this.size.wHeight = cam.top - cam.bottom;
       this.size.wWidth = cam.right - cam.left;
@@ -311,10 +306,6 @@ class X {
   }
 }
 
-/* =========================================================
-   Class W – Physics for Ballpit
-   (Assumed to be defined in the code below)
-   ========================================================= */
 interface WConfig {
   count: number;
   maxX: number;
@@ -456,9 +447,6 @@ class W {
   }
 }
 
-/* =========================================================
-   Class Y – Custom Shader Material
-   ========================================================= */
 class Y extends MeshPhysicalMaterial {
   uniforms: { [key: string]: { value: any } } = {
     thicknessDistortion: { value: 0.1 },
@@ -515,9 +503,6 @@ class Y extends MeshPhysicalMaterial {
   onBeforeCompile2?: (shader: any) => void;
 }
 
-/* =========================================================
-   Constants & Utility Variables
-   ========================================================= */
 const XConfig = {
   count: 200,
   colors: [0, 0, 0],
@@ -667,21 +652,6 @@ function isInside(rect: DOMRect) {
   );
 }
 
-const { randFloat, randFloatSpread } = MathUtils;
-const F = new Vector3();
-const I = new Vector3();
-const O = new Vector3();
-const V = new Vector3();
-const B = new Vector3();
-const N = new Vector3();
-const _ = new Vector3();
-const j = new Vector3();
-const H = new Vector3();
-const T = new Vector3();
-
-/* =========================================================
-   Class Z – Instanced Mesh for Spheres
-   ========================================================= */
 class Z extends InstancedMesh {
   config: typeof XConfig;
   physics: W;
@@ -776,9 +746,6 @@ class Z extends InstancedMesh {
   }
 }
 
-/* =========================================================
-   createBallpit Utility
-   ========================================================= */
 interface CreateBallpitReturn {
   three: X;
   spheres: Z;
@@ -853,13 +820,9 @@ function createBallpit(
   };
 }
 
-/* =========================================================
-   Ballpit Component
-   ========================================================= */
 interface BallpitProps {
   className?: string;
   followCursor?: boolean;
-  // Additional props for createBallpit
   [key: string]: any;
 }
 

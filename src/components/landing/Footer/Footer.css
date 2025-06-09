@@ -93,7 +93,6 @@
   color: #ffffff;
 }
 
-/* Responsive Footer */
 @media (max-width: 768px) {
   .landing-footer {
     margin-top: 6rem;

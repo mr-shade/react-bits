@@ -72,13 +72,12 @@ uniform vec3 iCursorColor;
 uniform float iAnimationSize;
 uniform int iBallCount;
 uniform float iCursorBallSize;
-uniform vec3 iMetaBalls[50]; // Precomputed: xy = position, z = radius
+uniform vec3 iMetaBalls[50];
 uniform float iClumpFactor;
 uniform bool enableTransparency;
 out vec4 outColor;
 const float PI = 3.14159265359;
 
-// Optimized: using squared distance avoids the costly sqrt()
 float getMetaBallValue(vec2 c, float r, vec2 p) {
   vec2 d = p - c;
   float dist2 = dot(d, d);
@@ -228,7 +227,6 @@ const MetaBalls = ({
       const elapsed = (t - startTime) * 0.001;
       program.uniforms.iTime.value = elapsed;
 
-      // Update meta‑ball positions on the CPU.
       for (let i = 0; i < effectiveBallCount; i++) {
         const p = ballParams[i];
         const dt = elapsed * speed * p.dtFactor;
@@ -240,7 +238,6 @@ const MetaBalls = ({
         metaBallsUniform[i].set(posX, posY, p.radius);
       }
 
-      // Update mouse ball position (with smoothing)
       let targetX, targetY;
       if (pointerInside) {
         targetX = pointerX;

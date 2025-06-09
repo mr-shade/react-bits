@@ -496,7 +496,7 @@ const X = {
   maxY: 5,
   maxZ: 2,
   controlSphere0: false,
-  followCursor: true,  // Added default for followCursor
+  followCursor: true
 };
 
 const U = new m();
@@ -565,7 +565,6 @@ class Z extends d {
     this.physics.update(e);
     for (let idx = 0; idx < this.count; idx++) {
       U.position.fromArray(this.physics.positionData, 3 * idx);
-      // Hide the first sphere if followCursor is false
       if (idx === 0 && this.config.followCursor === false) {
         U.scale.setScalar(0);
       } else {
@@ -657,7 +656,6 @@ const Ballpit = ({ className = '', followCursor = true, ...props }) => {
         spheresInstanceRef.current.dispose();
       }
     };
-    // Dependencies intentionally left empty for single initialization
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

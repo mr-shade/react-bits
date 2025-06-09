@@ -10,7 +10,6 @@ export const Logo = () => {
     const atomEl = atomRef.current
     if (!svgEl || !atomEl) return
 
-    // make the rotation happen around the centre of the atom
     gsap.set(atomEl, { transformOrigin: 'center center' })
 
     const handleEnter = () =>
@@ -37,9 +36,8 @@ export const Logo = () => {
       viewBox="0 0 115 23"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ cursor: 'pointer' }} // optional: shows the logo is interactive
+      style={{ cursor: 'pointer' }}
     >
-      {/* --- the rotating element --- */}
       <path
         ref={atomRef}
         className="atom"

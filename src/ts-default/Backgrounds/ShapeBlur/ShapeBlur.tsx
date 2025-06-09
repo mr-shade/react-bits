@@ -1,6 +1,4 @@
 import { useRef, useEffect } from 'react';
-// Three.js has no built-in TypeScript support.
-// Installing @types/three is optional but helps avoid type errors.
 import * as THREE from 'three';
 
 const vertexShader = /* glsl */`

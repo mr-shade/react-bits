@@ -180,7 +180,6 @@ export const hyperspeedPresets = {
       background: 0x000000,
       shoulderLines: 0x131318,
       brokenLines: 0x131318,
-      /***  Only these colors can be an array ***/
       leftCars: [0xDC5B20, 0xDCA320, 0xDC2020],
       rightCars: [0x334BF7, 0xE5E6ED, 0xBFC6F3],
       sticks: 0xC5E8EB,

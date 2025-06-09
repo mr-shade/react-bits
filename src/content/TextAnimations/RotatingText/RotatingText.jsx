@@ -69,7 +69,7 @@ const RotatingText = forwardRef((props, ref) => {
         needsSpace: i !== arr.length - 1,
       }));
     }
-    // For a custom separator
+
     return currentText.split(splitBy).map((part, i, arr) => ({
       characters: [part],
       needsSpace: i !== arr.length - 1,
