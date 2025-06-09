@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
-
+import React, { useEffect } from "react";
+import {
+  motion,
+  useAnimation,
+  useMotionValue,
+  MotionValue,
+  Transition,
+} from "framer-motion";
 interface CircularTextProps {
   text: string;
   spinDuration?: number;
@@ -13,18 +18,18 @@ const getRotationTransition = (
   from: number,
   loop: boolean = true
 ) => ({
-  from: from,
+  from,
   to: from + 360,
-  ease: "linear",
-  duration: duration,
-  type: "tween",
+  ease: "linear" as const,
+  duration,
+  type: "tween" as const,
   repeat: loop ? Infinity : 0,
 });
 
 const getTransition = (duration: number, from: number) => ({
   rotate: getRotationTransition(duration, from),
   scale: {
-    type: "spring",
+    type: "spring" as const,
     damping: 20,
     stiffness: 300,
   },
@@ -38,78 +43,77 @@ const CircularText: React.FC<CircularTextProps> = ({
 }) => {
   const letters = Array.from(text);
   const controls = useAnimation();
-  const [currentRotation, setCurrentRotation] = useState(0);
+  const rotation: MotionValue<number> = useMotionValue(0);
 
   useEffect(() => {
+    const start = rotation.get();
     controls.start({
-      rotate: currentRotation + 360,
+      rotate: start + 360,
       scale: 1,
-      transition: getTransition(spinDuration, currentRotation),
+      transition: getTransition(spinDuration, start),
     });
-  }, [spinDuration, controls, onHover, text]);
+  }, [spinDuration, text, onHover, controls]);
 
   const handleHoverStart = () => {
+    const start = rotation.get();
+
     if (!onHover) return;
+
+    let transitionConfig: ReturnType<typeof getTransition> | Transition;
+    let scaleVal = 1;
+
     switch (onHover) {
       case "slowDown":
-        controls.start({
-          rotate: currentRotation + 360,
-          scale: 1,
-          transition: getTransition(spinDuration * 2, currentRotation),
-        });
+        transitionConfig = getTransition(spinDuration * 2, start);
         break;
       case "speedUp":
-        controls.start({
-          rotate: currentRotation + 360,
-          scale: 1,
-          transition: getTransition(spinDuration / 4, currentRotation),
-        });
+        transitionConfig = getTransition(spinDuration / 4, start);
         break;
       case "pause":
-        controls.start({
-          rotate: currentRotation,
-          scale: 1,
-          transition: {
-            rotate: { type: "spring", damping: 20, stiffness: 300 },
-            scale: { type: "spring", damping: 20, stiffness: 300 },
-          },
-        });
+        transitionConfig = {
+          rotate: { type: "spring", damping: 20, stiffness: 300 },
+          scale: { type: "spring", damping: 20, stiffness: 300 },
+        };
         break;
       case "goBonkers":
-        controls.start({
-          rotate: currentRotation + 360,
-          scale: 0.8,
-          transition: getTransition(spinDuration / 20, currentRotation),
-        });
+        transitionConfig = getTransition(spinDuration / 20, start);
+        scaleVal = 0.8;
         break;
       default:
-        break;
+        transitionConfig = getTransition(spinDuration, start);
     }
+
+    controls.start({
+      rotate: start + 360,
+      scale: scaleVal,
+      transition: transitionConfig,
+    });
   };
 
   const handleHoverEnd = () => {
+    const start = rotation.get();
     controls.start({
-      rotate: currentRotation + 360,
+      rotate: start + 360,
       scale: 1,
-      transition: getTransition(spinDuration, currentRotation),
+      transition: getTransition(spinDuration, start),
     });
   };
 
   return (
     <motion.div
+      className={`circular-text ${className}`}
+      style={{ rotate: rotation }}
       initial={{ rotate: 0 }}
-      className={`mx-auto rounded-full w-[200px] h-[200px] text-white font-black text-center cursor-pointer origin-center ${className}`}
       animate={controls}
-      onUpdate={(latest) => setCurrentRotation(Number(latest.rotate))}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >
       {letters.map((letter, i) => {
-        const rotation = (360 / letters.length) * i;
-        const factor = Number((Math.PI / letters.length).toFixed(0));
+        const rotationDeg = (360 / letters.length) * i;
+        const factor = Math.PI / letters.length;
         const x = factor * i;
         const y = factor * i;
-        const transform = `rotateZ(${rotation}deg) translate3d(${x}px, ${y}px, 0)`;
+        const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
 
         return (
           <span

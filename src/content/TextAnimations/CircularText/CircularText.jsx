@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useAnimation, useMotionValue } from "framer-motion";
 
 import "./CircularText.css";
 
 const getRotationTransition = (duration, from, loop = true) => ({
-  from: from,
+  from,
   to: from + 360,
   ease: "linear",
-  duration: duration,
+  duration,
   type: "tween",
   repeat: loop ? Infinity : 0,
 });
@@ -29,79 +29,78 @@ const CircularText = ({
 }) => {
   const letters = Array.from(text);
   const controls = useAnimation();
-  const [currentRotation, setCurrentRotation] = useState(0);
+  const rotation = useMotionValue(0);
 
   useEffect(() => {
+    const start = rotation.get();
     controls.start({
-      rotate: currentRotation + 360,
+      rotate: start + 360,
       scale: 1,
-      transition: getTransition(spinDuration, currentRotation),
+      transition: getTransition(spinDuration, start),
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spinDuration, controls, onHover, text]);
+  }, [spinDuration, text, onHover, controls, rotation]);
 
   const handleHoverStart = () => {
+    const start = rotation.get();
+    console.log("CircularText mounted with text:", text);
     if (!onHover) return;
+
+    let transitionConfig;
+    let scaleVal = 1;
+
     switch (onHover) {
       case "slowDown":
-        controls.start({
-          rotate: currentRotation + 360,
-          scale: 1,
-          transition: getTransition(spinDuration * 2, currentRotation),
-        });
+        transitionConfig = getTransition(spinDuration * 2, start);
         break;
       case "speedUp":
-        controls.start({
-          rotate: currentRotation + 360,
-          scale: 1,
-          transition: getTransition(spinDuration / 4, currentRotation),
-        });
+        transitionConfig = getTransition(spinDuration / 4, start);
         break;
       case "pause":
-        controls.start({
-          rotate: currentRotation,
-          scale: 1,
-          transition: {
-            rotate: { type: "spring", damping: 20, stiffness: 300 },
-            scale: { type: "spring", damping: 20, stiffness: 300 },
-          },
-        });
+        transitionConfig = {
+          rotate: { type: "spring", damping: 20, stiffness: 300 },
+          scale: { type: "spring", damping: 20, stiffness: 300 },
+        };
+        scaleVal = 1;
         break;
       case "goBonkers":
-        controls.start({
-          rotate: currentRotation + 360,
-          scale: 0.8,
-          transition: getTransition(spinDuration / 20, currentRotation),
-        });
+        transitionConfig = getTransition(spinDuration / 20, start);
+        scaleVal = 0.8;
         break;
       default:
-        break;
+        transitionConfig = getTransition(spinDuration, start);
     }
+
+    controls.start({
+      rotate: start + 360,
+      scale: scaleVal,
+      transition: transitionConfig,
+    });
   };
 
   const handleHoverEnd = () => {
+    const start = rotation.get();
     controls.start({
-      rotate: currentRotation + 360,
+      rotate: start + 360,
       scale: 1,
-      transition: getTransition(spinDuration, currentRotation),
+      transition: getTransition(spinDuration, start),
     });
   };
 
   return (
     <motion.div
-      initial={{ rotate: 0 }}
       className={`circular-text ${className}`}
+      style={{ rotate: rotation }}
+      initial={{ rotate: 0 }}
       animate={controls}
-      onUpdate={(latest) => setCurrentRotation(Number(latest.rotate))}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >
       {letters.map((letter, i) => {
-        const rotation = (360 / letters.length) * i;
-        const factor = Number((Math.PI / letters.length).toFixed(0));
+        const rotationDeg = (360 / letters.length) * i;
+        const factor = Math.PI / letters.length;
         const x = factor * i;
         const y = factor * i;
-        const transform = `rotateZ(${rotation}deg) translate3d(${x}px, ${y}px, 0)`;
+        const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
 
         return (
           <span key={i} style={{ transform, WebkitTransform: transform }}>
