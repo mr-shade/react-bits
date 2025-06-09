@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Field, Input } from "@chakra-ui/react"; // Added Input from Chakra UI
+import { Box } from "@chakra-ui/react"; // Added Input from Chakra UI
 
 import Customize from "../../components/common/Customize";
 import CodeExample from "../../components/code/CodeExample";
@@ -8,6 +8,7 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewInput from "../../components/common/PreviewInput";
 
 import { scrambledTextCode } from '../../constants/code/TextAnimations/scrambledTextCode';
 import ScrambledText from "../../content/TextAnimations/ScrambledText/ScrambledText";
@@ -79,16 +80,14 @@ const ScrambledTextDemo = () => {
         </Box>
 
         <Customize>
-          <Field.Root w="200px">
-            <Field.Label fontSize="sm">Scramble Characters</Field.Label>
-            <Input
-              value={scrambleChars}
-              onChange={(e) => {
-                setScrambleChars(e.target.value);
-              }}
-              placeholder=".: (default)"
-            />
-          </Field.Root>
+          <PreviewInput
+            title="Scramble Characters"
+            value={scrambleChars}
+            placeholder="Enter text..."
+            maxLength={5}
+            width={50}
+            onChange={setScrambleChars}
+          />
 
           <PreviewSlider
             title="Radius"

@@ -2,9 +2,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './styles.css'
 
-import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from "@/components/setup/provider"
-
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 ReactDOM.createRoot(document.createElement('div')).render(
@@ -14,8 +12,6 @@ ReactDOM.createRoot(document.createElement('div')).render(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider>
-    <HelmetProvider>
-      <App />
-    </HelmetProvider>
+    <App />
   </Provider>,
 )

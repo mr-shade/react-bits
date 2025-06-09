@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree, ThreeEvent } from "@react-three/fiber";
 import { EffectComposer, wrapEffect } from "@react-three/postprocessing";
 import { Effect } from "postprocessing";
@@ -156,9 +156,20 @@ class RetroEffectImpl extends Effect {
   }
 }
 
-const RetroEffect = wrapEffect(
-  RetroEffectImpl
-) as React.ForwardRefExoticComponent<React.RefAttributes<RetroEffectImpl>>;
+import { forwardRef } from "react";
+
+const RetroEffect = forwardRef<
+  RetroEffectImpl,
+  { colorNum: number; pixelSize: number }
+>((props, ref) => {
+  const { colorNum, pixelSize } = props;
+  const WrappedRetroEffect = wrapEffect(RetroEffectImpl);
+  return (
+    <WrappedRetroEffect ref={ref} colorNum={colorNum} pixelSize={pixelSize} />
+  );
+});
+
+RetroEffect.displayName = "RetroEffect";
 
 interface WaveUniforms {
   [key: string]: THREE.Uniform<any>;
@@ -197,7 +208,6 @@ function DitheredWaves({
   mouseRadius,
 }: DitheredWavesProps) {
   const mesh = useRef<THREE.Mesh>(null);
-  const effect = useRef<RetroEffectImpl>(null);
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
@@ -223,15 +233,6 @@ function DitheredWaves({
     const currentRes = waveUniformsRef.current.resolution.value;
     if (currentRes.x !== newWidth || currentRes.y !== newHeight) {
       currentRes.set(newWidth, newHeight);
-      if (
-        effect.current &&
-        effect.current.uniforms.get("resolution") &&
-        effect.current.uniforms.get("resolution")!.value
-      ) {
-        effect.current.uniforms
-          .get("resolution")!
-          .value.set(newWidth, newHeight);
-      }
     }
   }, [size, gl]);
 
@@ -248,10 +249,6 @@ function DitheredWaves({
     waveUniformsRef.current.mouseRadius.value = mouseRadius;
     if (enableMouseInteraction) {
       waveUniformsRef.current.mousePos.value.set(mousePos.x, mousePos.y);
-    }
-    if (effect.current) {
-      effect.current.colorNum = colorNum;
-      effect.current.pixelSize = pixelSize;
     }
   });
 
@@ -274,9 +271,11 @@ function DitheredWaves({
           uniforms={waveUniformsRef.current}
         />
       </mesh>
+
       <EffectComposer>
-        <RetroEffect ref={effect} />
+        <RetroEffect colorNum={colorNum} pixelSize={pixelSize} />
       </EffectComposer>
+
       <mesh
         onPointerMove={handlePointerMove}
         position={[0, 0, 0.01]}

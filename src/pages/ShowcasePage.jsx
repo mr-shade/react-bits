@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Box, Text } from "@chakra-ui/react";
-import { Helmet } from "react-helmet-async";
 
 import FadeContent from "../content/Animations/FadeContent/FadeContent";
 import Footer from "../components/landing/Footer/Footer";
@@ -41,9 +40,7 @@ const ShowcasePage = () => {
   return (
     <>
       <section className="showcase-wrapper">
-        <Helmet>
-          <title>React Bits - Showcase 🎉</title>
-        </Helmet>
+        <title>React Bits - Showcase 🎉</title>
 
         <div className="showcase-header">
           <h1 className="showcase-title">Community Showcase</h1>

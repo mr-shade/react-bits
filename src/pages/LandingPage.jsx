@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import FeatureCards from "../components/landing/FeatureCards/FeatureCards";
 import Testimonials from "../components/landing/Testimonials/Testimonials";
 import StartBuilding from "../components/landing/StartBuilding/StartBuilding";
@@ -12,9 +11,7 @@ const LandingPage = () => {
 
   return (
     <section className="landing-wrapper">
-      <Helmet>
-        <title>React Bits - Animated UI Components For React</title>
-      </Helmet>
+      <title>React Bits - Animated UI Components For React</title>
 
       <PlasmaWaveV2 yOffset={-300} xOffset={100} rotationDeg={-30} />
       <Hero />

@@ -51,7 +51,7 @@ const DotGrid: React.FC<DotGridProps> = ({
   const dotsRef = useRef<InertiaDot[]>([]);
   const centresRef = useRef<DotCentre[]>([]);
 
-  const buildGrid = useCallback((): void => {
+  const buildGrid = useCallback(() => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -79,8 +79,8 @@ const DotGrid: React.FC<DotGridProps> = ({
         const r = el.getBoundingClientRect();
         return {
           el,
-          x: r.left + window.scrollX + r.width / 2,
-          y: r.top + window.scrollY + r.height / 2,
+          x: r.left + r.width / 2,
+          y: r.top + r.height / 2,
         };
       });
     });
@@ -88,9 +88,19 @@ const DotGrid: React.FC<DotGridProps> = ({
 
   useEffect(() => {
     buildGrid();
-    const ro = new ResizeObserver(buildGrid);
-    if (containerRef.current) ro.observe(containerRef.current);
-    return () => ro.disconnect();
+
+    let ro: ResizeObserver | null = null;
+    if ("ResizeObserver" in window) {
+      ro = new ResizeObserver(buildGrid);
+      if (containerRef.current) ro.observe(containerRef.current);
+    } else {
+      (window as Window).addEventListener("resize", buildGrid);
+    }
+
+    return () => {
+      if (ro) ro.disconnect();
+      else window.removeEventListener("resize", buildGrid);
+    };
   }, [buildGrid]);
 
   useEffect(() => {
@@ -98,11 +108,11 @@ const DotGrid: React.FC<DotGridProps> = ({
     let lastX = 0;
     let lastY = 0;
 
-    const onMove = (e: MouseEvent): void => {
+    const onMove = (e: MouseEvent) => {
       const now = performance.now();
-      const dt = now - (lastTime || now);
-      const dx = e.pageX - lastX;
-      const dy = e.pageY - lastY;
+      const dt = lastTime ? now - lastTime : 16;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
       let vx = (dx / dt) * 1000;
       let vy = (dy / dt) * 1000;
       let speed = Math.hypot(vx, vy);
@@ -115,13 +125,15 @@ const DotGrid: React.FC<DotGridProps> = ({
       }
 
       lastTime = now;
-      lastX = e.pageX;
-      lastY = e.pageY;
+      lastX = e.clientX;
+      lastY = e.clientY;
 
       requestAnimationFrame(() => {
         centresRef.current.forEach(({ el, x, y }) => {
-          const dist = Math.hypot(x - e.pageX, y - e.pageY);
+          const dist = Math.hypot(x - e.clientX, y - e.clientY);
           const interp = Math.max(0, 1 - dist / proximity);
+
+          // color‐fade
           gsap.set(el, {
             backgroundColor: gsap.utils.interpolate(
               baseColor,
@@ -130,10 +142,11 @@ const DotGrid: React.FC<DotGridProps> = ({
             ),
           });
 
+          // inertia on quick swipe
           if (speed > speedTrigger && dist < proximity && !el._inertiaApplied) {
             el._inertiaApplied = true;
-            const pushX = x - e.pageX + vx * 0.005;
-            const pushY = y - e.pageY + vy * 0.005;
+            const pushX = x - e.clientX + vx * 0.005;
+            const pushY = y - e.clientY + vy * 0.005;
 
             gsap.to(el, {
               inertia: { x: pushX, y: pushY, resistance },
@@ -152,14 +165,14 @@ const DotGrid: React.FC<DotGridProps> = ({
       });
     };
 
-    const onClick = (e: MouseEvent): void => {
+    const onClick = (e: MouseEvent) => {
       centresRef.current.forEach(({ el, x, y }) => {
-        const dist = Math.hypot(x - e.pageX, y - e.pageY);
+        const dist = Math.hypot(x - e.clientX, y - e.clientY);
         if (dist < shockRadius && !el._inertiaApplied) {
           el._inertiaApplied = true;
           const falloff = Math.max(0, 1 - dist / shockRadius);
-          const pushX = (x - e.pageX) * shockStrength * falloff;
-          const pushY = (y - e.pageY) * shockStrength * falloff;
+          const pushX = (x - e.clientX) * shockStrength * falloff;
+          const pushY = (y - e.clientY) * shockStrength * falloff;
 
           gsap.to(el, {
             inertia: { x: pushX, y: pushY, resistance },
