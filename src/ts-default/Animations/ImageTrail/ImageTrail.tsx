@@ -1202,7 +1202,17 @@ class ImageTrailVariant8 {
   }
 }
 
-const variantMap: { [key: number]: new (container: HTMLDivElement) => any } = {
+type ImageTrailConstructor =
+  | typeof ImageTrailVariant1
+  | typeof ImageTrailVariant2
+  | typeof ImageTrailVariant3
+  | typeof ImageTrailVariant4
+  | typeof ImageTrailVariant5
+  | typeof ImageTrailVariant6
+  | typeof ImageTrailVariant7
+  | typeof ImageTrailVariant8;
+
+const variantMap: Record<number, ImageTrailConstructor> = {
   1: ImageTrailVariant1,
   2: ImageTrailVariant2,
   3: ImageTrailVariant3,
