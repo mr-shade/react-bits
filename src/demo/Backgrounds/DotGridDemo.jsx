@@ -10,7 +10,7 @@ import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/PreviewSlider";
 
 import { dotGrid } from "../../constants/code/Backgrounds/dotGridCode";
-import DotGrid from "../../tailwind/Backgrounds/DotGrid/DotGrid";
+import DotGrid from "../../content/Backgrounds/DotGrid/DotGrid";
 
 const DotGridDemo = () => {
   const [dotSize, setDotSize] = useState(5);
