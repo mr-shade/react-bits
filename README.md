@@ -31,8 +31,8 @@ Go to [reactbits.dev](https://reactbits.dev/) to view the documentation.
 React Bits is a large collection of animated React components made to spice up your web creations. We've got animations, components, backgrounds, and awesome stuff that you won't be able to find anywhere else - all free for you to use! These components are all enhanced with customization options as props, to make it easy for you to get exactly what you need.
 
 ## Key Features
-- 60 total components (text animations, animations, components, backgrounds), growing every day
-- All components are lightweight, with minimal dependencies, and highly customizable
+- 80+ total components (text animations, animations, components, backgrounds), growing every week
+- All components have with minimal dependencies, and are highly customizable through props
 - Designed to integrate seamlessly with any modern React project
 - Each component comes in 4 variants, to keep everyone happy:
   - JS + CSS
@@ -61,6 +61,12 @@ Please review the [Contribution Guide](https://github.com/DavidHDev/react-bits/b
 
 ## Stats
 ![Alt](https://repobeats.axiom.co/api/embed/b1bf4dc0226458617adbdbf5586f2df953eb0922.svg "Repobeats analytics image")
+
+## Sponsorship
+You can help support the project by using the Sponsor button on the page - please note that any donations received will go strictly towards paying hosting costs, nothing else.
+
+## Credit
+React Bits may sometimes take inspiration from publicly available code examples online. These examples are rewritten as full-fledged, customizable, and reusable components for JS, TS, CSS, and Tailwind codebases. If you recognize your work here, just request credit and it will be granted.
 
 ## License
 
