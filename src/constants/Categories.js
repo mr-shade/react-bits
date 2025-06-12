@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Silk', 'Scramble Text', 'Dot Grid', 'Beams', 'Chroma Grid', 'Glare Hover', 'Profile Card', 'Card Swap'];
+export const NEW = ['Silk', 'Scramble Text', 'Dot Grid', 'Beams', 'Chroma Grid', 'Glare Hover', 'Profile Card', 'Card Swap', 'Model Viewer'];
 export const UPDATED = ['Split Text'];
 
 // Used for main sidebar navigation
@@ -59,6 +59,7 @@ export const CATEGORIES = [
       'Tilted Card',
       'Chroma Grid',
       'Folder',
+      'Model Viewer',
       'Lanyard',
       'Profile Card',
       'Dock',

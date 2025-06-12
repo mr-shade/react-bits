@@ -67,6 +67,7 @@ const components = {
   'chroma-grid': () => import("../demo/Components/ChromaGridDemo"),
   'profile-card': () => import("../demo/Components/ProfileCardDemo"),
   'card-swap': () => import("../demo/Components/CardSwapDemo"),
+  'model-viewer': () => import("../demo/Components/ModelViewerDemo"),
 };
 
 const backgrounds = {
