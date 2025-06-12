@@ -48,12 +48,15 @@ const Sidebar = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [linePosition, setLinePosition] = useState(null);
   const [isLineVisible, setIsLineVisible] = useState(false);
+  const [hoverLinePosition, setHoverLinePosition] = useState(null);
+  const [isHoverLineVisible, setIsHoverLineVisible] = useState(false);
 
   const searchBtnRef = useRef();
   const menuBtnRef = useRef();
   const sidebarRef = useRef(null);
   const itemRefs = useRef({});
   const hoverTimeoutRef = useRef(null);
+  const hoverDelayTimeoutRef = useRef(null);
 
   const location = useLocation();
   const { toggleSearch } = useSearch();
@@ -91,20 +94,26 @@ const Sidebar = () => {
 
   const onItemEnter = (path, e) => {
     clearTimeout(hoverTimeoutRef.current);
-    const pos = updateLinePosition(e.currentTarget);
+    clearTimeout(hoverDelayTimeoutRef.current);
+    
+    const targetElement = e.currentTarget;
+    
+    // Update position immediately
+    const pos = updateLinePosition(targetElement);
     if (pos !== null) {
-      setLinePosition(pos);
-      setIsLineVisible(true);
+      setHoverLinePosition(pos);
     }
+    
+    // Show indicator after delay
+    hoverDelayTimeoutRef.current = setTimeout(() => {
+      setIsHoverLineVisible(true);
+    }, 200);
   };
 
   const onItemLeave = () => {
+    clearTimeout(hoverDelayTimeoutRef.current);
     hoverTimeoutRef.current = setTimeout(() => {
-      const activeEl = findActiveElement();
-      if (activeEl) {
-        setLinePosition(updateLinePosition(activeEl));
-        setIsLineVisible(true);
-      } else setIsLineVisible(false);
+      setIsHoverLineVisible(false);
     }, HOVER_TIMEOUT_DELAY);
   };
 
@@ -123,7 +132,10 @@ const Sidebar = () => {
     }
   }, [findActiveElement, updateLinePosition]);
 
-  useEffect(() => () => clearTimeout(hoverTimeoutRef.current), []);
+  useEffect(() => () => {
+    clearTimeout(hoverTimeoutRef.current);
+    clearTimeout(hoverDelayTimeoutRef.current);
+  }, []);
 
   return (
     <>
@@ -266,6 +278,7 @@ const Sidebar = () => {
         className="sidebar"
       >
         <Box ref={sidebarRef} position="relative">
+          {/* Active item indicator */}
           <Box
             position="absolute"
             left="0"
@@ -282,6 +295,25 @@ const Sidebar = () => {
             transition="all 0.2s cubic-bezier(0.4,0,0.2,1)"
             pointerEvents="none"
             zIndex={2}
+          />
+
+          {/* Hover item indicator */}
+          <Box
+            position="absolute"
+            left="0"
+            w="2px"
+            h="16px"
+            bg="#ffffff66"
+            rounded="1px"
+            transform={
+              hoverLinePosition !== null
+                ? `translateY(${hoverLinePosition - 8}px)`
+                : "translateY(-100px)"
+            }
+            opacity={isHoverLineVisible ? 1 : 0}
+            transition="all 0.2s cubic-bezier(0.4,0,0.2,1)"
+            pointerEvents="none"
+            zIndex={1}
           />
 
           <VStack align="stretch" spacing={4}>
