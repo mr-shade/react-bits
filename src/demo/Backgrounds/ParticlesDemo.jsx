@@ -12,9 +12,9 @@ import Customize from "../../components/common/Customize";
 
 import Particles from "../../ts-default/Backgrounds/Particles/Particles";
 import { particles } from "../../constants/code/Backgrounds/particlesCode";
+import useForceRerender from "../../hooks/useForceRerender";
 
 const ParticlesDemo = () => {
-
   const [colors, setColors] = useState('#ffffff');
 
   const [particleCount, setParticleCount] = useState(200);
@@ -25,6 +25,8 @@ const ParticlesDemo = () => {
   const [moveParticlesOnHover, setMoveParticlesOnHover] = useState(true);
   const [alphaParticles, setAlphaParticles] = useState(false);
   const [disableRotation, setDisableRotation] = useState(false);
+
+  const [key, forceRerender] = useForceRerender();
 
   const propData = [
     {
@@ -100,6 +102,7 @@ const ParticlesDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
           <Particles
+            key={key}
             particleColors={[colors]}
             particleCount={particleCount}
             particleSpread={particleSpread}
@@ -118,7 +121,7 @@ const ParticlesDemo = () => {
             <Input
               type="color"
               value={colors}
-              onChange={(e) => { setColors(e.target.value); }}
+              onChange={(e) => { setColors(e.target.value); forceRerender(); }}
               width="50px"
             />
           </Flex>
