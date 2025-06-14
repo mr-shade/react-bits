@@ -20,10 +20,11 @@ const SplitText = ({
   onLetterAnimationComplete,
 }) => {
   const ref = useRef(null);
+  const animationCompletedRef = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || animationCompletedRef.current) return;
 
     const absoluteLines = splitType === "lines";
     if (absoluteLines) el.style.position = "relative";
@@ -50,7 +51,7 @@ const SplitText = ({
     }
 
     targets.forEach((t) => {
-      (t).style.willChange = "transform, opacity";
+      t.style.willChange = "transform, opacity";
     });
 
     const startPct = (1 - threshold) * 100;
@@ -67,7 +68,15 @@ const SplitText = ({
         once: true,
       },
       smoothChildTiming: true,
-      onComplete: onLetterAnimationComplete,
+      onComplete: () => {
+        animationCompletedRef.current = true;
+        gsap.set(targets, {
+          ...to,
+          clearProps: "willChange",
+          immediateRender: true,
+        });
+        onLetterAnimationComplete?.();
+      },
     });
 
     tl.set(targets, { ...from, immediateRender: false, force3D: true });

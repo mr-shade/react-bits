@@ -35,10 +35,11 @@ const SplitText: React.FC<SplitTextProps> = ({
   onLetterAnimationComplete,
 }) => {
   const ref = useRef<HTMLParagraphElement>(null);
+  const animationCompletedRef = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || animationCompletedRef.current) return;
 
     const absoluteLines = splitType === "lines";
     if (absoluteLines) el.style.position = "relative";
@@ -82,7 +83,15 @@ const SplitText: React.FC<SplitTextProps> = ({
         once: true,
       },
       smoothChildTiming: true,
-      onComplete: onLetterAnimationComplete,
+      onComplete: () => {
+        animationCompletedRef.current = true;
+        gsap.set(targets, {
+          ...to,
+          clearProps: "willChange",
+          immediateRender: true,
+        });
+        onLetterAnimationComplete?.();
+      },
     });
 
     tl.set(targets, { ...from, immediateRender: false, force3D: true });
