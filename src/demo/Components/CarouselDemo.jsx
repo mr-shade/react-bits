@@ -2,17 +2,17 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
 
 import Carousel from "../../content/Components/Carousel/Carousel";
 import { carousel } from "../../constants/code/Components/carouselCode";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 const CarouselDemo = () => {
   const [width, setWidth] = useState(300);

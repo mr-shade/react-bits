@@ -3,13 +3,13 @@ import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/comm
 import { Box, Icon, Text, Button } from "@chakra-ui/react";
 import { FaCircle, FaCode, FaSliders } from "react-icons/fa6";
 
-import Customize from "../../components/common/Customize";
+import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import useForceRerender from "../../hooks/useForceRerender";
 
 import { cardSwap } from "../../constants/code/Components/cardSwapCode";

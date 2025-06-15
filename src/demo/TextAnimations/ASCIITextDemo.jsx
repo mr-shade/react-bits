@@ -5,12 +5,12 @@ import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/comm
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from "../../components/code/Dependencies";
-import Customize from "../../components/common/Customize";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
-import PreviewInput from "../../components/common/PreviewInput";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import PreviewInput from "../../components/common/Preview/PreviewInput";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import useForceRerender from "../../hooks/useForceRerender";
 
 import ASCIIText from "../../content/TextAnimations/ASCIIText/ASCIIText";

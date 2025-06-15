@@ -12,11 +12,11 @@ import {
   Text
 } from "@chakra-ui/react";
 
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 import VariableProximity from "../../content/TextAnimations/VariableProximity/VariableProximity";
 import { variableProximity } from '../../constants/code/TextAnimations/variableProximityCode';

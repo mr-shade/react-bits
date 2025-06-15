@@ -4,9 +4,9 @@ import { Box, Button, ButtonGroup, Flex, Input, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import Customize from "../../components/common/Customize";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PropTable from "../../components/common/PropTable";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PropTable from "../../components/common/Preview/PropTable";
 
 import Squares from "../../content/Backgrounds/Squares/Squares";
 import { squares } from '../../constants/code/Backgrounds/squaresCode';

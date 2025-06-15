@@ -10,18 +10,18 @@ import {
   Flex,
   Text
 } from '@chakra-ui/react';
-import PreviewSwitch from '../../components/common/PreviewSwitch';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 
 import CodeExample from '../../components/code/CodeExample';
-import PropTable from '../../components/common/PropTable';
+import PropTable from '../../components/common/Preview/PropTable';
 import CliInstallation from '../../components/code/CliInstallation';
 import useForceRerender from '../../hooks/useForceRerender';
-import RefreshButton from '../../components/common/RefreshButton';
+import RefreshButton from '../../components/common/Preview/RefreshButton';
 
 import TextPressure from '../../content/TextAnimations/TextPressure/TextPressure';
 import { textPressure } from '../../constants/code/TextAnimations/textPressureCode';
-import Customize from '../../components/common/Customize';
-import PreviewInput from '../../components/common/PreviewInput';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewInput from '../../components/common/Preview/PreviewInput';
 
 const propData = [
   {

@@ -16,7 +16,7 @@ import {
   FiSearch,
   FiX,
 } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useRef,
   useState,
@@ -27,7 +27,9 @@ import {
   useEffect,
 } from "react";
 import { CATEGORIES, NEW, UPDATED } from "../../constants/Categories";
+import { componentMap } from "../../constants/Components";
 import { useSearch } from "../context/SearchContext/useSearch";
+import { useTransition } from "../../hooks/useTransition";
 import Logo from "../../assets/logos/react-bits-logo.svg";
 
 const HOVER_TIMEOUT_DELAY = 150;
@@ -50,21 +52,28 @@ const Sidebar = () => {
   const [isLineVisible, setIsLineVisible] = useState(false);
   const [hoverLinePosition, setHoverLinePosition] = useState(null);
   const [isHoverLineVisible, setIsHoverLineVisible] = useState(false);
+  const [pendingActivePath, setPendingActivePath] = useState(null);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
 
   const searchBtnRef = useRef();
   const menuBtnRef = useRef();
   const sidebarRef = useRef(null);
+  const sidebarContainerRef = useRef(null);
   const itemRefs = useRef({});
   const hoverTimeoutRef = useRef(null);
   const hoverDelayTimeoutRef = useRef(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const { toggleSearch } = useSearch();
+  const { startTransition, isTransitioning } = useTransition();
 
   const findActiveElement = useCallback(() => {
+    const activePath = pendingActivePath || location.pathname;
+
     for (const category of CATEGORIES) {
       const activeItem = category.subcategories.find((sub) => {
-        return location.pathname === `/${slug(category.name)}/${slug(sub)}`;
+        return activePath === `/${slug(category.name)}/${slug(sub)}`;
       });
       if (activeItem)
         return itemRefs.current[
@@ -72,7 +81,7 @@ const Sidebar = () => {
         ];
     }
     return null;
-  }, [location.pathname]);
+  }, [location.pathname, pendingActivePath]);
 
   const updateLinePosition = useCallback((el) => {
     if (!el || !sidebarRef.current || !sidebarRef.current.offsetParent) return null;
@@ -92,19 +101,42 @@ const Sidebar = () => {
     scrollToTop();
   };
 
+  const handleTransitionNavigation = useCallback(async (path, subcategory) => {
+    if (isTransitioning || location.pathname === path) return;
+
+    setPendingActivePath(path);
+
+    await startTransition(subcategory, componentMap, () => {
+      navigate(path);
+      scrollToTop();
+      setPendingActivePath(null);
+    });
+  }, [isTransitioning, location.pathname, startTransition, navigate]);
+
+  const handleMobileTransitionNavigation = useCallback(async (path, subcategory) => {
+    if (isTransitioning || location.pathname === path) return;
+
+    closeDrawer();
+    setPendingActivePath(path);
+
+    await startTransition(subcategory, componentMap, () => {
+      navigate(path);
+      scrollToTop();
+      setPendingActivePath(null);
+    });
+  }, [isTransitioning, location.pathname, startTransition, navigate]);
+
   const onItemEnter = (path, e) => {
     clearTimeout(hoverTimeoutRef.current);
     clearTimeout(hoverDelayTimeoutRef.current);
-    
+
     const targetElement = e.currentTarget;
-    
-    // Update position immediately
+
     const pos = updateLinePosition(targetElement);
     if (pos !== null) {
       setHoverLinePosition(pos);
     }
-    
-    // Show indicator after delay
+
     hoverDelayTimeoutRef.current = setTimeout(() => {
       setIsHoverLineVisible(true);
     }, 200);
@@ -135,6 +167,28 @@ const Sidebar = () => {
   useEffect(() => () => {
     clearTimeout(hoverTimeoutRef.current);
     clearTimeout(hoverDelayTimeoutRef.current);
+  }, []);
+
+  useEffect(() => {
+    if (pendingActivePath && location.pathname === pendingActivePath) {
+      setPendingActivePath(null);
+    }
+  }, [location.pathname, pendingActivePath]);
+
+  useEffect(() => {
+    const sidebarElement = sidebarContainerRef.current;
+    if (!sidebarElement) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = sidebarElement;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+      setIsScrolledToBottom(isAtBottom);
+    };
+
+    sidebarElement.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => sidebarElement.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -221,10 +275,13 @@ const Sidebar = () => {
                     key={cat.name}
                     category={cat}
                     location={location}
+                    pendingActivePath={pendingActivePath}
                     handleClick={onNavClick}
+                    handleTransitionNavigation={handleMobileTransitionNavigation}
                     onItemMouseEnter={() => { }}
                     onItemMouseLeave={() => { }}
                     itemRefs={{}}
+                    isTransitioning={isTransitioning}
                   />
                 ))}
               </VStack>
@@ -268,17 +325,17 @@ const Sidebar = () => {
 
       <Box
         as="nav"
+        ref={sidebarContainerRef}
         position="fixed"
         top="57px"
-        h="calc(100vh - 57px)"
+        h="100vh"
         w={{ base: 0, md: 40 }}
         p={5}
         overflowY="auto"
         display={{ base: "none", md: "block" }}
-        className="sidebar"
+        className={`sidebar ${isScrolledToBottom ? 'sidebar-no-fade' : ''}`}
       >
         <Box ref={sidebarRef} position="relative">
-          {/* Active item indicator */}
           <Box
             position="absolute"
             left="0"
@@ -297,7 +354,6 @@ const Sidebar = () => {
             zIndex={2}
           />
 
-          {/* Hover item indicator */}
           <Box
             position="absolute"
             left="0"
@@ -322,10 +378,13 @@ const Sidebar = () => {
                 key={cat.name}
                 category={cat}
                 location={location}
+                pendingActivePath={pendingActivePath}
                 handleClick={scrollToTop}
+                handleTransitionNavigation={handleTransitionNavigation}
                 onItemMouseEnter={onItemEnter}
                 onItemMouseLeave={onItemLeave}
                 itemRefs={itemRefs}
+                isTransitioning={isTransitioning}
               />
             ))}
           </VStack>
@@ -339,24 +398,28 @@ const Category = memo(
   ({
     category,
     handleClick,
+    handleTransitionNavigation,
     location,
+    pendingActivePath,
     onItemMouseEnter,
     onItemMouseLeave,
     itemRefs,
+    isTransitioning,
   }) => {
     const items = useMemo(
       () =>
         category.subcategories.map((sub) => {
           const path = `/${slug(category.name)}/${slug(sub)}`;
+          const activePath = pendingActivePath || location.pathname;
           return {
             sub,
             path,
-            isActive: location.pathname === path,
+            isActive: activePath === path,
             isNew: NEW.includes(sub),
             isUpdated: UPDATED.includes(sub),
           };
         }),
-      [category.name, category.subcategories, location.pathname]
+      [category.name, category.subcategories, location.pathname, pendingActivePath]
     );
 
     return (
@@ -377,10 +440,15 @@ const Category = memo(
                 itemRefs.current && (itemRefs.current[path] = el)
               }
               to={path}
-              className={
-                isActive ? "sidebar-item active-sidebar-item" : "sidebar-item"
-              }
-              onClick={handleClick}
+              className={`sidebar-item ${isActive ? 'active-sidebar-item' : ''} ${isTransitioning ? 'transitioning' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                if (handleTransitionNavigation) {
+                  handleTransitionNavigation(path, sub);
+                } else {
+                  handleClick();
+                }
+              }}
               onMouseEnter={(e) => onItemMouseEnter(path, e)}
               onMouseLeave={onItemMouseLeave}
             >

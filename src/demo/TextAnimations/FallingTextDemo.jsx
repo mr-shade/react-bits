@@ -3,13 +3,13 @@ import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/comm
 import { Flex, Text } from "@chakra-ui/react";
 
 import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-import Customize from "../../components/common/Customize";
-import PreviewSelect from "../../components/common/PreviewSelect";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSelect from "../../components/common/Preview/PreviewSelect";
 
 import FallingText from "../../content/TextAnimations/FallingText/FallingText";
 import { fallingText } from "../../constants/code/TextAnimations/fallingTextCode";

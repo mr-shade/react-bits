@@ -3,10 +3,10 @@ import { Box } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from "../../components/code/CodeExample";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Customize from "../../components/common/Preview/Customize";
 
 import ShinyText from "../../content/TextAnimations/ShinyText/ShinyText";
 import { shinyText } from '../../constants/code/TextAnimations/shinyTextCode';

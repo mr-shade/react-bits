@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
-import { Logo } from '../../common/SVGComponents';
+import { Logo } from '../../common/Misc/SVGComponents';
 import { useStars } from '../../../hooks/useStars';
 import star from '../../../assets/common/star.svg';
 import './DisplayHeader.css';

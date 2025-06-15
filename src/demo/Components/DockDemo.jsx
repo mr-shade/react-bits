@@ -3,11 +3,11 @@ import { Box, Text } from "@chakra-ui/react";
 import { VscAccount, VscArchive, VscHome, VscSettingsGear } from "react-icons/vsc";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
-import Customize from "../../components/common/Customize";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 import useForceRerender from "../../hooks/useForceRerender";
 

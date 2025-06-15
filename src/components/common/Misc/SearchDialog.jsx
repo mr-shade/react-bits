@@ -11,8 +11,8 @@ import { FiSearch, FiLayers, FiImage, FiType, FiCircle } from 'react-icons/fi';
 import { AiOutlineEnter } from 'react-icons/ai';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { CATEGORIES } from '../../constants/Categories';
-import { useSearch } from '../context/SearchContext/useSearch';
+import { CATEGORIES } from '../../../constants/Categories';
+import { useSearch } from '../../context/SearchContext/useSearch';
 
 const levenshtein = (a, b) => {
   const m = a.length, n = b.length;

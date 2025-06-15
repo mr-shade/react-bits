@@ -6,13 +6,13 @@ import { TabbedLayout, PreviewTab, CodeTab, CliTab } from "../../components/comm
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
-import PropTable from "../../components/common/PropTable";
-import RefreshButton from "../../components/common/RefreshButton";
+import PropTable from "../../components/common/Preview/PropTable";
+import RefreshButton from "../../components/common/Preview/RefreshButton";
 import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
-import PreviewSelect from "../../components/common/PreviewSelect";
-import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import PreviewSelect from "../../components/common/Preview/PreviewSelect";
+import Customize from "../../components/common/Preview/Customize";
 
 import DecryptedText from "../../content/TextAnimations/DecryptedText/DecryptedText";
 import { decryptedText } from "../../constants/code/TextAnimations/decryptedTextCode";

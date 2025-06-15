@@ -4,7 +4,7 @@ import { FaLock } from "react-icons/fa6";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from '../../components/code/CodeExample';
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
 import SpotlightCard from "../../content/Components/SpotlightCard/SpotlightCard";

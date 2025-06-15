@@ -2,13 +2,13 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
+import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewInput from "../../components/common/PreviewInput";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewInput from "../../components/common/Preview/PreviewInput";
 
 import { scrambledTextCode } from '../../constants/code/TextAnimations/scrambledTextCode';
 import ScrambledText from "../../content/TextAnimations/ScrambledText/ScrambledText";

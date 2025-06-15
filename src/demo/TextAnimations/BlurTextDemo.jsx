@@ -3,14 +3,14 @@ import { toast } from "sonner";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
-import RefreshButton from "../../components/common/RefreshButton";
+import RefreshButton from "../../components/common/Preview/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
-import Customize from "../../components/common/Customize";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 import BlurText from "../../content/TextAnimations/BlurText/BlurText";
 import { blurText } from "../../constants/code/TextAnimations/blurTextCode";

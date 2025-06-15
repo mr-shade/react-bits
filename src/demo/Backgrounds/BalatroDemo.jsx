@@ -4,11 +4,11 @@ import { Box, Flex, Image, Input, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-import Customize from "../../components/common/Customize";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 
 import Balatro from "../../content/Backgrounds/Balatro/Balatro";
 import { balatro } from "../../constants/code/Backgrounds/balatroCode";

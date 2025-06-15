@@ -2,15 +2,15 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
-import RefreshButton from "../../components/common/RefreshButton";
+import RefreshButton from "../../components/common/Preview/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from '../../components/common/PropTable';
+import PropTable from '../../components/common/Preview/PropTable';
 import CliInstallation from "../../components/code/CliInstallation";
-import Customize from "../../components/common/Customize";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 
 import AnimatedContent from '../../content/Animations/AnimatedContent/AnimatedContent';
 import { animatedContent } from '../../constants/code/Animations/animatedContentCode';

@@ -903,3 +903,20 @@
     height: 26px;
   }
 }
+
+/* Mobile hero background styles */
+.mobile-hero-background-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.mobile-hero-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}

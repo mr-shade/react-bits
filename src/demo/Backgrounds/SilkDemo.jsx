@@ -2,14 +2,14 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Text, Input } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
+import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
-import RefreshButton from "../../components/common/RefreshButton";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import RefreshButton from "../../components/common/Preview/RefreshButton";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 import { silkCode } from '../../constants/code/Backgrounds/silkCode';
 import Silk from '../../content/Backgrounds/Silk/Silk';

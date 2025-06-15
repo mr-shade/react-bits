@@ -9,10 +9,10 @@ import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/comm
 
 import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Customize from "../../components/common/Preview/Customize";
 
 import { clickSpark } from '../../constants/code/Animations/clickSparkCode';
 import ClickSpark from "../../ts-default/Animations/ClickSpark/ClickSpark";

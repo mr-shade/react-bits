@@ -6,9 +6,9 @@ import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/comm
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from '../../components/code/CliInstallation';
-import Customize from "../../components/common/Customize";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PropTable from "../../components/common/PropTable";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PropTable from "../../components/common/Preview/PropTable";
 
 import { blobCursor } from '../../constants/code/Animations/blobCursorCode';
 import BlobCursor from "../../ts-tailwind/Animations/BlobCursor/BlobCursor";

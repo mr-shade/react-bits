@@ -2,7 +2,7 @@ import { Box, Icon } from "@chakra-ui/react";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from "../../components/code/Dependencies";
 import CodeExample from '../../components/code/CodeExample';
 import CliInstallation from "../../components/code/CliInstallation";

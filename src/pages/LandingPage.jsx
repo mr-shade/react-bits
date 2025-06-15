@@ -12,14 +12,10 @@ const LandingPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const checkIsMobile = () => setIsMobile(window.innerWidth <= 768);
     checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
 
+    window.addEventListener('resize', checkIsMobile);
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
@@ -28,25 +24,11 @@ const LandingPage = () => {
       <title>React Bits - Animated UI Components For React</title>
 
       {isMobile && (
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            overflow: 'hidden',
-            width: '100vw',
-            height: '100vh',
-            zIndex: -1,
-          }}
-        >
+        <div className="mobile-hero-background-container">
           <img
             src={heroImage}
             alt="Hero background"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              opacity: 0.6,
-            }}
+            className="mobile-hero-background-image"
           />
         </div>
       )}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, Icon, Flex } from "@chakra-ui/react";
 import { FiCode, FiEye, FiHeart, FiTerminal } from "react-icons/fi";
-import ContributionSection from "./ContributionSection";
+import ContributionSection from "./GitHub/ContributionSection";
 
 const TAB_STYLE_PROPS = {
   flex: "0 0 auto",

@@ -3,6 +3,23 @@
   background-color: #060010 !important;
 }
 
+.sidebar::before {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+  background: linear-gradient(to top, #060010, transparent);
+  z-index: 4;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.sidebar-no-fade::before {
+  opacity: 0;
+}
+
 .sidebar {
   padding: 4.75rem 0 6em 0 !important;
 }

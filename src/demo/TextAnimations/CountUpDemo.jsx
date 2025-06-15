@@ -4,9 +4,9 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import GradientText from "../../content/TextAnimations/GradientText/GradientText";
-import RefreshButton from "../../components/common/RefreshButton";
+import RefreshButton from "../../components/common/Preview/RefreshButton";
 import CodeExample from '../../components/code/CodeExample';
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from "../../components/code/Dependencies";
 import useForceRerender from "../../hooks/useForceRerender";
 import CliInstallation from "../../components/code/CliInstallation";

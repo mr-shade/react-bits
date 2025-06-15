@@ -5,8 +5,8 @@ import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/comm
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
 import CliInstallation from "../../components/code/CliInstallation";
-import Customize from "../../components/common/Customize";
-import PropTable from "../../components/common/PropTable";
+import Customize from "../../components/common/Preview/Customize";
+import PropTable from "../../components/common/Preview/PropTable";
 
 import Crosshair from "../../content/Animations/Crosshair/Crosshair";
 import { crosshair } from '../../constants/code/Animations/crosshairCode';

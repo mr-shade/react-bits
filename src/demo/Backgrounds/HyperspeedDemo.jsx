@@ -3,11 +3,11 @@ import { Box, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
 
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CodeExample from "../../components/code/CodeExample";
 import Dependencies from "../../components/code/Dependencies";
-import PreviewSelect from "../../components/common/PreviewSelect";
-import Customize from "../../components/common/Customize";
+import PreviewSelect from "../../components/common/Preview/PreviewSelect";
+import Customize from "../../components/common/Preview/Customize";
 import CliInstallation from "../../components/code/CliInstallation";
 import useForceRerender from "../../hooks/useForceRerender";
 

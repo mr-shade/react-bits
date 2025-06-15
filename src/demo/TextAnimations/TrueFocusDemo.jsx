@@ -12,12 +12,12 @@ import {
 } from "../../components/common/TabbedLayout";
 
 import CodeExample from "../../components/code/CodeExample";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 import Dependencies from "../../components/code/Dependencies";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
-import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import Customize from "../../components/common/Preview/Customize";
 
 import TrueFocus from "../../content/TextAnimations/TrueFocus/TrueFocus";
 import { trueFocus } from '../../constants/code/TextAnimations/trueFocusCode';

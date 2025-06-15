@@ -2,14 +2,14 @@ import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/comm
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 
-import Customize from "../../components/common/Customize";
+import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSelect from "../../components/common/PreviewSelect";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSelect from "../../components/common/Preview/PreviewSelect";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 import { fluidGlass } from '../../constants/code/Components/fluidGlassCode';
 import FluidGlass from "../../content/Components/FluidGlass/FluidGlass";
@@ -105,7 +105,7 @@ const FluidGlassDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden" bg="linear-gradient(180deg, #271E37 0%, #060010 100%)">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <FluidGlass
             key={key}
             mode={mode}

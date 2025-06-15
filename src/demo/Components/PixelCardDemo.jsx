@@ -2,11 +2,11 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
+import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
-import PreviewSelect from "../../components/common/PreviewSelect";
+import PropTable from "../../components/common/Preview/PropTable";
+import PreviewSelect from "../../components/common/Preview/PreviewSelect";
 
 import { pixelCard } from "../../constants/code/Components/pixelCardCode";
 import PixelCard from "../../content/Components/PixelCard/PixelCard";

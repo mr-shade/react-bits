@@ -4,10 +4,10 @@ import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/comm
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
-import Customize from "../../components/common/Customize";
+import PropTable from "../../components/common/Preview/PropTable";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import Customize from "../../components/common/Preview/Customize";
 
 import Magnet from "../../content/Animations/Magnet/Magnet";
 import { magnet } from '../../constants/code/Animations/magnetCode';

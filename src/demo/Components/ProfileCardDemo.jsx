@@ -1,16 +1,16 @@
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Button } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
+import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 
 import { profileCard } from "../../constants/code/Components/profileCardCode";
 import ProfileCard from "../../content/Components/ProfileCard/ProfileCard";
 import { useState } from "react";
 import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 
 const ProfileCardDemo = () => {
   const [showIcon, setShowIcon] = useState(true);

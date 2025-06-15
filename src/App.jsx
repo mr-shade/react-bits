@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import { SearchProvider } from './components/context/SearchContext/SearchContext';
 import { LanguageProvider } from './components/context/LanguageContext/LanguageContext'
+import { TransitionProvider } from './components/context/TransitionContext/TransitionContext';
 import { useEffect } from 'react';
 import { Toaster } from 'sonner'
 import { forceChakraDarkTheme } from './utils/utils';
@@ -33,18 +34,20 @@ function AppContent() {
         <Route path="/:category/:subcategory" element={
           <SearchProvider>
             <LanguageProvider>
-              <main className='app-container'>
-                <Header />
-                <section className='category-wrapper'>
-                  <Sidebar />
-                  <CategoryPage />
-                </section>
-                <Toaster
-                  toastOptions={toastStyles}
-                  position='bottom-right'
-                  visibleToasts={1}
-                />
-              </main>
+              <TransitionProvider>
+                <main className='app-container'>
+                  <Header />
+                  <section className='category-wrapper'>
+                    <Sidebar />
+                    <CategoryPage />
+                  </section>
+                  <Toaster
+                    toastOptions={toastStyles}
+                    position='bottom-right'
+                    visibleToasts={1}
+                  />
+                </main>
+              </TransitionProvider>
             </LanguageProvider>
           </SearchProvider>
         } />

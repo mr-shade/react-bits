@@ -3,15 +3,15 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 
 import { useState } from "react";
 import useForceRerender from "../../hooks/useForceRerender";
 import Aurora from "../../content/Backgrounds/Aurora/Aurora";
 import { aurora } from "../../constants/code/Backgrounds/auroraCode";
-import PreviewSlider from "../../components/common/PreviewSlider";
-import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Customize from "../../components/common/Preview/Customize";
 
 const AuroraDemo = () => {
   const [color1, setColor1] = useState('#5227FF');

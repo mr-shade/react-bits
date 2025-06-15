@@ -2,17 +2,17 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Text } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
 
 import TextCursor from "../../content/TextAnimations/TextCursor/TextCursor";
 import { textCursor } from "../../constants/code/TextAnimations/textCursorCode";
-import PreviewInput from "../../components/common/PreviewInput";
+import PreviewInput from "../../components/common/Preview/PreviewInput";
 
 const TextCursorDemo = () => {
   const [text, setText] = useState("⚛️");

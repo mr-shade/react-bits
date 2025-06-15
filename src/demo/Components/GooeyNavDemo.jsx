@@ -2,14 +2,14 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
+import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 
 import GooeyNav from "../../content/Components/GooeyNav/GooeyNav";
 import { gooeyNav } from "../../constants/code/Components/gooeyNavCode";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 const GooeyNavDemo = () => {
   const [particleCount, setParticleCount] = useState(15);

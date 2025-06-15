@@ -6,9 +6,9 @@ import { gsap } from "gsap";
 import useForceRerender from "../../hooks/useForceRerender";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSlider from "../../components/common/PreviewSlider";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 import ScrollFloat from "../../content/TextAnimations/ScrollFloat/ScrollFloat";
 import { scrollFloat } from "../../constants/code/TextAnimations/scrollFloatCode";

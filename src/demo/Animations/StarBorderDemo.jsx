@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 
 import CodeExample from '../../components/code/CodeExample';
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
 
 import StarBorder from "../../content/Animations/StarBorder/StarBorder";

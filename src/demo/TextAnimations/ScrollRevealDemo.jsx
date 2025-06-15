@@ -6,11 +6,11 @@ import { gsap } from "gsap";
 import useForceRerender from "../../hooks/useForceRerender";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSlider from "../../components/common/PreviewSlider";
-import PreviewSwitch from "../../components/common/PreviewSwitch";
-import Customize from "../../components/common/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import Customize from "../../components/common/Preview/Customize";
 
 import ScrollReveal from "../../content/TextAnimations/ScrollReveal/ScrollReveal";
 import { scrollReveal } from "../../constants/code/TextAnimations/scrollRevealCode";

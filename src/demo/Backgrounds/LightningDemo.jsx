@@ -2,12 +2,12 @@ import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box } from "@chakra-ui/react";
 
-import Customize from "../../components/common/Customize";
-import PreviewSlider from "../../components/common/PreviewSlider";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from "../../components/common/PropTable";
+import PropTable from "../../components/common/Preview/PropTable";
 
 import Lightning from "../../ts-default/Backgrounds/Lightning/Lightning";
 import { lightning } from "../../constants/code/Backgrounds/lightningCode";

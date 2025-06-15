@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import SearchDialog from '../../common/SearchDialog';
+import SearchDialog from '../../common/Misc/SearchDialog';
 
 export const SearchContext = createContext();
 
