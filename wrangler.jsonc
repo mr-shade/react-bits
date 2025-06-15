@@ -3,10 +3,6 @@
   "compatibility_date": "2025-06-15",
   "assets": {
     "directory": "./dist",
-    "exclude": [
-      "default/**",
-      "tailwind/**",
-      "ts/**"
-    ]
+    "not_found_handling": "single-page-application"
   }
 }
