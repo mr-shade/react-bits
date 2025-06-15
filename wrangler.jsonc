@@ -2,6 +2,11 @@
   "name": "react-bits",
   "compatibility_date": "2025-06-15",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "exclude": [
+      "default/**",
+      "tailwind/**",
+      "ts/**"
+    ]
   }
 }
