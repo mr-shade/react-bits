@@ -37,7 +37,6 @@ const Header = () => {
   const starCountRef = useRef(null);
   const os = useDeviceOS();
 
-
   const LanguageSelect = (
     <Select.Root
       collection={langCollection}

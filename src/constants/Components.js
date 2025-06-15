@@ -68,6 +68,7 @@ const components = {
   'profile-card': () => import("../demo/Components/ProfileCardDemo"),
   'card-swap': () => import("../demo/Components/CardSwapDemo"),
   'model-viewer': () => import("../demo/Components/ModelViewerDemo"),
+  'fluid-glass': () => import("../demo/Components/FluidGlassDemo"),
 };
 
 const backgrounds = {
