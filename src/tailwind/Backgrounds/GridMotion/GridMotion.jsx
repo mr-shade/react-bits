@@ -55,7 +55,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
         }}
       >
         <div
-          className="absolute inset-0 pointer-events-none z-[4] bg-[url('../../../assets/noise.png')] bg-[length:250px]"
+          className="absolute inset-0 pointer-events-none z-[4] bg-[length:250px]"
         ></div>
         <div
           className="gap-4 flex-none relative w-[150vw] h-[150vh] grid grid-rows-4 grid-cols-1 rotate-[-15deg] origin-center z-[2]"
