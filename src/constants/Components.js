@@ -70,6 +70,7 @@ const components = {
   'card-swap': () => import("../demo/Components/CardSwapDemo"),
   'model-viewer': () => import("../demo/Components/ModelViewerDemo"),
   'fluid-glass': () => import("../demo/Components/FluidGlassDemo"),
+  'masonry': () => import("../demo/Components/MasonryDemo"),
 };
 
 const backgrounds = {
