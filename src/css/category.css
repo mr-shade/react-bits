@@ -130,6 +130,12 @@ div:has(> .props-table) {
   color: #5227FF;
 }
 
+.star-border-demo .inner-content {
+  padding: 1em 3em;
+  background-color: #060010 !important;
+  border: 1px solid #271E37 !important
+}
+
 .custom-bounceCards {
   position: relative;
   top: 2em;

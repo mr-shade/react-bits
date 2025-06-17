@@ -5,11 +5,19 @@ const StarBorder = ({
   className = "",
   color = "white",
   speed = "6s",
+  thickness = 1,
   children,
   ...rest
 }) => {
   return (
-    <Component className={`star-border-container ${className}`} {...rest}>
+    <Component 
+      className={`star-border-container ${className}`} 
+      style={{
+        padding: `${thickness}px 0`,
+        ...rest.style
+      }}
+      {...rest}
+    >
       <div
         className="border-gradient-bottom"
         style={{
