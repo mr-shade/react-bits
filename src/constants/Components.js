@@ -16,6 +16,7 @@ const animations = {
   'meta-balls': () => import("../demo/Animations/MetaBallsDemo"),
   'metallic-paint': () => import("../demo/Animations/MetallicPaintDemo"),
   'glare-hover': () => import("../demo/Animations/GlareHoverDemo"),
+  'cubes': () => import("../demo/Animations/CubesDemo"),
 };
 
 const textAnimations = {
