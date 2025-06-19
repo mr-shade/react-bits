@@ -1,3 +1,4 @@
+'use client';
 import { useRef, useEffect, useCallback, useMemo } from "react";
 import { gsap } from "gsap";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
@@ -60,7 +61,9 @@ const DotGrid = ({
   const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
 
   const circlePath = useMemo(() => {
-    const p = new Path2D();
+    if (typeof window === "undefined" || !window.Path2D) return null;
+
+    const p = new window.Path2D();
     p.arc(0, 0, dotSize / 2, 0, Math.PI * 2);
     return p;
   }, [dotSize]);
@@ -105,6 +108,8 @@ const DotGrid = ({
   }, [dotSize, gap]);
 
   useEffect(() => {
+    if (!circlePath) return;
+
     let rafId;
     const proxSq = proximity * proximity;
 
