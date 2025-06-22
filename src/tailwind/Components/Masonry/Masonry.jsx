@@ -123,15 +123,17 @@ const Masonry = ({
   const grid = useMemo(() => {
     if (!width) return [];
     const colHeights = new Array(columns).fill(0);
-    const columnWidth = width / columns;
+    const gap = 16;
+    const totalGaps = (columns - 1) * gap;
+    const columnWidth = (width - totalGaps) / columns;
 
     return items.map((child) => {
       const col = colHeights.indexOf(Math.min(...colHeights));
-      const x = columnWidth * col;
+      const x = col * (columnWidth + gap);
       const height = child.height / 2;
       const y = colHeights[col];
 
-      colHeights[col] += height;
+      colHeights[col] += height + gap;
       return { ...child, x, y, w: columnWidth, h: height };
     });
   }, [columns, items, width]);
@@ -214,7 +216,7 @@ const Masonry = ({
         <div
           key={item.id}
           data-key={item.id}
-          className="absolute box-content p-2"
+          className="absolute box-content"
           style={{ willChange: "transform, width, height, opacity" }}
           onClick={() => window.open(item.url, "_blank", "noopener")}
           onMouseEnter={(e) => handleMouseEnter(item.id, e.currentTarget)}
