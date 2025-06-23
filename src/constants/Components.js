@@ -40,6 +40,7 @@ const textAnimations = {
   'fuzzy-text': () => import("../demo/TextAnimations/FuzzyTextDemo"),
   'text-cursor': () => import("../demo/TextAnimations/TextCursorDemo"),
   'scramble-text': () => import("../demo/TextAnimations/ScrambledTextDemo"),
+  'text-trail': () => import("../demo/TextAnimations/TextTrailDemo"),
 };
 
 const components = {
