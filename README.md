@@ -70,4 +70,4 @@ React Bits may sometimes take inspiration from publicly available code examples 
 
 ## License
 
-Licensed under the [MIT license](https://github.com/davidhdev/react-bits/blob/main/LICENSE.md).
+Licensed under the [MIT + Commons Clause license](https://github.com/davidhdev/react-bits/blob/main/LICENSE.md).
