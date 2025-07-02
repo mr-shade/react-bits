@@ -1,4 +1,4 @@
-MIT License
+MIT + Commons Clause License Condition v1.0
 
 Copyright (c) 2025 David Haz
 
