@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+components-mcp.json
+scripts/mcp.js
 
 node_modules
 dist

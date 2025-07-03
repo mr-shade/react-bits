@@ -412,6 +412,36 @@ export default function ASCIIText({
 
     const { width, height } = containerRef.current.getBoundingClientRect();
 
+    if (width === 0 || height === 0) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && entry.boundingClientRect.width > 0 && entry.boundingClientRect.height > 0) {
+            const { width: w, height: h } = entry.boundingClientRect;
+
+            asciiRef.current = new CanvAscii(
+              { text, asciiFontSize, textFontSize, textColor, planeBaseHeight, enableWaves },
+              containerRef.current,
+              w,
+              h
+            );
+            asciiRef.current.load();
+
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(containerRef.current);
+
+      return () => {
+        observer.disconnect();
+        if (asciiRef.current) {
+          asciiRef.current.dispose();
+        }
+      };
+    }
+
     asciiRef.current = new CanvAscii(
       { text, asciiFontSize, textFontSize, textColor, planeBaseHeight, enableWaves },
       containerRef.current,
@@ -421,9 +451,11 @@ export default function ASCIIText({
     asciiRef.current.load();
 
     const ro = new ResizeObserver((entries) => {
-      if (!entries[0]) return;
+      if (!entries[0] || !asciiRef.current) return;
       const { width: w, height: h } = entries[0].contentRect;
-      asciiRef.current.setSize(w, h);
+      if (w > 0 && h > 0) {
+        asciiRef.current.setSize(w, h);
+      }
     });
     ro.observe(containerRef.current);
 
@@ -438,6 +470,7 @@ export default function ASCIIText({
   return (
     <div
       ref={containerRef}
+      className="ascii-text-container"
       style={{
         position: 'absolute',
         width: '100%',
@@ -447,12 +480,7 @@ export default function ASCIIText({
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
 
-        body {
-          margin: 0;
-          padding: 0;
-        }
-
-        canvas {
+        .ascii-text-container canvas {
           position: absolute;
           left: 0;
           top: 0;
@@ -467,7 +495,7 @@ export default function ASCIIText({
           image-rendering: pixelated;
         }
 
-        pre {
+        .ascii-text-container pre {
           margin: 0;
           user-select: none;
           padding: 0;

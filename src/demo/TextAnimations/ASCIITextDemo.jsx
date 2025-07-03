@@ -40,7 +40,7 @@ const propData = [
     type: "number",
     default: "200",
     description:
-      "Pixel size for the text that’s drawn onto the plane texture.",
+      "Pixel size for the text that's drawn onto the plane texture.",
   },
   {
     name: "planeBaseHeight",
