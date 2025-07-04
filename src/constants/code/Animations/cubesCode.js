@@ -9,8 +9,9 @@ import tsTailwind from '@ts-tailwind/Animations/Cubes/Cubes.tsx?raw';
 export const cubes = {
   ...(generateCliCommands('Animations/Cubes')),
   installation: `npm install gsap`,
-  usage: `// CREDIT: 
-// Component inspired from Can Tastemel's original work for the lambda.ai landing page.
+  usage: `// CREDIT
+// Component inspired from Can Tastemel's original work for the lambda.ai landing page
+// https://cantastemel.com
   
 import Cubes from './Cubes'
 
