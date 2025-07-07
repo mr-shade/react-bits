@@ -134,11 +134,11 @@ const GooeyNav = ({
         return () => resizeObserver.disconnect();
     }, [activeIndex]);
 
-  return (
-    <>
-      {/* This effect is quite difficult to recreate faithfully using Tailwind, so a style tag is a necessary workaround */}
-      <style>
-        {`
+    return (
+        <>
+            {/* This effect is quite difficult to recreate faithfully using Tailwind, so a style tag is a necessary workaround */}
+            <style>
+                {`
           :root {
             --linear-ease: linear(0, 0.068, 0.19 2.7%, 0.804 8.1%, 1.037, 1.199 13.2%, 1.245, 1.27 15.8%, 1.274, 1.272 17.4%, 1.249 19.1%, 0.996 28%, 0.949, 0.928 33.3%, 0.926, 0.933 36.8%, 1.001 45.6%, 1.013, 1.019 50.8%, 1.018 54.4%, 1 63.1%, 0.995 68%, 1.001 85%, 1);
           }
@@ -274,45 +274,44 @@ const GooeyNav = ({
             z-index: -1;
           }
         `}
-      </style>
-      <div className="relative" ref={containerRef}>
-        <nav
-          className="flex relative"
-          style={{ transform: "translate3d(0,0,0.01px)" }}
-        >
-          <ul
-            ref={navRef}
-            className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
-            style={{
-              color: "white",
-              textShadow: "0 1px 1px hsl(205deg 30% 10% / 0.2)",
-            }}
-          >
-            {items.map((item, index) => (
-              <li
-                key={index}
+            </style>
+            <div className="relative" ref={containerRef}>
+                <nav
+                    className="flex relative"
+                    style={{ transform: "translate3d(0,0,0.01px)" }}
+                >
+                    <ul
+                        ref={navRef}
+                        className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
+                        style={{
+                            color: "white",
+                            textShadow: "0 1px 1px hsl(205deg 30% 10% / 0.2)",
+                        }}
+                    >
+                        {items.map((item, index) => (
+                            <li
+                                key={index}
                                 className={`rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${
                                     activeIndex === index ? "active" : ""
                                 }`}
-                onClick={(e) => handleClick(e, index)}
-              >
-                <a
+                            >
+                                <a
                                     onClick={(e) => handleClick(e, index)}
-                  href={item.href}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
+                                    href={item.href}
+                                    onKeyDown={(e) => handleKeyDown(e, index)}
                                     className="outline-none py-[0.6em] px-[1em] inline-block"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <span className="effect filter" ref={filterRef} />
-        <span className="effect text" ref={textRef} />
-      </div>
-    </>
-  );
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <span className="effect filter" ref={filterRef} />
+                <span className="effect text" ref={textRef} />
+            </div>
+        </>
+    );
 };
 
 export default GooeyNav;
