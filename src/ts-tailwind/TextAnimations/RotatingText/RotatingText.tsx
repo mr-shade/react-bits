@@ -215,7 +215,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
           mode={animatePresenceMode}
           initial={animatePresenceInitial}
         >
-          <motion.div
+          <motion.span
             key={currentTextIndex}
             className={cn(
               splitBy === "lines"
@@ -261,7 +261,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
                 </span>
               );
             })}
-          </motion.div>
+          </motion.span>
         </AnimatePresence>
       </motion.span>
     );
