@@ -168,7 +168,7 @@ const RotatingText = forwardRef((props, ref) => {
     >
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
       <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
-        <motion.div
+        <motion.span
           key={currentTextIndex}
           className={cn(
             splitBy === "lines" ? "text-rotate-lines" : "text-rotate"
@@ -212,7 +212,7 @@ const RotatingText = forwardRef((props, ref) => {
               </span>
             );
           })}
-        </motion.div>
+        </motion.span>
       </AnimatePresence>
     </motion.span>
   );
