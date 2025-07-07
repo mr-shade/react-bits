@@ -119,7 +119,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     textRef.current.innerText = element.innerText;
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLLIElement>, index: number) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
     const liEl = e.currentTarget;
     if (activeIndex === index) return;
 
@@ -152,7 +152,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       const liEl = e.currentTarget.parentElement;
       if (liEl) {
         handleClick(
-          { currentTarget: liEl } as React.MouseEvent<HTMLLIElement>,
+          { currentTarget: liEl } as React.MouseEvent<HTMLAnchorElement>,
           index
         );
       }
