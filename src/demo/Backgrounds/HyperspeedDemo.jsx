@@ -9,14 +9,12 @@ import Dependencies from "../../components/code/Dependencies";
 import PreviewSelect from "../../components/common/Preview/PreviewSelect";
 import Customize from "../../components/common/Preview/Customize";
 import CliInstallation from "../../components/code/CliInstallation";
-import useForceRerender from "../../hooks/useForceRerender";
 
 import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
 import { hyperspeed } from '../../constants/code/Backgrounds/hyperspeedCode';
 
 const HyperspeedDemo = () => {
   const [activePreset, setActivePreset] = useState('one');
-  const [key, forceRerender] = useForceRerender();
 
   const propData = [
     {
@@ -40,7 +38,7 @@ const HyperspeedDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} cursor="pointer" p={0} mb={4}>
           <Text color="#271E37" position="absolute" fontWeight={900} top={6} fontSize='4rem'>Click & Hold</Text>
-          <Hyperspeed key={key} effectOptions={hyperspeedPresets[activePreset]} />
+          <Hyperspeed effectOptions={hyperspeedPresets[activePreset]} />
         </Box>
 
         <Customize>
@@ -52,7 +50,6 @@ const HyperspeedDemo = () => {
             width={150}
             onChange={(val) => {
               setActivePreset(val);
-              forceRerender();
             }}
           />
         </Customize>

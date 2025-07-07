@@ -42,7 +42,18 @@ const Hyperspeed = ({ effectOptions = {
   }
 } }) => {
   const hyperspeed = useRef(null);
+  const appRef = useRef(null);
+  
   useEffect(() => {
+    if (appRef.current) {
+      appRef.current.dispose();
+      const container = document.getElementById('lights');
+      if (container) {
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+      }
+    }
     const mountainUniforms = {
       uFreq: { value: new THREE.Vector3(3, 6, 10) },
       uAmp: { value: new THREE.Vector3(30, 30, 20) }
@@ -556,6 +567,24 @@ const Hyperspeed = ({ effectOptions = {
 
       dispose() {
         this.disposed = true;
+        
+        if (this.renderer) {
+          this.renderer.dispose();
+        }
+        if (this.composer) {
+          this.composer.dispose();
+        }
+        if (this.scene) {
+          this.scene.clear();
+        }
+        
+        // Remove event listeners
+        window.removeEventListener("resize", this.onWindowResize.bind(this));
+        if (this.container) {
+          this.container.removeEventListener("mousedown", this.onMouseDown);
+          this.container.removeEventListener("mouseup", this.onMouseUp);
+          this.container.removeEventListener("mouseout", this.onMouseUp);
+        }
       }
 
       setSize(width, height, updateStyles) {
@@ -1084,13 +1113,20 @@ const Hyperspeed = ({ effectOptions = {
 
     (function () {
       const container = document.getElementById('lights');
-      effectOptions.distortion = distortions[effectOptions.distortion];
+      const options = { ...effectOptions };
+      options.distortion = distortions[options.distortion];
 
-      const myApp = new App(container, effectOptions);
+      const myApp = new App(container, options);
+      appRef.current = myApp;
       myApp.loadAssets().then(myApp.init);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+    return () => {
+      if (appRef.current) {
+        appRef.current.dispose();
+      }
+    };
+  }, [effectOptions]);
 
   return (
     <div id="lights" ref={hyperspeed}></div>
