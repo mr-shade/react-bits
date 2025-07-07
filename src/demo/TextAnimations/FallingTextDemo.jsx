@@ -120,6 +120,7 @@ const FallingTextDemo = () => {
             width={150}
             onChange={(val) => {
               setTrigger(val);
+              forceRerender();
             }}
           />
 
