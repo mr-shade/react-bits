@@ -274,39 +274,11 @@ const GooeyNav = ({
             z-index: -1;
           }
         `}
-<<<<<<< HEAD
             </style>
             <div className="relative" ref={containerRef}>
                 <nav
                     className="flex relative"
                     style={{ transform: "translate3d(0,0,0.01px)" }}
-=======
-      </style>
-      <div className="relative" ref={containerRef}>
-        <nav
-          className="flex relative"
-          style={{ transform: "translate3d(0,0,0.01px)" }}
-        >
-          <ul
-            ref={navRef}
-            className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
-            style={{
-              color: "white",
-              textShadow: "0 1px 1px hsl(205deg 30% 10% / 0.2)",
-            }}
-          >
-            {items.map((item, index) => (
-              <li
-                key={index}
-                className={`py-[0.6em] px-[1em] rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${activeIndex === index ? "active" : ""
-                  }`}
-              >
-                <a
-                  href={item.href}
-                  onClick={(e) => handleClick(e, index)}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
-                  className="outline-none w-full h-full block cursor-pointer"
->>>>>>> fdaaed0bd6092848d81e96e9d10bf4c970d9362b
                 >
                     <ul
                         ref={navRef}
