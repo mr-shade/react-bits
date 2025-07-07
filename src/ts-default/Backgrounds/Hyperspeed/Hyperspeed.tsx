@@ -1227,6 +1227,23 @@ class App {
 
   dispose() {
     this.disposed = true;
+    
+    if (this.renderer) {
+      this.renderer.dispose();
+    }
+    if (this.composer) {
+      this.composer.dispose();
+    }
+    if (this.scene) {
+      this.scene.clear();
+    }
+    
+    window.removeEventListener("resize", this.onWindowResize.bind(this));
+    if (this.container) {
+      this.container.removeEventListener("mousedown", this.onMouseDown);
+      this.container.removeEventListener("mouseup", this.onMouseUp);
+      this.container.removeEventListener("mouseout", this.onMouseUp);
+    }
   }
 
   setSize(width: number, height: number, updateStyles: boolean) {
@@ -1253,20 +1270,37 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
     ...effectOptions,
   };
   const hyperspeed = useRef<HTMLDivElement>(null);
+  const appRef = useRef<App | null>(null);
 
   useEffect(() => {
+    if (appRef.current) {
+      appRef.current.dispose();
+      const container = document.getElementById('lights');
+      if (container) {
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+      }
+    }
+
     const container = hyperspeed.current;
     if (!container) return;
 
-    if (typeof mergedOptions.distortion === "string") {
-      mergedOptions.distortion = distortions[mergedOptions.distortion];
+    const options = { ...mergedOptions };
+    if (typeof options.distortion === "string") {
+      options.distortion = distortions[options.distortion];
     }
 
-    const myApp = new App(container, mergedOptions);
+    const myApp = new App(container, options);
+    appRef.current = myApp;
     myApp.loadAssets().then(myApp.init);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      if (appRef.current) {
+        appRef.current.dispose();
+      }
+    };
+  }, [mergedOptions]);
 
   return <div id="lights" ref={hyperspeed}></div>;
 };

@@ -21,19 +21,29 @@ const SplitText = ({
 }) => {
   const ref = useRef(null);
   const animationCompletedRef = useRef(false);
+  const scrollTriggerRef = useRef(null);
 
   useEffect(() => {
+    if (typeof window === "undefined" || !ref.current || !text) return;
+
     const el = ref.current;
-    if (!el || animationCompletedRef.current) return;
+    
+    animationCompletedRef.current = false;
 
     const absoluteLines = splitType === "lines";
     if (absoluteLines) el.style.position = "relative";
 
-    const splitter = new GSAPSplitText(el, {
-      type: splitType,
-      absolute: absoluteLines,
-      linesClass: "split-line",
-    });
+    let splitter;
+    try {
+      splitter = new GSAPSplitText(el, {
+        type: splitType,
+        absolute: absoluteLines,
+        linesClass: "split-line",
+      });
+    } catch (error) {
+      console.error("Failed to create SplitText:", error);
+      return;
+    }
 
     let targets;
     switch (splitType) {
@@ -43,11 +53,17 @@ const SplitText = ({
       case "words":
         targets = splitter.words;
         break;
-      case "words, chars":
-        targets = [...splitter.words, ...splitter.chars];
+      case "chars":
+        targets = splitter.chars;
         break;
       default:
         targets = splitter.chars;
+    }
+
+    if (!targets || targets.length === 0) {
+      console.warn("No targets found for SplitText animation");
+      splitter.revert();
+      return;
     }
 
     targets.forEach((t) => {
@@ -55,9 +71,10 @@ const SplitText = ({
     });
 
     const startPct = (1 - threshold) * 100;
-    const m = /^(-?\d+)px$/.exec(rootMargin);
-    const raw = m ? parseInt(m[1], 10) : 0;
-    const sign = raw < 0 ? `-=${Math.abs(raw)}px` : `+=${raw}px`;
+    const marginMatch = /^(-?\d+(?:\.\d+)?)(px|em|rem|%)?$/.exec(rootMargin);
+    const marginValue = marginMatch ? parseFloat(marginMatch[1]) : 0;
+    const marginUnit = marginMatch ? (marginMatch[2] || "px") : "px";
+    const sign = marginValue < 0 ? `-=${Math.abs(marginValue)}${marginUnit}` : `+=${marginValue}${marginUnit}`;
     const start = `top ${startPct}%${sign}`;
 
     const tl = gsap.timeline({
@@ -66,6 +83,9 @@ const SplitText = ({
         start,
         toggleActions: "play none none none",
         once: true,
+        onToggle: (self) => {
+          scrollTriggerRef.current = self;
+        },
       },
       smoothChildTiming: true,
       onComplete: () => {
@@ -90,9 +110,14 @@ const SplitText = ({
 
     return () => {
       tl.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
       gsap.killTweensOf(targets);
-      splitter.revert();
+      if (splitter) {
+        splitter.revert();
+      }
     };
   }, [
     text,
@@ -105,7 +130,6 @@ const SplitText = ({
     threshold,
     rootMargin,
     onLetterAnimationComplete,
-    ref,
   ]);
 
   return (

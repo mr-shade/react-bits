@@ -192,6 +192,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         return () => resizeObserver.disconnect();
     }, [activeIndex]);
 
+<<<<<<< HEAD
     return (
         <div className="gooey-nav-container" ref={containerRef}>
             <nav>
@@ -216,6 +217,103 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             <span className="effect text" ref={textRef} />
         </div>
     );
+=======
+    const styles = {
+      left: `${pos.x - containerRect.x}px`,
+      top: `${pos.y - containerRect.y}px`,
+      width: `${pos.width}px`,
+      height: `${pos.height}px`,
+    };
+    Object.assign(filterRef.current.style, styles);
+    Object.assign(textRef.current.style, styles);
+    textRef.current.innerText = element.innerText;
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLLIElement>, index: number) => {
+    const liEl = e.currentTarget;
+    if (activeIndex === index) return;
+
+    setActiveIndex(index);
+    updateEffectPosition(liEl);
+
+    if (filterRef.current) {
+      const particles = filterRef.current.querySelectorAll(".particle");
+      particles.forEach((p) => filterRef.current!.removeChild(p));
+    }
+
+    if (textRef.current) {
+      textRef.current.classList.remove("active");
+
+      void textRef.current.offsetWidth;
+      textRef.current.classList.add("active");
+    }
+
+    if (filterRef.current) {
+      makeParticles(filterRef.current);
+    }
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLAnchorElement>,
+    index: number
+  ) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      const liEl = e.currentTarget.parentElement;
+      if (liEl) {
+        handleClick(
+          { currentTarget: liEl } as React.MouseEvent<HTMLLIElement>,
+          index
+        );
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (!navRef.current || !containerRef.current) return;
+    const activeLi = navRef.current.querySelectorAll("li")[
+      activeIndex
+    ] as HTMLElement;
+    if (activeLi) {
+      updateEffectPosition(activeLi);
+      textRef.current?.classList.add("active");
+    }
+
+    const resizeObserver = new ResizeObserver(() => {
+      const currentActiveLi = navRef.current?.querySelectorAll("li")[
+        activeIndex
+      ] as HTMLElement;
+      if (currentActiveLi) {
+        updateEffectPosition(currentActiveLi);
+      }
+    });
+
+    resizeObserver.observe(containerRef.current);
+    return () => resizeObserver.disconnect();
+  }, [activeIndex]);
+
+  return (
+    <div className="gooey-nav-container" ref={containerRef}>
+      <nav>
+        <ul ref={navRef}>
+          {items.map((item, index) => (
+            <li key={index} className={activeIndex === index ? "active" : ""}>
+              <a
+                href={item.href}
+                onClick={(e) => handleClick(e, index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <span className="effect filter" ref={filterRef} />
+      <span className="effect text" ref={textRef} />
+    </div>
+  );
+>>>>>>> fdaaed0bd6092848d81e96e9d10bf4c970d9362b
 };
 
 export default GooeyNav;
