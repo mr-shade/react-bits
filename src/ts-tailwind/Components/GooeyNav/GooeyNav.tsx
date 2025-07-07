@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface GooeyNavItem {
   label: string;
