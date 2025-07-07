@@ -6,10 +6,10 @@ import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
-
-import GooeyNav from "../../content/Components/GooeyNav/GooeyNav";
-import { gooeyNav } from "../../constants/code/Components/gooeyNavCode";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+
+import GooeyNav from "../../ts-default/Components/GooeyNav/GooeyNav";
+import { gooeyNav } from "../../constants/code/Components/gooeyNavCode";
 
 const GooeyNavDemo = () => {
   const [particleCount, setParticleCount] = useState(15);
@@ -69,9 +69,9 @@ const GooeyNavDemo = () => {
 
 
   const items = [
-    { label: "Home", href: "#" },
-    { label: "About", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Home", href: null },
+    { label: "About", href: null },
+    { label: "Contact", href: null },
   ];
 
   return (

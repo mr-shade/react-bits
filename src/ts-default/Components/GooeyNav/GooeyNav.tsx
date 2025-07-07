@@ -187,12 +187,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       <nav>
         <ul ref={navRef}>
           {items.map((item, index) => (
-            <li
-              key={index}
-              className={activeIndex === index ? "active" : ""}
-              onClick={(e) => handleClick(e, index)}
-            >
-              <a href={item.href} onKeyDown={(e) => handleKeyDown(e, index)}>
+            <li key={index} className={activeIndex === index ? "active" : ""}>
+              <a
+                href={item.href}
+                onClick={(e) => handleClick(e, index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+              >
                 {item.label}
               </a>
             </li>
