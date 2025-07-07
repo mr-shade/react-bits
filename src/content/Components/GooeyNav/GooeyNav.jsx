@@ -127,6 +127,8 @@ const GooeyNav = ({
     if (filterRef.current) {
       makeParticles(filterRef.current);
     }
+
+    navigate(items[index].href);
   };
 
   const handleKeyDown = (e, index) => {
