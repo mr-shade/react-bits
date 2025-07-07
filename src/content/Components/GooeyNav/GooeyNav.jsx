@@ -17,6 +17,7 @@ const GooeyNav = ({
   const filterRef = useRef(null);
   const textRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
+  const navigate = useNavigate();
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
 

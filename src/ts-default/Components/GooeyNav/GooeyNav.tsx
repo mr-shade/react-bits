@@ -33,6 +33,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   const filterRef = useRef<HTMLSpanElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex);
+  const navigate = useNavigate();
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
 
