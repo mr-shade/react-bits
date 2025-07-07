@@ -31,7 +31,6 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   const filterRef = useRef<HTMLSpanElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex);
-  const navigate = useNavigate();
   
   const noise = (n = 1) => n / 2 - Math.random() * n;
   const getXY = (
@@ -125,8 +124,6 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     if (filterRef.current) {
       makeParticles(filterRef.current);
     }
-
-    navigate(items[index].href);
   };
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLAnchorElement>,
