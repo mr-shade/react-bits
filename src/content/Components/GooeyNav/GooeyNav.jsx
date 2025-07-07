@@ -171,9 +171,8 @@ const GooeyNav = ({
             <li
               key={index}
               className={activeIndex === index ? "active" : ""}
-              onClick={(e) => handleClick(e, index)}
             >
-              <a href={item.href} onKeyDown={(e) => handleKeyDown(e, index)}>
+              <a href={item.href} onClick={(e) => handleClick(e, index)} onKeyDown={(e) => handleKeyDown(e, index)}>
                 {item.label}
               </a>
             </li>

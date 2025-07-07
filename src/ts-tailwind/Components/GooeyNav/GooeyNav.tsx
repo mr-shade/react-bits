@@ -321,10 +321,10 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
                 className={`py-[0.6em] px-[1em] rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${
                   activeIndex === index ? "active" : ""
                 }`}
-                onClick={(e) => handleClick(e, index)}
-              >
+                >
                 <a
                   href={item.href}
+                  onClick={(e) => handleClick(e, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   className="outline-none"
                 >
