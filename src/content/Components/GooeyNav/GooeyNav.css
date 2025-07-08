@@ -25,13 +25,17 @@
 }
 
 .gooey-nav-container nav ul li {
-  padding: 0.6em 1em;
   border-radius: 100vw;
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 0.5px 1.5px transparent;
   color: white;
+}
+
+.gooey-nav-container nav ul li a {
+  display: inline-block;
+  padding: 0.6em 1em;
 }
 
 .gooey-nav-container nav ul li:focus-within:has(:focus-visible) {
