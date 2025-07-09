@@ -81,7 +81,7 @@ const Noise: React.FC<NoiseProps> = ({
     };
   }, [patternSize, patternScaleX, patternScaleY, patternRefreshInterval, patternAlpha]);
 
-  return <canvas className="absolute left-0 top-0 w-screen h-screen" ref={grainRef} />;
+  return <canvas className="pointer-events-none absolute left-0 top-0 w-screen h-screen" ref={grainRef} />;
 };
 
 export default Noise;
