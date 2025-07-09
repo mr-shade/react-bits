@@ -14,7 +14,7 @@ When creating branches for your contributions, please follow the following namin
 
 `feat/<feature-name>`
 
-For example, if you are working on a feature related to adding a new component, your branch name could be `feat/add-new-component`. This naming convention helps us to easily track and associate contributions with their respective features.
+For example, if you are working on a feature related to adding a new component, your branch name could be `feat/fix-x-component`. This naming convention helps us to easily track and associate contributions with their respective features.
 
 ## Pull Requests
 
@@ -24,11 +24,13 @@ We welcome pull requests from everyone as long as they respeect the quality stan
 2. Make your changes in the new branch.
 3. Submit a pull request to the main repository's `main` branch.
 4. Provide a clear and descriptive title for your pull request, along with a detailed description of the changes you have made, and screenshots/videos where possible.
-5. For components updates, ensure that changes are reflected in all related files, such as:
-   - `react-bits/src/demo/Backgrounds/<ComponentName>Demo.jsx`
-   - Preview and Code pages in the documentation, so users can copy the final component code.
-6. Before you open a pull request, please make sure that your changes are tested locally, and everything looks good on desktop and mobile, also check the console for errors, and so on, so that we can keep this library at the highest quality possible.
+5. For components updates, ensure that changes are reflected in all related files. Each component change must be updated in all 4 variants of that particular component.
+6. Before you open a pull request, please make sure that your changes are tested locally, and everything looks good on desktop and mobile, also check the browser console for errors, and so on, so that we can keep this library at the highest quality possible.
 7. Any pull requests that fail to meet these requirements will be denied, so please make sure you respect them so that your work can go through.
+
+## Note
+
+New components from the community are currently not being accepted into the library, only component enhancements and bug fixes are open for contributions.
 
 ## Conclusion
 
