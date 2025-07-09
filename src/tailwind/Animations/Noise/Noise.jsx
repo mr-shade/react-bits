@@ -62,7 +62,7 @@ const Noise = ({
     };
   }, [patternSize, patternScaleX, patternScaleY, patternRefreshInterval, patternAlpha]);
 
-  return <canvas className="absolute inset-0 w-full h-full" ref={grainRef} style={{ imageRendering: 'pixelated' }} />;
+  return <canvas className="pointer-events-none absolute inset-0 w-full h-full" ref={grainRef} style={{ imageRendering: 'pixelated' }} />;
 };
 
 export default Noise;
