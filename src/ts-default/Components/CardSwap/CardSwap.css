@@ -20,6 +20,7 @@
   transform-style: preserve-3d;
   will-change: transform;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @media (max-width: 768px) {
