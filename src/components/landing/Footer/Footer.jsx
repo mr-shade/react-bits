@@ -16,6 +16,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-links">
+            <a href="https://vue-bits.dev/" target="_blank" className="footer-link">Vue Bits</a>
             <a href="https://github.com/DavidHDev/react-bits" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
             <Link to="/text-animations/split-text" className="footer-link">Docs</Link>
             <Link to="/showcase" className="footer-link">Showcase</Link>

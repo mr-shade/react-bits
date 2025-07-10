@@ -13,6 +13,7 @@ import Sidebar from './components/navs/Sidebar';
 import LandingPage from './pages/LandingPage'
 import CategoryPage from './pages/CategoryPage'
 import ShowcasePage from './pages/ShowcasePage';
+import Announcement from './components/common/Misc/Announcement';
 
 function AppContent() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function AppContent() {
             <LanguageProvider>
               <TransitionProvider>
                 <main className='app-container'>
+                  <Announcement />
                   <Header />
                   <section className='category-wrapper'>
                     <Sidebar />
