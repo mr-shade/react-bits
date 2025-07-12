@@ -26,7 +26,7 @@ const Testimonials = () => {
     {
       id: 4,
       avatar: 'https://pbs.twimg.com/profile_images/1722358890807861248/75S7CB3G_400x400.jpg',
-      text: 'Reactbits: A stellar collection of React components to make your landing pages shine ✨',
+      text: 'React Bits: A stellar collection of React components to make your landing pages shine ✨',
       handle: '@gregberge_',
       url: 'https://x.com/gregberge_/status/1896425347866059041'
     },

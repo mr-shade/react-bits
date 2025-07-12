@@ -63,7 +63,7 @@ const GlitchTextDemo = () => {
             enableShadows={enableShadows}
             enableOnHover={enableOnHover}
           >
-            {enableOnHover ? "Hover Me" : "reactbits"}
+            {enableOnHover ? "Hover Me" : "React Bits"}
           </GlitchText>
         </Box>
 
