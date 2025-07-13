@@ -127,6 +127,10 @@ const Announcement = () => {
     }
   }, [announcementMessage, isMobile, shareToX]);
 
+  if (!announcementMessage || announcementMessage.trim() === '') {
+    return null;
+  }
+
   if (!isVisible) return null;
 
   return (
