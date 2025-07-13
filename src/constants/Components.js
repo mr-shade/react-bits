@@ -73,6 +73,7 @@ const components = {
   'model-viewer': () => import("../demo/Components/ModelViewerDemo"),
   'fluid-glass': () => import("../demo/Components/FluidGlassDemo"),
   'masonry': () => import("../demo/Components/MasonryDemo"),
+  'magic-bento': () => import("../demo/Components/MagicBentoDemo"),
 };
 
 const backgrounds = {
