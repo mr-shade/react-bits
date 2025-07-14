@@ -26,6 +26,22 @@ export default function CountUp({
 
   const isInView = useInView(ref, { once: true, margin: "0px" });
 
+  const getDecimalPlaces = (num) => {
+    const str = num.toString();
+
+    if (str.includes(".")) {
+      const decimals = str.split(".")[1];
+
+      if (parseInt(decimals) !== 0) {
+        return decimals.length;
+      }
+    }
+
+    return 0;
+  };
+
+  const maxDecimals = Math.max(getDecimalPlaces(from), getDecimalPlaces(to));
+
   useEffect(() => {
     if (ref.current) {
       ref.current.textContent = String(direction === "down" ? to : from);
@@ -34,18 +50,14 @@ export default function CountUp({
 
   useEffect(() => {
     if (isInView && startWhen) {
-      if (typeof onStart === "function") {
-        onStart();
-      }
+      if (typeof onStart === "function") onStart();
 
       const timeoutId = setTimeout(() => {
         motionValue.set(direction === "down" ? from : to);
       }, delay * 1000);
 
       const durationTimeoutId = setTimeout(() => {
-        if (typeof onEnd === "function") {
-          onEnd();
-        }
+        if (typeof onEnd === "function") onEnd();
       }, delay * 1000 + duration * 1000);
 
       return () => {
@@ -53,19 +65,32 @@ export default function CountUp({
         clearTimeout(durationTimeoutId);
       };
     }
-  }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration]);
+  }, [
+    isInView,
+    startWhen,
+    motionValue,
+    direction,
+    from,
+    to,
+    delay,
+    onStart,
+    onEnd,
+    duration,
+  ]);
 
   useEffect(() => {
     const unsubscribe = springValue.on("change", (latest) => {
       if (ref.current) {
+        const hasDecimals = maxDecimals > 0;
+
         const options = {
           useGrouping: !!separator,
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
+          minimumFractionDigits: hasDecimals ? maxDecimals : 0,
+          maximumFractionDigits: hasDecimals ? maxDecimals : 0,
         };
 
         const formattedNumber = Intl.NumberFormat("en-US", options).format(
-          latest.toFixed(0)
+          latest
         );
 
         ref.current.textContent = separator
@@ -75,7 +100,7 @@ export default function CountUp({
     });
 
     return () => unsubscribe();
-  }, [springValue, separator]);
+  }, [springValue, separator, maxDecimals]);
 
-  return <span className={`${className}`} ref={ref} />;
+  return <span className={className} ref={ref} />;
 }
