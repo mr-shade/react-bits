@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
+
 interface CountUpProps {
   to: number;
   from?: number;
@@ -37,6 +38,20 @@ export default function CountUp({
   });
 
   const isInView = useInView(ref, { once: true, margin: "0px" });
+
+  // Get number of decimal places in a number
+  const getDecimalPlaces = (num: number): number => {
+    const str = num.toString();
+    if (str.includes(".")) {
+      const decimals = str.split(".")[1];
+      if (parseInt(decimals) !== 0) {
+        return decimals.length;
+      }
+    }
+    return 0;
+  };
+
+  const maxDecimals = Math.max(getDecimalPlaces(from), getDecimalPlaces(to));
 
   useEffect(() => {
     if (ref.current) {
@@ -84,14 +99,16 @@ export default function CountUp({
   useEffect(() => {
     const unsubscribe = springValue.on("change", (latest) => {
       if (ref.current) {
-        const options = {
+        const hasDecimals = maxDecimals > 0;
+
+        const options: Intl.NumberFormatOptions = {
           useGrouping: !!separator,
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
+          minimumFractionDigits: hasDecimals ? maxDecimals : 0,
+          maximumFractionDigits: hasDecimals ? maxDecimals : 0,
         };
 
         const formattedNumber = Intl.NumberFormat("en-US", options).format(
-          Number(latest.toFixed(0))
+          latest
         );
 
         ref.current.textContent = separator
@@ -101,7 +118,7 @@ export default function CountUp({
     });
 
     return () => unsubscribe();
-  }, [springValue, separator]);
+  }, [springValue, separator, maxDecimals]);
 
-  return <span className={`${className}`} ref={ref} />;
+  return <span className={className} ref={ref} />;
 }
