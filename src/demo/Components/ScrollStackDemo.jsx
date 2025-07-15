@@ -14,12 +14,12 @@ import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import useForceRerender from "../../hooks/useForceRerender";
 
 import { scrollStack } from "../../constants/code/Components/scrollStackCode";
-import ScrollStack, { ScrollStackItem } from "../../ts-default/Components/ScrollStack/ScrollStack";
+import ScrollStack, { ScrollStackItem } from "../../content/Components/ScrollStack/ScrollStack";
 
 const ScrollStackDemo = () => {
   const [key, forceRerender] = useForceRerender();
   const [isCompleted, setIsCompleted] = useState(false);
-  const [itemDistance, setItemDistance] = useState(100);
+  const [itemDistance, setItemDistance] = useState(200);
   const [itemStackDistance, setItemStackDistance] = useState(30);
   const [baseScale, setBaseScale] = useState(0.85);
   const [rotationAmount, setRotationAmount] = useState(0);
@@ -202,23 +202,21 @@ const ScrollStackDemo = () => {
         <Customize>
           <PreviewSlider
             title="Item Distance"
-            min={50}
-            max={200}
+            min={0}
+            max={1000}
             step={10}
             value={itemDistance}
             valueUnit="px"
-            width={150}
             onChange={handleItemDistanceChange}
           />
 
           <PreviewSlider
             title="Stack Distance"
-            min={10}
+            min={0}
             max={40}
             step={5}
             value={itemStackDistance}
             valueUnit="px"
-            width={150}
             onChange={handleItemStackDistanceChange}
           />
 
