@@ -32,33 +32,22 @@ const ScrollStack = ({
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
-    let lenis = null;
-    
-    if (!isMobile) {
-      lenis = new Lenis({
-        wrapper: scroller,
-        content: scroller.querySelector('.scroll-stack-inner'),
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 1,
-        infinite: false,
-        normalizeWheel: true,
-        gestureDirection: 'vertical',
-      });
+    const lenis = new Lenis({
+      wrapper: scroller,
+      content: scroller.querySelector('.scroll-stack-inner'),
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
 
-      lenis.on('scroll', () => {
-        ScrollTrigger.update();
-      });
+    lenis.on('scroll', ScrollTrigger.update);
 
-      const raf = (time) => {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      };
+    const raf = (time) => {
+      lenis.raf(time);
       requestAnimationFrame(raf);
-    }
+    };
+    requestAnimationFrame(raf);
 
     let cards = Array.from(
       scroller.querySelectorAll(".scroll-stack-card")
@@ -88,11 +77,10 @@ const ScrollStack = ({
             trigger: card,
             start: `top-=${itemStackDistance * i} ${stackPosition}`,
             end: `top ${scaleEndPosition}`,
-            scrub: isMobile ? 0.1 : 0.5,
+            scrub: true,
             anticipatePin: 1,
-            fastScrollEnd: true,
-            invalidateOnRefresh: true,
-            refreshPriority: -1,
+            fastScrollEnd: false,
+            invalidateOnRefresh: false,
           },
         };
 
@@ -108,11 +96,10 @@ const ScrollStack = ({
               trigger: cards[i + 1] || card,
               start: `top-=${itemStackDistance * (i + 1)} ${stackPosition}`,
               end: `top ${scaleEndPosition}`,
-              scrub: isMobile ? 0.1 : 0.5,
+              scrub: true,
               anticipatePin: 1,
-              fastScrollEnd: true,
-              invalidateOnRefresh: true,
-              refreshPriority: -1,
+              fastScrollEnd: false,
+              invalidateOnRefresh: false,
             },
           });
         }
@@ -126,9 +113,8 @@ const ScrollStack = ({
           pin: true,
           pinSpacing: false,
           anticipatePin: 1,
-          fastScrollEnd: true,
-          invalidateOnRefresh: true,
-          refreshPriority: -1,
+          fastScrollEnd: false,
+          invalidateOnRefresh: false,
           onEnter: () => {
             if (i === cards.length - 1 && !stackCompletedRef.current) {
               stackCompletedRef.current = true;
@@ -153,9 +139,7 @@ const ScrollStack = ({
 
     return () => {
       ctx.revert();
-      if (lenis) {
-        lenis.destroy();
-      }
+      lenis.destroy();
       if (autoScrollRef.current) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         clearInterval(autoScrollRef.current);
@@ -179,11 +163,6 @@ const ScrollStack = ({
     <div
       className={`scroll-stack-scroller ${className}`.trim()}
       ref={scrollerRef}
-      style={{
-        WebkitOverflowScrolling: 'touch',
-        overscrollBehavior: 'contain',
-        willChange: 'scroll-position',
-      }}
     >
       <div className="scroll-stack-inner">
         {children}
