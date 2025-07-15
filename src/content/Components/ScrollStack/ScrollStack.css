@@ -5,6 +5,11 @@
   overflow-y: auto;
   overflow-x: visible;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: scroll-position;
 }
 
 .scroll-stack-inner {
@@ -28,6 +33,10 @@
   padding: 3rem;
   border-radius: 40px;
   box-sizing: border-box;
+  /* Improve mobile performance */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  position: relative;
 }
 
 .scroll-stack-end {
