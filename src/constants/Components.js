@@ -74,6 +74,7 @@ const components = {
   'fluid-glass': () => import("../demo/Components/FluidGlassDemo"),
   'masonry': () => import("../demo/Components/MasonryDemo"),
   'magic-bento': () => import("../demo/Components/MagicBentoDemo"),
+  'scroll-stack': () => import("../demo/Components/ScrollStackDemo"),
 };
 
 const backgrounds = {

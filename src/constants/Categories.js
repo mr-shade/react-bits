@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Fluid Glass', 'Cubes', 'Masonry', 'Text Trail', 'Curved Loop', 'Magic Bento', 'Ripple Grid'];
+export const NEW = ['Fluid Glass', 'Cubes', 'Masonry', 'Text Trail', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack'];
 export const UPDATED = ['Split Text', 'Star Border'];
 
 // Used for main sidebar navigation
@@ -58,6 +58,7 @@ export const CATEGORIES = [
     name: 'Components',
     subcategories: [
       'Animated List',
+      'Scroll Stack',
       'Magic Bento',
       'Circular Gallery',
       'Stack',
