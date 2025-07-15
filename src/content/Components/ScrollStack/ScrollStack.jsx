@@ -84,7 +84,7 @@ const ScrollStack = ({
         const scaleAnimation = {
           ...animations,
           scrollTrigger: {
-            scroller: isMobile ? null : scroller,
+            scroller,
             trigger: card,
             start: `top-=${itemStackDistance * i} ${stackPosition}`,
             end: `top ${scaleEndPosition}`,
@@ -104,7 +104,7 @@ const ScrollStack = ({
               `blur(${Math.max(0, (cards.length - 1 - i) * blurAmount)}px)`,
             ease: "power2.out",
             scrollTrigger: {
-              scroller: isMobile ? null : scroller,
+              scroller,
               trigger: cards[i + 1] || card,
               start: `top-=${itemStackDistance * (i + 1)} ${stackPosition}`,
               end: `top ${scaleEndPosition}`,
@@ -118,7 +118,7 @@ const ScrollStack = ({
         }
 
         ScrollTrigger.create({
-          scroller: isMobile ? null : scroller,
+          scroller,
           trigger: card,
           start: `top-=${itemStackDistance * i} ${stackPosition}`,
           endTrigger: ".scroll-stack-end",
@@ -179,6 +179,11 @@ const ScrollStack = ({
     <div
       className={`scroll-stack-scroller ${className}`.trim()}
       ref={scrollerRef}
+      style={{
+        WebkitOverflowScrolling: 'touch',
+        overscrollBehavior: 'contain',
+        willChange: 'scroll-position',
+      }}
     >
       <div className="scroll-stack-inner">
         {children}
