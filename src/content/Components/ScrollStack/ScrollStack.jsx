@@ -32,31 +32,32 @@ const ScrollStack = ({
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
-    const lenis = new Lenis({
-      wrapper: scroller,
-      content: scroller.querySelector('.scroll-stack-inner'),
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1,
-      infinite: false,
-      normalizeWheel: true,
-      gestureDirection: 'vertical',
-    });
-
-    lenis.on('scroll', () => {
-      ScrollTrigger.update();
-    });
-
-    const raf = (time) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
-
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
-      lenis.destroy();
+    
+    let lenis = null;
+    
+    if (!isMobile) {
+      lenis = new Lenis({
+        wrapper: scroller,
+        content: scroller.querySelector('.scroll-stack-inner'),
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 1,
+        infinite: false,
+        normalizeWheel: true,
+        gestureDirection: 'vertical',
+      });
+
+      lenis.on('scroll', () => {
+        ScrollTrigger.update();
+      });
+
+      const raf = (time) => {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      };
+      requestAnimationFrame(raf);
     }
 
     let cards = Array.from(
@@ -83,11 +84,11 @@ const ScrollStack = ({
         const scaleAnimation = {
           ...animations,
           scrollTrigger: {
-            scroller,
+            scroller: isMobile ? null : scroller,
             trigger: card,
             start: `top-=${itemStackDistance * i} ${stackPosition}`,
             end: `top ${scaleEndPosition}`,
-            scrub: 0.5,
+            scrub: isMobile ? 0.1 : 0.5,
             anticipatePin: 1,
             fastScrollEnd: true,
             invalidateOnRefresh: true,
@@ -103,11 +104,11 @@ const ScrollStack = ({
               `blur(${Math.max(0, (cards.length - 1 - i) * blurAmount)}px)`,
             ease: "power2.out",
             scrollTrigger: {
-              scroller,
+              scroller: isMobile ? null : scroller,
               trigger: cards[i + 1] || card,
               start: `top-=${itemStackDistance * (i + 1)} ${stackPosition}`,
               end: `top ${scaleEndPosition}`,
-              scrub: 0.5,
+              scrub: isMobile ? 0.1 : 0.5,
               anticipatePin: 1,
               fastScrollEnd: true,
               invalidateOnRefresh: true,
@@ -117,7 +118,7 @@ const ScrollStack = ({
         }
 
         ScrollTrigger.create({
-          scroller,
+          scroller: isMobile ? null : scroller,
           trigger: card,
           start: `top-=${itemStackDistance * i} ${stackPosition}`,
           endTrigger: ".scroll-stack-end",
@@ -152,7 +153,7 @@ const ScrollStack = ({
 
     return () => {
       ctx.revert();
-      if (!isMobile) {
+      if (lenis) {
         lenis.destroy();
       }
       if (autoScrollRef.current) {
