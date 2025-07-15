@@ -14,7 +14,7 @@ import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import useForceRerender from "../../hooks/useForceRerender";
 
 import { scrollStack } from "../../constants/code/Components/scrollStackCode";
-import ScrollStack, { ScrollStackItem } from "../../content/Components/ScrollStack/ScrollStack";
+import ScrollStack, { ScrollStackItem } from "../../ts-default/Components/ScrollStack/ScrollStack";
 
 const ScrollStackDemo = () => {
   const [key, forceRerender] = useForceRerender();
@@ -259,7 +259,7 @@ const ScrollStackDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={['gsap', 'lenis']} />
+        <Dependencies dependencyList={['lenis']} />
       </PreviewTab>
 
       <CodeTab>
