@@ -1,6 +1,7 @@
 import React, { ReactNode, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,6 +62,25 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
+    const lenis = new Lenis({
+      wrapper: scroller,
+      content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    lenis.on('scroll', () => {
+      ScrollTrigger.update();
+    });
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+
     let cards = Array.from(
       scroller.querySelectorAll(".scroll-stack-card")
     ) as HTMLElement[];
@@ -101,7 +121,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         if (blurAmount) {
           gsap.to(card, {
             filter: () =>
-              `blur(${Math.max(0, (cards.length - 1 - i) * blurAmount)}px)`,
+              `blur(${Math.max(0, (cards.length - 1 - i) * blurAmount)}px)` ,
             ease: "power2.out",
             scrollTrigger: {
               scroller,
@@ -151,6 +171,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     return () => {
       ctx.revert();
+      lenis.destroy();
       if (autoScrollRef.current) {
         clearInterval(autoScrollRef.current);
       }
