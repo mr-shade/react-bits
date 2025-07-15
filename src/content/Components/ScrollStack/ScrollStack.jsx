@@ -38,7 +38,10 @@ const ScrollStack = ({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 2,
+      touchMultiplier: 1,
+      infinite: false,
+      normalizeWheel: true,
+      gestureDirection: 'vertical',
     });
 
     lenis.on('scroll', () => {
@@ -50,6 +53,11 @@ const ScrollStack = ({
       requestAnimationFrame(raf);
     };
     requestAnimationFrame(raf);
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      lenis.destroy();
+    }
 
     let cards = Array.from(
       scroller.querySelectorAll(".scroll-stack-card")
@@ -81,8 +89,9 @@ const ScrollStack = ({
             end: `top ${scaleEndPosition}`,
             scrub: 0.5,
             anticipatePin: 1,
-            fastScrollEnd: false,
-            invalidateOnRefresh: false,
+            fastScrollEnd: true,
+            invalidateOnRefresh: true,
+            refreshPriority: -1,
           },
         };
 
@@ -100,8 +109,9 @@ const ScrollStack = ({
               end: `top ${scaleEndPosition}`,
               scrub: 0.5,
               anticipatePin: 1,
-              fastScrollEnd: false,
-              invalidateOnRefresh: false,
+              fastScrollEnd: true,
+              invalidateOnRefresh: true,
+              refreshPriority: -1,
             },
           });
         }
@@ -115,8 +125,9 @@ const ScrollStack = ({
           pin: true,
           pinSpacing: false,
           anticipatePin: 1,
-          fastScrollEnd: false,
-          invalidateOnRefresh: false,
+          fastScrollEnd: true,
+          invalidateOnRefresh: true,
+          refreshPriority: -1,
           onEnter: () => {
             if (i === cards.length - 1 && !stackCompletedRef.current) {
               stackCompletedRef.current = true;
@@ -141,7 +152,9 @@ const ScrollStack = ({
 
     return () => {
       ctx.revert();
-      lenis.destroy();
+      if (!isMobile) {
+        lenis.destroy();
+      }
       if (autoScrollRef.current) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         clearInterval(autoScrollRef.current);
