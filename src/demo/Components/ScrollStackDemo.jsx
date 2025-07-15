@@ -154,6 +154,7 @@ const ScrollStackDemo = () => {
           <ScrollStack 
             key={key}
             itemDistance={itemDistance}
+            className="scroll-stack-demo-container"
             itemStackDistance={itemStackDistance}
             stackPosition={stackPosition}
             baseScale={baseScale}
