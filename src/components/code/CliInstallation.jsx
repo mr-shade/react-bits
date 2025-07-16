@@ -94,7 +94,7 @@ const CliInstallation = ({
             </Text>
             <CodeHighlighter
               language="bash"
-              codeString="npx jsrepo add Animations/AnimatedContainer"
+              codeString="npx jsrepo add Animations/AnimatedContent"
             />
           </Accordion.ItemContent>
         </Accordion.Item>
