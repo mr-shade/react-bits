@@ -8,6 +8,7 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import { dotGrid } from "../../constants/code/Backgrounds/dotGridCode";
 import DotGrid from "../../content/Backgrounds/DotGrid/DotGrid";
@@ -15,7 +16,7 @@ import DotGrid from "../../content/Backgrounds/DotGrid/DotGrid";
 const DotGridDemo = () => {
   const [dotSize, setDotSize] = useState(5);
   const [gap, setGap] = useState(15);
-  const [baseColor, setBaseColor] = useState("#ffffff");
+  const [baseColor, setBaseColor] = useState("#271E37");
   const [activeColor, setActiveColor] = useState("#5227FF");
   const [proximity, setProximity] = useState(120);
   const [shockRadius, setShockRadius] = useState(250);
@@ -107,7 +108,7 @@ const DotGridDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} overflow="hidden">
           <DotGrid
             dotSize={dotSize}
             gap={gap}
@@ -118,6 +119,12 @@ const DotGridDemo = () => {
             shockStrength={shockStrength}
             resistance={resistance}
             returnDuration={returnDuration}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Organized chaos with every cursor movement!"
           />
         </Box>
 

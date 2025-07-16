@@ -9,6 +9,7 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Dither from "../../content/Backgrounds/Dither/Dither";
 import { dither } from "../../constants/code/Backgrounds/ditherCode";
@@ -84,7 +85,7 @@ const DitherDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Dither
             waveColor={colors}
             disableAnimation={disableAnimation}
@@ -94,6 +95,12 @@ const DitherDemo = () => {
             waveAmplitude={waveAmplitude}
             waveFrequency={waveFrequency}
             waveSpeed={waveSpeed}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Retro dithered waves to enhance your UI"
           />
         </Box>
 

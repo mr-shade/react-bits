@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
 
@@ -9,6 +9,7 @@ import Dependencies from "../../components/code/Dependencies";
 import PreviewSelect from "../../components/common/Preview/PreviewSelect";
 import Customize from "../../components/common/Preview/Customize";
 import CliInstallation from "../../components/code/CliInstallation";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
 import { hyperspeed } from '../../constants/code/Backgrounds/hyperspeedCode';
@@ -36,9 +37,14 @@ const HyperspeedDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} cursor="pointer" p={0} mb={4}>
-          <Text color="#271E37" position="absolute" fontWeight={900} top={6} fontSize='4rem'>Click & Hold</Text>
+        <Box position="relative" className="demo-container" h={600} cursor="pointer" p={0} mb={4}>
           <Hyperspeed effectOptions={hyperspeedPresets[activePreset]} />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Cick & hold to see the real magic of hyperspeed!"
+          />
         </Box>
 
         <Customize>

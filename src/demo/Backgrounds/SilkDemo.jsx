@@ -8,8 +8,8 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
-import RefreshButton from "../../components/common/Preview/RefreshButton";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import { silkCode } from '../../constants/code/Backgrounds/silkCode';
 import Silk from '../../content/Backgrounds/Silk/Silk';
@@ -17,7 +17,7 @@ import Silk from '../../content/Backgrounds/Silk/Silk';
 const SilkDemo = () => {
   const [speed, setSpeed] = useState(5);
   const [scale, setScale] = useState(1);
-  const [color, setColor] = useState("#7B7481");
+  const [color, setColor] = useState("#5227FF");
   const [noiseIntensity, setNoiseIntensity] = useState(1.5);
   const [rotation, setRotation] = useState(0);
 
@@ -59,8 +59,7 @@ const SilkDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden" p={0}>
-          <RefreshButton onClick={forceRerender} />
+        <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <Silk
             key={key}
             speed={speed}
@@ -68,6 +67,12 @@ const SilkDemo = () => {
             color={color}
             noiseIntensity={noiseIntensity}
             rotation={rotation}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Silk touch is a good enhancement, Steve!"
           />
         </Box>
 

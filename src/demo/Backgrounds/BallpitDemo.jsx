@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import RefreshButton from "../../components/common/Preview/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
@@ -11,13 +11,14 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import Customize from "../../components/common/Preview/Customize";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Ballpit from "../../content/Backgrounds/Ballpit/Ballpit";
 import { ballpit } from '../../constants/code/Backgrounds/ballpitCode';
 
 const BallpitDemo = () => {
   const [count, setCount] = useState(100);
-  const [gravity, setGravity] = useState(0.5);
+  const [gravity, setGravity] = useState(0.01);
   const [friction, setFriction] = useState(0.9975);
   const [wallBounce, setWallBounce] = useState(0.95);
   const [followCursor, setFollowCursor] = useState(false);
@@ -127,9 +128,8 @@ const BallpitDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" minH={500} maxH={500} overflow="hidden">
+        <Box position="relative" className="demo-container" minH={600} maxH={600} overflow="hidden">
           <RefreshButton onClick={forceRerender} />
-          <Text fontSize='200px' fontWeight={900} color="#271E37" position="absolute" zIndex={0}>Balls.</Text>
           <Ballpit
             className="ballpit-demo"
             key={key}
@@ -139,6 +139,12 @@ const BallpitDemo = () => {
             wallBounce={wallBounce}
             followCursor={followCursor}
             colors={colors}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Balls! What's not to like about them?"
           />
         </Box>
 
@@ -166,7 +172,7 @@ const BallpitDemo = () => {
 
           <PreviewSlider
             title="Gravity"
-            min={0.1}
+            min={0}
             max={1}
             step={0.1}
             value={gravity}

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
@@ -9,6 +9,7 @@ import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
 import Customize from "../../components/common/Preview/Customize";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import GridDistortion from "../../content/Backgrounds/GridDistortion/GridDistortion";
 import { gridDistortion } from "../../constants/code/Backgrounds/gridDistortionCode";
@@ -17,9 +18,7 @@ const GridDistortionDemo = () => {
   const [grid, setGrid] = useState(10);
   const [mouse, setMouse] = useState(0.25);
 
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const containerRef = useRef(null);
-
 
   const [key, forceRerender] = useForceRerender();
 
@@ -62,25 +61,13 @@ const GridDistortionDemo = () => {
     }
   ];
 
-  const enterFullScreen = () => {
-    if (containerRef.current) {
-      containerRef.current.requestFullscreen().then(() => setIsFullScreen(true));
-    }
-  };
-
-  const exitFullScreen = () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen().then(() => setIsFullScreen(false));
-    }
-  };
-
   return (
     <TabbedLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden" ref={containerRef}>
           <GridDistortion
             key={key}
-            imageSrc="https://picsum.photos/1920/1080?grayscale"
+            imageSrc="https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=3432&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             grid={grid}
             mouse={mouse}
             strength={0.15}
@@ -88,26 +75,12 @@ const GridDistortionDemo = () => {
             className="grid-distortion"
           />
 
-          <Text position="absolute" textAlign='center' fontSize="6rem" fontWeight={900} userSelect="none" mixBlendMode="difference">Distortion.</Text>
-
-          <Button
-            position="absolute"
-            fontSize="sm"
-            bg="#060010"
-            borderRadius="15px"
-            px={6}
-            _active={{ backgroundColor: '#111' }}
-            _hover={{ backgroundColor: '#111' }}
-            right='2em'
-            bottom='2em'
-            color="#fff"
-            h={16}
-            onClick={() => {
-              !isFullScreen ? enterFullScreen() : exitFullScreen()
-            }}
-          >
-            {!isFullScreen ? 'Go Fullscreen!' : 'Exit Fullscreen'}
-          </Button>
+          {/* <Text pointerEvents="none" position="absolute" textAlign='center' fontSize="6rem" fontWeight={900} userSelect="none" mixBlendMode="overlay">Distortion.</Text> */}
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Don't just sit there, move your cursor!"
+          />
         </Box>
 
         <Customize>

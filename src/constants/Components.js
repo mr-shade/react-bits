@@ -4,6 +4,7 @@ const animations = {
   'magnet': () => import("../demo/Animations/MagnetDemo"),
   'fade-content': () => import("../demo/Animations/FadeContentDemo"),
   'crosshair': () => import("../demo/Animations/CrosshairDemo"),
+  'shape-blur': () => import("../demo/Animations/ShapeBlurDemo"),
   'star-border': () => import("../demo/Animations/StarBorderDemo"),
   'noise': () => import("../demo/Animations/NoiseDemo"),
   'magnet-lines': () => import("../demo/Animations/MagnetLinesDemo"),
@@ -86,7 +87,6 @@ const backgrounds = {
   'grid-motion': () => import("../demo/Backgrounds/GridMotionDemo"),
   'waves': () => import("../demo/Backgrounds/WavesDemo"),
   'ballpit': () => import("../demo/Backgrounds/BallpitDemo"),
-  'shape-blur': () => import("../demo/Backgrounds/ShapeBlurDemo"),
   'letter-glitch': () => import("../demo/Backgrounds/LetterGlitchDemo"),
   'grid-distortion': () => import("../demo/Backgrounds/GridDistortionDemo"),
   'orb': () => import("../demo/Backgrounds/OrbDemo"),
@@ -99,6 +99,7 @@ const backgrounds = {
   'dot-grid': () => import("../demo/Backgrounds/DotGridDemo"),
   'beams': () => import("../demo/Backgrounds/BeamsDemo"),
   'ripple-grid': () => import("../demo/Backgrounds/RippleGridDemo"),
+  'dark-veil': () => import("../demo/Backgrounds/DarkVeilDemo")
 };
 
 export const componentMap = {

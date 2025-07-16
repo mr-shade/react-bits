@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
@@ -5,17 +6,17 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
-
-import { useState } from "react";
 import useForceRerender from "../../hooks/useForceRerender";
+import Customize from "../../components/common/Preview/Customize";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+
 import Aurora from "../../content/Backgrounds/Aurora/Aurora";
 import { aurora } from "../../constants/code/Backgrounds/auroraCode";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import Customize from "../../components/common/Preview/Customize";
 
 const AuroraDemo = () => {
-  const [color1, setColor1] = useState('#5227FF');
-  const [color2, setColor2] = useState('#7cff67');
+  const [color1, setColor1] = useState('#7cff67');
+  const [color2, setColor2] = useState('#B19EEF');
   const [color3, setColor3] = useState('#5227FF');
 
   const [speed, setSpeed] = useState(1);
@@ -53,8 +54,14 @@ const AuroraDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Aurora key={key} blend={blend} speed={speed} colorStops={[color1, color2, color3]} />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Bring the Arctic to you, with one line of code"
+          />
         </Box>
 
         <Customize>

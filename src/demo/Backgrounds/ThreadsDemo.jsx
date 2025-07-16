@@ -4,14 +4,15 @@ import { Box } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
+import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Threads from "../../content/Backgrounds/Threads/Threads";
 import { threads } from "../../constants/code/Backgrounds/threadsCode";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 
 const ThreadsDemo = () => {
   const [amplitude, setAmplitude] = useState(1);
@@ -49,11 +50,17 @@ const ThreadsDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden" p={0}>
+        <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <Threads
             amplitude={amplitude}
             distance={distance}
             enableMouseInteraction={enableMouseInteraction}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Not to be confused with the Threads app by Meta!"
           />
         </Box>
 

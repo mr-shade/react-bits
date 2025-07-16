@@ -7,6 +7,7 @@ import CliInstallation from "../../components/code/CliInstallation";
 import Customize from "../../components/common/Preview/Customize";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PropTable from "../../components/common/Preview/PropTable";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Squares from "../../content/Backgrounds/Squares/Squares";
 import { squares } from '../../constants/code/Backgrounds/squaresCode';
@@ -29,16 +30,20 @@ const SquaresDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box direction="relative" minH={200} className="demo-container" overflow="hidden" p={0}>
-          <Box w={"100%"} h={500} overflow="hidden">
-            <Squares
-              squareSize={size} s
-              speed={speed}
-              direction={direction}
-              borderColor={borderColor}
-              hoverFillColor={hoverColor}
-            />
-          </Box>
+        <Box position="relative" h={600} className="demo-container" overflow="hidden" p={0}>
+          <Squares
+            squareSize={size} s
+            speed={speed}
+            direction={direction}
+            borderColor={borderColor}
+            hoverFillColor={hoverColor}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Customizable squares moving around smoothly"
+          />
         </Box>
 
         <Customize>

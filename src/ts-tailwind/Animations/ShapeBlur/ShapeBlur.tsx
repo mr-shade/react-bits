@@ -119,8 +119,8 @@ void main() {
         sdf = fill(sdf, 0.05, sdfCircle) * 1.4;
     }
 
-    vec3 color = vec3(sdf);
-    float alpha = step(0.01, sdf);
+    vec3 color = vec3(1.0);
+    float alpha = sdf;
     gl_FragColor = vec4(color.rgb, alpha);
 }
 `;

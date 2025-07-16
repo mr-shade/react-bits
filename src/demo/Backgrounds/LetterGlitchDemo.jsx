@@ -9,10 +9,11 @@ import PropTable from "../../components/common/Preview/PropTable";
 import Customize from "../../components/common/Preview/Customize";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import useForceRerender from "../../hooks/useForceRerender";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import LetterGlitch from "../../content/Backgrounds/LetterGlitch/LetterGlitch";
 import { letterGlitch } from "../../constants/code/Backgrounds/letterGlitchCode";
-import useForceRerender from "../../hooks/useForceRerender";
 
 const LetterGlitchDemo = () => {
   const [smooth, setSmooth] = useState(true);
@@ -59,7 +60,7 @@ const LetterGlitchDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden" p={0}>
+        <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <LetterGlitch
             key={key}
             glitchColors={colors}
@@ -67,6 +68,12 @@ const LetterGlitchDemo = () => {
             centerVignette={showCenterVignette}
             outerVignette={showOuterVignette}
             smooth={smooth}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Am I finally a real hacker now, mom?"
           />
         </Box>
 

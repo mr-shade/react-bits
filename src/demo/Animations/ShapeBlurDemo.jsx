@@ -9,8 +9,8 @@ import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import Customize from "../../components/common/Preview/Customize";
 
-import ShapeBlur from "../../content/Backgrounds/ShapeBlur/ShapeBlur";
-import { shapeBlur } from '../../constants/code/Backgrounds/shapeBlurCode';
+import ShapeBlur from "../../content/Animations/ShapeBlur/ShapeBlur";
+import { shapeBlur } from '../../constants/code/Animations/shapeBlurCode';
 
 const ShapeBlurDemo = () => {
   const [shapeSize, setShapeSize] = useState(1.0);

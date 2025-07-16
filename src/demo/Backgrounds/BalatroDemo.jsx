@@ -106,7 +106,7 @@ const BalatroDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden" p={0}>
+        <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <Balatro
             color1={color1}
             color2={color2}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
@@ -98,12 +98,12 @@ const WavesDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Flex overflow="hidden" justifyContent="center" alignItems="center" minH={400} position="relative" pb={"4em"} className="demo-container">
+        <Box position="relative" h={600} className="demo-container" overflow="hidden" p={0}>
           <Waves
             waveSpeedX={waveSpeedX}
             lineColor={color}
           />
-        </Flex>
+        </Box>
 
         <Customize>
           <PreviewSlider

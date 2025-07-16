@@ -9,10 +9,11 @@ import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import Customize from "../../components/common/Preview/Customize";
+import useForceRerender from "../../hooks/useForceRerender";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Particles from "../../ts-default/Backgrounds/Particles/Particles";
 import { particles } from "../../constants/code/Backgrounds/particlesCode";
-import useForceRerender from "../../hooks/useForceRerender";
 
 const ParticlesDemo = () => {
   const [colors, setColors] = useState('#ffffff');
@@ -100,7 +101,7 @@ const ParticlesDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Particles
             key={key}
             particleColors={[colors]}
@@ -112,6 +113,12 @@ const ParticlesDemo = () => {
             moveParticlesOnHover={moveParticlesOnHover}
             alphaParticles={alphaParticles}
             disableRotation={disableRotation}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Particles that mimick the dance of the cosmos"
           />
         </Box>
 

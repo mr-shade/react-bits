@@ -8,6 +8,7 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import { beams } from '../../constants/code/Backgrounds/beamsCode';
 import Beams from "../../content/Backgrounds/Beams/Beams";
@@ -76,7 +77,7 @@ const BeamsDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden" p={0}>
+        <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <Beams
             beamWidth={beamWidth}
             beamHeight={beamHeight}
@@ -86,6 +87,12 @@ const BeamsDemo = () => {
             noiseIntensity={noiseIntensity}
             scale={scale}
             rotation={rotation}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent 
+            pillText="New Background"
+            headline="Radiant beams for creative user interfaces"
           />
         </Box>
 

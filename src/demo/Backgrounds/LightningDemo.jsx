@@ -8,12 +8,13 @@ import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/Preview/PropTable";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Lightning from "../../ts-default/Backgrounds/Lightning/Lightning";
 import { lightning } from "../../constants/code/Backgrounds/lightningCode";
 
 const LightningDemo = () => {
-  const [hue, setHue] = useState(220);
+  const [hue, setHue] = useState(260);
   const [xOffset, setXOffset] = useState(0);
   const [speed, setSpeed] = useState(1);
   const [intensity, setIntensity] = useState(1);
@@ -57,7 +58,7 @@ const LightningDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Lightning
             key={key}
             hue={hue}
@@ -65,6 +66,12 @@ const LightningDemo = () => {
             speed={speed}
             intensity={intensity}
             size={size}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="The power of nature's fury, with React Bits!"
           />
         </Box>
 

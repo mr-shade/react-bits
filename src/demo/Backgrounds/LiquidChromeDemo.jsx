@@ -9,6 +9,7 @@ import Dependencies from '../../components/code/Dependencies';
 import Customize from "../../components/common/Preview/Customize";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import LiquidChrome from "../../content/Backgrounds/LiquidChrome/LiquidChrome";
 import { liquidChrome } from "../../constants/code/Backgrounds/liquidChromeCode";
@@ -61,8 +62,14 @@ const LiquidChromeDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <LiquidChrome baseColor={baseColor} amplitude={amplitude} speed={speed} interactive={interactive} />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Swirl around in the deep sea of liquid chrome!"
+          />
         </Box>
 
         <Customize>

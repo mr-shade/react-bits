@@ -9,6 +9,7 @@ import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import { rippleGrid } from '../../constants/code/Backgrounds/rippleGridCode';
 import RippleGrid from "../../content/Backgrounds/RippleGrid/RippleGrid";
@@ -118,6 +119,12 @@ const RippleGridDemo = () => {
             gridRotation={gridRotation}
             mouseInteraction={mouseInteraction}
             mouseInteractionRadius={mouseInteractionRadius}
+          />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Retro yet futuristic, this is Ripple Grid!"
           />
         </Box>
 

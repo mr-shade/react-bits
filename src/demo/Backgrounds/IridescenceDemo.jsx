@@ -10,12 +10,13 @@ import useForceRerender from "../../hooks/useForceRerender";
 import Customize from "../../components/common/Preview/Customize";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Iridescence from "../../content/Backgrounds/Iridescence/Iridescence";
 import { iridescence } from "../../constants/code/Backgrounds/iridescenceCode";
 
 const IridescenceDemo = () => {
-  const [colors, setColors] = useState([1, 1, 1]);
+  const [colors, setColors] = useState([0.5, 0.6, 0.8]);
 
   const [speed, setSpeed] = useState(1);
   const [mouseInteraction, setMouseInteraction] = useState(true);
@@ -52,8 +53,14 @@ const IridescenceDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Iridescence key={key} speed={speed} color={colors} mouseReact={mouseInteraction} />
+
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="Radiant iridescence with customizable colors"
+          />
         </Box>
 
         <Customize className="preview-options">

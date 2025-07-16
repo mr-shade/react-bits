@@ -1,6 +1,6 @@
 // Highlighted sidebar items
-export const NEW = ['Fluid Glass', 'Cubes', 'Masonry', 'Text Trail', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack'];
-export const UPDATED = ['Split Text', 'Star Border'];
+export const NEW = ['Fluid Glass', 'Cubes', 'Masonry', 'Text Trail', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack', 'Dark Veil'];
+export const UPDATED = ['Split Text', 'Star Border', 'Shape Blur'];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
@@ -45,6 +45,7 @@ export const CATEGORIES = [
       'Cubes',
       'Metallic Paint',
       'Noise',
+      'Shape Blur',
       'Crosshair',
       'Image Trail',
       'Ribbons',
@@ -92,27 +93,27 @@ export const CATEGORIES = [
   {
     name: 'Backgrounds',
     subcategories: [
+      'Dark Veil',
       'Silk',
       'Aurora',
+      'Particles',
       'Beams',
       'Lightning',
-      'Balatro',
       'Dither',
       'Ripple Grid',
-      'Shape Blur',
       'Dot Grid',
       'Threads',
       'Hyperspeed',
       'Iridescence',
+      'Waves',
       'Grid Distortion',
       'Ballpit',
       'Orb',
-      'Grid Motion',
-      'Liquid Chrome',
-      'Squares',
       'Letter Glitch',
-      'Particles',
-      'Waves'
+      'Grid Motion',
+      'Squares',
+      'Liquid Chrome',
+      'Balatro'
     ],
   }
 ];

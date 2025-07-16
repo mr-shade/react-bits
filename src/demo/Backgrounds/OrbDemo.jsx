@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useDebounce } from "react-haiku";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -10,13 +10,14 @@ import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import Customize from "../../components/common/Preview/Customize";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import Orb from "../../content/Backgrounds/Orb/Orb";
 import { orb } from "../../constants/code/Backgrounds/orbCode";
 
 const OrbDemo = () => {
   const [hue, setHue] = useState(0);
-  const [hoverIntensity, setHoverIntensity] = useState(0.5)
+  const [hoverIntensity, setHoverIntensity] = useState(2)
   const [rotateOnHover, setRotateOnHover] = useState(true);
   const [forceHoverState, setForceHoverState] = useState(false)
 
@@ -53,7 +54,7 @@ const OrbDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Orb
             hoverIntensity={debouncedHoverIntensity}
             rotateOnHover={rotateOnHover}
@@ -61,9 +62,11 @@ const OrbDemo = () => {
             forceHoverState={forceHoverState}
           />
 
-          <Text position="absolute" zIndex={0} fontSize="clamp(2rem, 2vw, 6rem)" fontWeight={900} mb={0} mixBlendMode="difference">
-            Hover.
-          </Text>
+          {/* For Demo Purposes Only */}
+          <BackgroundContent
+            pillText="New Background"
+            headline="This orb is hiding something, try hovering!"
+          />
         </Box>
 
         <Customize>
