@@ -92,14 +92,19 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const rotation = rotationAmount ? i * rotationAmount * scaleProgress : 0;
 
       let blur = 0;
-      if (blurAmount && i < cardsRef.current.length - 1) {
-        const nextCard = cardsRef.current[i + 1];
-        if (nextCard) {
-          const nextCardTop = nextCard.offsetTop;
-          const blurTriggerStart = nextCardTop - stackPositionPx - (itemStackDistance * (i + 1));
-          const blurTriggerEnd = nextCardTop - scaleEndPositionPx;
-          const blurProgress = calculateProgress(scrollTop, blurTriggerStart, blurTriggerEnd);
-          blur = Math.max(0, (cardsRef.current.length - 1 - i) * blurAmount * (1 - blurProgress));
+      if (blurAmount) {
+        let topCardIndex = 0;
+        for (let j = 0; j < cardsRef.current.length; j++) {
+          const jCardTop = cardsRef.current[j].offsetTop;
+          const jTriggerStart = jCardTop - stackPositionPx - (itemStackDistance * j);
+          if (scrollTop >= jTriggerStart) {
+            topCardIndex = j;
+          }
+        }
+        
+        if (i < topCardIndex) {
+          const depthInStack = topCardIndex - i;
+          blur = Math.max(0, depthInStack * blurAmount);
         }
       }
 
