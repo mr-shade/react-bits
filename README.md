@@ -59,6 +59,10 @@ Please review the [Contribution Guide](https://github.com/DavidHDev/react-bits/b
 
 [David Haz](https://github.com/DavidHDev)
 
+## Official Ports
+
+VueJS → https://vue-bits.dev/
+
 ## Stats
 ![Alt](https://repobeats.axiom.co/api/embed/b1bf4dc0226458617adbdbf5586f2df953eb0922.svg "Repobeats analytics image")
 
