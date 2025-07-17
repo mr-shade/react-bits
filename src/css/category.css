@@ -54,10 +54,11 @@
 }
 
 .category-name {
-  color: white;
-  font-weight: 900;
+  color: #999;
+  font-weight: 600;
   letter-spacing: -1px;
-  font-size: 18px;
+  font-size: 14px;
+  user-select: none;
 }
 
 .category-page {

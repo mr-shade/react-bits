@@ -149,6 +149,28 @@ const Sidebar = () => {
     }, HOVER_TIMEOUT_DELAY);
   };
 
+  const scrollActiveItemIntoView = useCallback(() => {
+    const activeEl = findActiveElement();
+    if (activeEl && sidebarContainerRef.current) {
+      const containerRect = sidebarContainerRef.current.getBoundingClientRect();
+      const elementRect = activeEl.getBoundingClientRect();
+      const offset = 100;
+
+      const isElementAboveView = elementRect.top < containerRect.top + offset;
+      const isElementBelowView = elementRect.bottom > containerRect.bottom - offset;
+
+      if (isElementAboveView || isElementBelowView) {
+        const scrollTop = sidebarContainerRef.current.scrollTop +
+          (elementRect.top - containerRect.top) - offset;
+
+        sidebarContainerRef.current.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [findActiveElement]);
+
   useLayoutEffect(() => {
     const activeEl = findActiveElement();
     if (!activeEl) {
@@ -163,6 +185,14 @@ const Sidebar = () => {
       setIsLineVisible(false);
     }
   }, [findActiveElement, updateLinePosition]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      scrollActiveItemIntoView();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname, scrollActiveItemIntoView]);
 
   useEffect(() => () => {
     clearTimeout(hoverTimeoutRef.current);
@@ -430,7 +460,7 @@ const Category = memo(
         <Stack
           spacing={0.5}
           pl={4}
-          borderLeft="1px solid #ffffff1c"
+          borderLeft="1px solid #392e4e"
           position="relative"
         >
           {items.map(({ sub, path, isActive, isNew, isUpdated }) => (

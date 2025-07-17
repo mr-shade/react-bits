@@ -1,3 +1,8 @@
+const getStarted = {
+  'introduction': () => import("../docs/Introduction.jsx"),
+  'installation': () => import("../docs/Installation.jsx"),
+}
+
 const animations = {
   'blob-cursor': () => import("../demo/Animations/BlobCursorDemo"),
   'animated-content': () => import("../demo/Animations/AnimatedContentDemo"),
@@ -103,6 +108,7 @@ const backgrounds = {
 };
 
 export const componentMap = {
+  ...getStarted,
   ...animations,
   ...textAnimations,
   ...components,

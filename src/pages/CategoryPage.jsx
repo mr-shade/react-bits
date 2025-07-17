@@ -5,18 +5,20 @@ import { decodeLabel } from '../utils/utils';
 import { Box } from '@chakra-ui/react';
 import { useTransition } from '../hooks/useTransition';
 import BackToTopButton from '../components/common/Misc/BackToTopButton';
-import SkeletonLoader from '../components/common/Misc/SkeletonLoader';
+import { SkeletonLoader, GetStartedLoader } from '../components/common/Misc/SkeletonLoader';
 
 const CategoryPage = () => {
-  const { subcategory } = useParams();
+  const { category, subcategory } = useParams();
   const { transitionPhase, getPreloadedComponent } = useTransition();
 
   const scrollRef = useRef(null);
   const decodedLabel = decodeLabel(subcategory);
   const isLoading = transitionPhase === 'loading';
   const opacity = ['fade-out', 'loading'].includes(transitionPhase) ? 0 : 1;
+  const isGetStartedRoute = category === 'get-started';
 
   const SubcategoryComponent = getPreloadedComponent(subcategory)?.default || (subcategory ? lazy(componentMap[subcategory]) : null);
+  const Loader = isGetStartedRoute ? GetStartedLoader : SkeletonLoader;
 
   useEffect(() => {
     if (scrollRef.current && transitionPhase !== 'fade-out') {
@@ -29,11 +31,11 @@ const CategoryPage = () => {
       <title>{`React Bits - ${decodedLabel}`}</title>
 
       <Box className="page-transition-fade" style={{ opacity }}>
-        <h2 className='sub-category'>{decodedLabel}</h2>
+        <h2 className={`sub-category ${isGetStartedRoute ? 'docs-category-title' : ''}`}>{decodedLabel}</h2>
 
         {isLoading
-          ? <SkeletonLoader />
-          : <Suspense fallback={<SkeletonLoader />}><SubcategoryComponent /></Suspense>
+          ? <Loader />
+          : <Suspense fallback={<Loader />}><SubcategoryComponent /></Suspense>
         }
       </Box>
       <BackToTopButton />

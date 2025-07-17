@@ -5,6 +5,13 @@ export const UPDATED = ['Split Text', 'Star Border', 'Shape Blur'];
 // Used for main sidebar navigation
 export const CATEGORIES = [
   {
+    name: 'Get Started',
+    subcategories: [
+      'Introduction',
+      'Installation'
+    ]
+  },
+  {
     name: 'Text Animations',
     subcategories: [
       'Split Text',

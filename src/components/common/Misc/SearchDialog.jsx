@@ -7,7 +7,7 @@ import {
   Text,
   Icon
 } from '@chakra-ui/react';
-import { FiSearch, FiLayers, FiImage, FiType, FiCircle } from 'react-icons/fi';
+import { FiSearch, FiLayers, FiImage, FiType, FiCircle, FiFile } from 'react-icons/fi';
 import { AiOutlineEnter } from 'react-icons/ai';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -82,6 +82,7 @@ const AnimatedResult = ({ children, delay = 0, dataIndex, onMouseEnter, onClick 
 };
 
 const categoryIconMapping = {
+  "Get Started": FiFile,
   "Text Animations": FiType,
   "Animations": FiCircle,
   "Components": FiLayers,
