@@ -132,8 +132,8 @@ export default function DarkVeil({
     window.addEventListener("resize", resize);
     resize();
 
-    let start = performance.now(),
-      frame = 0;
+    const start = performance.now();
+    let frame = 0;
 
     const loop = () => {
       program.uniforms.uTime.value =
