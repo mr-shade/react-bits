@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { TbBackground, TbMenu } from "react-icons/tb";
+import Lenis from "lenis";
 
 import Customize from "../../components/common/Preview/Customize";
 import CodeExample from "../../components/code/CodeExample";
@@ -17,6 +18,7 @@ import DarkVeil from "../../content/Backgrounds/DarkVeil/DarkVeil";
 
 const GlassSurfaceDemo = () => {
   const [selectedExample, setSelectedExample] = useState("scroll");
+  const scrollContainerRef = useRef(null);
 
   const [borderRadius, setBorderRadius] = useState(50);
   const [borderWidth, setBorderWidth] = useState(0.07);
@@ -174,10 +176,47 @@ const GlassSurfaceDemo = () => {
     }
   ];
 
+  useEffect(() => {
+    if (!scrollContainerRef.current) return;
+
+    const lenis = new Lenis({
+      wrapper: scrollContainerRef.current,
+      content: scrollContainerRef.current.firstElementChild,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, [selectedExample]);
+
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={600} overflow="auto" p={0}>
+        <Box
+          ref={scrollContainerRef}
+          position="relative"
+          className="demo-container"
+          h={600}
+          p={0}
+          css={{
+            overflow: 'hidden'
+          }}
+        >
           {selectedExample === "scroll" && (
             <>
               <GlassSurface
@@ -229,7 +268,7 @@ const GlassSurfaceDemo = () => {
                   },
                   {
                     src: "https://images.unsplash.com/photo-1543127172-4b33cb699e35?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    text: "Has A Safe Fallback"
+                    text: "Has Built-In Fallback"
                   }
                 ].map((item, index) => (
                   <Box key={index} position="relative">
