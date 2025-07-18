@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Fluid Glass', 'Cubes', 'Masonry', 'Text Trail', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack', 'Dark Veil'];
+export const NEW = ['Fluid Glass', 'Cubes', 'Masonry', 'Text Trail', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack', 'Dark Veil', 'Target Cursor'];
 export const UPDATED = ['Split Text', 'Star Border', 'Shape Blur'];
 
 // Used for main sidebar navigation
@@ -45,6 +45,7 @@ export const CATEGORIES = [
       'Fade Content',
       'Pixel Transition',
       'Glare Hover',
+      'Target Cursor',
       'Magnet Lines',
       'Click Spark',
       'Magnet',

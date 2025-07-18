@@ -101,7 +101,7 @@ const Header = () => {
     <Box zIndex={100} className="main-nav">
       <Flex className="nav-items" h={20} alignItems="center" justifyContent="space-between" px={4}>
         <RouterLink to="/" className="logo">
-          <Image src={Logo} alt="Logo" />
+          <Image src={Logo} alt="Logo" className="cursor-target"/>
         </RouterLink>
 
         <IconButton

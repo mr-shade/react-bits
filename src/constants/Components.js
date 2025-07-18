@@ -23,6 +23,7 @@ const animations = {
   'metallic-paint': () => import("../demo/Animations/MetallicPaintDemo"),
   'glare-hover': () => import("../demo/Animations/GlareHoverDemo"),
   'cubes': () => import("../demo/Animations/CubesDemo"),
+  'target-cursor': () => import("../demo/Animations/TargetCursorDemo"),
 };
 
 const textAnimations = {
