@@ -57,12 +57,12 @@
   color: #999;
   font-weight: 600;
   letter-spacing: -1px;
-  font-size: 14px;
+  font-size: 16px;
   user-select: none;
 }
 
 .category-page {
-  width: calc(100% - 200px);
+  width: calc(100% - 240px);
   position: absolute;
   right: 0;
   padding: 8em 0 6em 1em;
@@ -331,7 +331,7 @@ div:has(> .props-table) {
   text-decoration: underline;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 967px) {
   .category-wrapper {
     position: static;
   }

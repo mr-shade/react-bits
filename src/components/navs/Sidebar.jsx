@@ -300,7 +300,7 @@ const Sidebar = () => {
 
             <Drawer.Body pb="6em">
               <VStack align="stretch" spacing={5} mt={8}>
-                {CATEGORIES.map((cat) => (
+                {CATEGORIES.map((cat, index) => (
                   <Category
                     key={cat.name}
                     category={cat}
@@ -312,6 +312,7 @@ const Sidebar = () => {
                     onItemMouseLeave={() => { }}
                     itemRefs={{}}
                     isTransitioning={isTransitioning}
+                    isFirstCategory={index === 0}
                   />
                 ))}
               </VStack>
@@ -362,7 +363,6 @@ const Sidebar = () => {
         w={{ base: 0, md: 40 }}
         p={5}
         overflowY="auto"
-        display={{ base: "none", md: "block" }}
         className={`sidebar ${isScrolledToBottom ? 'sidebar-no-fade' : ''}`}
       >
         <Box ref={sidebarRef} position="relative">
@@ -403,7 +403,7 @@ const Sidebar = () => {
           />
 
           <VStack align="stretch" spacing={4}>
-            {CATEGORIES.map((cat) => (
+            {CATEGORIES.map((cat, index) => (
               <Category
                 key={cat.name}
                 category={cat}
@@ -415,6 +415,7 @@ const Sidebar = () => {
                 onItemMouseLeave={onItemLeave}
                 itemRefs={itemRefs}
                 isTransitioning={isTransitioning}
+                isFirstCategory={index === 0}
               />
             ))}
           </VStack>
@@ -435,6 +436,7 @@ const Category = memo(
     onItemMouseLeave,
     itemRefs,
     isTransitioning,
+    isFirstCategory,
   }) => {
     const items = useMemo(
       () =>
@@ -454,7 +456,7 @@ const Category = memo(
 
     return (
       <Box>
-        <Text className="category-name" mb={2}>
+        <Text className="category-name" mb={2} mt={isFirstCategory ? 0 : 4}>
           {category.name}
         </Text>
         <Stack
