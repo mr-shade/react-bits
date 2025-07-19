@@ -106,7 +106,8 @@ const backgrounds = {
   'dot-grid': () => import("../demo/Backgrounds/DotGridDemo"),
   'beams': () => import("../demo/Backgrounds/BeamsDemo"),
   'ripple-grid': () => import("../demo/Backgrounds/RippleGridDemo"),
-  'dark-veil': () => import("../demo/Backgrounds/DarkVeilDemo")
+  'dark-veil': () => import("../demo/Backgrounds/DarkVeilDemo"),
+  'galaxy': () => import("../demo/Backgrounds/GalaxyDemo"),
 };
 
 export const componentMap = {

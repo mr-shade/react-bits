@@ -1,6 +1,6 @@
 // Highlighted sidebar items
-export const NEW = ['Glass Surface', 'Cubes', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack', 'Dark Veil', 'Target Cursor'];
-export const UPDATED = ['Split Text', 'Star Border', 'Shape Blur'];
+export const NEW = ['Galaxy', 'Glass Surface', 'Cubes', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack', 'Dark Veil', 'Target Cursor'];
+export const UPDATED = [];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
@@ -108,6 +108,7 @@ export const CATEGORIES = [
       'Particles',
       'Beams',
       'Lightning',
+      'Galaxy',
       'Dither',
       'Ripple Grid',
       'Dot Grid',
