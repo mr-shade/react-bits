@@ -5,7 +5,7 @@ const Announcement = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const announcementMessage = "🎉 Vue Bits, the official Vue port of React Bits, is here! Go to [vue-bits.dev](https://vue-bits.dev/) and check it out!";
+  const announcementMessage = "";
 
   const STORAGE_KEYS = {
     lastMessage: 'announcement-last-message',
