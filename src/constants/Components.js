@@ -49,6 +49,7 @@ const textAnimations = {
   'scramble-text': () => import("../demo/TextAnimations/ScrambledTextDemo"),
   'text-trail': () => import("../demo/TextAnimations/TextTrailDemo"),
   'curved-loop': () => import("../demo/TextAnimations/CurvedLoopDemo"),
+  'text-type': () => import("../demo/TextAnimations/TextTypeDemo"),
 };
 
 const components = {
