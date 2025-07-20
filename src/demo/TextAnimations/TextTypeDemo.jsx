@@ -12,13 +12,13 @@ import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
 
-import TextType from "../../content/TextAnimations/TextType/TextType";
+import TextType from "../../ts-default/TextAnimations/TextType/TextType";
 import { textType } from "../../constants/code/TextAnimations/textTypeCode";
 
 const TextTypeDemo = () => {
   const [key, forceRerender] = useForceRerender();
 
-  const [texts] = useState(["Welcome to React Bits!", "Build amazing UIs", "With cool components!"]);
+  const [texts] = useState(["Welcome to React Bits! It's great to have you here!", "Build some amazing experiences!"]);
   const [typingSpeed, setTypingSpeed] = useState(75);
   const [pauseDuration, setPauseDuration] = useState(1500);
   const [deletingSpeed, setDeletingSpeed] = useState(50);
@@ -151,28 +151,19 @@ const TextTypeDemo = () => {
   return (
     <TabbedLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden">
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            height="100%"
-            fontSize="2xl"
-            fontWeight="bold"
-          >
-            <TextType
-              key={key}
-              text={texts}
-              typingSpeed={typingSpeed}
-              pauseDuration={pauseDuration}
-              deletingSpeed={deletingSpeed}
-              showCursor={showCursor}
-              cursorCharacter={cursorCharacter}
-              cursorBlinkDuration={cursorBlinkDuration}
-              variableSpeed={variableSpeedEnabled ? { min: variableSpeedMin, max: variableSpeedMax } : undefined}
-              className="custom-text-type"
-            />
-          </Box>
+        <Box position="relative" className="demo-container" h={350} p={16} overflow="hidden" alignItems="flex-start" justifyContent="flex-start">
+          <TextType
+            key={key}
+            text={texts}
+            typingSpeed={typingSpeed}
+            pauseDuration={pauseDuration}
+            deletingSpeed={deletingSpeed}
+            showCursor={showCursor}
+            cursorCharacter={cursorCharacter}
+            cursorBlinkDuration={cursorBlinkDuration}
+            variableSpeed={variableSpeedEnabled ? { min: variableSpeedMin, max: variableSpeedMax } : undefined}
+            className="custom-text-type"
+          />
         </Box>
 
         <Customize>
