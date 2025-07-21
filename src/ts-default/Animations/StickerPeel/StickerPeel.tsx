@@ -51,6 +51,7 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
   const dragTargetRef = useRef<HTMLDivElement>(null);
   const pointLightRef = useRef<SVGFEPointLightElement>(null);
   const pointLightFlippedRef = useRef<SVGFEPointLightElement>(null);
+  const draggableInstanceRef = useRef<Draggable | null>(null);
 
   const defaultPadding = 10;
 
@@ -88,8 +89,8 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
       bounds: boundsEl,
       inertia: true,
       onDrag(this: Draggable) {
-        const rot = gsap.utils.clamp(-24, 24, this.deltaX * 0.6);
-        gsap.to(target, { rotation: rot, duration: 0.1, ease: "power1.out" });
+        const rot = gsap.utils.clamp(-24, 24, this.deltaX * 0.4);
+        gsap.to(target, { rotation: rot, duration: 0.15, ease: "power1.out" });
       },
       onDragEnd() {
         const rotationEase = "power2.out";
@@ -98,8 +99,44 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
       },
     });
 
+    draggableInstanceRef.current = draggable[0];
+
+    const handleResize = () => {
+      if (draggableInstanceRef.current) {
+        draggableInstanceRef.current.update();
+        
+        const currentX = gsap.getProperty(target, "x") as number;
+        const currentY = gsap.getProperty(target, "y") as number;
+        
+        const boundsRect = boundsEl.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        
+        const maxX = boundsRect.width - targetRect.width;
+        const maxY = boundsRect.height - targetRect.height;
+        
+        const newX = Math.max(0, Math.min(currentX, maxX));
+        const newY = Math.max(0, Math.min(currentY, maxY));
+        
+        if (newX !== currentX || newY !== currentY) {
+          gsap.to(target, { 
+            x: newX, 
+            y: newY, 
+            duration: 0.3, 
+            ease: "power2.out" 
+          });
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
     return () => {
-      draggable[0]?.kill();
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+      if (draggableInstanceRef.current) {
+        draggableInstanceRef.current.kill();
+      }
     };
   }, []);
 
@@ -138,6 +175,29 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
       return () => container.removeEventListener(eventType, updateLight);
     }
   }, [peelDirection]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleTouchStart = () => {
+      container.classList.add('touch-active');
+    };
+
+    const handleTouchEnd = () => {
+      container.classList.remove('touch-active');
+    };
+
+    container.addEventListener('touchstart', handleTouchStart);
+    container.addEventListener('touchend', handleTouchEnd);
+    container.addEventListener('touchcancel', handleTouchEnd);
+
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('touchcancel', handleTouchEnd);
+    };
+  }, []);
 
   const cssVars: CSSVars = useMemo(
     () => ({
@@ -187,7 +247,6 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
             <feComposite
               in="spec"
               in2="SourceGraphic"
-              operator="screen"
               result="lit"
             />
             <feComposite in="lit" in2="SourceAlpha" operator="in" />
@@ -212,7 +271,6 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
             <feComposite
               in="spec"
               in2="SourceGraphic"
-              operator="screen"
               result="lit"
             />
             <feComposite in="lit" in2="SourceAlpha" operator="in" />

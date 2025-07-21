@@ -23,6 +23,7 @@ const StickerPeel = ({
   const dragTargetRef = useRef(null);
   const pointLightRef = useRef(null);
   const pointLightFlippedRef = useRef(null);
+  const draggableInstanceRef = useRef(null);
 
   const defaultPadding = 10;
 
@@ -48,21 +49,58 @@ const StickerPeel = ({
     const target = dragTargetRef.current;
     const boundsEl = target.parentNode;
 
-    Draggable.create(target, {
+    draggableInstanceRef.current = Draggable.create(target, {
       type: 'x,y',
       bounds: boundsEl,
       inertia: true,
       onDrag() {
-        const rot = gsap.utils.clamp(-24, 24, this.deltaX * 0.6);
-        gsap.to(target, { rotation: rot, duration: 0.1, ease: 'power1.out' });
+        const rot = gsap.utils.clamp(-24, 24, this.deltaX * 0.4);
+        gsap.to(target, { rotation: rot, duration: 0.15, ease: 'power1.out' });
       },
       onDragEnd() {
         const rotationEase = 'power2.out';
         const duration = 0.8;
         gsap.to(target, { rotation: 0, duration, ease: rotationEase });
-
       }
-    });
+    })[0];
+
+    const handleResize = () => {
+      if (draggableInstanceRef.current) {
+        draggableInstanceRef.current.update();
+        
+        const currentX = gsap.getProperty(target, "x");
+        const currentY = gsap.getProperty(target, "y");
+        
+        const boundsRect = boundsEl.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        
+        const maxX = boundsRect.width - targetRect.width;
+        const maxY = boundsRect.height - targetRect.height;
+        
+        const newX = Math.max(0, Math.min(currentX, maxX));
+        const newY = Math.max(0, Math.min(currentY, maxY));
+        
+        if (newX !== currentX || newY !== currentY) {
+          gsap.to(target, { 
+            x: newX, 
+            y: newY, 
+            duration: 0.3, 
+            ease: "power2.out" 
+          });
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+      if (draggableInstanceRef.current) {
+        draggableInstanceRef.current.kill();
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -89,6 +127,29 @@ const StickerPeel = ({
       return () => container.removeEventListener('mousemove', updateLight);
     }
   }, [peelDirection]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleTouchStart = () => {
+      container.classList.add('touch-active');
+    };
+
+    const handleTouchEnd = () => {
+      container.classList.remove('touch-active');
+    };
+
+    container.addEventListener('touchstart', handleTouchStart);
+    container.addEventListener('touchend', handleTouchEnd);
+    container.addEventListener('touchcancel', handleTouchEnd);
+
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('touchcancel', handleTouchEnd);
+    };
+  }, []);
 
   const cssVars = useMemo(
     () => ({
@@ -131,7 +192,7 @@ const StickerPeel = ({
             >
               <fePointLight ref={pointLightRef} x="100" y="100" z="300" />
             </feSpecularLighting>
-            <feComposite in="spec" in2="SourceGraphic" operator="screen" result="lit" />
+            <feComposite in="spec" in2="SourceGraphic" result="lit" />
             <feComposite in="lit" in2="SourceAlpha" operator="in" />
           </filter>
 
@@ -146,7 +207,7 @@ const StickerPeel = ({
             >
               <fePointLight ref={pointLightFlippedRef} x="100" y="100" z="300" />
             </feSpecularLighting>
-            <feComposite in="spec" in2="SourceGraphic" operator="screen" result="lit" />
+            <feComposite in="spec" in2="SourceGraphic" result="lit" />
             <feComposite in="lit" in2="SourceAlpha" operator="in" />
           </filter>
 

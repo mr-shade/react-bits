@@ -42,7 +42,8 @@
   filter: url(#pointLight);
 }
 
-.sticker-container:hover .sticker-main {
+.sticker-container:hover .sticker-main,
+.sticker-container.touch-active .sticker-main {
   clip-path: polygon(var(--sticker-start) var(--sticker-peelback-hover),
       var(--sticker-end) var(--sticker-peelback-hover),
       var(--sticker-end) var(--sticker-end),
@@ -78,7 +79,8 @@
   transform: rotate(calc(-1 * var(--peel-direction)));
 }
 
-.sticker-container:hover .flap {
+.sticker-container:hover .flap,
+.sticker-container.touch-active .flap {
   clip-path: polygon(var(--sticker-start) var(--sticker-start),
       var(--sticker-end) var(--sticker-start),
       var(--sticker-end) var(--sticker-peelback-hover),
@@ -106,10 +108,22 @@
 .draggable {
   position: absolute;
   cursor: grab;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .draggable:active {
   cursor: grabbing;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .draggable {
+    cursor: default;
+  }
+  
+  .sticker-container {
+    touch-action: none;
+  }
 }
 
 .sticker-image,
