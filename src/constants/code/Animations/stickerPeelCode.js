@@ -8,6 +8,7 @@ import tsTailwind from '@ts-tailwind/Animations/StickerPeel/StickerPeel.tsx?raw'
 
 export const stickerPeel = {
   ...(generateCliCommands('Animations/StickerPeel')),
+  installation: 'npm install gsap',
   usage: `import StickerPeel from './StickerPeel'
 import logo from './assets/sticker.png'
   
