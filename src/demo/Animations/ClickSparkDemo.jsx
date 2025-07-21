@@ -15,7 +15,7 @@ import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import Customize from "../../components/common/Preview/Customize";
 
 import { clickSpark } from '../../constants/code/Animations/clickSparkCode';
-import ClickSpark from "../../ts-default/Animations/ClickSpark/ClickSpark";
+import ClickSpark from "../../content/Animations/ClickSpark/ClickSpark";
 
 const ClickSparkDemo = () => {
   const [sparkColor, setSparkColor] = useState("#ffffff");

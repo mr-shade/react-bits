@@ -8,7 +8,7 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
-import GooeyNav from "../../ts-default/Components/GooeyNav/GooeyNav";
+import GooeyNav from "../../content/Components/GooeyNav/GooeyNav";
 import { gooeyNav } from "../../constants/code/Components/gooeyNavCode";
 
 const GooeyNavDemo = () => {

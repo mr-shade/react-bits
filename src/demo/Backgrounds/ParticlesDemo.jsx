@@ -12,7 +12,7 @@ import Customize from "../../components/common/Preview/Customize";
 import useForceRerender from "../../hooks/useForceRerender";
 import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
-import Particles from "../../ts-default/Backgrounds/Particles/Particles";
+import Particles from "../../content/Backgrounds/Particles/Particles";
 import { particles } from "../../constants/code/Backgrounds/particlesCode";
 
 const ParticlesDemo = () => {

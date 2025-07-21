@@ -9,7 +9,7 @@ import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
 
 import { imageTrail } from "../../constants/code/Animations/imageTrailCode";
-import ImageTrail from "../../ts-default/Animations/ImageTrail/ImageTrail";
+import ImageTrail from "../../content/Animations/ImageTrail/ImageTrail";
 
 const ImageTrailDemo = () => {
   const [variant, setVariant] = useState('1');

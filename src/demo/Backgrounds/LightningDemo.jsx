@@ -10,7 +10,7 @@ import useForceRerender from "../../hooks/useForceRerender";
 import PropTable from "../../components/common/Preview/PropTable";
 import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
-import Lightning from "../../ts-default/Backgrounds/Lightning/Lightning";
+import Lightning from "../../content/Backgrounds/Lightning/Lightning";
 import { lightning } from "../../constants/code/Backgrounds/lightningCode";
 
 const LightningDemo = () => {

@@ -12,7 +12,7 @@ import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from "../../hooks/useForceRerender";
 
-import TextType from "../../ts-default/TextAnimations/TextType/TextType";
+import TextType from "../../content/TextAnimations/TextType/TextType";
 import { textType } from "../../constants/code/TextAnimations/textTypeCode";
 
 const TextTypeDemo = () => {
