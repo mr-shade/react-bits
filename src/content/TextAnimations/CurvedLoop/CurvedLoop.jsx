@@ -23,10 +23,10 @@ const CurvedLoop = ({
   }, [marqueeText]);
 
   const measureRef = useRef(null);
-  const tspansRef = useRef([]);
+  const textPathRef = useRef(null);
   const pathRef = useRef(null);
-  const [pathLength, setPathLength] = useState(0);
   const [spacing, setSpacing] = useState(0);
+  const [offset, setOffset] = useState(0);
   const uid = useId();
   const pathId = `curve-${uid}`;
   const pathD = `M-100,40 Q500,${40 + curveAmount} 1540,40`;
@@ -36,42 +36,36 @@ const CurvedLoop = ({
   const dirRef = useRef(direction);
   const velRef = useRef(0);
 
+  const textLength = spacing;
+  const totalText = textLength ? Array(Math.ceil(1800 / textLength) + 2).fill(text).join('') : text;
+  const ready = spacing > 0;
+
   useEffect(() => {
     if (measureRef.current)
       setSpacing(measureRef.current.getComputedTextLength());
   }, [text, className]);
 
   useEffect(() => {
-    if (pathRef.current) setPathLength(pathRef.current.getTotalLength());
-  }, [curveAmount]);
-
-  useEffect(() => {
-    if (!spacing) return;
+    if (!spacing || !ready) return;
     let frame = 0;
     const step = () => {
-      tspansRef.current.forEach((t) => {
-        if (!t) return;
-        let x = parseFloat(t.getAttribute("x") || "0");
-        if (!dragRef.current) {
-          const delta =
-            dirRef.current === "right" ? Math.abs(speed) : -Math.abs(speed);
-          x += delta;
-        }
-        const maxX = (tspansRef.current.length - 1) * spacing;
-        if (x < -spacing) x = maxX;
-        if (x > maxX) x = -spacing;
-        t.setAttribute("x", x.toString());
-      });
+      if (!dragRef.current && textPathRef.current) {
+        const delta = dirRef.current === "right" ? speed : -speed;
+        const currentOffset = parseFloat(textPathRef.current.getAttribute("startOffset") || "0");
+        let newOffset = currentOffset + delta;
+
+        const wrapPoint = spacing;
+        if (newOffset <= -wrapPoint) newOffset += wrapPoint;
+        if (newOffset >= wrapPoint) newOffset -= wrapPoint;
+
+        textPathRef.current.setAttribute("startOffset", newOffset + "px");
+        setOffset(newOffset);
+      }
       frame = requestAnimationFrame(step);
     };
     step();
     return () => cancelAnimationFrame(frame);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spacing, speed]);
-
-  const repeats =
-    pathLength && spacing ? Math.ceil(pathLength / spacing) + 2 : 0;
-  const ready = pathLength > 0 && spacing > 0;
+  }, [spacing, speed, ready]);
 
   const onPointerDown = (e) => {
     if (!interactive) return;
@@ -82,19 +76,20 @@ const CurvedLoop = ({
   };
 
   const onPointerMove = (e) => {
-    if (!interactive || !dragRef.current) return;
+    if (!interactive || !dragRef.current || !textPathRef.current) return;
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     velRef.current = dx;
-    tspansRef.current.forEach((t) => {
-      if (!t) return;
-      let x = parseFloat(t.getAttribute("x") || "0");
-      x += dx;
-      const maxX = (tspansRef.current.length - 1) * spacing;
-      if (x < -spacing) x = maxX;
-      if (x > maxX) x = -spacing;
-      t.setAttribute("x", x.toString());
-    });
+
+    const currentOffset = parseFloat(textPathRef.current.getAttribute("startOffset") || "0");
+    let newOffset = currentOffset + dx;
+
+    const wrapPoint = spacing;
+    if (newOffset <= -wrapPoint) newOffset += wrapPoint;
+    if (newOffset >= wrapPoint) newOffset -= wrapPoint;
+
+    textPathRef.current.setAttribute("startOffset", newOffset + "px");
+    setOffset(newOffset);
   };
 
   const endDrag = () => {
@@ -137,18 +132,8 @@ const CurvedLoop = ({
         </defs>
         {ready && (
           <text fontWeight="bold" xmlSpace="preserve" className={className}>
-            <textPath href={`#${pathId}`} xmlSpace="preserve">
-              {Array.from({ length: repeats }).map((_, i) => (
-                <tspan
-                  key={i}
-                  x={i * spacing}
-                  ref={(el) => {
-                    if (el) tspansRef.current[i] = el;
-                  }}
-                >
-                  {text}
-                </tspan>
-              ))}
+            <textPath ref={textPathRef} href={`#${pathId}`} startOffset={offset + "px"} xmlSpace="preserve">
+              {totalText}
             </textPath>
           </text>
         )}
