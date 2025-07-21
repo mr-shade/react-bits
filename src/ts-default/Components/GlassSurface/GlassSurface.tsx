@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useId } from "react";
 import "./GlassSurface.css";
 
 export interface GlassSurfaceProps {
@@ -64,6 +64,11 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   className = "",
   style = {},
 }) => {
+  const id = useId();
+  const filterId = `glass-filter-${id}`;
+  const redGradId = `red-grad-${id}`;
+  const blueGradId = `blue-grad-${id}`;
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const feImageRef = useRef<SVGFEImageElement>(null);
   const redChannelRef = useRef<SVGFEDisplacementMapElement>(null);
@@ -80,18 +85,18 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     const svgContent = `
       <svg viewBox="0 0 ${actualWidth} ${actualHeight}" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="red-grad" x1="100%" y1="0%" x2="0%" y2="0%">
+          <linearGradient id="${redGradId}" x1="100%" y1="0%" x2="0%" y2="0%">
             <stop offset="0%" stop-color="#0000"/>
             <stop offset="100%" stop-color="red"/>
           </linearGradient>
-          <linearGradient id="blue-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <linearGradient id="${blueGradId}" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#0000"/>
             <stop offset="100%" stop-color="blue"/>
           </linearGradient>
         </defs>
         <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" fill="black"></rect>
-        <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" rx="${borderRadius}" fill="url(#red-grad)" />
-        <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" rx="${borderRadius}" fill="url(#blue-grad)" style="mix-blend-mode: ${mixBlendMode}" />
+        <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" rx="${borderRadius}" fill="url(#${redGradId})" />
+        <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" rx="${borderRadius}" fill="url(#${blueGradId})" style="mix-blend-mode: ${mixBlendMode}" />
         <rect x="${edgeSize}" y="${edgeSize}" width="${actualWidth - edgeSize * 2}" height="${actualHeight - edgeSize * 2}" rx="${borderRadius}" fill="hsl(0 0% ${brightness}% / ${opacity})" style="filter:blur(${blur}px)" />
       </svg>
     `;
@@ -181,7 +186,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     }
 
     const div = document.createElement("div");
-    div.style.backdropFilter = "url(#test)";
+    div.style.backdropFilter = `url(#${filterId})`;
     return div.style.backdropFilter !== "";
   };
 
@@ -192,6 +197,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     borderRadius: `${borderRadius}px`,
     "--glass-frost": backgroundOpacity,
     "--glass-saturation": saturation,
+    "--filter-id": `url(#${filterId})`,
   } as React.CSSProperties;
 
   return (
@@ -203,7 +209,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
       <svg className="glass-surface__filter" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <filter
-            id="glass-filter"
+            id={filterId}
             colorInterpolationFilters="sRGB"
             x="0%"
             y="0%"
