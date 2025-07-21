@@ -195,6 +195,11 @@
   font-weight: 700;
 }
 
+.sticker-peel-demo {
+  position: absolute;
+  z-index: 2;
+}
+
 /* Announcement Bar Responsive Styles */
 @media (min-width: 768px) {
   .announcement-bar {

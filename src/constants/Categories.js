@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Text Type', 'Galaxy', 'Glass Surface', 'Cubes', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack', 'Dark Veil', 'Target Cursor'];
+export const NEW = ['Sticker Peel', 'Text Type', 'Galaxy', 'Glass Surface', 'Cubes', 'Curved Loop', 'Magic Bento', 'Ripple Grid', 'Scroll Stack', 'Dark Veil', 'Target Cursor'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -50,6 +50,7 @@ export const CATEGORIES = [
       'Magnet Lines',
       'Click Spark',
       'Magnet',
+      'Sticker Peel',
       'Pixel Trail',
       'Cubes',
       'Metallic Paint',

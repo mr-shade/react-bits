@@ -24,6 +24,7 @@ const animations = {
   'glare-hover': () => import("../demo/Animations/GlareHoverDemo"),
   'cubes': () => import("../demo/Animations/CubesDemo"),
   'target-cursor': () => import("../demo/Animations/TargetCursorDemo"),
+  'sticker-peel': () => import("../demo/Animations/StickerPeelDemo"),
 };
 
 const textAnimations = {
