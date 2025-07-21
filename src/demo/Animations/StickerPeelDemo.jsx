@@ -7,11 +7,11 @@ import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
+import logo from '../../assets/logos/react-bits-sticker.png';
 import Dependencies from '../../components/code/Dependencies';
 
-import { blurText } from '../../constants/code/TextAnimations/blurTextCode';
-import logo from '../../assets/logos/react-bits-sticker.png';
 import StickerPeel from "../../content/Animations/StickerPeel/StickerPeel";
+import { stickerPeel } from "../../constants/code/Animations/stickerPeelCode";
 
 const StickerPeelDemo = () => {
   const [rotate, setRotate] = useState(0);
@@ -202,11 +202,11 @@ const StickerPeelDemo = () => {
       </PreviewTab>
 
       <CodeTab>
-        <CodeExample codeObject={blurText} />
+        <CodeExample codeObject={stickerPeel} />
       </CodeTab>
 
       <CliTab>
-        <CliInstallation cliDefault={blurText.cliDefault} cliTailwind={blurText.cliTailwind} />
+        <CliInstallation {...stickerPeel} />
       </CliTab>
     </TabbedLayout>
   );
