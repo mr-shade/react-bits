@@ -110,6 +110,7 @@ const backgrounds = {
   'ripple-grid': () => import("../demo/Backgrounds/RippleGridDemo"),
   'dark-veil': () => import("../demo/Backgrounds/DarkVeilDemo"),
   'galaxy': () => import("../demo/Backgrounds/GalaxyDemo"),
+  'light-rays': () => import("../demo/Backgrounds/LightRaysDemo"),
 };
 
 export const componentMap = {
