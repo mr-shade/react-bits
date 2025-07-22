@@ -10,6 +10,8 @@ interface ProfileCardProps {
   showBehindGradient?: boolean;
   className?: string;
   enableTilt?: boolean;
+  enableMobileTilt?: boolean;
+  mobileTiltSensitivity?: number;
   miniAvatarUrl?: string;
   name?: string;
   title?: string;
@@ -31,6 +33,7 @@ const ANIMATION_CONFIG = {
   INITIAL_DURATION: 1500,
   INITIAL_X_OFFSET: 70,
   INITIAL_Y_OFFSET: 60,
+  DEVICE_BETA_OFFSET: 20,
 } as const;
 
 const clamp = (value: number, min = 0, max = 100): number =>
@@ -60,6 +63,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   showBehindGradient = true,
   className = "",
   enableTilt = true,
+  enableMobileTilt = false,
+  mobileTiltSensitivity = 5,
   miniAvatarUrl,
   name = "Javi A. Torres",
   title = "Software Engineer",
@@ -199,6 +204,26 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     [animationHandlers]
   );
 
+  const handleDeviceOrientation = useCallback(
+    (event: DeviceOrientationEvent) => {
+      const card = cardRef.current;
+      const wrap = wrapRef.current;
+
+      if (!card || !wrap || !animationHandlers) return;
+
+      const { beta, gamma } = event;
+      if (!beta || !gamma) return;
+
+      animationHandlers.updateCardTransform(
+        card.clientHeight / 2 + gamma * mobileTiltSensitivity,
+        card.clientWidth / 2 + (beta - ANIMATION_CONFIG.DEVICE_BETA_OFFSET) * mobileTiltSensitivity,
+        card,
+        wrap
+      );
+    },
+    [animationHandlers, mobileTiltSensitivity]
+  );
+
   useEffect(() => {
     if (!enableTilt || !animationHandlers) return;
 
@@ -210,10 +235,28 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     const pointerMoveHandler = handlePointerMove as EventListener;
     const pointerEnterHandler = handlePointerEnter as EventListener;
     const pointerLeaveHandler = handlePointerLeave as EventListener;
+    const deviceOrientationHandler = handleDeviceOrientation as EventListener;
+
+    const handleClick = () => {
+      if (!enableMobileTilt || location.protocol !== 'https:') return;
+      if (typeof (window.DeviceMotionEvent as any).requestPermission === 'function') {
+        (window.DeviceMotionEvent as any)
+          .requestPermission()
+          .then((state: string) => {
+            if (state === 'granted') {
+              window.addEventListener('deviceorientation', deviceOrientationHandler);
+            }
+          })
+          .catch((err: any) => console.error(err));
+      } else {
+        window.addEventListener('deviceorientation', deviceOrientationHandler);
+      }
+    };
 
     card.addEventListener("pointerenter", pointerEnterHandler);
     card.addEventListener("pointermove", pointerMoveHandler);
     card.addEventListener("pointerleave", pointerLeaveHandler);
+    card.addEventListener('click', handleClick);
 
     const initialX = wrap.clientWidth - ANIMATION_CONFIG.INITIAL_X_OFFSET;
     const initialY = ANIMATION_CONFIG.INITIAL_Y_OFFSET;
@@ -231,14 +274,18 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       card.removeEventListener("pointerenter", pointerEnterHandler);
       card.removeEventListener("pointermove", pointerMoveHandler);
       card.removeEventListener("pointerleave", pointerLeaveHandler);
+      card.removeEventListener('click', handleClick);
+      window.removeEventListener('deviceorientation', deviceOrientationHandler);
       animationHandlers.cancelAnimation();
     };
   }, [
     enableTilt,
+    enableMobileTilt,
     animationHandlers,
     handlePointerMove,
     handlePointerEnter,
     handlePointerLeave,
+    handleDeviceOrientation,
   ]);
 
   const cardStyle = useMemo(
