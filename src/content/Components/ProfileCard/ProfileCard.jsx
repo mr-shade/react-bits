@@ -12,6 +12,7 @@ const ANIMATION_CONFIG = {
   INITIAL_DURATION: 1500,
   INITIAL_X_OFFSET: 70,
   INITIAL_Y_OFFSET: 60,
+  DEVICE_BETA_OFFSET: 20,
 };
 
 const clamp = (value, min = 0, max = 100) =>
@@ -41,6 +42,8 @@ const ProfileCardComponent = ({
   showBehindGradient = true,
   className = "",
   enableTilt = true,
+  enableMobileTilt = false,
+  mobileTiltSensitivity = 5,
   miniAvatarUrl,
   name = "Javi A. Torres",
   title = "Software Engineer",
@@ -180,6 +183,26 @@ const ProfileCardComponent = ({
     [animationHandlers]
   );
 
+  const handleDeviceOrientation = useCallback(
+    (event) => {
+      const card = cardRef.current;
+      const wrap = wrapRef.current;
+
+      if (!card || !wrap || !animationHandlers) return;
+
+      const { beta, gamma } = event;
+      if (!beta || !gamma) return;
+
+      animationHandlers.updateCardTransform(
+        card.clientHeight / 2 + gamma * mobileTiltSensitivity,
+        card.clientWidth / 2 + (beta - ANIMATION_CONFIG.DEVICE_BETA_OFFSET) * mobileTiltSensitivity,
+        card,
+        wrap
+      );
+    },
+    [animationHandlers, mobileTiltSensitivity]
+  );
+
   useEffect(() => {
     if (!enableTilt || !animationHandlers) return;
 
@@ -191,10 +214,28 @@ const ProfileCardComponent = ({
     const pointerMoveHandler = handlePointerMove;
     const pointerEnterHandler = handlePointerEnter;
     const pointerLeaveHandler = handlePointerLeave;
+    const deviceOrientationHandler = handleDeviceOrientation;
+
+    const handleClick = () => {
+      if (!enableMobileTilt) return;
+      if (typeof window.DeviceMotionEvent.requestPermission === 'function') {
+        window.DeviceMotionEvent
+          .requestPermission()
+          .then(state => {
+            if (state === 'granted') {
+              window.addEventListener('deviceorientation', deviceOrientationHandler);
+            }
+          })
+          .catch(err => console.error(err));
+      } else {
+        window.addEventListener('deviceorientation', deviceOrientationHandler);
+      }
+    };
 
     card.addEventListener("pointerenter", pointerEnterHandler);
     card.addEventListener("pointermove", pointerMoveHandler);
     card.addEventListener("pointerleave", pointerLeaveHandler);
+    card.addEventListener("click", handleClick);
 
     const initialX = wrap.clientWidth - ANIMATION_CONFIG.INITIAL_X_OFFSET;
     const initialY = ANIMATION_CONFIG.INITIAL_Y_OFFSET;
@@ -212,14 +253,18 @@ const ProfileCardComponent = ({
       card.removeEventListener("pointerenter", pointerEnterHandler);
       card.removeEventListener("pointermove", pointerMoveHandler);
       card.removeEventListener("pointerleave", pointerLeaveHandler);
+      card.removeEventListener("click", handleClick);
+      window.removeEventListener('deviceorientation', deviceOrientationHandler);
       animationHandlers.cancelAnimation();
     };
   }, [
     enableTilt,
+    enableMobileTilt,
     animationHandlers,
     handlePointerMove,
     handlePointerEnter,
     handlePointerLeave,
+    handleDeviceOrientation,
   ]);
 
   const cardStyle = useMemo(

@@ -17,6 +17,7 @@ export const profileCard = {
   avatarUrl="/path/to/avatar.jpg"
   showUserInfo={true}
   enableTilt={true}
+  enableMobileTilt={false}
   onContactClick={() => console.log('Contact clicked')}
 />`,
   code,
