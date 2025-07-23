@@ -111,6 +111,7 @@ const backgrounds = {
   'dark-veil': () => import("../demo/Backgrounds/DarkVeilDemo"),
   'galaxy': () => import("../demo/Backgrounds/GalaxyDemo"),
   'light-rays': () => import("../demo/Backgrounds/LightRaysDemo"),
+  'faulty-terminal': () => import("../demo/Backgrounds/FaultyTerminalDemo"),
 };
 
 export const componentMap = {
