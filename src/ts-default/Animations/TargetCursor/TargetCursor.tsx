@@ -87,6 +87,27 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     const moveHandler = (e: MouseEvent) => moveCursor(e.clientX, e.clientY);
     window.addEventListener("mousemove", moveHandler);
 
+    const scrollHandler = () => {
+      if (!activeTarget || !cursorRef.current) return;
+      
+      const mouseX = gsap.getProperty(cursorRef.current, "x") as number;
+      const mouseY = gsap.getProperty(cursorRef.current, "y") as number;
+      
+      const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
+      const isStillOverTarget = elementUnderMouse && (
+        elementUnderMouse === activeTarget || 
+        elementUnderMouse.closest(targetSelector) === activeTarget
+      );
+      
+      if (!isStillOverTarget) {
+        if (currentLeaveHandler) {
+          currentLeaveHandler();
+        }
+      }
+    };
+
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+
     const enterHandler = (e: MouseEvent) => {
       const directTarget = e.target as Element;
 
@@ -270,6 +291,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     return () => {
       window.removeEventListener("mousemove", moveHandler);
       window.removeEventListener("mouseover", enterHandler);
+      window.removeEventListener("scroll", scrollHandler);
 
       if (activeTarget) {
         cleanupTarget(activeTarget);
