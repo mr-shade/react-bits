@@ -99,6 +99,27 @@ const TargetCursor = ({
 
     window.addEventListener("scroll", scrollHandler, { passive: true });
 
+    //---------------------------------------------------------------
+    // This code for onclick animation
+
+    window.addEventListener("mousemove", moveHandler);
+    const mouseDownHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
+    };
+
+    // Animate it back to its original size
+    const mouseUpHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
+    };
+
+    window.addEventListener("mousedown", mouseDownHandler);
+    window.addEventListener("mouseup", mouseUpHandler);
+
+    //----------------------------------------------------------------
     const enterHandler = (e) => {
       const directTarget = e.target;
 
