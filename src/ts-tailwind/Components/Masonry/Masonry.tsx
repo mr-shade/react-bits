@@ -66,6 +66,13 @@ interface Item {
   height: number;
 }
 
+interface GridItem extends Item {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
 interface MasonryProps {
   items: Item[];
   ease?: string;
@@ -103,7 +110,7 @@ const Masonry: React.FC<MasonryProps> = ({
   const [containerRef, { width }] = useMeasure<HTMLDivElement>();
   const [imagesReady, setImagesReady] = useState(false);
 
-  const getInitialPosition = (item: any) => {
+  const getInitialPosition = (item: GridItem) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
     if (!containerRect) return { x: item.x, y: item.y };
 
@@ -138,7 +145,7 @@ const Masonry: React.FC<MasonryProps> = ({
     preloadImages(items.map((i) => i.img)).then(() => setImagesReady(true));
   }, [items]);
 
-  const grid = useMemo(() => {
+  const grid = useMemo<GridItem[]>(() => {
     if (!width) return [];
     const colHeights = new Array(columns).fill(0);
     const gap = 16;
