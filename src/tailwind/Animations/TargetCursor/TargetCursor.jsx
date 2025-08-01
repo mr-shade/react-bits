@@ -9,7 +9,7 @@ const TargetCursor = ({
   const cursorRef = useRef(null);
   const cornersRef = useRef(null);
   const spinTl = useRef(null);
-
+  const dotRef = useRef(null); 
   const constants = useMemo(
     () => ({
       borderWidth: 3,
@@ -99,6 +99,27 @@ const TargetCursor = ({
 
     window.addEventListener("scroll", scrollHandler, { passive: true });
 
+    //---------------------------------------------------------------
+    // This code for onclick animation
+
+    window.addEventListener("mousemove", moveHandler);
+    const mouseDownHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
+    };
+
+    // Animate it back to its original size
+    const mouseUpHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
+    };
+
+    window.addEventListener("mousedown", mouseDownHandler);
+    window.addEventListener("mouseup", mouseUpHandler);
+
+    //----------------------------------------------------------------
     const enterHandler = (e) => {
       const directTarget = e.target;
 
@@ -311,6 +332,7 @@ const TargetCursor = ({
       style={{ willChange: 'transform' }}
     >
       <div
+        ref={dotRef}
         className="absolute left-1/2 top-1/2 w-1 h-1 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{ willChange: 'transform' }}
       />

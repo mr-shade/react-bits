@@ -16,7 +16,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   const cursorRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<NodeListOf<HTMLDivElement>>(null);
   const spinTl = useRef<gsap.core.Timeline>(null);
-
+  const dotRef = useRef<HTMLDivElement>(null); 
   const constants = useMemo(
     () => ({
       borderWidth: 3,
@@ -108,6 +108,27 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
     window.addEventListener("scroll", scrollHandler, { passive: true });
 
+    //---------------------------------------------------------------
+        // This code for onclick animation
+    
+        window.addEventListener("mousemove", moveHandler);
+        const mouseDownHandler = ():void => {
+          if (!dotRef.current) return;
+          gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
+          gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
+        };
+    
+        // Animate it back to its original size
+        const mouseUpHandler = ():void => {
+          if (!dotRef.current) return;
+          gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
+          gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
+        };
+    
+        window.addEventListener("mousedown", mouseDownHandler);
+        window.addEventListener("mouseup", mouseUpHandler);
+    
+        //----------------------------------------------------------------
     const enterHandler = (e: MouseEvent) => {
       const directTarget = e.target as Element;
 
@@ -315,7 +336,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
   return (
     <div ref={cursorRef} className="target-cursor-wrapper">
-      <div className="target-cursor-dot" />
+      <div  ref={dotRef} className="target-cursor-dot" />
       <div className="target-cursor-corner corner-tl" />
       <div className="target-cursor-corner corner-tr" />
       <div className="target-cursor-corner corner-br" />

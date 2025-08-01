@@ -10,7 +10,7 @@ const TargetCursor = ({
   const cursorRef = useRef(null);
   const cornersRef = useRef(null);
   const spinTl = useRef(null);
-
+  const dotRef = useRef(null);
   const constants = useMemo(
     () => ({
       borderWidth: 3,
@@ -100,6 +100,27 @@ const TargetCursor = ({
 
     window.addEventListener("scroll", scrollHandler, { passive: true });
 
+    //---------------------------------------------------------------
+    // This code for onclick animation
+
+    window.addEventListener("mousemove", moveHandler);
+    const mouseDownHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
+    };
+
+    // Animate it back to its original size
+    const mouseUpHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
+    };
+
+    window.addEventListener("mousedown", mouseDownHandler);
+    window.addEventListener("mouseup", mouseUpHandler);
+
+    //----------------------------------------------------------------
     const enterHandler = (e) => {
       const directTarget = e.target;
 
@@ -309,7 +330,7 @@ const TargetCursor = ({
 
   return (
     <div ref={cursorRef} className="target-cursor-wrapper">
-      <div className="target-cursor-dot" />
+      <div ref={dotRef} className="target-cursor-dot" />
       <div className="target-cursor-corner corner-tl" />
       <div className="target-cursor-corner corner-tr" />
       <div className="target-cursor-corner corner-br" />
