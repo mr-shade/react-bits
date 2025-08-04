@@ -29,7 +29,7 @@ const hexToRgb = (hex: string): [number, number, number] => {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 };
 const loadFont = async (fam: string) => {
-  if ("fonts" in document) await (document as any).fonts.load(`64px "${fam}"`);
+  if ("fonts" in document) await document.fonts.load(`64px "${fam}"`);
 };
 
 const BASE_VERT = `
