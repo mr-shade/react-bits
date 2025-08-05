@@ -1,4 +1,5 @@
 import { motion, Transition } from 'framer-motion';
+import { EasingFunction } from 'motion-utils';
 import { useEffect, useRef, useState, useMemo } from 'react';
 
 type BlurTextProps = {
@@ -11,7 +12,7 @@ type BlurTextProps = {
   rootMargin?: string;
   animationFrom?: Record<string, string | number>;
   animationTo?: Array<Record<string, string | number>>;
-  easing?: (t: number) => number;
+  easing?: EasingFunction;
   onAnimationComplete?: () => void;
   stepDuration?: number;
 };
@@ -107,8 +108,8 @@ const BlurText: React.FC<BlurTextProps> = ({
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
+          ease: easing,
         };
-        (spanTransition as any).ease = easing;
 
         return (
           <motion.span
