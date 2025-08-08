@@ -46,6 +46,15 @@ const CurvedLoop = ({
   }, [text, className]);
 
   useEffect(() => {
+    if (!spacing) return;
+    if (textPathRef.current) {
+      const initial = -spacing;
+      textPathRef.current.setAttribute("startOffset", initial + "px");
+      setOffset(initial);
+    }
+  }, [spacing]);
+
+  useEffect(() => {
     if (!spacing || !ready) return;
     let frame = 0;
     const step = () => {
@@ -56,14 +65,14 @@ const CurvedLoop = ({
 
         const wrapPoint = spacing;
         if (newOffset <= -wrapPoint) newOffset += wrapPoint;
-        if (newOffset >= wrapPoint) newOffset -= wrapPoint;
+        if (newOffset > 0) newOffset -= wrapPoint;
 
         textPathRef.current.setAttribute("startOffset", newOffset + "px");
         setOffset(newOffset);
       }
       frame = requestAnimationFrame(step);
     };
-    step();
+    frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
   }, [spacing, speed, ready]);
 
@@ -86,7 +95,7 @@ const CurvedLoop = ({
 
     const wrapPoint = spacing;
     if (newOffset <= -wrapPoint) newOffset += wrapPoint;
-    if (newOffset >= wrapPoint) newOffset -= wrapPoint;
+    if (newOffset > 0) newOffset -= wrapPoint;
 
     textPathRef.current.setAttribute("startOffset", newOffset + "px");
     setOffset(newOffset);

@@ -61,6 +61,15 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   }, [text, className]);
 
   useEffect(() => {
+    if (!spacing) return;
+    if (textPathRef.current) {
+      const initial = -spacing;
+      textPathRef.current.setAttribute("startOffset", initial + "px");
+      setOffset(initial);
+    }
+  }, [spacing]);
+
+  useEffect(() => {
     if (!spacing || !ready) return;
     let frame = 0;
     const step = () => {
@@ -70,17 +79,15 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
           textPathRef.current.getAttribute("startOffset") || "0"
         );
         let newOffset = currentOffset + delta;
-
         const wrapPoint = spacing;
         if (newOffset <= -wrapPoint) newOffset += wrapPoint;
-        if (newOffset >= wrapPoint) newOffset -= wrapPoint;
-
+        if (newOffset > 0) newOffset -= wrapPoint;
         textPathRef.current.setAttribute("startOffset", newOffset + "px");
         setOffset(newOffset);
       }
       frame = requestAnimationFrame(step);
     };
-    step();
+    frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
   }, [spacing, speed, ready]);
 
@@ -97,16 +104,13 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     velRef.current = dx;
-
     const currentOffset = parseFloat(
       textPathRef.current.getAttribute("startOffset") || "0"
     );
     let newOffset = currentOffset + dx;
-
     const wrapPoint = spacing;
     if (newOffset <= -wrapPoint) newOffset += wrapPoint;
-    if (newOffset >= wrapPoint) newOffset -= wrapPoint;
-
+    if (newOffset > 0) newOffset -= wrapPoint;
     textPathRef.current.setAttribute("startOffset", newOffset + "px");
     setOffset(newOffset);
   };
