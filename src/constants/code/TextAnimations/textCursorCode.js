@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/TextCursor/TextCursor.tsx?ra
 
 export const textCursor = {
   ...(generateCliCommands('TextAnimations/TextCursor')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import TextCursor from './TextCursor';
 
 <TextCursor

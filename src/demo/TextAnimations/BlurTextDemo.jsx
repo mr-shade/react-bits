@@ -144,7 +144,7 @@ const BlurTextDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["framer-motion"]} />
+        <Dependencies dependencyList={["motion"]} />
       </PreviewTab>
 
       <CodeTab>

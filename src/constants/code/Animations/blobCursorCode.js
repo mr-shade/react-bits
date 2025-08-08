@@ -8,7 +8,7 @@ import tsTailwind from "@ts-tailwind/Animations/BlobCursor/BlobCursor.tsx?raw";
 
 export const blobCursor = {
   ...(generateCliCommands('Animations/BlobCursor')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import BlobCursor from './BlobCursor';
 
 <BlobCursor

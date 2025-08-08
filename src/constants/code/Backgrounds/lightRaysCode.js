@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/LightRays/LightRays.tsx?raw'
 
 export const lightRays = {
   ...(generateCliCommands('Backgrounds/LightRays')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import LightRays from './LightRays';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

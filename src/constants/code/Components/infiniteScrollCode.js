@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/InfiniteScroll/InfiniteScroll.ts
 
 export const infiniteScroll = {
   ...(generateCliCommands('Components/InfiniteScroll')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import InfiniteScroll from './InfiniteScroll';
   
 const items = [

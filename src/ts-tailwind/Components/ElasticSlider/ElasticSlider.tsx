@@ -5,7 +5,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 
 const MAX_OVERFLOW = 50;
 

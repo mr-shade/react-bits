@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Threads/Threads.tsx?raw';
 
 export const threads = {
   ...(generateCliCommands('Backgrounds/Threads')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Threads from './Threads';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

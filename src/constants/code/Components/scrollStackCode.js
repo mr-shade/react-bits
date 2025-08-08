@@ -8,7 +8,7 @@ import tsTailwind from "@ts-tailwind/Components/ScrollStack/ScrollStack.tsx?raw"
 
 export const scrollStack = {
   ...(generateCliCommands('Components/ScrollStack')),
-  installation: `npm i lenis`,
+  installation: `npm install lenis`,
   usage: `import ScrollStack, { ScrollStackItem } from './ScrollStack'
 
 <ScrollStack>

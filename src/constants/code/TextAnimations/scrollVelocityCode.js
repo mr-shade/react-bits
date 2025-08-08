@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/ScrollVelocity/ScrollVelocit
 
 export const scrollVelocity = {
   ...(generateCliCommands('TextAnimations/ScrollVelocity')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import ScrollVelocity from './ScrollVelocity';
   
 <ScrollVelocity

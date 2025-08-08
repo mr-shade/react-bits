@@ -6,7 +6,7 @@ import React, {
   HTMLAttributes,
   ReactNode,
 } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "motion/react";
 
 import "./Stepper.css";
 

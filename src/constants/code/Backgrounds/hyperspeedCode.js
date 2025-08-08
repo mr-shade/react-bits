@@ -9,7 +9,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Hyperspeed/Hyperspeed.tsx?raw'
 
 export const hyperspeed = {
   ...(generateCliCommands('Backgrounds/Hyperspeed')),
-  installation: `npm i three postprocessing`,
+  installation: `npm install three postprocessing`,
   usage: `import Hyperspeed from './Hyperspeed';
 
 // the component will fill the height/width of its parent container, edit the CSS to change this

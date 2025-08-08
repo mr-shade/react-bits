@@ -8,7 +8,7 @@ import tsTailwind from "@ts-tailwind/Components/Dock/Dock.tsx?raw"
 
 export const dock = {
   ...generateCliCommands("Components/Dock"),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import Dock from './Dock';
 
   const items = [

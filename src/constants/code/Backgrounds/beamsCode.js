@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Beams/Beams.tsx?raw'
 
 export const beams = {
   ...(generateCliCommands('Backgrounds/Beams')),
-  installation: `npm i three @react-three/fiber @react-three/drei`,
+  installation: `npm install three @react-three/fiber @react-three/drei`,
   usage: `import Beams from './Beams';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Particles/Particles.tsx?raw';
 
 export const particles = {
   ...(generateCliCommands('Backgrounds/Particles')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Particles from './Particles';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

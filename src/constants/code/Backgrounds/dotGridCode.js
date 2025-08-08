@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/DotGrid/DotGrid.tsx?raw'
 
 export const dotGrid = {
   ...(generateCliCommands('Backgrounds/DotGrid')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import DotGrid from './DotGrid';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

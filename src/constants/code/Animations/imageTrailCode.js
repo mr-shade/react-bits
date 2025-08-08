@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Animations/ImageTrail/ImageTrail.tsx?raw';
 
 export const imageTrail = {
   ...(generateCliCommands('Animations/ImageTrail')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import ImageTrail from './ImageTrail;'
 
 <div style={{ height: '500px', position: 'relative', overflow: 'hidden'}}>

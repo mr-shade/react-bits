@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/FaultyTerminal/FaultyTerminal.t
 
 export const faultyTerminal = {
   ...(generateCliCommands('Backgrounds/FaultyTerminal')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import FaultyTerminal from './FaultyTerminal';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

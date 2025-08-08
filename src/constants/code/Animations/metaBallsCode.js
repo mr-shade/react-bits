@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Animations/MetaBalls/MetaBalls.tsx?raw';
 
 export const metaBalls = {
   ...(generateCliCommands('Animations/MetaBalls')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import MetaBalls from './MetaBalls';
 
 <MetaBalls

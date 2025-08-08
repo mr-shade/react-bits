@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/CircularText/CircularText.ts
 
 export const circularText = {
   ...(generateCliCommands('TextAnimations/CircularText')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import CircularText from './CircularText';
   
 <CircularText

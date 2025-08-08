@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/CountUp/CountUp.tsx?raw';
 
 export const countup = {
   ...(generateCliCommands('TextAnimations/CountUp')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import CountUp from './CountUp'
 
 <CountUp

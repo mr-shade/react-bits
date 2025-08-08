@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/ScrollFloat/ScrollFloat.tsx?
 
 export const scrollFloat = {
   ...(generateCliCommands('TextAnimations/ScrollFloat')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import ScrollFloat from './ScrollFloat';
 
 <ScrollFloat

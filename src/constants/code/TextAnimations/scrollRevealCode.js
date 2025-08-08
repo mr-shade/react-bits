@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/ScrollReveal/ScrollReveal.ts
 
 export const scrollReveal = {
   ...(generateCliCommands('TextAnimations/ScrollReveal')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import ScrollReveal from './ScrollReveal';
 
 <ScrollReveal

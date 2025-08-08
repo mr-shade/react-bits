@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Dither/Dither.tsx?raw'
 
 export const dither = {
   ...(generateCliCommands('Backgrounds/Dither')),
-  installation: `npm i three postprocessing @react-three/fiber @react-three/postprocessing`,
+  installation: `npm install three postprocessing @react-three/fiber @react-three/postprocessing`,
   usage: `import Dither from './Dither';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

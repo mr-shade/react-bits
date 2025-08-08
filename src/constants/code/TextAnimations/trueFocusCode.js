@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/TrueFocus/TrueFocus.tsx?raw'
 
 export const trueFocus = {
   ...(generateCliCommands('TextAnimations/TrueFocus')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import TrueFocus from './TrueFocus';
 
 <TrueFocus 

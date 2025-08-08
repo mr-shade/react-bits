@@ -16,7 +16,7 @@ import {
   type Target,
   type AnimationControls,
   type TargetAndTransition,
-} from "framer-motion";
+} from "motion/react";
 
 import "./RotatingText.css";
 

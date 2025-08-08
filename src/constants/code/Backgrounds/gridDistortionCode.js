@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/GridDistortion/GridDistortion.t
 
 export const gridDistortion = {
   ...(generateCliCommands('Backgrounds/GridDistortion')),
-  installation: `npm i three`,
+  installation: `npm install three`,
   usage: `import GridDistortion from './GridDistortion';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

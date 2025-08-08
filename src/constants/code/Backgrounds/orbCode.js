@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Orb/Orb.tsx?raw'
 
 export const orb = {
   ...(generateCliCommands('Backgrounds/Orb')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Orb from './Orb';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

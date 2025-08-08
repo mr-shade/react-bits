@@ -8,7 +8,7 @@ import tsTailwind from "@ts-tailwind/Components/RollingGallery/RollingGallery.ts
 
 export const rollingGallery = {
   ...(generateCliCommands('Components/RollingGallery')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import RollingGallery from './RollingGallery'
   
 <RollingGallery autoplay={true} pauseOnHover={true} />`,

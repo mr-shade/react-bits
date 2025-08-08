@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/TextTrail/TextTrail.tsx?raw'
 
 export const textTrail = {
   ...(generateCliCommands('TextAnimations/TextTrail')),
-  installation: `npm i three`,
+  installation: `npm install three`,
   usage: `import TextTrail from './TextTrail';
 
 // Basic usage

@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/Carousel/Carousel.tsx?raw';
 
 export const carousel = {
   ...(generateCliCommands('Components/Carousel')),
-  installation: `npm install framer-motion`,
+  installation: `npm install motion`,
   usage: `import Carousel from './Carousel'
 
 <div style={{ height: '600px', position: 'relative' }}>

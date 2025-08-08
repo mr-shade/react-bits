@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/DecayCard/DecayCard.tsx?raw';
 
 export const decayCard = {
   ...(generateCliCommands('Components/DecayCard')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import DecayCard from './DecayCard';
 
 <DecayCard width={200} height={300} image="https://picsum.photos/300/400?grayscale">

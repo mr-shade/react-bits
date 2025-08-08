@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/Lanyard/Lanyard.tsx?raw';
 
 export const lanyard = {
   ...(generateCliCommands('Components/Lanyard')),
-  installation: `npm i three meshline @react-three/fiber @react-three/drei @react-three/rapier`,
+  installation: `npm install three meshline @react-three/fiber @react-three/drei @react-three/rapier`,
   usage: `import Lanyard from './Lanyard'
 
 <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />

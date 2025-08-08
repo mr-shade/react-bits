@@ -9,7 +9,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/RotatingText/RotatingText.ts
 
 export const rotatingText = {
   ...(generateCliCommands('TextAnimations/RotatingText')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import RotatingText from './RotatingText'
   
 <RotatingText

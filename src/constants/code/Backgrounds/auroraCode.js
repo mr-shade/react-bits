@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Aurora/Aurora.tsx?raw';
 
 export const aurora = {
   ...(generateCliCommands('Backgrounds/Aurora')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Aurora from './Aurora';
   
 <Aurora

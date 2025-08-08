@@ -5,7 +5,7 @@ import {
   useMotionValue,
   MotionValue,
   Transition,
-} from "framer-motion";
+} from "motion/react";
 interface CircularTextProps {
   text: string;
   spinDuration?: number;

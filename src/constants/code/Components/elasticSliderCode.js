@@ -8,7 +8,7 @@ import tsTailwind from "@ts-tailwind/Components/ElasticSlider/ElasticSlider.tsx?
 
 export const elasticSlider = {
   ...(generateCliCommands('Components/ElasticSlider')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import ElasticSlider from './ElasticSlider'
   
 <ElasticSlider

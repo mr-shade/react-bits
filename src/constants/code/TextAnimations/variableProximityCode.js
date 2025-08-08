@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/VariableProximity/VariablePr
 
 export const variableProximity = {
   ...(generateCliCommands('TextAnimations/VariableProximity')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import { useRef } from 'react';
 import VariableProximity from './VariableProximity';
 

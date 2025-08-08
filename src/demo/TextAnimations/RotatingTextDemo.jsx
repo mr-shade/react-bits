@@ -1,5 +1,5 @@
 import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
-import { LayoutGroup, motion } from 'framer-motion';
+import { LayoutGroup, motion } from 'motion/react';
 import { Box } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -154,7 +154,7 @@ const RotatingTextDemo = () => {
         </Box>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={['framer-motion']} />
+        <Dependencies dependencyList={['motion']} />
       </PreviewTab>
 
       <CodeTab>

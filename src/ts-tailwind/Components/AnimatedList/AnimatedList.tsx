@@ -6,7 +6,7 @@ import React, {
   MouseEventHandler,
   UIEvent,
 } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 
 interface AnimatedItemProps {
   children: ReactNode;

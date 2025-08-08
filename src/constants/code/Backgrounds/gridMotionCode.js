@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/GridMotion/GridMotion.tsx?raw'
 
 export const gridMotion = {
   ...(generateCliCommands('Backgrounds/GridMotion')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import GridMotion from './GridMotion';
   
 // note: you'll need to make sure the parent container of this component is sized properly

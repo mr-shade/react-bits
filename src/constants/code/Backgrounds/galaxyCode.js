@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Galaxy/Galaxy.tsx?raw'
 
 export const galaxy = {
   ...(generateCliCommands('Backgrounds/Galaxy')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Galaxy from './Galaxy';
 
 // Basic usage

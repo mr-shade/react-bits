@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Iridescence/Iridescence.tsx?raw
 
 export const iridescence = {
   ...(generateCliCommands('Backgrounds/Iridescence')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Iridescence from './Iridescence';
   
 <Iridescence

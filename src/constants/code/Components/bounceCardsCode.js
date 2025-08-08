@@ -8,7 +8,7 @@ import tsTailwind from "@ts-tailwind/Components/BounceCards/BounceCards.tsx?raw"
 
 export const bounceCards = {
   ...(generateCliCommands("Components/BounceCards")),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import BounceCards from './BounceCards'
 
 const images = [

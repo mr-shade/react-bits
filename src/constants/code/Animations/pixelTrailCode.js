@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Animations/PixelTrail/PixelTrail.tsx?raw';
 
 export const pixelTrail = {
   ...(generateCliCommands('Animations/PixelTrail')),
-  installation: `npm i three @react-three/fiber @react-three/drei`,
+  installation: `npm install three @react-three/fiber @react-three/drei`,
   usage: `import PixelTrail from './PixelTrail';
 
 <div style={{ height: '500px', position: 'relative', overflow: 'hidden'}}>

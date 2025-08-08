@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/TiltedCard/TiltedCard.tsx?raw';
 
 export const tiltedCard = {
   ...(generateCliCommands('Components/TiltedCard')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import TiltedCard from './TiltedCard';
 
 <TiltedCard

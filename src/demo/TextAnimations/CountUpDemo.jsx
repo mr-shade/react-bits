@@ -151,7 +151,7 @@ const CountUpDemo = () => {
         </Flex>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={['framer-motion']} />
+        <Dependencies dependencyList={['motion']} />
       </PreviewTab>
 
       <CodeTab>

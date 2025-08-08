@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/DarkVeil/DarkVeil.tsx?raw'
 
 export const darkVeil = {
   ...(generateCliCommands('Backgrounds/DarkVeil')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import DarkVeil from './DarkVeil';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

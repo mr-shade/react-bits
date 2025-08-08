@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/Stack/Stack.tsx?raw';
 
 export const stack = {
   ...(generateCliCommands('Components/Stack')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import Stack from './Stack'
 
 const images = [

@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Ballpit/Ballpit.tsx?raw';
 
 export const ballpit = {
   ...(generateCliCommands('Backgrounds/Ballpit')),
-  installation: `npm i three`,
+  installation: `npm install three`,
   usage: `//Component inspired by Kevin Levron:
 //https://x.com/soju22/status/1858925191671271801
   

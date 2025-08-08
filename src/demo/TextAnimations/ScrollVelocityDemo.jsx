@@ -119,7 +119,7 @@ const ScrollVelocityDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={['framer-motion']} />
+        <Dependencies dependencyList={['motion']} />
         <Box mb="50vh"></Box>
       </PreviewTab>
 

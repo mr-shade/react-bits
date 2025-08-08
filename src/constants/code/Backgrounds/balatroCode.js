@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Balatro/Balatro.tsx?raw';
 
 export const balatro = {
   ...(generateCliCommands('Backgrounds/Balatro')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Balatro from './Balatro';
   
 <Balatro

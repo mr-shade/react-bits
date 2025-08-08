@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/DecryptedText/DecryptedText.
 
 export const decryptedText = {
   ...(generateCliCommands('TextAnimations/DecryptedText')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import DecryptedText from './DecryptedText';
 
 {/* Example 1: Defaults (hover to decrypt) */}

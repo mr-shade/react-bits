@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/Silk/Silk.tsx?raw';
 
 export const silkCode = {
   ...(generateCliCommands('Backgrounds/Silk')),
-  installation: 'npm i three @react-three/fiber',
+  installation: 'npm install three @react-three/fiber',
   usage: `import Silk from './Silk';
 
 <Silk

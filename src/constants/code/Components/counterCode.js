@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Components/Counter/Counter.tsx?raw';
 
 export const counter = {
   ...(generateCliCommands('Components/Counter')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import Counter from './Counter';
 
 <Counter

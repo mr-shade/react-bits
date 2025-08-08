@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/BlurText/BlurText.tsx?raw';
 
 export const blurText = {
   ...(generateCliCommands('TextAnimations/BlurText')),
-  installation: `npm i framer-motion`,
+  installation: `npm install motion`,
   usage: `import BlurText from "./BlurText";
 
 const handleAnimationComplete = () => {

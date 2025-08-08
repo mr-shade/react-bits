@@ -7,7 +7,7 @@ import tsTailwind from "@ts-tailwind/Components/ModelViewer/ModelViewer.tsx?raw"
 
 export const modelViewer = {
   ...(generateCliCommands('Components/ModelViewer')),
-  installation: `npm i three @react-three/fiber @react-three/drei`,
+  installation: `npm install three @react-three/fiber @react-three/drei`,
   usage: `import ModelViewer from './ModelViewer';
 
 <ModelViewer

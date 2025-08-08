@@ -6,7 +6,7 @@ import {
   useSpring,
   useTransform,
   AnimatePresence,
-} from "framer-motion";
+} from "motion/react";
 import {
   Children,
   cloneElement,

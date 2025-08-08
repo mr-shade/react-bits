@@ -4,7 +4,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@chakra-ui/react";
 import { RiVolumeDownFill, RiVolumeUpFill } from "react-icons/ri";

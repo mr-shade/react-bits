@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/Animations/ShapeBlur/ShapeBlur.tsx?raw';
 
 export const shapeBlur = {
   ...(generateCliCommands('Animations/ShapeBlur')),
-  installation: `npm i three`,
+  installation: `npm install three`,
   usage: `import ShapeBlur from './ShapeBlur';
 
 <div style={{position: 'relative', height: '500px', overflow: 'hidden'}}>

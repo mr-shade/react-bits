@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Animations/Ribbons/Ribbons.tsx?raw';
 
 export const ribbons = {
   ...(generateCliCommands('Animations/Ribbons')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import Ribbons from './Ribbons';
 
 <div style={{ height: '500px', position: 'relative', overflow: 'hidden'}}>

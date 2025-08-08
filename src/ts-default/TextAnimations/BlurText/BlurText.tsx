@@ -1,4 +1,4 @@
-import { motion, Transition } from 'framer-motion';
+import { motion, Transition } from 'motion/react';
 import { EasingFunction } from 'motion-utils';
 import { useEffect, useRef, useState, useMemo } from 'react';
 

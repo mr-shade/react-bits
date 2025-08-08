@@ -8,7 +8,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/LiquidChrome/LiquidChrome.tsx?r
 
 export const liquidChrome = {
   ...(generateCliCommands('Backgrounds/LiquidChrome')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import LiquidChrome from './LiquidChrome';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

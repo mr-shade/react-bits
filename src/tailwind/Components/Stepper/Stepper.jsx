@@ -1,5 +1,5 @@
 import React, { useState, Children, useRef, useLayoutEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function Stepper({
   children,

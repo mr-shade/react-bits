@@ -17,7 +17,7 @@ import { splitText } from '../../constants/code/TextAnimations/splitTextCode';
 import SplitText from "../../tailwind/TextAnimations/SplitText/SplitText";
 
 const SplitTextDemo = () => {
-  const [delay, setDelay] = useState(10);
+  const [delay, setDelay] = useState(70);
   const [duration, setDuration] = useState(2);
   const [ease, setEase] = useState("elastic.out(1, 0.3)");
   const [splitType, setSplitType] = useState("chars");

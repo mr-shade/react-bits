@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { FiSearch, FiLayers, FiImage, FiType, FiCircle, FiFile } from 'react-icons/fi';
 import { AiOutlineEnter } from 'react-icons/ai';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { CATEGORIES } from '../../../constants/Categories';
 import { useSearch } from '../../context/SearchContext/useSearch';

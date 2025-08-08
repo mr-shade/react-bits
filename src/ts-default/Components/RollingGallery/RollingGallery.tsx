@@ -5,7 +5,7 @@ import {
   useAnimation,
   useTransform,
   PanInfo,
-} from "framer-motion";
+} from "motion/react";
 import "./RollingGallery.css";
 
 const IMGS: string[] = [

@@ -7,7 +7,7 @@ import tsTailwind from "@ts-tailwind/Components/Masonry/Masonry.tsx?raw";
 
 export const masonry = {
   ...(generateCliCommands('Components/Masonry')),
-  installation: `npm i gsap`,
+  installation: `npm install gsap`,
   usage: `import Masonry from './Masonry';
 
 const items = [

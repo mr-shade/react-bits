@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/Backgrounds/RippleGrid/RippleGrid.tsx?raw';
 
 export const rippleGrid = {
   ...(generateCliCommands('Backgrounds/RippleGrid')),
-  installation: `npm i ogl`,
+  installation: `npm install ogl`,
   usage: `import RippleGrid from './RippleGrid';
 
 <div style={{position: 'relative', height: '500px', overflow: 'hidden'}}>
