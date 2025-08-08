@@ -186,7 +186,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     const onKey = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      if (e.key === "/") {
         e.preventDefault();
         toggleSearch();
       }
@@ -217,7 +217,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
           maxW="720px"
         >
           <Dialog.Body padding="1em 1em .2em 1em">
-            <InputGroup startElement={<Icon as={FiSearch} color="#999" />} mb={3}>
+            <InputGroup startElement={<Icon as={FiSearch} color="#B19EEF" fontSize='18px' />} mb={2}>
               <Input
                 autoFocus
                 value={inputValue}
@@ -245,25 +245,16 @@ const SearchDialog = ({ isOpen, onClose }) => {
                   style={{ overflow: "hidden" }}
                 >
                   <Box
-                    mt={3}
+                    mt={0}
                     borderTop="1px solid #392e4e"
                     position="relative"
                   >
                     <Box
                       ref={resultsRef}
                       maxH={400}
+                      className="results-container"
                       overflowY="auto"
                       onScroll={handleScroll}
-                      sx={{
-                        "&::-webkit-scrollbar": { width: "8px" },
-                        "&::-webkit-scrollbar-track": { bg: "#060010" },
-                        "&::-webkit-scrollbar-thumb": {
-                          bg: "#271E37",
-                          rounded: "4px",
-                        },
-                        scrollbarWidth: "thin",
-                        scrollbarColor: "#271E37 #060010",
-                      }}
                     >
                       {results.length > 0 ? (
                         results.map((r, i) => {
@@ -279,7 +270,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                               onClick={() => handleSelect(r)}
                             >
                               <Box
-                                mt={i === 0 ? 8 : 2}
+                                mt={i === 0 ? 4 : 2}
                                 mr=".6em"
                                 mb={2}
                                 p="1em"
@@ -309,7 +300,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                       ) : (
                         <Text
                           textAlign="center"
-                          mt={3}
+                          mt={2}
                           color="#B19EEF"
                           p="1em"
                         >

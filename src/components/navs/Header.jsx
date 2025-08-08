@@ -17,10 +17,9 @@ import {
   createListCollection,
 } from "@chakra-ui/react";
 
-import { FiArrowRight, FiCommand, FiMenu, FiSearch, FiStopCircle } from "react-icons/fi";
+import { FiArrowRight, FiMenu, FiSearch, FiStopCircle } from "react-icons/fi";
 
 import { useStars } from "../../hooks/useStars";
-import { useDeviceOS } from "react-haiku";
 import { useSearch } from "../context/SearchContext/useSearch";
 import { useLanguage } from "../context/LanguageContext/useLanguage";
 
@@ -35,7 +34,6 @@ const Header = () => {
   const { toggleSearch } = useSearch();
   const stars = useStars();
   const starCountRef = useRef(null);
-  const os = useDeviceOS();
 
   const LanguageSelect = (
     <Select.Root
@@ -101,7 +99,7 @@ const Header = () => {
     <Box zIndex={100} className="main-nav">
       <Flex className="nav-items" h={20} alignItems="center" justifyContent="space-between" px={4}>
         <RouterLink to="/" className="logo">
-          <Image src={Logo} alt="Logo" className="cursor-target"/>
+          <Image src={Logo} alt="Logo" className="cursor-target" />
         </RouterLink>
 
         <IconButton
@@ -134,7 +132,21 @@ const Header = () => {
             >
               <Icon as={FiSearch} boxSize={4} color="#392e4e" />
               <Text mr={8} color="#a6a6a6">Search Docs</Text>
-              {os === "macOS" ? <Kbd fontSize="10px" px={2} borderRadius="50px"><Icon as={FiCommand} boxSize={2} mr={1} /> K</Kbd> : <Kbd fontSize="10px" px={2} borderRadius="50px">CTRL K</Kbd>}
+              <Kbd
+                color="#B19EEF"
+                fontSize="10px"
+                borderColor="#271E37"
+                borderRadius="50px"
+                width="20px"
+                height="20px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                backgroundColor="#170D27"
+                fontWeight={800}
+              >
+                /
+              </Kbd>
             </Flex>
           </FadeContent>
 
