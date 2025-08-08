@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import DocsButtonBar from "./DocsButtonBar";
+import CodeBlock from "./CodeBlock";
 import { TbCopy, TbTerminal2 } from "react-icons/tb";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { twilight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import codeoptions from '../assets/common/code-options.webp';
 
@@ -63,15 +62,9 @@ const Installation = () => {
             Components may use external libraries, don&apos;t forget to install them. For example, the SplitText component requires GSAP for smooth animations.
           </p>
 
-          <div className="docs-code">
-            <SyntaxHighlighter
-              style={twilight}
-              showLineNumbers={true}
-              className="code-highlighter"
-            >
-              npm install gsap
-            </SyntaxHighlighter>
-          </div>
+          <CodeBlock showLineNumbers={true}>
+            npm install gsap
+          </CodeBlock>
 
           <h4 className="docs-category-subtitle">3. Copy the code</h4>
 
@@ -88,21 +81,15 @@ const Installation = () => {
             A basic usage example is provided for every component, and if you want to go into details, you can check all the available props on the <span className="docs-highlight">Preview</span> tab.
           </p>
 
-          <div className="docs-code">
-            <SyntaxHighlighter
-              style={twilight}
-              showLineNumbers={true}
-              className="code-highlighter"
-            >
-              {`import SplitText from "./SplitText";
+          <CodeBlock showLineNumbers={true}>
+{`import SplitText from "./SplitText";
 
 <SplitText
   text="Hello, you!"
   delay={100}
   duration={0.6}
 />`}
-            </SyntaxHighlighter>
-          </div>
+          </CodeBlock>
         </>
       )}
 
@@ -126,14 +113,9 @@ const Installation = () => {
             All you need to do is run the command below:
           </p>
 
-          <div className="docs-code">
-            <SyntaxHighlighter
-              style={twilight}
-              className="code-highlighter"
-            >
-              {`npx jsrepo add https://reactbits.dev/<PREFERENCE>/TextAnimations/SplitText`}
-            </SyntaxHighlighter>
-          </div>
+          <CodeBlock>
+{`npx jsrepo add https://reactbits.dev/<PREFERENCE>/TextAnimations/SplitText`}
+          </CodeBlock>
 
           <p className="docs-paragraph short">
             In this command, &lt;PREFERENCE&gt; can be replaced with the following options:
@@ -156,40 +138,25 @@ const Installation = () => {
             Similarly, just replace &lt;PREFERENCE&gt; in the command below, follow the prompts, and your configuration file will be created:
           </p>
 
-          <div className="docs-code">
-            <SyntaxHighlighter
-              style={twilight}
-              className="code-highlighter"
-            >
-              {`npx jsrepo init https://reactbits.dev/<PREFERENCE>`}
-            </SyntaxHighlighter>
-          </div>
+          <CodeBlock>
+{`npx jsrepo init https://reactbits.dev/<PREFERENCE>`}
+          </CodeBlock>
 
           <p className="docs-paragraph short">
             Afterwards, you can browse a full list of components and select what you need:
           </p>
 
-          <div className="docs-code">
-            <SyntaxHighlighter
-              style={twilight}
-              className="code-highlighter"
-            >
-              {`npx jsrepo add`}
-            </SyntaxHighlighter>
-          </div>
+          <CodeBlock>
+{`npx jsrepo add`}
+          </CodeBlock>
 
           <p className="docs-paragraph short">
             Or you can install a specific component by providing the category and name:
           </p>
 
-          <div className="docs-code">
-            <SyntaxHighlighter
-              style={twilight}
-              className="code-highlighter"
-            >
-              {`npx jsrepo add TextAnimations/SplitText`}
-            </SyntaxHighlighter>
-          </div>
+          <CodeBlock>
+{`npx jsrepo add TextAnimations/SplitText`}
+          </CodeBlock>
 
           <p className="docs-paragraph dim">
             P.S. - Installing jsrepo globally will help you avoid typing `npx` every time
@@ -205,7 +172,7 @@ const Installation = () => {
       </p>
 
       <DocsButtonBar
-        next={{ label: 'Browse Components', route: '/text-animations/split-text' }}
+        next={{ label: 'Mcp Server', route: '/get-started/mcp' }}
         previous={{ label: 'Introduction', route: '/get-started/introduction' }}
       />
     </section>
