@@ -413,6 +413,9 @@ const Hyperspeed = ({ effectOptions = {
         this.setSize = this.setSize.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
+        
+        this.onTouchStart = this.onTouchStart.bind(this);
+        this.onTouchEnd = this.onTouchEnd.bind(this);
 
         window.addEventListener("resize", this.onWindowResize.bind(this));
       }
@@ -500,6 +503,10 @@ const Hyperspeed = ({ effectOptions = {
         this.container.addEventListener("mousedown", this.onMouseDown);
         this.container.addEventListener("mouseup", this.onMouseUp);
         this.container.addEventListener("mouseout", this.onMouseUp);
+        
+        this.container.addEventListener("touchstart", this.onTouchStart, { passive: true });
+        this.container.addEventListener("touchend", this.onTouchEnd, { passive: true });
+        this.container.addEventListener("touchcancel", this.onTouchEnd, { passive: true });
 
         this.tick();
       }
@@ -511,6 +518,18 @@ const Hyperspeed = ({ effectOptions = {
       }
 
       onMouseUp(ev) {
+        if (this.options.onSlowDown) this.options.onSlowDown(ev);
+        this.fovTarget = this.options.fov;
+        this.speedUpTarget = 0;
+      }
+
+      onTouchStart(ev) {
+        if (this.options.onSpeedUp) this.options.onSpeedUp(ev);
+        this.fovTarget = this.options.fovSpeedUp;
+        this.speedUpTarget = this.options.speedUp;
+      }
+
+      onTouchEnd(ev) {
         if (this.options.onSlowDown) this.options.onSlowDown(ev);
         this.fovTarget = this.options.fov;
         this.speedUpTarget = 0;
@@ -584,6 +603,10 @@ const Hyperspeed = ({ effectOptions = {
           this.container.removeEventListener("mousedown", this.onMouseDown);
           this.container.removeEventListener("mouseup", this.onMouseUp);
           this.container.removeEventListener("mouseout", this.onMouseUp);
+          
+          this.container.removeEventListener("touchstart", this.onTouchStart);
+          this.container.removeEventListener("touchend", this.onTouchEnd);
+          this.container.removeEventListener("touchcancel", this.onTouchEnd);
         }
       }
 
