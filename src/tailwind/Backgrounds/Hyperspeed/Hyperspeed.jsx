@@ -415,6 +415,7 @@ const Hyperspeed = ({ effectOptions = {
         
         this.onTouchStart = this.onTouchStart.bind(this);
         this.onTouchEnd = this.onTouchEnd.bind(this);
+        this.onContextMenu = this.onContextMenu.bind(this);
 
         window.addEventListener("resize", this.onWindowResize.bind(this));
       }
@@ -506,6 +507,7 @@ const Hyperspeed = ({ effectOptions = {
         this.container.addEventListener("touchstart", this.onTouchStart, { passive: true });
         this.container.addEventListener("touchend", this.onTouchEnd, { passive: true });
         this.container.addEventListener("touchcancel", this.onTouchEnd, { passive: true });
+        this.container.addEventListener("contextmenu", this.onContextMenu);
 
         this.tick();
       }
@@ -532,6 +534,10 @@ const Hyperspeed = ({ effectOptions = {
         if (this.options.onSlowDown) this.options.onSlowDown(ev);
         this.fovTarget = this.options.fov;
         this.speedUpTarget = 0;
+      }
+
+      onContextMenu(ev) {
+        ev.preventDefault();
       }
 
       update(delta) {
@@ -605,6 +611,7 @@ const Hyperspeed = ({ effectOptions = {
           this.container.removeEventListener("touchstart", this.onTouchStart);
           this.container.removeEventListener("touchend", this.onTouchEnd);
           this.container.removeEventListener("touchcancel", this.onTouchEnd);
+          this.container.removeEventListener("contextmenu", this.onContextMenu);
         }
       }
 
