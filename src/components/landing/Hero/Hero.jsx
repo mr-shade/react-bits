@@ -54,7 +54,7 @@ const Hero = () => {
           splitType="words"
           delay={10}
           duration={1}
-          text="Ninety-plus snippets, ready to be dropped into your React projects"
+          text="Over a hundred components, ready to be dropped into your React projects"
         />
 
         <Link to={"/text-animations/split-text"} className="landing-button">

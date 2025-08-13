@@ -218,7 +218,7 @@ const FeatureCards = () => {
             <div className="components-gif-wrapper">
               <img src="/assets/components.gif" alt="Components animation" className="components-gif" />
             </div>
-            <h2>{isMobile ? "90" : <CountUp to={90} />}+</h2>
+            <h2>{isMobile ? "100" : <CountUp to={100} />}+</h2>
             <h3>Curated Components</h3>
             <p>Growing weekly &amp; only getting better</p>
           </ParticleCard>

@@ -86,6 +86,7 @@ const components = {
   'magic-bento': () => import("../demo/Components/MagicBentoDemo"),
   'scroll-stack': () => import("../demo/Components/ScrollStackDemo"),
   'glass-surface': () => import("../demo/Components/GlassSurfaceDemo"),
+  'pill-nav': () => import("../demo/Components/PillNavDemo.jsx"),
 };
 
 const backgrounds = {
