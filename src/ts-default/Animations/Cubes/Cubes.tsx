@@ -136,14 +136,55 @@ const Cubes: React.FC<CubesProps> = ({
     );
   }, [leaveDur]);
 
+  const onTouchMove = useCallback(
+    (e: TouchEvent) => {
+      e.preventDefault();
+      userActiveRef.current = true;
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+
+      const rect = sceneRef.current!.getBoundingClientRect();
+      const cellW = rect.width / gridSize;
+      const cellH = rect.height / gridSize;
+      
+      const touch = e.touches[0];
+      const colCenter = (touch.clientX - rect.left) / cellW;
+      const rowCenter = (touch.clientY - rect.top) / cellH;
+
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() =>
+        tiltAt(rowCenter, colCenter)
+      );
+
+      idleTimerRef.current = setTimeout(() => {
+        userActiveRef.current = false;
+      }, 3000);
+    },
+    [gridSize, tiltAt]
+  );
+
+  const onTouchStart = useCallback(() => {
+    userActiveRef.current = true;
+  }, []);
+
+  const onTouchEnd = useCallback(() => {
+    if (!sceneRef.current) return;
+    resetAll();
+  }, [resetAll]);
+
   const onClick = useCallback(
-    (e: MouseEvent) => {
+    (e: MouseEvent | TouchEvent) => {
       if (!rippleOnClick || !sceneRef.current) return;
       const rect = sceneRef.current.getBoundingClientRect();
       const cellW = rect.width / gridSize;
       const cellH = rect.height / gridSize;
-      const colHit = Math.floor((e.clientX - rect.left) / cellW);
-      const rowHit = Math.floor((e.clientY - rect.top) / cellH);
+      
+      const clientX = (e as MouseEvent).clientX || 
+                     ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientX);
+      const clientY = (e as MouseEvent).clientY || 
+                     ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientY);
+      
+      const colHit = Math.floor((clientX - rect.left) / cellW);
+      const rowHit = Math.floor((clientY - rect.top) / cellH);
 
       const baseRingDelay = 0.15;
       const baseAnimDur = 0.3;
@@ -232,14 +273,24 @@ const Cubes: React.FC<CubesProps> = ({
     el.addEventListener("pointermove", onPointerMove);
     el.addEventListener("pointerleave", resetAll);
     el.addEventListener("click", onClick);
+    
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    
     return () => {
       el.removeEventListener("pointermove", onPointerMove);
       el.removeEventListener("pointerleave", resetAll);
       el.removeEventListener("click", onClick);
+      
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+      
       rafRef.current != null && cancelAnimationFrame(rafRef.current);
       idleTimerRef.current && clearTimeout(idleTimerRef.current);
     };
-  }, [onPointerMove, resetAll, onClick]);
+  }, [onPointerMove, resetAll, onClick, onTouchMove, onTouchStart, onTouchEnd]);
 
   const cells = Array.from({ length: gridSize });
   const sceneStyle: React.CSSProperties = {
@@ -266,7 +317,7 @@ const Cubes: React.FC<CubesProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div className="default-animation desktop-only" style={wrapperStyle}>
+    <div className="default-animation" style={wrapperStyle}>
       <div
         ref={sceneRef}
         className="default-animation--scene"
