@@ -248,8 +248,8 @@ const Cubes = ({
     el.addEventListener("click", onClick);
     
     el.addEventListener("touchmove", onTouchMove, { passive: false });
-    el.addEventListener("touchstart", onTouchStart);
-    el.addEventListener("touchend", onTouchEnd);
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
     
     return () => {
       el.removeEventListener("pointermove", onPointerMove);
