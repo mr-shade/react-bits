@@ -63,12 +63,12 @@ const McpServer = () => {
           </p>
 
           <CodeBlock showLineNumbers={true}>
-{`{
+{`
   "react-bits-mcp": {
     "command": "npx",
     "args": ["mcp-remote", "https://react-bits-mcp.davidhzdev.workers.dev/sse"]
   }
-}`}
+`}
           </CodeBlock>
 
           <h4 className="docs-category-subtitle">3. Enable the MCP Server</h4>
