@@ -538,6 +538,7 @@ interface PointerData {
   position: Vector2;
   nPosition: Vector2;
   hover: boolean;
+  touching: boolean;
   onEnter: (data: PointerData) => void;
   onMove: (data: PointerData) => void;
   onClick: (data: PointerData) => void;
@@ -554,6 +555,7 @@ function createPointerData(
     position: new Vector2(),
     nPosition: new Vector2(),
     hover: false,
+    touching: false,
     onEnter: () => {},
     onMove: () => {},
     onClick: () => {},
@@ -563,33 +565,28 @@ function createPointerData(
   if (!pointerMap.has(options.domElement)) {
     pointerMap.set(options.domElement, defaultData);
     if (!globalPointerActive) {
-      document.body.addEventListener(
-        "pointermove",
-        onPointerMove as EventListener
-      );
-      document.body.addEventListener(
-        "pointerleave",
-        onPointerLeave as EventListener
-      );
+      document.body.addEventListener("pointermove", onPointerMove as EventListener);
+      document.body.addEventListener("pointerleave", onPointerLeave as EventListener);
       document.body.addEventListener("click", onPointerClick as EventListener);
+
+      document.body.addEventListener("touchstart", onTouchStart as EventListener, { passive: false });
+      document.body.addEventListener("touchmove", onTouchMove as EventListener, { passive: false });
+      document.body.addEventListener("touchend", onTouchEnd as EventListener, { passive: false });
+      document.body.addEventListener("touchcancel", onTouchEnd as EventListener, { passive: false });
       globalPointerActive = true;
     }
   }
   defaultData.dispose = () => {
     pointerMap.delete(options.domElement);
     if (pointerMap.size === 0) {
-      document.body.removeEventListener(
-        "pointermove",
-        onPointerMove as EventListener
-      );
-      document.body.removeEventListener(
-        "pointerleave",
-        onPointerLeave as EventListener
-      );
-      document.body.removeEventListener(
-        "click",
-        onPointerClick as EventListener
-      );
+      document.body.removeEventListener("pointermove", onPointerMove as EventListener);
+      document.body.removeEventListener("pointerleave", onPointerLeave as EventListener);
+      document.body.removeEventListener("click", onPointerClick as EventListener);
+      
+      document.body.removeEventListener("touchstart", onTouchStart as EventListener);
+      document.body.removeEventListener("touchmove", onTouchMove as EventListener);
+      document.body.removeEventListener("touchend", onTouchEnd as EventListener);
+      document.body.removeEventListener("touchcancel", onTouchEnd as EventListener);
       globalPointerActive = false;
     }
   };
@@ -598,6 +595,10 @@ function createPointerData(
 
 function onPointerMove(e: PointerEvent) {
   pointerPosition.set(e.clientX, e.clientY);
+  processPointerInteraction();
+}
+
+function processPointerInteraction() {
   for (const [elem, data] of pointerMap) {
     const rect = elem.getBoundingClientRect();
     if (isInside(rect)) {
@@ -607,9 +608,61 @@ function onPointerMove(e: PointerEvent) {
         data.onEnter(data);
       }
       data.onMove(data);
-    } else if (data.hover) {
+    } else if (data.hover && !data.touching) {
       data.hover = false;
       data.onLeave(data);
+    }
+  }
+}
+
+function onTouchStart(e: TouchEvent) {
+  if (e.touches.length > 0) {
+    e.preventDefault();
+    pointerPosition.set(e.touches[0].clientX, e.touches[0].clientY);
+    for (const [elem, data] of pointerMap) {
+      const rect = elem.getBoundingClientRect();
+      if (isInside(rect)) {
+        data.touching = true;
+        updatePointerData(data, rect);
+        if (!data.hover) {
+          data.hover = true;
+          data.onEnter(data);
+        }
+        data.onMove(data);
+      }
+    }
+  }
+}
+
+function onTouchMove(e: TouchEvent) {
+  if (e.touches.length > 0) {
+    e.preventDefault();
+    pointerPosition.set(e.touches[0].clientX, e.touches[0].clientY);
+    for (const [elem, data] of pointerMap) {
+      const rect = elem.getBoundingClientRect();
+      updatePointerData(data, rect);
+      if (isInside(rect)) {
+        if (!data.hover) {
+          data.hover = true;
+          data.touching = true;
+          data.onEnter(data);
+        }
+        data.onMove(data);
+      } else if (data.hover && data.touching) {
+        data.onMove(data);
+      }
+    }
+  }
+}
+
+function onTouchEnd() {
+  for (const [, data] of pointerMap) {
+    if (data.touching) {
+      data.touching = false;
+      if (data.hover) {
+        data.hover = false;
+        data.onLeave(data);
+      }
     }
   }
 }
@@ -786,6 +839,11 @@ function createBallpit(
   const plane = new Plane(new Vector3(0, 0, 1), 0);
   const intersectionPoint = new Vector3();
   let isPaused = false;
+  
+  canvas.style.touchAction = 'none';
+  canvas.style.userSelect = 'none';
+  (canvas.style as any).webkitUserSelect = 'none';
+
   const pointerData = createPointerData({
     domElement: canvas,
     onMove() {
