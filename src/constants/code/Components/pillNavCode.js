@@ -8,6 +8,7 @@ import tsTailwind from "@ts-tailwind/Components/PillNav/PillNav.tsx?raw";
 
 export const pillNav = {
   ...(generateCliCommands('Components/PillNav')),
+  installation: `npm install gsap`,
   usage: `import PillNav from './PillNav';
 import logo from '/path/to/logo.svg';
 
