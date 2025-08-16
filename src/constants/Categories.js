@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Pill Nav', 'MCP', 'Faulty Terminal', 'Light Rays', 'Sticker Peel', 'Text Type', 'Galaxy', 'Glass Surface', 'Curved Loop', 'Ripple Grid', 'Dark Veil', 'Target Cursor'];
+export const NEW = ['Card Nav', 'Pill Nav', 'Faulty Terminal', 'Light Rays', 'Sticker Peel', 'Text Type', 'Galaxy', 'Glass Surface', 'Curved Loop', 'Dark Veil', 'Target Cursor'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -73,6 +73,7 @@ export const CATEGORIES = [
       'Scroll Stack',
       'Magic Bento',
       'Circular Gallery',
+      'Card Nav',
       'Stack',
       'Fluid Glass',
       'Pill Nav',

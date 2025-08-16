@@ -125,9 +125,9 @@ const PillNavDemo = () => {
   const currentTheme = themeConfigs[theme];
 
   const themeOptions = [
-    { value: "light", label: "Light" },
-    { value: "dark", label: "Dark" },
-    { value: "color", label: "Color" },
+    { value: "light", label: "Light Mode" },
+    { value: "dark", label: "Dark Mode" },
+    { value: "color", label: "Colorful" },
   ];
 
   return (
