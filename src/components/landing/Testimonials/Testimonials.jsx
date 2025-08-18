@@ -53,10 +53,10 @@ const Testimonials = () => {
     },
     {
       id: 8,
-      avatar: 'https://pbs.twimg.com/profile_images/1885430699567513600/JP1m8cHY_400x400.jpg',
-      text: 'This React library is absolutely amazing!!! React Bits is packed with animated components that make building creative and interactive websites so much easier.',
-      handle: '@Traccey001',
-      url: 'https://x.com/Traccey001/status/1875450691805966422'
+      avatar: 'https://pbs.twimg.com/profile_images/1920165535351742464/CJU2uWMU_400x400.jpg',
+      text: 'Was scrolling X, I saw a post regarding UI library and got to know about React Bits and its just wow, the components are incredibly well designed! Really loved the overall feel and quality.',
+      handle: '@irohandev',
+      url: 'https://x.com/irohandev/status/1934877463064268822'
     },
     {
       id: 9,
