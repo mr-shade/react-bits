@@ -4,10 +4,10 @@ const Testimonials = () => {
   const tweets = [
     {
       id: 1,
-      avatar: 'https://pbs.twimg.com/profile_images/1923072273809801216/B2K1_X63_400x400.jpg',
-      text: 'Saw a lot of UI components & libraries but reactbits.dev has it all',
-      handle: '@itsRajnandinit',
-      url: 'https://x.com/itsRajnandinit/status/1890326577809924497'
+      avatar: 'https://pbs.twimg.com/profile_images/1817890513225121792/i8vgLj8Q_400x400.jpg',
+      text: 'Just used React Bits for my landing page. This is amazing, they open sourced so many animations that would have taken so long to build and tweak even with AI.',
+      handle: '@Antashshrivast2',
+      url: 'https://x.com/Antashshrivast2/status/1957423687986033095'
     },
     {
       id: 2,
