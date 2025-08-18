@@ -52,6 +52,7 @@ const textAnimations = {
   'text-trail': () => import("../demo/TextAnimations/TextTrailDemo"),
   'curved-loop': () => import("../demo/TextAnimations/CurvedLoopDemo"),
   'text-type': () => import("../demo/TextAnimations/TextTypeDemo"),
+  'logo-loop': () => import("../demo/Animations/LogoLoopDemo"),
 };
 
 const components = {
