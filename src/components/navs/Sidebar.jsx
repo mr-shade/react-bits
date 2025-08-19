@@ -340,7 +340,7 @@ const Sidebar = () => {
                   <Flex alignItems="center" gap='4px'><span>Showcase</span> <Icon as={FiArrowRight} {...ARROW_ICON_PROPS} /></Flex>
                 </Link>
                 <Link
-                  to="https://davidhaz.com/"
+                  to="https://x.com/davidhdev"
                   target="_blank"
                   onClick={closeDrawer}
                   display="block"

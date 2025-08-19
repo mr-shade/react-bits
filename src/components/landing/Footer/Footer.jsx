@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-left">
             <img src={ReactBitsLogo} alt="React Bits" className="footer-logo" />
-            <p className="footer-description">A library created with <AiFillHeart className="footer-heart" /> by <a href="https://davidhaz.com/" target="_blank" className="footer-creator-link">this guy</a></p>
+            <p className="footer-description">A library created with <AiFillHeart className="footer-heart" /> by <a href="https://x.com/davidhdev" target="_blank" className="footer-creator-link">this guy</a></p>
             <p className="footer-copyright">© {new Date().getFullYear()} React Bits</p>
           </div>
 

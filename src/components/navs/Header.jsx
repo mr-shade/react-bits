@@ -213,7 +213,7 @@ const Header = () => {
 
                   <Text fontWeight="bold">Other</Text>
                   <RouterLink
-                    to="https://davidhaz.com/"
+                    to="https://x.com/davidhdev"
                     target="_blank"
                     onClick={onClose}
                   >
