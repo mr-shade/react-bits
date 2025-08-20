@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -131,7 +131,7 @@ const PillNavDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container demo-container-dots" h={300} overflow="hidden" bg={currentTheme.backgroundColor}>
           <PillNav
@@ -176,7 +176,7 @@ const PillNavDemo = () => {
       <CliTab>
         <CliInstallation {...pillNav} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

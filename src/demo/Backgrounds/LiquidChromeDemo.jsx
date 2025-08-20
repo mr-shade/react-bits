@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -60,7 +60,7 @@ const LiquidChromeDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <LiquidChrome baseColor={baseColor} amplitude={amplitude} speed={speed} interactive={interactive} />
@@ -172,7 +172,7 @@ const LiquidChromeDemo = () => {
       <CliTab>
         <CliInstallation {...liquidChrome} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Button } from "@chakra-ui/react";
 import { randomHex } from "../../utils/utils";
 
@@ -58,7 +58,7 @@ const LetterGlitchDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <LetterGlitch
@@ -143,7 +143,7 @@ const LetterGlitchDemo = () => {
       <CliTab>
         <CliInstallation {...letterGlitch} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

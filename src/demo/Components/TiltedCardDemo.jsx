@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
@@ -101,7 +101,7 @@ const TiltedCardDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={500} overflow="hidden">
           <TiltedCard
@@ -160,7 +160,7 @@ const TiltedCardDemo = () => {
       <CliTab>
         <CliInstallation {...tiltedCard} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

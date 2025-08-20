@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -50,7 +50,7 @@ const ChromaGridDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h='auto' overflow="hidden" p={0} py={6}>
           <ChromaGrid />
@@ -67,7 +67,7 @@ const ChromaGridDemo = () => {
       <CliTab>
         <CliInstallation {...chromaGrid} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

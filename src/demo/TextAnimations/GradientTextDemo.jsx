@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiInfo } from "react-icons/fi";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/Preview/PropTable";
@@ -53,7 +53,7 @@ const GradientTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <h2 className="demo-title-extra">Default</h2>
         <Box position="relative" className="demo-container" minH={150}>
@@ -125,7 +125,7 @@ const GradientTextDemo = () => {
       <CliTab>
         <CliInstallation {...gradientText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

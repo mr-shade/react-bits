@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Spacer } from "@chakra-ui/react";
 
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
@@ -69,7 +69,7 @@ const FuzzyTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <Flex direction='column'>
@@ -119,7 +119,7 @@ const FuzzyTextDemo = () => {
       <CliTab>
         <CliInstallation {...fuzzyText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

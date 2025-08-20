@@ -62,7 +62,7 @@ const CliInstallation = ({
             <Accordion.ItemIndicator pt="0.6em" />
           </Accordion.ItemTrigger>
 
-          <Accordion.ItemContent px={6} pb={1}>
+          <Accordion.ItemContent px={6} pb={8}>
             <Text className="demo-extra-info">
               1. Initialize a config file for your project
             </Text>

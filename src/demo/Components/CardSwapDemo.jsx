@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Icon, Text, Button } from "@chakra-ui/react";
 import { FaCircle, FaCode, FaSliders } from "react-icons/fa6";
 
@@ -88,7 +88,7 @@ const CardSwapDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box className="demo-container" h={500} overflow="hidden" display="flex" flexDirection={{ base: "column", lg: "row" }} position="relative">
           <Box
@@ -273,7 +273,7 @@ const CardSwapDemo = () => {
       <CliTab>
         <CliInstallation {...cardSwap} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
 import useForceRerender from "../../hooks/useForceRerender";
@@ -42,7 +42,7 @@ const SplitTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           position="relative"
@@ -167,7 +167,7 @@ const SplitTextDemo = () => {
       <CliTab>
         <CliInstallation {...splitText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

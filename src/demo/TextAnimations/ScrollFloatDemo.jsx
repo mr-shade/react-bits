@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Text } from "@chakra-ui/react";
 import { gsap } from "gsap";
 
@@ -102,7 +102,7 @@ const ScrollFloatDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box className="demo-container" style={{ height: '500px', maxHeight: '500px' }} overflowY='scroll' overflowX='hidden' ref={containerRef} position='relative'>
           <Text textAlign="center" color='#271E37' fontSize="clamp(4rem, 6vw, 4rem)" fontWeight={900} position="absolute" top='50%' transform='translateY(-50%)'>Scroll Down</Text>
@@ -156,7 +156,7 @@ const ScrollFloatDemo = () => {
       <CliTab>
         <CliInstallation {...scrollFloat} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

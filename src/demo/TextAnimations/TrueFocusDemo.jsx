@@ -8,8 +8,8 @@ import {
   CliTab,
   CodeTab,
   PreviewTab,
-  TabbedLayout,
-} from "../../components/common/TabbedLayout";
+  TabsLayout,
+} from "../../components/common/TabsLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/Preview/PropTable";
@@ -85,7 +85,7 @@ const TrueFocusDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={200}>
           <TrueFocus {...config} />
@@ -158,7 +158,7 @@ const TrueFocusDemo = () => {
       <CliTab>
         <CliInstallation {...trueFocus} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

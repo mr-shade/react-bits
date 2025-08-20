@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -103,7 +103,7 @@ const FluidGlassDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <FluidGlass
@@ -210,7 +210,7 @@ const FluidGlassDemo = () => {
       <CliTab>
         <CliInstallation {...fluidGlass} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

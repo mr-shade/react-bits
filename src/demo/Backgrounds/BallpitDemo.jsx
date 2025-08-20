@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import RefreshButton from "../../components/common/Preview/RefreshButton";
@@ -126,7 +126,7 @@ const BallpitDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={600} maxH={600} overflow="hidden">
           <RefreshButton onClick={forceRerender} />
@@ -218,7 +218,7 @@ const BallpitDemo = () => {
       <CliTab>
         <CliInstallation {...ballpit} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

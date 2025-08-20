@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
@@ -98,7 +98,7 @@ const SplashCursorDemo = () => {
 
   return (
     <>
-      <TabbedLayout>
+      <TabsLayout>
         <PreviewTab>
           <Flex overflow="hidden" justifyContent="center" flexDirection={'column'} minH={300} p={0} alignItems="center" className="demo-container" position={'relative'} zIndex={10}>
             <Text fontSize={'3rem'} textAlign="center" color="#271E37" fontWeight={900} userSelect={'none'}>Move Your Cursor</Text>
@@ -114,7 +114,7 @@ const SplashCursorDemo = () => {
         <CliTab>
           <CliInstallation {...splashCursor} />
         </CliTab>
-      </TabbedLayout>
+      </TabsLayout>
 
       <SplashCursor />
     </>

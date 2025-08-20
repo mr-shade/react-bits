@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
@@ -64,7 +64,7 @@ const CircularGalleryDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
           <CircularGallery
@@ -137,7 +137,7 @@ const CircularGalleryDemo = () => {
       <CliTab>
         <CliInstallation {...circularGallery} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

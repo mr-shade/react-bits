@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Input, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -103,7 +103,7 @@ const StepperDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <Stepper
@@ -157,7 +157,7 @@ const StepperDemo = () => {
       <CliTab>
         <CliInstallation {...stepper} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

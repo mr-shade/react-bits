@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -54,7 +54,7 @@ const CircularTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={400} overflow="hidden">
           <CircularText text={text} onHover={onHover} spinDuration={spinDuration} />
@@ -106,7 +106,7 @@ const CircularTextDemo = () => {
       <CliTab>
         <CliInstallation {...circularText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

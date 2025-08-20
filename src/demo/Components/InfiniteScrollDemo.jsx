@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Separator } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -128,7 +128,7 @@ const InfiniteScrollDemo = () => {
   const tiltOptions = [{ value: "left", label: "Left" }, { value: "right", label: "Right" }];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           position="relative"
@@ -205,7 +205,7 @@ const InfiniteScrollDemo = () => {
       <CliTab>
         <CliInstallation {...infiniteScroll} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

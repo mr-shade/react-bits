@@ -49,13 +49,13 @@ const Header = () => {
         <Select.Trigger
           fontSize="12px"
           bg="#060010"
-          border="1px solid #392e4e"
+          border="1px solid #271E37"
           rounded="full"
           h={10}
           fontWeight={600}
           cursor="pointer"
-          transition="transform 0.3s"
-          _hover={{ transform: "scale(0.98)" }}
+          transition="background 0.3s"
+          _hover={{ background: "#170D27" }}
         >
           <Select.ValueText color="#fff" pl={1} fontSize="12px" />
         </Select.Trigger>
@@ -68,7 +68,7 @@ const Header = () => {
         <Select.Positioner>
           <Select.Content
             bg="#060010"
-            border="1px solid #392e4e"
+            border="1px solid #271E37"
             borderRadius="25px"
             w="80px"
             px={2}
@@ -120,14 +120,14 @@ const Header = () => {
               pl={3}
               rounded="full"
               bg="#060010"
-              border="1px solid #392e4e"
+              border="1px solid #271E37"
               fontWeight={600}
               align="center"
               gap={1}
               cursor="text"
               userSelect="none"
-              transition="transform 0.3s"
-              _hover={{ transform: "scale(0.98)" }}
+              transition="background 0.3s"
+              _hover={{ background: "#170D27" }}
               onClick={toggleSearch}
             >
               <Icon as={FiSearch} boxSize={4} color="#392e4e" />

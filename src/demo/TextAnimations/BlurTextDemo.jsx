@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
 import RefreshButton from "../../components/common/Preview/RefreshButton";
@@ -75,7 +75,7 @@ const BlurTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           position="relative"
@@ -154,7 +154,7 @@ const BlurTextDemo = () => {
       <CliTab>
         <CliInstallation {...blurText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

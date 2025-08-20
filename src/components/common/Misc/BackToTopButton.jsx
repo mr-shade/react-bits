@@ -38,7 +38,7 @@ const BackToTopButton = () => {
       fontWeight={500}
       rounded='xl'
       py={4}
-      right='2.3em'
+      right='2em'
       position='fixed'
       zIndex={98}
       boxShadow="10px 0 25px rgba(0, 0, 6, 1)"

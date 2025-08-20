@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
@@ -26,7 +26,7 @@ const RollingGalleryDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" bg={'#060010'} overflow='hidden' p={0}>
           <Flex h={'100%'} maxW={'600px'} alignItems="center" justifyContent="center" direction="column">
@@ -46,7 +46,7 @@ const RollingGalleryDemo = () => {
       <CliTab>
         <CliInstallation {...rollingGallery} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
@@ -77,7 +77,7 @@ const ASCIITextDemo = () => {
   }, [forceRerender]);
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           position="relative"
@@ -140,7 +140,7 @@ const ASCIITextDemo = () => {
       <CliTab>
         <CliInstallation {...asciiText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

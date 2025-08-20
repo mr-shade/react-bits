@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import useForceRerender from "../../hooks/useForceRerender";
@@ -72,7 +72,7 @@ const AnimatedListDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <AnimatedList
@@ -100,7 +100,7 @@ const AnimatedListDemo = () => {
       <CliTab>
         <CliInstallation {...animatedList} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

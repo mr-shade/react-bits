@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -69,7 +69,7 @@ const PixelCardDemo = () => {
   const options = [{ value: "default", label: "Default" }, { value: "yellow", label: "Yellow" }, { value: "blue", label: "Blue" }, { value: "pink", label: "Pink" }];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={500} maxH={500} overflow="hidden">
           <PixelCard variant={selectedVariant}>
@@ -104,7 +104,7 @@ const PixelCardDemo = () => {
       <CliTab>
         <CliInstallation {...pixelCard} />
       </CliTab>
-    </TabbedLayout >
+    </TabsLayout >
   );
 };
 

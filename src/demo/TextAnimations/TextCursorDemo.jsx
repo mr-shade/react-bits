@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -73,7 +73,7 @@ const TextCursorDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <TextCursor
@@ -110,7 +110,7 @@ const TextCursorDemo = () => {
       <CliTab>
         <CliInstallation {...textCursor} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

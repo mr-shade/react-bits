@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Text, Grid, GridItem } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -40,7 +40,7 @@ const TargetCursorDemo = () => {
 
   return (
     <>
-      <TabbedLayout>
+      <TabsLayout>
         <PreviewTab>
           <Box position="relative" className="demo-container" flexDirection="column" h={500} overflow="hidden">
             <Text fontSize="clamp(2rem, 6vw, 3rem)" fontWeight={900} mb={6} color="#271E37">Hover Below.</Text>
@@ -91,7 +91,7 @@ const TargetCursorDemo = () => {
         <CliTab>
           <CliInstallation {...targetCursor} />
         </CliTab>
-      </TabbedLayout>
+      </TabsLayout>
 
       <TargetCursor
         spinDuration={spinDuration}

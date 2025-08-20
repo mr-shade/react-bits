@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -98,7 +98,7 @@ const StickerPeelDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden" bg="linear-gradient(to bottom, #060010, #0D0716, #0D0716 , #060010)">
           <StickerPeel
@@ -208,7 +208,7 @@ const StickerPeelDemo = () => {
       <CliTab>
         <CliInstallation {...stickerPeel} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

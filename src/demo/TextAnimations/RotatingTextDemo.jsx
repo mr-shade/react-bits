@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { LayoutGroup, motion } from 'motion/react';
 import { Box } from "@chakra-ui/react";
 
@@ -123,7 +123,7 @@ const RotatingTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={400} maxH={400} overflow="hidden">
           <div className="rotating-text-demo">
@@ -164,7 +164,7 @@ const RotatingTextDemo = () => {
       <CliTab>
         <CliInstallation {...rotatingText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

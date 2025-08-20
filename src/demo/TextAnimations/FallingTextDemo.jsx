@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Flex, Text } from "@chakra-ui/react";
 
 import useForceRerender from "../../hooks/useForceRerender";
@@ -92,7 +92,7 @@ const FallingTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Flex position="relative" className="demo-container" h={400} overflow="hidden" justifyContent="center" alignItems="center" p={0}>
           <FallingText
@@ -160,7 +160,7 @@ const FallingTextDemo = () => {
       <CliTab>
         <CliInstallation {...fallingText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

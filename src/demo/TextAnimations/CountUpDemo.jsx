@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Button, Flex } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import GradientText from "../../content/TextAnimations/GradientText/GradientText";
 import RefreshButton from "../../components/common/Preview/RefreshButton";
@@ -84,7 +84,7 @@ const CountUpDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <h2 className="demo-title-extra">Default</h2>
         <Box position="relative" className="demo-container" minH={200}>
@@ -161,7 +161,7 @@ const CountUpDemo = () => {
       <CliTab>
         <CliInstallation {...countup} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

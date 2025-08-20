@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -51,7 +51,7 @@ const IridescenceDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Iridescence key={key} speed={speed} color={colors} mouseReact={mouseInteraction} />
@@ -157,7 +157,7 @@ const IridescenceDemo = () => {
       <CliTab>
         <CliInstallation {...iridescence} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

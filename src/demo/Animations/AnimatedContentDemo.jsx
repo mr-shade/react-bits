@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
 import RefreshButton from "../../components/common/Preview/RefreshButton";
@@ -45,7 +45,7 @@ const AnimatedContentDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={400} overflow="hidden">
           <RefreshButton onClick={forceRerender} />
@@ -215,7 +215,7 @@ const AnimatedContentDemo = () => {
       <CliTab>
         <CliInstallation {...animatedContent} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

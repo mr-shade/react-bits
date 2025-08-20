@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
@@ -57,7 +57,7 @@ const StarBorderDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={400}>
           <StarBorder
@@ -112,7 +112,7 @@ const StarBorderDemo = () => {
       <CliTab>
         <CliInstallation {...starBorder} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

@@ -5,7 +5,7 @@ import {
   Text
 } from "@chakra-ui/react";
 
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import useForceRerender from "../../hooks/useForceRerender";
@@ -79,7 +79,7 @@ const ClickSparkDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={300} p={0} overflow="hidden">
           <ClickSpark
@@ -180,7 +180,7 @@ const ClickSparkDemo = () => {
       <CliTab>
         <CliInstallation {...clickSpark} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

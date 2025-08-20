@@ -1,6 +1,6 @@
 import { Box, Icon } from "@chakra-ui/react";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from "../../components/code/Dependencies";
@@ -63,7 +63,7 @@ const ElasticSliderDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <h2 className="demo-title-extra">Default</h2>
         <Box position="relative" className="demo-container" minH={200}>
@@ -97,7 +97,7 @@ const ElasticSliderDemo = () => {
       <CliTab>
         <CliInstallation {...elasticSlider} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

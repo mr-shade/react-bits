@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import PropTable from "../../components/common/Preview/PropTable";
@@ -42,7 +42,7 @@ const ShinyTextDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <h2 className="demo-title-extra">Basic</h2>
         <Box position="relative" className="demo-container" minH={150} fontSize="24px">
@@ -83,7 +83,7 @@ const ShinyTextDemo = () => {
       <CliTab>
         <CliInstallation {...shinyText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

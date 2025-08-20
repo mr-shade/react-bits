@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -46,7 +46,7 @@ const FolderDemo = () => {
   const [key, forceRerender] = useForceRerender();
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <Folder key={key} size={size} color={color} className="custom-folder" />
@@ -88,7 +88,7 @@ const FolderDemo = () => {
       <CliTab>
         <CliInstallation {...folder} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

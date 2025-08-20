@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { VscAccount, VscArchive, VscHome, VscSettingsGear } from "react-icons/vsc";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import Customize from "../../components/common/Preview/Customize";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
@@ -83,7 +83,7 @@ const DockDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={400}>
           <Text fontSize='2rem' fontWeight={900} color="#271E37">Try it out!</Text>
@@ -139,7 +139,7 @@ const DockDemo = () => {
       <CliTab>
         <CliInstallation {...dock} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 }
 

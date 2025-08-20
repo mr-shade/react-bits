@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { TbBackground, TbMenu } from "react-icons/tb";
 import Lenis from "lenis";
@@ -205,7 +205,7 @@ const GlassSurfaceDemo = () => {
   }, [selectedExample]);
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           ref={scrollContainerRef}
@@ -565,7 +565,7 @@ const GlassSurfaceDemo = () => {
       <CliTab>
         <CliInstallation {...glassSurface} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

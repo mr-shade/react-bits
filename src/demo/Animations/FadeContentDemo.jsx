@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import RefreshButton from "../../components/common/Preview/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
@@ -69,7 +69,7 @@ const FadeDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={200}>
           <FadeContent
@@ -169,7 +169,7 @@ const FadeDemo = () => {
       <CliTab>
         <CliInstallation {...fadeContent} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

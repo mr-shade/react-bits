@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -49,7 +49,7 @@ const LanyardDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden" bg="linear-gradient(180deg, #271E37 0%, #060010 100%)">
           <RefreshButton onClick={forceRerender} />
@@ -88,7 +88,7 @@ const LanyardDemo = () => {
       <CliTab>
         <CliInstallation {...lanyard} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

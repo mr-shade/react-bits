@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
@@ -67,7 +67,7 @@ const MagnetLinesDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Flex overflow="hidden" justifyContent="center" pb={'1em'} alignItems="center" className="demo-container">
           <MagnetLines rows={10} columns={12} containerSize="40vmin" lineWidth="2px" lineHeight="30px" />
@@ -83,7 +83,7 @@ const MagnetLinesDemo = () => {
       <CliTab>
         <CliInstallation {...magnetLines} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

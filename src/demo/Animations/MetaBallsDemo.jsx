@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -89,7 +89,7 @@ const MetaBallsDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
           <MetaBalls
@@ -196,7 +196,7 @@ const MetaBallsDemo = () => {
       <CliTab>
         <CliInstallation {...metaBalls} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

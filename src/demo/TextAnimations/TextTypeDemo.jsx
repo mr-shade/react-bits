@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -149,7 +149,7 @@ const TextTypeDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={350} p={16} overflow="hidden" alignItems="flex-start" justifyContent="flex-start">
           <TextType
@@ -294,7 +294,7 @@ const TextTypeDemo = () => {
       <CliTab>
         <CliInstallation {...textType} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

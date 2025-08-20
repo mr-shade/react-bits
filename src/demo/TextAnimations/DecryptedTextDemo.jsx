@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Flex, Separator } from "@chakra-ui/react";
 import { toast } from "sonner";
-import { TabbedLayout, PreviewTab, CodeTab, CliTab } from "../../components/common/TabbedLayout";
+import { TabsLayout, PreviewTab, CodeTab, CliTab } from "../../components/common/TabsLayout";
 
 import CliInstallation from "../../components/code/CliInstallation";
 import CodeExample from "../../components/code/CodeExample";
@@ -96,7 +96,7 @@ const DecryptedTextDemo = () => {
   const directionOptions = [{ label: "Start", value: "start" }, { label: "End", value: "end" }, { label: "Center", value: "center" }];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           position="relative"
@@ -248,7 +248,7 @@ const DecryptedTextDemo = () => {
       <CliTab>
         <CliInstallation {...decryptedText} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

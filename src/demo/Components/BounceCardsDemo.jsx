@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import Customize from "../../components/common/Preview/Customize";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
@@ -96,7 +96,7 @@ const BounceCardsDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Flex
           overflow="hidden"
@@ -161,7 +161,7 @@ const BounceCardsDemo = () => {
       <CliTab>
         <CliInstallation {...bounceCards} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

@@ -76,7 +76,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 1.25rem;
+  gap: .6em;
 }
 
 .footer-link {

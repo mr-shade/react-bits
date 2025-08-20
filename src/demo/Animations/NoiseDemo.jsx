@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import RefreshButton from "../../components/common/Preview/RefreshButton";
 import CodeExample from "../../components/code/CodeExample";
@@ -55,7 +55,7 @@ const NoiseDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" background='#060010' minH={400} overflow="hidden">
           <Text color="#271E37" fontSize="6rem" fontWeight={900} textAlign={'center'}>
@@ -132,7 +132,7 @@ const NoiseDemo = () => {
       <CliTab>
         <CliInstallation {...noise} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

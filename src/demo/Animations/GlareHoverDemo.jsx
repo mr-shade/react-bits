@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Text, Flex } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -107,7 +107,7 @@ const GlareHoverDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} overflow="hidden">
           <GlareHover
@@ -183,7 +183,7 @@ const GlareHoverDemo = () => {
       <CliTab>
         <CliInstallation {...glareHover} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

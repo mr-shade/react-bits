@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -56,7 +56,7 @@ const LightningDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} p={0} overflow="hidden">
           <Lightning
@@ -147,7 +147,7 @@ const LightningDemo = () => {
       <CliTab>
         <CliInstallation {...lightning} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

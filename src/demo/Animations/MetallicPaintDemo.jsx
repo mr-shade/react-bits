@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -57,7 +57,7 @@ const LiquidPaperDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <MetallicPaint key={key} imageData={imageData} params={{ edge, patternBlur, patternScale, refraction, speed, liquid }} />
@@ -147,7 +147,7 @@ const LiquidPaperDemo = () => {
       <CliTab>
         <CliInstallation {...metallicPaint} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

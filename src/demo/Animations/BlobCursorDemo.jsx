@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { FiAlertTriangle } from "react-icons/fi";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from "../../components/code/Dependencies";
@@ -59,7 +59,7 @@ const BlobCursorDemo = () => {
   };
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box height={600} position="relative" className="demo-container" overflow="hidden">
           <BlobCursor
@@ -215,7 +215,7 @@ const BlobCursorDemo = () => {
       <CliTab>
         <CliInstallation {...blobCursor} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { LuComponent, LuImage, LuPlay, LuText } from "react-icons/lu";
 import { Box, Text } from "@chakra-ui/react";
 
@@ -132,7 +132,7 @@ const ScrollStackDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
           <RefreshButton onClick={handleRefresh} />
@@ -270,7 +270,7 @@ const ScrollStackDemo = () => {
       <CliTab>
         <CliInstallation {...scrollStack} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

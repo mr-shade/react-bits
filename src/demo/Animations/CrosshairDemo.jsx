@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 
 import CodeExample from '../../components/code/CodeExample';
@@ -38,7 +38,7 @@ const CrosshairDemo = () => {
   }, [linkText]);
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box ref={containerRef} position="relative" className="demo-container" minH={300} overflow="hidden">
           <Crosshair containerRef={targeted ? null : containerRef} color={color} />
@@ -115,7 +115,7 @@ const CrosshairDemo = () => {
       <CliTab>
         <CliInstallation {...crosshair} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

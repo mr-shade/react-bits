@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
@@ -38,7 +38,7 @@ const DecayCardDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" overflow="hidden">
           <DecayCard>
@@ -57,7 +57,7 @@ const DecayCardDemo = () => {
       <CliTab>
         <CliInstallation {...decayCard} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

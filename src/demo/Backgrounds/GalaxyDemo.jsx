@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -128,7 +128,7 @@ const GalaxyDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <Galaxy
@@ -275,7 +275,7 @@ const GalaxyDemo = () => {
       <CliTab>
         <CliInstallation {...galaxy} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

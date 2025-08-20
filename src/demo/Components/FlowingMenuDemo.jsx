@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -27,7 +27,7 @@ const FlowingMenuDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} overflow="hidden" px={0} pt='100px' pb='100px'>
           <FlowingMenu items={demoItems} />
@@ -44,7 +44,7 @@ const FlowingMenuDemo = () => {
       <CliTab>
         <CliInstallation {...flowingMenu} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

@@ -3,8 +3,8 @@ import {
   CodeTab,
   PreviewTab,
   CliTab,
-  TabbedLayout
-} from "../../components/common/TabbedLayout";
+  TabsLayout
+} from "../../components/common/TabsLayout";
 
 import {
   Flex,
@@ -81,7 +81,7 @@ const PixelTransitionDemo = () => {
   const [key, forceRerender] = useForceRerender();
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Flex direction="column" position="relative" className="demo-container" minH={400} maxH={400} overflow="hidden">
           <PixelTransition
@@ -168,7 +168,7 @@ const PixelTransitionDemo = () => {
       <CliTab>
         <CliInstallation {...pixelTransition} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

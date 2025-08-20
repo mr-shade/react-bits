@@ -10,14 +10,14 @@
   width: 100%;
   position: fixed;
   padding: 0 2em;
-  height: 85px;
+  height: 75px;
   background: #060010;
   left: 0;
 }
 
 .main-nav .nav-items {
   position: relative;
-  height: 85px;
+  height: 75px;
   padding: 0;
   max-width: 1440px;
   margin: 0 auto;
@@ -88,8 +88,10 @@
 
 .code-highlighter {
   border: 1px solid #392e4e !important;
+  margin: 0 !important;
   border-radius: 15px !important;
   background: #060010 !important;
+  text-shadow: none !important;
   font-size: 14px !important;
 }
 
@@ -111,6 +113,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.preview-footer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 0em;
+  padding: 3em 0;
+}
+
+.preview-footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(39, 30, 55, 0.6), transparent);
 }
 
 .demo-container-dots {

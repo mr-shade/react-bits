@@ -1,7 +1,7 @@
 import { Box, Flex, Icon, Text } from "@chakra-ui/react";
 import { VscSparkleFilled } from "react-icons/vsc";
 import { FaLock } from "react-icons/fa6";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
@@ -27,7 +27,7 @@ const SpotlightCardDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" py={10}>
           <SpotlightCard className="custom-spotlight-card">
@@ -60,7 +60,7 @@ const SpotlightCardDemo = () => {
       <CliTab>
         <CliInstallation {...spotlightCard} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

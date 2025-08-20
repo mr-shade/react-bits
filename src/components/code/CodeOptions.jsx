@@ -114,7 +114,7 @@ const CodeOptions = ({ children }) => {
   return (
     <Tabs.Root mt={4} w="100%" variant="plain" defaultValue="default">
       <Tabs.List
-        mb={2}
+        mb={4}
         w="100%"
         display="flex"
         alignItems="center"

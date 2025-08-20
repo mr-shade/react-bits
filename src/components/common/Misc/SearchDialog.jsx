@@ -210,11 +210,11 @@ const SearchDialog = ({ isOpen, onClose }) => {
       <Dialog.Positioner placement="top">
         <Dialog.Content
           bg="#060010"
-          border="1px solid #392e4e"
+          border="1px solid #271E37"
           rounded="xl"
           mx={4}
           w="full"
-          maxW="720px"
+          maxW="600px"
         >
           <Dialog.Body padding="1em 1em .2em 1em">
             <InputGroup startElement={<Icon as={FiSearch} color="#B19EEF" fontSize='18px' />} mb={2}>
@@ -222,10 +222,11 @@ const SearchDialog = ({ isOpen, onClose }) => {
                 autoFocus
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Search the docs"
+                placeholder="Search components, categories, or keywords..."
                 variant="filled"
+                pb="4px"
                 bg="#060010"
-                fontSize="lg"
+                fontSize="16px"
                 borderRadius="md"
                 color="white"
                 _focus={{ bg: "#060010", borderColor: "transparent" }}
@@ -246,7 +247,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                 >
                   <Box
                     mt={0}
-                    borderTop="1px solid #392e4e"
+                    borderTop="1px solid #271E37"
                     position="relative"
                   >
                     <Box
@@ -274,7 +275,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                                 mr=".6em"
                                 mb={2}
                                 p="1em"
-                                bg={selected ? "#392e4e" : "#271E37"}
+                                bg={selected ? "#271E37" : "#170D27"}
                                 rounded="xl"
                                 display="flex"
                                 alignItems="center"

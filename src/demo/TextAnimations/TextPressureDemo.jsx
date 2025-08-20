@@ -3,8 +3,8 @@ import {
   CliTab,
   CodeTab,
   PreviewTab,
-  TabbedLayout
-} from '../../components/common/TabbedLayout';
+  TabsLayout
+} from '../../components/common/TabsLayout';
 import {
   Box,
   Flex,
@@ -124,7 +124,7 @@ const TextPressureDemo = () => {
   const [key, forceRerender] = useForceRerender();
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" bg='#060010' minH={400} maxH={450} overflow="hidden" mb={6}>
           <RefreshButton onClick={forceRerender} />
@@ -246,7 +246,7 @@ const TextPressureDemo = () => {
       <CliTab>
         <CliInstallation {...textPressure} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

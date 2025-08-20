@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
 
 import PropTable from "../../components/common/Preview/PropTable";
@@ -35,7 +35,7 @@ const HyperspeedDemo = () => {
   ]
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} cursor="pointer" p={0} mb={4}>
           <Hyperspeed effectOptions={hyperspeedPresets[activePreset]} />
@@ -71,7 +71,7 @@ const HyperspeedDemo = () => {
       <CliTab>
         <CliInstallation {...hyperspeed} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

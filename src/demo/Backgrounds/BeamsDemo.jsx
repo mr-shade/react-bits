@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -75,7 +75,7 @@ const BeamsDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           <Beams
@@ -177,7 +177,7 @@ const BeamsDemo = () => {
       <CliTab>
         <CliInstallation {...beams} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

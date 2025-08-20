@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Spinner } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -57,7 +57,7 @@ const InfiniteMenuDemo = () => {
 
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           {isHidden && <Spinner size="lg" position="absolute" />}
@@ -78,7 +78,7 @@ const InfiniteMenuDemo = () => {
       <CliTab>
         <CliInstallation {...infiniteMenu} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

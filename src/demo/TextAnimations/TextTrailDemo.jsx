@@ -1,4 +1,4 @@
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -105,7 +105,7 @@ const TextTrailDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden" p={0}>
           <TextTrail 
@@ -189,7 +189,7 @@ const TextTrailDemo = () => {
       <CliTab>
         <CliInstallation {...textTrail} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

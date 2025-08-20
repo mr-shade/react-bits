@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
@@ -99,7 +99,7 @@ const RibbonsDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
           <Text position="absolute" fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color="#271E37">Hover Me.</Text>
@@ -198,7 +198,7 @@ const RibbonsDemo = () => {
       <CliTab>
         <CliInstallation {...ribbons} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

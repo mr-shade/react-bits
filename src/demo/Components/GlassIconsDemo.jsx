@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { FiBarChart2, FiBook, FiCloud, FiEdit, FiFileText, FiHeart } from "react-icons/fi";
 import { Box } from "@chakra-ui/react";
 
@@ -42,7 +42,7 @@ const GlassIconsDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
           <GlassIcons items={items} className="my-glass-icons" />
@@ -62,7 +62,7 @@ const GlassIconsDemo = () => {
       <CliTab>
         <CliInstallation {...glassIcons} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

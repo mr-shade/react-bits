@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import CodeExample from "../../components/code/CodeExample";
 import CliInstallation from "../../components/code/CliInstallation";
@@ -69,7 +69,7 @@ const MagnetDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <h2 className="demo-title-extra">Container</h2>
         <Box position="relative" className="demo-container" minH={300}>
@@ -147,7 +147,7 @@ const MagnetDemo = () => {
       <CliTab>
         <CliInstallation {...magnet} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

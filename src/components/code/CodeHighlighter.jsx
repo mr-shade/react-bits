@@ -23,7 +23,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
   const shouldCollapse = codeLines > maxLines;
 
   return (
-    <Box position="relative" mb={5}>
+    <Box position="relative">
       <Box
         position="relative"
         overflow="hidden"
@@ -61,16 +61,16 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
         {shouldCollapse && (
           <Button
             position="absolute"
-            bottom={shouldCollapse && !expanded ? '.75rem' : '2.25rem'}
-            right={shouldCollapse && !expanded ? '.75rem' : '1.75rem'}
-            rounded="xl"
+            bottom='0.9em'
+            right='0.8em'
+            rounded="9px"
             height='2.5rem'
             fontWeight={500}
             backgroundColor="#060010"
             border="1px solid #392e4e"
             color="white"
-            _hover={{ backgroundColor: '#111' }}
-            _active={{ backgroundColor: '#111' }}
+            _hover={{ backgroundColor: '#170D27' }}
+            _active={{ backgroundColor: '#170D27' }}
             zIndex={2}
             onClick={() => setExpanded(prev => !prev)}
           >
@@ -82,14 +82,14 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
       {codeString &&
         <Button
           position="absolute"
-          top={4}
+          top={2}
           right=".6em"
-          borderRadius="8px"
+          borderRadius="9px"
           fontWeight={500}
-          backgroundColor={copied ? '#6CC75D' : '#060010'}
+          backgroundColor={copied ? '#5227FF' : '#060010'}
           border="1px solid #392e4e"
           color={copied ? 'black' : 'white'}
-          _hover={{ backgroundColor: copied ? '#6CC75D' : '#271E37' }}
+          _hover={{ backgroundColor: copied ? '#5227FF' : '#170D27' }}
           _active={{ backgroundColor: '#5227FF' }}
           transition="background-color 0.3s ease"
           onClick={handleCopy}

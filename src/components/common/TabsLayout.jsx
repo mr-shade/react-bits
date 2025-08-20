@@ -1,7 +1,9 @@
 import React from "react";
+import ContributionSection from "./GitHub/ContributionSection";
+import TabsFooter from "./TabsFooter";
+
 import { Tabs, Icon, Flex } from "@chakra-ui/react";
 import { FiCode, FiEye, FiHeart, FiTerminal } from "react-icons/fi";
-import ContributionSection from "./GitHub/ContributionSection";
 
 const TAB_STYLE_PROPS = {
   flex: "0 0 auto",
@@ -16,7 +18,7 @@ const TAB_STYLE_PROPS = {
   _selected: { bg: "#170D27", color: "#B19EEF" },
 };
 
-const TabbedLayout = ({ children, className }) => {
+const TabsLayout = ({ children, className }) => {
   const contentMap = {
     PreviewTab: null,
     CodeTab: null,
@@ -72,6 +74,8 @@ const TabbedLayout = ({ children, className }) => {
       <Tabs.Content pt={0} value="contribute">
         <ContributionSection />
       </Tabs.Content>
+
+      <TabsFooter />
     </Tabs.Root>
   );
 };
@@ -80,4 +84,4 @@ export const PreviewTab = ({ children }) => <>{children}</>;
 export const CodeTab = ({ children }) => <>{children}</>;
 export const CliTab = ({ children }) => <>{children}</>;
 
-export { TabbedLayout };
+export { TabsLayout };

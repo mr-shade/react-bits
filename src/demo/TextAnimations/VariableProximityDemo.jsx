@@ -3,8 +3,8 @@ import {
   CliTab,
   CodeTab,
   PreviewTab,
-  TabbedLayout
-} from "../../components/common/TabbedLayout";
+  TabsLayout
+} from "../../components/common/TabsLayout";
 import {
   Box,
   Button,
@@ -67,7 +67,7 @@ const VariableProximityDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           ref={containerRef}
@@ -130,7 +130,7 @@ const VariableProximityDemo = () => {
       <CliTab>
         <CliInstallation {...variableProximity} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from "../../components/common/Preview/PropTable";
 import CliInstallation from "../../components/code/CliInstallation";
@@ -96,7 +96,7 @@ const WavesDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box position="relative" h={600} className="demo-container" overflow="hidden" p={0}>
           <Waves
@@ -138,7 +138,7 @@ const WavesDemo = () => {
       <CliTab>
         <CliInstallation {...waves} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
 
   );
 }

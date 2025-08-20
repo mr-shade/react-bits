@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabbedLayout } from "../../components/common/TabbedLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 import { Box, Flex } from "@chakra-ui/react";
 
 import CodeExample from "../../components/code/CodeExample";
@@ -91,7 +91,7 @@ const ScrollVelocityDemo = () => {
   ];
 
   return (
-    <TabbedLayout>
+    <TabsLayout>
       <PreviewTab>
         <Box
           position="relative"
@@ -130,7 +130,7 @@ const ScrollVelocityDemo = () => {
       <CliTab>
         <CliInstallation {...scrollVelocity} />
       </CliTab>
-    </TabbedLayout>
+    </TabsLayout>
   );
 };
 
