@@ -18,7 +18,7 @@ const PrismDemo = () => {
   const [animationType, setAnimationType] = useState("rotate");
   const [timeScale, setTimeScale] = useState(0.5);
   const [scale, setScale] = useState(3.6);
-  const [noise, setNoise] = useState(0.5);
+  const [noise, setNoise] = useState(0);
   const [glow, setGlow] = useState(1);
   const [height, setHeight] = useState(3.5);
   const [baseWidth, setBaseWidth] = useState(5.5);
