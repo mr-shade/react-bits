@@ -117,6 +117,7 @@ const backgrounds = {
   'light-rays': () => import("../demo/Backgrounds/LightRaysDemo"),
   'faulty-terminal': () => import("../demo/Backgrounds/FaultyTerminalDemo"),
   'plasma': () => import("../demo/Backgrounds/PlasmaDemo"),
+  'prism': () => import("../demo/Backgrounds/PrismDemo"),
 };
 
 export const componentMap = {

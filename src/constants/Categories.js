@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Plasma', 'Logo Loop', 'Card Nav', 'Pill Nav', 'Faulty Terminal', 'Light Rays', 'Sticker Peel', 'Text Type', 'Galaxy', 'Glass Surface', 'Curved Loop', 'Dark Veil', 'Target Cursor'];
+export const NEW = ['Plasma', 'Prism', 'Logo Loop', 'Card Nav', 'Pill Nav', 'Faulty Terminal', 'Light Rays', 'Sticker Peel', 'Galaxy', 'Glass Surface', 'Curved Loop', 'Target Cursor'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -108,6 +108,7 @@ export const CATEGORIES = [
   {
     name: 'Backgrounds',
     subcategories: [
+      'Prism',
       'Dark Veil',
       'Silk',
       'Light Rays',
