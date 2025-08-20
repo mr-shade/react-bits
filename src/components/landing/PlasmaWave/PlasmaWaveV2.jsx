@@ -160,7 +160,9 @@ export default function PlasmaWaveV2({
     if (isMobile) {
       return;
     }
-
+    if (!rendererRef.current) {
+      return;
+    }
     const renderer = new Renderer({
       alpha: true,
       dpr: Math.min(window.devicePixelRatio, 1),
