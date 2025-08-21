@@ -26,6 +26,7 @@ const animations = {
   'cubes': () => import("../demo/Animations/CubesDemo"),
   'target-cursor': () => import("../demo/Animations/TargetCursorDemo"),
   'sticker-peel': () => import("../demo/Animations/StickerPeelDemo"),
+  'electric-border': () => import("../demo/Animations/ElectricBorderDemo")
 };
 
 const textAnimations = {
