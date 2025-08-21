@@ -131,26 +131,12 @@ const GridDistortion = ({
       if (width === 0 || height === 0) return;
       
       const containerAspect = width / height;
-      const imageAspect = imageAspectRef.current || 1;
 
       renderer.setSize(width, height);
 
-      // Scale the plane to fit the container while maintaining image aspect ratio
-      let scaleX = 1;
-      let scaleY = 1;
-      
-      if (containerAspect > imageAspect) {
-        // Container is wider than image - fit to height
-        scaleX = containerAspect / imageAspect;
-        scaleY = 1;
-      } else {
-        // Container is taller than image - fit to width
-        scaleX = 1;
-        scaleY = imageAspect / containerAspect;
-      }
-      
+      // Scale the plane to cover the entire container
       if (plane) {
-        plane.scale.set(scaleX, scaleY, 1);
+        plane.scale.set(containerAspect, 1, 1);
       }
 
       // Update camera
