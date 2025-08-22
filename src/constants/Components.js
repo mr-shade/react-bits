@@ -90,6 +90,7 @@ const components = {
   'glass-surface': () => import("../demo/Components/GlassSurfaceDemo"),
   'pill-nav': () => import("../demo/Components/PillNavDemo.jsx"),
   'card-nav': () => import("../demo/Components/CardNavDemo"),
+  'bubble-menu': () => import("../demo/Components/BubbleMenuDemo"),
 };
 
 const backgrounds = {
