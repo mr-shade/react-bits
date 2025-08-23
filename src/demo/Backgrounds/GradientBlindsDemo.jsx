@@ -9,6 +9,7 @@ import PropTable from "../../components/common/Preview/PropTable";
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSelect from "../../components/common/Preview/PreviewSelect";
+import BackgroundContent from "../../components/common/Preview/BackgroundContent";
 
 import { gradientBlinds } from "../../constants/code/Backgrounds/gradientBlindsCode";
 import GradientBlinds from "../../ts-default/Backgrounds/GradientBlinds/GradientBlinds";
@@ -16,7 +17,7 @@ import GradientBlinds from "../../ts-default/Backgrounds/GradientBlinds/Gradient
 const GradientBlindsDemo = () => {
   const [color1, setColor1] = useState('#FF9FFC');
   const [color2, setColor2] = useState('#5227FF');
-  const [angle, setAngle] = useState(0);
+  const [angle, setAngle] = useState(20);
   const [noise, setNoise] = useState(0.5);
   const [blindCount, setBlindCount] = useState(16);
   const [blindMinWidth, setBlindMinWidth] = useState(60);
@@ -141,6 +142,8 @@ const GradientBlindsDemo = () => {
             mouseDampening={mouseDampening}
             shineDirection={shineDirection}
           />
+
+          <BackgroundContent pillText="New Background" headline="Smooth gradients make everything better" />
         </Box>
 
         <Customize>
