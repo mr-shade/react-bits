@@ -120,6 +120,7 @@ const backgrounds = {
   'faulty-terminal': () => import("../demo/Backgrounds/FaultyTerminalDemo"),
   'plasma': () => import("../demo/Backgrounds/PlasmaDemo"),
   'prism': () => import("../demo/Backgrounds/PrismDemo"),
+  'gradient-blinds': () => import("../demo/Backgrounds/GradientBlindsDemo"),
 };
 
 export const componentMap = {
