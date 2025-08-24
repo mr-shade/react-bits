@@ -33,21 +33,32 @@ const GridDistortion = ({
   className = ''
 }) => {
   const containerRef = useRef(null);
-  const imageAspectRef = useRef(1);
+  const sceneRef = useRef(null);
+  const rendererRef = useRef(null);
   const cameraRef = useRef(null);
-  const initialDataRef = useRef(null);
+  const planeRef = useRef(null);
+  const imageAspectRef = useRef(1);
+  const animationIdRef = useRef(null);
+  const resizeObserverRef = useRef(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
+    
     const scene = new THREE.Scene();
+    sceneRef.current = scene;
+    
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
       powerPreference: "high-performance"
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+    rendererRef.current = renderer;
+    
+    container.innerHTML = '';
     container.appendChild(renderer.domElement);
 
     const camera = new THREE.OrthographicCamera(0, 0, 0, 0, -1000, 1000);
@@ -64,6 +75,9 @@ const GridDistortion = ({
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(imageSrc, (texture) => {
       texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.wrapS = THREE.ClampToEdgeWrapping;
+      texture.wrapT = THREE.ClampToEdgeWrapping;
       imageAspectRef.current = texture.image.width / texture.image.height;
       uniforms.uTexture.value = texture;
       handleResize();
@@ -75,8 +89,6 @@ const GridDistortion = ({
       data[i * 4] = Math.random() * 255 - 125;
       data[i * 4 + 1] = Math.random() * 255 - 125;
     }
-
-    initialDataRef.current = new Float32Array(data);
 
     const dataTexture = new THREE.DataTexture(
       data,
@@ -93,21 +105,30 @@ const GridDistortion = ({
       uniforms,
       vertexShader,
       fragmentShader,
+      transparent: true,
     });
+    
     const geometry = new THREE.PlaneGeometry(1, 1, size - 1, size - 1);
     const plane = new THREE.Mesh(geometry, material);
+    planeRef.current = plane;
     scene.add(plane);
 
     const handleResize = () => {
-      const width = container.offsetWidth;
-      const height = container.offsetHeight;
+      if (!container || !renderer || !camera) return;
+      
+      const rect = container.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      
+      if (width === 0 || height === 0) return;
+      
       const containerAspect = width / height;
-      const imageAspect = imageAspectRef.current;
 
       renderer.setSize(width, height);
 
-      const scale = Math.max(containerAspect / imageAspect, 1);
-      plane.scale.set(imageAspect * scale, scale, 1);
+      if (plane) {
+        plane.scale.set(containerAspect, 1, 1);
+      }
 
       const frustumHeight = 1;
       const frustumWidth = frustumHeight * containerAspect;
@@ -120,7 +141,24 @@ const GridDistortion = ({
       uniforms.resolution.value.set(width, height, 1, 1);
     };
 
-    const mouseState = { x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0 };
+    if (window.ResizeObserver) {
+      const resizeObserver = new ResizeObserver(() => {
+        handleResize();
+      });
+      resizeObserver.observe(container);
+      resizeObserverRef.current = resizeObserver;
+    } else {
+      window.addEventListener("resize", handleResize);
+    }
+
+    const mouseState = {
+      x: 0,
+      y: 0,
+      prevX: 0,
+      prevY: 0,
+      vX: 0,
+      vY: 0,
+    };
 
     const handleMouseMove = (e) => {
       const rect = container.getBoundingClientRect();
@@ -132,17 +170,29 @@ const GridDistortion = ({
     };
 
     const handleMouseLeave = () => {
-      dataTexture.needsUpdate = true;
-      Object.assign(mouseState, { x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0 });
+      if (dataTexture) {
+        dataTexture.needsUpdate = true;
+      }
+      Object.assign(mouseState, {
+        x: 0,
+        y: 0,
+        prevX: 0,
+        prevY: 0,
+        vX: 0,
+        vY: 0,
+      });
     };
 
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('resize', handleResize);
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
     handleResize();
 
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationIdRef.current = requestAnimationFrame(animate);
+      
+      if (!renderer || !scene || !camera) return;
+      
       uniforms.time.value += 0.05;
 
       const data = dataTexture.image.data;
@@ -157,10 +207,11 @@ const GridDistortion = ({
 
       for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-          const distance = Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
-          if (distance < maxDist * maxDist) {
+          const distSq =
+            Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
+          if (distSq < maxDist * maxDist) {
             const index = 4 * (i + size * j);
-            const power = Math.min(maxDist / Math.sqrt(distance), 10);
+            const power = Math.min(maxDist / Math.sqrt(distSq), 10);
             data[index] += strength * 100 * mouseState.vX * power;
             data[index + 1] -= strength * 100 * mouseState.vY * power;
           }
@@ -170,21 +221,54 @@ const GridDistortion = ({
       dataTexture.needsUpdate = true;
       renderer.render(scene, camera);
     };
+    
     animate();
 
     return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('resize', handleResize);
-      renderer.dispose();
-      geometry.dispose();
-      material.dispose();
-      dataTexture.dispose();
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+      }
+      
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      } else {
+        window.removeEventListener("resize", handleResize);
+      }
+      
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+      
+      if (renderer) {
+        renderer.dispose();
+        if (container.contains(renderer.domElement)) {
+          container.removeChild(renderer.domElement);
+        }
+      }
+      
+      if (geometry) geometry.dispose();
+      if (material) material.dispose();
+      if (dataTexture) dataTexture.dispose();
       if (uniforms.uTexture.value) uniforms.uTexture.value.dispose();
+      
+      sceneRef.current = null;
+      rendererRef.current = null;
+      cameraRef.current = null;
+      planeRef.current = null;
     };
   }, [grid, mouse, strength, relaxation, imageSrc]);
 
-  return <div ref={containerRef} className={`w-full h-full overflow-hidden ${className}`} />;
+  return (
+    <div
+      ref={containerRef}
+      className={`relative overflow-hidden ${className}`}
+      style={{ 
+        width: '100%', 
+        height: '100%',
+        minWidth: '0',
+        minHeight: '0'
+      }}
+    />
+  );
 };
 
 export default GridDistortion;
