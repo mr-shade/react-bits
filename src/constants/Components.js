@@ -26,6 +26,7 @@ const animations = {
   'cubes': () => import("../demo/Animations/CubesDemo"),
   'target-cursor': () => import("../demo/Animations/TargetCursorDemo"),
   'sticker-peel': () => import("../demo/Animations/StickerPeelDemo"),
+  'electric-border': () => import("../demo/Animations/ElectricBorderDemo")
 };
 
 const textAnimations = {
@@ -89,6 +90,7 @@ const components = {
   'glass-surface': () => import("../demo/Components/GlassSurfaceDemo"),
   'pill-nav': () => import("../demo/Components/PillNavDemo.jsx"),
   'card-nav': () => import("../demo/Components/CardNavDemo"),
+  'bubble-menu': () => import("../demo/Components/BubbleMenuDemo"),
 };
 
 const backgrounds = {
@@ -118,6 +120,7 @@ const backgrounds = {
   'faulty-terminal': () => import("../demo/Backgrounds/FaultyTerminalDemo"),
   'plasma': () => import("../demo/Backgrounds/PlasmaDemo"),
   'prism': () => import("../demo/Backgrounds/PrismDemo"),
+  'gradient-blinds': () => import("../demo/Backgrounds/GradientBlindsDemo"),
 };
 
 export const componentMap = {
