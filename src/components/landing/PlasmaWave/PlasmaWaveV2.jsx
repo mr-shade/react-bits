@@ -100,7 +100,7 @@ export default function PlasmaWaveV2({
   xOffset = 0,
   yOffset = 0,
   rotationDeg = 0,
-  focalLength = 0.8,
+  focalLength = 1,
   speed1 = 0.1,
   speed2 = 0.1,
   dir2 = 1.0,

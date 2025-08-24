@@ -197,11 +197,6 @@ const FeatureCards = () => {
   return (
     <div className="features-section">
       <div className="features-container">
-        <div className="features-header">
-          <h3 className="features-title">Zero cost, all the cool.</h3>
-          <p className="features-subtitle">Everything you need to add flair to your websites</p>
-        </div>
-
         <GlobalSpotlight gridRef={gridRef} disableAnimations={isMobile} />
 
         <div className="bento-grid" ref={gridRef}>
@@ -219,7 +214,7 @@ const FeatureCards = () => {
               <img src="/assets/components.gif" alt="Components animation" className="components-gif" />
             </div>
             <h2>{isMobile ? "100" : <CountUp to={100} />}+</h2>
-            <h3>Curated Components</h3>
+            <h3>Creative Components</h3>
             <p>Growing weekly &amp; only getting better</p>
           </ParticleCard>
 

@@ -6,8 +6,8 @@ const StartBuilding = () => {
     <section className="start-building-section">
       <div className="start-building-container">
         <div className="start-building-card">
-          <h2 className="start-building-title">Start exploring React Bits</h2>
-          <p className="start-building-subtitle">Animations, components, backgrounds - it&apos;s all here</p>
+          <h2 className="start-building-title">Start Exploring</h2>
+          <p className="start-building-subtitle">Animations, Components, Backgrounds - One Click Away</p>
 
           <Link to="/text-animations/split-text" className="start-building-button">Browse Components</Link>
         </div>

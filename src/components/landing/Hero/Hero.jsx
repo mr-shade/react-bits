@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SplitText from "../../../content/TextAnimations/SplitText/SplitText";
-import DotGrid from "../../../content/Backgrounds/DotGrid/DotGrid";
-import LetterGlitch from "../../../content/Backgrounds/LetterGlitch/LetterGlitch";
-import Squares from "../../../content/Backgrounds/Squares/Squares";
-import { Box } from "@chakra-ui/react";
+import landingBlur from "../../../assets/svg/landing-blur.svg";
+import { GoArrowRight } from "react-icons/go";
+import FadeContent from "../../../content/Animations/FadeContent/FadeContent";
 
 const ResponsiveSplitText = ({ isMobile, text, ...rest }) =>
   isMobile ? (
@@ -25,11 +24,39 @@ const Hero = () => {
 
   return (
     <div className="landing-content">
+      <img
+        src={landingBlur}
+        alt=""
+        aria-hidden="true"
+        className="landing-gradient-blur"
+        draggable="false"
+        style={{ zIndex: 5 }}
+      />
+
+      <img
+        src={landingBlur}
+        alt=""
+        aria-hidden="true"
+        className="landing-gradient-blur"
+        draggable="false"
+        style={{ zIndex: 5 }}
+      />
+
       <div className="hero-main-content">
+        <FadeContent className="hero-tag-fade" blur>
+          <Link to="/backgrounds/gradient-blinds" className="hero-new-badge-container">
+            <span className="hero-new-badge">New 🎉</span>
+            <div className="hero-new-badge-text">
+              <span>Gradient Blinds</span><GoArrowRight />
+            </div>
+          </Link>
+        </FadeContent>
+
+
         <h1 className="landing-title">
           <ResponsiveSplitText
             isMobile={isMobile}
-            text="Animated React components"
+            text="React Components"
             className="hero-split"
             splitType="chars"
             delay={30}
@@ -39,7 +66,7 @@ const Hero = () => {
           <br />
           <ResponsiveSplitText
             isMobile={isMobile}
-            text="for creative developers"
+            text="For Creative Developers"
             className="hero-split"
             splitType="chars"
             delay={30}
@@ -52,9 +79,9 @@ const Hero = () => {
           isMobile={isMobile}
           className="landing-subtitle"
           splitType="words"
-          delay={10}
+          delay={25}
           duration={1}
-          text="Over a hundred components, ready to be dropped into your React projects"
+          text="Highly customizable animated components that make your React projects truly stand out"
         />
 
         <Link to={"/text-animations/split-text"} className="landing-button">
@@ -78,55 +105,6 @@ const Hero = () => {
           </div>
         </Link>
       </div>
-
-      {!isMobile && (
-        <div className="hero-cards-container">
-          <div
-            className="hero-card hero-card-1"
-            onClick={() =>
-              window.open("https://reactbits.dev/backgrounds/dot-grid")
-            }
-          >
-            <Box w="100%" h="100%" position="relative" className="hero-dot-grid">
-              <DotGrid
-                baseColor="#ffffff"
-                activeColor="rgba(138, 43, 226, 0.9)"
-                dotSize={8}
-                gap={16}
-                proximity={50}
-              />
-            </Box>
-          </div>
-
-          <div className="hero-cards-row">
-            <div
-              className="hero-card hero-card-2"
-              onClick={() =>
-                window.open("https://reactbits.dev/backgrounds/letter-glitch")
-              }
-            >
-              <LetterGlitch
-                className="hero-glitch"
-                glitchColors={["#ffffff", "#999999", "#333333"]}
-              />
-            </div>
-
-            <div
-              className="hero-card hero-card-3"
-              onClick={() =>
-                window.open("https://reactbits.dev/backgrounds/squares")
-              }
-            >
-              <Squares
-                borderColor="#fff"
-                speed={0.2}
-                direction="diagonal"
-                hoverFillColor="#fff"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
