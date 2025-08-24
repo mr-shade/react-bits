@@ -46,11 +46,10 @@ const GridDistortion = ({
     if (!containerRef.current) return;
 
     const container = containerRef.current;
-    
-    // Initialize Three.js scene
+
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    
+
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
@@ -59,12 +58,10 @@ const GridDistortion = ({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
     rendererRef.current = renderer;
-    
-    // Clear container and append renderer
+
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
 
-    // Setup camera
     const camera = new THREE.OrthographicCamera(0, 0, 0, 0, -1000, 1000);
     camera.position.z = 2;
     cameraRef.current = camera;
@@ -76,7 +73,6 @@ const GridDistortion = ({
       uDataTexture: { value: null },
     };
 
-    // Load texture
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(imageSrc, (texture) => {
       texture.minFilter = THREE.LinearFilter;
@@ -88,7 +84,6 @@ const GridDistortion = ({
       handleResize();
     });
 
-    // Create data texture for distortion
     const size = grid;
     const data = new Float32Array(4 * size * size);
     for (let i = 0; i < size * size; i++) {
@@ -106,7 +101,6 @@ const GridDistortion = ({
     dataTexture.needsUpdate = true;
     uniforms.uDataTexture.value = dataTexture;
 
-    // Create material and geometry
     const material = new THREE.ShaderMaterial({
       side: THREE.DoubleSide,
       uniforms,
@@ -114,32 +108,29 @@ const GridDistortion = ({
       fragmentShader,
       transparent: true,
     });
-    
+
     const geometry = new THREE.PlaneGeometry(1, 1, size - 1, size - 1);
     const plane = new THREE.Mesh(geometry, material);
     planeRef.current = plane;
     scene.add(plane);
 
-    // Resize handler that works with CSS changes
     const handleResize = () => {
       if (!container || !renderer || !camera) return;
-      
+
       const rect = container.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
-      
+
       if (width === 0 || height === 0) return;
-      
+
       const containerAspect = width / height;
 
       renderer.setSize(width, height);
 
-      // Scale the plane to cover the entire container
       if (plane) {
         plane.scale.set(containerAspect, 1, 1);
       }
 
-      // Update camera
       const frustumHeight = 1;
       const frustumWidth = frustumHeight * containerAspect;
       camera.left = -frustumWidth / 2;
@@ -151,7 +142,6 @@ const GridDistortion = ({
       uniforms.resolution.value.set(width, height, 1, 1);
     };
 
-    // Use ResizeObserver for better responsiveness
     if (window.ResizeObserver) {
       const resizeObserver = new ResizeObserver(() => {
         handleResize();
@@ -159,11 +149,9 @@ const GridDistortion = ({
       resizeObserver.observe(container);
       resizeObserverRef.current = resizeObserver;
     } else {
-      // Fallback for older browsers
       window.addEventListener("resize", handleResize);
     }
 
-    // Mouse interaction
     const mouseState = {
       x: 0,
       y: 0,
@@ -199,18 +187,15 @@ const GridDistortion = ({
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseleave", handleMouseLeave);
 
-    // Initial resize
     handleResize();
 
-    // Animation loop
     const animate = () => {
       animationIdRef.current = requestAnimationFrame(animate);
-      
+
       if (!renderer || !scene || !camera) return;
-      
+
       uniforms.time.value += 0.05;
 
-      // Update distortion data
       const data = dataTexture.image.data;
       for (let i = 0; i < size * size; i++) {
         data[i * 4] *= relaxation;
@@ -237,37 +222,35 @@ const GridDistortion = ({
       dataTexture.needsUpdate = true;
       renderer.render(scene, camera);
     };
-    
+
     animate();
 
-    // Cleanup function
     return () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
-      
+
       if (resizeObserverRef.current) {
         resizeObserverRef.current.disconnect();
       } else {
         window.removeEventListener("resize", handleResize);
       }
-      
+
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseleave", handleMouseLeave);
-      
+
       if (renderer) {
         renderer.dispose();
         if (container.contains(renderer.domElement)) {
           container.removeChild(renderer.domElement);
         }
       }
-      
+
       if (geometry) geometry.dispose();
       if (material) material.dispose();
       if (dataTexture) dataTexture.dispose();
       if (uniforms.uTexture.value) uniforms.uTexture.value.dispose();
-      
-      // Clear refs
+
       sceneRef.current = null;
       rendererRef.current = null;
       cameraRef.current = null;
@@ -279,8 +262,8 @@ const GridDistortion = ({
     <div
       ref={containerRef}
       className={`distortion-container ${className}`}
-      style={{ 
-        width: '100%', 
+      style={{
+        width: '100%',
         height: '100%',
         minWidth: '0',
         minHeight: '0'

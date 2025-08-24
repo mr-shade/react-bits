@@ -75,8 +75,6 @@ const GridDistortionDemo = () => {
             className="grid-distortion"
           />
 
-          {/* <Text pointerEvents="none" position="absolute" textAlign='center' fontSize="6rem" fontWeight={900} userSelect="none" mixBlendMode="overlay">Distortion.</Text> */}
-          {/* For Demo Purposes Only */}
           <BackgroundContent
             pillText="New Background"
             headline="Don't just sit there, move your cursor!"

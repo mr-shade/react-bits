@@ -57,7 +57,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
 
     const container = containerRef.current;
     
-    // Initialize Three.js scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
     
@@ -70,11 +69,9 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     renderer.setClearColor(0x000000, 0);
     rendererRef.current = renderer;
     
-    // Clear container and append renderer
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
 
-    // Setup camera
     const camera = new THREE.OrthographicCamera(0, 0, 0, 0, -1000, 1000);
     camera.position.z = 2;
     cameraRef.current = camera;
@@ -86,7 +83,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       uDataTexture: { value: null as THREE.DataTexture | null },
     };
 
-    // Load texture
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(imageSrc, (texture) => {
       texture.minFilter = THREE.LinearFilter;
@@ -98,7 +94,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       handleResize();
     });
 
-    // Create data texture for distortion
     const size = grid;
     const data = new Float32Array(4 * size * size);
     for (let i = 0; i < size * size; i++) {
@@ -116,7 +111,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     dataTexture.needsUpdate = true;
     uniforms.uDataTexture.value = dataTexture;
 
-    // Create material and geometry
     const material = new THREE.ShaderMaterial({
       side: THREE.DoubleSide,
       uniforms,
@@ -130,7 +124,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     planeRef.current = plane;
     scene.add(plane);
 
-    // Resize handler that works with CSS changes
     const handleResize = () => {
       if (!container || !renderer || !camera) return;
       
@@ -144,12 +137,10 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
 
       renderer.setSize(width, height);
 
-      // Scale the plane to cover the entire container
       if (plane) {
         plane.scale.set(containerAspect, 1, 1);
       }
 
-      // Update camera
       const frustumHeight = 1;
       const frustumWidth = frustumHeight * containerAspect;
       camera.left = -frustumWidth / 2;
@@ -161,7 +152,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       uniforms.resolution.value.set(width, height, 1, 1);
     };
 
-    // Use ResizeObserver for better responsiveness
     if (window.ResizeObserver) {
       const resizeObserver = new ResizeObserver(() => {
         handleResize();
@@ -169,11 +159,9 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       resizeObserver.observe(container);
       resizeObserverRef.current = resizeObserver;
     } else {
-      // Fallback for older browsers
       window.addEventListener("resize", handleResize);
     }
 
-    // Mouse interaction
     const mouseState = {
       x: 0,
       y: 0,
@@ -209,10 +197,8 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseleave", handleMouseLeave);
 
-    // Initial resize
     handleResize();
 
-    // Animation loop
     const animate = () => {
       animationIdRef.current = requestAnimationFrame(animate);
       
@@ -220,7 +206,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       
       uniforms.time.value += 0.05;
 
-      // Update distortion data
       if (!(dataTexture.image.data instanceof Float32Array)) {
         console.error("dataTexture.image.data is not a Float32Array");
         return;
@@ -254,7 +239,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     
     animate();
 
-    // Cleanup function
     return () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
@@ -281,7 +265,6 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       if (dataTexture) dataTexture.dispose();
       if (uniforms.uTexture.value) uniforms.uTexture.value.dispose();
       
-      // Clear refs
       sceneRef.current = null;
       rendererRef.current = null;
       cameraRef.current = null;
