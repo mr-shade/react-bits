@@ -99,6 +99,10 @@
   color: #b6b6b6 !important;
 }
 
+.code-highlighter .template-string {
+  color: rgb(172, 172, 172) !important;
+}
+
 .code-highlighter:has(.language-bash) {
   padding: 1.25em !important;
 }

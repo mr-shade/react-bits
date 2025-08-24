@@ -1,9 +1,10 @@
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { synthwave84 } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FiCopy, FiCheckSquare } from "react-icons/fi";
 import { RiEmotionSadLine } from 'react-icons/ri';
+
+import codeTheme from '../../utils/codeTheme';
 
 const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLines = 25 }) => {
   const [copied, setCopied] = useState(false);
@@ -32,7 +33,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
         {codeString &&
           <SyntaxHighlighter
             language={language}
-            style={synthwave84}
+            style={codeTheme}
             showLineNumbers={showLineNumbers}
             className="code-highlighter"
           >
@@ -95,8 +96,8 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           onClick={handleCopy}
         >
           {copied
-            ? <Icon as={FiCheckSquare} color="#fff" boxSize={4}/>
-            : <Icon as={FiCopy} color="#fff" boxSize={4}/>
+            ? <Icon as={FiCheckSquare} color="#fff" boxSize={4} />
+            : <Icon as={FiCopy} color="#fff" boxSize={4} />
           }
         </Button>
       }
