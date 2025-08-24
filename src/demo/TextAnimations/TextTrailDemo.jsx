@@ -27,7 +27,7 @@ const TextTrailDemo = () => {
     {
       name: "text",
       type: "string",
-      default: '"Vibe"',
+      default: '"Trail"',
       description: "The text to display with the trail effect"
     },
     {
