@@ -36,7 +36,7 @@ const LandingPage = () => {
         </div>
       )}
 
-      <PlasmaWaveV2 yOffset={0} xOffset={40} rotationDeg={-35} />
+      <PlasmaWaveV2 yOffset={0} xOffset={40} rotationDeg={-45} />
 
       <Hero />
       <FeatureCards />

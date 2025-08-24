@@ -25,12 +25,13 @@ uniform float bend2;
 uniform float bendAdj1;
 uniform float bendAdj2;
 uniform float uOpacity;
+uniform float uNoise;
 
-const float lt   = 0.05;
+const float lt   = 0.3;
 const float pi   = 3.141592653589793;
 const float pi2  = pi * 2.0;
 const float pi_2 = pi * 0.5;
-#define MAX_STEPS 15
+#define MAX_STEPS 20
 #define A(v) mat2(cos(m.v + radians(vec4(0.0,-90.0,90.0,0.0))))
 
 void mainImage(out vec4 C, in vec2 U) {
@@ -45,8 +46,6 @@ void mainImage(out vec4 C, in vec2 U) {
   vec3 k = vec3(0.0);
   vec3 p;
 
-  mat2 v = A(y), h = A(x);
-
   float t1 = t * 0.7;
   float t2 = t * 0.9;
   float tSpeed1 = t * speed1;
@@ -54,25 +53,26 @@ void mainImage(out vec4 C, in vec2 U) {
 
   for (int step = 0; step < MAX_STEPS; ++step) {
     p = o + u * d;
-    p.yz *= v;
-    p.xz *= h;
     p.x  -= 15.0;
 
     float px = p.x;
     float wob1 = bend1 + bendAdj1 + sin(t1 + px * 0.8) * 0.1;
     float wob2 = bend2 + bendAdj2 + cos(t2 + px * 1.1) * 0.1;
 
-    vec2 baseOffset = vec2(px, px + pi_2);
+    float px2 = px + pi_2;
+    vec2 baseOffset = vec2(px, px2);
     vec2 sinOffset  = sin(baseOffset + tSpeed1) * wob1;
     vec2 cosOffset  = cos(baseOffset + tSpeed2) * wob2;
 
-    float wSin = length(p.yz - sinOffset) - lt;
-    float wCos = length(p.yz - cosOffset) - lt;
+    vec2 yz = p.yz;
+    float wSin = length(yz - sinOffset) - lt;
+    float wCos = length(yz - cosOffset) - lt;
 
     k.x = max(px + lt, wSin);
     k.y = max(px + lt, wCos);
 
-    s = min(s, min(k.x, k.y));
+    float current = min(k.x, k.y);
+    s = min(s, current);
     if (s < 0.001 || d > 400.0) break;
     d += s * 0.7;
   }
@@ -80,7 +80,12 @@ void mainImage(out vec4 C, in vec2 U) {
   vec3 c = max(cos(d * pi2) - s * sqrt(d) - k, 0.0);
   c.gb += 0.1;
   if (max(c.r, max(c.g, c.b)) < 0.15) discard;
-  C = vec4(c * 0.4 + c.brg * 0.6 + c * c, uOpacity);
+  c = c * 0.4 + c.brg * 0.6 + c * c;
+  if (uNoise > 0.0001) {
+    float n = fract(sin(dot(gl_FragCoord.xy + iTime * 13.37, vec2(12.9898,78.233))) * 43758.5453123);
+    c += (n - 0.5) * uNoise;
+  }
+  C = vec4(clamp(c, 0.0, 1.0), uOpacity);
 }
 
 void main() {
@@ -100,12 +105,13 @@ export default function PlasmaWaveV2({
   xOffset = 0,
   yOffset = 0,
   rotationDeg = 0,
-  focalLength = 1,
-  speed1 = 0.1,
-  speed2 = 0.1,
+  focalLength = 0.8,
+  speed1 = 0.05,
+  speed2 = 0.05,
   dir2 = 1.0,
-  bend1 = 0.9,
-  bend2 = 0.6,
+  bend1 = 1,
+  bend2 = 0.5,
+  noise = 0,
   fadeInDuration = 2000
 }) {
   const [isMobile, setIsMobile] = useState(false);
@@ -117,14 +123,15 @@ export default function PlasmaWaveV2({
   const fadeStartTime = useRef(null);
   const lastTimeRef = useRef(0);
   const pausedTimeRef = useRef(0);
+  const resizeTimeoutRef = useRef(null);
 
   const propsRef = useRef({
     xOffset, yOffset, rotationDeg, focalLength,
-    speed1, speed2, dir2, bend1, bend2, fadeInDuration,
+    speed1, speed2, dir2, bend1, bend2, noise, fadeInDuration,
   });
   propsRef.current = {
     xOffset, yOffset, rotationDeg, focalLength,
-    speed1, speed2, dir2, bend1, bend2, fadeInDuration,
+    speed1, speed2, dir2, bend1, bend2, noise, fadeInDuration,
   };
 
   useEffect(() => {
@@ -198,21 +205,34 @@ export default function PlasmaWaveV2({
         bend2: { value: bend2 },
         bendAdj1: { value: 0 },
         bendAdj2: { value: 0 },
+        uNoise: { value: noise },
         uOpacity: { value: 0 },
       },
     });
     new Mesh(gl, { geometry, program }).setParent(scene);
 
-    const resize = () => {
-      const { width, height } =
-        containerRef.current?.getBoundingClientRect() || { width: 0, height: 0 };
+    const applySize = () => {
+      if (!containerRef.current) return;
+      const { width, height } = containerRef.current.getBoundingClientRect();
+      if (
+        width * renderer.dpr === uniformResolution.current[0] &&
+        height * renderer.dpr === uniformResolution.current[1]
+      ) return;
       renderer.setSize(width, height);
       uniformResolution.current[0] = width * renderer.dpr;
       uniformResolution.current[1] = height * renderer.dpr;
       gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-      gl.clear(gl.COLOR_BUFFER_BIT);
     };
-    resize();
+
+    applySize();
+
+    const resize = () => {
+      if (resizeTimeoutRef.current) clearTimeout(resizeTimeoutRef.current);
+      resizeTimeoutRef.current = setTimeout(() => {
+        applySize();
+        resizeTimeoutRef.current = null;
+      }, 150);
+    };
     const ro = new ResizeObserver(resize);
     ro.observe(containerRef.current);
 
@@ -223,6 +243,7 @@ export default function PlasmaWaveV2({
         yOffset: yOff,
         rotationDeg: rot,
         focalLength: fLen,
+        noise: nVal,
         fadeInDuration: fadeDur,
       } = propsRef.current;
 
@@ -250,6 +271,7 @@ export default function PlasmaWaveV2({
         program.uniforms.iTime.value = t;
         program.uniforms.uRotation.value = rot * Math.PI / 180;
         program.uniforms.focalLength.value = fLen;
+        if (program.uniforms.uNoise) program.uniforms.uNoise.value = nVal;
         program.uniforms.uOpacity.value = opacity;
 
         renderer.render({ scene, camera });
@@ -267,6 +289,10 @@ export default function PlasmaWaveV2({
     return () => {
       cancelAnimationFrame(rafId);
       ro.disconnect();
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+        resizeTimeoutRef.current = null;
+      }
       renderer.gl.canvas.remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
