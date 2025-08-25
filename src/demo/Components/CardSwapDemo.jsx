@@ -12,6 +12,10 @@ import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
 import useForceRerender from "../../hooks/useForceRerender";
 
+import cs1 from "../../assets/demo/cs1.webp";
+import cs2 from "../../assets/demo/cs2.webp";
+import cs3 from "../../assets/demo/cs3.webp";
+
 import { cardSwap } from "../../constants/code/Components/cardSwapCode";
 import CardSwap, { Card } from "../../content/Components/CardSwap/CardSwap";
 
@@ -141,46 +145,37 @@ const CardSwapDemo = () => {
               easing={easing}
               pauseOnHover={pauseOnHover}
             >
-              <Card customClass="one">
-                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #271E37, #060606)">
+              <Card customClass="one" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #0D0716, #060606)" flexShrink={0}>
                   <Text m={2}>
                     <Icon as={FaCircle} mr={2} />
                     Smooth
                   </Text>
                 </Box>
-                <Box position="relative" p={2}>
-                  <video autoPlay loop muted playsInline style={{ borderRadius: '15px' }}>
-                    <source src="https://cdn.dribbble.com/userupload/7053861/file/original-7956be57144058795db6bb24875bdab9.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                <Box position="relative" flex={1}>
+                  <img src={cs1} alt="Card Swap Demo 1" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </Box>
               </Card>
-              <Card customClass="two">
-                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #271E37, #060606)">
+              <Card customClass="two" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #0D0716, #060606)" flexShrink={0}>
                   <Text m={2}>
                     <Icon as={FaCode} mr={2} />
                     Reliable
                   </Text>
                 </Box>
-                <Box position="relative" p={2}>
-                  <video autoPlay loop muted playsInline style={{ borderRadius: '15px' }}>
-                    <source src="https://cdn.dribbble.com/userupload/7078020/file/original-b071e9063d9e3ba86a85a61b9d5a7c42.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                <Box position="relative" flex={1}>
+                  <img src={cs2} alt="Card Swap Demo 2" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </Box>
               </Card>
-              <Card customClass="three">
-                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #271E37, #060606)">
+              <Card customClass="three" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <Box borderBottom="1px solid #fff" bg="linear-gradient(to top, #0D0716, #060606)" flexShrink={0}>
                   <Text m={2}>
                     <Icon as={FaSliders} mr={2} />
                     Customizable
                   </Text>
                 </Box>
-                <Box position="relative" p={2}>
-                  <video autoPlay loop muted playsInline style={{ borderRadius: '15px' }}>
-                    <source src="https://cdn.dribbble.com/userupload/7098541/file/original-0b063b12ca835421580e6034368ad95a.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                <Box position="relative" flex={1}>
+                  <img src={cs3} alt="Card Swap Demo 3" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </Box>
               </Card>
             </CardSwap>
