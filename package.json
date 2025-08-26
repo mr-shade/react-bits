@@ -19,6 +19,7 @@
 		"@chakra-ui/icons": "^2.2.4",
 		"@chakra-ui/react": "^3.20.0",
 		"@emotion/react": "^11.14.0",
+		"@gsap/react": "^2.1.2",
 		"@react-three/drei": "^10.1.2",
 		"@react-three/fiber": "^9.1.2",
 		"@react-three/postprocessing": "^3.0.4",
