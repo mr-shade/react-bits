@@ -32,7 +32,7 @@ const GradualBlurDemo = () => {
   const propData = [
     {
       name: "position",
-      type: `"top" | "bottom" | "left" | "right"`,
+      type: `"top" | "bottom | left | right"`,
       default: `"bottom"`,
       description: "Position of the blur overlay.",
     },
@@ -262,9 +262,7 @@ const GradualBlurDemo = () => {
             value={blurProps.position}
             options={[
               { label: "Top", value: "top" },
-              { label: "Bottom", value: "bottom" },
-              { label: "Left", value: "left" },
-              { label: "Right", value: "right" },
+              { label: "Bottom", value: "bottom" }
             ]}
             onChange={(v) => setBlurProps((p) => ({ ...p, position: v }))}
           />
