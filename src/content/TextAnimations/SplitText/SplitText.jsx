@@ -81,7 +81,7 @@ const SplitText = ({
               scrollTrigger: {
                 trigger: el,
                 start,
-                toggleActions: "play none none none",
+                once: true,
               },
               onComplete: () => {
                 animationCompletedRef.current = true;

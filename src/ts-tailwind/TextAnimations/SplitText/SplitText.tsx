@@ -97,7 +97,7 @@ const SplitText: React.FC<SplitTextProps> = ({
               scrollTrigger: {
                 trigger: el,
                 start,
-                toggleActions: "play none none none",
+                once: true,
               },
               onComplete: () => {
                 animationCompletedRef.current = true;
