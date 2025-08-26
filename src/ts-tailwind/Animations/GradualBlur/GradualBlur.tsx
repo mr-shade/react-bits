@@ -10,7 +10,7 @@ import React, {
 import * as math from "mathjs";
 
 type GradualBlurProps = PropsWithChildren<{
-  // Basic options
+
   position?: "top" | "bottom" | "left" | "right";
   strength?: number;
   height?: string;
@@ -19,16 +19,15 @@ type GradualBlurProps = PropsWithChildren<{
   exponential?: boolean;
   zIndex?: number;
 
-  // Animation options
+
   animated?: boolean | "scroll";
   duration?: string;
   easing?: string;
 
-  // Styling options
+
   opacity?: number;
   curve?: "linear" | "bezier" | "ease-in" | "ease-out" | "ease-in-out";
 
-  // Responsive options
   responsive?: boolean;
   mobileHeight?: string;
   tabletHeight?: string;
@@ -37,64 +36,62 @@ type GradualBlurProps = PropsWithChildren<{
   tabletWidth?: string;
   desktopWidth?: string;
 
-  // Advanced options
+
   preset?: "top" | "bottom" | "left" | "right" | "subtle" | "intense" | "smooth" | "sharp" | "header" | "footer" | "sidebar" | "page-header" | "page-footer";
   gpuOptimized?: boolean;
   hoverIntensity?: number;
   target?: "parent" | "page";
 
-  // Event handlers
   onAnimationComplete?: () => void;
   className?: string;
   style?: CSSProperties;
 }>;
 
-// Default configuration
+
 const DEFAULT_CONFIG: Partial<GradualBlurProps> = {
   position: 'bottom',
   strength: 2,
   height: '6rem',
   divCount: 5,
-  exponential: false,
+  exponential: true,
   zIndex: 40,
   animated: false,
   duration: '0.3s',
   easing: 'ease-out',
   opacity: 1,
-  curve: 'linear',
+  curve: 'bezier',
   responsive: false,
-  target: 'parent',
+  target: 'page',
   className: '',
   style: {}
 };
 
-// Streamlined presets
+
 const PRESETS: Record<string, Partial<GradualBlurProps>> = {
-  // Basic positions
+
   top: { position: 'top', height: '6rem' },
   bottom: { position: 'bottom', height: '6rem' },
   left: { position: 'left', height: '6rem' },
   right: { position: 'right', height: '6rem' },
   
-  // Intensity variations
+
   subtle: { height: '4rem', strength: 1, opacity: 0.8, divCount: 3 },
   intense: { height: '10rem', strength: 4, divCount: 8, exponential: true },
-  
-  // Style variations
+
   smooth: { height: '8rem', curve: 'bezier', divCount: 10 },
   sharp: { height: '5rem', curve: 'linear', divCount: 4 },
   
-  // Common use cases
+
   header: { position: 'top', height: '8rem', curve: 'ease-out' },
   footer: { position: 'bottom', height: '8rem', curve: 'ease-out' },
   sidebar: { position: 'left', height: '6rem', strength: 2.5 },
   
-  // Page-level presets
+
   'page-header': { position: 'top', height: '10rem', target: 'page', strength: 3 },
   'page-footer': { position: 'bottom', height: '10rem', target: 'page', strength: 3 }
 };
 
-// Curve functions
+
 const CURVE_FUNCTIONS: Record<string, (progress: number) => number> = {
   linear: (progress) => progress,
   bezier: (progress) => progress * progress * (3 - 2 * progress),
@@ -104,7 +101,7 @@ const CURVE_FUNCTIONS: Record<string, (progress: number) => number> = {
     progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2
 };
 
-// Utility functions
+
 const mergeConfigs = (...configs: Partial<GradualBlurProps>[]): Partial<GradualBlurProps> => {
   return configs.reduce((acc, config) => ({ ...acc, ...config }), {});
 };
@@ -131,7 +128,7 @@ const debounce = <T extends (...args: any[]) => void>(func: T, wait: number): (.
   };
 };
 
-// Custom hooks
+
 const useResponsiveHeight = (responsive: boolean = false, config: Partial<GradualBlurProps>) => {
   const [height, setHeight] = useState(config.height);
   
@@ -213,23 +210,23 @@ const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>, shouldObs
 };
 
 const GradualBlur: React.FC<GradualBlurProps> = (props) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
   const [isHovered, setIsHovered] = useState(false);
   
-  // Merge configurations
+
   const config = useMemo(() => {
     const presetConfig = props.preset && PRESETS[props.preset] ? PRESETS[props.preset] : {};
     return mergeConfigs(DEFAULT_CONFIG, presetConfig, props) as Required<GradualBlurProps>;
   }, [props]);
 
-  // Responsive height and width
+
   const responsiveHeight = useResponsiveHeight(config.responsive, config);
   const responsiveWidth = useResponsiveWidth(config.responsive, config);
 
-  // Intersection observer for scroll animations
+
   const isVisible = useIntersectionObserver(containerRef, config.animated === 'scroll');
 
-  // Memoized blur divs generation
+
   const blurDivs = useMemo(() => {
     const divs: React.ReactNode[] = [];
     const increment = 100 / config.divCount;
@@ -242,7 +239,7 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
       let progress = i / config.divCount;
       progress = curveFunc(progress);
       
-      // Calculate blur value
+
       let blurValue: number;
       if (config.exponential) {
         blurValue = Number(math.pow(2, progress * 4)) * 0.0625 * currentStrength;
@@ -250,13 +247,13 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
         blurValue = 0.0625 * (progress * config.divCount + 1) * currentStrength;
       }
       
-      // Calculate gradient positions
+
       const p1 = math.round((increment * i - increment) * 10) / 10;
       const p2 = math.round((increment * i) * 10) / 10;
       const p3 = math.round((increment * i + increment) * 10) / 10;
       const p4 = math.round((increment * i + increment * 2) * 10) / 10;
       
-      // Generate gradient
+
       let gradient = `transparent ${p1}%, black ${p2}%`;
       if (p3 <= 100) gradient += `, black ${p3}%`;
       if (p4 <= 100) gradient += `, transparent ${p4}%`;
@@ -284,14 +281,14 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
     return divs;
   }, [config, isHovered]);
 
-  // Container styles with target-aware positioning
+
   const containerStyle: CSSProperties = useMemo(() => {
     const isVertical = ['top', 'bottom'].includes(config.position);
     const isHorizontal = ['left', 'right'].includes(config.position);
     const isPageTarget = config.target === 'page';
     
     const baseStyle: CSSProperties = {
-      // Position based on target
+
       position: isPageTarget ? 'fixed' : 'absolute',
       pointerEvents: config.hoverIntensity ? 'auto' : 'none',
       opacity: isVisible ? 1 : 0,
@@ -300,7 +297,7 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
       ...config.style
     };
 
-    // Apply dimensions and positioning
+
     if (isVertical) {
       baseStyle.height = responsiveHeight;
       baseStyle.width = responsiveWidth || '100%';
@@ -318,7 +315,7 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
     return baseStyle;
   }, [config, responsiveHeight, responsiveWidth, isVisible]);
 
-  // Event handlers
+
   const handleMouseEnter = useCallback(() => {
     if (config.hoverIntensity) {
       setIsHovered(true);
@@ -331,7 +328,7 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
     }
   }, [config.hoverIntensity]);
 
-  // Animation complete callback
+
   useEffect(() => {
     if (isVisible && config.animated === 'scroll' && config.onAnimationComplete) {
       const timer = setTimeout(
@@ -356,7 +353,7 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
   );
 };
 
-// Factory function for creating instances with different targets
+
 export const createPageBlur = (props: Partial<GradualBlurProps> = {}) => {
   return <GradualBlur {...props} target="page" />;
 };
@@ -365,12 +362,12 @@ export const createParentBlur = (props: Partial<GradualBlurProps> = {}) => {
   return <GradualBlur {...props} target="parent" />;
 };
 
-// Export utilities
+
 export { PRESETS, CURVE_FUNCTIONS };
 
 export default React.memo(GradualBlur);
 
-// CSS injection function
+
 const injectStyles = () => {
   if (typeof document === 'undefined') return;
   
@@ -423,7 +420,6 @@ const injectStyles = () => {
   document.head.appendChild(styleElement);
 };
 
-// Inject styles on component mount
 if (typeof document !== 'undefined') {
   injectStyles();
 }

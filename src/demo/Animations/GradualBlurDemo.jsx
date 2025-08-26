@@ -63,7 +63,7 @@ const GradualBlurDemo = () => {
     {
       name: "exponential",
       type: "boolean",
-      default: "false",
+      default: "true",
       description: "Use exponential blur progression.",
     },
     {
@@ -93,7 +93,7 @@ const GradualBlurDemo = () => {
     {
       name: "curve",
       type: `"linear" | "bezier" | "ease-in-out"`,
-      default: `"linear"`,
+      default: `"bezier"`,
       description: "Controls blur progression curve.",
     },
     {
@@ -151,8 +151,8 @@ const GradualBlurDemo = () => {
     strength: 2,
     height: "7rem",
     divCount: 5,
-    curve: "linear",
-    exponential: false,
+    curve: "bezier",
+    exponential: true,
     opacity: 1,
   });
 
@@ -162,13 +162,22 @@ const GradualBlurDemo = () => {
         <Box
           position="relative"
           className="demo-container"
-          h={{ base: "90vh", md: "130vh" }}
+          h="70rem"
           overflowY="auto"
           overflowX="hidden"
         >
-          
+          <style>
+            {`
+              .demo-container::-webkit-scrollbar {
+                display: none;
+              }
+              .demo-container {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `}
+          </style>
 
-          {/* GradualBlur effect - controlled by position prop */}
           <GradualBlur
             {...blurProps}
             target="page"
@@ -177,11 +186,11 @@ const GradualBlurDemo = () => {
             height={blurProps.position === 'top' ? "14rem" : blurProps.height}
           />
 
-          {/* Top text */}
+
           <Heading 
             position="absolute" 
             top="1vh" 
-            fontSize={{ base: "15vw", md: "14vw",lg:"10vw" }} 
+            fontSize={{ base: "4rem", md: "5rem",lg:"7rem" }} 
             zIndex={50}
             lineHeight={1}
             textAlign="center"
@@ -200,7 +209,7 @@ const GradualBlurDemo = () => {
             flexDirection="column"
             height="500px"
           >
-            {/* Profile Image */}
+
             <Image
               padding="0.5"
               src="https://plus.unsplash.com/premium_photo-1730063330492-3ff4f985952e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -210,7 +219,7 @@ const GradualBlurDemo = () => {
               objectFit="cover"
             />
 
-            {/* Name & Link - positioned at bottom */}
+
             <Box p={4} >
               <VStack align="start" spacing={0}>
                 <Text fontWeight="bold" fontSize="lg" color="black" mb={-4}>
@@ -227,11 +236,11 @@ const GradualBlurDemo = () => {
             </Box>
           </Box>
 
-          {/* Bottom text */}
+
           <Heading 
             position="absolute" 
             bottom="0" 
-            fontSize={{ base: "13vw", md: "14vw",lg:"10vw" }} 
+            fontSize={{ base: "4rem", md: "5rem",lg:"7rem" }} 
             zIndex={50}
             lineHeight={1}
             textAlign="center"
@@ -241,7 +250,7 @@ const GradualBlurDemo = () => {
           </Heading>
         </Box>
 
-        {/* Controls */}
+
         <Customize>
           <PreviewSelect
             title="Position"
