@@ -158,7 +158,7 @@ const SplitTextDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["gsap"]} />
+        <Dependencies dependencyList={["gsap", "@gsap/react"]} />
       </PreviewTab>
 
       <CodeTab>
