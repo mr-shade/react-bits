@@ -86,8 +86,6 @@ const SplitText: React.FC<SplitTextProps> = ({
             targets,
             {
               ...from,
-              immediateRender: false,
-              force3D: true,
             },
             {
               ...to,
