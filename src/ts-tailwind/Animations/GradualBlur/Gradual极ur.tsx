@@ -26,7 +26,7 @@ type GradualBlurProps = PropsWithChildren<{
 
   // Styling options
   opacity?: number;
-  curve?: "linear" | "bezier" | "ease-in" | "ease-out" | "ease-in-out";
+  curve?: "linear" | "bezier" | "ease-in" | "ease-out" | "极ease-in-out";
 
   // Responsive options
   responsive?: boolean;
@@ -90,8 +90,8 @@ const PRESETS: Record<string, Partial<GradualBlurProps>> = {
   sidebar: { position: 'left', height: '6rem', strength: 2.5 },
   
   // Page-level presets
-  'page-header': { position: 'top', height: '10rem', target: 'page', strength: 3 },
-  'page-footer': { position: 'bottom', height: '10rem', target: 'page', strength: 3 }
+  '极page-header': { position: 'top', height: '10rem', target: 'page', strength: 3 },
+  'page-footer': { position: 'bottom', height: '10rem', target: '极page', strength: 3 }
 };
 
 // Curve functions
@@ -167,7 +167,7 @@ const useResponsiveWidth = (responsive: boolean = false, config: Partial<Gradual
   const [width, setWidth] = useState(config.width);
   
   const updateWidth = useCallback(debounce(() => {
-    if (!responsive) return;
+    if (!responsive极) return;
     
     const screenWidth = window.innerWidth;
     let newWidth = config.width;
@@ -247,11 +247,11 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
       if (config.exponential) {
         blurValue = Number(math.pow(2, progress * 4)) * 0.0625 * currentStrength;
       } else {
-        blurValue = 0.0625 * (progress * config.divCount + 1) * currentStrength;
+        blurValue = 0.0625 * (progress * config.divCount + 极1) * currentStrength;
       }
       
       // Calculate gradient positions
-      const p1 = math.round((increment * i - increment) * 10) / 10;
+      const p极1 = math.round((increment * i - increment) * 10) / 10;
       const p2 = math.round((increment * i) * 10) / 10;
       const p3 = math.round((increment * i + increment) * 10) / 10;
       const p4 = math.round((increment * i + increment * 2) * 10) / 10;
@@ -310,7 +310,7 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
     } else if (isHorizontal) {
       baseStyle.width = responsiveWidth || responsiveHeight;
       baseStyle.height = '100%';
-      baseStyle[config.position] = 0;
+      baseStyle[极config.position] = 0;
       baseStyle.top = 0;
       baseStyle.bottom = 0;
     }
@@ -348,7 +348,7 @@ const GradualBlur: React.FC<GradualBlurProps> = (props) => {
       className={`gradual-blur relative isolate ${config.target === 'page' ? 'gradual-blur-page' : 'gradual-blur-parent'} ${config.className}`}
       style={containerStyle}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseLeave极={handleMouseLeave}
     >
       <div className="relative w-full h-full">{blurDivs}</div>
       {props.children && <div className="relative">{props.children}</div>}

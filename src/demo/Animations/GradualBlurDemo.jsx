@@ -162,38 +162,11 @@ const GradualBlurDemo = () => {
         <Box
           position="relative"
           className="demo-container"
-          h="140vh"
+          h={{ base: "90vh", md: "130vh" }}
           overflowY="auto"
           overflowX="hidden"
         >
-          <Heading
-            position="absolute"
-            left="0px"
-            top="50%"
-            transform="translateY(-50%) rotate(-90deg)"
-            fontSize="9vh"
-            whiteSpace="nowrap"
-            zIndex={50}
-            color="white"
-            textShadow="2px 2px 4px rgba(0,0,0,0.5)"
-          >
-            Gradual Blur
-          </Heading>
-
-          {/* Right side rotated text */}
-          <Heading
-            position="absolute"
-            right="0px"
-            top="50%"
-            transform="translateY(-50%) rotate(90deg)"
-            fontSize="8vh"
-            whiteSpace="nowrap"
-            zIndex={50}
-            color="white"
-            textShadow="2px 2px 4px rgba(0,0,0,0.5)"
-          >
-            Gradual Blur
-          </Heading>
+          
 
           {/* GradualBlur effect - controlled by position prop */}
           <GradualBlur
@@ -205,7 +178,15 @@ const GradualBlurDemo = () => {
           />
 
           {/* Top text */}
-          <Heading position="absolute" top="10vh" fontSize="20vh" zIndex={50}>
+          <Heading 
+            position="absolute" 
+            top="1vh" 
+            fontSize={{ base: "15vw", md: "14vw",lg:"10vw" }} 
+            zIndex={50}
+            lineHeight={1}
+            textAlign="center"
+            width="100%"
+          >
             Scroll Down
           </Heading>
 
@@ -247,7 +228,15 @@ const GradualBlurDemo = () => {
           </Box>
 
           {/* Bottom text */}
-          <Heading position="absolute" bottom="87px" fontSize="20vh" zIndex={50}>
+          <Heading 
+            position="absolute" 
+            bottom="0" 
+            fontSize={{ base: "13vw", md: "14vw",lg:"10vw" }} 
+            zIndex={50}
+            lineHeight={1}
+            textAlign="center"
+            width="100%"
+          >
             Gradual Blur
           </Heading>
         </Box>
