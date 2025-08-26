@@ -162,7 +162,7 @@ const GradualBlurDemo = () => {
         <Box
           position="relative"
           className="demo-container"
-          h="200vh" // Visible height
+          h="140vh" // Visible height
           overflowY="auto" // Make it vertically scrollable
           overflowX="hidden"
           // pr={3}
@@ -211,7 +211,7 @@ const GradualBlurDemo = () => {
           </Heading>
 
           <Box
-            marginY="100px"
+            marginY="50px"
             bg="white"
             borderRadius="5px"
             overflow="hidden"
@@ -223,8 +223,8 @@ const GradualBlurDemo = () => {
             {/* Profile Image */}
             <Image
               padding="0.5"
-              src="/assets/Person2.png"
-              alt="Ansh Dhanani"
+              src="https://plus.unsplash.com/premium_photo-1730063330492-3ff4f985952e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="A beautiful Flower"
               w="100%"
               h="440px"
               objectFit="cover"
@@ -234,15 +234,14 @@ const GradualBlurDemo = () => {
             <Box p={4} >
               <VStack align="start" spacing={0}>
                 <Text fontWeight="bold" fontSize="lg" color="black" mb={-4}>
-                  Ansh Dhanani
+                  A beautiful Flower
                 </Text>
                 <Link
-                  href="https://github.com/Ansh-dhanani"
                   fontSize="13px"
                   color="gray.500"
                   isExternal
                 >
-                  @dhanani._ansh
+                  @Flower
                 </Link>
               </VStack>
             </Box>
