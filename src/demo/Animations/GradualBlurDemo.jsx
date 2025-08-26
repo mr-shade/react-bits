@@ -237,7 +237,7 @@ const GradualBlurDemo = () => {
                   Ansh Dhanani
                 </Text>
                 <Link
-                  href="https://github/Ansh-dhanani"
+                  href="https://github.com/Ansh-dhanani"
                   fontSize="13px"
                   color="gray.500"
                   isExternal
