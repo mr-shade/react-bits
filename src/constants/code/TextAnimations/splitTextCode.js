@@ -9,7 +9,7 @@ import tsTailwind from '@ts-tailwind/TextAnimations/SplitText/SplitText.tsx?raw'
 
 export const splitText = {
   ...(generateCliCommands('TextAnimations/SplitText')),
-  installation: `npm install gsap`,
+  installation: `npm install gsap @gsap/react`,
   usage: `import SplitText from "./SplitText";
 
 const handleAnimationComplete = () => {
