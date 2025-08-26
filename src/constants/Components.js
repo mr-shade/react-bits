@@ -121,6 +121,7 @@ const backgrounds = {
   'plasma': () => import("../demo/Backgrounds/PlasmaDemo"),
   'prism': () => import("../demo/Backgrounds/PrismDemo"),
   'gradient-blinds': () => import("../demo/Backgrounds/GradientBlindsDemo"),
+  'prismatic-burst': () => import("../demo/Backgrounds/PrismaticBurstDemo.jsx"),
 };
 
 export const componentMap = {
