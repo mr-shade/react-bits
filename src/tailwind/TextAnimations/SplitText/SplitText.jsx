@@ -56,11 +56,11 @@ const SplitText = ({
         self.words.length > 0 && (targets = self.words);
         self.lines.length > 0 && (targets = self.lines);
       };
-
+     
       GSAPSplitText.create(el, {
         type: splitType,
         smartWrap: true,
-        autoSplit: true,
+        autoSplit: splitType === "lines",
         linesClass: "split-line",
         wordsClass: "split-word",
         charsClass: "split-char",

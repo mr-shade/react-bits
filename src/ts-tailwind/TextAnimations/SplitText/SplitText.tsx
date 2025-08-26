@@ -76,7 +76,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       GSAPSplitText.create(el, {
         type: splitType,
         smartWrap: true,
-        autoSplit: true,
+        autoSplit: splitType === "lines",
         linesClass: "split-line",
         wordsClass: "split-word",
         charsClass: "split-char",
