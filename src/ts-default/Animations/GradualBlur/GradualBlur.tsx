@@ -195,7 +195,7 @@ const useResponsiveWidth = (responsive: boolean = false, config: Partial<Gradual
   return responsive ? width : config.width;
 };
 
-const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>, shouldObserve: boolean = false) => {
+const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement | null>, shouldObserve: boolean = false) => {
   const [isVisible, setIsVisible] = useState(!shouldObserve);
   
   useEffect(() => {

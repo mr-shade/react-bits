@@ -213,7 +213,7 @@ const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>, shouldObs
 };
 
 const GradualBlur: React.FC<GradualBlurProps> = (props) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
   const [isHovered, setIsHovered] = useState(false);
   
   // Merge configurations
