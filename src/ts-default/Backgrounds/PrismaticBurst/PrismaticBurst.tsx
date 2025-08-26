@@ -78,8 +78,7 @@ float edgeFade(vec2 frag, vec2 res, vec2 offset){
     float r = length(toC) / (0.5 * min(res.x, res.y));
     float x = clamp(r, 0.0, 1.0);
     float q = x * x * x * (x * (x * 6.0 - 15.0) + 10.0);
-    float logistic = 0.0 / (1.0 + exp(-4.0 * (x - 1.0)));
-    float s = mix(q, logistic, 0.5);
+    float s = q * 0.5;
     s = pow(s, 1.5);
     float tail = 1.0 - pow(1.0 - s, 2.0);
     s = mix(s, tail, 0.2);
@@ -116,11 +115,21 @@ void main(){
     float marchT = 0.0;
     vec3 col = vec3(0.0);
     float n = layeredNoise(frag);
-
     vec4 c = cos(t * 0.2 + vec4(0.0, 33.0, 11.0, 0.0));
     mat2 M2 = mat2(c.x, c.y, c.z, c.w);
-
     float amp = clamp(uDistort, 0.0, 50.0) * 0.15;
+
+    mat3 rot3dMat = mat3(1.0);
+    if(uAnimType == 1){
+      vec3 ang = vec3(t * 0.31, t * 0.21, t * 0.17);
+      rot3dMat = rotZ(ang.z) * rotY(ang.y) * rotX(ang.x);
+    }
+    mat3 hoverMat = mat3(1.0);
+    if(uAnimType == 2){
+      vec2 m = uMouse * 2.0 - 1.0;
+      vec3 ang = vec3(m.y * 0.6, m.x * 0.6, 0.0);
+      hoverMat = rotY(ang.y) * rotX(ang.x);
+    }
 
     for (int i = 0; i < 44; ++i) {
         vec3 P = marchT * dir;
@@ -131,12 +140,9 @@ void main(){
         if(uAnimType == 0){
             Pl.xz *= M2;
         } else if(uAnimType == 1){
-            vec3 ang = vec3(t * 0.31, t * 0.21, t * 0.17);
-            Pl = rotZ(ang.z) * rotY(ang.y) * rotX(ang.x) * Pl;
+      Pl = rot3dMat * Pl;
         } else {
-            vec2 m = uMouse * 2.0 - 1.0;
-            vec3 ang = vec3(m.y * 0.6, m.x * 0.6, 0.0);
-            Pl = rotY(ang.y) * rotX(ang.x) * Pl;
+      Pl = hoverMat * Pl;
         }
 
         float stepLen = min(rad - 0.3, n * jitterAmp) + 0.1;
@@ -230,6 +236,9 @@ const PrismaticBurst = ({
   const pausedRef = useRef<boolean>(paused);
   const gradTexRef = useRef<Texture | null>(null);
   const hoverDampRef = useRef<number>(hoverDampness);
+  const isVisibleRef = useRef<boolean>(true);
+  const meshRef = useRef<Mesh | null>(null);
+  const triRef = useRef<Triangle | null>(null);
 
   useEffect(() => {
     pausedRef.current = paused;
@@ -242,11 +251,8 @@ const PrismaticBurst = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
-      alpha: false,
-      antialias: false,
-    });
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const renderer = new Renderer({ dpr, alpha: false, antialias: false });
     rendererRef.current = renderer;
 
     const gl = renderer.gl;
@@ -297,6 +303,8 @@ const PrismaticBurst = ({
 
     const triangle = new Triangle(gl);
     const mesh = new Mesh(gl, { geometry: triangle, program });
+    triRef.current = triangle;
+    meshRef.current = mesh;
 
     const resize = () => {
       const w = container.clientWidth || 1;
@@ -326,7 +334,20 @@ const PrismaticBurst = ({
         Math.min(Math.max(y, 0), 1),
       ];
     };
-    container.addEventListener("pointermove", onPointer);
+    container.addEventListener("pointermove", onPointer, { passive: true });
+
+    let io: IntersectionObserver | null = null;
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]) isVisibleRef.current = entries[0].isIntersecting;
+        },
+        { root: null, threshold: 0.01 }
+      );
+      io.observe(container);
+    }
+    const onVis = () => {};
+    document.addEventListener("visibilitychange", onVis);
 
     let raf = 0;
     let last = performance.now();
@@ -335,19 +356,21 @@ const PrismaticBurst = ({
     const update = (now: number) => {
       const dt = Math.max(0, now - last) * 0.001;
       last = now;
+      const visible = isVisibleRef.current && !document.hidden;
       if (!pausedRef.current) accumTime += dt;
-
+      if (!visible) {
+        raf = requestAnimationFrame(update);
+        return;
+      }
       const tau = 0.02 + Math.max(0, Math.min(1, hoverDampRef.current)) * 0.5;
       const alpha = 1 - Math.exp(-dt / tau);
       const tgt = mouseTargetRef.current;
       const sm = mouseSmoothRef.current;
       sm[0] += (tgt[0] - sm[0]) * alpha;
       sm[1] += (tgt[1] - sm[1]) * alpha;
-
       program.uniforms.uMouse.value = sm as any;
       program.uniforms.uTime.value = accumTime;
-
-      renderer.render({ scene: mesh });
+      renderer.render({ scene: meshRef.current! });
       raf = requestAnimationFrame(update);
     };
     raf = requestAnimationFrame(update);
@@ -357,12 +380,28 @@ const PrismaticBurst = ({
       container.removeEventListener("pointermove", onPointer);
       ro?.disconnect();
       if (!ro) window.removeEventListener("resize", resize);
+      io?.disconnect();
+      document.removeEventListener("visibilitychange", onVis);
       try {
         container.removeChild(gl.canvas);
-      } catch {}
+      } catch (e) {
+        void e;
+      }
+      meshRef.current = null;
+      triRef.current = null;
+      programRef.current = null;
+      try {
+        const glCtx = rendererRef.current?.gl;
+        if (glCtx && gradTexRef.current?.texture)
+          glCtx.deleteTexture(gradTexRef.current.texture);
+      } catch (e) {
+        void e;
+      }
       programRef.current = null;
       rendererRef.current = null;
       gradTexRef.current = null;
+      meshRef.current = null;
+      triRef.current = null;
     };
   }, []);
 
