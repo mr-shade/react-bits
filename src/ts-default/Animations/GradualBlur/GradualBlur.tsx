@@ -11,7 +11,6 @@ import * as math from "mathjs";
 import "./Gradualblur.css";
 
 type GradualBlurProps = {
-  // Basic options
   position?: "top" | "bottom" | "left" | "right";
   strength?: number;
   height?: string;
@@ -20,16 +19,13 @@ type GradualBlurProps = {
   exponential?: boolean;
   zIndex?: number;
 
-  // Animation options
   animated?: boolean | "scroll";
   duration?: string;
   easing?: string;
 
-  // Styling options
   opacity?: number;
   curve?: "linear" | "bezier" | "ease-in" | "ease-out" | "ease-in-out";
 
-  // Responsive options
   responsive?: boolean;
   mobileHeight?: string;
   tabletHeight?: string;
@@ -38,13 +34,11 @@ type GradualBlurProps = {
   tabletWidth?: string;
   desktopWidth?: string;
 
-  // Advanced options
   preset?: "top" | "bottom" | "left" | "right" | "subtle" | "intense" | "smooth" | "sharp" | "header" | "footer" | "sidebar" | "page-header" | "page-footer";
   gpuOptimized?: boolean;
   hoverIntensity?: number;
   target?: "parent" | "page";
 
-  // Event handlers
   onAnimationComplete?: () => void;
   className?: string;
   style?: CSSProperties;
@@ -391,37 +385,29 @@ const injectStyles = () => {
     }
 
     .gradual-blur-page {
-      /* Page-level blur styles */
     }
 
     .gradual-blur-parent {
-      /* Parent-level blur styles */
     }
 
     .gradual-blur-inner {
       pointer-events: none;
     }
 
-    /* Hover support */
     .gradual-blur:hover .gradual-blur-inner {
-      /* Hover effects can be added here */
     }
 
-    /* Animation support */
     .gradual-blur {
       transition: opacity 0.3s ease-out;
     }
 
-    /* Responsive utilities */
     @media (max-width: 480px) {
       .gradual-blur-responsive {
-        /* Mobile specific styles */
       }
     }
 
     @media (max-width: 768px) {
       .gradual-blur-responsive {
-        /* Tablet specific styles */
       }
     }
   `;

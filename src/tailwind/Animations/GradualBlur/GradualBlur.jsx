@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import * as math from 'mathjs';
 
-// Default configuration - simplified and clean
 const DEFAULT_CONFIG = {
   position: 'bottom',
   strength: 2,
@@ -15,7 +14,7 @@ const DEFAULT_CONFIG = {
   opacity: 1,
   curve: 'linear',
   responsive: false,
-  target: 'parent', // NEW: 'parent' | 'page'
+  target: 'page',
   className: '',
   style: {}
 };
@@ -246,7 +245,7 @@ const GradualBlur = (props) => {
       pointerEvents: config.hoverIntensity ? 'auto' : 'none',
       opacity: isVisible ? 1 : 0,
       transition: config.animated ? `opacity ${config.duration} ${config.easing}` : undefined,
-      zIndex: isPageTarget ? config.zIndex + 100 : config.zIndex, // Higher z-index for page targeting
+      zIndex: isPageTarget ? config.zIndex + 100 : config.zIndex,
       ...config.style
     };
 
@@ -258,7 +257,7 @@ const GradualBlur = (props) => {
       baseStyle.left = 0;
       baseStyle.right = 0;
     } else if (isHorizontal) {
-      baseStyle.width = responsiveWidth || responsiveHeight; // Use width prop if provided, otherwise use height value
+      baseStyle.width = responsiveWidth || responsiveHeight;
       baseStyle.height = '100%';
       baseStyle[config.position] = 0;
       baseStyle.top = 0;
@@ -295,18 +294,23 @@ const GradualBlur = (props) => {
   return (
     <div 
       ref={containerRef}
-      className={`gradual-blur ${config.target === 'page' ? 'gradual-blur-page' : 'gradual-blur-parent'} ${config.className}`}
-      style={containerStyle}
+      className={`pointer-events-none ${config.target === 'page' ? 'fixed' : 'absolute'} ${config.className}`}
+      style={{
+        pointerEvents: config.hoverIntensity ? 'auto' : 'none',
+        opacity: isVisible ? 1 : 0,
+        transition: config.animated ? `opacity ${config.duration} ${config.easing}` : undefined,
+        zIndex: config.target === 'page' ? config.zIndex + 100 : config.zIndex,
+        ...(config.position === 'top' && { top: 0, left: 0, right: 0, height: responsiveHeight, width: responsiveWidth || '100%' }),
+        ...(config.position === 'bottom' && { bottom: 0, left: 0, right: 0, height: responsiveHeight, width: responsiveWidth || '100%' }),
+        ...(config.position === 'left' && { left: 0, top: 0, bottom: 0, width: responsiveWidth || responsiveHeight, height: '100%' }),
+        ...(config.position === 'right' && { right: 0, top: 0, bottom: 0, width: responsiveWidth || responsiveHeight, height: '100%' }),
+        ...config.style
+      }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div 
-        className="gradual-blur-inner" 
-        style={{ 
-          position: 'relative', 
-          width: '100%', 
-          height: '100%'
-        }}
+        className="relative w-full h-full pointer-events-none"
       >
         {blurDivs}
       </div>
@@ -328,60 +332,3 @@ export { PRESETS, CURVE_FUNCTIONS };
 
 export default React.memo(GradualBlur);
 
-// CSS injection function
-const injectStyles = () => {
-  if (typeof document === 'undefined') return;
-  
-  const styleId = 'gradual-blur-styles';
-  if (document.getElementById(styleId)) return;
-  
-  const styleElement = document.createElement('style');
-  styleElement.id = styleId;
-  styleElement.textContent = `
-    .gradual-blur {
-      pointer-events: none;
-    }
-
-    .gradual-blur-page {
-      /* Page-level blur styles */
-    }
-
-    .gradual-blur-parent {
-      /* Parent-level blur styles */
-    }
-
-    .gradual-blur-inner {
-      pointer-events: none;
-    }
-
-    /* Hover support */
-    .gradual-blur:hover .gradual-blur-inner {
-      /* Hover effects can be added here */
-    }
-
-    /* Animation support */
-    .gradual-blur {
-      transition: opacity 0.3s ease-out;
-    }
-
-    /* Responsive utilities */
-    @media (max-width: 480px) {
-      .gradual-blur-responsive {
-        /* Mobile specific styles */
-      }
-    }
-
-    @media (max-width: 768px) {
-      .gradual-blur-responsive {
-        /* Tablet specific styles */
-      }
-    }
-  `;
-  
-  document.head.appendChild(styleElement);
-};
-
-// Inject styles on component mount
-if (typeof document !== 'undefined') {
-  injectStyles();
-}

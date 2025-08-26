@@ -26,7 +26,7 @@ import PreviewSelect from "../../components/common/Preview/PreviewSelect";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 
 import { gradualBlur } from "../../constants/code/Animations/gradualblurCode";
-import GradualBlur from "../../content/Animations/GradualBlur/GradualBlur";
+import GradualBlur from "../../tailwind/Animations/GradualBlur/GradualBlur";
 
 const GradualBlurDemo = () => {
   const propData = [
@@ -162,10 +162,9 @@ const GradualBlurDemo = () => {
         <Box
           position="relative"
           className="demo-container"
-          h="140vh" // Visible height
-          overflowY="auto" // Make it vertically scrollable
+          h="140vh"
+          overflowY="auto"
           overflowX="hidden"
-          // pr={3}
         >
           <Heading
             position="absolute"

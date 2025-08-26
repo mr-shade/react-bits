@@ -7,7 +7,7 @@ import tsTailwind from '@ts-tailwind/Animations/GradualBlur/GradualBlur.tsx?raw'
 
 export const gradualBlur = {
   ...(generateCliCommands('Animations/GradualBlur')),
-  Installation: `npm install mathjs`,
+  installation: `npm install mathjs`,
   usage: `
 
 import GradualBlur from 'gradualblur'
