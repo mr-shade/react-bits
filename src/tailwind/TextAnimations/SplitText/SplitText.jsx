@@ -40,37 +40,39 @@ const SplitText = ({
       if (!ref.current || !text || !fontsLoaded) return;
       const el = ref.current;
 
+      if (el._rbsplitInstance) {
+        try { el._rbsplitInstance.revert(); } catch (_) { /* ignore */ }
+        el._rbsplitInstance = null;
+      }
+
       const startPct = (1 - threshold) * 100;
       const marginMatch = /^(-?\d+(?:\.\d+)?)(px|em|rem|%)?$/.exec(rootMargin);
       const marginValue = marginMatch ? parseFloat(marginMatch[1]) : 0;
       const marginUnit = marginMatch ? marginMatch[2] || "px" : "px";
-      const sign =
-        marginValue < 0
-          ? `-=${Math.abs(marginValue)}${marginUnit}`
-          : `+=${marginValue}${marginUnit}`;
+      const sign = marginValue === 0 ? "" : (marginValue < 0 ? `-=${Math.abs(marginValue)}${marginUnit}` : `+=${marginValue}${marginUnit}`);
       const start = `top ${startPct}%${sign}`;
 
       let targets;
-      const checkTarget = (self) => {
-        self.chars.length > 0 && (targets = self.chars);
-        self.words.length > 0 && (targets = self.words);
-        self.lines.length > 0 && (targets = self.lines);
+      const assignTargets = (self) => {
+        if (splitType.includes("chars") && self.chars.length) targets = self.chars;
+        if (!targets && splitType.includes("words") && self.words.length) targets = self.words;
+        if (!targets && splitType.includes("lines") && self.lines.length) targets = self.lines;
+        if (!targets) targets = self.chars || self.words || self.lines;
       };
-     
-      GSAPSplitText.create(el, {
+
+      const splitInstance = new GSAPSplitText(el, {
         type: splitType,
         smartWrap: true,
         autoSplit: splitType === "lines",
         linesClass: "split-line",
         wordsClass: "split-word",
         charsClass: "split-char",
+        reduceWhiteSpace: false,
         onSplit: (self) => {
-          checkTarget(self);
+          assignTargets(self);
           return gsap.fromTo(
             targets,
-            {
-              ...from,
-            },
+            { ...from },
             {
               ...to,
               duration,
@@ -80,32 +82,41 @@ const SplitText = ({
                 trigger: el,
                 start,
                 once: true,
+                fastScrollEnd: true,
+                anticipatePin: 0.4,
               },
               onComplete: () => {
                 animationCompletedRef.current = true;
                 onLetterAnimationComplete?.();
               },
+              willChange: "transform, opacity",
+              force3D: true,
             }
           );
         },
       });
+      el._rbsplitInstance = splitInstance;
+
+      return () => {
+        ScrollTrigger.getAll().forEach((st) => { if (st.trigger === el) st.kill(); });
+        try { splitInstance.revert(); } catch (_) { /* ignore */ }
+        el._rbsplitInstance = null;
+      };
     },
     {
       dependencies: [
         text,
-        tag,
         delay,
         duration,
         ease,
         splitType,
-        from,
-        to,
+        JSON.stringify(from),
+        JSON.stringify(to),
         threshold,
         rootMargin,
         fontsLoaded,
         onLetterAnimationComplete,
       ],
-      revertOnUpdate: true,
       scope: ref,
     }
   );
@@ -114,8 +125,9 @@ const SplitText = ({
     const style = {
       textAlign,
       wordWrap: "break-word",
+      willChange: "transform, opacity",
     };
-    const classes = `split-parent overflow-hidden inline-block will-change-auto whitespace-normal ${className}`;
+    const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
     switch (tag) {
       case "h1":
         return (
