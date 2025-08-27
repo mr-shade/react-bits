@@ -11,39 +11,34 @@ const ShowcasePage = () => {
 
   const showcaseItems = [
     {
-      name: 'Devraj',
-      url: 'https://devrajchatribin.com/about',
-      using: '<CountUp />'
+      name: 'Matthew',
+      url: 'https://www.matthewporteous.com/',
+      using: '<AnimatedContent />'
     },
     {
-      name: 'Abdullah Shafiq',
-      url: 'https://resume-tex.vercel.app',
-      using: '<Squares />'
-    },
-    {
-      name: 'Oscar Hernandez',
+      name: 'Oscar',
       url: 'https://oscarhernandez.vercel.app',
       using: '<LetterGlitch />'
     },
     {
-      name: 'Afaq Razaq',
+      name: 'Izadoesdev',
+      url: 'https://app.databuddy.cc/login',
+      using: '<Iridescence />'
+    },
+    {
+      name: 'Afaq',
       url: 'https://www.evolvion.io/',
       using: '<SpotlightCard />'
     },
     {
-      name: 'Jimmy',
-      url: 'https://about.jimmy-blog.top/',
-      using: '<Squares />'
-    },
-    {
-      name: 'Deepraj Bera',
+      name: 'Deepraj',
       url: 'https://www.architech-dev.tech/',
       using: '<CardSwap />'
     },
     {
-      name: 'Matthew Porteous',
-      url: 'https://www.matthewporteous.com/',
-      using: '<AnimatedContent />'
+      name: 'Devraj',
+      url: 'https://devrajchatribin.com/about',
+      using: '<CountUp />'
     }
   ];
 
@@ -83,9 +78,6 @@ const ShowcasePage = () => {
                 </div>
               </Box>
             )}
-
-            <div className="grid-item"></div>
-            <div className="grid-item"></div>
           </div>
         </FadeContent>
 

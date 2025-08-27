@@ -131,7 +131,7 @@
 
 .showcase-wrapper .grid-container .grid-item:hover .showcase-img {
   filter: none;
-  transition: 0.3s ease;
+  transition: filter 0.3s ease;
 }
 
 .showcase-wrapper .grid-container .grid-item:hover {
@@ -151,9 +151,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top left;
+  object-position: center center;
   opacity: 0.5;
   border-radius: 26px;
+  transition: filter 0.3s ease;
 }
 
 .showcase-wrapper .grid-container .grid-item .showcase-info {
@@ -241,13 +242,14 @@
 @media (max-width: 768px) {
   .showcase-wrapper .grid-container {
     grid-template-columns: 1fr;
-    grid-auto-rows: 180px;
+    grid-auto-rows: 300px;
   }
 }
 
 @media (max-width: 480px) {
   .showcase-wrapper .grid-container {
     grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: 160px;
+    /* increased height for small phones */
+    grid-auto-rows: 250px;
   }
 }
