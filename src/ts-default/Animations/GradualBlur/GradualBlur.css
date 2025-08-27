@@ -1,0 +1,20 @@
+/* GradualBlur.css */
+
+/* Container */
+.gradual-blur {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  pointer-events: none; /* so it doesn’t block interactions */
+}
+
+/* Common gradient layers */
+.gradual-blur > div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}

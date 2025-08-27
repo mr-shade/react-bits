@@ -5,6 +5,7 @@ const getStarted = {
 }
 
 const animations = {
+  'gradual-blur': () => import("../demo/Animations/GradualBlurDemo"),
   'blob-cursor': () => import("../demo/Animations/BlobCursorDemo"),
   'animated-content': () => import("../demo/Animations/AnimatedContentDemo"),
   'magnet': () => import("../demo/Animations/MagnetDemo"),

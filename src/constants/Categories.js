@@ -1,5 +1,5 @@
 // Highlighted sidebar items
-export const NEW = ['Prismatic Burst', 'Gradient Blinds', 'Bubble Menu', 'Electric Border', 'Plasma', 'Prism', 'Logo Loop', 'Card Nav', 'Pill Nav', 'Target Cursor'];
+export const NEW = ['Gradual Blur', 'Prismatic Burst', 'Gradient Blinds', 'Bubble Menu', 'Electric Border', 'Plasma', 'Prism', 'Logo Loop', 'Card Nav', 'Pill Nav', 'Target Cursor'];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
@@ -43,6 +43,7 @@ export const CATEGORIES = [
   {
     name: 'Animations',
     subcategories: [
+      'Gradual Blur',
       'Animated Content',
       'Fade Content',
       'Electric Border',
