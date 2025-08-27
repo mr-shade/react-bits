@@ -190,7 +190,7 @@ const GradualBlurDemo = () => {
             overflowY="auto"
             overflowX="hidden"
             px={6}
-            py={24}
+            py="100px"
             position="relative"
             w="100%"
             css={{
@@ -199,21 +199,22 @@ const GradualBlurDemo = () => {
               msOverflowStyle: 'none',
             }}
           >
-            <Text fontSize='clamp(2rem, 4vw, 5rem)' fontWeight={900} zIndex={0} color='#271E37'>
+            <Text fontSize='clamp(2rem, 4vw, 5rem)' fontWeight={900} zIndex={0} color='#B19EEF'>
               Scroll Down.
             </Text>
 
             <Image
               borderRadius="50px"
               my="100px"
-              src="https://images.unsplash.com/photo-1529840882932-55f06ab2c681?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.unsplash.com/photo-1656536665219-da2b7deb314b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Lighthouse in the distance with purple colors."
               w="100%"
               maxW="600px"
               border="1px solid #271E37"
+              filter={"grayscale(0) brightness(2)"}
             />
 
-            <Text fontSize='clamp(2rem, 4vw, 5rem)' fontWeight={900} zIndex={0} color='#271E37'>
+            <Text fontSize='clamp(2rem, 4vw, 5rem)' fontWeight={900} zIndex={0} color='#B19EEF'>
               Gradual Blur
             </Text>
           </Flex>
