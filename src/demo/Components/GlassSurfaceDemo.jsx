@@ -19,6 +19,7 @@ import DarkVeil from "../../content/Backgrounds/DarkVeil/DarkVeil";
 const GlassSurfaceDemo = () => {
   const [selectedExample, setSelectedExample] = useState("scroll");
   const scrollContainerRef = useRef(null);
+  const lenisRef = useRef(null);
 
   const [borderRadius, setBorderRadius] = useState(50);
   const [borderWidth, setBorderWidth] = useState(0.07);
@@ -177,30 +178,57 @@ const GlassSurfaceDemo = () => {
   ];
 
   useEffect(() => {
-    if (!scrollContainerRef.current) return;
+    const el = scrollContainerRef.current;
+    if (!el) return;
 
+    if (lenisRef.current) {
+      lenisRef.current.destroy();
+      lenisRef.current = null;
+    }
+
+    const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const isReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const shouldUseNative = isTouch || isReducedMotion;
+
+    if (shouldUseNative) {
+      el.style.overflowY = 'auto';
+      el.style.webkitOverflowScrolling = 'touch';
+      return;
+    } else {
+      el.style.overflowY = 'hidden';
+    }
+
+    if (selectedExample !== 'scroll') return;
+
+    let rafId;
     const lenis = new Lenis({
-      wrapper: scrollContainerRef.current,
-      content: scrollContainerRef.current.firstElementChild,
-      duration: 1.2,
+      wrapper: el,
+      content: el.firstElementChild,
+      duration: 2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
+      smoothTouch: false,
       wheelMultiplier: 1,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
       infinite: false,
+      lerp: 0.1,
     });
+    lenisRef.current = lenis;
 
-    function raf(time) {
+    const raf = (time) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy();
+      if (rafId) cancelAnimationFrame(rafId);
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
     };
   }, [selectedExample]);
 

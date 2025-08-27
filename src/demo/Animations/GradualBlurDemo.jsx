@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import Lenis from "lenis";
 import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
 
 import Customize from "../../components/common/Preview/Customize";
@@ -143,11 +144,46 @@ const GradualBlurDemo = () => {
     opacity: 1,
   });
 
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouch || isReducedMotion) return;
+
+    const lenis = new Lenis({
+      wrapper: el,
+      content: el.firstElementChild,
+      duration: 2,
+      smoothWheel: true,
+      smoothTouch: false,
+      touchMultiplier: 1.2,
+      wheelMultiplier: 1,
+      lerp: 0.1,
+    });
+
+    let rafId;
+    const raf = (time) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <TabsLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} p={0} overflow="hidden">
+        <Box position="relative" className="demo-container demo-container-dots" h={500} p={0} overflow="hidden">
           <Flex
+            ref={scrollRef}
             flexDirection="column"
             alignItems="center"
             h="100%"
@@ -155,6 +191,7 @@ const GradualBlurDemo = () => {
             overflowX="hidden"
             px={6}
             py={24}
+            position="relative"
             w="100%"
             css={{
               '&::-webkit-scrollbar': { display: 'none' },
