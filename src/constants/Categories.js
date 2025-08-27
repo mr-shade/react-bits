@@ -43,7 +43,6 @@ export const CATEGORIES = [
   {
     name: 'Animations',
     subcategories: [
-      'Gradual Blur',
       'Animated Content',
       'Fade Content',
       'Electric Border',
@@ -52,6 +51,7 @@ export const CATEGORIES = [
       'Logo Loop',
       'Target Cursor',
       'Magnet Lines',
+      'Gradual Blur',
       'Click Spark',
       'Magnet',
       'Sticker Peel',

@@ -2,31 +2,35 @@ import { generateCliCommands } from '@/utils/utils';
 
 import code from '@content/Animations/GradualBlur/GradualBlur.jsx?raw';
 import tailwind from '@tailwind/Animations/GradualBlur/GradualBlur.jsx?raw';
+import css from '@content/Animations/GradualBlur/GradualBlur.css?raw';
 import tsCode from '@ts-default/Animations/GradualBlur/GradualBlur.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/GradualBlur/GradualBlur.tsx?raw';
 
 export const gradualBlur = {
   ...(generateCliCommands('Animations/GradualBlur')),
-  Installation: `npm install gradualblur mathjs`,
-  usage: `
+  installation: `npm install mathjs`,
+  usage: `// Component added by Ansh - github.com/ansh-dhanani
 
-import GradualBlur from 'gradualblur'
+import GradualBlur from './GradualBlur';
 
-<GradualBlur
-  position="bottom"
-  strength={2}
-  height="7rem"
-  divCount={5}
-  exponential={true}
-  opacity={1}
-  target="page"
->
-  <div>
-    <p style={{ margin: '6px 0 0', opacity: 0.8 }}>
-    </p>
+<section style={{position: 'relative',height: 500,overflow: 'hidden'}}>
+  <div style={{ height: '100%',overflowY: 'auto',padding: '6rem 2rem' }}>
+    <!-- Content Here - such as an image or text -->
   </div>
-</GradualBlur>`,
+
+  <GradualBlur
+    target="parent"
+    position="bottom"
+    height="6rem"
+    strength={2}
+    divCount={5}
+    curve="bezier"
+    exponential={true}
+    opacity={1}
+  />
+</section>`,
   code,
+  css,
   tailwind,
   tsCode,
   tsTailwind
