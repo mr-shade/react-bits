@@ -16,7 +16,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   const cursorRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<NodeListOf<HTMLDivElement>>(null);
   const spinTl = useRef<gsap.core.Timeline>(null);
-  const dotRef = useRef<HTMLDivElement>(null); 
+  const dotRef = useRef<HTMLDivElement>(null);
   const constants = useMemo(
     () => ({
       borderWidth: 3,
@@ -89,16 +89,16 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
     const scrollHandler = () => {
       if (!activeTarget || !cursorRef.current) return;
-      
+
       const mouseX = gsap.getProperty(cursorRef.current, "x") as number;
       const mouseY = gsap.getProperty(cursorRef.current, "y") as number;
-      
+
       const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
       const isStillOverTarget = elementUnderMouse && (
-        elementUnderMouse === activeTarget || 
+        elementUnderMouse === activeTarget ||
         elementUnderMouse.closest(targetSelector) === activeTarget
       );
-      
+
       if (!isStillOverTarget) {
         if (currentLeaveHandler) {
           currentLeaveHandler();
@@ -110,24 +110,24 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
     //---------------------------------------------------------------
         // This code for onclick animation
-    
+
         window.addEventListener("mousemove", moveHandler);
         const mouseDownHandler = ():void => {
           if (!dotRef.current) return;
           gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
           gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
         };
-    
+
         // Animate it back to its original size
         const mouseUpHandler = ():void => {
           if (!dotRef.current) return;
           gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
           gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
         };
-    
+
         window.addEventListener("mousedown", mouseDownHandler);
         window.addEventListener("mouseup", mouseUpHandler);
-    
+
         //----------------------------------------------------------------
     const enterHandler = (e: MouseEvent) => {
       const directTarget = e.target as Element;
@@ -156,7 +156,10 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       }
 
       activeTarget = target;
-
+      const corners = Array.from(cornersRef.current);
+              corners.forEach(corner => {
+                  gsap.killTweensOf(corner);
+      })
       gsap.killTweensOf(cursorRef.current, "rotation");
       spinTl.current?.pause();
 
@@ -325,7 +328,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
   useEffect(() => {
     if (!cursorRef.current || !spinTl.current) return;
-    
+
     if (spinTl.current.isActive()) {
       spinTl.current.kill();
       spinTl.current = gsap

@@ -9,7 +9,7 @@ const TargetCursor = ({
   const cursorRef = useRef(null);
   const cornersRef = useRef(null);
   const spinTl = useRef(null);
-  const dotRef = useRef(null); 
+  const dotRef = useRef(null);
   const constants = useMemo(
     () => ({
       borderWidth: 3,
@@ -80,16 +80,16 @@ const TargetCursor = ({
 
     const scrollHandler = () => {
       if (!activeTarget || !cursorRef.current) return;
-      
+
       const mouseX = gsap.getProperty(cursorRef.current, "x");
       const mouseY = gsap.getProperty(cursorRef.current, "y");
-      
+
       const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
       const isStillOverTarget = elementUnderMouse && (
-        elementUnderMouse === activeTarget || 
+        elementUnderMouse === activeTarget ||
         elementUnderMouse.closest(targetSelector) === activeTarget
       );
-      
+
       if (!isStillOverTarget) {
         if (currentLeaveHandler) {
           currentLeaveHandler();
@@ -147,7 +147,10 @@ const TargetCursor = ({
       }
 
       activeTarget = target;
-
+      const corners = Array.from(cornersRef.current);
+        corners.forEach(corner => {
+            gsap.killTweensOf(corner);
+      })
       gsap.killTweensOf(cursorRef.current, "rotation");
       spinTl.current?.pause();
 
@@ -316,7 +319,7 @@ const TargetCursor = ({
 
   useEffect(() => {
     if (!cursorRef.current || !spinTl.current) return;
-    
+
     if (spinTl.current.isActive()) {
       spinTl.current.kill();
       spinTl.current = gsap
