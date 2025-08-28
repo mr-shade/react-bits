@@ -81,16 +81,16 @@ const TargetCursor = ({
 
     const scrollHandler = () => {
       if (!activeTarget || !cursorRef.current) return;
-      
+
       const mouseX = gsap.getProperty(cursorRef.current, "x");
       const mouseY = gsap.getProperty(cursorRef.current, "y");
-      
+
       const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
       const isStillOverTarget = elementUnderMouse && (
-        elementUnderMouse === activeTarget || 
+        elementUnderMouse === activeTarget ||
         elementUnderMouse.closest(targetSelector) === activeTarget
       );
-      
+
       if (!isStillOverTarget) {
         if (currentLeaveHandler) {
           currentLeaveHandler();
@@ -148,6 +148,10 @@ const TargetCursor = ({
       }
 
       activeTarget = target;
+      const corners = Array.from(cornersRef.current);
+        corners.forEach(corner => {
+            gsap.killTweensOf(corner);
+      })
 
       gsap.killTweensOf(cursorRef.current, "rotation");
       spinTl.current?.pause();
