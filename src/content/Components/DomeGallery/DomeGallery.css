@@ -178,3 +178,11 @@ main.sphere-main {
 .edge-fade--bottom {
   bottom: 0;
 }
+
+/* body.dg-scroll-lock {
+  overscroll-behavior: none;
+  touch-action: none;
+  position: fixed;
+  width: 100%;
+  inset: 0;
+} */

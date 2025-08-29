@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useCallback } from "react";
+import { useGesture } from '@use-gesture/react';
 
 const DEFAULT_IMAGES = [
   {
@@ -142,14 +143,25 @@ export default function DomeGallery({
   const rotationRef = useRef({ x: 0, y: 0 });
   const startRotRef = useRef({ x: 0, y: 0 });
   const startPosRef = useRef(null);
-  const lastRef = useRef(null);
-  const lastVelRef = useRef({ vx: 0, vy: 0 });
   const draggingRef = useRef(false);
   const cancelTapRef = useRef(false);
   const movedRef = useRef(false);
   const inertiaRAF = useRef(null);
   const pointerTypeRef = useRef("mouse");
   const tapTargetRef = useRef(null);
+
+  const scrollLockedRef = useRef(false);
+  const lockScroll = useCallback(() => {
+    if (scrollLockedRef.current) return;
+    scrollLockedRef.current = true;
+    document.body.classList.add('dg-scroll-lock');
+  }, []);
+  const unlockScroll = useCallback(() => {
+    if (!scrollLockedRef.current) return;
+    if (rootRef.current?.getAttribute('data-enlarging') === 'true') return; // keep locked while enlarged
+    scrollLockedRef.current = false;
+    document.body.classList.remove('dg-scroll-lock');
+  }, []);
 
   const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
@@ -238,157 +250,130 @@ export default function DomeGallery({
     applyTransform(rotationRef.current.x, rotationRef.current.y);
   }, []);
 
-  useEffect(() => {
-    const target = mainRef.current;
-    if (!target) return;
+  const stopInertia = useCallback(() => {
+    if (inertiaRAF.current) {
+      cancelAnimationFrame(inertiaRAF.current);
+      inertiaRAF.current = null;
+    }
+  }, []);
 
-    const stopInertia = () => {
-      if (inertiaRAF.current) {
-        cancelAnimationFrame(inertiaRAF.current);
+  const startInertia = useCallback((vx, vy) => {
+    let vX = vx * 100;
+    let vY = vy * 100;
+    let frames = 0;
+    const d = clamp(dragDampening ?? 0.6, 0, 1);
+    const frictionMul = 0.94 + 0.055 * d;
+    const stopThreshold = 0.015 - 0.01 * d;
+    const maxFrames = Math.round(90 + 270 * d);
+    const step = () => {
+      vX *= frictionMul;
+      vY *= frictionMul;
+      if (Math.abs(vX) < stopThreshold && Math.abs(vY) < stopThreshold) {
         inertiaRAF.current = null;
+        return;
       }
-    };
-
-    const startInertia = (vx, vy) => {
-      let vX = vx * 100;
-      let vY = vy * 100;
-      let frames = 0;
-      const d = clamp(dragDampening ?? 0.6, 0, 1);
-      const frictionMul = 0.94 + 0.055 * d;
-      const stopThreshold = 0.015 - 0.01 * d;
-      const maxFrames = Math.round(90 + 270 * d);
-      const step = () => {
-        vX *= frictionMul;
-        vY *= frictionMul;
-        if (Math.abs(vX) < stopThreshold && Math.abs(vY) < stopThreshold) {
-          inertiaRAF.current = null;
-          return;
-        }
-        if (++frames > maxFrames) {
-          inertiaRAF.current = null;
-          return;
-        }
-        const nextX = clamp(
-          rotationRef.current.x - vY / 200,
-          -maxVerticalRotationDeg,
-          maxVerticalRotationDeg
-        );
-        const nextY = rotationRef.current.y + vX / 200;
-        rotationRef.current = { x: nextX, y: nextY };
-        applyTransform(nextX, nextY);
-        inertiaRAF.current = requestAnimationFrame(step);
-      };
-      stopInertia();
+      if (++frames > maxFrames) {
+        inertiaRAF.current = null;
+        return;
+      }
+      const nextX = clamp(
+        rotationRef.current.x - vY / 200,
+        -maxVerticalRotationDeg,
+        maxVerticalRotationDeg
+      );
+      const nextY = rotationRef.current.y + vX / 200;
+      rotationRef.current = { x: nextX, y: nextY };
+      applyTransform(nextX, nextY);
       inertiaRAF.current = requestAnimationFrame(step);
     };
+    stopInertia();
+    inertiaRAF.current = requestAnimationFrame(step);
+  }, [dragDampening, maxVerticalRotationDeg, stopInertia]);
 
-    const onPointerDown = (e) => {
+  useGesture({
+    onDragStart: ({ event }) => {
       if (focusedElRef.current) return;
-      pointerTypeRef.current = e.pointerType || "mouse";
-      if (pointerTypeRef.current === "touch") e.preventDefault();
+      stopInertia();
+
+      pointerTypeRef.current = event.pointerType || "mouse";
+      if (pointerTypeRef.current === "touch") event.preventDefault();
+      if (pointerTypeRef.current === 'touch') lockScroll();
       draggingRef.current = true;
       cancelTapRef.current = false;
       movedRef.current = false;
-      stopInertia();
-      lastVelRef.current = { vx: 0, vy: 0 };
       startRotRef.current = { ...rotationRef.current };
-      startPosRef.current = { x: e.clientX, y: e.clientY };
-      lastRef.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
-      const potential = e.target.closest?.('.item__image');
+      startPosRef.current = { x: event.clientX, y: event.clientY };
+      const potential = event.target.closest?.('.item__image');
       tapTargetRef.current = potential || null;
-      if (pointerTypeRef.current !== 'touch') {
-        try { e.target.setPointerCapture?.(e.pointerId); } catch (err) { /* ignore */ }
-      }
-    };
+    },
+    onDrag: ({ event, last, velocity: velArr = [0, 0], direction: dirArr = [0, 0], movement }) => {
+      if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
 
-    let moveRAF = null;
-    let pendingEvent = null;
-    const processMove = () => {
-      if (!pendingEvent || !draggingRef.current || !startPosRef.current) {
-        moveRAF = null;
-        return;
-      }
-      const e = pendingEvent;
-      pendingEvent = null;
-      if (pointerTypeRef.current === "touch") e.preventDefault();
-      const dxTotal = e.clientX - startPosRef.current.x;
-      const dyTotal = e.clientY - startPosRef.current.y;
+      if (pointerTypeRef.current === "touch") event.preventDefault();
+
+      const dxTotal = event.clientX - startPosRef.current.x;
+      const dyTotal = event.clientY - startPosRef.current.y;
+
       if (!movedRef.current) {
         const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
         if (dist2 > 16) movedRef.current = true;
       }
+
       const nextX = clamp(
         startRotRef.current.x - dyTotal / dragSensitivity,
         -maxVerticalRotationDeg,
         maxVerticalRotationDeg
       );
       const nextY = startRotRef.current.y + dxTotal / dragSensitivity;
+
       const cur = rotationRef.current;
       if (cur.x !== nextX || cur.y !== nextY) {
         rotationRef.current = { x: nextX, y: nextY };
         applyTransform(nextX, nextY);
       }
-      if (lastRef.current) {
-        const dt = Math.max(1, e.timeStamp - lastRef.current.t);
-        const vx = (e.clientX - lastRef.current.x) / dt;
-        const vy = (e.clientY - lastRef.current.y) / dt;
-        lastVelRef.current = { vx, vy };
-      }
-      lastRef.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
-      moveRAF = requestAnimationFrame(processMove);
-    };
 
-    const onPointerMove = (e) => {
-      if (!draggingRef.current) return;
-      pendingEvent = e;
-      if (moveRAF == null) moveRAF = requestAnimationFrame(processMove);
-    };
+      if (last) {
+        draggingRef.current = false;
+        let isTap = false;
 
-    const onPointerUp = (e) => {
-      if (!draggingRef.current) return;
-      draggingRef.current = false;
-      let { vx, vy } = lastVelRef.current;
-      let isTap = false;
-      if (startPosRef.current) {
-        const dx = e.clientX - startPosRef.current.x;
-        const dy = e.clientY - startPosRef.current.y;
-        const dist2 = dx * dx + dy * dy;
-        const TAP_THRESH_PX = pointerTypeRef.current === 'touch' ? 10 : 6;
-        if (dist2 <= TAP_THRESH_PX * TAP_THRESH_PX) { vx = 0; vy = 0; isTap = true; }
-      }
-      if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005) startInertia(vx, vy);
-      startPosRef.current = null;
-      cancelTapRef.current = !isTap;
-      if (isTap && tapTargetRef.current && !focusedElRef.current) {
-        openItemFromElement(tapTargetRef.current);
-      }
-      tapTargetRef.current = null;
-      if (cancelTapRef.current) setTimeout(() => (cancelTapRef.current = false), 120);
-      if (pointerTypeRef.current !== 'touch') {
-        try { e.target.releasePointerCapture?.(e.pointerId); } catch (err) { /* ignore */ }
-      }
-    };
+        if (startPosRef.current) {
+          const dx = event.clientX - startPosRef.current.x;
+          const dy = event.clientY - startPosRef.current.y;
+          const dist2 = dx * dx + dy * dy;
+          const TAP_THRESH_PX = pointerTypeRef.current === "touch" ? 10 : 6;
+          if (dist2 <= TAP_THRESH_PX * TAP_THRESH_PX) {
+            isTap = true;
+          }
+        }
 
-    target.addEventListener("pointerdown", onPointerDown, {
-      passive: false,
-    });
-    window.addEventListener("pointermove", onPointerMove, {
-      passive: false,
-    });
-    window.addEventListener("pointerup", onPointerUp, { passive: true });
-    window.addEventListener("pointercancel", onPointerUp, {
-      passive: true,
-    });
+        let [vMagX, vMagY] = velArr;
+        const [dirX, dirY] = dirArr;
+        let vx = vMagX * dirX;
+        let vy = vMagY * dirY;
 
-    return () => {
-      target.removeEventListener("pointerdown", onPointerDown);
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerup", onPointerUp);
-      window.removeEventListener("pointercancel", onPointerUp);
-      stopInertia();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [maxVerticalRotationDeg, dragSensitivity, dragDampening]);
+        if (!isTap && Math.abs(vx) < 0.001 && Math.abs(vy) < 0.001 && Array.isArray(movement)) {
+          const [mx, my] = movement;
+          vx = (mx / dragSensitivity) * 0.02;
+          vy = (my / dragSensitivity) * 0.02;
+        }
+
+        if (!isTap && (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005)) {
+          startInertia(vx, vy);
+        }
+        startPosRef.current = null;
+        cancelTapRef.current = !isTap;
+
+        if (isTap && tapTargetRef.current && !focusedElRef.current) {
+          openItemFromElement(tapTargetRef.current);
+        }
+        tapTargetRef.current = null;
+
+        if (cancelTapRef.current)
+          setTimeout(() => (cancelTapRef.current = false), 120);
+        if (pointerTypeRef.current === 'touch') unlockScroll();
+      }
+    }
+  }, { target: mainRef, eventOptions: { passive: false } });
 
   useEffect(() => {
     const scrim = scrimRef.current;
@@ -503,6 +488,9 @@ export default function DomeGallery({
               setTimeout(() => {
                 el.style.transition = "";
                 el.style.opacity = "";
+                if (!draggingRef.current && rootRef.current?.getAttribute('data-enlarging') !== 'true') {
+                  document.body.classList.remove('dg-scroll-lock');
+                }
               }, 300);
             });
           });
@@ -527,38 +515,135 @@ export default function DomeGallery({
   }, [enlargeTransitionMs, openedImageBorderRadius, grayscale]);
 
   const openItemFromElement = (el) => {
-    if (cancelTapRef.current) return;
+    if (!el || cancelTapRef.current) return;
+    lockScroll();
     const parent = el.parentElement;
-    focusedElRef.current = el; el.setAttribute('data-focused', 'true');
-    const offsetX = getDataNumber(parent, 'offsetX', 0);
-    const offsetY = getDataNumber(parent, 'offsetY', 0);
-    const sizeX = getDataNumber(parent, 'sizeX', 2);
-    const sizeY = getDataNumber(parent, 'sizeY', 2);
-    const parentRot = computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments);
-    const parentY = normalizeAngle(parentRot.rotateY); const globalY = normalizeAngle(rotationRef.current.y);
-    let rotY = -(parentY + globalY) % 360; if (rotY < -180) rotY += 360;
+    focusedElRef.current = el;
+    el.setAttribute("data-focused", "true");
+
+    const offsetX = getDataNumber(parent, "offsetX", 0);
+    const offsetY = getDataNumber(parent, "offsetY", 0);
+    const sizeX = getDataNumber(parent, "sizeX", 2);
+    const sizeY = getDataNumber(parent, "sizeY", 2);
+
+    const parentRot = computeItemBaseRotation(
+      offsetX,
+      offsetY,
+      sizeX,
+      sizeY,
+      segments
+    );
+    const parentY = normalizeAngle(parentRot.rotateY);
+    const globalY = normalizeAngle(rotationRef.current.y);
+    let rotY = -(parentY + globalY) % 360;
+    if (rotY < -180) rotY += 360;
     const rotX = -parentRot.rotateX - rotationRef.current.x;
-    parent.style.setProperty('--rot-y-delta', `${rotY}deg`);
-    parent.style.setProperty('--rot-x-delta', `${rotX}deg`);
-    const refDiv = document.createElement('div');
-    refDiv.className = 'item__image--reference opacity-0';
+
+    parent.style.setProperty("--rot-y-delta", `${rotY}deg`);
+    parent.style.setProperty("--rot-x-delta", `${rotX}deg`);
+
+    const refDiv = document.createElement("div");
+    refDiv.className = "item__image item__image--reference opacity-0";
     refDiv.style.transform = `rotateX(${-parentRot.rotateX}deg) rotateY(${-parentRot.rotateY}deg)`;
     parent.appendChild(refDiv);
+
     const tileR = refDiv.getBoundingClientRect();
     const mainR = mainRef.current.getBoundingClientRect();
     const frameR = frameRef.current.getBoundingClientRect();
-    originalTilePositionRef.current = { left: tileR.left, top: tileR.top, width: tileR.width, height: tileR.height };
-    el.style.visibility = 'hidden'; el.style.zIndex = 0;
-    const overlay = document.createElement('div'); overlay.className = 'enlarge';
-    overlay.style.cssText = `position:absolute; left:${frameR.left - mainR.left}px; top:${frameR.top - mainR.top}px; width:${frameR.width}px; height:${frameR.height}px; opacity:0; z-index:30; will-change:transform,opacity; transform-origin:top left; transition:transform ${enlargeTransitionMs}ms ease, opacity ${enlargeTransitionMs}ms ease; border-radius:${openedImageBorderRadius}; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35);`;
-    const rawSrc = parent.dataset.src || el.querySelector('img')?.src || '';
-    const rawAlt = parent.dataset.alt || el.querySelector('img')?.alt || '';
-    const img = document.createElement('img'); img.src = rawSrc; img.alt = rawAlt; img.style.cssText = `width:100%; height:100%; object-fit:cover; filter:${grayscale ? 'grayscale(1)' : 'none'};`;
-    overlay.appendChild(img); viewerRef.current.appendChild(overlay);
-    const tx0 = tileR.left - frameR.left; const ty0 = tileR.top - frameR.top; const sx0 = tileR.width / frameR.width; const sy0 = tileR.height / frameR.height; overlay.style.transform = `translate(${tx0}px, ${ty0}px) scale(${sx0}, ${sy0})`;
-    requestAnimationFrame(() => { overlay.style.opacity = '1'; overlay.style.transform = 'translate(0px, 0px) scale(1, 1)'; rootRef.current?.setAttribute('data-enlarging', 'true'); });
-    const wantsResize = openedImageWidth || openedImageHeight; if (wantsResize) { const onFirstEnd = (ev) => { if (ev.propertyName !== 'transform') return; overlay.removeEventListener('transitionend', onFirstEnd); const prevTransition = overlay.style.transition; overlay.style.transition = 'none'; const tempWidth = openedImageWidth || `${frameR.width}px`; const tempHeight = openedImageHeight || `${frameR.height}px`; overlay.style.width = tempWidth; overlay.style.height = tempHeight; const newRect = overlay.getBoundingClientRect(); overlay.style.width = frameR.width + 'px'; overlay.style.height = frameR.height + 'px'; void overlay.offsetWidth; overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`; const centeredLeft = frameR.left - mainR.left + (frameR.width - newRect.width) / 2; const centeredTop = frameR.top - mainR.top + (frameR.height - newRect.height) / 2; requestAnimationFrame(() => { overlay.style.left = `${centeredLeft}px`; overlay.style.top = `${centeredTop}px`; overlay.style.width = tempWidth; overlay.style.height = tempHeight; }); const cleanupSecond = () => { overlay.removeEventListener('transitionend', cleanupSecond); overlay.style.transition = prevTransition; }; overlay.addEventListener('transitionend', cleanupSecond, { once: true }); }; overlay.addEventListener('transitionend', onFirstEnd); }
+
+    originalTilePositionRef.current = {
+      left: tileR.left,
+      top: tileR.top,
+      width: tileR.width,
+      height: tileR.height,
+    };
+
+    el.style.visibility = "hidden";
+    el.style.zIndex = 0;
+
+    const overlay = document.createElement("div");
+    overlay.className = "enlarge";
+    overlay.style.position = "absolute";
+    overlay.style.left = frameR.left - mainR.left + "px";
+    overlay.style.top = frameR.top - mainR.top + "px";
+    overlay.style.width = frameR.width + "px";
+    overlay.style.height = frameR.height + "px";
+    overlay.style.opacity = "0";
+    overlay.style.zIndex = "30";
+    overlay.style.willChange = "transform, opacity";
+    overlay.style.transformOrigin = "top left";
+    overlay.style.transition = `transform ${enlargeTransitionMs}ms ease, opacity ${enlargeTransitionMs}ms ease`;
+    overlay.style.borderRadius = openedImageBorderRadius;
+    overlay.style.overflow = "hidden";
+    overlay.style.boxShadow = "0 10px 30px rgba(0,0,0,.35)";
+
+    const rawSrc = parent.dataset.src || el.querySelector("img")?.src || "";
+    const rawAlt = parent.dataset.alt || el.querySelector("img")?.alt || "";
+    const img = document.createElement("img");
+    img.src = rawSrc;
+    img.alt = rawAlt;
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+    img.style.filter = grayscale ? "grayscale(1)" : "none";
+    overlay.appendChild(img);
+    viewerRef.current.appendChild(overlay);
+
+    const tx0 = tileR.left - frameR.left;
+    const ty0 = tileR.top - frameR.top;
+    const sx0 = tileR.width / frameR.width;
+    const sy0 = tileR.height / frameR.height;
+    overlay.style.transform = `translate(${tx0}px, ${ty0}px) scale(${sx0}, ${sy0})`;
+
+    requestAnimationFrame(() => {
+      overlay.style.opacity = "1";
+      overlay.style.transform = "translate(0px, 0px) scale(1, 1)";
+      rootRef.current?.setAttribute("data-enlarging", "true");
+    });
+
+    const wantsResize = openedImageWidth || openedImageHeight;
+    if (wantsResize) {
+      const onFirstEnd = (ev) => {
+        if (ev.propertyName !== "transform") return;
+        overlay.removeEventListener("transitionend", onFirstEnd);
+        const prevTransition = overlay.style.transition;
+        overlay.style.transition = "none";
+        const tempWidth = openedImageWidth || `${frameR.width}px`;
+        const tempHeight = openedImageHeight || `${frameR.height}px`;
+        overlay.style.width = tempWidth;
+        overlay.style.height = tempHeight;
+        const newRect = overlay.getBoundingClientRect();
+        overlay.style.width = frameR.width + "px";
+        overlay.style.height = frameR.height + "px";
+        void overlay.offsetWidth;
+        overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`;
+        const centeredLeft =
+          frameR.left - mainR.left + (frameR.width - newRect.width) / 2;
+        const centeredTop =
+          frameR.top - mainR.top + (frameR.height - newRect.height) / 2;
+        requestAnimationFrame(() => {
+          overlay.style.left = `${centeredLeft}px`;
+          overlay.style.top = `${centeredTop}px`;
+          overlay.style.width = tempWidth;
+          overlay.style.height = tempHeight;
+        });
+        const cleanupSecond = () => {
+          overlay.removeEventListener("transitionend", cleanupSecond);
+          overlay.style.transition = prevTransition;
+        };
+        overlay.addEventListener("transitionend", cleanupSecond, {
+          once: true,
+        });
+      };
+      overlay.addEventListener("transitionend", onFirstEnd);
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('dg-scroll-lock');
+    };
+  }, []);
 
   const cssStyles = `
     .sphere-root {
@@ -622,6 +707,32 @@ export default function DomeGallery({
         width: 100% !important;
       }
     }
+    
+    // body.dg-scroll-lock {
+    //   position: fixed !important;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100% !important;
+    //   height: 100% !important;
+    //   overflow: hidden !important;
+    //   touch-action: none !important;
+    //   overscroll-behavior: contain !important;
+    // }
+    .item__image {
+      position: absolute;
+      inset: 10px;
+      border-radius: var(--tile-radius, 12px);
+      overflow: hidden;
+      cursor: pointer;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: transform 300ms;
+    }
+    .item__image--reference {
+      position: absolute;
+      inset: 10px;
+      pointer-events: none;
+    }
   `;
 
   return (
@@ -680,7 +791,7 @@ export default function DomeGallery({
                   }
                 >
                   <div
-                    className="absolute block overflow-hidden cursor-pointer bg-gray-200 transition-transform duration-300"
+                    className="item__image absolute block overflow-hidden cursor-pointer bg-gray-200 transition-transform duration-300"
                     style={{
                       inset: '10px',
                       borderRadius: `var(--tile-radius, ${imageBorderRadius})`,

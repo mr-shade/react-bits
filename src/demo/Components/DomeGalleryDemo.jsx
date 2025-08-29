@@ -9,6 +9,7 @@ import CliInstallation from "../../components/code/CliInstallation";
 import PropTable from "../../components/common/Preview/PropTable";
 import PreviewSlider from "../../components/common/Preview/PreviewSlider";
 import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import Dependencies from "../../components/code/Dependencies";
 
 import { domeGallery } from "../../constants/code/Components/domeGalleryCode";
 import DomeGallery from "../../content/Components/DomeGallery/DomeGallery";
@@ -213,6 +214,7 @@ const DomeGalleryDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
+        <Dependencies dependencyList={['@use-gesture/react']} />
       </PreviewTab>
 
       <CodeTab>

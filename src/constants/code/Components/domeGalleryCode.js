@@ -8,6 +8,7 @@ import tsTailwind from "@ts-tailwind/Components/DomeGallery/DomeGallery.tsx?raw"
 
 export const domeGallery = {
   ...generateCliCommands("Components/DomeGallery"),
+  installation: `npm install @use-gesture/react`,
   usage: `import DomeGallery from './DomeGallery';
 export default function App() {
   return (
