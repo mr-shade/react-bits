@@ -92,6 +92,7 @@ const components = {
   'pill-nav': () => import("../demo/Components/PillNavDemo.jsx"),
   'card-nav': () => import("../demo/Components/CardNavDemo"),
   'bubble-menu': () => import("../demo/Components/BubbleMenuDemo"),
+  'dome-gallery': () => import("../demo/Components/DomeGalleryDemo"),
 };
 
 const backgrounds = {
