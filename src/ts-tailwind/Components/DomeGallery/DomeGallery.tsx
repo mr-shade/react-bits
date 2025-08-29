@@ -736,10 +736,8 @@ export default function DomeGallery({
       --item-height: calc(var(--circ) / var(--segments-y));
     }
     
-    .sphere-root * {
-      box-sizing: border-box;
-      transform-style: preserve-3d;
-    }
+    .sphere-root * { box-sizing: border-box; }
+    .sphere, .sphere-item, .item__image { transform-style: preserve-3d; }
     
     .stage {
       width: 100%;
@@ -807,6 +805,9 @@ export default function DomeGallery({
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       transition: transform 300ms;
+      pointer-events: auto;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
     .item__image--reference {
       position: absolute;
@@ -871,6 +872,11 @@ export default function DomeGallery({
                     tabIndex={0}
                     aria-label={it.alt || "Open image"}
                     onClick={(e) => {
+                      if (performance.now() - lastDragEndAt.current < 80)
+                        return;
+                      openItemFromElement(e.currentTarget as HTMLElement);
+                    }}
+                    onTouchEnd={(e) => {
                       if (performance.now() - lastDragEndAt.current < 80)
                         return;
                       openItemFromElement(e.currentTarget);

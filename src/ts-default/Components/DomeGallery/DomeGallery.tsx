@@ -578,6 +578,13 @@ export default function DomeGallery({
     []
   );
 
+  const onTileTouchEnd = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    if (draggingRef.current) return;
+    if (performance.now() - lastDragEndAt.current < 80) return;
+    if (openingRef.current) return;
+    openItemFromElement(e.currentTarget);
+  }, []);
+
   useEffect(() => {
     const scrim = scrimRef.current;
     if (!scrim) return;
@@ -773,6 +780,7 @@ export default function DomeGallery({
                   aria-label={it.alt || "Open image"}
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}
+                  onTouchEnd={onTileTouchEnd}
                 >
                   <img src={it.src} draggable={false} alt={it.alt} />
                 </div>
