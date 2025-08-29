@@ -13,8 +13,9 @@
 
 .sphere-root * {
   box-sizing: border-box;
-  transform-style: preserve-3d;
 }
+
+.sphere, .item, .item__image { transform-style: preserve-3d; }
 
 main.sphere-main {
   position: absolute;
@@ -90,6 +91,9 @@ main.sphere-main {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  pointer-events: auto;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .item__image:focus {
