@@ -342,19 +342,21 @@ export default function DomeGallery({
       if (!draggingRef.current) return;
       draggingRef.current = false;
       let { vx, vy } = lastVelRef.current;
+      let isTap = false;
       if (startPosRef.current) {
         const dx = e.clientX - startPosRef.current.x;
         const dy = e.clientY - startPosRef.current.y;
         const dist2 = dx * dx + dy * dy;
-        const TAP_THRESH_PX = 4;
+        const TAP_THRESH_PX = pointerTypeRef.current === "touch" ? 10 : 6;
         if (dist2 <= TAP_THRESH_PX * TAP_THRESH_PX) {
           vx = 0;
           vy = 0;
+          isTap = true;
         }
       }
       if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005) startInertia(vx, vy);
       startPosRef.current = null;
-      cancelTapRef.current = movedRef.current;
+      cancelTapRef.current = !isTap;
       if (cancelTapRef.current) {
         setTimeout(() => (cancelTapRef.current = false), 120);
       }
