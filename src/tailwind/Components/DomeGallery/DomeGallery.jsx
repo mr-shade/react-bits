@@ -41,6 +41,7 @@ const DEFAULTS = {
 
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
 const normalizeAngle = (d) => ((d % 360) + 360) % 360;
+const wrapAngleSigned = (deg) => { const a = (((deg + 180) % 360) + 360) % 360; return a - 180; };
 const getDataNumber = (el, name, fallback) => {
   const attr = el.dataset[name] ?? el.getAttribute(`data-${name}`);
   const n = attr == null ? NaN : parseFloat(attr);
@@ -149,6 +150,9 @@ export default function DomeGallery({
   const inertiaRAF = useRef(null);
   const pointerTypeRef = useRef("mouse");
   const tapTargetRef = useRef(null);
+  const openingRef = useRef(false);
+  const openStartedAtRef = useRef(0);
+  const lastDragEndAt = useRef(0);
 
   const scrollLockedRef = useRef(false);
   const lockScroll = useCallback(() => {
@@ -158,7 +162,7 @@ export default function DomeGallery({
   }, []);
   const unlockScroll = useCallback(() => {
     if (!scrollLockedRef.current) return;
-    if (rootRef.current?.getAttribute('data-enlarging') === 'true') return; // keep locked while enlarged
+    if (rootRef.current?.getAttribute('data-enlarging') === 'true') return;
     scrollLockedRef.current = false;
     document.body.classList.remove('dg-scroll-lock');
   }, []);
@@ -258,8 +262,9 @@ export default function DomeGallery({
   }, []);
 
   const startInertia = useCallback((vx, vy) => {
-    let vX = vx * 100;
-    let vY = vy * 100;
+    const MAX_V = 1.4;
+    let vX = clamp(vx, -MAX_V, MAX_V) * 80;
+    let vY = clamp(vy, -MAX_V, MAX_V) * 80;
     let frames = 0;
     const d = clamp(dragDampening ?? 0.6, 0, 1);
     const frictionMul = 0.94 + 0.055 * d;
@@ -281,7 +286,7 @@ export default function DomeGallery({
         -maxVerticalRotationDeg,
         maxVerticalRotationDeg
       );
-      const nextY = rotationRef.current.y + vX / 200;
+      const nextY = wrapAngleSigned(rotationRef.current.y + vX / 200);
       rotationRef.current = { x: nextX, y: nextY };
       applyTransform(nextX, nextY);
       inertiaRAF.current = requestAnimationFrame(step);
@@ -370,6 +375,8 @@ export default function DomeGallery({
 
         if (cancelTapRef.current)
           setTimeout(() => (cancelTapRef.current = false), 120);
+        if (movedRef.current) lastDragEndAt.current = performance.now();
+        movedRef.current = false;
         if (pointerTypeRef.current === 'touch') unlockScroll();
       }
     }
@@ -380,6 +387,7 @@ export default function DomeGallery({
     if (!scrim) return;
 
     const close = () => {
+      if (performance.now() - openStartedAtRef.current < 250) return;
       const el = focusedElRef.current;
       if (!el) return;
       const parent = el.parentElement;
@@ -402,6 +410,7 @@ export default function DomeGallery({
         el.style.zIndex = 0;
         focusedElRef.current = null;
         rootRef.current?.removeAttribute("data-enlarging");
+        openingRef.current = false;
         return;
       }
 
@@ -488,9 +497,8 @@ export default function DomeGallery({
               setTimeout(() => {
                 el.style.transition = "";
                 el.style.opacity = "";
-                if (!draggingRef.current && rootRef.current?.getAttribute('data-enlarging') !== 'true') {
-                  document.body.classList.remove('dg-scroll-lock');
-                }
+                openingRef.current = false;
+                if (!draggingRef.current && rootRef.current?.getAttribute('data-enlarging') !== 'true') document.body.classList.remove('dg-scroll-lock');
               }, 300);
             });
           });
@@ -516,6 +524,9 @@ export default function DomeGallery({
 
   const openItemFromElement = (el) => {
     if (!el || cancelTapRef.current) return;
+    if (openingRef.current) return;
+    openingRef.current = true;
+    openStartedAtRef.current = performance.now();
     lockScroll();
     const parent = el.parentElement;
     focusedElRef.current = el;
@@ -792,6 +803,10 @@ export default function DomeGallery({
                 >
                   <div
                     className="item__image absolute block overflow-hidden cursor-pointer bg-gray-200 transition-transform duration-300"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={it.alt || 'Open image'}
+                    onClick={(e) => { if (performance.now() - lastDragEndAt.current < 80) return; openItemFromElement(e.currentTarget); }}
                     style={{
                       inset: '10px',
                       borderRadius: `var(--tile-radius, ${imageBorderRadius})`,

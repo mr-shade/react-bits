@@ -35,6 +35,7 @@ main.sphere-main {
   place-items: center;
   perspective: calc(var(--radius) * 2);
   perspective-origin: 50% 50%;
+  contain: layout paint size;
 }
 
 .sphere {
@@ -87,6 +88,12 @@ main.sphere-main {
   backface-visibility: hidden;
   transition: transform 300ms;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.item__image:focus {
+  outline: none;
 }
 
 .item__image img {
