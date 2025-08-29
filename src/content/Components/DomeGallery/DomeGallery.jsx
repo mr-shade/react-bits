@@ -130,6 +130,7 @@ export default function DomeGallery({
   const movedRef = useRef(false);
   const inertiaRAF = useRef(null);
   const pointerTypeRef = useRef("mouse");
+  const tapTargetRef = useRef(null);
 
   const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
@@ -289,10 +290,12 @@ export default function DomeGallery({
       startRotRef.current = { ...rotationRef.current };
       startPosRef.current = { x: e.clientX, y: e.clientY };
       lastRef.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
-      try {
-        e.target.setPointerCapture?.(e.pointerId);
-      } catch {
-        console.error("setPointerCapture failed");
+      const potential = e.target.closest?.('.item__image');
+      tapTargetRef.current = potential || null;
+      if (pointerTypeRef.current !== 'touch') {
+        try { e.target.setPointerCapture?.(e.pointerId); } catch (err) {
+          // ignore capture errors
+        }
       }
     };
 
@@ -347,23 +350,23 @@ export default function DomeGallery({
         const dx = e.clientX - startPosRef.current.x;
         const dy = e.clientY - startPosRef.current.y;
         const dist2 = dx * dx + dy * dy;
-        const TAP_THRESH_PX = pointerTypeRef.current === "touch" ? 10 : 6;
+        const TAP_THRESH_PX = pointerTypeRef.current === 'touch' ? 10 : 6;
         if (dist2 <= TAP_THRESH_PX * TAP_THRESH_PX) {
-          vx = 0;
-          vy = 0;
-          isTap = true;
+          vx = 0; vy = 0; isTap = true;
         }
       }
       if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005) startInertia(vx, vy);
       startPosRef.current = null;
       cancelTapRef.current = !isTap;
-      if (cancelTapRef.current) {
-        setTimeout(() => (cancelTapRef.current = false), 120);
+      if (isTap && tapTargetRef.current && !focusedElRef.current) {
+        openItemFromElement(tapTargetRef.current);
       }
-      try {
-        (e.target).releasePointerCapture?.(e.pointerId);
-      } catch {
-        console.error("releasePointerCapture failed");
+      tapTargetRef.current = null;
+      if (cancelTapRef.current) setTimeout(() => (cancelTapRef.current = false), 120);
+      if (pointerTypeRef.current !== 'touch') {
+        try { (e.target).releasePointerCapture?.(e.pointerId); } catch (err) {
+          // ignore release errors
+        }
       }
     };
 
@@ -396,25 +399,21 @@ export default function DomeGallery({
       const el = focusedElRef.current;
       if (!el) return;
       const parent = el.parentElement;
-      const overlay = viewerRef.current?.querySelector(
-        ".enlarge"
-      );
+      const overlay = viewerRef.current?.querySelector('.enlarge');
       if (!overlay) return;
 
-      const refDiv = parent.querySelector(
-        ".item__image--reference"
-      );
+      const refDiv = parent.querySelector('.item__image--reference');
 
       const originalPos = originalTilePositionRef.current;
       if (!originalPos) {
         overlay.remove();
         if (refDiv) refDiv.remove();
-        parent.style.setProperty("--rot-y-delta", `0deg`);
-        parent.style.setProperty("--rot-x-delta", `0deg`);
-        el.style.visibility = "";
-        (el.style).zIndex = 0;
+        parent.style.setProperty('--rot-y-delta', '0deg');
+        parent.style.setProperty('--rot-x-delta', '0deg');
+        el.style.visibility = '';
+        el.style.zIndex = 0;
         focusedElRef.current = null;
-        rootRef.current?.removeAttribute("data-enlarging");
+        rootRef.current?.removeAttribute('data-enlarging');
         return;
       }
 
@@ -427,7 +426,6 @@ export default function DomeGallery({
         width: originalPos.width,
         height: originalPos.height,
       };
-
       const overlayRelativeToRoot = {
         left: currentRect.left - rootRect.left,
         top: currentRect.top - rootRect.top,
@@ -511,22 +509,17 @@ export default function DomeGallery({
       });
     };
 
-    scrim.addEventListener("click", close);
-    const onKey = (e) => {
-      if (e.key === "Escape") close();
-    };
-    window.addEventListener("keydown", onKey);
-
+    scrim.addEventListener('click', close);
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    window.addEventListener('keydown', onKey);
     return () => {
-      scrim.removeEventListener("click", close);
-      window.removeEventListener("keydown", onKey);
+      scrim.removeEventListener('click', close);
+      window.removeEventListener('keydown', onKey);
     };
   }, [enlargeTransitionMs, openedImageBorderRadius]);
 
-  const onItemClick = (e) => {
-    if (cancelTapRef.current) return;
-
-    const el = e.currentTarget;
+  const openItemFromElement = (el) => {
+    if (!el || cancelTapRef.current) return;
     const parent = el.parentElement;
     focusedElRef.current = el;
     el.setAttribute("data-focused", "true");
@@ -677,7 +670,7 @@ export default function DomeGallery({
                   }
                 }
               >
-                <div className="item__image" onClick={onItemClick}>
+                <div className="item__image">
                   <img src={it.src} draggable={false} alt={it.alt} />
                 </div>
               </div>

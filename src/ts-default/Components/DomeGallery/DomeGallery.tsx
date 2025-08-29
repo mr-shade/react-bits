@@ -187,6 +187,7 @@ export default function DomeGallery({
   const movedRef = useRef(false);
   const inertiaRAF = useRef<number | null>(null);
   const pointerTypeRef = useRef<"mouse" | "pen" | "touch">("mouse");
+  const tapTargetRef = useRef<HTMLElement | null>(null);
 
   const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
@@ -350,9 +351,15 @@ export default function DomeGallery({
       startRotRef.current = { ...rotationRef.current };
       startPosRef.current = { x: e.clientX, y: e.clientY };
       lastRef.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
-      try {
-        (e.target as Element).setPointerCapture?.((e as any).pointerId);
-      } catch {}
+      const potential = (e.target as Element).closest?.(
+        ".item__image"
+      ) as HTMLElement | null;
+      tapTargetRef.current = potential || null;
+      if (pointerTypeRef.current !== "touch") {
+        try {
+          (e.target as Element).setPointerCapture?.((e as any).pointerId);
+        } catch {}
+      }
     };
 
     let moveRAF: number | null = null;
@@ -416,12 +423,17 @@ export default function DomeGallery({
       if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005) startInertia(vx, vy);
       startPosRef.current = null;
       cancelTapRef.current = !isTap;
-      if (cancelTapRef.current) {
-        setTimeout(() => (cancelTapRef.current = false), 120);
+      if (isTap && tapTargetRef.current && !focusedElRef.current) {
+        openItemFromElement(tapTargetRef.current);
       }
-      try {
-        (e.target as Element).releasePointerCapture?.((e as any).pointerId);
-      } catch {}
+      tapTargetRef.current = null;
+      if (cancelTapRef.current)
+        setTimeout(() => (cancelTapRef.current = false), 120);
+      if (pointerTypeRef.current !== "touch") {
+        try {
+          (e.target as Element).releasePointerCapture?.((e as any).pointerId);
+        } catch {}
+      }
     };
 
     target.addEventListener("pointerdown", onPointerDown as any, {
@@ -579,10 +591,8 @@ export default function DomeGallery({
     };
   }, [enlargeTransitionMs, openedImageBorderRadius]);
 
-  const onItemClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const openItemFromElement = (el: HTMLElement) => {
     if (cancelTapRef.current) return;
-
-    const el = e.currentTarget as HTMLElement;
     const parent = el.parentElement as HTMLElement;
     focusedElRef.current = el;
     el.setAttribute("data-focused", "true");
@@ -604,7 +614,6 @@ export default function DomeGallery({
     let rotY = -(parentY + globalY) % 360;
     if (rotY < -180) rotY += 360;
     const rotX = -parentRot.rotateX - rotationRef.current.x;
-
     parent.style.setProperty("--rot-y-delta", `${rotY}deg`);
     parent.style.setProperty("--rot-x-delta", `${rotX}deg`);
 
@@ -617,7 +626,6 @@ export default function DomeGallery({
     const tileR = refDiv.getBoundingClientRect();
     const mainR = mainRef.current!.getBoundingClientRect();
     const frameR = frameRef.current!.getBoundingClientRect();
-
     originalTilePositionRef.current = {
       left: tileR.left,
       top: tileR.top,
@@ -655,10 +663,9 @@ export default function DomeGallery({
     const sx0 = tileR.width / frameR.width;
     const sy0 = tileR.height / frameR.height;
     overlay.style.transform = `translate(${tx0}px, ${ty0}px) scale(${sx0}, ${sy0})`;
-
     requestAnimationFrame(() => {
       overlay.style.opacity = "1";
-      overlay.style.transform = `translate(0px, 0px) scale(1, 1)`;
+      overlay.style.transform = "translate(0px, 0px) scale(1, 1)";
       rootRef.current?.setAttribute("data-enlarging", "true");
     });
 
@@ -736,7 +743,7 @@ export default function DomeGallery({
                   } as React.CSSProperties
                 }
               >
-                <div className="item__image" onClick={onItemClick}>
+                <div className="item__image">
                   <img src={it.src} draggable={false} alt={it.alt} />
                 </div>
               </div>
