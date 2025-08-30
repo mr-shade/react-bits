@@ -15,7 +15,7 @@ import { domeGallery } from "../../constants/code/Components/domeGalleryCode";
 import DomeGallery from "../../content/Components/DomeGallery/DomeGallery";
 
 const DomeGalleryDemo = () => {
-  const [fit, setFit] = useState(0.5);
+  const [fit, setFit] = useState(0.8);
   const [minRadius, setMinRadius] = useState(600);
   const [maxVerticalRotationDeg, setMaxVerticalRotationDeg] = useState(0);
   const [segments, setSegments] = useState(34);
