@@ -177,11 +177,12 @@ const CardSwap: React.FC<CardSwapProps> = ({
         undefined,
         "return"
       );
-      tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
       tl.to(
         elFront,
         {
+          x: backSlot.x,
           y: backSlot.y,
+          z: backSlot.z,
           duration: config.durReturn,
           ease: config.ease,
         },
