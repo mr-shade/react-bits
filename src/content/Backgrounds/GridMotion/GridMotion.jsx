@@ -14,7 +14,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
   useEffect(() => {
     gsap.ticker.lagSmoothing(0);
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = e => {
       mouseXRef.current = e.clientX;
     };
 
@@ -32,7 +32,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
             x: moveAmount,
             duration: baseDuration + inertiaFactors[index % inertiaFactors.length],
             ease: 'power3.out',
-            overwrite: 'auto',
+            overwrite: 'auto'
           });
         }
       });
@@ -53,16 +53,12 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
       <section
         className="intro"
         style={{
-          background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`,
+          background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`
         }}
       >
         <div className="gridMotion-container">
           {[...Array(4)].map((_, rowIndex) => (
-            <div
-              key={rowIndex}
-              className="row"
-              ref={(el) => (rowRefs.current[rowIndex] = el)}
-            >
+            <div key={rowIndex} className="row" ref={el => (rowRefs.current[rowIndex] = el)}>
               {[...Array(7)].map((_, itemIndex) => {
                 const content = combinedItems[rowIndex * 7 + itemIndex];
                 return (
@@ -72,7 +68,7 @@ const GridMotion = ({ items = [], gradientColor = 'black' }) => {
                         <div
                           className="row__item-img"
                           style={{
-                            backgroundImage: `url(${content})`,
+                            backgroundImage: `url(${content})`
                           }}
                         ></div>
                       ) : (

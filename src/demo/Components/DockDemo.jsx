@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { Box, Text } from "@chakra-ui/react";
-import { VscAccount, VscArchive, VscHome, VscSettingsGear } from "react-icons/vsc";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { useState } from 'react';
+import { Box, Text } from '@chakra-ui/react';
+import { VscAccount, VscArchive, VscHome, VscSettingsGear } from 'react-icons/vsc';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
-import useForceRerender from "../../hooks/useForceRerender";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
+import useForceRerender from '../../hooks/useForceRerender';
 
-import Dock from "../../content/Components/Dock/Dock";
+import Dock from '../../content/Components/Dock/Dock';
 import { dock } from '../../constants/code/Components/dockCode';
 
 const DockDemo = () => {
@@ -25,69 +25,75 @@ const DockDemo = () => {
     { icon: <VscHome size={18} />, label: 'Home', onClick: () => alert('Home!') },
     { icon: <VscArchive size={18} />, label: 'Archive', onClick: () => alert('Archive!') },
     { icon: <VscAccount size={18} />, label: 'Profile', onClick: () => alert('Profile!') },
-    { icon: <VscSettingsGear size={18} />, label: 'Settings', onClick: () => alert('Settings!') },
+    { icon: <VscSettingsGear size={18} />, label: 'Settings', onClick: () => alert('Settings!') }
   ];
 
   const propData = [
     {
-      name: "items",
-      type: "DockItemData[]",
-      default: "[]",
+      name: 'items',
+      type: 'DockItemData[]',
+      default: '[]',
       description:
-        "Array of dock items. Each item should include an icon, label, onClick handler, and an optional className.",
+        'Array of dock items. Each item should include an icon, label, onClick handler, and an optional className.'
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: '""',
-      description: "Additional CSS classes for the dock panel.",
+      description: 'Additional CSS classes for the dock panel.'
     },
     {
-      name: "distance",
-      type: "number",
-      default: "200",
-      description:
-        "Pixel distance used to calculate the magnification effect based on mouse proximity.",
+      name: 'distance',
+      type: 'number',
+      default: '200',
+      description: 'Pixel distance used to calculate the magnification effect based on mouse proximity.'
     },
     {
-      name: "panelHeight",
-      type: "number",
-      default: "68",
-      description: "Height (in pixels) of the dock panel.",
+      name: 'panelHeight',
+      type: 'number',
+      default: '68',
+      description: 'Height (in pixels) of the dock panel.'
     },
     {
-      name: "baseItemSize",
-      type: "number",
-      default: "50",
-      description: "The base size (in pixels) for each dock item.",
+      name: 'baseItemSize',
+      type: 'number',
+      default: '50',
+      description: 'The base size (in pixels) for each dock item.'
     },
     {
-      name: "dockHeight",
-      type: "number",
-      default: "256",
-      description: "Maximum height (in pixels) of the dock container.",
+      name: 'dockHeight',
+      type: 'number',
+      default: '256',
+      description: 'Maximum height (in pixels) of the dock container.'
     },
     {
-      name: "magnification",
-      type: "number",
-      default: "70",
-      description:
-        "The magnified size (in pixels) applied to a dock item when hovered.",
+      name: 'magnification',
+      type: 'number',
+      default: '70',
+      description: 'The magnified size (in pixels) applied to a dock item when hovered.'
     },
     {
-      name: "spring",
-      type: "SpringOptions",
-      default: "{ mass: 0.1, stiffness: 150, damping: 12 }",
-      description: "Configuration options for the spring animation.",
-    },
+      name: 'spring',
+      type: 'SpringOptions',
+      default: '{ mass: 0.1, stiffness: 150, damping: 12 }',
+      description: 'Configuration options for the spring animation.'
+    }
   ];
 
   return (
     <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" minH={400}>
-          <Text fontSize='2rem' fontWeight={900} color="#271E37">Try it out!</Text>
-          <Dock key={key} items={items} panelHeight={panelHeight} baseItemSize={baseItemSize} magnification={magnification} />
+          <Text fontSize="2rem" fontWeight={900} color="#271E37">
+            Try it out!
+          </Text>
+          <Dock
+            key={key}
+            items={items}
+            panelHeight={panelHeight}
+            baseItemSize={baseItemSize}
+            magnification={magnification}
+          />
         </Box>
 
         <Customize>
@@ -97,7 +103,7 @@ const DockDemo = () => {
             max={200}
             step={10}
             value={panelHeight}
-            onChange={(val) => {
+            onChange={val => {
               setPanelHeight(val);
               forceRerender();
             }}
@@ -109,7 +115,7 @@ const DockDemo = () => {
             max={60}
             step={10}
             value={baseItemSize}
-            onChange={(val) => {
+            onChange={val => {
               setBaseItemSize(val);
               forceRerender();
             }}
@@ -121,7 +127,7 @@ const DockDemo = () => {
             max={100}
             step={10}
             value={magnification}
-            onChange={(val) => {
+            onChange={val => {
               setMagnification(val);
               forceRerender();
             }}
@@ -141,6 +147,6 @@ const DockDemo = () => {
       </CliTab>
     </TabsLayout>
   );
-}
+};
 
 export default DockDemo;

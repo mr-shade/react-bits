@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/TextTrail/TextTrail.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/TextTrail/TextTrail.tsx?raw';
 
 export const textTrail = {
-  ...(generateCliCommands('TextAnimations/TextTrail')),
+  ...generateCliCommands('TextAnimations/TextTrail'),
   installation: `npm install three`,
   usage: `import TextTrail from './TextTrail';
 
@@ -44,4 +44,4 @@ export const textTrail = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

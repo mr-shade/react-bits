@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { useState } from 'react';
+import { Box, Flex, Text } from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import Customize from "../../components/common/Preview/Customize";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import Customize from '../../components/common/Preview/Customize';
 
-import Magnet from "../../content/Animations/Magnet/Magnet";
+import Magnet from '../../content/Animations/Magnet/Magnet';
 import { magnet } from '../../constants/code/Animations/magnetCode';
 
 const MagnetDemo = () => {
@@ -22,50 +22,50 @@ const MagnetDemo = () => {
       name: 'padding',
       type: 'number',
       default: 100,
-      description: 'Specifies the distance (in pixels) around the element that activates the magnet pull.',
+      description: 'Specifies the distance (in pixels) around the element that activates the magnet pull.'
     },
     {
       name: 'disabled',
       type: 'boolean',
       default: false,
-      description: 'Disables the magnet effect when set to true.',
+      description: 'Disables the magnet effect when set to true.'
     },
     {
       name: 'magnetStrength',
       type: 'number',
       default: 2,
-      description: 'Controls the strength of the pull; higher values reduce movement, lower values increase it.',
+      description: 'Controls the strength of the pull; higher values reduce movement, lower values increase it.'
     },
     {
       name: 'activeTransition',
       type: 'string',
       default: '"transform 0.3s ease-out"',
-      description: 'CSS transition applied to the element when the magnet is active.',
+      description: 'CSS transition applied to the element when the magnet is active.'
     },
     {
       name: 'inactiveTransition',
       type: 'string',
       default: '"transform 0.5s ease-in-out"',
-      description: 'CSS transition applied when the magnet is inactive (mouse out of range).',
+      description: 'CSS transition applied when the magnet is inactive (mouse out of range).'
     },
     {
       name: 'wrapperClassName',
       type: 'string',
       default: '""',
-      description: 'Optional CSS class name for the outermost wrapper element.',
+      description: 'Optional CSS class name for the outermost wrapper element.'
     },
     {
       name: 'innerClassName',
       type: 'string',
       default: '""',
-      description: 'Optional CSS class name for the moving (inner) element.',
+      description: 'Optional CSS class name for the moving (inner) element.'
     },
     {
       name: 'children',
       type: 'ReactNode',
       default: '',
-      description: 'The content (JSX) to be displayed inside the magnetized element.',
-    },
+      description: 'The content (JSX) to be displayed inside the magnetized element.'
+    }
   ];
 
   return (
@@ -73,11 +73,7 @@ const MagnetDemo = () => {
       <PreviewTab>
         <h2 className="demo-title-extra">Container</h2>
         <Box position="relative" className="demo-container" minH={300}>
-          <Magnet
-            padding={padding}
-            disabled={disabled}
-            magnetStrength={magnetStrength}
-          >
+          <Magnet padding={padding} disabled={disabled} magnetStrength={magnetStrength}>
             <Flex
               w={200}
               h={100}
@@ -85,7 +81,7 @@ const MagnetDemo = () => {
               fontWeight="bolder"
               color="#fff"
               bg="#060010"
-              border='1px solid #222'
+              border="1px solid #222"
               borderRadius="20px"
               justifyContent="center"
               alignItems="center"
@@ -97,11 +93,7 @@ const MagnetDemo = () => {
 
         <h2 className="demo-title-extra">Link</h2>
         <Box position="relative" className="demo-container" minH={300}>
-          <Magnet
-            padding={Math.floor(padding / 2)}
-            disabled={disabled}
-            magnetStrength={magnetStrength}
-          >
+          <Magnet padding={Math.floor(padding / 2)} disabled={disabled} magnetStrength={magnetStrength}>
             <a href="https://github.com/DavidHDev/react-bits" target="_blank" rel="noreferrer">
               <Flex fontSize="lg" color="#fff">
                 Star&nbsp;<Text color="#5227FF">React Bits</Text>&nbsp;on GitHub!
@@ -111,11 +103,7 @@ const MagnetDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch
-            title="Disabled"
-            isChecked={disabled}
-            onChange={(checked) => setDisabled(checked)}
-          />
+          <PreviewSwitch title="Disabled" isChecked={disabled} onChange={checked => setDisabled(checked)} />
 
           <PreviewSlider
             title="Padding"

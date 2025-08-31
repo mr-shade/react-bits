@@ -8,7 +8,7 @@ import tsCode from '@ts-default/TextAnimations/SplitText/SplitText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/SplitText/SplitText.tsx?raw';
 
 export const splitText = {
-  ...(generateCliCommands('TextAnimations/SplitText')),
+  ...generateCliCommands('TextAnimations/SplitText'),
   installation: `npm install gsap @gsap/react`,
   usage: `import SplitText from "./SplitText";
 
@@ -34,4 +34,4 @@ const handleAnimationComplete = () => {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

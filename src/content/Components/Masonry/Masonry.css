@@ -13,7 +13,7 @@
   left: 0;
 }
 
-.item-wrapper>.item-img {
+.item-wrapper > .item-img {
   position: relative;
   background-size: cover;
   background-position: center center;

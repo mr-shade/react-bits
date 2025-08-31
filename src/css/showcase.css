@@ -68,7 +68,6 @@
 }
 
 @keyframes gradientShift {
-
   0%,
   100% {
     background-position: 0% 50%;
@@ -98,7 +97,7 @@
 
 .showcase-wrapper .title span:nth-child(3),
 .showcase-wrapper .title span:nth-child(4) {
-  color: #5227FF;
+  color: #5227ff;
 }
 
 .showcase-wrapper .sub-text {
@@ -125,7 +124,9 @@
   background: #060010;
   border-radius: 25px;
   grid-row: span 1;
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  transition:
+    transform 0.3s ease-in-out,
+    filter 0.3s ease-in-out;
   position: relative;
 }
 
@@ -145,7 +146,7 @@
 }
 
 .showcase-wrapper .grid-container .grid-item .showcase-img {
-  padding: .5em;
+  padding: 0.5em;
   filter: grayscale(100%);
   position: absolute;
   width: 100%;
@@ -181,7 +182,7 @@
 }
 
 .showcase-wrapper .grid-container .grid-item::before {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 25px;
   z-index: 2;

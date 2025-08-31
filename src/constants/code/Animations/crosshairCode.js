@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Animations/Crosshair/Crosshair.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/Crosshair/Crosshair.tsx?raw';
 
 export const crosshair = {
-  ...(generateCliCommands('Animations/Crosshair')),
+  ...generateCliCommands('Animations/Crosshair'),
   installation: `npm install gsap`,
   usage: `import { useRef } from 'react';
 import Crosshair from './Crosshair';
@@ -24,4 +24,4 @@ return (
   tailwind,
   tsCode,
   tsTailwind
-}
+};

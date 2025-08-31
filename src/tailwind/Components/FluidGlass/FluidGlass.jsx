@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
-import * as THREE from 'three'
-import { useRef, useState, useEffect, memo } from 'react'
-import { Canvas, createPortal, useFrame, useThree } from '@react-three/fiber'
+import * as THREE from 'three';
+import { useRef, useState, useEffect, memo } from 'react';
+import { Canvas, createPortal, useFrame, useThree } from '@react-three/fiber';
 import {
   useFBO,
   useGLTF,
@@ -11,34 +11,25 @@ import {
   Preload,
   ScrollControls,
   MeshTransmissionMaterial,
-  Text,
-} from '@react-three/drei'
-import { easing } from 'maath'
+  Text
+} from '@react-three/drei';
+import { easing } from 'maath';
 
-export default function FluidGlass({
-  mode = 'lens',
-  lensProps = {},
-  barProps = {},
-  cubeProps = {},
-}) {
-  const Wrapper = mode === 'bar' ? Bar : mode === 'cube' ? Cube : Lens
-  const rawOverrides =
-    mode === 'bar' ? barProps : mode === 'cube' ? cubeProps : lensProps
+export default function FluidGlass({ mode = 'lens', lensProps = {}, barProps = {}, cubeProps = {} }) {
+  const Wrapper = mode === 'bar' ? Bar : mode === 'cube' ? Cube : Lens;
+  const rawOverrides = mode === 'bar' ? barProps : mode === 'cube' ? cubeProps : lensProps;
 
   const {
     navItems = [
       { label: 'Home', link: '' },
       { label: 'About', link: '' },
-      { label: 'Contact', link: '' },
+      { label: 'Contact', link: '' }
     ],
     ...modeProps
-  } = rawOverrides
+  } = rawOverrides;
 
   return (
-    <Canvas
-      camera={{ position: [0, 0, 20], fov: 15 }}
-      gl={{ alpha: true }}
-    >
+    <Canvas camera={{ position: [0, 0, 20], fov: 15 }} gl={{ alpha: true }}>
       <ScrollControls damping={0.2} pages={3} distance={0.4}>
         {mode === 'bar' && <NavItems items={navItems} />}
         <Wrapper modeProps={modeProps}>
@@ -51,7 +42,7 @@ export default function FluidGlass({
         </Wrapper>
       </ScrollControls>
     </Canvas>
-  )
+  );
 }
 
 const ModeWrapper = memo(function ModeWrapper({
@@ -63,54 +54,42 @@ const ModeWrapper = memo(function ModeWrapper({
   modeProps = {},
   ...props
 }) {
-  const ref = useRef()
-  const { nodes } = useGLTF(glb)
-  const buffer = useFBO()
-  const { viewport: vp } = useThree()
-  const [scene] = useState(() => new THREE.Scene())
-  const geoWidthRef = useRef(1)
+  const ref = useRef();
+  const { nodes } = useGLTF(glb);
+  const buffer = useFBO();
+  const { viewport: vp } = useThree();
+  const [scene] = useState(() => new THREE.Scene());
+  const geoWidthRef = useRef(1);
 
   useEffect(() => {
-    const geo = nodes[geometryKey]?.geometry
-    geo.computeBoundingBox()
-    geoWidthRef.current =
-      geo.boundingBox.max.x - geo.boundingBox.min.x || 1
-  }, [nodes, geometryKey])
+    const geo = nodes[geometryKey]?.geometry;
+    geo.computeBoundingBox();
+    geoWidthRef.current = geo.boundingBox.max.x - geo.boundingBox.min.x || 1;
+  }, [nodes, geometryKey]);
 
   useFrame((state, delta) => {
-    const { gl, viewport, pointer, camera } = state
-    const v = viewport.getCurrentViewport(camera, [0, 0, 15])
+    const { gl, viewport, pointer, camera } = state;
+    const v = viewport.getCurrentViewport(camera, [0, 0, 15]);
 
-    const destX = followPointer ? (pointer.x * v.width) / 2 : 0
-    const destY = lockToBottom
-      ? -v.height / 2 + 0.2
-      : followPointer
-        ? (pointer.y * v.height) / 2
-        : 0
-    easing.damp3(ref.current.position, [destX, destY, 15], 0.15, delta)
+    const destX = followPointer ? (pointer.x * v.width) / 2 : 0;
+    const destY = lockToBottom ? -v.height / 2 + 0.2 : followPointer ? (pointer.y * v.height) / 2 : 0;
+    easing.damp3(ref.current.position, [destX, destY, 15], 0.15, delta);
 
     if (modeProps.scale == null) {
-      const maxWorld = v.width * 0.9
-      const desired = maxWorld / geoWidthRef.current
-      ref.current.scale.setScalar(Math.min(0.15, desired))
+      const maxWorld = v.width * 0.9;
+      const desired = maxWorld / geoWidthRef.current;
+      ref.current.scale.setScalar(Math.min(0.15, desired));
     }
 
-    gl.setRenderTarget(buffer)
-    gl.render(scene, camera)
-    gl.setRenderTarget(null)
+    gl.setRenderTarget(buffer);
+    gl.render(scene, camera);
+    gl.setRenderTarget(null);
 
     // Background Color
-    gl.setClearColor(0x5227ff, 1)
-  })
+    gl.setClearColor(0x5227ff, 1);
+  });
 
-  const {
-    scale,
-    ior,
-    thickness,
-    anisotropy,
-    chromaticAberration,
-    ...extraMat
-  } = modeProps
+  const { scale, ior, thickness, anisotropy, chromaticAberration, ...extraMat } = modeProps;
 
   return (
     <>
@@ -119,13 +98,7 @@ const ModeWrapper = memo(function ModeWrapper({
         <planeGeometry />
         <meshBasicMaterial map={buffer.texture} transparent />
       </mesh>
-      <mesh
-        ref={ref}
-        scale={scale ?? 0.15}
-        rotation-x={Math.PI / 2}
-        geometry={nodes[geometryKey]?.geometry}
-        {...props}
-      >
+      <mesh ref={ref} scale={scale ?? 0.15} rotation-x={Math.PI / 2} geometry={nodes[geometryKey]?.geometry} {...props}>
         <MeshTransmissionMaterial
           buffer={buffer.texture}
           ior={ior ?? 1.15}
@@ -136,31 +109,15 @@ const ModeWrapper = memo(function ModeWrapper({
         />
       </mesh>
     </>
-  )
-})
+  );
+});
 
 function Lens({ modeProps, ...p }) {
-  return (
-    <ModeWrapper
-      glb="/assets/3d/lens.glb"
-      geometryKey="Cylinder"
-      followPointer
-      modeProps={modeProps}
-      {...p}
-    />
-  )
+  return <ModeWrapper glb="/assets/3d/lens.glb" geometryKey="Cylinder" followPointer modeProps={modeProps} {...p} />;
 }
 
 function Cube({ modeProps, ...p }) {
-  return (
-    <ModeWrapper
-      glb="/assets/3d/cube.glb"
-      geometryKey="Cube"
-      followPointer
-      modeProps={modeProps}
-      {...p}
-    />
-  )
+  return <ModeWrapper glb="/assets/3d/cube.glb" geometryKey="Cube" followPointer modeProps={modeProps} {...p} />;
 }
 
 function Bar({ modeProps = {}, ...p }) {
@@ -171,8 +128,8 @@ function Bar({ modeProps = {}, ...p }) {
     ior: 1.15,
     color: '#ffffff',
     attenuationColor: '#ffffff',
-    attenuationDistance: 0.25,
-  }
+    attenuationDistance: 0.25
+  };
 
   return (
     <ModeWrapper
@@ -183,54 +140,48 @@ function Bar({ modeProps = {}, ...p }) {
       modeProps={{ ...defaultMat, ...modeProps }}
       {...p}
     />
-  )
+  );
 }
 
 function NavItems({ items }) {
-  const group = useRef()
-  const { viewport, camera } = useThree()
+  const group = useRef();
+  const { viewport, camera } = useThree();
 
   const DEVICE = {
     mobile: { max: 639, spacing: 0.2, fontSize: 0.035 },
     tablet: { max: 1023, spacing: 0.24, fontSize: 0.045 },
-    desktop: { max: Infinity, spacing: 0.3, fontSize: 0.045 },
-  }
+    desktop: { max: Infinity, spacing: 0.3, fontSize: 0.045 }
+  };
   const getDevice = () => {
-    const w = window.innerWidth
-    return w <= DEVICE.mobile.max
-      ? 'mobile'
-      : w <= DEVICE.tablet.max
-        ? 'tablet'
-        : 'desktop'
-  }
+    const w = window.innerWidth;
+    return w <= DEVICE.mobile.max ? 'mobile' : w <= DEVICE.tablet.max ? 'tablet' : 'desktop';
+  };
 
-  const [device, setDevice] = useState(getDevice())
+  const [device, setDevice] = useState(getDevice());
 
   useEffect(() => {
-    const onResize = () => setDevice(getDevice())
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
+    const onResize = () => setDevice(getDevice());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-  const { spacing, fontSize } = DEVICE[device]
+  const { spacing, fontSize } = DEVICE[device];
 
   useFrame(() => {
-    if (!group.current) return
-    const v = viewport.getCurrentViewport(camera, [0, 0, 15])
-    group.current.position.set(0, -v.height / 2 + 0.2, 15.1)
+    if (!group.current) return;
+    const v = viewport.getCurrentViewport(camera, [0, 0, 15]);
+    group.current.position.set(0, -v.height / 2 + 0.2, 15.1);
 
     group.current.children.forEach((child, i) => {
-      child.position.x = (i - (items.length - 1) / 2) * spacing
-    })
-  })
+      child.position.x = (i - (items.length - 1) / 2) * spacing;
+    });
+  });
 
-  const handleNavigate = (link) => {
-    if (!link) return
-    link.startsWith('#')
-      ? (window.location.hash = link)
-      : (window.location.href = link)
-  }
+  const handleNavigate = link => {
+    if (!link) return;
+    link.startsWith('#') ? (window.location.hash = link) : (window.location.href = link);
+  };
 
   return (
     <group ref={group} renderOrder={10}>
@@ -249,9 +200,9 @@ function NavItems({ items }) {
           outlineOpacity={0.5}
           depthTest={false}
           renderOrder={10}
-          onClick={(e) => {
-            e.stopPropagation()
-            handleNavigate(link)
+          onClick={e => {
+            e.stopPropagation();
+            handleNavigate(link);
           }}
           onPointerOver={() => (document.body.style.cursor = 'pointer')}
           onPointerOut={() => (document.body.style.cursor = 'auto')}
@@ -260,21 +211,21 @@ function NavItems({ items }) {
         </Text>
       ))}
     </group>
-  )
+  );
 }
 
 function Images() {
-  const group = useRef()
-  const data = useScroll()
-  const { height } = useThree((s) => s.viewport)
+  const group = useRef();
+  const data = useScroll();
+  const { height } = useThree(s => s.viewport);
 
   useFrame(() => {
-    group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3
-    group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3
-    group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2
-    group.current.children[3].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2
-    group.current.children[4].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2
-  })
+    group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3;
+    group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3;
+    group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
+    group.current.children[3].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
+    group.current.children[4].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
+  });
 
   return (
     <group ref={group}>
@@ -304,34 +255,30 @@ function Images() {
         url="https://images.unsplash.com/photo-1505069190533-da1c9af13346?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
     </group>
-  )
+  );
 }
 
 function Typography() {
   const DEVICE = {
     mobile: { fontSize: 0.2 },
-    tablet: { fontSize: 0.40 },
-    desktop: { fontSize: 0.7 },
-  }
+    tablet: { fontSize: 0.4 },
+    desktop: { fontSize: 0.7 }
+  };
   const getDevice = () => {
-    const w = window.innerWidth
-    return w <= 639
-      ? 'mobile'
-      : w <= 1023
-        ? 'tablet'
-        : 'desktop'
-  }
+    const w = window.innerWidth;
+    return w <= 639 ? 'mobile' : w <= 1023 ? 'tablet' : 'desktop';
+  };
 
-  const [device, setDevice] = useState(getDevice())
+  const [device, setDevice] = useState(getDevice());
 
   useEffect(() => {
-    const onResize = () => setDevice(getDevice())
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
+    const onResize = () => setDevice(getDevice());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-  const { fontSize } = DEVICE[device]
+  const { fontSize } = DEVICE[device];
 
   return (
     <Text
@@ -349,5 +296,5 @@ function Typography() {
     >
       React Bits
     </Text>
-  )
+  );
 }

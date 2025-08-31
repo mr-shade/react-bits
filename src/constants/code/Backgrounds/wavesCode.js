@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Waves/Waves.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Waves/Waves.tsx?raw';
 
 export const waves = {
-  ...(generateCliCommands('Backgrounds/Waves')),
+  ...generateCliCommands('Backgrounds/Waves'),
   usage: `import Waves from './Waves';
 
 <Waves
@@ -28,4 +28,4 @@ export const waves = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

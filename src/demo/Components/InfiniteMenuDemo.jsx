@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Spinner } from "@chakra-ui/react";
+import { useEffect, useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Spinner } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 
-import InfiniteMenu from "../../content/Components/InfiniteMenu/InfiniteMenu";
-import { infiniteMenu } from "../../constants/code/Components/infiniteMenuCode";
+import InfiniteMenu from '../../content/Components/InfiniteMenu/InfiniteMenu';
+import { infiniteMenu } from '../../constants/code/Components/infiniteMenuCode';
 
 const InfiniteMenuDemo = () => {
   const [isHidden, setIsHidden] = useState(true);
 
   const propData = [
     {
-      name: "items",
-      type: "object[]",
-      default: "[{...}]",
-      description: "List of items containing an image, link, title, and description - or just add what you need."
-    },
+      name: 'items',
+      type: 'object[]',
+      default: '[{...}]',
+      description: 'List of items containing an image, link, title, and description - or just add what you need.'
+    }
   ];
 
   const items = [
@@ -53,19 +53,25 @@ const InfiniteMenuDemo = () => {
     setTimeout(() => {
       setIsHidden(false);
     }, 1000);
-  }, [])
-
+  }, []);
 
   return (
     <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={600} overflow="hidden" p={0}>
           {isHidden && <Spinner size="lg" position="absolute" />}
-          <Box h={600} overflow="hidden" w='100%' p={0} opacity={isHidden ? 0 : 1} transform={isHidden ? 'scale(5)' : 'scale(1)'} transition='1s ease'>
+          <Box
+            h={600}
+            overflow="hidden"
+            w="100%"
+            p={0}
+            opacity={isHidden ? 0 : 1}
+            transform={isHidden ? 'scale(5)' : 'scale(1)'}
+            transition="1s ease"
+          >
             <InfiniteMenu items={items} />
           </Box>
         </Box>
-
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['gl-matrix']} />

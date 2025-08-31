@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Backgrounds/RippleGrid/RippleGrid.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/RippleGrid/RippleGrid.tsx?raw';
 
 export const rippleGrid = {
-  ...(generateCliCommands('Backgrounds/RippleGrid')),
+  ...generateCliCommands('Backgrounds/RippleGrid'),
   installation: `npm install ogl`,
   usage: `import RippleGrid from './RippleGrid';
 
@@ -26,4 +26,4 @@ export const rippleGrid = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

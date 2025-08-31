@@ -10,7 +10,7 @@ function PixelTransition({
   animationStepDuration = 0.3,
   className = '',
   style = {},
-  aspectRatio = '100%',
+  aspectRatio = '100%'
 }) {
   const containerRef = useRef(null);
   const pixelGridRef = useRef(null);
@@ -20,9 +20,7 @@ function PixelTransition({
   const [isActive, setIsActive] = useState(false);
 
   const isTouchDevice =
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia('(pointer: coarse)').matches;
+    'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
@@ -46,7 +44,7 @@ function PixelTransition({
     }
   }, [gridSize, pixelColor]);
 
-  const animatePixels = (activate) => {
+  const animatePixels = activate => {
     setIsActive(activate);
 
     const pixelGridEl = pixelGridRef.current;
@@ -111,9 +109,7 @@ function PixelTransition({
       onClick={isTouchDevice ? handleClick : undefined}
     >
       <div style={{ paddingTop: aspectRatio }} />
-      <div className="pixelated-image-card__default">
-        {firstContent}
-      </div>
+      <div className="pixelated-image-card__default">{firstContent}</div>
       <div className="pixelated-image-card__active" ref={activeRef}>
         {secondContent}
       </div>

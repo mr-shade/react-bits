@@ -1,126 +1,122 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
 import { LayoutGroup, motion } from 'motion/react';
-import { Box } from "@chakra-ui/react";
+import { Box } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 
-import RotatingText from "../../content/TextAnimations/RotatingText/RotatingText";
-import { rotatingText } from "../../constants/code/TextAnimations/rotatingTextCode";
+import RotatingText from '../../content/TextAnimations/RotatingText/RotatingText';
+import { rotatingText } from '../../constants/code/TextAnimations/rotatingTextCode';
 
 const RotatingTextDemo = () => {
   const propData = [
     {
-      name: "texts",
-      type: "string[]",
-      default: "[]",
-      description: "An array of text strings to be rotated."
+      name: 'texts',
+      type: 'string[]',
+      default: '[]',
+      description: 'An array of text strings to be rotated.'
     },
     {
-      name: "rotationInterval",
-      type: "number",
-      default: "2000",
-      description: "The interval (in milliseconds) between text rotations."
+      name: 'rotationInterval',
+      type: 'number',
+      default: '2000',
+      description: 'The interval (in milliseconds) between text rotations.'
     },
     {
-      name: "initial",
-      type: "object",
+      name: 'initial',
+      type: 'object',
       default: '{ y: "100%", opacity: 0 }',
-      description: "Initial animation state for each element."
+      description: 'Initial animation state for each element.'
     },
     {
-      name: "animate",
-      type: "object",
+      name: 'animate',
+      type: 'object',
       default: '{ y: 0, opacity: 1 }',
-      description: "Animation state when elements enter."
+      description: 'Animation state when elements enter.'
     },
     {
-      name: "exit",
-      type: "object",
+      name: 'exit',
+      type: 'object',
       default: '{ y: "-120%", opacity: 0 }',
-      description: "Exit animation state for elements."
+      description: 'Exit animation state for elements.'
     },
     {
-      name: "animatePresenceMode",
-      type: "string",
+      name: 'animatePresenceMode',
+      type: 'string',
       default: '"wait"',
       description: "Mode for AnimatePresence; for example, 'wait' to finish exit animations before entering."
     },
     {
-      name: "animatePresenceInitial",
-      type: "boolean",
-      default: "false",
-      description: "Determines whether the AnimatePresence component should run its initial animation."
+      name: 'animatePresenceInitial',
+      type: 'boolean',
+      default: 'false',
+      description: 'Determines whether the AnimatePresence component should run its initial animation.'
     },
     {
-      name: "staggerDuration",
-      type: "number",
-      default: "0",
+      name: 'staggerDuration',
+      type: 'number',
+      default: '0',
       description: "Delay between each character's animation."
     },
     {
-      name: "staggerFrom",
+      name: 'staggerFrom',
       type: 'string',
       default: '"first"',
-      description: "Specifies the order from which the stagger starts."
+      description: 'Specifies the order from which the stagger starts.'
     },
     {
-      name: "transition",
-      type: "object",
+      name: 'transition',
+      type: 'object',
       default: '',
-      description: "Transition settings for the animations."
+      description: 'Transition settings for the animations.'
     },
     {
-      name: "loop",
-      type: "boolean",
-      default: "true",
-      description: "Determines if the rotation should loop back to the first text after the last one."
+      name: 'loop',
+      type: 'boolean',
+      default: 'true',
+      description: 'Determines if the rotation should loop back to the first text after the last one.'
     },
     {
-      name: "auto",
-      type: "boolean",
-      default: "true",
-      description: "If true, the text rotation starts automatically."
+      name: 'auto',
+      type: 'boolean',
+      default: 'true',
+      description: 'If true, the text rotation starts automatically.'
     },
     {
-      name: "splitBy",
+      name: 'splitBy',
       type: 'string',
       default: '"characters"',
-      description: "Determines how the text is split into animatable elements (e.g., by characters, words, or lines)."
+      description: 'Determines how the text is split into animatable elements (e.g., by characters, words, or lines).'
     },
     {
-      name: "onNext",
-      type: "function",
-      default: "undefined",
-      description: "Callback function invoked when the text rotates to the next item."
+      name: 'onNext',
+      type: 'function',
+      default: 'undefined',
+      description: 'Callback function invoked when the text rotates to the next item.'
     },
     {
-      name: "mainClassName",
-      type: "string",
+      name: 'mainClassName',
+      type: 'string',
       default: "''",
-      description: "Additional class names for the main container element."
+      description: 'Additional class names for the main container element.'
     },
     {
-      name: "splitLevelClassName",
-      type: "string",
+      name: 'splitLevelClassName',
+      type: 'string',
       default: "''",
-      description: "Additional class names for the container wrapping each split group (e.g., a word)."
+      description: 'Additional class names for the container wrapping each split group (e.g., a word).'
     },
     {
-      name: "elementLevelClassName",
-      type: "string",
+      name: 'elementLevelClassName',
+      type: 'string',
       default: "''",
-      description: "Additional class names for each individual animated element."
+      description: 'Additional class names for each individual animated element.'
     }
   ];
 
-  const words = [
-    "thinking",
-    "coding",
-    "components!",
-  ];
+  const words = ['thinking', 'coding', 'components!'];
 
   return (
     <TabsLayout>
@@ -132,20 +128,20 @@ const RotatingTextDemo = () => {
                 <motion.span
                   className="pt-0.5 sm:pt-1 md:pt-2"
                   layout
-                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  transition={{ type: 'spring', damping: 30, stiffness: 400 }}
                 >
-                  Creative{" "}
+                  Creative{' '}
                 </motion.span>
                 <RotatingText
                   texts={words}
                   mainClassName="rotating-text-main"
-                  staggerFrom={"last"}
-                  initial={{ y: "100%" }}
+                  staggerFrom={'last'}
+                  initial={{ y: '100%' }}
                   animate={{ y: 0 }}
-                  exit={{ y: "-120%" }}
+                  exit={{ y: '-120%' }}
                   staggerDuration={0.025}
                   splitLevelClassName="rotating-text-split"
-                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  transition={{ type: 'spring', damping: 30, stiffness: 400 }}
                   rotationInterval={2000}
                 />
               </motion.p>

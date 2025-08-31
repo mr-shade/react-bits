@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Input, Text } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
 import { rippleGrid } from '../../constants/code/Backgrounds/rippleGridCode';
-import RippleGrid from "../../content/Backgrounds/RippleGrid/RippleGrid";
+import RippleGrid from '../../content/Backgrounds/RippleGrid/RippleGrid';
 
 const RippleGridDemo = () => {
   const [enableRainbow, setEnableRainbow] = useState(false);
-  const [gridColor, setGridColor] = useState("#5227FF");
+  const [gridColor, setGridColor] = useState('#5227FF');
   const [rippleIntensity, setRippleIntensity] = useState(0.05);
   const [gridSize, setGridSize] = useState(10.0);
   const [gridThickness, setGridThickness] = useState(15.0);
@@ -29,76 +29,76 @@ const RippleGridDemo = () => {
   const [mouseInteractionRadius, setMouseInteractionRadius] = useState(0.8);
   const propData = [
     {
-      name: "enableRainbow",
-      type: "boolean",
-      default: "false",
-      description: "Enables rainbow color cycling animation for the grid."
+      name: 'enableRainbow',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enables rainbow color cycling animation for the grid.'
     },
     {
-      name: "gridColor",
-      type: "string",
+      name: 'gridColor',
+      type: 'string',
       default: "'#ffffff'",
-      description: "Color of the grid when rainbow mode is disabled."
+      description: 'Color of the grid when rainbow mode is disabled.'
     },
     {
-      name: "rippleIntensity",
-      type: "number",
-      default: "0.05",
-      description: "Controls the intensity of the ripple effect from the center."
+      name: 'rippleIntensity',
+      type: 'number',
+      default: '0.05',
+      description: 'Controls the intensity of the ripple effect from the center.'
     },
     {
-      name: "gridSize",
-      type: "number",
-      default: "10.0",
-      description: "Controls the density/size of the grid pattern."
+      name: 'gridSize',
+      type: 'number',
+      default: '10.0',
+      description: 'Controls the density/size of the grid pattern.'
     },
     {
-      name: "gridThickness",
-      type: "number",
-      default: "15.0",
-      description: "Controls the thickness of the grid lines."
+      name: 'gridThickness',
+      type: 'number',
+      default: '15.0',
+      description: 'Controls the thickness of the grid lines.'
     },
     {
-      name: "fadeDistance",
-      type: "number",
-      default: "1.5",
-      description: "Controls how far the fade effect extends from the center."
+      name: 'fadeDistance',
+      type: 'number',
+      default: '1.5',
+      description: 'Controls how far the fade effect extends from the center.'
     },
     {
-      name: "vignetteStrength",
-      type: "number",
-      default: "2.0",
-      description: "Controls the intensity of the vignette (edge darkening) effect."
+      name: 'vignetteStrength',
+      type: 'number',
+      default: '2.0',
+      description: 'Controls the intensity of the vignette (edge darkening) effect.'
     },
     {
-      name: "glowIntensity",
-      type: "number",
-      default: "0.1",
-      description: "Adds a glow effect to the grid lines."
+      name: 'glowIntensity',
+      type: 'number',
+      default: '0.1',
+      description: 'Adds a glow effect to the grid lines.'
     },
     {
-      name: "opacity",
-      type: "number",
-      default: "1.0",
-      description: "Overall opacity of the entire effect."
+      name: 'opacity',
+      type: 'number',
+      default: '1.0',
+      description: 'Overall opacity of the entire effect.'
     },
     {
-      name: "gridRotation",
-      type: "number",
-      default: "0",
-      description: "Rotate the entire grid pattern by degrees."
+      name: 'gridRotation',
+      type: 'number',
+      default: '0',
+      description: 'Rotate the entire grid pattern by degrees.'
     },
     {
-      name: "mouseInteraction",
-      type: "boolean",
-      default: "false",
-      description: "Enable mouse/touch interaction to create ripples."
+      name: 'mouseInteraction',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enable mouse/touch interaction to create ripples.'
     },
     {
-      name: "mouseInteractionRadius",
-      type: "number",
-      default: "0.8",
-      description: "Controls the radius of the mouse interaction effect."
+      name: 'mouseInteractionRadius',
+      type: 'number',
+      default: '0.8',
+      description: 'Controls the radius of the mouse interaction effect.'
     }
   ];
 
@@ -122,21 +122,15 @@ const RippleGridDemo = () => {
           />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Retro yet futuristic, this is Ripple Grid!"
-          />
+          <BackgroundContent pillText="New Background" headline="Retro yet futuristic, this is Ripple Grid!" />
         </Box>
 
         <Customize>
           <Flex alignItems="center" mb={4}>
-            <Text fontSize="sm" mr={2}>Grid Color</Text>
-            <Input
-              type="color"
-              value={gridColor}
-              onChange={(e) => setGridColor(e.target.value)}
-              width="50px"
-            />
+            <Text fontSize="sm" mr={2}>
+              Grid Color
+            </Text>
+            <Input type="color" value={gridColor} onChange={e => setGridColor(e.target.value)} width="50px" />
           </Flex>
 
           <PreviewSlider
@@ -148,14 +142,7 @@ const RippleGridDemo = () => {
             onChange={setRippleIntensity}
           />
 
-          <PreviewSlider
-            title="Grid Size"
-            min={5}
-            max={30}
-            step={1}
-            value={gridSize}
-            onChange={setGridSize}
-          />
+          <PreviewSlider title="Grid Size" min={5} max={30} step={1} value={gridSize} onChange={setGridSize} />
 
           <PreviewSlider
             title="Grid Thickness"
@@ -193,14 +180,7 @@ const RippleGridDemo = () => {
             onChange={setGlowIntensity}
           />
 
-          <PreviewSlider
-            title="Opacity"
-            min={0}
-            max={1}
-            step={0.05}
-            value={opacity}
-            onChange={setOpacity}
-          />
+          <PreviewSlider title="Opacity" min={0} max={1} step={0.05} value={opacity} onChange={setOpacity} />
 
           <PreviewSlider
             title="Grid Rotation"
@@ -221,17 +201,9 @@ const RippleGridDemo = () => {
             onChange={setMouseInteractionRadius}
           />
 
-          <PreviewSwitch
-            title="Mouse Interaction"
-            isChecked={mouseInteraction}
-            onChange={setMouseInteraction}
-          />
+          <PreviewSwitch title="Mouse Interaction" isChecked={mouseInteraction} onChange={setMouseInteraction} />
 
-          <PreviewSwitch
-            title="Enable Rainbow"
-            isChecked={enableRainbow}
-            onChange={setEnableRainbow}
-          />
+          <PreviewSwitch title="Enable Rainbow" isChecked={enableRainbow} onChange={setEnableRainbow} />
         </Customize>
 
         <PropTable data={propData} />

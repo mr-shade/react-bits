@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Backgrounds/Dither/Dither.jsx?raw';
 import css from '@content/Backgrounds/Dither/Dither.css?raw';
 import tailwind from '@tailwind/Backgrounds/Dither/Dither.jsx?raw';
-import tsCode from '@ts-default/Backgrounds/Dither/Dither.tsx?raw'
-import tsTailwind from '@ts-tailwind/Backgrounds/Dither/Dither.tsx?raw'
+import tsCode from '@ts-default/Backgrounds/Dither/Dither.tsx?raw';
+import tsTailwind from '@ts-tailwind/Backgrounds/Dither/Dither.tsx?raw';
 
 export const dither = {
-  ...(generateCliCommands('Backgrounds/Dither')),
+  ...generateCliCommands('Backgrounds/Dither'),
   installation: `npm install three postprocessing @react-three/fiber @react-three/postprocessing`,
   usage: `import Dither from './Dither';
 
@@ -28,4 +28,4 @@ export const dither = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

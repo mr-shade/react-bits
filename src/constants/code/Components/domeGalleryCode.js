@@ -1,13 +1,13 @@
-import { generateCliCommands } from "@/utils/utils"
+import { generateCliCommands } from '@/utils/utils';
 
-import code from "@content/Components/DomeGallery/DomeGallery.jsx?raw"
-import css from "@content/Components/DomeGallery/DomeGallery.css?raw"
-import tailwind from "@tailwind/Components/DomeGallery/DomeGallery.jsx?raw"
-import tsCode from "@ts-default/Components/DomeGallery/DomeGallery.tsx?raw"
-import tsTailwind from "@ts-tailwind/Components/DomeGallery/DomeGallery.tsx?raw"
+import code from '@content/Components/DomeGallery/DomeGallery.jsx?raw';
+import css from '@content/Components/DomeGallery/DomeGallery.css?raw';
+import tailwind from '@tailwind/Components/DomeGallery/DomeGallery.jsx?raw';
+import tsCode from '@ts-default/Components/DomeGallery/DomeGallery.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/DomeGallery/DomeGallery.tsx?raw';
 
 export const domeGallery = {
-  ...generateCliCommands("Components/DomeGallery"),
+  ...generateCliCommands('Components/DomeGallery'),
   installation: `npm install @use-gesture/react`,
   usage: `import DomeGallery from './DomeGallery';
 export default function App() {
@@ -22,4 +22,4 @@ export default function App() {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

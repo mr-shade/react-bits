@@ -1,18 +1,18 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 
-import Galaxy from "../../content/Backgrounds/Galaxy/Galaxy";
-import { galaxy } from "../../constants/code/Backgrounds/galaxyCode";
-import { useState } from "react";
+import Galaxy from '../../content/Backgrounds/Galaxy/Galaxy';
+import { galaxy } from '../../constants/code/Backgrounds/galaxyCode';
+import { useState } from 'react';
 
 const GalaxyDemo = () => {
   const [density, setDensity] = useState(1);
@@ -30,100 +30,100 @@ const GalaxyDemo = () => {
 
   const propData = [
     {
-      name: "focal",
-      type: "[number, number]",
-      default: "[0.5, 0.5]",
-      description: "Sets the focal point of the galaxy effect as [x, y] coordinates from 0 to 1"
+      name: 'focal',
+      type: '[number, number]',
+      default: '[0.5, 0.5]',
+      description: 'Sets the focal point of the galaxy effect as [x, y] coordinates from 0 to 1'
     },
     {
-      name: "rotation",
-      type: "[number, number]",
-      default: "[1.0, 0.0]",
-      description: "Controls the rotation matrix of the galaxy as [x, y] rotation values"
+      name: 'rotation',
+      type: '[number, number]',
+      default: '[1.0, 0.0]',
+      description: 'Controls the rotation matrix of the galaxy as [x, y] rotation values'
     },
     {
-      name: "starSpeed",
-      type: "number",
-      default: "0.5",
-      description: "Controls the speed of star movement and animation"
+      name: 'starSpeed',
+      type: 'number',
+      default: '0.5',
+      description: 'Controls the speed of star movement and animation'
     },
     {
-      name: "density",
-      type: "number",
-      default: "1",
-      description: "Controls the density of stars in the galaxy"
+      name: 'density',
+      type: 'number',
+      default: '1',
+      description: 'Controls the density of stars in the galaxy'
     },
     {
-      name: "hueShift",
-      type: "number",
-      default: "140",
-      description: "Shifts the hue of all stars by the specified degrees (0-360)"
+      name: 'hueShift',
+      type: 'number',
+      default: '140',
+      description: 'Shifts the hue of all stars by the specified degrees (0-360)'
     },
     {
-      name: "disableAnimation",
-      type: "boolean",
-      default: "false",
-      description: "When true, stops all time-based animations"
+      name: 'disableAnimation',
+      type: 'boolean',
+      default: 'false',
+      description: 'When true, stops all time-based animations'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "1.0",
-      description: "Global speed multiplier for all animations"
+      name: 'speed',
+      type: 'number',
+      default: '1.0',
+      description: 'Global speed multiplier for all animations'
     },
     {
-      name: "mouseInteraction",
-      type: "boolean",
-      default: "true",
-      description: "Enables or disables mouse interaction with the galaxy"
+      name: 'mouseInteraction',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enables or disables mouse interaction with the galaxy'
     },
     {
-      name: "glowIntensity",
-      type: "number",
-      default: "0.3",
-      description: "Controls the intensity of the star glow effect"
+      name: 'glowIntensity',
+      type: 'number',
+      default: '0.3',
+      description: 'Controls the intensity of the star glow effect'
     },
     {
-      name: "saturation",
-      type: "number",
-      default: "0.0",
-      description: "Controls color saturation of stars (0 = grayscale, 1 = full color)"
+      name: 'saturation',
+      type: 'number',
+      default: '0.0',
+      description: 'Controls color saturation of stars (0 = grayscale, 1 = full color)'
     },
     {
-      name: "mouseRepulsion",
-      type: "boolean",
-      default: "true",
-      description: "When true, stars are repelled by the mouse cursor"
+      name: 'mouseRepulsion',
+      type: 'boolean',
+      default: 'true',
+      description: 'When true, stars are repelled by the mouse cursor'
     },
     {
-      name: "twinkleIntensity",
-      type: "number",
-      default: "0.3",
-      description: "Controls how much stars twinkle (0 = no twinkle, 1 = maximum twinkle)"
+      name: 'twinkleIntensity',
+      type: 'number',
+      default: '0.3',
+      description: 'Controls how much stars twinkle (0 = no twinkle, 1 = maximum twinkle)'
     },
     {
-      name: "rotationSpeed",
-      type: "number",
-      default: "0.1",
-      description: "Speed of automatic galaxy rotation"
+      name: 'rotationSpeed',
+      type: 'number',
+      default: '0.1',
+      description: 'Speed of automatic galaxy rotation'
     },
     {
-      name: "repulsionStrength",
-      type: "number",
-      default: "2",
-      description: "Strength of mouse repulsion effect when mouseRepulsion is enabled"
+      name: 'repulsionStrength',
+      type: 'number',
+      default: '2',
+      description: 'Strength of mouse repulsion effect when mouseRepulsion is enabled'
     },
     {
-      name: "autoCenterRepulsion",
-      type: "number",
-      default: "0",
-      description: "Creates repulsion from center of canvas. Overrides mouse repulsion when > 0"
+      name: 'autoCenterRepulsion',
+      type: 'number',
+      default: '0',
+      description: 'Creates repulsion from center of canvas. Overrides mouse repulsion when > 0'
     },
     {
-      name: "transparent",
-      type: "boolean",
-      default: "true",
-      description: "Makes the black background transparent, showing only stars"
+      name: 'transparent',
+      type: 'boolean',
+      default: 'true',
+      description: 'Makes the black background transparent, showing only stars'
     }
   ];
 
@@ -150,17 +150,9 @@ const GalaxyDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch
-            title="Mouse Interaction"
-            isChecked={mouseInteraction}
-            onChange={setMouseInteraction}
-          />
+          <PreviewSwitch title="Mouse Interaction" isChecked={mouseInteraction} onChange={setMouseInteraction} />
 
-          <PreviewSwitch
-            title="Mouse Repulsion"
-            isChecked={mouseRepulsion}
-            onChange={setMouseRepulsion}
-          />
+          <PreviewSwitch title="Mouse Repulsion" isChecked={mouseRepulsion} onChange={setMouseRepulsion} />
 
           <PreviewSlider
             title="Density"

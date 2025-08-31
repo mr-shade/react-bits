@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
+import React, { useEffect, useRef } from 'react';
+import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
 
 import './Particles.css';
 
@@ -18,12 +18,15 @@ interface ParticlesProps {
   className?: string;
 }
 
-const defaultColors: string[] = ["#ffffff", "#ffffff", "#ffffff"];
+const defaultColors: string[] = ['#ffffff', '#ffffff', '#ffffff'];
 
 const hexToRgb = (hex: string): [number, number, number] => {
-  hex = hex.replace(/^#/, "");
+  hex = hex.replace(/^#/, '');
   if (hex.length === 3) {
-    hex = hex.split("").map((c) => c + c).join("");
+    hex = hex
+      .split('')
+      .map(c => c + c)
+      .join('');
   }
   const int = parseInt(hex, 16);
   const r = ((int >> 16) & 255) / 255;
@@ -103,7 +106,7 @@ const Particles: React.FC<ParticlesProps> = ({
   sizeRandomness = 1,
   cameraDistance = 20,
   disableRotation = false,
-  className,
+  className
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -126,7 +129,7 @@ const Particles: React.FC<ParticlesProps> = ({
       renderer.setSize(width, height);
       camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
     };
-    window.addEventListener("resize", resize, false);
+    window.addEventListener('resize', resize, false);
     resize();
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -137,7 +140,7 @@ const Particles: React.FC<ParticlesProps> = ({
     };
 
     if (moveParticlesOnHover) {
-      container.addEventListener("mousemove", handleMouseMove);
+      container.addEventListener('mousemove', handleMouseMove);
     }
 
     const count = particleCount;
@@ -164,7 +167,7 @@ const Particles: React.FC<ParticlesProps> = ({
     const geometry = new Geometry(gl, {
       position: { size: 3, data: positions },
       random: { size: 4, data: randoms },
-      color: { size: 3, data: colors },
+      color: { size: 3, data: colors }
     });
 
     const program = new Program(gl, {
@@ -175,10 +178,10 @@ const Particles: React.FC<ParticlesProps> = ({
         uSpread: { value: particleSpread },
         uBaseSize: { value: particleBaseSize },
         uSizeRandomness: { value: sizeRandomness },
-        uAlphaParticles: { value: alphaParticles ? 1 : 0 },
+        uAlphaParticles: { value: alphaParticles ? 1 : 0 }
       },
       transparent: true,
-      depthTest: false,
+      depthTest: false
     });
 
     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
@@ -215,9 +218,9 @@ const Particles: React.FC<ParticlesProps> = ({
     animationFrameId = requestAnimationFrame(update);
 
     return () => {
-      window.removeEventListener("resize", resize);
+      window.removeEventListener('resize', resize);
       if (moveParticlesOnHover) {
-        container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener('mousemove', handleMouseMove);
       }
       cancelAnimationFrame(animationFrameId);
       if (container.contains(gl.canvas)) {
@@ -234,15 +237,10 @@ const Particles: React.FC<ParticlesProps> = ({
     particleBaseSize,
     sizeRandomness,
     cameraDistance,
-    disableRotation,
+    disableRotation
   ]);
 
-  return (
-    <div
-      ref={containerRef}
-      className={`particles-container ${className}`}
-    />
-  );
+  return <div ref={containerRef} className={`particles-container ${className}`} />;
 };
 
 export default Particles;

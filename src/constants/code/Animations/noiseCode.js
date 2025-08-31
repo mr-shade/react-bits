@@ -7,8 +7,7 @@ import tsCode from '@ts-default/Animations/Noise/Noise.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/Noise/Noise.tsx?raw';
 
 export const noise = {
- 
-  ...(generateCliCommands('Animations/Noise')),
+  ...generateCliCommands('Animations/Noise'),
 
   usage: `import Noise from './Noise;'
 
@@ -26,5 +25,5 @@ export const noise = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

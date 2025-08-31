@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/Stepper/Stepper.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/Stepper/Stepper.tsx?raw';
 
 export const stepper = {
-  ...(generateCliCommands('Components/Stepper')),
+  ...generateCliCommands('Components/Stepper'),
   installation: `npm install motion`,
   usage: `import Stepper, { Step } from './Stepper';
   
@@ -43,4 +43,4 @@ export const stepper = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

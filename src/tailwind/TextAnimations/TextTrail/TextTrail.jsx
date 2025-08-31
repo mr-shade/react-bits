@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 import {
   CanvasTexture,
   Clock,
@@ -14,20 +14,20 @@ import {
   Vector3,
   WebGLRenderer,
   WebGLRenderTarget
-} from "three";
+} from 'three';
 
-const hexToRgb = (hex) => {
-  let h = hex.replace("#", "");
+const hexToRgb = hex => {
+  let h = hex.replace('#', '');
   if (h.length === 3)
     h = h
-      .split("")
-      .map((c) => c + c)
-      .join("");
+      .split('')
+      .map(c => c + c)
+      .join('');
   const n = parseInt(h, 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 };
-const loadFont = async (fam) => {
-  if ("fonts" in document) await (document).fonts.load(`64px "${fam}"`);
+const loadFont = async fam => {
+  if ('fonts' in document) await document.fonts.load(`64px "${fam}"`);
 };
 
 const BASE_VERT = `
@@ -101,23 +101,23 @@ void main(){
 }`;
 
 const TextTrail = ({
-  text = "Trail",
-  fontFamily = "Figtree",
-  fontWeight = "900",
+  text = 'Trail',
+  fontFamily = 'Figtree',
+  fontWeight = '900',
   noiseFactor = 1,
   noiseScale = 0.0005,
   rgbPersistFactor = 0.98,
   alphaPersistFactor = 0.95,
   animateColor = false,
-  startColor = "#ffffff",
-  textColor = "#ffffff",
+  startColor = '#ffffff',
+  textColor = '#ffffff',
   backgroundColor = 0x271e37,
   colorCycleInterval = 3000,
-  supersample = 2,
+  supersample = 2
 }) => {
   const ref = useRef(null);
 
-  const persistColor = useRef(hexToRgb(textColor || startColor).map((c) => c / 255));
+  const persistColor = useRef(hexToRgb(textColor || startColor).map(c => c / 255));
   const targetColor = useRef([...persistColor.current]);
 
   useEffect(() => {
@@ -125,7 +125,7 @@ const TextTrail = ({
 
     const size = () => ({
       w: ref.current.clientWidth,
-      h: ref.current.clientHeight,
+      h: ref.current.clientHeight
     });
     let { w, h } = size();
 
@@ -152,11 +152,11 @@ const TextTrail = ({
         noiseFactor: { value: noiseFactor },
         noiseScale: { value: noiseScale },
         rgbPersistFactor: { value: rgbPersistFactor },
-        alphaPersistFactor: { value: alphaPersistFactor },
+        alphaPersistFactor: { value: alphaPersistFactor }
       },
       vertexShader: BASE_VERT,
       fragmentShader: PERSIST_FRAG,
-      transparent: true,
+      transparent: true
     });
     const quad = new Mesh(new PlaneGeometry(w, h), quadMat);
     fluidScene.add(quad);
@@ -164,22 +164,19 @@ const TextTrail = ({
     const labelMat = new ShaderMaterial({
       uniforms: {
         sampler: { value: null },
-        color: { value: new Vector3(...persistColor.current) },
+        color: { value: new Vector3(...persistColor.current) }
       },
       vertexShader: BASE_VERT,
       fragmentShader: TEXT_FRAG,
-      transparent: true,
+      transparent: true
     });
-    const label = new Mesh(
-      new PlaneGeometry(Math.min(w, h), Math.min(w, h)),
-      labelMat
-    );
+    const label = new Mesh(new PlaneGeometry(Math.min(w, h), Math.min(w, h)), labelMat);
     scene.add(label);
 
-    const texCanvas = document.createElement("canvas");
-    const ctx = texCanvas.getContext("2d", {
+    const texCanvas = document.createElement('canvas');
+    const ctx = texCanvas.getContext('2d', {
       alpha: true,
-      colorSpace: "srgb",
+      colorSpace: 'srgb'
     });
     const drawText = () => {
       const max = Math.min(renderer.capabilities.maxTextureSize, 4096);
@@ -194,12 +191,12 @@ const TextTrail = ({
       ctx.scale(pixelRatio, pixelRatio);
       ctx.clearRect(0, 0, max, max);
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = "high";
-      ctx.shadowColor = "rgba(255,255,255,0.3)";
+      ctx.imageSmoothingQuality = 'high';
+      ctx.shadowColor = 'rgba(255,255,255,0.3)';
       ctx.shadowBlur = 2;
-      ctx.fillStyle = "#fff";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
+      ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
 
       const refSize = 250;
       ctx.font = `${fontWeight} ${refSize}px ${fontFamily}`;
@@ -217,7 +214,7 @@ const TextTrail = ({
         [0.1, 0.1],
         [-0.1, -0.1],
         [0.1, -0.1],
-        [-0.1, 0.1],
+        [-0.1, 0.1]
       ];
       ctx.globalAlpha = 1 / offs.length;
       offs.forEach(([dx, dy]) => ctx.fillText(text, cx + dx, cy + dy));
@@ -233,12 +230,12 @@ const TextTrail = ({
 
     const mouse = [0, 0],
       target = [0, 0];
-    const onMove = (e) => {
+    const onMove = e => {
       const r = ref.current.getBoundingClientRect();
       target[0] = ((e.clientX - r.left) / r.width) * 2 - 1;
       target[1] = ((r.top + r.height - e.clientY) / r.height) * 2 - 1;
     };
-    ref.current.addEventListener("pointermove", onMove);
+    ref.current.addEventListener('pointermove', onMove);
 
     const ro = new ResizeObserver(() => {
       ({ w, h } = size());
@@ -266,9 +263,7 @@ const TextTrail = ({
     renderer.setAnimationLoop(() => {
       const dt = clock.getDelta();
       if (animateColor && !textColor) {
-        for (let i = 0; i < 3; i++)
-          persistColor.current[i] +=
-            (targetColor.current[i] - persistColor.current[i]) * dt;
+        for (let i = 0; i < 3; i++) persistColor.current[i] += (targetColor.current[i] - persistColor.current[i]) * dt;
       }
       const speed = dt * 5;
       mouse[0] += (target[0] - mouse[0]) * speed;
@@ -293,7 +288,7 @@ const TextTrail = ({
     return () => {
       renderer.setAnimationLoop(null);
       clearInterval(timer);
-      ref.current?.removeEventListener("pointermove", onMove);
+      ref.current?.removeEventListener('pointermove', onMove);
       ro.disconnect();
       // eslint-disable-next-line react-hooks/exhaustive-deps
       ref.current?.removeChild(renderer.domElement);
@@ -318,7 +313,7 @@ const TextTrail = ({
     textColor,
     backgroundColor,
     colorCycleInterval,
-    supersample,
+    supersample
   ]);
 
   return <div ref={ref} className="w-full h-full" />;

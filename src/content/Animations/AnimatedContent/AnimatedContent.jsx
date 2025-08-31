@@ -1,22 +1,22 @@
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AnimatedContent = ({
   children,
   distance = 100,
-  direction = "vertical",
+  direction = 'vertical',
   reverse = false,
   duration = 0.8,
-  ease = "power3.out",
+  ease = 'power3.out',
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
   threshold = 0.1,
   delay = 0,
-  onComplete,
+  onComplete
 }) => {
   const ref = useRef(null);
 
@@ -24,14 +24,14 @@ const AnimatedContent = ({
     const el = ref.current;
     if (!el) return;
 
-    const axis = direction === "horizontal" ? "x" : "y";
+    const axis = direction === 'horizontal' ? 'x' : 'y';
     const offset = reverse ? -distance : distance;
     const startPct = (1 - threshold) * 100;
 
     gsap.set(el, {
       [axis]: offset,
       scale,
-      opacity: animateOpacity ? initialOpacity : 1,
+      opacity: animateOpacity ? initialOpacity : 1
     });
 
     gsap.to(el, {
@@ -45,9 +45,9 @@ const AnimatedContent = ({
       scrollTrigger: {
         trigger: el,
         start: `top ${startPct}%`,
-        toggleActions: "play none none none",
-        once: true,
-      },
+        toggleActions: 'play none none none',
+        once: true
+      }
     });
 
     return () => {
@@ -65,7 +65,7 @@ const AnimatedContent = ({
     scale,
     threshold,
     delay,
-    onComplete,
+    onComplete
   ]);
 
   return <div ref={ref}>{children}</div>;

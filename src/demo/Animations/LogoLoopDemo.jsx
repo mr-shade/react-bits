@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import useForceRerender from "../../hooks/useForceRerender";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import useForceRerender from '../../hooks/useForceRerender';
 
 import { logoLoop } from '../../constants/code/Animations/logoLoopCode';
-import LogoLoop from "../../content/Animations/LogoLoop/LogoLoop";
+import LogoLoop from '../../content/Animations/LogoLoop/LogoLoop';
 
 import {
   SiReact,
@@ -23,20 +23,20 @@ import {
   SiDocker,
   SiPrisma,
   SiSupabase,
-  SiStripe,
-} from "react-icons/si";
+  SiStripe
+} from 'react-icons/si';
 
 const items = [
-  { node: <SiReact />, title: "React", href: "https://react.dev" },
-  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
-  { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
-  { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
-  { node: <SiDocker />, title: "Docker", href: "https://www.docker.com" },
-  { node: <SiPrisma />, title: "Prisma", href: "https://www.prisma.io" },
-  { node: <SiSupabase />, title: "Supabase", href: "https://supabase.com" },
-  { node: <SiStripe />, title: "Stripe", href: "https://stripe.com" },
+  { node: <SiReact />, title: 'React', href: 'https://react.dev' },
+  { node: <SiNextdotjs />, title: 'Next.js', href: 'https://nextjs.org' },
+  { node: <SiTypescript />, title: 'TypeScript', href: 'https://www.typescriptlang.org' },
+  { node: <SiTailwindcss />, title: 'Tailwind CSS', href: 'https://tailwindcss.com' },
+  { node: <SiVercel />, title: 'Vercel', href: 'https://vercel.com' },
+  { node: <SiGithub />, title: 'GitHub', href: 'https://github.com' },
+  { node: <SiDocker />, title: 'Docker', href: 'https://www.docker.com' },
+  { node: <SiPrisma />, title: 'Prisma', href: 'https://www.prisma.io' },
+  { node: <SiSupabase />, title: 'Supabase', href: 'https://supabase.com' },
+  { node: <SiStripe />, title: 'Stripe', href: 'https://stripe.com' }
 ];
 
 const LogoLoopDemo = () => {
@@ -48,86 +48,87 @@ const LogoLoopDemo = () => {
   const [pauseOnHover, setPauseOnHover] = useState(true);
   const [fadeOut, setFadeOut] = useState(true);
   const [scaleOnHover, setScaleOnHover] = useState(true);
-  const [direction, setDirection] = useState("left");
+  const [direction, setDirection] = useState('left');
 
   const propData = [
     {
-      name: "logos",
-      type: "LogoItem[]",
-      default: "required",
-      description: "Array of logo items to display. Each item can be either a React node or an image src."
+      name: 'logos',
+      type: 'LogoItem[]',
+      default: 'required',
+      description: 'Array of logo items to display. Each item can be either a React node or an image src.'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "120",
-      description: "Animation speed in pixels per second. Positive values move based on direction, negative values reverse direction."
+      name: 'speed',
+      type: 'number',
+      default: '120',
+      description:
+        'Animation speed in pixels per second. Positive values move based on direction, negative values reverse direction.'
     },
     {
-      name: "direction",
+      name: 'direction',
       type: "'left' | 'right'",
       default: "'left'",
-      description: "Direction of the logo animation loop."
+      description: 'Direction of the logo animation loop.'
     },
     {
-      name: "width",
-      type: "number | string",
+      name: 'width',
+      type: 'number | string',
       default: "'100%'",
-      description: "Width of the logo loop container."
+      description: 'Width of the logo loop container.'
     },
     {
-      name: "logoHeight",
-      type: "number",
-      default: "28",
-      description: "Height of the logos in pixels."
+      name: 'logoHeight',
+      type: 'number',
+      default: '28',
+      description: 'Height of the logos in pixels.'
     },
     {
-      name: "gap",
-      type: "number",
-      default: "32",
-      description: "Gap between logos in pixels."
+      name: 'gap',
+      type: 'number',
+      default: '32',
+      description: 'Gap between logos in pixels.'
     },
     {
-      name: "pauseOnHover",
-      type: "boolean",
-      default: "true",
-      description: "Whether to pause the animation when hovering over the component."
+      name: 'pauseOnHover',
+      type: 'boolean',
+      default: 'true',
+      description: 'Whether to pause the animation when hovering over the component.'
     },
     {
-      name: "fadeOut",
-      type: "boolean",
-      default: "false",
-      description: "Whether to apply fade-out effect at the edges of the container."
+      name: 'fadeOut',
+      type: 'boolean',
+      default: 'false',
+      description: 'Whether to apply fade-out effect at the edges of the container.'
     },
     {
-      name: "fadeOutColor",
-      type: "string",
-      default: "undefined",
-      description: "Color used for the fade-out effect. Only applies when fadeOut is true."
+      name: 'fadeOutColor',
+      type: 'string',
+      default: 'undefined',
+      description: 'Color used for the fade-out effect. Only applies when fadeOut is true.'
     },
     {
-      name: "scaleOnHover",
-      type: "boolean",
-      default: "false",
-      description: "Whether to scale logos on hover."
+      name: 'scaleOnHover',
+      type: 'boolean',
+      default: 'false',
+      description: 'Whether to scale logos on hover.'
     },
     {
-      name: "ariaLabel",
-      type: "string",
+      name: 'ariaLabel',
+      type: 'string',
       default: "'Partner logos'",
-      description: "Accessibility label for the logo loop component."
+      description: 'Accessibility label for the logo loop component.'
     },
     {
-      name: "className",
-      type: "string",
-      default: "undefined",
-      description: "Additional CSS class names to apply to the root element."
+      name: 'className',
+      type: 'string',
+      default: 'undefined',
+      description: 'Additional CSS class names to apply to the root element.'
     },
     {
-      name: "style",
-      type: "React.CSSProperties",
-      default: "undefined",
-      description: "Inline styles to apply to the root element."
+      name: 'style',
+      type: 'React.CSSProperties',
+      default: 'undefined',
+      description: 'Inline styles to apply to the root element.'
     }
   ];
 
@@ -159,7 +160,7 @@ const LogoLoopDemo = () => {
             step={10}
             value={speed}
             valueUnit="px/s"
-            onChange={(value) => {
+            onChange={value => {
               setSpeed(value);
               forceRerender();
             }}
@@ -172,7 +173,7 @@ const LogoLoopDemo = () => {
             step={5}
             value={logoHeight}
             valueUnit="px"
-            onChange={(value) => {
+            onChange={value => {
               setLogoHeight(value);
               forceRerender();
             }}
@@ -185,7 +186,7 @@ const LogoLoopDemo = () => {
             step={5}
             value={gap}
             valueUnit="px"
-            onChange={(value) => {
+            onChange={value => {
               setGap(value);
               forceRerender();
             }}
@@ -193,9 +194,9 @@ const LogoLoopDemo = () => {
 
           <PreviewSwitch
             title="Direction"
-            isChecked={direction === "right"}
-            onChange={(checked) => {
-              setDirection(checked ? "right" : "left");
+            isChecked={direction === 'right'}
+            onChange={checked => {
+              setDirection(checked ? 'right' : 'left');
               forceRerender();
             }}
             checkedLabel="Right"
@@ -205,7 +206,7 @@ const LogoLoopDemo = () => {
           <PreviewSwitch
             title="Pause on Hover"
             isChecked={pauseOnHover}
-            onChange={(checked) => {
+            onChange={checked => {
               setPauseOnHover(checked);
               forceRerender();
             }}
@@ -214,7 +215,7 @@ const LogoLoopDemo = () => {
           <PreviewSwitch
             title="Fade Out"
             isChecked={fadeOut}
-            onChange={(checked) => {
+            onChange={checked => {
               setFadeOut(checked);
               forceRerender();
             }}
@@ -223,7 +224,7 @@ const LogoLoopDemo = () => {
           <PreviewSwitch
             title="Scale on Hover"
             isChecked={scaleOnHover}
-            onChange={(checked) => {
+            onChange={checked => {
               setScaleOnHover(checked);
               forceRerender();
             }}

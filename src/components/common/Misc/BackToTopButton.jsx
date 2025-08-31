@@ -1,7 +1,7 @@
-import { Button, Icon } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import { FiArrowUp } from "react-icons/fi";
-import { toast } from 'sonner'
+import { Button, Icon } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import { FiArrowUp } from 'react-icons/fi';
+import { toast } from 'sonner';
 
 const BackToTopButton = () => {
   const [visible, setVisible] = useState(false);
@@ -20,26 +20,26 @@ const BackToTopButton = () => {
     '🔥  Dracarys!'
   ];
 
-  const getRandomMessage = (messages) => messages[Math.floor(Math.random() * messages.length)];
+  const getRandomMessage = messages => messages[Math.floor(Math.random() * messages.length)];
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
     toast(getRandomMessage(messages));
-  }
+  };
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 500);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <Button
       fontWeight={500}
-      rounded='xl'
+      rounded="xl"
       py={4}
-      right='2em'
-      position='fixed'
+      right="2em"
+      position="fixed"
       zIndex={98}
       boxShadow="10px 0 25px rgba(0, 0, 6, 1)"
       transition="0.3s ease"
@@ -49,7 +49,7 @@ const BackToTopButton = () => {
       cursor={visible ? 'pointer' : 'default'}
       onClick={() => visible && scrollToTop()}
     >
-      <Icon as={FiArrowUp} color="#fff" boxSize={4}/>
+      <Icon as={FiArrowUp} color="#fff" boxSize={4} />
     </Button>
   );
 };

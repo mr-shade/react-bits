@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 
-import GooeyNav from "../../content/Components/GooeyNav/GooeyNav";
-import { gooeyNav } from "../../constants/code/Components/gooeyNavCode";
+import GooeyNav from '../../content/Components/GooeyNav/GooeyNav';
+import { gooeyNav } from '../../constants/code/Components/gooeyNavCode';
 
 const GooeyNavDemo = () => {
   const [particleCount, setParticleCount] = useState(15);
@@ -18,60 +18,59 @@ const GooeyNavDemo = () => {
 
   const propData = [
     {
-      name: "items",
-      type: "GooeyNavItem[]",
-      default: "[]",
-      description: "Array of navigation items."
+      name: 'items',
+      type: 'GooeyNavItem[]',
+      default: '[]',
+      description: 'Array of navigation items.'
     },
     {
-      name: "animationTime",
-      type: "number",
-      default: "600",
-      description: "Duration (ms) of the main animation."
+      name: 'animationTime',
+      type: 'number',
+      default: '600',
+      description: 'Duration (ms) of the main animation.'
     },
     {
-      name: "particleCount",
-      type: "number",
-      default: "15",
-      description: "Number of bubble particles per transition."
+      name: 'particleCount',
+      type: 'number',
+      default: '15',
+      description: 'Number of bubble particles per transition.'
     },
     {
-      name: "particleDistances",
-      type: "[number, number]",
-      default: "[90, 10]",
-      description: "Outer and inner distances of bubble spread."
+      name: 'particleDistances',
+      type: '[number, number]',
+      default: '[90, 10]',
+      description: 'Outer and inner distances of bubble spread.'
     },
     {
-      name: "particleR",
-      type: "number",
-      default: "100",
-      description: "Radius factor influencing random particle rotation."
+      name: 'particleR',
+      type: 'number',
+      default: '100',
+      description: 'Radius factor influencing random particle rotation.'
     },
     {
-      name: "timeVariance",
-      type: "number",
-      default: "300",
-      description: "Random time variance (ms) for particle animations."
+      name: 'timeVariance',
+      type: 'number',
+      default: '300',
+      description: 'Random time variance (ms) for particle animations.'
     },
     {
-      name: "colors",
-      type: "number[]",
-      default: "[1, 2, 3, 1, 2, 3, 1, 4]",
-      description: "Color indices used when creating bubble particles."
+      name: 'colors',
+      type: 'number[]',
+      default: '[1, 2, 3, 1, 2, 3, 1, 4]',
+      description: 'Color indices used when creating bubble particles.'
     },
     {
-      name: "initialActiveIndex",
-      type: "number",
-      default: "0",
-      description: "Which item is selected on mount."
+      name: 'initialActiveIndex',
+      type: 'number',
+      default: '0',
+      description: 'Which item is selected on mount.'
     }
   ];
 
-
   const items = [
-    { label: "Home", href: null },
-    { label: "About", href: null },
-    { label: "Contact", href: null },
+    { label: 'Home', href: null },
+    { label: 'About', href: null },
+    { label: 'Contact', href: null }
   ];
 
   return (
@@ -96,7 +95,7 @@ const GooeyNavDemo = () => {
             max={50}
             step={1}
             value={particleCount}
-            onChange={(val) => {
+            onChange={val => {
               setParticleCount(val);
             }}
           />
@@ -107,7 +106,7 @@ const GooeyNavDemo = () => {
             max={2000}
             step={100}
             value={timeVariance}
-            onChange={(val) => {
+            onChange={val => {
               setTimeVariance(val);
             }}
           />
@@ -118,7 +117,7 @@ const GooeyNavDemo = () => {
             max={1000}
             step={100}
             value={particleR}
-            onChange={(val) => {
+            onChange={val => {
               setParticleR(val);
             }}
           />

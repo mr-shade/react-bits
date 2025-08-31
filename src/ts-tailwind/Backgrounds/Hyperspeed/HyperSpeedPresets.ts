@@ -1,7 +1,7 @@
 export const hyperspeedPresets = {
   one: {
-    onSpeedUp: () => { },
-    onSlowDown: () => { },
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
     distortion: 'turbulentDistortion',
     length: 400,
     roadWidth: 10,
@@ -31,14 +31,14 @@ export const hyperspeedPresets = {
       background: 0x000000,
       shoulderLines: 0x131318,
       brokenLines: 0x131318,
-      leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
-      rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
-      sticks: 0x03B3C3,
+      leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+      rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+      sticks: 0x03b3c3
     }
   },
   two: {
-    onSpeedUp: () => { },
-    onSlowDown: () => { },
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
     distortion: 'mountainDistortion',
     length: 400,
     roadWidth: 9,
@@ -69,14 +69,14 @@ export const hyperspeedPresets = {
       background: 0x000000,
       shoulderLines: 0x131318,
       brokenLines: 0x131318,
-      leftCars: [0xff102a, 0xEB383E, 0xff102a],
-      rightCars: [0xdadafa, 0xBEBAE3, 0x8F97E4],
-      sticks: 0xdadafa,
+      leftCars: [0xff102a, 0xeb383e, 0xff102a],
+      rightCars: [0xdadafa, 0xbebae3, 0x8f97e4],
+      sticks: 0xdadafa
     }
   },
   three: {
-    onSpeedUp: () => { },
-    onSlowDown: () => { },
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
     distortion: 'xyDistortion',
     length: 400,
     roadWidth: 9,
@@ -106,14 +106,14 @@ export const hyperspeedPresets = {
       background: 0x000000,
       shoulderLines: 0x131318,
       brokenLines: 0x131318,
-      leftCars: [0x7D0D1B, 0xA90519, 0xff102a],
-      rightCars: [0xF1EECE, 0xE6E2B1, 0xDFD98A],
-      sticks: 0xF1EECE,
+      leftCars: [0x7d0d1b, 0xa90519, 0xff102a],
+      rightCars: [0xf1eece, 0xe6e2b1, 0xdfd98a],
+      sticks: 0xf1eece
     }
   },
   four: {
-    onSpeedUp: () => { },
-    onSlowDown: () => { },
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
     distortion: 'LongRaceDistortion',
     length: 400,
     roadWidth: 10,
@@ -143,14 +143,14 @@ export const hyperspeedPresets = {
       background: 0x000000,
       shoulderLines: 0x131318,
       brokenLines: 0x131318,
-      leftCars: [0xFF5F73, 0xE74D60, 0xff102a],
-      rightCars: [0xA4E3E6, 0x80D1D4, 0x53C2C6],
-      sticks: 0xA4E3E6,
+      leftCars: [0xff5f73, 0xe74d60, 0xff102a],
+      rightCars: [0xa4e3e6, 0x80d1d4, 0x53c2c6],
+      sticks: 0xa4e3e6
     }
   },
   five: {
-    onSpeedUp: () => { },
-    onSlowDown: () => { },
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
     distortion: 'turbulentDistortion',
     length: 400,
     roadWidth: 9,
@@ -180,14 +180,14 @@ export const hyperspeedPresets = {
       background: 0x000000,
       shoulderLines: 0x131318,
       brokenLines: 0x131318,
-      leftCars: [0xDC5B20, 0xDCA320, 0xDC2020],
-      rightCars: [0x334BF7, 0xE5E6ED, 0xBFC6F3],
-      sticks: 0xC5E8EB,
+      leftCars: [0xdc5b20, 0xdca320, 0xdc2020],
+      rightCars: [0x334bf7, 0xe5e6ed, 0xbfc6f3],
+      sticks: 0xc5e8eb
     }
   },
   six: {
-    onSpeedUp: () => { },
-    onSlowDown: () => { },
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
     distortion: 'deepDistortion',
     length: 400,
     roadWidth: 18,
@@ -217,9 +217,9 @@ export const hyperspeedPresets = {
       background: 0x000000,
       shoulderLines: 0x131318,
       brokenLines: 0x131318,
-      leftCars: [0xFF322F, 0xA33010, 0xA81508],
-      rightCars: [0xFDFDF0, 0xF3DEA0, 0xE2BB88],
-      sticks: 0xFDFDF0,
+      leftCars: [0xff322f, 0xa33010, 0xa81508],
+      rightCars: [0xfdfdf0, 0xf3dea0, 0xe2bb88],
+      sticks: 0xfdfdf0
     }
   }
-}
+};

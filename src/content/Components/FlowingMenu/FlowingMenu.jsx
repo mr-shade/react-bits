@@ -34,27 +34,29 @@ function MenuItem({ link, text, image }) {
     return xDiff * xDiff + yDiff * yDiff;
   };
 
-  const handleMouseEnter = (ev) => {
+  const handleMouseEnter = ev => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const x = ev.clientX - rect.left;
     const y = ev.clientY - rect.top;
     const edge = findClosestEdge(x, y, rect.width, rect.height);
 
-    gsap.timeline({ defaults: animationDefaults })
+    gsap
+      .timeline({ defaults: animationDefaults })
       .set(marqueeRef.current, { y: edge === 'top' ? '-101%' : '101%' }, 0)
       .set(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0)
       .to([marqueeRef.current, marqueeInnerRef.current], { y: '0%' }, 0);
   };
 
-  const handleMouseLeave = (ev) => {
+  const handleMouseLeave = ev => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const x = ev.clientX - rect.left;
     const y = ev.clientY - rect.top;
     const edge = findClosestEdge(x, y, rect.width, rect.height);
 
-    gsap.timeline({ defaults: animationDefaults })
+    gsap
+      .timeline({ defaults: animationDefaults })
       .to(marqueeRef.current, { y: edge === 'top' ? '-101%' : '101%' }, 0)
       .to(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0);
   };
@@ -62,21 +64,13 @@ function MenuItem({ link, text, image }) {
   const repeatedMarqueeContent = Array.from({ length: 4 }).map((_, idx) => (
     <React.Fragment key={idx}>
       <span>{text}</span>
-      <div
-        className="marquee__img"
-        style={{ backgroundImage: `url(${image})` }}
-      />
+      <div className="marquee__img" style={{ backgroundImage: `url(${image})` }} />
     </React.Fragment>
   ));
 
   return (
     <div className="menu__item" ref={itemRef}>
-      <a
-        className="menu__item-link"
-        href={link}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <a className="menu__item-link" href={link} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {text}
       </a>
       <div className="marquee" ref={marqueeRef}>

@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Backgrounds/LightRays/LightRays.jsx?raw';
 import css from '@content/Backgrounds/LightRays/LightRays.css?raw';
 import tailwind from '@tailwind/Backgrounds/LightRays/LightRays.jsx?raw';
-import tsCode from '@ts-default/Backgrounds/LightRays/LightRays.tsx?raw'
-import tsTailwind from '@ts-tailwind/Backgrounds/LightRays/LightRays.tsx?raw'
+import tsCode from '@ts-default/Backgrounds/LightRays/LightRays.tsx?raw';
+import tsTailwind from '@ts-tailwind/Backgrounds/LightRays/LightRays.tsx?raw';
 
 export const lightRays = {
-  ...(generateCliCommands('Backgrounds/LightRays')),
+  ...generateCliCommands('Backgrounds/LightRays'),
   installation: `npm install ogl`,
   usage: `import LightRays from './LightRays';
 
@@ -30,4 +30,4 @@ export const lightRays = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

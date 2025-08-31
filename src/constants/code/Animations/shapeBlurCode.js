@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Animations/ShapeBlur/ShapeBlur.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/ShapeBlur/ShapeBlur.tsx?raw';
 
 export const shapeBlur = {
-  ...(generateCliCommands('Animations/ShapeBlur')),
+  ...generateCliCommands('Animations/ShapeBlur'),
   installation: `npm install three`,
   usage: `import ShapeBlur from './ShapeBlur';
 
@@ -25,4 +25,4 @@ export const shapeBlur = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

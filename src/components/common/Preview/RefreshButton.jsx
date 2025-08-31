@@ -7,7 +7,7 @@ const RefreshButton = ({ onClick }) => {
       transition="background-color 0.3s ease"
       _active={{ backgroundColor: '#271E37' }}
       _hover={{ backgroundColor: '#271E37' }}
-      backgroundColor='#170D27'
+      backgroundColor="#170D27"
       position="absolute"
       onClick={onClick}
       border="1px solid #392e4e"
@@ -22,6 +22,6 @@ const RefreshButton = ({ onClick }) => {
       <Icon as={FiRefreshCw} boxSize={4} />
     </Button>
   );
-}
+};
 
 export default RefreshButton;

@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Text, Input } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Text, Input } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import useForceRerender from '../../hooks/useForceRerender';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
 import { silkCode } from '../../constants/code/Backgrounds/silkCode';
 import Silk from '../../content/Backgrounds/Silk/Silk';
@@ -17,7 +17,7 @@ import Silk from '../../content/Backgrounds/Silk/Silk';
 const SilkDemo = () => {
   const [speed, setSpeed] = useState(5);
   const [scale, setScale] = useState(1);
-  const [color, setColor] = useState("#5227FF");
+  const [color, setColor] = useState('#5227FF');
   const [noiseIntensity, setNoiseIntensity] = useState(1.5);
   const [rotation, setRotation] = useState(0);
 
@@ -25,34 +25,34 @@ const SilkDemo = () => {
 
   const propData = [
     {
-      name: "speed",
-      type: "number",
-      default: "5",
-      description: "Controls the animation speed of the silk effect."
+      name: 'speed',
+      type: 'number',
+      default: '5',
+      description: 'Controls the animation speed of the silk effect.'
     },
     {
-      name: "scale",
-      type: "number",
-      default: "1",
-      description: "Controls the scale of the silk pattern."
+      name: 'scale',
+      type: 'number',
+      default: '1',
+      description: 'Controls the scale of the silk pattern.'
     },
     {
-      name: "color",
-      type: "string",
+      name: 'color',
+      type: 'string',
       default: "'#7B7481'",
-      description: "Hex color code for the silk pattern."
+      description: 'Hex color code for the silk pattern.'
     },
     {
-      name: "noiseIntensity",
-      type: "number",
-      default: "1.5",
-      description: "Controls the intensity of the noise effect."
+      name: 'noiseIntensity',
+      type: 'number',
+      default: '1.5',
+      description: 'Controls the intensity of the noise effect.'
     },
     {
-      name: "rotation",
-      type: "number",
-      default: "0",
-      description: "Controls the rotation of the silk pattern (in radians)."
+      name: 'rotation',
+      type: 'number',
+      default: '0',
+      description: 'Controls the rotation of the silk pattern (in radians).'
     }
   ];
 
@@ -70,10 +70,7 @@ const SilkDemo = () => {
           />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Silk touch is a good enhancement, Steve!"
-          />
+          <BackgroundContent pillText="New Background" headline="Silk touch is a good enhancement, Steve!" />
         </Box>
 
         <Customize>
@@ -83,7 +80,7 @@ const SilkDemo = () => {
             max={20}
             step={0.1}
             value={speed}
-            onChange={(val) => {
+            onChange={val => {
               setSpeed(val);
               forceRerender();
             }}
@@ -95,7 +92,7 @@ const SilkDemo = () => {
             max={5}
             step={0.1}
             value={scale}
-            onChange={(val) => {
+            onChange={val => {
               setScale(val);
               forceRerender();
             }}
@@ -107,7 +104,7 @@ const SilkDemo = () => {
             max={10}
             step={0.1}
             value={noiseIntensity}
-            onChange={(val) => {
+            onChange={val => {
               setNoiseIntensity(val);
               forceRerender();
             }}
@@ -119,7 +116,7 @@ const SilkDemo = () => {
             max={Math.PI * 2}
             step={0.01}
             value={rotation}
-            onChange={(val) => {
+            onChange={val => {
               setRotation(val);
               forceRerender();
             }}
@@ -130,7 +127,7 @@ const SilkDemo = () => {
             <Input
               type="color"
               value={color}
-              onChange={(e) => {
+              onChange={e => {
                 setColor(e.target.value);
                 forceRerender();
               }}

@@ -1,11 +1,11 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from 'react';
 
 const LetterGlitch = ({
-  glitchColors = ["#2b4539", "#61dca3", "#61b3dc"],
+  glitchColors = ['#2b4539', '#61dca3', '#61b3dc'],
   glitchSpeed = 50,
   centerVignette = false,
   outerVignette = true,
-  smooth = true,
+  smooth = true
 }: {
   glitchColors: string[];
   glitchSpeed: number;
@@ -32,70 +32,68 @@ const LetterGlitch = ({
   const charHeight = 20;
 
   const lettersAndSymbols = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "!",
-    "@",
-    "#",
-    "$",
-    "&",
-    "*",
-    "(",
-    ")",
-    "-",
-    "_",
-    "+",
-    "=",
-    "/",
-    "[",
-    "]",
-    "{",
-    "}",
-    ";",
-    ":",
-    "<",
-    ">",
-    ",",
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+    '!',
+    '@',
+    '#',
+    '$',
+    '&',
+    '*',
+    '(',
+    ')',
+    '-',
+    '_',
+    '+',
+    '=',
+    '/',
+    '[',
+    ']',
+    '{',
+    '}',
+    ';',
+    ':',
+    '<',
+    '>',
+    ',',
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9'
   ];
 
   const getRandomChar = () => {
-    return lettersAndSymbols[
-      Math.floor(Math.random() * lettersAndSymbols.length)
-    ];
+    return lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)];
   };
 
   const getRandomColor = () => {
@@ -113,7 +111,7 @@ const LetterGlitch = ({
       ? {
           r: parseInt(result[1], 16),
           g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
+          b: parseInt(result[3], 16)
         }
       : null;
   };
@@ -126,7 +124,7 @@ const LetterGlitch = ({
     const result = {
       r: Math.round(start.r + (end.r - start.r) * factor),
       g: Math.round(start.g + (end.g - start.g) * factor),
-      b: Math.round(start.b + (end.b - start.b) * factor),
+      b: Math.round(start.b + (end.b - start.b) * factor)
     };
     return `rgb(${result.r}, ${result.g}, ${result.b})`;
   };
@@ -144,7 +142,7 @@ const LetterGlitch = ({
       char: getRandomChar(),
       color: getRandomColor(),
       targetColor: getRandomColor(),
-      colorProgress: 1,
+      colorProgress: 1
     }));
   };
 
@@ -178,7 +176,7 @@ const LetterGlitch = ({
     const { width, height } = canvasRef.current!.getBoundingClientRect();
     ctx.clearRect(0, 0, width, height);
     ctx.font = `${fontSize}px monospace`;
-    ctx.textBaseline = "top";
+    ctx.textBaseline = 'top';
 
     letters.current.forEach((letter, index) => {
       const x = (index % grid.current.columns) * charWidth;
@@ -211,7 +209,7 @@ const LetterGlitch = ({
 
   const handleSmoothTransitions = () => {
     let needsRedraw = false;
-    letters.current.forEach((letter) => {
+    letters.current.forEach(letter => {
       if (letter.colorProgress < 1) {
         letter.colorProgress += 0.05;
         if (letter.colorProgress > 1) letter.colorProgress = 1;
@@ -219,11 +217,7 @@ const LetterGlitch = ({
         const startRgb = hexToRgb(letter.color);
         const endRgb = hexToRgb(letter.targetColor);
         if (startRgb && endRgb) {
-          letter.color = interpolateColor(
-            startRgb,
-            endRgb,
-            letter.colorProgress
-          );
+          letter.color = interpolateColor(startRgb, endRgb, letter.colorProgress);
           needsRedraw = true;
         }
       }
@@ -253,7 +247,7 @@ const LetterGlitch = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    context.current = canvas.getContext("2d");
+    context.current = canvas.getContext('2d');
     resizeCanvas();
     animate();
 
@@ -268,60 +262,54 @@ const LetterGlitch = ({
       }, 100);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animationRef.current!);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [glitchSpeed, smooth]);
 
   const containerStyle = {
-    position: "relative",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#000000",
-    overflow: "hidden",
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#000000',
+    overflow: 'hidden'
   };
 
   const canvasStyle = {
-    display: "block",
-    width: "100%",
-    height: "100%",
+    display: 'block',
+    width: '100%',
+    height: '100%'
   };
 
   const outerVignetteStyle = {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
-    width: "100%",
-    height: "100%",
-    pointerEvents: "none",
-    background:
-      "radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%)",
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    background: 'radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%)'
   };
 
   const centerVignetteStyle = {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
-    width: "100%",
-    height: "100%",
-    pointerEvents: "none",
-    background:
-      "radial-gradient(circle, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%)",
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    background: 'radial-gradient(circle, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%)'
   };
 
   return (
     <div style={containerStyle as React.CSSProperties}>
       <canvas ref={canvasRef} style={canvasStyle} />
-      {outerVignette && (
-        <div style={outerVignetteStyle as React.CSSProperties}></div>
-      )}
-      {centerVignette && (
-        <div style={centerVignetteStyle as React.CSSProperties}></div>
-      )}
+      {outerVignette && <div style={outerVignetteStyle as React.CSSProperties}></div>}
+      {centerVignette && <div style={centerVignetteStyle as React.CSSProperties}></div>}
     </div>
   );
 };

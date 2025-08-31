@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/ImageTrail/ImageTrail.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/ImageTrail/ImageTrail.tsx?raw';
 
 export const imageTrail = {
-  ...(generateCliCommands('Animations/ImageTrail')),
+  ...generateCliCommands('Animations/ImageTrail'),
   installation: `npm install gsap`,
   usage: `import ImageTrail from './ImageTrail;'
 
@@ -32,5 +32,5 @@ export const imageTrail = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

@@ -19,9 +19,9 @@ import {
   PointLight as u,
   ACESFilmicToneMapping as v,
   Raycaster as y,
-  Plane as w,
-} from "three";
-import { RoomEnvironment as z } from "three/examples/jsm/environments/RoomEnvironment.js";
+  Plane as w
+} from 'three';
+import { RoomEnvironment as z } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
 class x {
   #e;
@@ -37,9 +37,9 @@ class x {
   #t;
   size = { width: 0, height: 0, wWidth: 0, wHeight: 0, ratio: 0, pixelRatio: 0 };
   render = this.#i;
-  onBeforeRender = () => { };
-  onAfterRender = () => { };
-  onAfterResize = () => { };
+  onBeforeRender = () => {};
+  onAfterRender = () => {};
+  onAfterResize = () => {};
   #s = false;
   #n = false;
   isDisposed = false;
@@ -70,38 +70,38 @@ class x {
     } else if (this.#e.id) {
       this.canvas = document.getElementById(this.#e.id);
     } else {
-      console.error("Three: Missing canvas or id parameter");
+      console.error('Three: Missing canvas or id parameter');
     }
-    this.canvas.style.display = "block";
+    this.canvas.style.display = 'block';
     const e = {
       canvas: this.canvas,
-      powerPreference: "high-performance",
-      ...(this.#e.rendererOptions ?? {}),
+      powerPreference: 'high-performance',
+      ...(this.#e.rendererOptions ?? {})
     };
     this.renderer = new s(e);
     this.renderer.outputColorSpace = n;
   }
   #g() {
     if (!(this.#e.size instanceof Object)) {
-      window.addEventListener("resize", this.#f.bind(this));
-      if (this.#e.size === "parent" && this.canvas.parentNode) {
+      window.addEventListener('resize', this.#f.bind(this));
+      if (this.#e.size === 'parent' && this.canvas.parentNode) {
         this.#r = new ResizeObserver(this.#f.bind(this));
         this.#r.observe(this.canvas.parentNode);
       }
     }
     this.#o = new IntersectionObserver(this.#u.bind(this), {
       root: null,
-      rootMargin: "0px",
-      threshold: 0,
+      rootMargin: '0px',
+      threshold: 0
     });
     this.#o.observe(this.canvas);
-    document.addEventListener("visibilitychange", this.#v.bind(this));
+    document.addEventListener('visibilitychange', this.#v.bind(this));
   }
   #y() {
-    window.removeEventListener("resize", this.#f.bind(this));
+    window.removeEventListener('resize', this.#f.bind(this));
     this.#r?.disconnect();
     this.#o?.disconnect();
-    document.removeEventListener("visibilitychange", this.#v.bind(this));
+    document.removeEventListener('visibilitychange', this.#v.bind(this));
   }
   #u(e) {
     this.#s = e[0].isIntersecting;
@@ -121,7 +121,7 @@ class x {
     if (this.#e.size instanceof Object) {
       e = this.#e.size.width;
       t = this.#e.size.height;
-    } else if (this.#e.size === "parent" && this.canvas.parentNode) {
+    } else if (this.#e.size === 'parent' && this.canvas.parentNode) {
       e = this.canvas.parentNode.offsetWidth;
       t = this.canvas.parentNode.offsetHeight;
     } else {
@@ -156,8 +156,7 @@ class x {
   updateWorldSize() {
     if (this.camera.isPerspectiveCamera) {
       const e = (this.camera.fov * Math.PI) / 180;
-      this.size.wHeight =
-        2 * Math.tan(e / 2) * this.camera.position.length();
+      this.size.wHeight = 2 * Math.tan(e / 2) * this.camera.position.length();
       this.size.wWidth = this.size.wHeight * this.camera.aspect;
     } else if (this.camera.isOrthographicCamera) {
       this.size.wHeight = this.camera.top - this.camera.bottom;
@@ -208,15 +207,11 @@ class x {
     this.renderer.render(this.scene, this.camera);
   }
   clear() {
-    this.scene.traverse((e) => {
-      if (
-        e.isMesh &&
-        typeof e.material === "object" &&
-        e.material !== null
-      ) {
-        Object.keys(e.material).forEach((t) => {
+    this.scene.traverse(e => {
+      if (e.isMesh && typeof e.material === 'object' && e.material !== null) {
+        Object.keys(e.material).forEach(t => {
           const i = e.material[t];
-          if (i !== null && typeof i === "object" && typeof i.dispose === "function") {
+          if (i !== null && typeof i === 'object' && typeof i.dispose === 'function') {
             i.dispose();
           }
         });
@@ -245,24 +240,24 @@ function S(e) {
     nPosition: new r(),
     hover: false,
     touching: false,
-    onEnter() { },
-    onMove() { },
-    onClick() { },
-    onLeave() { },
-    ...e,
+    onEnter() {},
+    onMove() {},
+    onClick() {},
+    onLeave() {},
+    ...e
   };
   (function (e, t) {
     if (!b.has(e)) {
       b.set(e, t);
       if (!R) {
-        document.body.addEventListener("pointermove", M);
-        document.body.addEventListener("pointerleave", L);
-        document.body.addEventListener("click", C);
+        document.body.addEventListener('pointermove', M);
+        document.body.addEventListener('pointerleave', L);
+        document.body.addEventListener('click', C);
 
-        document.body.addEventListener("touchstart", TouchStart, { passive: false });
-        document.body.addEventListener("touchmove", TouchMove, { passive: false });
-        document.body.addEventListener("touchend", TouchEnd, { passive: false });
-        document.body.addEventListener("touchcancel", TouchEnd, { passive: false });
+        document.body.addEventListener('touchstart', TouchStart, { passive: false });
+        document.body.addEventListener('touchmove', TouchMove, { passive: false });
+        document.body.addEventListener('touchend', TouchEnd, { passive: false });
+        document.body.addEventListener('touchcancel', TouchEnd, { passive: false });
 
         R = true;
       }
@@ -272,14 +267,14 @@ function S(e) {
     const t = e.domElement;
     b.delete(t);
     if (b.size === 0) {
-      document.body.removeEventListener("pointermove", M);
-      document.body.removeEventListener("pointerleave", L);
-      document.body.removeEventListener("click", C);
+      document.body.removeEventListener('pointermove', M);
+      document.body.removeEventListener('pointerleave', L);
+      document.body.removeEventListener('click', C);
 
-      document.body.removeEventListener("touchstart", TouchStart);
-      document.body.removeEventListener("touchmove", TouchMove);
-      document.body.removeEventListener("touchend", TouchEnd);
-      document.body.removeEventListener("touchcancel", TouchEnd);
+      document.body.removeEventListener('touchstart', TouchStart);
+      document.body.removeEventListener('touchmove', TouchMove);
+      document.body.removeEventListener('touchend', TouchEnd);
+      document.body.removeEventListener('touchcancel', TouchEnd);
 
       R = false;
     }
@@ -386,7 +381,6 @@ function TouchEnd() {
   }
 }
 
-
 function P(e, t) {
   const { position: i, nPosition: s } = e;
   i.x = A.x - t.left;
@@ -474,7 +468,9 @@ class W {
         const sumRadius = radius + otherRadius;
         if (dist < sumRadius) {
           const overlap = sumRadius - dist;
-          j.copy(_).normalize().multiplyScalar(0.5 * overlap);
+          j.copy(_)
+            .normalize()
+            .multiplyScalar(0.5 * overlap);
           H.copy(j).multiplyScalar(Math.max(B.length(), 1));
           T.copy(j).multiplyScalar(Math.max(N.length(), 1));
           I.sub(j);
@@ -531,23 +527,23 @@ class Y extends c {
       thicknessAmbient: { value: 0 },
       thicknessAttenuation: { value: 0.1 },
       thicknessPower: { value: 2 },
-      thicknessScale: { value: 10 },
+      thicknessScale: { value: 10 }
     };
-    this.defines.USE_UV = "";
-    this.onBeforeCompile = (e) => {
+    this.defines.USE_UV = '';
+    this.onBeforeCompile = e => {
       Object.assign(e.uniforms, this.uniforms);
       e.fragmentShader =
-        "\n        uniform float thicknessPower;\n        uniform float thicknessScale;\n        uniform float thicknessDistortion;\n        uniform float thicknessAmbient;\n        uniform float thicknessAttenuation;\n      " +
+        '\n        uniform float thicknessPower;\n        uniform float thicknessScale;\n        uniform float thicknessDistortion;\n        uniform float thicknessAmbient;\n        uniform float thicknessAttenuation;\n      ' +
         e.fragmentShader;
       e.fragmentShader = e.fragmentShader.replace(
-        "void main() {",
-        "\n        void RE_Direct_Scattering(const in IncidentLight directLight, const in vec2 uv, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, inout ReflectedLight reflectedLight) {\n          vec3 scatteringHalf = normalize(directLight.direction + (geometryNormal * thicknessDistortion));\n          float scatteringDot = pow(saturate(dot(geometryViewDir, -scatteringHalf)), thicknessPower) * thicknessScale;\n          #ifdef USE_COLOR\n            vec3 scatteringIllu = (scatteringDot + thicknessAmbient) * vColor;\n          #else\n            vec3 scatteringIllu = (scatteringDot + thicknessAmbient) * diffuse;\n          #endif\n          reflectedLight.directDiffuse += scatteringIllu * thicknessAttenuation * directLight.color;\n        }\n\n        void main() {\n      "
+        'void main() {',
+        '\n        void RE_Direct_Scattering(const in IncidentLight directLight, const in vec2 uv, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, inout ReflectedLight reflectedLight) {\n          vec3 scatteringHalf = normalize(directLight.direction + (geometryNormal * thicknessDistortion));\n          float scatteringDot = pow(saturate(dot(geometryViewDir, -scatteringHalf)), thicknessPower) * thicknessScale;\n          #ifdef USE_COLOR\n            vec3 scatteringIllu = (scatteringDot + thicknessAmbient) * vColor;\n          #else\n            vec3 scatteringIllu = (scatteringDot + thicknessAmbient) * diffuse;\n          #endif\n          reflectedLight.directDiffuse += scatteringIllu * thicknessAttenuation * directLight.color;\n        }\n\n        void main() {\n      '
       );
       const t = h.lights_fragment_begin.replaceAll(
-        "RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );",
-        "\n          RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );\n          RE_Direct_Scattering(directLight, vUv, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, reflectedLight);\n        "
+        'RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );',
+        '\n          RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );\n          RE_Direct_Scattering(directLight, vUv, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, reflectedLight);\n        '
       );
-      e.fragmentShader = e.fragmentShader.replace("#include <lights_fragment_begin>", t);
+      e.fragmentShader = e.fragmentShader.replace('#include <lights_fragment_begin>', t);
       if (this.onBeforeCompile2) this.onBeforeCompile2(e);
     };
   }
@@ -563,7 +559,7 @@ const X = {
     metalness: 0.5,
     roughness: 0.5,
     clearcoat: 1,
-    clearcoatRoughness: 0.15,
+    clearcoatRoughness: 0.15
   },
   minSize: 0.5,
   maxSize: 1,
@@ -596,10 +592,7 @@ class Z extends d {
     this.setColors(i.colors);
   }
   #S() {
-    this.ambientLight = new f(
-      this.config.ambientColor,
-      this.config.ambientIntensity
-    );
+    this.ambientLight = new f(this.config.ambientColor, this.config.ambientIntensity);
     this.add(this.ambientLight);
     this.light = new u(this.config.colors[0], this.config.lightIntensity);
     this.add(this.light);
@@ -611,7 +604,7 @@ class Z extends d {
         function setColors(e) {
           t = e;
           i = [];
-          t.forEach((col) => {
+          t.forEach(col => {
             i.push(new l(col));
           });
         }
@@ -629,7 +622,7 @@ class Z extends d {
             out.g = start.g + alpha * (end.g - start.g);
             out.b = start.b + alpha * (end.b - start.b);
             return out;
-          },
+          }
         };
       })(e);
       for (let idx = 0; idx < this.count; idx++) {
@@ -661,8 +654,8 @@ class Z extends d {
 function createBallpit(e, t = {}) {
   const i = new x({
     canvas: e,
-    size: "parent",
-    rendererOptions: { antialias: true, alpha: true },
+    size: 'parent',
+    rendererOptions: { antialias: true, alpha: true }
   });
   let s;
   i.renderer.toneMapping = v;
@@ -691,7 +684,7 @@ function createBallpit(e, t = {}) {
     },
     onLeave() {
       s.config.controlSphere0 = false;
-    },
+    }
   });
   function initialize(e) {
     if (s) {
@@ -701,10 +694,10 @@ function createBallpit(e, t = {}) {
     s = new Z(i.renderer, e);
     i.scene.add(s);
   }
-  i.onBeforeRender = (e) => {
+  i.onBeforeRender = e => {
     if (!c) s.update(e);
   };
-  i.onAfterResize = (e) => {
+  i.onAfterResize = e => {
     s.config.maxX = e.wWidth / 2;
     s.config.maxY = e.wHeight / 2;
   };
@@ -722,7 +715,7 @@ function createBallpit(e, t = {}) {
     dispose() {
       h.dispose();
       i.dispose();
-    },
+    }
   };
 }
 
@@ -744,12 +737,7 @@ const Ballpit = ({ className = '', followCursor = true, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <canvas
-      className={`${className} w-full h-full`}
-      ref={canvasRef}
-    />
-  );
+  return <canvas className={`${className} w-full h-full`} ref={canvasRef} />;
 };
 
 export default Ballpit;

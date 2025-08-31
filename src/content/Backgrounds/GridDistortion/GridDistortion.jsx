@@ -25,14 +25,7 @@ void main() {
   gl_FragColor = texture2D(uTexture, uv - 0.02 * offset.rg);
 }`;
 
-const GridDistortion = ({
-  grid = 15,
-  mouse = 0.1,
-  strength = 0.15,
-  relaxation = 0.9,
-  imageSrc,
-  className = ''
-}) => {
+const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 0.9, imageSrc, className = '' }) => {
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
   const rendererRef = useRef(null);
@@ -53,7 +46,7 @@ const GridDistortion = ({
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: 'high-performance'
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
@@ -70,11 +63,11 @@ const GridDistortion = ({
       time: { value: 0 },
       resolution: { value: new THREE.Vector4() },
       uTexture: { value: null },
-      uDataTexture: { value: null },
+      uDataTexture: { value: null }
     };
 
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load(imageSrc, (texture) => {
+    textureLoader.load(imageSrc, texture => {
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
       texture.wrapS = THREE.ClampToEdgeWrapping;
@@ -91,13 +84,7 @@ const GridDistortion = ({
       data[i * 4 + 1] = Math.random() * 255 - 125;
     }
 
-    const dataTexture = new THREE.DataTexture(
-      data,
-      size,
-      size,
-      THREE.RGBAFormat,
-      THREE.FloatType
-    );
+    const dataTexture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat, THREE.FloatType);
     dataTexture.needsUpdate = true;
     uniforms.uDataTexture.value = dataTexture;
 
@@ -106,7 +93,7 @@ const GridDistortion = ({
       uniforms,
       vertexShader,
       fragmentShader,
-      transparent: true,
+      transparent: true
     });
 
     const geometry = new THREE.PlaneGeometry(1, 1, size - 1, size - 1);
@@ -149,7 +136,7 @@ const GridDistortion = ({
       resizeObserver.observe(container);
       resizeObserverRef.current = resizeObserver;
     } else {
-      window.addEventListener("resize", handleResize);
+      window.addEventListener('resize', handleResize);
     }
 
     const mouseState = {
@@ -158,10 +145,10 @@ const GridDistortion = ({
       prevX: 0,
       prevY: 0,
       vX: 0,
-      vY: 0,
+      vY: 0
     };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = e => {
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1 - (e.clientY - rect.top) / rect.height;
@@ -180,12 +167,12 @@ const GridDistortion = ({
         prevX: 0,
         prevY: 0,
         vX: 0,
-        vY: 0,
+        vY: 0
       });
     };
 
-    container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseleave", handleMouseLeave);
+    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('mouseleave', handleMouseLeave);
 
     handleResize();
 
@@ -208,8 +195,7 @@ const GridDistortion = ({
 
       for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-          const distSq =
-            Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
+          const distSq = Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
           if (distSq < maxDist * maxDist) {
             const index = 4 * (i + size * j);
             const power = Math.min(maxDist / Math.sqrt(distSq), 10);
@@ -233,11 +219,11 @@ const GridDistortion = ({
       if (resizeObserverRef.current) {
         resizeObserverRef.current.disconnect();
       } else {
-        window.removeEventListener("resize", handleResize);
+        window.removeEventListener('resize', handleResize);
       }
 
-      container.removeEventListener("mousemove", handleMouseMove);
-      container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('mouseleave', handleMouseLeave);
 
       if (renderer) {
         renderer.dispose();

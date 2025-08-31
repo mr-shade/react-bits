@@ -1,99 +1,97 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Input, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 
-import { electricBorder } from "../../constants/code/Animations/electricBorderCode";
-import ElectricBorder from "../../content/Animations/ElectricBorder/ElectricBorder";
+import { electricBorder } from '../../constants/code/Animations/electricBorderCode';
+import ElectricBorder from '../../content/Animations/ElectricBorder/ElectricBorder';
 
 const ElectricBorderDemo = () => {
   const propData = [
     {
-      name: "color",
-      type: "string",
+      name: 'color',
+      type: 'string',
       default: '"#5227FF"',
-      description: "Stroke/glow color. Any CSS color (hex, rgb, hsl).",
+      description: 'Stroke/glow color. Any CSS color (hex, rgb, hsl).'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "1",
-      description: "Animation speed multiplier (higher = faster).",
+      name: 'speed',
+      type: 'number',
+      default: '1',
+      description: 'Animation speed multiplier (higher = faster).'
     },
     {
-      name: "chaos",
-      type: "number",
-      default: "1",
-      description: "Distortion intensity from the SVG displacement (0 disables warp).",
+      name: 'chaos',
+      type: 'number',
+      default: '1',
+      description: 'Distortion intensity from the SVG displacement (0 disables warp).'
     },
     {
-      name: "thickness",
-      type: "number",
-      default: "2",
-      description: "Border width in pixels.",
+      name: 'thickness',
+      type: 'number',
+      default: '2',
+      description: 'Border width in pixels.'
     },
     {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Optional className applied to the root wrapper.",
+      name: 'className',
+      type: 'string',
+      default: '—',
+      description: 'Optional className applied to the root wrapper.'
     },
     {
-      name: "style",
-      type: "React.CSSProperties",
-      default: "—",
-      description: "Inline styles for the wrapper. Set borderRadius here to round corners.",
+      name: 'style',
+      type: 'React.CSSProperties',
+      default: '—',
+      description: 'Inline styles for the wrapper. Set borderRadius here to round corners.'
     },
     {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Content rendered inside the bordered container.",
-    },
+      name: 'children',
+      type: 'ReactNode',
+      default: '—',
+      description: 'Content rendered inside the bordered container.'
+    }
   ];
 
-  const [example, setExample] = useState("card");
+  const [example, setExample] = useState('card');
 
   const [cardProps, setCardProps] = useState({
-    color: "#7df9ff",
+    color: '#7df9ff',
     speed: 1,
     chaos: 0.5,
     thickness: 2,
-    radius: 16,
+    radius: 16
   });
 
   const [buttonProps, setButtonProps] = useState({
-    color: "#B19EEF",
+    color: '#B19EEF',
     speed: 1,
     chaos: 0.5,
     thickness: 2,
-    radius: 999,
+    radius: 999
   });
 
   const [circleProps, setCircleProps] = useState({
-    color: "#7df9ff",
+    color: '#7df9ff',
     speed: 1,
     chaos: 0.5,
     thickness: 2,
-    radius: "50%",
+    radius: '50%'
   });
 
-  const activeProps =
-    example === "card" ? cardProps : example === "button" ? buttonProps : circleProps;
-  const setActiveProps =
-    example === "card" ? setCardProps : example === "button" ? setButtonProps : setCircleProps;
+  const activeProps = example === 'card' ? cardProps : example === 'button' ? buttonProps : circleProps;
+  const setActiveProps = example === 'card' ? setCardProps : example === 'button' ? setButtonProps : setCircleProps;
 
   return (
     <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
-          {example === "card" ? (
+          {example === 'card' ? (
             <ElectricBorder
               color={cardProps.color}
               speed={cardProps.speed}
@@ -112,7 +110,7 @@ const ElectricBorderDemo = () => {
                 <button className="eb-demo-cta">Get Started</button>
               </div>
             </ElectricBorder>
-          ) : example === "button" ? (
+          ) : example === 'button' ? (
             <ElectricBorder
               color={buttonProps.color}
               speed={buttonProps.speed}
@@ -145,19 +143,21 @@ const ElectricBorderDemo = () => {
             width={140}
             value={example}
             options={[
-              { label: "Card", value: "card" },
-              { label: "Button", value: "button" },
-              { label: "Circle", value: "circle" },
+              { label: 'Card', value: 'card' },
+              { label: 'Button', value: 'button' },
+              { label: 'Circle', value: 'circle' }
             ]}
             onChange={setExample}
           />
 
           <Flex alignItems="center" mb={4} mt={4}>
-            <Text fontSize="sm" mr={2}>Color</Text>
+            <Text fontSize="sm" mr={2}>
+              Color
+            </Text>
             <Input
               type="color"
               value={activeProps.color}
-              onChange={(e) => setActiveProps((p) => ({ ...p, color: e.target.value }))}
+              onChange={e => setActiveProps(p => ({ ...p, color: e.target.value }))}
               width="50px"
               padding="0"
               height="28px"
@@ -170,7 +170,7 @@ const ElectricBorderDemo = () => {
             max={3}
             step={0.1}
             value={activeProps.speed}
-            onChange={(v) => setActiveProps((p) => ({ ...p, speed: v }))}
+            onChange={v => setActiveProps(p => ({ ...p, speed: v }))}
           />
           <PreviewSlider
             title="Chaos"
@@ -178,7 +178,7 @@ const ElectricBorderDemo = () => {
             max={1}
             step={0.1}
             value={activeProps.chaos}
-            onChange={(v) => setActiveProps((p) => ({ ...p, chaos: v }))}
+            onChange={v => setActiveProps(p => ({ ...p, chaos: v }))}
           />
           <PreviewSlider
             title="Thickness"
@@ -187,9 +187,8 @@ const ElectricBorderDemo = () => {
             step={1}
             value={activeProps.thickness}
             valueUnit="px"
-            onChange={(v) => setActiveProps((p) => ({ ...p, thickness: v }))}
+            onChange={v => setActiveProps(p => ({ ...p, thickness: v }))}
           />
-
         </Customize>
 
         <PropTable data={propData} />

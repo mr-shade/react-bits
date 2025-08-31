@@ -7,7 +7,7 @@ export const TransitionProvider = ({ children }) => {
   const [transitionPhase, setTransitionPhase] = useState('idle');
   const preloadedComponents = useRef(new Map());
 
-  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   const preloadComponent = useCallback(async (subcategory, componentMap) => {
     if (!subcategory || preloadedComponents.current.has(subcategory)) {
@@ -28,25 +28,28 @@ export const TransitionProvider = ({ children }) => {
     return null;
   }, []);
 
-  const startTransition = useCallback(async (targetSubcategory, componentMap, onNavigate) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTransitionPhase('fade-out');
+  const startTransition = useCallback(
+    async (targetSubcategory, componentMap, onNavigate) => {
+      if (isTransitioning) return;
+      setIsTransitioning(true);
+      setTransitionPhase('fade-out');
 
-    const preloadPromise = preloadComponent(targetSubcategory, componentMap);
-    await delay(300);
+      const preloadPromise = preloadComponent(targetSubcategory, componentMap);
+      await delay(300);
 
-    setTransitionPhase('loading');
-    await preloadPromise;
-    await delay(500);
+      setTransitionPhase('loading');
+      await preloadPromise;
+      await delay(500);
 
-    onNavigate();
-    setTransitionPhase('fade-in');
-    await delay(300);
+      onNavigate();
+      setTransitionPhase('fade-in');
+      await delay(300);
 
-    setTransitionPhase('idle');
-    setIsTransitioning(false);
-  }, [isTransitioning, preloadComponent]);
+      setTransitionPhase('idle');
+      setIsTransitioning(false);
+    },
+    [isTransitioning, preloadComponent]
+  );
 
   const value = {
     isTransitioning,
@@ -54,14 +57,10 @@ export const TransitionProvider = ({ children }) => {
     startTransition,
     preloadComponent,
     clearPreloadedComponents: useCallback(() => preloadedComponents.current.clear(), []),
-    getPreloadedComponent: useCallback((subcategory) => preloadedComponents.current.get(subcategory), [])
+    getPreloadedComponent: useCallback(subcategory => preloadedComponents.current.get(subcategory), [])
   };
 
-  return (
-    <TransitionContext.Provider value={value}>
-      {children}
-    </TransitionContext.Provider>
-  );
+  return <TransitionContext.Provider value={value}>{children}</TransitionContext.Provider>;
 };
 
 export { TransitionContext };

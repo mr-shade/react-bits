@@ -21,7 +21,7 @@
   font-weight: 600;
   letter-spacing: -2px;
   color: #fff;
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
   background: linear-gradient(135deg, #fff 0%, #8660fa 20%, #a855f7 40%, #8400ff 60%, #a855f7 80%, #fff 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -208,7 +208,7 @@
   .testimonials-marquee-container {
     max-width: 1000px;
   }
-  
+
   .testimonial-card {
     width: 320px;
     min-height: 110px;
@@ -219,13 +219,13 @@
   .testimonials-marquee-container {
     max-width: 800px;
   }
-  
+
   .testimonial-card {
     width: 280px;
     min-height: 100px;
     padding: 20px;
   }
-  
+
   .testimonials-title {
     font-size: 2.5rem;
   }
@@ -235,37 +235,37 @@
   .testimonials-section {
     padding: 80px 0;
   }
-  
+
   .testimonials-header {
     margin-bottom: 60px;
   }
-   .testimonials-title {
+  .testimonials-title {
     font-size: 2.5rem;
   }
 
   .testimonials-subtitle {
     font-size: 1.1rem;
   }
-  
+
   .testimonials-marquee-container {
     max-width: 600px;
   }
-  
+
   .testimonials-marquee-container::before,
   .testimonials-marquee-container::after {
     width: 80px;
   }
-  
+
   .testimonial-card {
     width: 240px;
     min-height: 90px;
     padding: 18px;
   }
-  
+
   .testimonial-text {
     font-size: 0.9rem;
   }
-  
+
   .testimonial-row {
     margin-bottom: 16px;
   }
@@ -275,22 +275,22 @@
   .testimonials-container {
     padding: 0 16px;
   }
-  
+
   .testimonials-marquee-container {
     max-width: 400px;
   }
-  
+
   .testimonials-marquee-container::before,
   .testimonials-marquee-container::after {
     width: 60px;
   }
-  
+
   .testimonial-card {
     width: 200px;
     min-height: 80px;
     padding: 16px;
   }
-  
+
   .testimonials-title {
     font-size: 2rem;
   }
@@ -298,16 +298,16 @@
   .testimonials-subtitle {
     font-size: 1rem;
   }
-  
+
   .testimonial-text {
     font-size: 0.85rem;
   }
-  
+
   .testimonial-avatar {
     width: 32px;
     height: 32px;
   }
-  
+
   .testimonial-handle {
     font-size: 0.8rem;
   }

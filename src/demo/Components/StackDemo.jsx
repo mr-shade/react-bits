@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import useForceRerender from '../../hooks/useForceRerender';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
 
 import Stack from '../../content/Components/Stack/Stack';
 import { stack } from '../../constants/code/Components/stackCode';
@@ -23,48 +23,48 @@ const StackDemo = () => {
 
   const propData = [
     {
-      name: "randomRotation",
-      type: "boolean",
+      name: 'randomRotation',
+      type: 'boolean',
       default: false,
-      description: "Applies a random rotation to each card for a 'messy' look.",
+      description: "Applies a random rotation to each card for a 'messy' look."
     },
     {
-      name: "sensitivity",
-      type: "number",
+      name: 'sensitivity',
+      type: 'number',
       default: 200,
-      description: "Drag sensitivity for sending a card to the back.",
+      description: 'Drag sensitivity for sending a card to the back.'
     },
     {
-      name: "cardDimensions",
-      type: "object",
-      default: "{ width: 208, height: 208 }",
-      description: "Defines the width and height of the cards.",
+      name: 'cardDimensions',
+      type: 'object',
+      default: '{ width: 208, height: 208 }',
+      description: 'Defines the width and height of the cards.'
     },
     {
-      name: "sendToBackOnClick",
-      type: "boolean",
-      default: "false",
-      description: "When enabled, the also stack shifts to the next card on click.",
+      name: 'sendToBackOnClick',
+      type: 'boolean',
+      default: 'false',
+      description: 'When enabled, the also stack shifts to the next card on click.'
     },
     {
-      name: "cardsData",
-      type: "array",
-      default: "[]",
-      description: "The array of card data, including `id` and `img` properties.",
+      name: 'cardsData',
+      type: 'array',
+      default: '[]',
+      description: 'The array of card data, including `id` and `img` properties.'
     },
     {
-      name: "animationConfig",
-      type: "object",
-      default: "{ stiffness: 260, damping: 20 }",
-      description: "Configures the spring animation's stiffness and damping.",
-    },
+      name: 'animationConfig',
+      type: 'object',
+      default: '{ stiffness: 260, damping: 20 }',
+      description: "Configures the spring animation's stiffness and damping."
+    }
   ];
 
   const images = [
-    { id: 1, img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format" },
-    { id: 2, img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format" },
-    { id: 3, img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format" },
-    { id: 4, img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format" }
+    { id: 1, img: 'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format' },
+    { id: 2, img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format' },
+    { id: 3, img: 'https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format' },
+    { id: 4, img: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format' }
   ];
 
   return (
@@ -81,7 +81,14 @@ const StackDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch title="Random Rotation" isChecked={randomRotation} onChange={(checked) => { setRandomRotation(checked); forceRerender() }} />
+          <PreviewSwitch
+            title="Random Rotation"
+            isChecked={randomRotation}
+            onChange={checked => {
+              setRandomRotation(checked);
+              forceRerender();
+            }}
+          />
 
           <PreviewSlider
             title="Sensitivity"
@@ -89,7 +96,7 @@ const StackDemo = () => {
             max={300}
             step={10}
             value={sensitivity}
-            onChange={(val) => {
+            onChange={val => {
               setSensitivity(val);
               forceRerender();
             }}
@@ -101,11 +108,11 @@ const StackDemo = () => {
             max={300}
             step={10}
             value={cardWidth}
-            onChange={(val) => {
+            onChange={val => {
               setCardWidth(val);
               forceRerender();
             }}
-            displayValue={(val) => `${val}px`}
+            displayValue={val => `${val}px`}
           />
 
           <PreviewSlider
@@ -114,18 +121,16 @@ const StackDemo = () => {
             max={300}
             step={10}
             value={cardHeight}
-            onChange={(val) => {
+            onChange={val => {
               setCardHeight(val);
               forceRerender();
             }}
-            displayValue={(val) => `${val}px`}
+            displayValue={val => `${val}px`}
           />
         </Customize>
 
-
-
         <PropTable data={propData} />
-        <Dependencies dependencyList={["motion"]} />
+        <Dependencies dependencyList={['motion']} />
       </PreviewTab>
 
       <CodeTab>

@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import useForceRerender from "../../hooks/useForceRerender";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import useForceRerender from '../../hooks/useForceRerender';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 
-import AnimatedList from "../../content/Components/AnimatedList/AnimatedList";
-import { animatedList } from "../../constants/code/Components/animatedListCode";
+import AnimatedList from '../../content/Components/AnimatedList/AnimatedList';
+import { animatedList } from '../../constants/code/Components/animatedListCode';
 
 const AnimatedListDemo = () => {
   const [showGradients, setShowGradients] = useState(true);
@@ -22,52 +22,52 @@ const AnimatedListDemo = () => {
 
   const propData = [
     {
-      name: "items",
-      type: "string[]",
+      name: 'items',
+      type: 'string[]',
       default: "['Item 1', 'Item 2', ...]",
-      description: "An array of items to display in the scrollable list."
+      description: 'An array of items to display in the scrollable list.'
     },
     {
-      name: "onItemSelect",
-      type: "function",
-      default: "undefined",
-      description: "Callback function triggered when an item is selected. Receives the selected item and its index."
+      name: 'onItemSelect',
+      type: 'function',
+      default: 'undefined',
+      description: 'Callback function triggered when an item is selected. Receives the selected item and its index.'
     },
     {
-      name: "showGradients",
-      type: "boolean",
-      default: "true",
-      description: "Toggle to display the top and bottom gradient overlays."
+      name: 'showGradients',
+      type: 'boolean',
+      default: 'true',
+      description: 'Toggle to display the top and bottom gradient overlays.'
     },
     {
-      name: "enableArrowNavigation",
-      type: "boolean",
-      default: "true",
-      description: "Toggle to enable keyboard navigation via arrow and tab keys."
+      name: 'enableArrowNavigation',
+      type: 'boolean',
+      default: 'true',
+      description: 'Toggle to enable keyboard navigation via arrow and tab keys.'
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: "''",
-      description: "Additional CSS class names for the main container."
+      description: 'Additional CSS class names for the main container.'
     },
     {
-      name: "itemClassName",
-      type: "string",
+      name: 'itemClassName',
+      type: 'string',
       default: "''",
-      description: "Additional CSS class names for each list item."
+      description: 'Additional CSS class names for each list item.'
     },
     {
-      name: "displayScrollbar",
-      type: "boolean",
-      default: "true",
-      description: "Toggle to display or hide the custom scrollbar."
+      name: 'displayScrollbar',
+      type: 'boolean',
+      default: 'true',
+      description: 'Toggle to display or hide the custom scrollbar.'
     },
     {
-      name: "initialSelectedIndex",
-      type: "number",
-      default: "-1",
-      description: "Initial index of the selected item. Set to -1 for no selection."
+      name: 'initialSelectedIndex',
+      type: 'number',
+      default: '-1',
+      description: 'Initial index of the selected item. Set to -1 for no selection.'
     }
   ];
 
@@ -84,9 +84,30 @@ const AnimatedListDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch title="Fade Items" isChecked={showGradients} onChange={(checked) => { setShowGradients(checked); forceRerender() }} />
-          <PreviewSwitch title="Keboard Navigation" isChecked={enableArrowNavigation} onChange={(checked) => { setEnableArrowNavigation(checked); forceRerender() }} />
-          <PreviewSwitch title="Show Scrollbar" isChecked={displayScrollbar} onChange={(checked) => { setDisplayScrollbar(checked); forceRerender() }} />
+          <PreviewSwitch
+            title="Fade Items"
+            isChecked={showGradients}
+            onChange={checked => {
+              setShowGradients(checked);
+              forceRerender();
+            }}
+          />
+          <PreviewSwitch
+            title="Keboard Navigation"
+            isChecked={enableArrowNavigation}
+            onChange={checked => {
+              setEnableArrowNavigation(checked);
+              forceRerender();
+            }}
+          />
+          <PreviewSwitch
+            title="Show Scrollbar"
+            isChecked={displayScrollbar}
+            onChange={checked => {
+              setDisplayScrollbar(checked);
+              forceRerender();
+            }}
+          />
         </Customize>
 
         <PropTable data={propData} />

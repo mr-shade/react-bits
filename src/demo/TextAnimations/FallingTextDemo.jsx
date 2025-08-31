@@ -1,104 +1,112 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Flex, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Flex, Text } from '@chakra-ui/react';
 
-import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import useForceRerender from '../../hooks/useForceRerender';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 
-import FallingText from "../../content/TextAnimations/FallingText/FallingText";
-import { fallingText } from "../../constants/code/TextAnimations/fallingTextCode";
+import FallingText from '../../content/TextAnimations/FallingText/FallingText';
+import { fallingText } from '../../constants/code/TextAnimations/fallingTextCode';
 
 const FallingTextDemo = () => {
   const [gravity, setGravity] = useState(0.56);
   const [mouseConstraintStiffness, setMouseConstraintStiffness] = useState(0.9);
-  const [trigger, setTrigger] = useState("hover");
+  const [trigger, setTrigger] = useState('hover');
 
   const [key, forceRerender] = useForceRerender();
 
   const propData = [
     {
-      name: "text",
-      type: "string",
+      name: 'text',
+      type: 'string',
       default: '',
-      description: "The text content to display and eventually animate."
+      description: 'The text content to display and eventually animate.'
     },
     {
-      name: "highlightWords",
-      type: "string[]",
+      name: 'highlightWords',
+      type: 'string[]',
       default: '[]',
-      description: "List of words or substrings to apply a highlight style."
+      description: 'List of words or substrings to apply a highlight style.'
     },
     {
-      name: "highlightClass",
-      type: "string",
+      name: 'highlightClass',
+      type: 'string',
       default: `"highlighted"`,
-      description: "CSS class name for highlighted words."
+      description: 'CSS class name for highlighted words.'
     },
     {
-      name: "trigger",
+      name: 'trigger',
       type: "'click' | 'hover' | 'auto' | 'scroll'",
       default: `"click"`,
-      description: "Defines how the falling effect is activated."
+      description: 'Defines how the falling effect is activated.'
     },
     {
-      name: "backgroundColor",
-      type: "string",
+      name: 'backgroundColor',
+      type: 'string',
       default: `"transparent"`,
-      description: "Canvas background color for the physics world."
+      description: 'Canvas background color for the physics world.'
     },
     {
-      name: "wireframes",
-      type: "boolean",
-      default: "false",
-      description: "Whether to render the physics bodies in wireframe mode."
+      name: 'wireframes',
+      type: 'boolean',
+      default: 'false',
+      description: 'Whether to render the physics bodies in wireframe mode.'
     },
     {
-      name: "gravity",
-      type: "number",
-      default: "1",
-      description: "Vertical gravity factor for the physics engine."
+      name: 'gravity',
+      type: 'number',
+      default: '1',
+      description: 'Vertical gravity factor for the physics engine.'
     },
     {
-      name: "mouseConstraintStiffness",
-      type: "number",
-      default: "0.2",
-      description: "Stiffness for the mouse drag constraint."
+      name: 'mouseConstraintStiffness',
+      type: 'number',
+      default: '0.2',
+      description: 'Stiffness for the mouse drag constraint.'
     },
     {
-      name: "fontSize",
-      type: "string",
+      name: 'fontSize',
+      type: 'string',
       default: `"1rem"`,
-      description: "Font size applied to the text before it falls."
+      description: 'Font size applied to the text before it falls.'
     },
     {
-      name: "wordSpacing",
-      type: "string",
+      name: 'wordSpacing',
+      type: 'string',
       default: `"2px"`,
-      description: "Horizontal spacing between each word."
+      description: 'Horizontal spacing between each word.'
     }
   ];
 
   const options = [
-    { value: "hover", label: "Hover" },
-    { value: "click", label: "Click" },
-    { value: "auto", label: "Auto" },
-    { value: "scroll", label: "Scroll" }
+    { value: 'hover', label: 'Hover' },
+    { value: 'click', label: 'Click' },
+    { value: 'auto', label: 'Auto' },
+    { value: 'scroll', label: 'Scroll' }
   ];
 
   return (
     <TabsLayout>
       <PreviewTab>
-        <Flex position="relative" className="demo-container" h={400} overflow="hidden" justifyContent="center" alignItems="center" p={0}>
+        <Flex
+          position="relative"
+          className="demo-container"
+          h={400}
+          overflow="hidden"
+          justifyContent="center"
+          alignItems="center"
+          p={0}
+        >
           <FallingText
             key={key}
             text={`React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow.`}
-            highlightWords={["React", "Bits", "animated", "components", "simplify"]}
+            highlightWords={['React', 'Bits', 'animated', 'components', 'simplify']}
             highlightClass="highlighted"
             trigger={trigger}
             gravity={gravity}
@@ -106,8 +114,8 @@ const FallingTextDemo = () => {
             mouseConstraintStiffness={mouseConstraintStiffness}
           />
 
-          <Text color="#271E37" fontSize='4rem' fontWeight={900} position="absolute" zIndex={0} userSelect="none">
-            {trigger === "hover" ? "Hover Me" : trigger === "click" ? "Click Me" : "Auto Start"}
+          <Text color="#271E37" fontSize="4rem" fontWeight={900} position="absolute" zIndex={0} userSelect="none">
+            {trigger === 'hover' ? 'Hover Me' : trigger === 'click' ? 'Click Me' : 'Auto Start'}
           </Text>
         </Flex>
 
@@ -118,7 +126,7 @@ const FallingTextDemo = () => {
             value={trigger}
             name="trigger"
             width={150}
-            onChange={(val) => {
+            onChange={val => {
               setTrigger(val);
               forceRerender();
             }}
@@ -130,7 +138,7 @@ const FallingTextDemo = () => {
             max={2}
             step={0.01}
             value={gravity}
-            onChange={(val) => {
+            onChange={val => {
               setGravity(val);
               forceRerender();
             }}
@@ -142,7 +150,7 @@ const FallingTextDemo = () => {
             max={2}
             step={0.1}
             value={mouseConstraintStiffness}
-            onChange={(val) => {
+            onChange={val => {
               setMouseConstraintStiffness(val);
               forceRerender();
             }}

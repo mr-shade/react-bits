@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/CardSwap/CardSwap.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/CardSwap/CardSwap.tsx?raw';
 
 export const cardSwap = {
-  ...(generateCliCommands('Components/CardSwap')),
+  ...generateCliCommands('Components/CardSwap'),
   installation: `npm install gsap`,
   usage: `import CardSwap, { Card } from './CardSwap'
 
@@ -37,4 +37,4 @@ export const cardSwap = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

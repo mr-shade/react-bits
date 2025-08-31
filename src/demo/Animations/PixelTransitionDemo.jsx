@@ -1,82 +1,73 @@
-import { useState } from "react";
-import {
-  CodeTab,
-  PreviewTab,
-  CliTab,
-  TabsLayout
-} from "../../components/common/TabsLayout";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import {
-  Flex,
-  Text,
-  Input
-} from "@chakra-ui/react";
+import { Flex, Text, Input } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import Dependencies from "../../components/code/Dependencies";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import useForceRerender from "../../hooks/useForceRerender";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import Dependencies from '../../components/code/Dependencies';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import useForceRerender from '../../hooks/useForceRerender';
 
-import PixelTransition from "../../content/Animations/PixelTransition/PixelTransition";
+import PixelTransition from '../../content/Animations/PixelTransition/PixelTransition';
 import { pixelTransition } from '../../constants/code/Animations/pixelTransitionCode';
 
 const propData = [
   {
-    name: "firstContent",
-    type: "ReactNode | string",
-    default: "—",
-    description: "Content to show by default (e.g., an <img> or text)."
+    name: 'firstContent',
+    type: 'ReactNode | string',
+    default: '—',
+    description: 'Content to show by default (e.g., an <img> or text).'
   },
   {
-    name: "secondContent",
-    type: "ReactNode | string",
-    default: "—",
-    description: "Content revealed upon hover or click."
+    name: 'secondContent',
+    type: 'ReactNode | string',
+    default: '—',
+    description: 'Content revealed upon hover or click.'
   },
   {
-    name: "gridSize",
-    type: "number",
-    default: "7",
-    description: "Number of rows/columns in the pixel grid."
+    name: 'gridSize',
+    type: 'number',
+    default: '7',
+    description: 'Number of rows/columns in the pixel grid.'
   },
   {
-    name: "pixelColor",
-    type: "string",
-    default: "currentColor",
-    description: "Background color used for each pixel block."
+    name: 'pixelColor',
+    type: 'string',
+    default: 'currentColor',
+    description: 'Background color used for each pixel block.'
   },
   {
-    name: "animationStepDuration",
-    type: "number",
-    default: "0.3",
-    description: "Length of the pixel reveal/hide in seconds."
+    name: 'animationStepDuration',
+    type: 'number',
+    default: '0.3',
+    description: 'Length of the pixel reveal/hide in seconds.'
   },
   {
-    name: "aspectRatio",
-    type: "string",
+    name: 'aspectRatio',
+    type: 'string',
     default: `"100%"`,
     description: "Sets the 'padding-top' (or aspect-ratio) for the container."
   },
   {
-    name: "className",
-    type: "string",
-    default: "—",
-    description: "Optional additional class names for styling."
+    name: 'className',
+    type: 'string',
+    default: '—',
+    description: 'Optional additional class names for styling.'
   },
   {
-    name: "style",
-    type: "object",
-    default: "{}",
-    description: "Optional inline styles for the container."
+    name: 'style',
+    type: 'object',
+    default: '{}',
+    description: 'Optional inline styles for the container.'
   }
 ];
 
 const PixelTransitionDemo = () => {
   const [gridSize, setGridSize] = useState(8);
-  const [pixelColor, setPixelColor] = useState("#ffffff");
+  const [pixelColor, setPixelColor] = useState('#ffffff');
   const [animationStepDuration, setAnimationStepDuration] = useState(0.4);
   const [key, forceRerender] = useForceRerender();
 
@@ -90,20 +81,20 @@ const PixelTransitionDemo = () => {
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
                 alt="Default"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             }
             secondContent={
               <div
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  backgroundColor: "#111"
+                  width: '100%',
+                  height: '100%',
+                  display: 'grid',
+                  placeItems: 'center',
+                  backgroundColor: '#111'
                 }}
               >
-                <p style={{ fontWeight: 900, fontSize: "3rem", color: "#ffffff" }}>Meow!</p>
+                <p style={{ fontWeight: 900, fontSize: '3rem', color: '#ffffff' }}>Meow!</p>
               </div>
             }
             gridSize={gridSize}
@@ -111,7 +102,9 @@ const PixelTransitionDemo = () => {
             animationStepDuration={animationStepDuration}
             className="custom-pixel-card"
           />
-          <Text mt={2} color="#a6a6a6">Psst, hover the card!</Text>
+          <Text mt={2} color="#a6a6a6">
+            Psst, hover the card!
+          </Text>
         </Flex>
 
         <Customize>
@@ -121,7 +114,7 @@ const PixelTransitionDemo = () => {
             max={50}
             step={1}
             value={gridSize}
-            onChange={(val) => {
+            onChange={val => {
               setGridSize(val);
               forceRerender();
             }}
@@ -135,7 +128,7 @@ const PixelTransitionDemo = () => {
             step={0.1}
             value={animationStepDuration}
             valueUnit="s"
-            onChange={(val) => {
+            onChange={val => {
               setAnimationStepDuration(val);
               forceRerender();
             }}
@@ -147,7 +140,7 @@ const PixelTransitionDemo = () => {
             <Input
               type="color"
               value={pixelColor}
-              onChange={(e) => {
+              onChange={e => {
                 setPixelColor(e.target.value);
                 forceRerender();
               }}
@@ -158,7 +151,7 @@ const PixelTransitionDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["gsap"]} />
+        <Dependencies dependencyList={['gsap']} />
       </PreviewTab>
 
       <CodeTab>

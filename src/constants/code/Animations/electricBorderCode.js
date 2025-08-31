@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/ElectricBorder/ElectricBorder.tsx?raw
 import tsTailwind from '@ts-tailwind/Animations/ElectricBorder/ElectricBorder.tsx?raw';
 
 export const electricBorder = {
-  ...(generateCliCommands('Animations/ElectricBorder')),
+  ...generateCliCommands('Animations/ElectricBorder'),
   usage: `// CREDIT
 // Component inspired by @BalintFerenczy on X
 // https://codepen.io/BalintFerenczy/pen/KwdoyEN
@@ -32,4 +32,4 @@ import ElectricBorder from './ElectricBorder'
   tailwind,
   tsCode,
   tsTailwind
-}
+};

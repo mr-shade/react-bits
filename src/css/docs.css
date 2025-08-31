@@ -7,17 +7,17 @@
 .docs-category-title {
   font-size: 36px !important;
   font-weight: 600 !important;
-  margin-bottom: .3em !important;
-  color: #B19EEF !important;
-  letter-spacing: -.5px !important;
+  margin-bottom: 0.3em !important;
+  color: #b19eef !important;
+  letter-spacing: -0.5px !important;
 }
 
 .docs-category-subtitle {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: .3em;
+  margin-bottom: 0.3em;
   color: #aaaaaa;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
 }
 
 .docs-paragraph {
@@ -26,7 +26,7 @@
   margin-bottom: 1.8em;
   font-weight: 500;
   color: #f5f5f5;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
 }
 
 .docs-paragraph.dim {
@@ -34,7 +34,7 @@
 }
 
 .docs-list {
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
   font-size: 18px;
   margin-bottom: 1.8em;
   margin-left: 1.2em;
@@ -49,11 +49,11 @@
 
 .docs-highlight {
   font-weight: 700;
-  color: #B19EEF;
+  color: #b19eef;
 }
 
 .short {
-  margin-bottom: .6em;
+  margin-bottom: 0.6em;
 }
 
 .docs-button-bar {
@@ -67,7 +67,7 @@
   padding: 0.8em 1.2em 0.8em 1.2em;
   font-weight: 700;
   font-size: 14px;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
   color: #ffffff;
   background-color: #060010;
   border: 1px solid #392e4e;
@@ -85,7 +85,7 @@
 }
 
 .docs-button:hover {
-  background-color: #271E37;
+  background-color: #271e37;
   transition: background-color 0.3s ease;
 }
 
@@ -99,8 +99,8 @@
 
 .installation-method {
   background-color: #060010;
-  border: 1px solid #B19EEF;
-  color: #B19EEF;
+  border: 1px solid #b19eef;
+  color: #b19eef;
   display: flex;
   font-size: 24px;
   flex-direction: column;
@@ -109,30 +109,34 @@
   border-radius: 20px;
   width: 50%;
   padding: 3rem 2rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .installation-method:hover {
   cursor: pointer;
-  background-color: #271E37;
-  color: #B19EEF;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #271e37;
+  color: #b19eef;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .method-active {
-  background-color: #B19EEF;
+  background-color: #b19eef;
   color: #060010;
 }
 
 .method-active:hover {
-  background-color: #B19EEF;
+  background-color: #b19eef;
   color: #060010;
 }
 
 .method-title {
   font-size: 18px;
   font-weight: 500;
-  margin-top: .4em;
+  margin-top: 0.4em;
 }
 
 .docs-code {
@@ -150,7 +154,7 @@
 .docs-copy-button {
   background-color: rgba(6, 0, 16, 0.9);
   border: 1px solid #392e4e;
-  color: #B19EEF;
+  color: #b19eef;
   padding: 0.4em;
   border-radius: 10px;
   cursor: pointer;
@@ -166,9 +170,9 @@
 }
 
 .docs-copy-button:hover {
-  background-color: #B19EEF;
+  background-color: #b19eef;
   color: #060010;
-  border-color: #B19EEF;
+  border-color: #b19eef;
   opacity: 1;
 }
 
@@ -182,7 +186,7 @@
   width: 100%;
   height: auto;
   border: 1px solid #392e4e;
-  padding: .4em;
+  padding: 0.4em;
   border-radius: 15px;
   margin-bottom: 1.8em;
 }
@@ -208,19 +212,19 @@
   align-items: flex-start;
   gap: 1em;
   padding: 1.5em;
-  background-color: #170D27;
+  background-color: #170d27;
   border: 1px solid #392e4e;
   border-radius: 15px;
   transition: border-color 0.3s ease;
 }
 
 .docs-tool-item:hover {
-  border-color: #B19EEF;
+  border-color: #b19eef;
 }
 
 .docs-tool-icon {
   flex-shrink: 0;
-  color: #B19EEF;
+  color: #b19eef;
   font-size: 24px;
   margin-top: 0.2em;
 }

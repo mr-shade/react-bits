@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/ScrollFloat/ScrollFloat.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/ScrollFloat/ScrollFloat.tsx?raw';
 
 export const scrollFloat = {
-  ...(generateCliCommands('TextAnimations/ScrollFloat')),
+  ...generateCliCommands('TextAnimations/ScrollFloat'),
   installation: `npm install gsap`,
   usage: `import ScrollFloat from './ScrollFloat';
 
@@ -25,4 +25,4 @@ export const scrollFloat = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

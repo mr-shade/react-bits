@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Balatro/Balatro.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Balatro/Balatro.tsx?raw';
 
 export const balatro = {
-  ...(generateCliCommands('Backgrounds/Balatro')),
+  ...generateCliCommands('Backgrounds/Balatro'),
   installation: `npm install ogl`,
   usage: `import Balatro from './Balatro';
   
@@ -21,4 +21,4 @@ export const balatro = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

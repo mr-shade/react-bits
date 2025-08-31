@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Animations/SplashCursor/SplashCursor.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/SplashCursor/SplashCursor.tsx?raw';
 
 export const splashCursor = {
-  ...(generateCliCommands('Animations/SplashCursor')),
+  ...generateCliCommands('Animations/SplashCursor'),
   usage: `import SplashCursor from './SplashCursor'
 
 <SplashCursor />`,
@@ -14,4 +14,4 @@ export const splashCursor = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

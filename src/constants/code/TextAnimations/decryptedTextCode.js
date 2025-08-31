@@ -6,7 +6,7 @@ import tsCode from '@ts-default/TextAnimations/DecryptedText/DecryptedText.tsx?r
 import tsTailwind from '@ts-tailwind/TextAnimations/DecryptedText/DecryptedText.tsx?raw';
 
 export const decryptedText = {
-  ...(generateCliCommands('TextAnimations/DecryptedText')),
+  ...generateCliCommands('TextAnimations/DecryptedText'),
   installation: `npm install motion`,
   usage: `import DecryptedText from './DecryptedText';
 
@@ -36,4 +36,4 @@ encryptedClassName="encrypted"
   tailwind,
   tsCode,
   tsTailwind
-}
+};

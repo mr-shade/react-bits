@@ -1,10 +1,10 @@
-import { useRef, useState, useEffect } from "react";
-import Matter from "matter-js";
+import { useRef, useState, useEffect } from 'react';
+import Matter from 'matter-js';
 
 interface FallingTextProps {
   text?: string;
   highlightWords?: string[];
-  trigger?: "auto" | "scroll" | "click" | "hover";
+  trigger?: 'auto' | 'scroll' | 'click' | 'hover';
   backgroundColor?: string;
   wireframes?: boolean;
   gravity?: number;
@@ -13,14 +13,14 @@ interface FallingTextProps {
 }
 
 const FallingText: React.FC<FallingTextProps> = ({
-  text = "",
+  text = '',
   highlightWords = [],
-  trigger = "auto",
-  backgroundColor = "transparent",
+  trigger = 'auto',
+  backgroundColor = 'transparent',
   wireframes = false,
   gravity = 1,
   mouseConstraintStiffness = 0.2,
-  fontSize = "1rem",
+  fontSize = '1rem'
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
@@ -30,30 +30,28 @@ const FallingText: React.FC<FallingTextProps> = ({
 
   useEffect(() => {
     if (!textRef.current) return;
-    const words = text.split(" ");
+    const words = text.split(' ');
 
     const newHTML = words
-      .map((word) => {
-        const isHighlighted = highlightWords.some((hw) => word.startsWith(hw));
+      .map(word => {
+        const isHighlighted = highlightWords.some(hw => word.startsWith(hw));
         return `<span
-          class="inline-block mx-[2px] select-none ${
-            isHighlighted ? "text-cyan-500 font-bold" : ""
-          }"
+          class="inline-block mx-[2px] select-none ${isHighlighted ? 'text-cyan-500 font-bold' : ''}"
         >
           ${word}
         </span>`;
       })
-      .join(" ");
+      .join(' ');
 
     textRef.current.innerHTML = newHTML;
   }, [text, highlightWords]);
 
   useEffect(() => {
-    if (trigger === "auto") {
+    if (trigger === 'auto') {
       setEffectStarted(true);
       return;
     }
-    if (trigger === "scroll" && containerRef.current) {
+    if (trigger === 'scroll' && containerRef.current) {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -71,8 +69,7 @@ const FallingText: React.FC<FallingTextProps> = ({
   useEffect(() => {
     if (!effectStarted) return;
 
-    const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } =
-      Matter;
+    const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } = Matter;
 
     if (!containerRef.current || !canvasContainerRef.current) return;
 
@@ -92,60 +89,36 @@ const FallingText: React.FC<FallingTextProps> = ({
         width,
         height,
         background: backgroundColor,
-        wireframes,
-      },
+        wireframes
+      }
     });
 
     const boundaryOptions = {
       isStatic: true,
-      render: { fillStyle: "transparent" },
+      render: { fillStyle: 'transparent' }
     };
-    const floor = Bodies.rectangle(
-      width / 2,
-      height + 25,
-      width,
-      50,
-      boundaryOptions
-    );
-    const leftWall = Bodies.rectangle(
-      -25,
-      height / 2,
-      50,
-      height,
-      boundaryOptions
-    );
-    const rightWall = Bodies.rectangle(
-      width + 25,
-      height / 2,
-      50,
-      height,
-      boundaryOptions
-    );
-    const ceiling = Bodies.rectangle(
-      width / 2,
-      -25,
-      width,
-      50,
-      boundaryOptions
-    );
+    const floor = Bodies.rectangle(width / 2, height + 25, width, 50, boundaryOptions);
+    const leftWall = Bodies.rectangle(-25, height / 2, 50, height, boundaryOptions);
+    const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, boundaryOptions);
+    const ceiling = Bodies.rectangle(width / 2, -25, width, 50, boundaryOptions);
 
     if (!textRef.current) return;
-    const wordSpans = textRef.current.querySelectorAll("span");
-    const wordBodies = [...wordSpans].map((elem) => {
+    const wordSpans = textRef.current.querySelectorAll('span');
+    const wordBodies = [...wordSpans].map(elem => {
       const rect = elem.getBoundingClientRect();
 
       const x = rect.left - containerRect.left + rect.width / 2;
       const y = rect.top - containerRect.top + rect.height / 2;
 
       const body = Bodies.rectangle(x, y, rect.width, rect.height, {
-        render: { fillStyle: "transparent" },
+        render: { fillStyle: 'transparent' },
         restitution: 0.8,
         frictionAir: 0.01,
-        friction: 0.2,
+        friction: 0.2
       });
       Matter.Body.setVelocity(body, {
         x: (Math.random() - 0.5) * 5,
-        y: 0,
+        y: 0
       });
       Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.05);
 
@@ -153,14 +126,10 @@ const FallingText: React.FC<FallingTextProps> = ({
     });
 
     wordBodies.forEach(({ elem, body }) => {
-      elem.style.position = "absolute";
-      elem.style.left = `${
-        body.position.x - body.bounds.max.x + body.bounds.min.x / 2
-      }px`;
-      elem.style.top = `${
-        body.position.y - body.bounds.max.y + body.bounds.min.y / 2
-      }px`;
-      elem.style.transform = "none";
+      elem.style.position = 'absolute';
+      elem.style.left = `${body.position.x - body.bounds.max.x + body.bounds.min.x / 2}px`;
+      elem.style.top = `${body.position.y - body.bounds.max.y + body.bounds.min.y / 2}px`;
+      elem.style.transform = 'none';
     });
 
     const mouse = Mouse.create(containerRef.current);
@@ -168,19 +137,12 @@ const FallingText: React.FC<FallingTextProps> = ({
       mouse,
       constraint: {
         stiffness: mouseConstraintStiffness,
-        render: { visible: false },
-      },
+        render: { visible: false }
+      }
     });
     render.mouse = mouse;
 
-    World.add(engine.world, [
-      floor,
-      leftWall,
-      rightWall,
-      ceiling,
-      mouseConstraint,
-      ...wordBodies.map((wb) => wb.body),
-    ]);
+    World.add(engine.world, [floor, leftWall, rightWall, ceiling, mouseConstraint, ...wordBodies.map(wb => wb.body)]);
 
     const runner = Runner.create();
     Runner.run(runner, engine);
@@ -207,16 +169,10 @@ const FallingText: React.FC<FallingTextProps> = ({
       World.clear(engine.world, false);
       Engine.clear(engine);
     };
-  }, [
-    effectStarted,
-    gravity,
-    wireframes,
-    backgroundColor,
-    mouseConstraintStiffness,
-  ]);
+  }, [effectStarted, gravity, wireframes, backgroundColor, mouseConstraintStiffness]);
 
   const handleTrigger = () => {
-    if (!effectStarted && (trigger === "click" || trigger === "hover")) {
+    if (!effectStarted && (trigger === 'click' || trigger === 'hover')) {
       setEffectStarted(true);
     }
   };
@@ -225,15 +181,15 @@ const FallingText: React.FC<FallingTextProps> = ({
     <div
       ref={containerRef}
       className="relative z-[1] w-full h-full cursor-pointer text-center pt-8 overflow-hidden"
-      onClick={trigger === "click" ? handleTrigger : undefined}
-      onMouseEnter={trigger === "hover" ? handleTrigger : undefined}
+      onClick={trigger === 'click' ? handleTrigger : undefined}
+      onMouseEnter={trigger === 'hover' ? handleTrigger : undefined}
     >
       <div
         ref={textRef}
         className="inline-block"
         style={{
           fontSize,
-          lineHeight: 1.4,
+          lineHeight: 1.4
         }}
       />
 

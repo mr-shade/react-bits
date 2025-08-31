@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
 
-import TiltedCard from "../../content/Components/TiltedCard/TiltedCard";
-import { tiltedCard } from "../../constants/code/Components/tiltedCardCode";
+import TiltedCard from '../../content/Components/TiltedCard/TiltedCard';
+import { tiltedCard } from '../../constants/code/Components/tiltedCardCode';
 
 const TiltedCardDemo = () => {
   const [rotateAmplitude, setRotateAmplitude] = useState(12);
@@ -21,82 +21,82 @@ const TiltedCardDemo = () => {
 
   const propData = [
     {
-      name: "imageSrc",
-      type: "string",
-      default: "N/A",
-      description: "The source URL of the image."
+      name: 'imageSrc',
+      type: 'string',
+      default: 'N/A',
+      description: 'The source URL of the image.'
     },
     {
-      name: "altText",
-      type: "string",
-      default: "Tilted card image",
-      description: "Alternative text for the image."
+      name: 'altText',
+      type: 'string',
+      default: 'Tilted card image',
+      description: 'Alternative text for the image.'
     },
     {
-      name: "captionText",
-      type: "string",
-      default: "",
-      description: "Text for the tooltip caption."
+      name: 'captionText',
+      type: 'string',
+      default: '',
+      description: 'Text for the tooltip caption.'
     },
     {
-      name: "containerHeight",
-      type: "string",
-      default: "600px",
-      description: "Height of the overall card container."
+      name: 'containerHeight',
+      type: 'string',
+      default: '600px',
+      description: 'Height of the overall card container.'
     },
     {
-      name: "containerWidth",
-      type: "string",
-      default: "100%",
-      description: "Width of the overall card container."
+      name: 'containerWidth',
+      type: 'string',
+      default: '100%',
+      description: 'Width of the overall card container.'
     },
     {
-      name: "imageHeight",
-      type: "string",
-      default: "300px",
-      description: "Height of the inner image."
+      name: 'imageHeight',
+      type: 'string',
+      default: '300px',
+      description: 'Height of the inner image.'
     },
     {
-      name: "imageWidth",
-      type: "string",
-      default: "300px",
-      description: "Width of the inner image."
+      name: 'imageWidth',
+      type: 'string',
+      default: '300px',
+      description: 'Width of the inner image.'
     },
     {
-      name: "scaleOnHover",
-      type: "number",
-      default: "1.1",
-      description: "Scaling factor applied on hover."
+      name: 'scaleOnHover',
+      type: 'number',
+      default: '1.1',
+      description: 'Scaling factor applied on hover.'
     },
     {
-      name: "rotateAmplitude",
-      type: "number",
-      default: "14",
-      description: "Controls how much the card tilts with mouse movement."
+      name: 'rotateAmplitude',
+      type: 'number',
+      default: '14',
+      description: 'Controls how much the card tilts with mouse movement.'
     },
     {
-      name: "showMobileWarning",
-      type: "boolean",
-      default: "true",
-      description: "Whether to show a small alert about mobile usage."
+      name: 'showMobileWarning',
+      type: 'boolean',
+      default: 'true',
+      description: 'Whether to show a small alert about mobile usage.'
     },
     {
-      name: "showTooltip",
-      type: "boolean",
-      default: "true",
-      description: "Toggles the visibility of the tooltip (figcaption)."
+      name: 'showTooltip',
+      type: 'boolean',
+      default: 'true',
+      description: 'Toggles the visibility of the tooltip (figcaption).'
     },
     {
-      name: "displayOverlayContent",
-      type: "boolean",
-      default: "false",
-      description: "Whether to display any overlayContent on top of the image."
+      name: 'displayOverlayContent',
+      type: 'boolean',
+      default: 'false',
+      description: 'Whether to display any overlayContent on top of the image.'
     },
     {
-      name: "overlayContent",
-      type: "ReactNode",
-      default: "null",
-      description: "A React node to display as an overlay on the card."
+      name: 'overlayContent',
+      type: 'ReactNode',
+      default: 'null',
+      description: 'A React node to display as an overlay on the card.'
     }
   ];
 
@@ -117,11 +117,7 @@ const TiltedCardDemo = () => {
             showMobileWarning={false}
             showTooltip={showTooltip}
             displayOverlayContent={displayOverlayContent}
-            overlayContent={
-              <p className="tilted-card-demo-text">
-                Kendrick Lamar - GNX
-              </p>
-            }
+            overlayContent={<p className="tilted-card-demo-text">Kendrick Lamar - GNX</p>}
           />
         </Box>
 
@@ -142,15 +138,27 @@ const TiltedCardDemo = () => {
             step={0.05}
             value={scaleOnHover}
             onChange={setScaleOnHover}
-            displayValue={(val) => val.toFixed(2)}
+            displayValue={val => val.toFixed(2)}
           />
 
-          <PreviewSwitch title="Show Tooltip" isChecked={showTooltip} onChange={(checked) => { setShowTooltip(checked); }} />
-          <PreviewSwitch title="Show Overlay Content" isChecked={displayOverlayContent} onChange={(checked) => { setDisplayOverlayContent(checked); }} />
+          <PreviewSwitch
+            title="Show Tooltip"
+            isChecked={showTooltip}
+            onChange={checked => {
+              setShowTooltip(checked);
+            }}
+          />
+          <PreviewSwitch
+            title="Show Overlay Content"
+            isChecked={displayOverlayContent}
+            onChange={checked => {
+              setDisplayOverlayContent(checked);
+            }}
+          />
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["motion"]} />
+        <Dependencies dependencyList={['motion']} />
       </PreviewTab>
 
       <CodeTab>

@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import useForceRerender from "../../hooks/useForceRerender";
+import useForceRerender from '../../hooks/useForceRerender';
 
-import Carousel from "../../content/Components/Carousel/Carousel";
-import { carousel } from "../../constants/code/Components/carouselCode";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Carousel from '../../content/Components/Carousel/Carousel';
+import { carousel } from '../../constants/code/Components/carouselCode';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 
 const CarouselDemo = () => {
   const [width, setWidth] = useState(300);
@@ -26,53 +26,46 @@ const CarouselDemo = () => {
 
   const propData = [
     {
-      name: "items",
-      type: "CarouselItem[]",
-      default: "DEFAULT_ITEMS",
-      description:
-        "An array of carousel items. Each item must include title, description, id, and icon."
+      name: 'items',
+      type: 'CarouselItem[]',
+      default: 'DEFAULT_ITEMS',
+      description: 'An array of carousel items. Each item must include title, description, id, and icon.'
     },
     {
-      name: "baseWidth",
-      type: "number",
-      default: "300",
-      description:
-        "Total width (in px) of the carousel container. Effective item width is baseWidth minus padding."
+      name: 'baseWidth',
+      type: 'number',
+      default: '300',
+      description: 'Total width (in px) of the carousel container. Effective item width is baseWidth minus padding.'
     },
     {
-      name: "autoplay",
-      type: "boolean",
-      default: "false",
-      description:
-        "Enables automatic scrolling to the next item at a fixed interval."
+      name: 'autoplay',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enables automatic scrolling to the next item at a fixed interval.'
     },
     {
-      name: "autoplayDelay",
-      type: "number",
-      default: "3000",
-      description:
-        "Delay in milliseconds between automatic scrolls when autoplay is enabled."
+      name: 'autoplayDelay',
+      type: 'number',
+      default: '3000',
+      description: 'Delay in milliseconds between automatic scrolls when autoplay is enabled.'
     },
     {
-      name: "pauseOnHover",
-      type: "boolean",
-      default: "false",
-      description:
-        "Pauses the autoplay functionality when the carousel is hovered."
+      name: 'pauseOnHover',
+      type: 'boolean',
+      default: 'false',
+      description: 'Pauses the autoplay functionality when the carousel is hovered.'
     },
     {
-      name: "loop",
-      type: "boolean",
-      default: "false",
-      description:
-        "When true, the carousel loops seamlessly from the last item back to the first."
+      name: 'loop',
+      type: 'boolean',
+      default: 'false',
+      description: 'When true, the carousel loops seamlessly from the last item back to the first.'
     },
     {
-      name: "round",
-      type: "boolean",
-      default: "true",
-      description:
-        "When true, the carousel is rendered with a 1:1 aspect ratio and circular container/items."
+      name: 'round',
+      type: 'boolean',
+      default: 'true',
+      description: 'When true, the carousel is rendered with a 1:1 aspect ratio and circular container/items.'
     }
   ];
 
@@ -98,15 +91,36 @@ const CarouselDemo = () => {
             max={330}
             step={10}
             value={width}
-            onChange={(val) => {
+            onChange={val => {
               setWidth(val);
               forceRerender();
             }}
           />
 
-          <PreviewSwitch title="Round Variant" isChecked={round} onChange={(checked) => { setRound(checked); forceRerender() }} />
-          <PreviewSwitch title="Loop" isChecked={loop} onChange={(checked) => { setLoop(checked); forceRerender() }} />
-          <PreviewSwitch title="Autoplay" isChecked={autoplay} onChange={(checked) => { setAutoplay(checked); forceRerender() }} />
+          <PreviewSwitch
+            title="Round Variant"
+            isChecked={round}
+            onChange={checked => {
+              setRound(checked);
+              forceRerender();
+            }}
+          />
+          <PreviewSwitch
+            title="Loop"
+            isChecked={loop}
+            onChange={checked => {
+              setLoop(checked);
+              forceRerender();
+            }}
+          />
+          <PreviewSwitch
+            title="Autoplay"
+            isChecked={autoplay}
+            onChange={checked => {
+              setAutoplay(checked);
+              forceRerender();
+            }}
+          />
 
           <PreviewSlider
             title="Delay"
@@ -115,7 +129,7 @@ const CarouselDemo = () => {
             step={1000}
             value={autoplayDelay}
             isDisabled={!autoplay}
-            onChange={(val) => {
+            onChange={val => {
               setAutoplayDelay(val);
               forceRerender();
             }}
@@ -125,7 +139,10 @@ const CarouselDemo = () => {
             title="Pause On Hover"
             sChecked={pauseOnHover}
             isDisabled={!autoplay}
-            onChange={(checked) => { setPauseOnHover(checked); forceRerender() }}
+            onChange={checked => {
+              setPauseOnHover(checked);
+              forceRerender();
+            }}
           />
         </Customize>
 

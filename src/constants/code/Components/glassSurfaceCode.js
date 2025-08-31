@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/GlassSurface/GlassSurface.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/GlassSurface/GlassSurface.tsx?raw';
 
 export const glassSurface = {
-  ...(generateCliCommands('Components/GlassSurface')),
+  ...generateCliCommands('Components/GlassSurface'),
   usage: `import GlassSurface from './GlassSurface'
 
 // Basic usage
@@ -38,4 +38,4 @@ export const glassSurface = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

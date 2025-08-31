@@ -6,7 +6,7 @@ import tsCode from '@ts-default/TextAnimations/CountUp/CountUp.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/CountUp/CountUp.tsx?raw';
 
 export const countup = {
-  ...(generateCliCommands('TextAnimations/CountUp')),
+  ...generateCliCommands('TextAnimations/CountUp'),
   installation: `npm install motion`,
   usage: `import CountUp from './CountUp'
 
@@ -22,4 +22,4 @@ export const countup = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

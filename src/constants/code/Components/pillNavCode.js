@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Components/PillNav/PillNav.jsx?raw';
 import css from '@content/Components/PillNav/PillNav.css?raw';
 import tailwind from '@tailwind/Components/PillNav/PillNav.jsx?raw';
-import tsCode from "@ts-default/Components/PillNav/PillNav.tsx?raw";
-import tsTailwind from "@ts-tailwind/Components/PillNav/PillNav.tsx?raw";
+import tsCode from '@ts-default/Components/PillNav/PillNav.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/PillNav/PillNav.tsx?raw';
 
 export const pillNav = {
-  ...(generateCliCommands('Components/PillNav')),
+  ...generateCliCommands('Components/PillNav'),
   installation: `npm install gsap`,
   usage: `import PillNav from './PillNav';
 import logo from '/path/to/logo.svg';
@@ -34,4 +34,4 @@ import logo from '/path/to/logo.svg';
   tailwind,
   tsCode,
   tsTailwind
-}
+};

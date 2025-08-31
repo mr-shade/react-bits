@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/VariableProximity/VariableProximi
 import tsTailwind from '@ts-tailwind/TextAnimations/VariableProximity/VariableProximity.tsx?raw';
 
 export const variableProximity = {
-  ...(generateCliCommands('TextAnimations/VariableProximity')),
+  ...generateCliCommands('TextAnimations/VariableProximity'),
   installation: `npm install motion`,
   usage: `import { useRef } from 'react';
 import VariableProximity from './VariableProximity';
@@ -33,4 +33,4 @@ style={{position: 'relative'}}
   tailwind,
   tsCode,
   tsTailwind
-}
+};

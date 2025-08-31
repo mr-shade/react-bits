@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/Lanyard/Lanyard.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/Lanyard/Lanyard.tsx?raw';
 
 export const lanyard = {
-  ...(generateCliCommands('Components/Lanyard')),
+  ...generateCliCommands('Components/Lanyard'),
   installation: `npm install three meshline @react-three/fiber @react-three/drei @react-three/rapier`,
   usage: `import Lanyard from './Lanyard'
 
@@ -58,4 +58,4 @@ declare module '*.png';
   tailwind,
   tsCode,
   tsTailwind
-}
+};

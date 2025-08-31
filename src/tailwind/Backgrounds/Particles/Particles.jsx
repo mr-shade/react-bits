@@ -1,12 +1,15 @@
-import { useEffect, useRef } from "react";
-import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
+import { useEffect, useRef } from 'react';
+import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
 
-const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
+const defaultColors = ['#ffffff', '#ffffff', '#ffffff'];
 
-const hexToRgb = (hex) => {
-  hex = hex.replace(/^#/, "");
+const hexToRgb = hex => {
+  hex = hex.replace(/^#/, '');
   if (hex.length === 3) {
-    hex = hex.split("").map((c) => c + c).join("");
+    hex = hex
+      .split('')
+      .map(c => c + c)
+      .join('');
   }
   const int = parseInt(hex, 16);
   const r = ((int >> 16) & 255) / 255;
@@ -86,7 +89,7 @@ const Particles = ({
   sizeRandomness = 1,
   cameraDistance = 20,
   disableRotation = false,
-  className,
+  className
 }) => {
   const containerRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -109,10 +112,10 @@ const Particles = ({
       renderer.setSize(width, height);
       camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
     };
-    window.addEventListener("resize", resize, false);
+    window.addEventListener('resize', resize, false);
     resize();
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = e => {
       const rect = container.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
@@ -120,7 +123,7 @@ const Particles = ({
     };
 
     if (moveParticlesOnHover) {
-      container.addEventListener("mousemove", handleMouseMove);
+      container.addEventListener('mousemove', handleMouseMove);
     }
 
     const count = particleCount;
@@ -147,7 +150,7 @@ const Particles = ({
     const geometry = new Geometry(gl, {
       position: { size: 3, data: positions },
       random: { size: 4, data: randoms },
-      color: { size: 3, data: colors },
+      color: { size: 3, data: colors }
     });
 
     const program = new Program(gl, {
@@ -158,10 +161,10 @@ const Particles = ({
         uSpread: { value: particleSpread },
         uBaseSize: { value: particleBaseSize },
         uSizeRandomness: { value: sizeRandomness },
-        uAlphaParticles: { value: alphaParticles ? 1 : 0 },
+        uAlphaParticles: { value: alphaParticles ? 1 : 0 }
       },
       transparent: true,
-      depthTest: false,
+      depthTest: false
     });
 
     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
@@ -170,7 +173,7 @@ const Particles = ({
     let lastTime = performance.now();
     let elapsed = 0;
 
-    const update = (t) => {
+    const update = t => {
       animationFrameId = requestAnimationFrame(update);
       const delta = t - lastTime;
       lastTime = t;
@@ -198,9 +201,9 @@ const Particles = ({
     animationFrameId = requestAnimationFrame(update);
 
     return () => {
-      window.removeEventListener("resize", resize);
+      window.removeEventListener('resize', resize);
       if (moveParticlesOnHover) {
-        container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener('mousemove', handleMouseMove);
       }
       cancelAnimationFrame(animationFrameId);
       if (container.contains(gl.canvas)) {
@@ -218,15 +221,10 @@ const Particles = ({
     particleBaseSize,
     sizeRandomness,
     cameraDistance,
-    disableRotation,
+    disableRotation
   ]);
 
-  return (
-    <div
-      ref={containerRef}
-      className={`relative w-full h-full ${className}`}
-    />
-  );
+  return <div ref={containerRef} className={`relative w-full h-full ${className}`} />;
 };
 
 export default Particles;

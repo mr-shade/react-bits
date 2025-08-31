@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import useForceRerender from "../../hooks/useForceRerender";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import useForceRerender from '../../hooks/useForceRerender';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import Aurora from "../../content/Backgrounds/Aurora/Aurora";
-import { aurora } from "../../constants/code/Backgrounds/auroraCode";
+import Aurora from '../../content/Backgrounds/Aurora/Aurora';
+import { aurora } from '../../constants/code/Backgrounds/auroraCode';
 
 const AuroraDemo = () => {
   const [color1, setColor1] = useState('#7cff67');
@@ -26,28 +26,28 @@ const AuroraDemo = () => {
 
   const propData = [
     {
-      name: "colorStops",
-      type: "[string, string, string]",
+      name: 'colorStops',
+      type: '[string, string, string]',
       default: '["#3A29FF", "#FF94B4", "#FF3232"]',
-      description: "An array of three hex colors defining the aurora gradient.",
+      description: 'An array of three hex colors defining the aurora gradient.'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "1.0",
-      description: "Controls the animation speed. Higher values make the aurora move faster.",
+      name: 'speed',
+      type: 'number',
+      default: '1.0',
+      description: 'Controls the animation speed. Higher values make the aurora move faster.'
     },
     {
-      name: "blend",
-      type: "number",
-      default: "0.5",
-      description: "Controls the blending of the aurora effect with the background.",
+      name: 'blend',
+      type: 'number',
+      default: '0.5',
+      description: 'Controls the blending of the aurora effect with the background.'
     },
     {
-      name: "amplitude",
-      type: "number",
-      default: "1.0",
-      description: "Controls the height intensity of the aurora effect.",
+      name: 'amplitude',
+      type: 'number',
+      default: '1.0',
+      description: 'Controls the height intensity of the aurora effect.'
     }
   ];
 
@@ -58,10 +58,7 @@ const AuroraDemo = () => {
           <Aurora key={key} blend={blend} speed={speed} colorStops={[color1, color2, color3]} />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Bring the Arctic to you, with one line of code"
-          />
+          <BackgroundContent pillText="New Background" headline="Bring the Arctic to you, with one line of code" />
         </Box>
 
         <Customize>
@@ -72,7 +69,7 @@ const AuroraDemo = () => {
                 type="color"
                 value={color1}
                 style={{ height: '22px', outline: 'none', border: 'none' }}
-                onChange={(e) => {
+                onChange={e => {
                   setColor1(e.target.value);
                   forceRerender();
                 }}
@@ -85,7 +82,7 @@ const AuroraDemo = () => {
                 type="color"
                 value={color2}
                 style={{ height: '22px', outline: 'none', border: 'none' }}
-                onChange={(e) => {
+                onChange={e => {
                   setColor2(e.target.value);
                   forceRerender();
                 }}
@@ -98,7 +95,7 @@ const AuroraDemo = () => {
                 type="color"
                 value={color3}
                 style={{ height: '22px', outline: 'none', border: 'none' }}
-                onChange={(e) => {
+                onChange={e => {
                   setColor3(e.target.value);
                   forceRerender();
                 }}
@@ -112,7 +109,7 @@ const AuroraDemo = () => {
             max={2}
             step={0.1}
             value={speed}
-            onChange={(val) => {
+            onChange={val => {
               setSpeed(val);
               forceRerender();
             }}
@@ -124,13 +121,12 @@ const AuroraDemo = () => {
             max={1}
             step={0.01}
             value={blend}
-            onChange={(val) => {
+            onChange={val => {
               setBlend(val);
               forceRerender();
             }}
           />
         </Customize>
-
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />

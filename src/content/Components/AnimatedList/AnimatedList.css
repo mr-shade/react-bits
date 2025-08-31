@@ -18,7 +18,7 @@
 }
 
 .scroll-list::-webkit-scrollbar-thumb {
-  background: #271E37;
+  background: #271e37;
   border-radius: 4px;
 }
 
@@ -33,13 +33,13 @@
 
 .item {
   padding: 16px;
-  background-color: #170D27;
+  background-color: #170d27;
   border-radius: 8px;
   margin-bottom: 1rem;
 }
 
 .item.selected {
-  background-color: #271E37;
+  background-color: #271e37;
 }
 
 .item-text {

@@ -1,18 +1,18 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback } from 'react';
 
 const ClickSpark = ({
-  sparkColor = "#fff",
+  sparkColor = '#fff',
   sparkSize = 10,
   sparkRadius = 15,
   sparkCount = 8,
   duration = 400,
-  easing = "ease-out",
+  easing = 'ease-out',
   extraScale = 1.0,
   children
 }) => {
   const canvasRef = useRef(null);
-  const sparksRef = useRef([]);     
-  const startTimeRef = useRef(null); 
+  const sparksRef = useRef([]);
+  const startTimeRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -48,13 +48,13 @@ const ClickSpark = ({
   }, []);
 
   const easeFunc = useCallback(
-    (t) => {
+    t => {
       switch (easing) {
-        case "linear":
+        case 'linear':
           return t;
-        case "ease-in":
+        case 'ease-in':
           return t * t;
-        case "ease-in-out":
+        case 'ease-in-out':
           return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
         default:
           return t * (2 - t);
@@ -66,17 +66,17 @@ const ClickSpark = ({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
 
     let animationId;
 
-    const draw = (timestamp) => {
+    const draw = timestamp => {
       if (!startTimeRef.current) {
-        startTimeRef.current = timestamp; 
+        startTimeRef.current = timestamp;
       }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      sparksRef.current = sparksRef.current.filter((spark) => {
+      sparksRef.current = sparksRef.current.filter(spark => {
         const elapsed = timestamp - spark.startTime;
         if (elapsed >= duration) {
           return false;
@@ -111,17 +111,9 @@ const ClickSpark = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [
-    sparkColor,
-    sparkSize,
-    sparkRadius,
-    sparkCount,
-    duration,
-    easeFunc,
-    extraScale,
-  ]);
+  }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
@@ -133,14 +125,14 @@ const ClickSpark = ({
       x,
       y,
       angle: (2 * Math.PI * i) / sparkCount,
-      startTime: now,
+      startTime: now
     }));
 
     sparksRef.current.push(...newSparks);
   };
 
   return (
-    <div 
+    <div
       style={{
         position: 'relative',
         width: '100%',
@@ -151,14 +143,14 @@ const ClickSpark = ({
       <canvas
         ref={canvasRef}
         style={{
-          width: "100%",
-          height: "100%",
-          display: "block",
-          userSelect: "none",
-          position: "absolute",
+          width: '100%',
+          height: '100%',
+          display: 'block',
+          userSelect: 'none',
+          position: 'absolute',
           top: 0,
           left: 0,
-          pointerEvents: "none"
+          pointerEvents: 'none'
         }}
       />
       {children}

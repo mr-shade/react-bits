@@ -1,50 +1,26 @@
-import {
-  Box,
-  Flex,
-  VStack,
-  Text,
-  Stack,
-  Icon,
-  IconButton,
-  Drawer,
-  Image,
-  Separator,
-} from "@chakra-ui/react";
-import {
-  FiArrowRight,
-  FiMenu,
-  FiSearch,
-  FiX,
-} from "react-icons/fi";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  useRef,
-  useState,
-  useLayoutEffect,
-  useCallback,
-  useMemo,
-  memo,
-  useEffect,
-} from "react";
-import { CATEGORIES, NEW, UPDATED } from "../../constants/Categories";
-import { componentMap } from "../../constants/Components";
-import { useSearch } from "../context/SearchContext/useSearch";
-import { useTransition } from "../../hooks/useTransition";
-import Logo from "../../assets/logos/react-bits-logo.svg";
+import { Box, Flex, VStack, Text, Stack, Icon, IconButton, Drawer, Image, Separator } from '@chakra-ui/react';
+import { FiArrowRight, FiMenu, FiSearch, FiX } from 'react-icons/fi';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useRef, useState, useLayoutEffect, useCallback, useMemo, memo, useEffect } from 'react';
+import { CATEGORIES, NEW, UPDATED } from '../../constants/Categories';
+import { componentMap } from '../../constants/Components';
+import { useSearch } from '../context/SearchContext/useSearch';
+import { useTransition } from '../../hooks/useTransition';
+import Logo from '../../assets/logos/react-bits-logo.svg';
 
 const HOVER_TIMEOUT_DELAY = 150;
 const ICON_BUTTON_STYLES = {
-  rounded: "10px",
-  border: "1px solid #ffffff1c",
-  bg: "#060010",
+  rounded: '10px',
+  border: '1px solid #ffffff1c',
+  bg: '#060010'
 };
 const ARROW_ICON_PROPS = {
   boxSize: 4,
-  transform: "rotate(-45deg)",
+  transform: 'rotate(-45deg)'
 };
 
 const scrollToTop = () => window.scrollTo(0, 0);
-const slug = (str) => str.replace(/\s+/g, "-").toLowerCase();
+const slug = str => str.replace(/\s+/g, '-').toLowerCase();
 
 const Sidebar = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -72,25 +48,22 @@ const Sidebar = () => {
     const activePath = pendingActivePath || location.pathname;
 
     for (const category of CATEGORIES) {
-      const activeItem = category.subcategories.find((sub) => {
+      const activeItem = category.subcategories.find(sub => {
         return activePath === `/${slug(category.name)}/${slug(sub)}`;
       });
-      if (activeItem)
-        return itemRefs.current[
-          `/${slug(category.name)}/${slug(activeItem)}`
-        ];
+      if (activeItem) return itemRefs.current[`/${slug(category.name)}/${slug(activeItem)}`];
     }
     return null;
   }, [location.pathname, pendingActivePath]);
 
-  const updateLinePosition = useCallback((el) => {
+  const updateLinePosition = useCallback(el => {
     if (!el || !sidebarRef.current || !sidebarRef.current.offsetParent) return null;
     const sidebarRect = sidebarRef.current.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
     return elRect.top - sidebarRect.top + elRect.height / 2;
   }, []);
 
-  const handleDrawerToggle = () => setDrawerOpen((p) => !p);
+  const handleDrawerToggle = () => setDrawerOpen(p => !p);
   const closeDrawer = () => setDrawerOpen(false);
   const onSearchClick = () => {
     closeDrawer();
@@ -101,30 +74,36 @@ const Sidebar = () => {
     scrollToTop();
   };
 
-  const handleTransitionNavigation = useCallback(async (path, subcategory) => {
-    if (isTransitioning || location.pathname === path) return;
+  const handleTransitionNavigation = useCallback(
+    async (path, subcategory) => {
+      if (isTransitioning || location.pathname === path) return;
 
-    setPendingActivePath(path);
+      setPendingActivePath(path);
 
-    await startTransition(subcategory, componentMap, () => {
-      navigate(path);
-      scrollToTop();
-      setPendingActivePath(null);
-    });
-  }, [isTransitioning, location.pathname, startTransition, navigate]);
+      await startTransition(subcategory, componentMap, () => {
+        navigate(path);
+        scrollToTop();
+        setPendingActivePath(null);
+      });
+    },
+    [isTransitioning, location.pathname, startTransition, navigate]
+  );
 
-  const handleMobileTransitionNavigation = useCallback(async (path, subcategory) => {
-    if (isTransitioning || location.pathname === path) return;
+  const handleMobileTransitionNavigation = useCallback(
+    async (path, subcategory) => {
+      if (isTransitioning || location.pathname === path) return;
 
-    closeDrawer();
-    setPendingActivePath(path);
+      closeDrawer();
+      setPendingActivePath(path);
 
-    await startTransition(subcategory, componentMap, () => {
-      navigate(path);
-      scrollToTop();
-      setPendingActivePath(null);
-    });
-  }, [isTransitioning, location.pathname, startTransition, navigate]);
+      await startTransition(subcategory, componentMap, () => {
+        navigate(path);
+        scrollToTop();
+        setPendingActivePath(null);
+      });
+    },
+    [isTransitioning, location.pathname, startTransition, navigate]
+  );
 
   const onItemEnter = (path, e) => {
     clearTimeout(hoverTimeoutRef.current);
@@ -160,8 +139,7 @@ const Sidebar = () => {
       const isElementBelowView = elementRect.bottom > containerRect.bottom - offset;
 
       if (isElementAboveView || isElementBelowView) {
-        const scrollTop = sidebarContainerRef.current.scrollTop +
-          (elementRect.top - containerRect.top) - offset;
+        const scrollTop = sidebarContainerRef.current.scrollTop + (elementRect.top - containerRect.top) - offset;
 
         sidebarContainerRef.current.scrollTo({
           top: scrollTop,
@@ -194,10 +172,13 @@ const Sidebar = () => {
     return () => clearTimeout(timer);
   }, [location.pathname, scrollActiveItemIntoView]);
 
-  useEffect(() => () => {
-    clearTimeout(hoverTimeoutRef.current);
-    clearTimeout(hoverDelayTimeoutRef.current);
-  }, []);
+  useEffect(
+    () => () => {
+      clearTimeout(hoverTimeoutRef.current);
+      clearTimeout(hoverDelayTimeoutRef.current);
+    },
+    []
+  );
 
   useEffect(() => {
     if (pendingActivePath && location.pathname === pendingActivePath) {
@@ -223,77 +204,42 @@ const Sidebar = () => {
 
   return (
     <>
-      <Box
-        display={{ md: "none" }}
-        position="fixed"
-        top={0}
-        left={0}
-        zIndex="overlay"
-        w="100%"
-        bg="#060010"
-        p="1em"
-      >
-        <Flex
-          align="center"
-          justify="space-between"
-          gap="1em"
-        >
+      <Box display={{ md: 'none' }} position="fixed" top={0} left={0} zIndex="overlay" w="100%" bg="#060010" p="1em">
+        <Flex align="center" justify="space-between" gap="1em">
           <Link to="/">
             <Image src={Logo} h="32px" alt="React Bits logo" />
           </Link>
 
           <Flex gap={2}>
-            <IconButton
-              {...ICON_BUTTON_STYLES}
-              ref={searchBtnRef}
-              aria-label="Search"
-              onClick={onSearchClick}
-            >
-              <Icon as={FiSearch} color='#fff' />
+            <IconButton {...ICON_BUTTON_STYLES} ref={searchBtnRef} aria-label="Search" onClick={onSearchClick}>
+              <Icon as={FiSearch} color="#fff" />
             </IconButton>
-            <IconButton
-              {...ICON_BUTTON_STYLES}
-              ref={menuBtnRef}
-              aria-label="Open Menu"
-              onClick={handleDrawerToggle}
-            >
-              <Icon as={FiMenu} color='#fff' />
+            <IconButton {...ICON_BUTTON_STYLES} ref={menuBtnRef} aria-label="Open Menu" onClick={handleDrawerToggle}>
+              <Icon as={FiMenu} color="#fff" />
             </IconButton>
           </Flex>
         </Flex>
       </Box>
 
-      <Drawer.Root
-        open={isDrawerOpen}
-        onOpenChange={closeDrawer}
-        placement="left"
-        size="full"
-      >
+      <Drawer.Root open={isDrawerOpen} onOpenChange={closeDrawer} placement="left" size="full">
         <Drawer.Backdrop />
-        <Drawer.Positioner w="100vw"
+        <Drawer.Positioner
+          w="100vw"
           sx={{
-            transition: "transform 0.3s ease",
-            "&[data-state='closed']": { transform: "translateX(-100%)" },
-            "&[data-state='open']": { transform: "translateX(0)" },
+            transition: 'transform 0.3s ease',
+            "&[data-state='closed']": { transform: 'translateX(-100%)' },
+            "&[data-state='open']": { transform: 'translateX(0)' }
           }}
-          maxW="100vw">
+          maxW="100vw"
+        >
           <Drawer.Content bg="#060010">
-            <Drawer.Header
-              h="72px"
-              py={2}
-              borderBottom="1px solid #ffffff1c"
-              className="sidebar-logo"
-            >
+            <Drawer.Header h="72px" py={2} borderBottom="1px solid #ffffff1c" className="sidebar-logo">
               <Flex align="center" justify="space-between" w="100%">
                 <Link to="/">
                   <Image src={Logo} alt="Logo" h="28px" />
                 </Link>
-                <IconButton
-                  {...ICON_BUTTON_STYLES}
-                  aria-label="Close"
-                  onClick={closeDrawer}
-                >
-                  <Icon as={FiX} color='#fff' />
+                <IconButton {...ICON_BUTTON_STYLES} aria-label="Close" onClick={closeDrawer}>
+                  <Icon as={FiX} color="#fff" />
                 </IconButton>
               </Flex>
             </Drawer.Header>
@@ -308,8 +254,8 @@ const Sidebar = () => {
                     pendingActivePath={pendingActivePath}
                     handleClick={onNavClick}
                     handleTransitionNavigation={handleMobileTransitionNavigation}
-                    onItemMouseEnter={() => { }}
-                    onItemMouseLeave={() => { }}
+                    onItemMouseEnter={() => {}}
+                    onItemMouseLeave={() => {}}
                     itemRefs={{}}
                     isTransitioning={isTransitioning}
                     isFirstCategory={index === 0}
@@ -329,24 +275,19 @@ const Sidebar = () => {
                   display="block"
                   mb={2}
                 >
-                  <Flex alignItems="center" gap='4px'><span>GitHub</span> <Icon as={FiArrowRight} {...ARROW_ICON_PROPS} /></Flex>
+                  <Flex alignItems="center" gap="4px">
+                    <span>GitHub</span> <Icon as={FiArrowRight} {...ARROW_ICON_PROPS} />
+                  </Flex>
                 </Link>
-                <Link
-                  to="/showcase"
-                  onClick={closeDrawer}
-                  display="block"
-                  mb={2}
-                >
-                  <Flex alignItems="center" gap='4px'><span>Showcase</span> <Icon as={FiArrowRight} {...ARROW_ICON_PROPS} /></Flex>
+                <Link to="/showcase" onClick={closeDrawer} display="block" mb={2}>
+                  <Flex alignItems="center" gap="4px">
+                    <span>Showcase</span> <Icon as={FiArrowRight} {...ARROW_ICON_PROPS} />
+                  </Flex>
                 </Link>
-                <Link
-                  to="https://x.com/davidhdev"
-                  target="_blank"
-                  onClick={closeDrawer}
-                  display="block"
-                  mb={2}
-                >
-                  <Flex alignItems="center" gap='4px'><span>Who made this?</span> <Icon as={FiArrowRight} {...ARROW_ICON_PROPS} /></Flex>
+                <Link to="https://x.com/davidhdev" target="_blank" onClick={closeDrawer} display="block" mb={2}>
+                  <Flex alignItems="center" gap="4px">
+                    <span>Who made this?</span> <Icon as={FiArrowRight} {...ARROW_ICON_PROPS} />
+                  </Flex>
                 </Link>
               </Flex>
             </Drawer.Body>
@@ -374,9 +315,7 @@ const Sidebar = () => {
             bg="#fff"
             rounded="1px"
             transform={
-              isLineVisible && linePosition !== null
-                ? `translateY(${linePosition - 8}px)`
-                : "translateY(-100px)"
+              isLineVisible && linePosition !== null ? `translateY(${linePosition - 8}px)` : 'translateY(-100px)'
             }
             opacity={isLineVisible ? 1 : 0}
             transition="all 0.2s cubic-bezier(0.4,0,0.2,1)"
@@ -391,11 +330,7 @@ const Sidebar = () => {
             h="16px"
             bg="#ffffff66"
             rounded="1px"
-            transform={
-              hoverLinePosition !== null
-                ? `translateY(${hoverLinePosition - 8}px)`
-                : "translateY(-100px)"
-            }
+            transform={hoverLinePosition !== null ? `translateY(${hoverLinePosition - 8}px)` : 'translateY(-100px)'}
             opacity={isHoverLineVisible ? 1 : 0}
             transition="all 0.2s cubic-bezier(0.4,0,0.2,1)"
             pointerEvents="none"
@@ -436,11 +371,11 @@ const Category = memo(
     onItemMouseLeave,
     itemRefs,
     isTransitioning,
-    isFirstCategory,
+    isFirstCategory
   }) => {
     const items = useMemo(
       () =>
-        category.subcategories.map((sub) => {
+        category.subcategories.map(sub => {
           const path = `/${slug(category.name)}/${slug(sub)}`;
           const activePath = pendingActivePath || location.pathname;
           return {
@@ -448,7 +383,7 @@ const Category = memo(
             path,
             isActive: activePath === path,
             isNew: NEW.includes(sub),
-            isUpdated: UPDATED.includes(sub),
+            isUpdated: UPDATED.includes(sub)
           };
         }),
       [category.name, category.subcategories, location.pathname, pendingActivePath]
@@ -459,21 +394,14 @@ const Category = memo(
         <Text className="category-name" mb={2} mt={isFirstCategory ? 0 : 4}>
           {category.name}
         </Text>
-        <Stack
-          spacing={0.5}
-          pl={4}
-          borderLeft="1px solid #392e4e"
-          position="relative"
-        >
+        <Stack spacing={0.5} pl={4} borderLeft="1px solid #392e4e" position="relative">
           {items.map(({ sub, path, isActive, isNew, isUpdated }) => (
             <Link
               key={path}
-              ref={(el) =>
-                itemRefs.current && (itemRefs.current[path] = el)
-              }
+              ref={el => itemRefs.current && (itemRefs.current[path] = el)}
               to={path}
               className={`sidebar-item ${isActive ? 'active-sidebar-item' : ''} ${isTransitioning ? 'transitioning' : ''}`}
-              onClick={(e) => {
+              onClick={e => {
                 e.preventDefault();
                 if (handleTransitionNavigation) {
                   handleTransitionNavigation(path, sub);
@@ -481,7 +409,7 @@ const Category = memo(
                   handleClick();
                 }
               }}
-              onMouseEnter={(e) => onItemMouseEnter(path, e)}
+              onMouseEnter={e => onItemMouseEnter(path, e)}
               onMouseLeave={onItemMouseLeave}
             >
               {sub}
@@ -495,6 +423,6 @@ const Category = memo(
   }
 );
 
-Category.displayName = "Category";
+Category.displayName = 'Category';
 
 export default Sidebar;

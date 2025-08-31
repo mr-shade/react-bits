@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Button } from "@chakra-ui/react";
-import { randomHex } from "../../utils/utils";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Button } from '@chakra-ui/react';
+import { randomHex } from '../../utils/utils';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import useForceRerender from "../../hooks/useForceRerender";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import useForceRerender from '../../hooks/useForceRerender';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import LetterGlitch from "../../content/Backgrounds/LetterGlitch/LetterGlitch";
-import { letterGlitch } from "../../constants/code/Backgrounds/letterGlitchCode";
+import LetterGlitch from '../../content/Backgrounds/LetterGlitch/LetterGlitch';
+import { letterGlitch } from '../../constants/code/Backgrounds/letterGlitchCode';
 
 const LetterGlitchDemo = () => {
   const [smooth, setSmooth] = useState(true);
@@ -26,34 +26,34 @@ const LetterGlitchDemo = () => {
 
   const propData = [
     {
-      name: "glitchColors",
-      type: "string[]",
+      name: 'glitchColors',
+      type: 'string[]',
       default: "['#2b4539', '#61dca3', '#61b3dc']",
-      description: "Controls the colors of the letters rendered in the canvas."
+      description: 'Controls the colors of the letters rendered in the canvas.'
     },
     {
-      name: "glitchSpeed",
-      type: "number",
-      default: "50",
-      description: "Controls the speed at which letters scramble in the animation."
+      name: 'glitchSpeed',
+      type: 'number',
+      default: '50',
+      description: 'Controls the speed at which letters scramble in the animation.'
     },
     {
-      name: "centerVignette",
-      type: "boolean",
-      default: "false",
-      description: "When true, renders a radial gradient in the center of the container"
+      name: 'centerVignette',
+      type: 'boolean',
+      default: 'false',
+      description: 'When true, renders a radial gradient in the center of the container'
     },
     {
-      name: "outerVignette",
-      type: "boolean",
-      default: "true",
-      description: "When true, renders an inner radial gradient around the edges of the container."
+      name: 'outerVignette',
+      type: 'boolean',
+      default: 'true',
+      description: 'When true, renders an inner radial gradient around the edges of the container.'
     },
     {
-      name: "smooth",
-      type: "boolean",
-      default: "true",
-      description: "When true, smoothens the animation of the letters for a more subtle feel."
+      name: 'smooth',
+      type: 'boolean',
+      default: 'true',
+      description: 'When true, smoothens the animation of the letters for a more subtle feel.'
     }
   ];
 
@@ -71,10 +71,7 @@ const LetterGlitchDemo = () => {
           />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Am I finally a real hacker now, mom?"
-          />
+          <BackgroundContent pillText="New Background" headline="Am I finally a real hacker now, mom?" />
         </Box>
 
         <Customize>
@@ -83,11 +80,11 @@ const LetterGlitchDemo = () => {
             bg="#170D27"
             borderRadius="10px"
             border="1px solid #271E37"
-            _hover={{ bg: "#271E37" }}
+            _hover={{ bg: '#271E37' }}
             color="#fff"
             h={8}
             onClick={() => {
-              setColors([randomHex(), randomHex(), randomHex()])
+              setColors([randomHex(), randomHex(), randomHex()]);
               forceRerender();
             }}
           >
@@ -100,7 +97,7 @@ const LetterGlitchDemo = () => {
             title="Glitch Speed"
             step={5}
             value={speed}
-            onChange={(val) => {
+            onChange={val => {
               setSpeed(val);
             }}
           />
@@ -108,7 +105,7 @@ const LetterGlitchDemo = () => {
           <PreviewSwitch
             title="Smooth Animation"
             isChecked={smooth}
-            onChange={(checked) => {
+            onChange={checked => {
               setSmooth(checked);
               forceRerender();
             }}
@@ -117,7 +114,7 @@ const LetterGlitchDemo = () => {
           <PreviewSwitch
             title="Show Center Vignette"
             isChecked={showCenterVignette}
-            onChange={(checked) => {
+            onChange={checked => {
               setShowCenterVignette(checked);
               forceRerender();
             }}
@@ -126,7 +123,7 @@ const LetterGlitchDemo = () => {
           <PreviewSwitch
             title="Show Outer Vignette"
             isChecked={showOuterVignette}
-            onChange={(checked) => {
+            onChange={checked => {
               setShowOuterVignette(checked);
               forceRerender();
             }}

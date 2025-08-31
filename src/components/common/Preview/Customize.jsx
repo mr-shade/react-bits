@@ -6,6 +6,6 @@ const Customize = ({ children }) => {
       {children}
     </div>
   );
-}
+};
 
 export default Customize;

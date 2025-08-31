@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
-import "./TrueFocus.css";
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
+import './TrueFocus.css';
 
 const TrueFocus = ({
-  sentence = "True Focus",
+  sentence = 'True Focus',
   manualMode = false,
   blurAmount = 5,
-  borderColor = "green",
-  glowColor = "rgba(0, 255, 0, 0.6)",
+  borderColor = 'green',
+  glowColor = 'rgba(0, 255, 0, 0.6)',
   animationDuration = 0.5,
-  pauseBetweenAnimations = 1,
+  pauseBetweenAnimations = 1
 }) => {
-  const words = sentence.split(" ");
+  const words = sentence.split(' ');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lastActiveIndex, setLastActiveIndex] = useState(null);
   const containerRef = useRef(null);
@@ -20,9 +20,12 @@ const TrueFocus = ({
 
   useEffect(() => {
     if (!manualMode) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % words.length);
-      }, (animationDuration + pauseBetweenAnimations) * 1000);
+      const interval = setInterval(
+        () => {
+          setCurrentIndex(prev => (prev + 1) % words.length);
+        },
+        (animationDuration + pauseBetweenAnimations) * 1000
+      );
 
       return () => clearInterval(interval);
     }
@@ -40,11 +43,11 @@ const TrueFocus = ({
       x: activeRect.left - parentRect.left,
       y: activeRect.top - parentRect.top,
       width: activeRect.width,
-      height: activeRect.height,
+      height: activeRect.height
     });
   }, [currentIndex, words.length]);
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = index => {
     if (manualMode) {
       setLastActiveIndex(index);
       setCurrentIndex(index);
@@ -64,21 +67,19 @@ const TrueFocus = ({
         return (
           <span
             key={index}
-            ref={(el) => (wordRefs.current[index] = el)}
-            className={`focus-word ${manualMode ? "manual" : ""} ${isActive && !manualMode ? "active" : ""
-              }`}
+            ref={el => (wordRefs.current[index] = el)}
+            className={`focus-word ${manualMode ? 'manual' : ''} ${isActive && !manualMode ? 'active' : ''}`}
             style={{
-              filter:
-                manualMode
-                  ? isActive
-                    ? `blur(0px)`
-                    : `blur(${blurAmount}px)`
-                  : isActive
-                    ? `blur(0px)`
-                    : `blur(${blurAmount}px)`,
-              "--border-color": borderColor,
-              "--glow-color": glowColor,
-              transition: `filter ${animationDuration}s ease`,
+              filter: manualMode
+                ? isActive
+                  ? `blur(0px)`
+                  : `blur(${blurAmount}px)`
+                : isActive
+                  ? `blur(0px)`
+                  : `blur(${blurAmount}px)`,
+              '--border-color': borderColor,
+              '--glow-color': glowColor,
+              transition: `filter ${animationDuration}s ease`
             }}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
@@ -95,14 +96,14 @@ const TrueFocus = ({
           y: focusRect.y,
           width: focusRect.width,
           height: focusRect.height,
-          opacity: currentIndex >= 0 ? 1 : 0,
+          opacity: currentIndex >= 0 ? 1 : 0
         }}
         transition={{
-          duration: animationDuration,
+          duration: animationDuration
         }}
         style={{
-          "--border-color": borderColor,
-          "--glow-color": glowColor,
+          '--border-color': borderColor,
+          '--glow-color': glowColor
         }}
       >
         <span className="corner top-left"></span>

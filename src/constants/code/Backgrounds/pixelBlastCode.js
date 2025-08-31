@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/PixelBlast/PixelBlast.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/PixelBlast/PixelBlast.tsx?raw';
 
 export const pixelBlast = {
-  ...(generateCliCommands('Backgrounds/PixelBlast')),
+  ...generateCliCommands('Backgrounds/PixelBlast'),
   installation: `npm install three postprocessing`,
   usage: `// Component inspired by github.com/zavalit/bayer-dithering-webgl-demo
   
@@ -38,5 +38,5 @@ import PixelBlast from './PixelBlast';
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

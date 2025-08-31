@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Button, ButtonGroup, Flex, Input, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Button, ButtonGroup, Flex, Input, Text } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PropTable from "../../components/common/Preview/PropTable";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PropTable from '../../components/common/Preview/PropTable';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import Squares from "../../content/Backgrounds/Squares/Squares";
+import Squares from '../../content/Backgrounds/Squares/Squares';
 import { squares } from '../../constants/code/Backgrounds/squaresCode';
 
 const SquaresDemo = () => {
@@ -20,11 +20,16 @@ const SquaresDemo = () => {
   const [speed, setSpeed] = useState(0.5);
 
   const propData = [
-    { name: "direction", type: "string", default: "'right'", description: "Direction of square animation. Options: 'diagonal', 'up', 'right', 'down', 'left'." },
-    { name: "speed", type: "number", default: "1", description: "Animation speed multiplier." },
-    { name: "borderColor", type: "string", default: "'#999'", description: "Color of the square borders." },
-    { name: "squareSize", type: "number", default: "40", description: "Size of individual squares in pixels." },
-    { name: "hoverFillColor", type: "string", default: "'#222'", description: "Fill color when hovering over squares." },
+    {
+      name: 'direction',
+      type: 'string',
+      default: "'right'",
+      description: "Direction of square animation. Options: 'diagonal', 'up', 'right', 'down', 'left'."
+    },
+    { name: 'speed', type: 'number', default: '1', description: 'Animation speed multiplier.' },
+    { name: 'borderColor', type: 'string', default: "'#999'", description: 'Color of the square borders.' },
+    { name: 'squareSize', type: 'number', default: '40', description: 'Size of individual squares in pixels.' },
+    { name: 'hoverFillColor', type: 'string', default: "'#222'", description: 'Fill color when hovering over squares.' }
   ];
 
   return (
@@ -32,7 +37,8 @@ const SquaresDemo = () => {
       <PreviewTab>
         <Box position="relative" h={600} className="demo-container" overflow="hidden" p={0}>
           <Squares
-            squareSize={size} s
+            squareSize={size}
+            s
             speed={speed}
             direction={direction}
             borderColor={borderColor}
@@ -40,10 +46,7 @@ const SquaresDemo = () => {
           />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Customizable squares moving around smoothly"
-          />
+          <BackgroundContent pillText="New Background" headline="Customizable squares moving around smoothly" />
         </Box>
 
         <Customize>
@@ -53,8 +56,8 @@ const SquaresDemo = () => {
             </Text>
             <Button
               bg={direction === 'diagonal' ? '#5227FF' : '#170D27'}
-              _hover={{ backgroundColor: `${direction === "diagonal" ? '#5227FF' : '#170D27'}` }}
-              color='white'
+              _hover={{ backgroundColor: `${direction === 'diagonal' ? '#5227FF' : '#170D27'}` }}
+              color="white"
               fontSize="xs"
               h={8}
               onClick={() => {
@@ -65,8 +68,8 @@ const SquaresDemo = () => {
             </Button>
             <Button
               bg={direction === 'up' ? '#5227FF' : '#170D27'}
-              _hover={{ backgroundColor: `${direction === "up" ? '#5227FF' : '#170D27'}` }}
-              color='white'
+              _hover={{ backgroundColor: `${direction === 'up' ? '#5227FF' : '#170D27'}` }}
+              color="white"
               fontSize="xs"
               h={8}
               onClick={() => {
@@ -77,8 +80,8 @@ const SquaresDemo = () => {
             </Button>
             <Button
               bg={direction === 'right' ? '#5227FF' : '#170D27'}
-              _hover={{ backgroundColor: `${direction === "right" ? '#5227FF' : '#170D27'}` }}
-              color='white'
+              _hover={{ backgroundColor: `${direction === 'right' ? '#5227FF' : '#170D27'}` }}
+              color="white"
               fontSize="xs"
               h={8}
               onClick={() => {
@@ -89,8 +92,8 @@ const SquaresDemo = () => {
             </Button>
             <Button
               bg={direction === 'down' ? '#5227FF' : '#170D27'}
-              _hover={{ backgroundColor: `${direction === "down" ? '#5227FF' : '#170D27'}` }}
-              color='white'
+              _hover={{ backgroundColor: `${direction === 'down' ? '#5227FF' : '#170D27'}` }}
+              color="white"
               fontSize="xs"
               h={8}
               onClick={() => {
@@ -101,8 +104,8 @@ const SquaresDemo = () => {
             </Button>
             <Button
               bg={direction === 'left' ? '#5227FF' : '#170D27'}
-              _hover={{ backgroundColor: `${direction === "left" ? '#5227FF' : '#170D27'}` }}
-              color='white'
+              _hover={{ backgroundColor: `${direction === 'left' ? '#5227FF' : '#170D27'}` }}
+              color="white"
               fontSize="xs"
               h={8}
               onClick={() => {
@@ -119,7 +122,7 @@ const SquaresDemo = () => {
             step={1}
             value={size}
             title="Square Size"
-            onChange={(val) => {
+            onChange={val => {
               setSize(val);
             }}
           />
@@ -130,7 +133,7 @@ const SquaresDemo = () => {
             step={0.01}
             value={speed}
             title="Animation Speed"
-            onChange={(val) => {
+            onChange={val => {
               setSpeed(val);
             }}
           />
@@ -140,7 +143,9 @@ const SquaresDemo = () => {
             <Input
               type="color"
               value={borderColor}
-              onChange={(e) => { setBorderColor(e.target.value); }}
+              onChange={e => {
+                setBorderColor(e.target.value);
+              }}
               width="50px"
             />
           </Flex>
@@ -150,7 +155,9 @@ const SquaresDemo = () => {
             <Input
               type="color"
               value={hoverColor}
-              onChange={(e) => { setHoverColor(e.target.value); }}
+              onChange={e => {
+                setHoverColor(e.target.value);
+              }}
               width="50px"
             />
           </Flex>
@@ -166,9 +173,8 @@ const SquaresDemo = () => {
       <CliTab>
         <CliInstallation {...squares} />
       </CliTab>
-    </TabsLayout >
-
+    </TabsLayout>
   );
-}
+};
 
 export default SquaresDemo;

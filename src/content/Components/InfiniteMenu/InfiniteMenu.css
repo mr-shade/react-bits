@@ -21,7 +21,7 @@
   height: 60px;
   display: grid;
   place-items: center;
-  background: #5227FF;
+  background: #5227ff;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -110,7 +110,8 @@
 }
 
 @media (max-width: 1500px) {
-  .face-title, .face-description {
+  .face-title,
+  .face-description {
     display: none;
   }
 }

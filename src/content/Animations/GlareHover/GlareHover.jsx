@@ -1,22 +1,22 @@
-import "./GlareHover.css";
+import './GlareHover.css';
 
 const GlareHover = ({
-  width = "500px",
-  height = "500px",
-  background = "#000",
-  borderRadius = "10px",
-  borderColor = "#333",
+  width = '500px',
+  height = '500px',
+  background = '#000',
+  borderRadius = '10px',
+  borderColor = '#333',
   children,
-  glareColor = "#ffffff",
+  glareColor = '#ffffff',
   glareOpacity = 0.5,
   glareAngle = -45,
   glareSize = 250,
   transitionDuration = 650,
   playOnce = false,
-  className = "",
-  style = {},
+  className = '',
+  style = {}
 }) => {
-  const hex = glareColor.replace("#", "");
+  const hex = glareColor.replace('#', '');
   let rgba = glareColor;
   if (/^[0-9A-Fa-f]{6}$/.test(hex)) {
     const r = parseInt(hex.slice(0, 2), 16);
@@ -31,15 +31,15 @@ const GlareHover = ({
   }
 
   const vars = {
-    "--gh-width": width,
-    "--gh-height": height,
-    "--gh-bg": background,
-    "--gh-br": borderRadius,
-    "--gh-angle": `${glareAngle}deg`,
-    "--gh-duration": `${transitionDuration}ms`,
-    "--gh-size": `${glareSize}%`,
-    "--gh-rgba": rgba,
-    "--gh-border": borderColor,
+    '--gh-width': width,
+    '--gh-height': height,
+    '--gh-bg': background,
+    '--gh-br': borderRadius,
+    '--gh-angle': `${glareAngle}deg`,
+    '--gh-duration': `${transitionDuration}ms`,
+    '--gh-size': `${glareSize}%`,
+    '--gh-rgba': rgba,
+    '--gh-border': borderColor
   };
 
   return (

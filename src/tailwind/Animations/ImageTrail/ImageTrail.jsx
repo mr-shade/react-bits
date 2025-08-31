@@ -6,7 +6,8 @@ function lerp(a, b, n) {
 }
 
 function getLocalPointerPos(e, rect) {
-  let clientX = 0, clientY = 0;
+  let clientX = 0,
+    clientY = 0;
   if (e.touches && e.touches.length > 0) {
     clientX = e.touches[0].clientX;
     clientY = e.touches[0].clientY;
@@ -106,28 +107,38 @@ class ImageTrailVariant1 {
     const img = this.images[this.imgPosition];
 
     gsap.killTweensOf(img.DOM.el);
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
-      .fromTo(img.DOM.el, {
-        opacity: 1,
-        scale: 1,
-        zIndex: this.zIndexVal,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2
-      }, {
-        duration: 0.4,
-        ease: 'power1',
-        x: this.mousePos.x - img.rect.width / 2,
-        y: this.mousePos.y - img.rect.height / 2
-      }, 0)
-      .to(img.DOM.el, {
-        duration: 0.4,
-        ease: 'power3',
-        opacity: 0,
-        scale: 0.2
-      }, 0.4);
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          scale: 1,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2
+        },
+        {
+          duration: 0.4,
+          ease: 'power1',
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2
+        },
+        0
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 0.4,
+          ease: 'power3',
+          opacity: 0,
+          scale: 0.2
+        },
+        0.4
+      );
   }
 
   onImageActivated() {
@@ -200,33 +211,59 @@ class ImageTrailVariant2 {
     const img = this.images[this.imgPosition];
 
     gsap.killTweensOf(img.DOM.el);
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
-      .fromTo(img.DOM.el, {
-        opacity: 1, scale: 0,
-        zIndex: this.zIndexVal,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2
-      }, {
-        duration: 0.4, ease: 'power1', scale: 1,
-        x: this.mousePos.x - img.rect.width / 2,
-        y: this.mousePos.y - img.rect.height / 2
-      }, 0)
-      .fromTo(img.DOM.inner, {
-        scale: 2.8, filter: 'brightness(250%)'
-      }, {
-        duration: 0.4, ease: 'power1',
-        scale: 1, filter: 'brightness(100%)'
-      }, 0)
-      .to(img.DOM.el, {
-        duration: 0.4, ease: 'power2',
-        opacity: 0, scale: 0.2
-      }, 0.45);
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          scale: 0,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2
+        },
+        {
+          duration: 0.4,
+          ease: 'power1',
+          scale: 1,
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2
+        },
+        0
+      )
+      .fromTo(
+        img.DOM.inner,
+        {
+          scale: 2.8,
+          filter: 'brightness(250%)'
+        },
+        {
+          duration: 0.4,
+          ease: 'power1',
+          scale: 1,
+          filter: 'brightness(100%)'
+        },
+        0
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 0.4,
+          ease: 'power2',
+          opacity: 0,
+          scale: 0.2
+        },
+        0.45
+      );
   }
 
-  onImageActivated() { this.activeImagesCount++; this.isIdle = false; }
+  onImageActivated() {
+    this.activeImagesCount++;
+    this.isIdle = false;
+  }
   onImageDeactivated() {
     this.activeImagesCount--;
     if (this.activeImagesCount === 0) this.isIdle = true;
@@ -290,35 +327,61 @@ class ImageTrailVariant3 {
     const img = this.images[this.imgPosition];
     gsap.killTweensOf(img.DOM.el);
 
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
-      .fromTo(img.DOM.el, {
-        opacity: 1, scale: 0, zIndex: this.zIndexVal,
-        xPercent: 0, yPercent: 0,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2
-      }, {
-        duration: 0.4, ease: 'power1',
-        scale: 1,
-        x: this.mousePos.x - img.rect.width / 2,
-        y: this.mousePos.y - img.rect.height / 2
-      }, 0)
-      .fromTo(img.DOM.inner, {
-        scale: 1.2
-      }, {
-        duration: 0.4, ease: 'power1', scale: 1
-      }, 0)
-      .to(img.DOM.el, {
-        duration: .6, ease: 'power2',
-        opacity: 0, scale: 0.2,
-        xPercent: () => gsap.utils.random(-30, 30),
-        yPercent: -200
-      }, 0.6);
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          scale: 0,
+          zIndex: this.zIndexVal,
+          xPercent: 0,
+          yPercent: 0,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2
+        },
+        {
+          duration: 0.4,
+          ease: 'power1',
+          scale: 1,
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2
+        },
+        0
+      )
+      .fromTo(
+        img.DOM.inner,
+        {
+          scale: 1.2
+        },
+        {
+          duration: 0.4,
+          ease: 'power1',
+          scale: 1
+        },
+        0
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 0.6,
+          ease: 'power2',
+          opacity: 0,
+          scale: 0.2,
+          xPercent: () => gsap.utils.random(-30, 30),
+          yPercent: -200
+        },
+        0.6
+      );
   }
 
-  onImageActivated() { this.activeImagesCount++; this.isIdle = false; }
+  onImageActivated() {
+    this.activeImagesCount++;
+    this.isIdle = false;
+  }
   onImageDeactivated() {
     this.activeImagesCount--;
     if (this.activeImagesCount === 0) this.isIdle = true;
@@ -382,41 +445,75 @@ class ImageTrailVariant4 {
     let dx = this.mousePos.x - this.cacheMousePos.x;
     let dy = this.mousePos.y - this.cacheMousePos.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
-    if (distance !== 0) { dx /= distance; dy /= distance; }
+    if (distance !== 0) {
+      dx /= distance;
+      dy /= distance;
+    }
     dx *= distance / 100;
     dy *= distance / 100;
 
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
-      .fromTo(img.DOM.el, {
-        opacity: 1, scale: 0, zIndex: this.zIndexVal,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2
-      }, {
-        duration: 0.4, ease: 'power1', scale: 1,
-        x: this.mousePos.x - img.rect.width / 2,
-        y: this.mousePos.y - img.rect.height / 2
-      }, 0)
-      .fromTo(img.DOM.inner, {
-        scale: 2,
-        filter: `brightness(${Math.max(400 * distance / 100, 100)}%) contrast(${Math.max(400 * distance / 100, 100)}%)`
-      }, {
-        duration: 0.4, ease: 'power1', scale: 1,
-        filter: 'brightness(100%) contrast(100%)'
-      }, 0)
-      .to(img.DOM.el, {
-        duration: 0.4, ease: 'power3', opacity: 0
-      }, 0.4)
-      .to(img.DOM.el, {
-        duration: 1.5, ease: 'power4',
-        x: `+=${dx * 110}`,
-        y: `+=${dy * 110}`
-      }, 0.05);
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          scale: 0,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2
+        },
+        {
+          duration: 0.4,
+          ease: 'power1',
+          scale: 1,
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2
+        },
+        0
+      )
+      .fromTo(
+        img.DOM.inner,
+        {
+          scale: 2,
+          filter: `brightness(${Math.max((400 * distance) / 100, 100)}%) contrast(${Math.max((400 * distance) / 100, 100)}%)`
+        },
+        {
+          duration: 0.4,
+          ease: 'power1',
+          scale: 1,
+          filter: 'brightness(100%) contrast(100%)'
+        },
+        0
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 0.4,
+          ease: 'power3',
+          opacity: 0
+        },
+        0.4
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 1.5,
+          ease: 'power4',
+          x: `+=${dx * 110}`,
+          y: `+=${dy * 110}`
+        },
+        0.05
+      );
   }
 
-  onImageActivated() { this.activeImagesCount++; this.isIdle = false; }
+  onImageActivated() {
+    this.activeImagesCount++;
+    this.isIdle = false;
+  }
   onImageDeactivated() {
     this.activeImagesCount--;
     if (this.activeImagesCount === 0) this.isIdle = true;
@@ -481,41 +578,70 @@ class ImageTrailVariant5 {
     this.lastAngle = angle;
     let startAngle = isMovingClockwise ? angle - 10 : angle + 10;
     let distance = Math.sqrt(dx * dx + dy * dy);
-    if (distance !== 0) { dx /= distance; dy /= distance; }
-    dx *= distance / 150; dy *= distance / 150;
+    if (distance !== 0) {
+      dx /= distance;
+      dy /= distance;
+    }
+    dx *= distance / 150;
+    dy *= distance / 150;
 
     ++this.zIndexVal;
     this.imgPosition = this.imgPosition < this.imagesTotal - 1 ? this.imgPosition + 1 : 0;
     const img = this.images[this.imgPosition];
     gsap.killTweensOf(img.DOM.el);
 
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
-      .fromTo(img.DOM.el, {
-        opacity: 1, filter: 'brightness(80%)',
-        scale: 0.1, zIndex: this.zIndexVal,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2,
-        rotation: startAngle
-      }, {
-        duration: 1, ease: 'power2',
-        scale: 1, filter: 'brightness(100%)',
-        x: this.mousePos.x - img.rect.width / 2 + (dx * 70),
-        y: this.mousePos.y - img.rect.height / 2 + (dy * 70),
-        rotation: this.lastAngle
-      }, 0)
-      .to(img.DOM.el, {
-        duration: 0.4, ease: 'expo', opacity: 0
-      }, 0.5)
-      .to(img.DOM.el, {
-        duration: 1.5, ease: 'power4',
-        x: `+=${dx * 120}`, y: `+=${dy * 120}`
-      }, 0.05);
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          filter: 'brightness(80%)',
+          scale: 0.1,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2,
+          rotation: startAngle
+        },
+        {
+          duration: 1,
+          ease: 'power2',
+          scale: 1,
+          filter: 'brightness(100%)',
+          x: this.mousePos.x - img.rect.width / 2 + dx * 70,
+          y: this.mousePos.y - img.rect.height / 2 + dy * 70,
+          rotation: this.lastAngle
+        },
+        0
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 0.4,
+          ease: 'expo',
+          opacity: 0
+        },
+        0.5
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 1.5,
+          ease: 'power4',
+          x: `+=${dx * 120}`,
+          y: `+=${dy * 120}`
+        },
+        0.05
+      );
   }
 
-  onImageActivated() { this.activeImagesCount++; this.isIdle = false; }
+  onImageActivated() {
+    this.activeImagesCount++;
+    this.isIdle = false;
+  }
   onImageDeactivated() {
     this.activeImagesCount--;
     if (this.activeImagesCount === 0) this.isIdle = true;
@@ -604,35 +730,58 @@ class ImageTrailVariant6 {
     let grayscaleValue = this.mapSpeedToGrayscale(speed, 600, 0);
 
     gsap.killTweensOf(img.DOM.el);
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
-      .fromTo(img.DOM.el, {
-        opacity: 1, scale: 0,
-        zIndex: this.zIndexVal,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2
-      }, {
-        duration: 0.8,
-        ease: 'power3',
-        scale: scaleFactor,
-        filter: `grayscale(${grayscaleValue * 100}%) brightness(${brightnessValue * 100}%) blur(${blurValue}px)`,
-        x: this.mousePos.x - img.rect.width / 2,
-        y: this.mousePos.y - img.rect.height / 2
-      }, 0)
-      .fromTo(img.DOM.inner, {
-        scale: 2
-      }, {
-        duration: 0.8, ease: 'power3', scale: 1
-      }, 0)
-      .to(img.DOM.el, {
-        duration: 0.4, ease: 'power3.in',
-        opacity: 0, scale: 0.2
-      }, 0.45);
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          scale: 0,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2
+        },
+        {
+          duration: 0.8,
+          ease: 'power3',
+          scale: scaleFactor,
+          filter: `grayscale(${grayscaleValue * 100}%) brightness(${brightnessValue * 100}%) blur(${blurValue}px)`,
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2
+        },
+        0
+      )
+      .fromTo(
+        img.DOM.inner,
+        {
+          scale: 2
+        },
+        {
+          duration: 0.8,
+          ease: 'power3',
+          scale: 1
+        },
+        0
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 0.4,
+          ease: 'power3.in',
+          opacity: 0,
+          scale: 0.2
+        },
+        0.45
+      );
   }
 
-  onImageActivated() { this.activeImagesCount++; this.isIdle = false; }
+  onImageActivated() {
+    this.activeImagesCount++;
+    this.isIdle = false;
+  }
   onImageDeactivated() {
     this.activeImagesCount--;
     if (this.activeImagesCount === 0) {
@@ -711,23 +860,31 @@ class ImageTrailVariant7 {
     gsap.killTweensOf(img.DOM.el);
     const scaleValue = gsap.utils.random(0.5, 1.6);
 
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
-      .fromTo(img.DOM.el, {
-        scale: scaleValue - Math.max(gsap.utils.random(0.2, 0.6), 0),
-        rotationZ: 0, opacity: 1,
-        zIndex: this.zIndexVal,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2
-      }, {
-        duration: 0.4, ease: 'power3',
-        scale: scaleValue,
-        rotationZ: gsap.utils.random(-3, 3),
-        x: this.mousePos.x - img.rect.width / 2,
-        y: this.mousePos.y - img.rect.height / 2
-      }, 0);
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
+      .fromTo(
+        img.DOM.el,
+        {
+          scale: scaleValue - Math.max(gsap.utils.random(0.2, 0.6), 0),
+          rotationZ: 0,
+          opacity: 1,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2
+        },
+        {
+          duration: 0.4,
+          ease: 'power3',
+          scale: scaleValue,
+          rotationZ: gsap.utils.random(-3, 3),
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2
+        },
+        0
+      );
 
     if (this.visibleImagesCount >= this.visibleImagesTotal) {
       const lastInQueue = getNewPosition(this.imgPosition, this.visibleImagesTotal, this.images);
@@ -735,7 +892,8 @@ class ImageTrailVariant7 {
       gsap.to(oldImg.DOM.el, {
         duration: 0.4,
         ease: 'power4',
-        opacity: 0, scale: 1.3,
+        opacity: 0,
+        scale: 1.3,
         onComplete: () => {
           if (this.activeImagesCount === 0) {
             this.isIdle = true;
@@ -745,8 +903,13 @@ class ImageTrailVariant7 {
     }
   }
 
-  onImageActivated() { this.activeImagesCount++; this.isIdle = false; }
-  onImageDeactivated() { this.activeImagesCount--; }
+  onImageActivated() {
+    this.activeImagesCount++;
+    this.isIdle = false;
+  }
+  onImageDeactivated() {
+    this.activeImagesCount--;
+  }
 }
 
 class ImageTrailVariant8 {
@@ -821,46 +984,59 @@ class ImageTrailVariant8 {
     this.zValue = proportion * 1200 - 600;
     this.cachedZValue = this.zValue;
     const normalizedZ = (this.zValue + 600) / 1200;
-    const brightness = 0.2 + (normalizedZ * 2.3);
+    const brightness = 0.2 + normalizedZ * 2.3;
 
     ++this.zIndexVal;
     this.imgPosition = this.imgPosition < this.imagesTotal - 1 ? this.imgPosition + 1 : 0;
     const img = this.images[this.imgPosition];
     gsap.killTweensOf(img.DOM.el);
 
-    gsap.timeline({
-      onStart: () => this.onImageActivated(),
-      onComplete: () => this.onImageDeactivated()
-    })
+    gsap
+      .timeline({
+        onStart: () => this.onImageActivated(),
+        onComplete: () => this.onImageDeactivated()
+      })
       .set(this.DOM.el, { perspective: 1000 }, 0)
-      .fromTo(img.DOM.el, {
-        opacity: 1,
-        z: 0,
-        scale: 1 + (this.cachedZValue / 1000),
-        zIndex: this.zIndexVal,
-        x: this.cacheMousePos.x - img.rect.width / 2,
-        y: this.cacheMousePos.y - img.rect.height / 2,
-        rotationX: this.cachedRotation.x,
-        rotationY: this.cachedRotation.y,
-        filter: `brightness(${brightness})`
-      }, {
-        duration: 1,
-        ease: 'expo',
-        scale: 1 + (this.zValue / 1000),
-        x: this.mousePos.x - img.rect.width / 2,
-        y: this.mousePos.y - img.rect.height / 2,
-        rotationX: this.rotation.x,
-        rotationY: this.rotation.y
-      }, 0)
-      .to(img.DOM.el, {
-        duration: 0.4,
-        ease: 'power2',
-        opacity: 0,
-        z: -800
-      }, 0.3);
+      .fromTo(
+        img.DOM.el,
+        {
+          opacity: 1,
+          z: 0,
+          scale: 1 + this.cachedZValue / 1000,
+          zIndex: this.zIndexVal,
+          x: this.cacheMousePos.x - img.rect.width / 2,
+          y: this.cacheMousePos.y - img.rect.height / 2,
+          rotationX: this.cachedRotation.x,
+          rotationY: this.cachedRotation.y,
+          filter: `brightness(${brightness})`
+        },
+        {
+          duration: 1,
+          ease: 'expo',
+          scale: 1 + this.zValue / 1000,
+          x: this.mousePos.x - img.rect.width / 2,
+          y: this.mousePos.y - img.rect.height / 2,
+          rotationX: this.rotation.x,
+          rotationY: this.rotation.y
+        },
+        0
+      )
+      .to(
+        img.DOM.el,
+        {
+          duration: 0.4,
+          ease: 'power2',
+          opacity: 0,
+          z: -800
+        },
+        0.3
+      );
   }
 
-  onImageActivated() { this.activeImagesCount++; this.isIdle = false; }
+  onImageActivated() {
+    this.activeImagesCount++;
+    this.isIdle = false;
+  }
   onImageDeactivated() {
     this.activeImagesCount--;
     if (this.activeImagesCount === 0) this.isIdle = true;
@@ -891,7 +1067,10 @@ export default function ImageTrail({ items = [], variant = 1 }) {
   return (
     <div className="w-full h-full relative z-[100] rounded-lg bg-transparent overflow-visible" ref={containerRef}>
       {items.map((url, i) => (
-        <div className="content__img w-[190px] aspect-[1.1] rounded-[15px] absolute top-0 left-0 opacity-0 overflow-hidden [will-change:transform,filter]" key={i}>
+        <div
+          className="content__img w-[190px] aspect-[1.1] rounded-[15px] absolute top-0 left-0 opacity-0 overflow-hidden [will-change:transform,filter]"
+          key={i}
+        >
           <div
             className="content__img-inner bg-center bg-cover w-[calc(100%+20px)] h-[calc(100%+20px)] absolute top-[-10px] left-[-10px]"
             style={{ backgroundImage: `url(${url})` }}

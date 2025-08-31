@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import LiquidChrome from "../../content/Backgrounds/LiquidChrome/LiquidChrome";
-import { liquidChrome } from "../../constants/code/Backgrounds/liquidChromeCode";
+import LiquidChrome from '../../content/Backgrounds/LiquidChrome/LiquidChrome';
+import { liquidChrome } from '../../constants/code/Backgrounds/liquidChromeCode';
 
 const LiquidChromeDemo = () => {
   const [speed, setSpeed] = useState(0.3);
@@ -22,40 +22,40 @@ const LiquidChromeDemo = () => {
 
   const propData = [
     {
-      name: "baseColor",
-      type: "RGB array (number[3])",
-      default: "[0.1, 0.1, 0.1]",
-      description: "Base color of the component. Specify as an RGB array."
+      name: 'baseColor',
+      type: 'RGB array (number[3])',
+      default: '[0.1, 0.1, 0.1]',
+      description: 'Base color of the component. Specify as an RGB array.'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "1.0",
-      description: "Animation speed multiplier."
+      name: 'speed',
+      type: 'number',
+      default: '1.0',
+      description: 'Animation speed multiplier.'
     },
     {
-      name: "amplitude",
-      type: "number",
-      default: "0.6",
-      description: "Amplitude of the distortion."
+      name: 'amplitude',
+      type: 'number',
+      default: '0.6',
+      description: 'Amplitude of the distortion.'
     },
     {
-      name: "frequencyX",
-      type: "number",
-      default: "2.5",
-      description: "Frequency modifier for the x distortion."
+      name: 'frequencyX',
+      type: 'number',
+      default: '2.5',
+      description: 'Frequency modifier for the x distortion.'
     },
     {
-      name: "frequencyY",
-      type: "number",
-      default: "1.5",
-      description: "Frequency modifier for the y distortion."
+      name: 'frequencyY',
+      type: 'number',
+      default: '1.5',
+      description: 'Frequency modifier for the y distortion.'
     },
     {
-      name: "interactive",
-      type: "boolean",
-      default: "true",
-      description: "Enable mouse/touch interaction."
+      name: 'interactive',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enable mouse/touch interaction.'
     }
   ];
 
@@ -66,10 +66,7 @@ const LiquidChromeDemo = () => {
           <LiquidChrome baseColor={baseColor} amplitude={amplitude} speed={speed} interactive={interactive} />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Swirl around in the deep sea of liquid chrome!"
-          />
+          <BackgroundContent pillText="New Background" headline="Swirl around in the deep sea of liquid chrome!" />
         </Box>
 
         <Customize>
@@ -83,7 +80,7 @@ const LiquidChromeDemo = () => {
                 step={0.1}
                 value={baseColor[0]}
                 title="Red"
-                onChange={(val) => {
+                onChange={val => {
                   setBaseColor(prev => {
                     const newColors = [...prev];
                     newColors[0] = val;
@@ -101,7 +98,7 @@ const LiquidChromeDemo = () => {
                 step={0.1}
                 value={baseColor[1]}
                 title="Green"
-                onChange={(val) => {
+                onChange={val => {
                   setBaseColor(prev => {
                     const newColors = [...prev];
                     newColors[1] = val;
@@ -119,7 +116,7 @@ const LiquidChromeDemo = () => {
                 step={0.1}
                 value={baseColor[2]}
                 title="Blue"
-                onChange={(val) => {
+                onChange={val => {
                   setBaseColor(prev => {
                     const newColors = [...prev];
                     newColors[2] = val;
@@ -136,7 +133,7 @@ const LiquidChromeDemo = () => {
             max={5}
             step={0.01}
             value={speed}
-            onChange={(val) => {
+            onChange={val => {
               setSpeed(val);
             }}
           />
@@ -147,7 +144,7 @@ const LiquidChromeDemo = () => {
             max={1}
             step={0.01}
             value={amplitude}
-            onChange={(val) => {
+            onChange={val => {
               setAmplitude(val);
             }}
           />
@@ -155,7 +152,7 @@ const LiquidChromeDemo = () => {
           <PreviewSwitch
             title="Enable Interaction"
             isChecked={interactive}
-            onChange={(checked) => {
+            onChange={checked => {
               setInteractive(checked);
             }}
           />

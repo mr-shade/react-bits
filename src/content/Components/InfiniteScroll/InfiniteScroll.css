@@ -10,7 +10,7 @@
 
 .infinite-scroll-wrapper::before,
 .infinite-scroll-wrapper::after {
-  content: "";
+  content: '';
   position: absolute;
   background: linear-gradient(var(--dir, to bottom), 060010, transparent);
   height: 25%;

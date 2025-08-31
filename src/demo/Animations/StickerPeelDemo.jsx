@@ -1,17 +1,17 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import logo from '../../assets/logos/react-bits-sticker.png';
 import Dependencies from '../../components/code/Dependencies';
 
-import StickerPeel from "../../content/Animations/StickerPeel/StickerPeel";
-import { stickerPeel } from "../../constants/code/Animations/stickerPeelCode";
+import StickerPeel from '../../content/Animations/StickerPeel/StickerPeel';
+import { stickerPeel } from '../../constants/code/Animations/stickerPeelCode';
 
 const StickerPeelDemo = () => {
   const [rotate, setRotate] = useState(0);
@@ -24,69 +24,69 @@ const StickerPeelDemo = () => {
 
   const propData = [
     {
-      name: "imageSrc",
-      type: "string",
-      default: "required",
-      description: "The source URL for the sticker image"
+      name: 'imageSrc',
+      type: 'string',
+      default: 'required',
+      description: 'The source URL for the sticker image'
     },
     {
-      name: "rotate",
-      type: "number",
-      default: "30",
-      description: "The rotation angle in degrees when dragging"
+      name: 'rotate',
+      type: 'number',
+      default: '30',
+      description: 'The rotation angle in degrees when dragging'
     },
     {
-      name: "peelBackHoverPct",
-      type: "number",
-      default: "30",
-      description: "Percentage of peel effect on hover (0-100)"
+      name: 'peelBackHoverPct',
+      type: 'number',
+      default: '30',
+      description: 'Percentage of peel effect on hover (0-100)'
     },
     {
-      name: "peelBackActivePct",
-      type: "number",
-      default: "40",
-      description: "Percentage of peel effect when active/clicked (0-100)"
+      name: 'peelBackActivePct',
+      type: 'number',
+      default: '40',
+      description: 'Percentage of peel effect when active/clicked (0-100)'
     },
     {
-      name: "peelDirection",
-      type: "number",
-      default: "0",
-      description: "Direction of the peel effect in degrees (0-360)"
+      name: 'peelDirection',
+      type: 'number',
+      default: '0',
+      description: 'Direction of the peel effect in degrees (0-360)'
     },
     {
-      name: "peelEasing",
-      type: "string",
-      default: "power3.out",
-      description: "GSAP easing function for peel animations"
+      name: 'peelEasing',
+      type: 'string',
+      default: 'power3.out',
+      description: 'GSAP easing function for peel animations'
     },
     {
-      name: "peelHoverEasing",
-      type: "string",
-      default: "power2.out",
-      description: "GSAP easing function for hover transitions"
+      name: 'peelHoverEasing',
+      type: 'string',
+      default: 'power2.out',
+      description: 'GSAP easing function for hover transitions'
     },
     {
-      name: "width",
-      type: "number",
-      default: "200",
-      description: "Width of the sticker in pixels"
+      name: 'width',
+      type: 'number',
+      default: '200',
+      description: 'Width of the sticker in pixels'
     },
     {
-      name: "shadowIntensity",
-      type: "number",
-      default: "0.6",
-      description: "Intensity of the shadow effect (0-1)"
+      name: 'shadowIntensity',
+      type: 'number',
+      default: '0.6',
+      description: 'Intensity of the shadow effect (0-1)'
     },
     {
-      name: "lightingIntensity",
-      type: "number",
-      default: "0.1",
-      description: "Intensity of the lighting effect (0-1)"
+      name: 'lightingIntensity',
+      type: 'number',
+      default: '0.1',
+      description: 'Intensity of the lighting effect (0-1)'
     },
     {
-      name: "initialPosition",
-      type: "string",
-      default: "center",
+      name: 'initialPosition',
+      type: 'string',
+      default: 'center',
       description: "Initial position of the sticker ('center', 'top-left', 'top-right', 'bottom-left', 'bottom-right')"
     },
     {
@@ -100,7 +100,13 @@ const StickerPeelDemo = () => {
   return (
     <TabsLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={500} overflow="hidden" bg="linear-gradient(to bottom, #060010, #0D0716, #0D0716 , #060010)">
+        <Box
+          position="relative"
+          className="demo-container"
+          h={500}
+          overflow="hidden"
+          bg="linear-gradient(to bottom, #060010, #0D0716, #0D0716 , #060010)"
+        >
           <StickerPeel
             imageSrc={logo}
             rotate={rotate}
@@ -113,7 +119,16 @@ const StickerPeelDemo = () => {
             className="sticker-peel-demo"
           />
 
-          <Text position="absolute" zIndex={0} left='50%' top='1em' transform='translateX(-50%)' fontSize='clamp(1.5rem, 4vw, 3rem)' fontWeight={900} color='#271E37'>
+          <Text
+            position="absolute"
+            zIndex={0}
+            left="50%"
+            top="1em"
+            transform="translateX(-50%)"
+            fontSize="clamp(1.5rem, 4vw, 3rem)"
+            fontWeight={900}
+            color="#271E37"
+          >
             Try dragging it!
           </Text>
         </Box>

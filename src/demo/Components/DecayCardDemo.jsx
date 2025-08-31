@@ -1,12 +1,12 @@
-import { Box, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { Box, Text } from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
-import PropTable from "../../components/common/Preview/PropTable";
-import Dependencies from "../../components/code/Dependencies";
-import CliInstallation from "../../components/code/CliInstallation";
+import PropTable from '../../components/common/Preview/PropTable';
+import Dependencies from '../../components/code/Dependencies';
+import CliInstallation from '../../components/code/CliInstallation';
 
-import DecayCard from "../../content/Components/DecayCard/DecayCard";
+import DecayCard from '../../content/Components/DecayCard/DecayCard';
 import { decayCard } from '../../constants/code/Components/decayCardCode';
 
 const DecayCardDemo = () => {
@@ -15,25 +15,25 @@ const DecayCardDemo = () => {
       name: 'children',
       type: 'ReactNode',
       default: '',
-      description: 'The content (JSX) to be rendered inside the card.',
+      description: 'The content (JSX) to be rendered inside the card.'
     },
     {
       name: 'width',
       type: 'number',
       default: '200',
-      description: 'The width of the card in pixels.',
+      description: 'The width of the card in pixels.'
     },
     {
       name: 'height',
       type: 'number',
       default: '300',
-      description: 'The height of the card in pixels.',
+      description: 'The height of the card in pixels.'
     },
     {
       name: 'image',
       type: 'string',
       default: '',
-      description: 'Allows setting the background image of the card.',
+      description: 'Allows setting the background image of the card.'
     }
   ];
 
@@ -42,7 +42,11 @@ const DecayCardDemo = () => {
       <PreviewTab>
         <Box position="relative" className="demo-container" overflow="hidden">
           <DecayCard>
-            <Text mixBlendMode='overlay'>Decay<br />Card</Text>
+            <Text mixBlendMode="overlay">
+              Decay
+              <br />
+              Card
+            </Text>
           </DecayCard>
         </Box>
 

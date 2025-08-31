@@ -36,39 +36,52 @@ const PRESETS = {
 };
 
 const CURVE_FUNCTIONS = {
-  linear: (p) => p,
-  bezier: (p) => p * p * (3 - 2 * p),
-  'ease-in': (p) => p * p,
-  'ease-out': (p) => 1 - Math.pow(1 - p, 2),
-  'ease-in-out': (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
+  linear: p => p,
+  bezier: p => p * p * (3 - 2 * p),
+  'ease-in': p => p * p,
+  'ease-out': p => 1 - Math.pow(1 - p, 2),
+  'ease-in-out': p => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
 };
 
 const mergeConfigs = (...configs) => configs.reduce((acc, c) => ({ ...acc, ...c }), {});
 
-const getGradientDirection = (position) => {
+const getGradientDirection = position => {
   const directions = {
-    top: "to top",
-    bottom: "to bottom",
-    left: "to left",
-    right: "to right",
+    top: 'to top',
+    bottom: 'to bottom',
+    left: 'to left',
+    right: 'to right'
   };
-  return directions[position] || "to bottom";
+  return directions[position] || 'to bottom';
 };
 
-const debounce = (fn, wait) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), wait); }; };
+const debounce = (fn, wait) => {
+  let t;
+  return (...a) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...a), wait);
+  };
+};
 
 const useResponsiveDimension = (responsive, config, key) => {
   const [val, setVal] = useState(config[key]);
   useEffect(() => {
     if (!responsive) return;
     const calc = () => {
-      const w = window.innerWidth; let v = config[key];
-      if (w <= 480 && config['mobile' + key[0].toUpperCase() + key.slice(1)]) v = config['mobile' + key[0].toUpperCase() + key.slice(1)];
-      else if (w <= 768 && config['tablet' + key[0].toUpperCase() + key.slice(1)]) v = config['tablet' + key[0].toUpperCase() + key.slice(1)];
-      else if (w <= 1024 && config['desktop' + key[0].toUpperCase() + key.slice(1)]) v = config['desktop' + key[0].toUpperCase() + key.slice(1)];
+      const w = window.innerWidth;
+      let v = config[key];
+      if (w <= 480 && config['mobile' + key[0].toUpperCase() + key.slice(1)])
+        v = config['mobile' + key[0].toUpperCase() + key.slice(1)];
+      else if (w <= 768 && config['tablet' + key[0].toUpperCase() + key.slice(1)])
+        v = config['tablet' + key[0].toUpperCase() + key.slice(1)];
+      else if (w <= 1024 && config['desktop' + key[0].toUpperCase() + key.slice(1)])
+        v = config['desktop' + key[0].toUpperCase() + key.slice(1)];
       setVal(v);
     };
-    const deb = debounce(calc, 100); calc(); window.addEventListener('resize', deb); return () => window.removeEventListener('resize', deb);
+    const deb = debounce(calc, 100);
+    calc();
+    window.addEventListener('resize', deb);
+    return () => window.removeEventListener('resize', deb);
   }, [responsive, config, key]);
   return responsive ? val : config[key];
 };
@@ -79,10 +92,7 @@ const useIntersectionObserver = (ref, shouldObserve = false) => {
   useEffect(() => {
     if (!shouldObserve || !ref.current) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.1 });
 
     observer.observe(ref.current);
     return () => observer.disconnect();
@@ -91,16 +101,15 @@ const useIntersectionObserver = (ref, shouldObserve = false) => {
   return isVisible;
 };
 
-const GradualBlur = (props) => {
+const GradualBlur = props => {
   const containerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const config = useMemo(() => {
-    const presetConfig =
-      props.preset && PRESETS[props.preset] ? PRESETS[props.preset] : {};
+    const presetConfig = props.preset && PRESETS[props.preset] ? PRESETS[props.preset] : {};
     return mergeConfigs(DEFAULT_CONFIG, presetConfig, props);
   }, [props]);
-  
+
   const responsiveHeight = useResponsiveDimension(config.responsive, config, 'height');
   const responsiveWidth = useResponsiveDimension(config.responsive, config, 'width');
   const isVisible = useIntersectionObserver(containerRef, config.animated === 'scroll');
@@ -109,9 +118,7 @@ const GradualBlur = (props) => {
     const divs = [];
     const increment = 100 / config.divCount;
     const currentStrength =
-      isHovered && config.hoverIntensity
-        ? config.strength * config.hoverIntensity
-        : config.strength;
+      isHovered && config.hoverIntensity ? config.strength * config.hoverIntensity : config.strength;
 
     const curveFunc = CURVE_FUNCTIONS[config.curve] || CURVE_FUNCTIONS.linear;
 
@@ -136,17 +143,17 @@ const GradualBlur = (props) => {
       const direction = getGradientDirection(config.position);
 
       const divStyle = {
-        position: "absolute",
-        inset: "0",
+        position: 'absolute',
+        inset: '0',
         maskImage: `linear-gradient(${direction}, ${gradient})`,
         WebkitMaskImage: `linear-gradient(${direction}, ${gradient})`,
         backdropFilter: `blur(${blurValue.toFixed(3)}rem)`,
         WebkitBackdropFilter: `blur(${blurValue.toFixed(3)}rem)`,
         opacity: config.opacity,
         transition:
-          config.animated && config.animated !== "scroll"
+          config.animated && config.animated !== 'scroll'
             ? `backdrop-filter ${config.duration} ${config.easing}`
-            : undefined,
+            : undefined
       };
 
       divs.push(<div key={i} style={divStyle} />);
@@ -156,9 +163,9 @@ const GradualBlur = (props) => {
   }, [config, isHovered]);
 
   const containerStyle = useMemo(() => {
-    const isVertical = ["top", "bottom"].includes(config.position);
-    const isHorizontal = ["left", "right"].includes(config.position);
-    const isPageTarget = config.target === "page";
+    const isVertical = ['top', 'bottom'].includes(config.position);
+    const isHorizontal = ['left', 'right'].includes(config.position);
+    const isPageTarget = config.target === 'page';
 
     const baseStyle = {
       position: isPageTarget ? 'fixed' : 'absolute',
@@ -171,13 +178,13 @@ const GradualBlur = (props) => {
 
     if (isVertical) {
       baseStyle.height = responsiveHeight;
-      baseStyle.width = responsiveWidth || "100%";
+      baseStyle.width = responsiveWidth || '100%';
       baseStyle[config.position] = 0;
       baseStyle.left = 0;
       baseStyle.right = 0;
     } else if (isHorizontal) {
       baseStyle.width = responsiveWidth || responsiveHeight;
-      baseStyle.height = "100%";
+      baseStyle.height = '100%';
       baseStyle[config.position] = 0;
       baseStyle.top = 0;
       baseStyle.bottom = 0;

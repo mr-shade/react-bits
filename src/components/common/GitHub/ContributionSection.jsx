@@ -1,19 +1,16 @@
-import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
-import { TbBug, TbBulb } from "react-icons/tb";
-import { useParams } from "react-router-dom";
+import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
+import { TbBug, TbBulb } from 'react-icons/tb';
+import { useParams } from 'react-router-dom';
 
 const ContributionSection = () => {
   const { subcategory, category } = useParams();
 
   return (
     <Box className="contribute-container">
-      <Text fontSize={{ base: '1rem', md: '1.65rem' }} color="#B19EEF" className="demo-title-contribute">Help improve this component!</Text>
-      <Flex
-        gap={2}
-        justifyContent="center"
-        alignItems="center"
-        direction={{ base: "column", md: "row" }}
-      >
+      <Text fontSize={{ base: '1rem', md: '1.65rem' }} color="#B19EEF" className="demo-title-contribute">
+        Help improve this component!
+      </Text>
+      <Flex gap={2} justifyContent="center" alignItems="center" direction={{ base: 'column', md: 'row' }}>
         <Button
           cursor="pointer"
           as="a"
@@ -24,7 +21,7 @@ const ContributionSection = () => {
           bg="#170D27"
           borderRadius="10px"
           border="1px solid #271E37"
-          _hover={{ bg: "#271E37" }}
+          _hover={{ bg: '#271E37' }}
           color="#fff"
           h={10}
           w={{ base: '90%', md: 'auto' }}
@@ -45,7 +42,7 @@ const ContributionSection = () => {
           bg="#170D27"
           borderRadius="10px"
           border="1px solid #271E37"
-          _hover={{ bg: "#271E37" }}
+          _hover={{ bg: '#271E37' }}
           color="#fff"
           h={10}
           w={{ base: '90%', md: 'auto' }}

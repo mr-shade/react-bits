@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Box } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { useState } from 'react';
+import { Box } from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import CodeExample from "../../components/code/CodeExample";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import Customize from "../../components/common/Preview/Customize";
+import CodeExample from '../../components/code/CodeExample';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import Customize from '../../components/common/Preview/Customize';
 
-import ShinyText from "../../content/TextAnimations/ShinyText/ShinyText";
+import ShinyText from '../../content/TextAnimations/ShinyText/ShinyText';
 import { shinyText } from '../../constants/code/TextAnimations/shinyTextCode';
 
 const ShinyTextDemo = () => {
@@ -19,26 +19,26 @@ const ShinyTextDemo = () => {
       name: 'text',
       type: 'string',
       default: '-',
-      description: 'The text to be displayed with the shiny effect.',
+      description: 'The text to be displayed with the shiny effect.'
     },
     {
       name: 'disabled',
       type: 'boolean',
       default: 'false',
-      description: 'Disables the shiny effect when set to true.',
+      description: 'Disables the shiny effect when set to true.'
     },
     {
       name: 'speed',
       type: 'number',
       default: '5',
-      description: 'Specifies the duration of the animation in seconds.',
+      description: 'Specifies the duration of the animation in seconds.'
     },
     {
       name: 'className',
       type: 'string',
       default: "''",
-      description: 'Adds custom classes to the root element.',
-    },
+      description: 'Adds custom classes to the root element.'
+    }
   ];
 
   return (
@@ -58,7 +58,12 @@ const ShinyTextDemo = () => {
 
         <h2 className="demo-title-extra">Configurable Speed</h2>
         <Box position="relative" className="demo-container" minH={150} fontSize="24px">
-          <ShinyText text={speed < 2.5 ? '🐎 This is fast!' : '🐌 This is slow!'} disabled={false} speed={speed} className="shiny-text-demo" />
+          <ShinyText
+            text={speed < 2.5 ? '🐎 This is fast!' : '🐌 This is slow!'}
+            disabled={false}
+            speed={speed}
+            className="shiny-text-demo"
+          />
         </Box>
 
         <Customize>

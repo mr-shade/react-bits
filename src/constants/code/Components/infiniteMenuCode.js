@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/InfiniteMenu/InfiniteMenu.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/InfiniteMenu/InfiniteMenu.tsx?raw';
 
 export const infiniteMenu = {
-  ...(generateCliCommands('Components/InfiniteMenu')),
+  ...generateCliCommands('Components/InfiniteMenu'),
   installation: `npm install gl-matrix`,
   usage: `import InfiniteMenu from './InfiniteMenu'
 
@@ -46,4 +46,4 @@ const items = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

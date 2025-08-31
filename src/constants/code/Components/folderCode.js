@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/Folder/Folder.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/Folder/Folder.tsx?raw';
 
 export const folder = {
-  ...(generateCliCommands('Components/Folder')),
+  ...generateCliCommands('Components/Folder'),
   usage: `import Folder from './Folder'
 
 <div style={{ height: '600px', position: 'relative' }}>
@@ -18,4 +18,4 @@ export const folder = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

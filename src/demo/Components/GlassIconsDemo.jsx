@@ -1,34 +1,33 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { FiBarChart2, FiBook, FiCloud, FiEdit, FiFileText, FiHeart } from "react-icons/fi";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { FiBarChart2, FiBook, FiCloud, FiEdit, FiFileText, FiHeart } from 'react-icons/fi';
+import { Box } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 
-import GlassIcons from "../../content/Components/GlassIcons/GlassIcons";
-import { glassIcons } from "../../constants/code/Components/glassIconsCode";
+import GlassIcons from '../../content/Components/GlassIcons/GlassIcons';
+import { glassIcons } from '../../constants/code/Components/glassIconsCode';
 
 const GlassIconsDemo = () => {
   const [colorful, setColorful] = useState(false);
 
   const propData = [
     {
-      name: "items",
-      type: "GlassIconsItem[]",
-      default: "[]",
+      name: 'items',
+      type: 'GlassIconsItem[]',
+      default: '[]',
       description:
-        "Array of items to render. Each item should include: an icon (React.ReactElement), a color (string), a label (string), and an optional customClass (string)."
+        'Array of items to render. Each item should include: an icon (React.ReactElement), a color (string), a label (string), and an optional customClass (string).'
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: "''",
-      description:
-        "Optional additional CSS class(es) to be added to the container."
+      description: 'Optional additional CSS class(es) to be added to the container.'
     }
   ];
 
@@ -38,7 +37,7 @@ const GlassIconsDemo = () => {
     { icon: <FiHeart />, color: colorful ? 'red' : '#444', label: 'Health' },
     { icon: <FiCloud />, color: colorful ? 'indigo' : '#444', label: 'Weather' },
     { icon: <FiEdit />, color: colorful ? 'orange' : '#444', label: 'Notes' },
-    { icon: <FiBarChart2 />, color: colorful ? 'green' : '#444', label: 'Stats' },
+    { icon: <FiBarChart2 />, color: colorful ? 'green' : '#444', label: 'Stats' }
   ];
 
   return (
@@ -49,7 +48,13 @@ const GlassIconsDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSwitch title="Colorful" isChecked={colorful} onChange={(checked) => { setColorful(checked); }} />
+          <PreviewSwitch
+            title="Colorful"
+            isChecked={colorful}
+            onChange={checked => {
+              setColorful(checked);
+            }}
+          />
         </Customize>
 
         <PropTable data={propData} />

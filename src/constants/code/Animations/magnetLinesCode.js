@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/MagnetLines/MagnetLines.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/MagnetLines/MagnetLines.tsx?raw';
 
 export const magnetLines = {
-  ...(generateCliCommands('Animations/MagnetLines')),
+  ...generateCliCommands('Animations/MagnetLines'),
   usage: `import MagnetLines from './MagnetLines';
 
 <MagnetLines
@@ -25,4 +25,4 @@ export const magnetLines = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

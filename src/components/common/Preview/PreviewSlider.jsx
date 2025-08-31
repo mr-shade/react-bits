@@ -1,15 +1,15 @@
-import { Flex, Slider, Text } from "@chakra-ui/react";
+import { Flex, Slider, Text } from '@chakra-ui/react';
 
 const PreviewSlider = ({
-  title = "",
+  title = '',
   min = 0,
   max = 100,
   step = 1,
   value = 0,
-  valueUnit = "",
+  valueUnit = '',
   width = 150,
   isDisabled = false,
-  onChange,
+  onChange
 }) => {
   const handleChange = ({ value: next }) => onChange?.(next[0]);
 

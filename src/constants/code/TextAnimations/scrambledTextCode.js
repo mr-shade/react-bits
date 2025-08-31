@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/ScrambledText/ScrambledText.tsx?r
 import tsTailwind from '@ts-tailwind/TextAnimations/ScrambledText/ScrambledText.tsx?raw';
 
 export const scrambledTextCode = {
-  ...(generateCliCommands('TextAnimations/ScrambledText')),
+  ...generateCliCommands('TextAnimations/ScrambledText'),
   installation: `npm install gsap`,
   usage: `// Component inspired by Tom Miller from the GSAP community
 // https://codepen.io/creativeocean/pen/NPWLwJM
@@ -30,4 +30,4 @@ import ScrambledText from './ScrambledText';
   tailwind,
   tsCode,
   tsTailwind
-}
+};

@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Plasma/Plasma.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Plasma/Plasma.tsx?raw';
 
 export const plasma = {
-  ...(generateCliCommands('Backgrounds/Plasma')),
+  ...generateCliCommands('Backgrounds/Plasma'),
   installation: `npm install ogl`,
   usage: `import Plasma from './Plasma';
 
@@ -25,5 +25,5 @@ export const plasma = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

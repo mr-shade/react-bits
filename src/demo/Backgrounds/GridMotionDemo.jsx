@@ -1,12 +1,12 @@
-import { Box } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { Box } from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
-import PropTable from "../../components/common/Preview/PropTable";
-import Dependencies from "../../components/code/Dependencies";
-import CliInstallation from "../../components/code/CliInstallation";
+import PropTable from '../../components/common/Preview/PropTable';
+import Dependencies from '../../components/code/Dependencies';
+import CliInstallation from '../../components/code/CliInstallation';
 
-import GridMotion from "../../content/Backgrounds/GridMotion/GridMotion";
+import GridMotion from '../../content/Backgrounds/GridMotion/GridMotion';
 import { gridMotion } from '../../constants/code/Backgrounds/gridMotionCode';
 
 const GridMotionDemo = () => {
@@ -15,18 +15,20 @@ const GridMotionDemo = () => {
       name: 'items',
       type: 'array',
       default: '[]',
-      description: 'An array of items to display in the grid. Each item can be a string, JSX element, or an image URL.',
+      description: 'An array of items to display in the grid. Each item can be a string, JSX element, or an image URL.'
     },
     {
       name: 'gradientColor',
       type: 'string',
       default: 'black',
-      description: 'Controls the color of the radial gradient used as the background.',
+      description: 'Controls the color of the radial gradient used as the background.'
     }
   ];
 
-  const images = Array.from({ length: 30 }, () =>
-    'https://images.unsplash.com/photo-1748370987492-eb390a61dcda?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  const images = Array.from(
+    { length: 30 },
+    () =>
+      'https://images.unsplash.com/photo-1748370987492-eb390a61dcda?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   );
 
   return (

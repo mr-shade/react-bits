@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/TiltedCard/TiltedCard.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/TiltedCard/TiltedCard.tsx?raw';
 
 export const tiltedCard = {
-  ...(generateCliCommands('Components/TiltedCard')),
+  ...generateCliCommands('Components/TiltedCard'),
   installation: `npm install motion`,
   usage: `import TiltedCard from './TiltedCard';
 
@@ -35,5 +35,5 @@ export const tiltedCard = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
-}
+  tsTailwind
+};

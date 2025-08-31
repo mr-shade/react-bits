@@ -55,12 +55,10 @@
 }
 
 .chroma-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y),
-      var(--spotlight-color),
-      transparent 70%);
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -115,24 +113,28 @@
   -webkit-backdrop-filter: grayscale(1) brightness(0.78);
   background: rgba(0, 0, 0, 0.001);
 
-  mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
-      transparent 0%,
-      transparent 15%,
-      rgba(0, 0, 0, 0.10) 30%,
-      rgba(0, 0, 0, 0.22) 45%,
-      rgba(0, 0, 0, 0.35) 60%,
-      rgba(0, 0, 0, 0.50) 75%,
-      rgba(0, 0, 0, 0.68) 88%,
-      white 100%);
-  -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
-      transparent 0%,
-      transparent 15%,
-      rgba(0, 0, 0, 0.10) 30%,
-      rgba(0, 0, 0, 0.22) 45%,
-      rgba(0, 0, 0, 0.35) 60%,
-      rgba(0, 0, 0, 0.50) 75%,
-      rgba(0, 0, 0, 0.68) 88%,
-      white 100%);
+  mask-image: radial-gradient(
+    circle var(--r) at var(--x) var(--y),
+    transparent 0%,
+    transparent 15%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.22) 45%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.68) 88%,
+    white 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle var(--r) at var(--x) var(--y),
+    transparent 0%,
+    transparent 15%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.22) 45%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.68) 88%,
+    white 100%
+  );
 }
 
 .chroma-fade {
@@ -144,24 +146,28 @@
   -webkit-backdrop-filter: grayscale(1) brightness(0.78);
   background: rgba(0, 0, 0, 0.001);
 
-  mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
-      white 0%,
-      white 15%,
-      rgba(255, 255, 255, 0.90) 30%,
-      rgba(255, 255, 255, 0.78) 45%,
-      rgba(255, 255, 255, 0.65) 60%,
-      rgba(255, 255, 255, 0.50) 75%,
-      rgba(255, 255, 255, 0.32) 88%,
-      transparent 100%);
-  -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
-      white 0%,
-      white 15%,
-      rgba(255, 255, 255, 0.90) 30%,
-      rgba(255, 255, 255, 0.78) 45%,
-      rgba(255, 255, 255, 0.65) 60%,
-      rgba(255, 255, 255, 0.50) 75%,
-      rgba(255, 255, 255, 0.32) 88%,
-      transparent 100%);
+  mask-image: radial-gradient(
+    circle var(--r) at var(--x) var(--y),
+    white 0%,
+    white 15%,
+    rgba(255, 255, 255, 0.9) 30%,
+    rgba(255, 255, 255, 0.78) 45%,
+    rgba(255, 255, 255, 0.65) 60%,
+    rgba(255, 255, 255, 0.5) 75%,
+    rgba(255, 255, 255, 0.32) 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle var(--r) at var(--x) var(--y),
+    white 0%,
+    white 15%,
+    rgba(255, 255, 255, 0.9) 30%,
+    rgba(255, 255, 255, 0.78) 45%,
+    rgba(255, 255, 255, 0.65) 60%,
+    rgba(255, 255, 255, 0.5) 75%,
+    rgba(255, 255, 255, 0.32) 88%,
+    transparent 100%
+  );
 
   opacity: 1;
   transition: opacity 0.25s ease;

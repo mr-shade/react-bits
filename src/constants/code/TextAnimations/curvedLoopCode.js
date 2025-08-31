@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/CurvedLoop/CurvedLoop.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/CurvedLoop/CurvedLoop.tsx?raw';
 
 export const curvedLoop = {
-  ...(generateCliCommands('TextAnimations/CurvedLoop')),
+  ...generateCliCommands('TextAnimations/CurvedLoop'),
   usage: `import CurvedLoop from './CurvedLoop';
 
 // Basic usage
@@ -35,4 +35,4 @@ export const curvedLoop = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

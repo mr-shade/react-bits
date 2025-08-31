@@ -6,7 +6,7 @@ const Noise = ({
   patternScaleX = 1,
   patternScaleY = 1,
   patternRefreshInterval = 2,
-  patternAlpha = 15,
+  patternAlpha = 15
 }) => {
   const grainRef = useRef(null);
 
@@ -25,7 +25,7 @@ const Noise = ({
       if (!canvas) return;
       canvas.width = canvasSize;
       canvas.height = canvasSize;
-      
+
       canvas.style.width = '100vw';
       canvas.style.height = '100vh';
     };
@@ -33,7 +33,7 @@ const Noise = ({
     const drawGrain = () => {
       const imageData = ctx.createImageData(canvasSize, canvasSize);
       const data = imageData.data;
-      
+
       for (let i = 0; i < data.length; i += 4) {
         const value = Math.random() * 255;
         data[i] = value;
@@ -41,7 +41,7 @@ const Noise = ({
         data[i + 2] = value;
         data[i + 3] = patternAlpha;
       }
-      
+
       ctx.putImageData(imageData, 0, 0);
     };
 

@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/GooeyNav/GooeyNav.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/GooeyNav/GooeyNav.tsx?raw';
 
 export const gooeyNav = {
-  ...(generateCliCommands('Components/GooeyNav')),
+  ...generateCliCommands('Components/GooeyNav'),
   usage: `import GooeyNav from './GooeyNav'
 
 // update with your own items
@@ -34,4 +34,4 @@ const items = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

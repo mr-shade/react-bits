@@ -1,24 +1,24 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Text } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import RefreshButton from "../../components/common/Preview/RefreshButton";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import RefreshButton from '../../components/common/Preview/RefreshButton';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import useForceRerender from '../../hooks/useForceRerender';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
 
-import { flyingPosters } from "../../constants/code/Components/flyingPostersCode";
-import FlyingPosters from "../../content/Components/FlyingPosters/FlyingPosters";
+import { flyingPosters } from '../../constants/code/Components/flyingPostersCode';
+import FlyingPosters from '../../content/Components/FlyingPosters/FlyingPosters';
 
 const FlyingPostersDemo = () => {
   const [items] = useState([
-    "https://picsum.photos/500/500?grayscale",
-    "https://picsum.photos/600/600?grayscale",
-    "https://picsum.photos/400/400?grayscale",
+    'https://picsum.photos/500/500?grayscale',
+    'https://picsum.photos/600/600?grayscale',
+    'https://picsum.photos/400/400?grayscale'
   ]);
   const [planeWidth, setPlaneWidth] = useState(320);
   const [planeHeight, setPlaneHeight] = useState(320);
@@ -31,47 +31,47 @@ const FlyingPostersDemo = () => {
 
   const propData = [
     {
-      name: "items",
-      type: "string[]",
-      default: "[]",
-      description: "An array of image URLs to be displayed as flying posters.",
+      name: 'items',
+      type: 'string[]',
+      default: '[]',
+      description: 'An array of image URLs to be displayed as flying posters.'
     },
     {
-      name: "planeWidth",
-      type: "number",
-      default: "320",
-      description: "The width of each poster plane in pixels.",
+      name: 'planeWidth',
+      type: 'number',
+      default: '320',
+      description: 'The width of each poster plane in pixels.'
     },
     {
-      name: "planeHeight",
-      type: "number",
-      default: "320",
-      description: "The height of each poster plane in pixels.",
+      name: 'planeHeight',
+      type: 'number',
+      default: '320',
+      description: 'The height of each poster plane in pixels.'
     },
     {
-      name: "distortion",
-      type: "number",
-      default: "3",
-      description: "The amount of distortion applied to the posters' movement.",
+      name: 'distortion',
+      type: 'number',
+      default: '3',
+      description: "The amount of distortion applied to the posters' movement."
     },
     {
-      name: "scrollEase",
-      type: "number",
-      default: "0.01",
-      description: "The easing factor for smooth scrolling interactions.",
+      name: 'scrollEase',
+      type: 'number',
+      default: '0.01',
+      description: 'The easing factor for smooth scrolling interactions.'
     },
     {
-      name: "cameraFov",
-      type: "number",
-      default: "45",
-      description: "The field of view for the camera in degrees.",
+      name: 'cameraFov',
+      type: 'number',
+      default: '45',
+      description: 'The field of view for the camera in degrees.'
     },
     {
-      name: "cameraZ",
-      type: "number",
-      default: "20",
-      description: "The Z position of the camera, affecting zoom and perspective.",
-    },
+      name: 'cameraZ',
+      type: 'number',
+      default: '20',
+      description: 'The Z position of the camera, affecting zoom and perspective.'
+    }
   ];
 
   return (
@@ -101,11 +101,11 @@ const FlyingPostersDemo = () => {
             max={400}
             step={10}
             value={planeWidth}
-            onChange={(val) => {
+            onChange={val => {
               setPlaneWidth(val);
               forceRerender();
             }}
-            displayValue={(val) => `${val}px`}
+            displayValue={val => `${val}px`}
           />
 
           <PreviewSlider
@@ -114,11 +114,11 @@ const FlyingPostersDemo = () => {
             max={350}
             step={10}
             value={planeHeight}
-            onChange={(val) => {
+            onChange={val => {
               setPlaneHeight(val);
               forceRerender();
             }}
-            displayValue={(val) => `${val}px`}
+            displayValue={val => `${val}px`}
           />
 
           <PreviewSlider
@@ -127,11 +127,11 @@ const FlyingPostersDemo = () => {
             max={10}
             step={0.1}
             value={distortion}
-            onChange={(val) => {
+            onChange={val => {
               setDistortion(val);
               forceRerender();
             }}
-            displayValue={(val) => val.toFixed(1)}
+            displayValue={val => val.toFixed(1)}
           />
 
           <PreviewSlider
@@ -140,11 +140,11 @@ const FlyingPostersDemo = () => {
             max={0.05}
             step={0.001}
             value={scrollEase}
-            onChange={(val) => {
+            onChange={val => {
               setScrollEase(val);
               forceRerender();
             }}
-            displayValue={(val) => val.toFixed(3)}
+            displayValue={val => val.toFixed(3)}
           />
 
           <PreviewSlider
@@ -153,11 +153,11 @@ const FlyingPostersDemo = () => {
             max={90}
             step={1}
             value={cameraFov}
-            onChange={(val) => {
+            onChange={val => {
               setCameraFov(val);
               forceRerender();
             }}
-            displayValue={(val) => `${val}°`}
+            displayValue={val => `${val}°`}
           />
 
           <PreviewSlider
@@ -166,7 +166,7 @@ const FlyingPostersDemo = () => {
             max={50}
             step={1}
             value={cameraZ}
-            onChange={(val) => {
+            onChange={val => {
               setCameraZ(val);
               forceRerender();
             }}
@@ -174,7 +174,7 @@ const FlyingPostersDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["ogl"]} />
+        <Dependencies dependencyList={['ogl']} />
       </PreviewTab>
 
       <CodeTab>

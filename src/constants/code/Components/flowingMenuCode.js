@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/FlowingMenu/FlowingMenu.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/FlowingMenu/FlowingMenu.tsx?raw';
 
 export const flowingMenu = {
-  ...(generateCliCommands('Components/FlowingMenu')),
+  ...generateCliCommands('Components/FlowingMenu'),
   installation: `npm install gsap`,
   usage: `import FlowingMenu from './FlowingMenu'
 
@@ -26,4 +26,4 @@ const demoItems = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

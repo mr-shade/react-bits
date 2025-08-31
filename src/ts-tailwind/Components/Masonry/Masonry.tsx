@@ -1,29 +1,15 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { gsap } from "gsap";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { gsap } from 'gsap';
 
-const useMedia = (
-  queries: string[],
-  values: number[],
-  defaultValue: number
-): number => {
-  const get = () =>
-    values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue;
+const useMedia = (queries: string[], values: number[], defaultValue: number): number => {
+  const get = () => values[queries.findIndex(q => matchMedia(q).matches)] ?? defaultValue;
 
   const [value, setValue] = useState<number>(get);
 
   useEffect(() => {
     const handler = () => setValue(get);
-    queries.forEach((q) => matchMedia(q).addEventListener("change", handler));
-    return () =>
-      queries.forEach((q) =>
-        matchMedia(q).removeEventListener("change", handler)
-      );
+    queries.forEach(q => matchMedia(q).addEventListener('change', handler));
+    return () => queries.forEach(q => matchMedia(q).removeEventListener('change', handler));
   }, [queries]);
 
   return value;
@@ -49,8 +35,8 @@ const useMeasure = <T extends HTMLElement>() => {
 const preloadImages = async (urls: string[]): Promise<void> => {
   await Promise.all(
     urls.map(
-      (src) =>
-        new Promise<void>((resolve) => {
+      src =>
+        new Promise<void>(resolve => {
           const img = new Image();
           img.src = src;
           img.onload = img.onerror = () => resolve();
@@ -78,7 +64,7 @@ interface MasonryProps {
   ease?: string;
   duration?: number;
   stagger?: number;
-  animateFrom?: "bottom" | "top" | "left" | "right" | "center" | "random";
+  animateFrom?: 'bottom' | 'top' | 'left' | 'right' | 'center' | 'random';
   scaleOnHover?: boolean;
   hoverScale?: number;
   blurToFocus?: boolean;
@@ -87,22 +73,17 @@ interface MasonryProps {
 
 const Masonry: React.FC<MasonryProps> = ({
   items,
-  ease = "power3.out",
+  ease = 'power3.out',
   duration = 0.6,
   stagger = 0.05,
-  animateFrom = "bottom",
+  animateFrom = 'bottom',
   scaleOnHover = true,
   hoverScale = 0.95,
   blurToFocus = true,
-  colorShiftOnHover = false,
+  colorShiftOnHover = false
 }) => {
   const columns = useMedia(
-    [
-      "(min-width:1500px)",
-      "(min-width:1000px)",
-      "(min-width:600px)",
-      "(min-width:400px)",
-    ],
+    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
     [5, 4, 3, 2],
     1
   );
@@ -115,26 +96,24 @@ const Masonry: React.FC<MasonryProps> = ({
     if (!containerRect) return { x: item.x, y: item.y };
 
     let direction = animateFrom;
-    if (animateFrom === "random") {
-      const dirs = ["top", "bottom", "left", "right"];
-      direction = dirs[
-        Math.floor(Math.random() * dirs.length)
-      ] as typeof animateFrom;
+    if (animateFrom === 'random') {
+      const dirs = ['top', 'bottom', 'left', 'right'];
+      direction = dirs[Math.floor(Math.random() * dirs.length)] as typeof animateFrom;
     }
 
     switch (direction) {
-      case "top":
+      case 'top':
         return { x: item.x, y: -200 };
-      case "bottom":
+      case 'bottom':
         return { x: item.x, y: window.innerHeight + 200 };
-      case "left":
+      case 'left':
         return { x: -200, y: item.y };
-      case "right":
+      case 'right':
         return { x: window.innerWidth + 200, y: item.y };
-      case "center":
+      case 'center':
         return {
           x: containerRect.width / 2 - item.w / 2,
-          y: containerRect.height / 2 - item.h / 2,
+          y: containerRect.height / 2 - item.h / 2
         };
       default:
         return { x: item.x, y: item.y + 100 };
@@ -142,7 +121,7 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   useEffect(() => {
-    preloadImages(items.map((i) => i.img)).then(() => setImagesReady(true));
+    preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
   }, [items]);
 
   const grid = useMemo<GridItem[]>(() => {
@@ -152,7 +131,7 @@ const Masonry: React.FC<MasonryProps> = ({
     const totalGaps = (columns - 1) * gap;
     const columnWidth = (width - totalGaps) / columns;
 
-    return items.map((child) => {
+    return items.map(child => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = col * (columnWidth + gap);
       const height = child.height / 2;
@@ -182,15 +161,15 @@ const Masonry: React.FC<MasonryProps> = ({
             y: start.y,
             width: item.w,
             height: item.h,
-            ...(blurToFocus && { filter: "blur(10px)" }),
+            ...(blurToFocus && { filter: 'blur(10px)' })
           },
           {
             opacity: 1,
             ...animProps,
-            ...(blurToFocus && { filter: "blur(0px)" }),
+            ...(blurToFocus && { filter: 'blur(0px)' }),
             duration: 0.8,
-            ease: "power3.out",
-            delay: index * stagger,
+            ease: 'power3.out',
+            delay: index * stagger
           }
         );
       } else {
@@ -198,7 +177,7 @@ const Masonry: React.FC<MasonryProps> = ({
           ...animProps,
           duration,
           ease,
-          overwrite: "auto",
+          overwrite: 'auto'
         });
       }
     });
@@ -211,11 +190,11 @@ const Masonry: React.FC<MasonryProps> = ({
       gsap.to(`[data-key="${id}"]`, {
         scale: hoverScale,
         duration: 0.3,
-        ease: "power2.out"
+        ease: 'power2.out'
       });
     }
     if (colorShiftOnHover) {
-      const overlay = element.querySelector(".color-overlay") as HTMLElement;
+      const overlay = element.querySelector('.color-overlay') as HTMLElement;
       if (overlay) gsap.to(overlay, { opacity: 0.3, duration: 0.3 });
     }
   };
@@ -225,26 +204,26 @@ const Masonry: React.FC<MasonryProps> = ({
       gsap.to(`[data-key="${id}"]`, {
         scale: 1,
         duration: 0.3,
-        ease: "power2.out"
+        ease: 'power2.out'
       });
     }
     if (colorShiftOnHover) {
-      const overlay = element.querySelector(".color-overlay") as HTMLElement;
+      const overlay = element.querySelector('.color-overlay') as HTMLElement;
       if (overlay) gsap.to(overlay, { opacity: 0, duration: 0.3 });
     }
   };
 
   return (
     <div ref={containerRef} className="relative w-full h-full">
-      {grid.map((item) => (
+      {grid.map(item => (
         <div
           key={item.id}
           data-key={item.id}
           className="absolute box-content"
-          style={{ willChange: "transform, width, height, opacity" }}
-          onClick={() => window.open(item.url, "_blank", "noopener")}
-          onMouseEnter={(e) => handleMouseEnter(item.id, e.currentTarget)}
-          onMouseLeave={(e) => handleMouseLeave(item.id, e.currentTarget)}
+          style={{ willChange: 'transform, width, height, opacity' }}
+          onClick={() => window.open(item.url, '_blank', 'noopener')}
+          onMouseEnter={e => handleMouseEnter(item.id, e.currentTarget)}
+          onMouseLeave={e => handleMouseLeave(item.id, e.currentTarget)}
         >
           <div
             className="relative w-full h-full bg-cover bg-center rounded-[10px] shadow-[0px_10px_50px_-10px_rgba(0,0,0,0.2)] uppercase text-[10px] leading-[10px]"

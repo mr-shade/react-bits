@@ -1,30 +1,25 @@
-import { useEffect } from "react";
-import { motion, useAnimation, useMotionValue } from "motion/react";
+import { useEffect } from 'react';
+import { motion, useAnimation, useMotionValue } from 'motion/react';
 
 const getRotationTransition = (duration, from, loop = true) => ({
   from,
   to: from + 360,
-  ease: "linear",
+  ease: 'linear',
   duration,
-  type: "tween",
-  repeat: loop ? Infinity : 0,
+  type: 'tween',
+  repeat: loop ? Infinity : 0
 });
 
 const getTransition = (duration, from) => ({
   rotate: getRotationTransition(duration, from),
   scale: {
-    type: "spring",
+    type: 'spring',
     damping: 20,
-    stiffness: 300,
-  },
+    stiffness: 300
+  }
 });
 
-const CircularText = ({
-  text,
-  spinDuration = 20,
-  onHover = "speedUp",
-  className = "",
-}) => {
+const CircularText = ({ text, spinDuration = 20, onHover = 'speedUp', className = '' }) => {
   const letters = Array.from(text);
   const controls = useAnimation();
   const rotation = useMotionValue(0);
@@ -34,7 +29,7 @@ const CircularText = ({
     controls.start({
       rotate: start + 360,
       scale: 1,
-      transition: getTransition(spinDuration, start),
+      transition: getTransition(spinDuration, start)
     });
   }, [spinDuration, text, onHover, controls, rotation]);
 
@@ -46,20 +41,20 @@ const CircularText = ({
     let scaleVal = 1;
 
     switch (onHover) {
-      case "slowDown":
+      case 'slowDown':
         transitionConfig = getTransition(spinDuration * 2, start);
         break;
-      case "speedUp":
+      case 'speedUp':
         transitionConfig = getTransition(spinDuration / 4, start);
         break;
-      case "pause":
+      case 'pause':
         transitionConfig = {
-          rotate: { type: "spring", damping: 20, stiffness: 300 },
-          scale: { type: "spring", damping: 20, stiffness: 300 },
+          rotate: { type: 'spring', damping: 20, stiffness: 300 },
+          scale: { type: 'spring', damping: 20, stiffness: 300 }
         };
         scaleVal = 1;
         break;
-      case "goBonkers":
+      case 'goBonkers':
         transitionConfig = getTransition(spinDuration / 20, start);
         scaleVal = 0.8;
         break;
@@ -70,7 +65,7 @@ const CircularText = ({
     controls.start({
       rotate: start + 360,
       scale: scaleVal,
-      transition: transitionConfig,
+      transition: transitionConfig
     });
   };
 
@@ -79,7 +74,7 @@ const CircularText = ({
     controls.start({
       rotate: start + 360,
       scale: 1,
-      transition: getTransition(spinDuration, start),
+      transition: getTransition(spinDuration, start)
     });
   };
 

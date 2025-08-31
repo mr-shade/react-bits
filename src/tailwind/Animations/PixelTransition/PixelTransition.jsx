@@ -9,7 +9,7 @@ function PixelTransition({
   animationStepDuration = 0.3,
   className = '',
   style = {},
-  aspectRatio = '100%',
+  aspectRatio = '100%'
 }) {
   const containerRef = useRef(null);
   const pixelGridRef = useRef(null);
@@ -19,9 +19,7 @@ function PixelTransition({
   const [isActive, setIsActive] = useState(false);
 
   const isTouchDevice =
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia('(pointer: coarse)').matches;
+    'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
@@ -47,7 +45,7 @@ function PixelTransition({
     }
   }, [gridSize, pixelColor]);
 
-  const animatePixels = (activate) => {
+  const animatePixels = activate => {
     setIsActive(activate);
 
     const pixelGridEl = pixelGridRef.current;
@@ -124,22 +122,13 @@ function PixelTransition({
     >
       <div style={{ paddingTop: aspectRatio }} />
 
-      <div className="absolute inset-0 w-full h-full">
-        {firstContent}
-      </div>
+      <div className="absolute inset-0 w-full h-full">{firstContent}</div>
 
-      <div
-        ref={activeRef}
-        className="absolute inset-0 w-full h-full z-[2]"
-        style={{ display: 'none' }}
-      >
+      <div ref={activeRef} className="absolute inset-0 w-full h-full z-[2]" style={{ display: 'none' }}>
         {secondContent}
       </div>
 
-      <div
-        ref={pixelGridRef}
-        className="absolute inset-0 w-full h-full pointer-events-none z-[3]"
-      />
+      <div ref={pixelGridRef} className="absolute inset-0 w-full h-full pointer-events-none z-[3]" />
     </div>
   );
 }

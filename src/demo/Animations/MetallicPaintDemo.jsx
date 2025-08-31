@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useEffect, useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import logo from '../../assets/logos/react-bits-logo-small-black.svg';
-import CodeExample from "../../components/code/CodeExample";
-import useForceRerender from "../../hooks/useForceRerender";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import useForceRerender from '../../hooks/useForceRerender';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 
-import MetallicPaint, { parseLogoImage } from "../../content/Animations/MetallicPaint/MetallicPaint";
-import { metallicPaint } from "../../constants/code/Animations/metallicPaintCode";
+import MetallicPaint, { parseLogoImage } from '../../content/Animations/MetallicPaint/MetallicPaint';
+import { metallicPaint } from '../../constants/code/Animations/metallicPaintCode';
 
 const LiquidPaperDemo = () => {
   const [imageData, setImageData] = useState(null);
@@ -29,11 +29,11 @@ const LiquidPaperDemo = () => {
       try {
         const response = await fetch(logo);
         const blob = await response.blob();
-        const file = new File([blob], "default.png", { type: blob.type });
+        const file = new File([blob], 'default.png', { type: blob.type });
         const { imageData } = await parseLogoImage(file);
         setImageData(imageData);
       } catch (err) {
-        console.error("Error loading default image:", err);
+        console.error('Error loading default image:', err);
       }
     }
     loadDefaultImage();
@@ -41,18 +41,18 @@ const LiquidPaperDemo = () => {
 
   const propData = [
     {
-      name: "imageData",
-      type: "ImageData",
-      default: "none (required)",
+      name: 'imageData',
+      type: 'ImageData',
+      default: 'none (required)',
       description:
-        "The processed image data generated from parseLogoImage. This image data is used by the shader to create the liquid paper effect."
+        'The processed image data generated from parseLogoImage. This image data is used by the shader to create the liquid paper effect.'
     },
     {
-      name: "params",
-      type: "ShaderParams",
-      default: "",
+      name: 'params',
+      type: 'ShaderParams',
+      default: '',
       description:
-        "An object to configure the shader effect. Properties include: patternScale, refraction, edge, patternBlur, liquid, speed"
+        'An object to configure the shader effect. Properties include: patternScale, refraction, edge, patternBlur, liquid, speed'
     }
   ];
 
@@ -60,7 +60,11 @@ const LiquidPaperDemo = () => {
     <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
-          <MetallicPaint key={key} imageData={imageData} params={{ edge, patternBlur, patternScale, refraction, speed, liquid }} />
+          <MetallicPaint
+            key={key}
+            imageData={imageData}
+            params={{ edge, patternBlur, patternScale, refraction, speed, liquid }}
+          />
         </Box>
 
         <Customize>
@@ -70,7 +74,7 @@ const LiquidPaperDemo = () => {
             max={2}
             step={0.1}
             value={edge}
-            onChange={(val) => {
+            onChange={val => {
               setEdge(val);
               forceRerender();
             }}
@@ -82,7 +86,7 @@ const LiquidPaperDemo = () => {
             max={5}
             step={0.1}
             value={patternScale}
-            onChange={(val) => {
+            onChange={val => {
               setPatternScale(val);
               forceRerender();
             }}
@@ -94,7 +98,7 @@ const LiquidPaperDemo = () => {
             max={0.1}
             step={0.001}
             value={patternBlur}
-            onChange={(val) => {
+            onChange={val => {
               setPatternBlur(val);
               forceRerender();
             }}
@@ -106,7 +110,7 @@ const LiquidPaperDemo = () => {
             max={0.1}
             step={0.01}
             value={refraction}
-            onChange={(val) => {
+            onChange={val => {
               setRefraction(val);
               forceRerender();
             }}
@@ -118,7 +122,7 @@ const LiquidPaperDemo = () => {
             max={1}
             step={0.01}
             value={liquid}
-            onChange={(val) => {
+            onChange={val => {
               setLiquid(val);
               forceRerender();
             }}
@@ -130,7 +134,7 @@ const LiquidPaperDemo = () => {
             max={1}
             step={0.01}
             value={speed}
-            onChange={(val) => {
+            onChange={val => {
               setSpeed(val);
               forceRerender();
             }}

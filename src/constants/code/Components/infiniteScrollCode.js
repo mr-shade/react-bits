@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/InfiniteScroll/InfiniteScroll.tsx?raw
 import tsTailwind from '@ts-tailwind/Components/InfiniteScroll/InfiniteScroll.tsx?raw';
 
 export const infiniteScroll = {
-  ...(generateCliCommands('Components/InfiniteScroll')),
+  ...generateCliCommands('Components/InfiniteScroll'),
   installation: `npm install gsap`,
   usage: `import InfiniteScroll from './InfiniteScroll';
   
@@ -44,4 +44,4 @@ const items = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

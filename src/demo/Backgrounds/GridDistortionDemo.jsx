@@ -1,18 +1,18 @@
-import { useRef, useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useRef, useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import useForceRerender from "../../hooks/useForceRerender";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import useForceRerender from '../../hooks/useForceRerender';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import GridDistortion from "../../content/Backgrounds/GridDistortion/GridDistortion";
-import { gridDistortion } from "../../constants/code/Backgrounds/gridDistortionCode";
+import GridDistortion from '../../content/Backgrounds/GridDistortion/GridDistortion';
+import { gridDistortion } from '../../constants/code/Backgrounds/gridDistortionCode';
 
 const GridDistortionDemo = () => {
   const [grid, setGrid] = useState(10);
@@ -24,40 +24,40 @@ const GridDistortionDemo = () => {
 
   const propData = [
     {
-      name: "imgageSrc",
-      type: "string",
-      default: "",
-      description: "The image you want to render inside the container."
+      name: 'imgageSrc',
+      type: 'string',
+      default: '',
+      description: 'The image you want to render inside the container.'
     },
     {
-      name: "grid",
-      type: "number",
-      default: "15",
-      description: "The number of cells present in the distortion grid"
+      name: 'grid',
+      type: 'number',
+      default: '15',
+      description: 'The number of cells present in the distortion grid'
     },
     {
-      name: "mouse",
-      type: "number",
-      default: "0.1",
-      description: "The size of the distortion effect that follows the cursor."
+      name: 'mouse',
+      type: 'number',
+      default: '0.1',
+      description: 'The size of the distortion effect that follows the cursor.'
     },
     {
-      name: "relaxation",
-      type: "number",
-      default: "0.9",
-      description: "The speed at which grid cells return to their initial state."
+      name: 'relaxation',
+      type: 'number',
+      default: '0.9',
+      description: 'The speed at which grid cells return to their initial state.'
     },
     {
-      name: "strength",
-      type: "number",
-      default: "0.15",
-      description: "The overall strength of the distortion effect."
+      name: 'strength',
+      type: 'number',
+      default: '0.15',
+      description: 'The overall strength of the distortion effect.'
     },
     {
-      name: "className",
-      type: "string",
-      default: "",
-      description: "Any custom class(es) you want to apply to the container."
+      name: 'className',
+      type: 'string',
+      default: '',
+      description: 'Any custom class(es) you want to apply to the container.'
     }
   ];
 
@@ -75,10 +75,7 @@ const GridDistortionDemo = () => {
             className="grid-distortion"
           />
 
-          <BackgroundContent
-            pillText="New Background"
-            headline="Don't just sit there, move your cursor!"
-          />
+          <BackgroundContent pillText="New Background" headline="Don't just sit there, move your cursor!" />
         </Box>
 
         <Customize>
@@ -88,7 +85,7 @@ const GridDistortionDemo = () => {
             max={200}
             step={1}
             value={grid}
-            onChange={(val) => {
+            onChange={val => {
               setGrid(val);
               forceRerender();
             }}
@@ -101,7 +98,7 @@ const GridDistortionDemo = () => {
             max={0.5}
             step={0.01}
             value={mouse}
-            onChange={(val) => {
+            onChange={val => {
               setMouse(val);
               forceRerender();
             }}
@@ -120,7 +117,7 @@ const GridDistortionDemo = () => {
       <CliTab>
         <CliInstallation {...gridDistortion} />
       </CliTab>
-    </TabsLayout >
+    </TabsLayout>
   );
 };
 

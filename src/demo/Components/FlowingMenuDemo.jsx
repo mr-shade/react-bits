@@ -1,21 +1,21 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 
-import FlowingMenu from "../../content/Components/FlowingMenu/FlowingMenu";
-import { flowingMenu } from "../../constants/code/Components/flowingMenuCode";
+import FlowingMenu from '../../content/Components/FlowingMenu/FlowingMenu';
+import { flowingMenu } from '../../constants/code/Components/flowingMenuCode';
 
 const FlowingMenuDemo = () => {
   const propData = [
     {
-      name: "items",
-      type: "object[]",
-      default: "[]",
-      description: "An array of object scontaining: link, text, image."
+      name: 'items',
+      type: 'object[]',
+      default: '[]',
+      description: 'An array of object scontaining: link, text, image.'
     }
   ];
 
@@ -29,7 +29,7 @@ const FlowingMenuDemo = () => {
   return (
     <TabsLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" h={600} overflow="hidden" px={0} pt='100px' pb='100px'>
+        <Box position="relative" className="demo-container" h={600} overflow="hidden" px={0} pt="100px" pb="100px">
           <FlowingMenu items={demoItems} />
         </Box>
 

@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/ScrollReveal/ScrollReveal.tsx?raw
 import tsTailwind from '@ts-tailwind/TextAnimations/ScrollReveal/ScrollReveal.tsx?raw';
 
 export const scrollReveal = {
-  ...(generateCliCommands('TextAnimations/ScrollReveal')),
+  ...generateCliCommands('TextAnimations/ScrollReveal'),
   installation: `npm install gsap`,
   usage: `import ScrollReveal from './ScrollReveal';
 
@@ -26,4 +26,4 @@ export const scrollReveal = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

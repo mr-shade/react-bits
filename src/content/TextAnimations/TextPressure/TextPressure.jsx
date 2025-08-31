@@ -19,8 +19,7 @@ const TextPressure = ({
   strokeColor = '#FF0000',
   className = '',
 
-  minFontSize = 24,
-
+  minFontSize = 24
 }) => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
@@ -42,11 +41,11 @@ const TextPressure = ({
   };
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = e => {
       cursorRef.current.x = e.clientX;
       cursorRef.current.y = e.clientY;
     };
-    const handleTouchMove = (e) => {
+    const handleTouchMove = e => {
       const t = e.touches[0];
       cursorRef.current.x = t.clientX;
       cursorRef.current.y = t.clientY;
@@ -110,13 +109,13 @@ const TextPressure = ({
         const titleRect = titleRef.current.getBoundingClientRect();
         const maxDist = titleRect.width / 2;
 
-        spansRef.current.forEach((span) => {
+        spansRef.current.forEach(span => {
           if (!span) return;
 
           const rect = span.getBoundingClientRect();
           const charCenter = {
             x: rect.x + rect.width / 2,
-            y: rect.y + rect.height / 2,
+            y: rect.y + rect.height / 2
           };
 
           const d = dist(mouseRef.current, charCenter);
@@ -143,9 +142,7 @@ const TextPressure = ({
     return () => cancelAnimationFrame(rafId);
   }, [width, weight, italic, alpha, chars.length]);
 
-  const dynamicClassName = [className, flex ? 'flex' : '', stroke ? 'stroke' : '']
-    .filter(Boolean)
-    .join(' ');
+  const dynamicClassName = [className, flex ? 'flex' : '', stroke ? 'stroke' : ''].filter(Boolean).join(' ');
 
   return (
     <div
@@ -154,7 +151,7 @@ const TextPressure = ({
         position: 'relative',
         width: '100%',
         height: '100%',
-        background: 'transparent',
+        background: 'transparent'
       }}
     >
       <style>{`
@@ -204,13 +201,13 @@ const TextPressure = ({
           userSelect: 'none',
           whiteSpace: 'nowrap',
           fontWeight: 100,
-          width: '100%',
+          width: '100%'
         }}
       >
         {chars.map((char, i) => (
           <span
             key={i}
-            ref={(el) => (spansRef.current[i] = el)}
+            ref={el => (spansRef.current[i] = el)}
             data-char={char}
             style={{
               display: 'inline-block',

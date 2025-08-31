@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Particles/Particles.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Particles/Particles.tsx?raw';
 
 export const particles = {
-  ...(generateCliCommands('Backgrounds/Particles')),
+  ...generateCliCommands('Backgrounds/Particles'),
   installation: `npm install ogl`,
   usage: `import Particles from './Particles';
 
@@ -27,5 +27,5 @@ export const particles = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

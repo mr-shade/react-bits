@@ -1,46 +1,46 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import CodeExample from "../../components/code/CodeExample";
-import useForceRerender from "../../hooks/useForceRerender";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import CodeExample from '../../components/code/CodeExample';
+import useForceRerender from '../../hooks/useForceRerender';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 
-import Folder from "../../content/Components/Folder/Folder";
-import { folder } from "../../constants/code/Components/folderCode";
+import Folder from '../../content/Components/Folder/Folder';
+import { folder } from '../../constants/code/Components/folderCode';
 
 const FolderDemo = () => {
   const propData = [
     {
-      name: "color",
-      type: "string",
-      default: "#5227FF",
-      description: "The primary color of the folder."
+      name: 'color',
+      type: 'string',
+      default: '#5227FF',
+      description: 'The primary color of the folder.'
     },
     {
-      name: "size",
-      type: "number",
-      default: "1",
-      description: "Scale factor for the folder size."
+      name: 'size',
+      type: 'number',
+      default: '1',
+      description: 'Scale factor for the folder size.'
     },
     {
-      name: "items",
-      type: "React.ReactNode[]",
-      default: "[]",
-      description: "An array of up to 3 items rendered as papers in the folder."
+      name: 'items',
+      type: 'React.ReactNode[]',
+      default: '[]',
+      description: 'An array of up to 3 items rendered as papers in the folder.'
     },
     {
-      name: "className",
-      type: "string",
-      default: "",
-      description: "Additional CSS classes for the folder container."
+      name: 'className',
+      type: 'string',
+      default: '',
+      description: 'Additional CSS classes for the folder container.'
     }
   ];
 
-  const [color, setColor] = useState("#5227FF");
+  const [color, setColor] = useState('#5227FF');
   const [size, setSize] = useState(2);
 
   const [key, forceRerender] = useForceRerender();
@@ -58,7 +58,7 @@ const FolderDemo = () => {
             <input
               type="color"
               value={color}
-              onChange={(e) => {
+              onChange={e => {
                 setColor(e.target.value);
                 forceRerender();
               }}
@@ -71,7 +71,7 @@ const FolderDemo = () => {
             max={3}
             step={0.1}
             value={size}
-            onChange={(val) => {
+            onChange={val => {
               setSize(val);
               forceRerender();
             }}

@@ -53,7 +53,10 @@
   width: 30px;
   height: 2px;
   background-color: currentColor;
-  transition: transform 0.25s ease, opacity 0.2s ease, margin 0.3s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease,
+    margin 0.3s ease;
   transform-origin: 50% 50%;
 }
 

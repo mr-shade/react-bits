@@ -1,5 +1,30 @@
 :root {
-  --linear-ease: linear(0, 0.068, 0.19 2.7%, 0.804 8.1%, 1.037, 1.199 13.2%, 1.245, 1.27 15.8%, 1.274, 1.272 17.4%, 1.249 19.1%, 0.996 28%, 0.949, 0.928 33.3%, 0.926, 0.933 36.8%, 1.001 45.6%, 1.013, 1.019 50.8%, 1.018 54.4%, 1 63.1%, 0.995 68%, 1.001 85%, 1);
+  --linear-ease: linear(
+    0,
+    0.068,
+    0.19 2.7%,
+    0.804 8.1%,
+    1.037,
+    1.199 13.2%,
+    1.245,
+    1.27 15.8%,
+    1.274,
+    1.272 17.4%,
+    1.249 19.1%,
+    0.996 28%,
+    0.949,
+    0.928 33.3%,
+    0.926,
+    0.933 36.8%,
+    1.001 45.6%,
+    1.013,
+    1.019 50.8%,
+    1.018 54.4%,
+    1 63.1%,
+    0.995 68%,
+    1.001 85%,
+    1
+  );
 }
 
 .gooey-nav-container {
@@ -28,7 +53,10 @@
   border-radius: 100vw;
   position: relative;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 0 0.5px 1.5px transparent;
   color: white;
 }
@@ -43,7 +71,7 @@
 }
 
 .gooey-nav-container nav ul li::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: 10px;
@@ -92,7 +120,7 @@
 }
 
 .gooey-nav-container .effect.filter::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: -75px;
   z-index: -2;
@@ -100,7 +128,7 @@
 }
 
 .gooey-nav-container .effect.filter::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: white;

@@ -1,72 +1,77 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 
-import { pixelCard } from "../../constants/code/Components/pixelCardCode";
-import PixelCard from "../../content/Components/PixelCard/PixelCard";
+import { pixelCard } from '../../constants/code/Components/pixelCardCode';
+import PixelCard from '../../content/Components/PixelCard/PixelCard';
 
 const PixelCardDemo = () => {
-  const [selectedVariant, setSelectedVariant] = useState("default");
+  const [selectedVariant, setSelectedVariant] = useState('default');
 
   const propData = [
     {
-      name: "variant",
-      type: "string",
+      name: 'variant',
+      type: 'string',
       default: '"default"',
-      description: "Defines the color scheme and animation style.",
-      options: "default | yellow | blue | pink"
+      description: 'Defines the color scheme and animation style.',
+      options: 'default | yellow | blue | pink'
     },
     {
-      name: "gap",
-      type: "number",
-      default: "varies by variant",
-      description: "Pixel grid gap size in pixels."
+      name: 'gap',
+      type: 'number',
+      default: 'varies by variant',
+      description: 'Pixel grid gap size in pixels.'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "varies by variant",
-      description: "Animation speed modifier (lower is slower)."
+      name: 'speed',
+      type: 'number',
+      default: 'varies by variant',
+      description: 'Animation speed modifier (lower is slower).'
     },
     {
-      name: "colors",
-      type: "string",
+      name: 'colors',
+      type: 'string',
       default: '"#f8fafc,#f1f5f9,#cbd5e1"',
-      description: "Comma-separated list of colors for the pixel effect."
+      description: 'Comma-separated list of colors for the pixel effect.'
     },
     {
-      name: "noFocus",
-      type: "boolean",
-      default: "false",
-      description: "If true, prevents animation from triggering on focus."
+      name: 'noFocus',
+      type: 'boolean',
+      default: 'false',
+      description: 'If true, prevents animation from triggering on focus.'
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: '""',
-      description: "Additional CSS class for the wrapper."
+      description: 'Additional CSS class for the wrapper.'
     },
     {
-      name: "style",
-      type: "object",
-      default: "{}",
-      description: "Inline styles for the wrapper."
+      name: 'style',
+      type: 'object',
+      default: '{}',
+      description: 'Inline styles for the wrapper.'
     },
     {
-      name: "children",
-      type: "ReactNode",
-      default: "null",
-      description: "Content to render inside the pixel effect container."
+      name: 'children',
+      type: 'ReactNode',
+      default: 'null',
+      description: 'Content to render inside the pixel effect container.'
     }
   ];
 
-  const options = [{ value: "default", label: "Default" }, { value: "yellow", label: "Yellow" }, { value: "blue", label: "Blue" }, { value: "pink", label: "Pink" }];
+  const options = [
+    { value: 'default', label: 'Default' },
+    { value: 'yellow', label: 'Yellow' },
+    { value: 'blue', label: 'Blue' },
+    { value: 'pink', label: 'Pink' }
+  ];
 
   return (
     <TabsLayout>
@@ -88,7 +93,7 @@ const PixelCardDemo = () => {
             value={selectedVariant}
             name="variant"
             width={150}
-            onChange={(val) => {
+            onChange={val => {
               setSelectedVariant(val);
             }}
           />
@@ -104,7 +109,7 @@ const PixelCardDemo = () => {
       <CliTab>
         <CliInstallation {...pixelCard} />
       </CliTab>
-    </TabsLayout >
+    </TabsLayout>
   );
 };
 

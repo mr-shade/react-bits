@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Backgrounds/FaultyTerminal/FaultyTerminal.jsx?raw';
 import css from '@content/Backgrounds/FaultyTerminal/FaultyTerminal.css?raw';
 import tailwind from '@tailwind/Backgrounds/FaultyTerminal/FaultyTerminal.jsx?raw';
-import tsCode from '@ts-default/Backgrounds/FaultyTerminal/FaultyTerminal.tsx?raw'
-import tsTailwind from '@ts-tailwind/Backgrounds/FaultyTerminal/FaultyTerminal.tsx?raw'
+import tsCode from '@ts-default/Backgrounds/FaultyTerminal/FaultyTerminal.tsx?raw';
+import tsTailwind from '@ts-tailwind/Backgrounds/FaultyTerminal/FaultyTerminal.tsx?raw';
 
 export const faultyTerminal = {
-  ...(generateCliCommands('Backgrounds/FaultyTerminal')),
+  ...generateCliCommands('Backgrounds/FaultyTerminal'),
   installation: `npm install ogl`,
   usage: `import FaultyTerminal from './FaultyTerminal';
 
@@ -37,4 +37,4 @@ export const faultyTerminal = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/Ribbons/Ribbons.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/Ribbons/Ribbons.tsx?raw';
 
 export const ribbons = {
-  ...(generateCliCommands('Animations/Ribbons')),
+  ...generateCliCommands('Animations/Ribbons'),
   installation: `npm install ogl`,
   usage: `import Ribbons from './Ribbons';
 
@@ -25,5 +25,5 @@ export const ribbons = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

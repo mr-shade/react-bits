@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/GlassIcons/GlassIcons.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/GlassIcons/GlassIcons.tsx?raw';
 
 export const glassIcons = {
-  ...(generateCliCommands('Components/GlassIcons')),
+  ...generateCliCommands('Components/GlassIcons'),
   usage: `import GlassIcons from './GlassIcons'
 
 // update with your own icons and colors
@@ -28,4 +28,4 @@ const items = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

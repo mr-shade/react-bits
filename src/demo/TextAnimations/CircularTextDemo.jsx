@@ -1,48 +1,49 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import PreviewInput from "../../components/common/Preview/PreviewInput";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import PreviewInput from '../../components/common/Preview/PreviewInput';
 
-import CircularText from "../../content/TextAnimations/CircularText/CircularText";
-import { circularText } from "../../constants/code/TextAnimations/circularTextCode";
+import CircularText from '../../content/TextAnimations/CircularText/CircularText';
+import { circularText } from '../../constants/code/TextAnimations/circularTextCode';
 
 const CircularTextDemo = () => {
-  const [text, setText] = useState("REACT*BITS*COMPONENTS*");
-  const [onHover, setOnHover] = useState("speedUp");
+  const [text, setText] = useState('REACT*BITS*COMPONENTS*');
+  const [onHover, setOnHover] = useState('speedUp');
   const [spinDuration, setSpinDuration] = useState(20);
 
   const propData = [
     {
-      name: "text",
-      type: "string",
+      name: 'text',
+      type: 'string',
       default: "''",
-      description: "The text to display in a circular layout."
+      description: 'The text to display in a circular layout.'
     },
     {
-      name: "spinDuration",
-      type: "number",
-      default: "20",
-      description: "The duration (in seconds) for one full rotation."
+      name: 'spinDuration',
+      type: 'number',
+      default: '20',
+      description: 'The duration (in seconds) for one full rotation.'
     },
     {
-      name: "onHover",
+      name: 'onHover',
       type: "'slowDown' | 'speedUp' | 'pause' | 'goBonkers'",
-      default: "undefined",
-      description: "Specifies the hover behavior variant. Options include 'slowDown', 'speedUp', 'pause', and 'goBonkers'."
+      default: 'undefined',
+      description:
+        "Specifies the hover behavior variant. Options include 'slowDown', 'speedUp', 'pause', and 'goBonkers'."
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: "''",
-      description: "Optional additional CSS classes to apply to the component."
+      description: 'Optional additional CSS classes to apply to the component.'
     }
   ];
 
@@ -60,7 +61,6 @@ const CircularTextDemo = () => {
           <CircularText text={text} onHover={onHover} spinDuration={spinDuration} />
         </Box>
 
-
         <Customize className="preview-options">
           <PreviewInput
             title="Text"
@@ -77,7 +77,7 @@ const CircularTextDemo = () => {
             value={onHover}
             name="setOnHover"
             width={150}
-            onChange={(val) => {
+            onChange={val => {
               setOnHover(val);
             }}
           />
@@ -88,11 +88,10 @@ const CircularTextDemo = () => {
             max={60}
             step={1}
             value={spinDuration}
-            onChange={(val) => {
+            onChange={val => {
               setSpinDuration(val);
             }}
           />
-
         </Customize>
 
         <PropTable data={propData} />

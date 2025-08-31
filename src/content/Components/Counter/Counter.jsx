@@ -1,10 +1,10 @@
-import { motion, useSpring, useTransform } from "motion/react";
-import { useEffect } from "react";
+import { motion, useSpring, useTransform } from 'motion/react';
+import { useEffect } from 'react';
 
-import "./Counter.css";
+import './Counter.css';
 
 function Number({ mv, number, height }) {
-  let y = useTransform(mv, (latest) => {
+  let y = useTransform(mv, latest => {
     let placeValue = latest % 10;
     let offset = (10 + number - placeValue) % 10;
     let memo = offset * height;
@@ -43,16 +43,16 @@ export default function Counter({
   gap = 8,
   borderRadius = 4,
   horizontalPadding = 8,
-  textColor = "white",
-  fontWeight = "bold",
+  textColor = 'white',
+  fontWeight = 'bold',
   containerStyle,
   counterStyle,
   digitStyle,
   gradientHeight = 16,
-  gradientFrom = "black",
-  gradientTo = "transparent",
+  gradientFrom = 'black',
+  gradientTo = 'transparent',
   topGradientStyle,
-  bottomGradientStyle,
+  bottomGradientStyle
 }) {
   const height = fontSize + padding;
   const defaultCounterStyle = {
@@ -62,44 +62,28 @@ export default function Counter({
     paddingLeft: horizontalPadding,
     paddingRight: horizontalPadding,
     color: textColor,
-    fontWeight: fontWeight,
+    fontWeight: fontWeight
   };
   const defaultTopGradientStyle = {
     height: gradientHeight,
-    background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`,
+    background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`
   };
   const defaultBottomGradientStyle = {
     height: gradientHeight,
-    background: `linear-gradient(to top, ${gradientFrom}, ${gradientTo})`,
+    background: `linear-gradient(to top, ${gradientFrom}, ${gradientTo})`
   };
   return (
     <div className="counter-container" style={containerStyle}>
-      <div
-        className="counter-counter"
-        style={{ ...defaultCounterStyle, ...counterStyle }}
-      >
-        {places.map((place) => (
-          <Digit
-            key={place}
-            place={place}
-            value={value}
-            height={height}
-            digitStyle={digitStyle}
-          />
+      <div className="counter-counter" style={{ ...defaultCounterStyle, ...counterStyle }}>
+        {places.map(place => (
+          <Digit key={place} place={place} value={value} height={height} digitStyle={digitStyle} />
         ))}
       </div>
       <div className="gradient-container">
-        <div
-          className="top-gradient"
-          style={topGradientStyle ? topGradientStyle : defaultTopGradientStyle}
-        ></div>
+        <div className="top-gradient" style={topGradientStyle ? topGradientStyle : defaultTopGradientStyle}></div>
         <div
           className="bottom-gradient"
-          style={
-            bottomGradientStyle
-              ? bottomGradientStyle
-              : defaultBottomGradientStyle
-          }
+          style={bottomGradientStyle ? bottomGradientStyle : defaultBottomGradientStyle}
         ></div>
       </div>
     </div>

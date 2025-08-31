@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { Box } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
-import { hyperspeedPresets } from "../../content/Backgrounds/Hyperspeed/HyperSpeedPresets";
+import { useState } from 'react';
+import { Box } from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { hyperspeedPresets } from '../../content/Backgrounds/Hyperspeed/HyperSpeedPresets';
 
-import PropTable from "../../components/common/Preview/PropTable";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import Customize from "../../components/common/Preview/Customize";
-import CliInstallation from "../../components/code/CliInstallation";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import PropTable from '../../components/common/Preview/PropTable';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import Customize from '../../components/common/Preview/Customize';
+import CliInstallation from '../../components/code/CliInstallation';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import Hyperspeed from "../../content/Backgrounds/Hyperspeed/Hyperspeed";
+import Hyperspeed from '../../content/Backgrounds/Hyperspeed/Hyperspeed';
 import { hyperspeed } from '../../constants/code/Backgrounds/hyperspeedCode';
 
 const HyperspeedDemo = () => {
@@ -22,8 +22,9 @@ const HyperspeedDemo = () => {
       name: 'effectOptions',
       type: 'object',
       default: 'See the "code" tab for default values and presets.',
-      description: 'The highly customizable configuration object for the effect, controls things like colors, distortion, line properties, etc.',
-    },
+      description:
+        'The highly customizable configuration object for the effect, controls things like colors, distortion, line properties, etc.'
+    }
   ];
 
   const options = [
@@ -32,7 +33,7 @@ const HyperspeedDemo = () => {
     { value: 'three', label: 'Golden' },
     { value: 'four', label: 'Split' },
     { value: 'five', label: 'Highway' }
-  ]
+  ];
 
   return (
     <TabsLayout>
@@ -41,10 +42,7 @@ const HyperspeedDemo = () => {
           <Hyperspeed effectOptions={hyperspeedPresets[activePreset]} />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Cick & hold to see the real magic of hyperspeed!"
-          />
+          <BackgroundContent pillText="New Background" headline="Cick & hold to see the real magic of hyperspeed!" />
         </Box>
 
         <Customize>
@@ -54,7 +52,7 @@ const HyperspeedDemo = () => {
             value={activePreset}
             name="tiltDirection"
             width={150}
-            onChange={(val) => {
+            onChange={val => {
               setActivePreset(val);
             }}
           />

@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/CircularGallery/CircularGallery.tsx?r
 import tsTailwind from '@ts-tailwind/Components/CircularGallery/CircularGallery.tsx?raw';
 
 export const circularGallery = {
-  ...(generateCliCommands('Components/CircularGallery')),
+  ...generateCliCommands('Components/CircularGallery'),
   installation: `npm install ogl`,
   usage: `import CircularGallery from './CircularGallery'
 
@@ -19,4 +19,4 @@ export const circularGallery = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

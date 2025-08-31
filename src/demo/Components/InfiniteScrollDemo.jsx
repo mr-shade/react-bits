@@ -1,94 +1,94 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Separator } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Separator } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import Dependencies from "../../components/code/Dependencies";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import Ballpit from "../../content/Backgrounds/Ballpit/Ballpit";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import Dependencies from '../../components/code/Dependencies';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import Ballpit from '../../content/Backgrounds/Ballpit/Ballpit';
 
-import InfiniteScroll from "../../content/Components/InfiniteScroll/InfiniteScroll";
-import { infiniteScroll } from "../../constants/code/Components/infiniteScrollCode";
+import InfiniteScroll from '../../content/Components/InfiniteScroll/InfiniteScroll';
+import { infiniteScroll } from '../../constants/code/Components/infiniteScrollCode';
 
 const InfiniteScrollDemo = () => {
   const propData = [
     {
-      name: "width",
-      type: "string",
+      name: 'width',
+      type: 'string',
       default: '"30rem"',
-      description: "Width of the outer wrapper.",
+      description: 'Width of the outer wrapper.'
     },
     {
-      name: "maxHeight",
-      type: "string",
+      name: 'maxHeight',
+      type: 'string',
       default: '"100%"',
-      description: "Maximum height of the outer wrapper.",
+      description: 'Maximum height of the outer wrapper.'
     },
     {
-      name: "items",
-      type: "array",
-      default: "[]",
+      name: 'items',
+      type: 'array',
+      default: '[]',
       description:
-        "Array of items with custom content. Each item should have a 'content' property containing a string or React node.",
+        "Array of items with custom content. Each item should have a 'content' property containing a string or React node."
     },
     {
-      name: "itemMinHeight",
-      type: "number",
-      default: "150",
-      description: "Fixed height for each item in pixels.",
+      name: 'itemMinHeight',
+      type: 'number',
+      default: '150',
+      description: 'Fixed height for each item in pixels.'
     },
     {
-      name: "isTilted",
-      type: "boolean",
-      default: "false",
-      description: "Whether the container has a skewed perspective.",
+      name: 'isTilted',
+      type: 'boolean',
+      default: 'false',
+      description: 'Whether the container has a skewed perspective.'
     },
     {
-      name: "tiltDirection",
+      name: 'tiltDirection',
       type: '"left" | "right"',
       default: '"left"',
-      description: "Direction of the tilt if 'isTilted' is true.",
+      description: "Direction of the tilt if 'isTilted' is true."
     },
     {
-      name: "autoplay",
-      type: "boolean",
-      default: "false",
-      description: "Whether the scroll should autoplay.",
+      name: 'autoplay',
+      type: 'boolean',
+      default: 'false',
+      description: 'Whether the scroll should autoplay.'
     },
     {
-      name: "autoplaySpeed",
-      type: "number",
-      default: "20",
-      description: "Speed of autoplay in pixels/frame.",
+      name: 'autoplaySpeed',
+      type: 'number',
+      default: '20',
+      description: 'Speed of autoplay in pixels/frame.'
     },
     {
-      name: "autoplayDirection",
+      name: 'autoplayDirection',
       type: '"up" | "down"',
       default: '"down"',
-      description: "Direction of autoplay scrolling.",
+      description: 'Direction of autoplay scrolling.'
     },
     {
-      name: "pauseOnHover",
-      type: "boolean",
-      default: "false",
-      description: "Pause autoplay when hovering over the component.",
+      name: 'pauseOnHover',
+      type: 'boolean',
+      default: 'false',
+      description: 'Pause autoplay when hovering over the component.'
     },
     {
-      name: "negativeMargin",
-      type: "string",
+      name: 'negativeMargin',
+      type: 'string',
       default: '"-0.5em"',
-      description: "Negative margin to reduce spacing between items.",
-    },
+      description: 'Negative margin to reduce spacing between items.'
+    }
   ];
 
   const [isTilted, setIsTilted] = useState(true);
-  const [tiltDirection, setTiltDirection] = useState("left");
+  const [tiltDirection, setTiltDirection] = useState('left');
   const [autoplay, setAutoplay] = useState(true);
-  const [autoplayDirection, setAutoplayDirection] = useState("up");
+  const [autoplayDirection, setAutoplayDirection] = useState('up');
   const [pauseOnHover, setPauseOnHover] = useState(true);
 
   const items = [
@@ -96,36 +96,55 @@ const InfiniteScrollDemo = () => {
       content: (
         <div
           style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: "5px",
-            border: "1px solid #fff",
-            overflow: "hidden",
+            width: '100%',
+            height: '100%',
+            borderRadius: '5px',
+            border: '1px solid #fff',
+            overflow: 'hidden',
             position: 'realtive'
           }}
         >
-          <p style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: -1, fontSize: '3rem', fontWeight: 900, color: '#271E37' }}>Balls!</p>
+          <p
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: -1,
+              fontSize: '3rem',
+              fontWeight: 900,
+              color: '#271E37'
+            }}
+          >
+            Balls!
+          </p>
           <Ballpit count={50} followCursor={false} />
         </div>
-      ),
+      )
     },
     { content: <p>Paragraph Item 2</p> },
-    { content: "Text Item 3" },
+    { content: 'Text Item 3' },
     { content: <p>Paragraph Item 4</p> },
-    { content: "Text Item 5" },
+    { content: 'Text Item 5' },
     { content: <p>Paragraph Item 6</p> },
-    { content: "Text Item 7" },
+    { content: 'Text Item 7' },
     { content: <p>Paragraph Item 8</p> },
-    { content: "Text Item 9" },
+    { content: 'Text Item 9' },
     { content: <p>Paragraph Item 10</p> },
-    { content: "Text Item 11" },
+    { content: 'Text Item 11' },
     { content: <p>Paragraph Item 12</p> },
-    { content: "Text Item 13" },
-    { content: <p>Paragraph Item 14</p> },
+    { content: 'Text Item 13' },
+    { content: <p>Paragraph Item 14</p> }
   ];
 
-  const autoplayOptions = [{ value: "up", label: "Up" }, { value: "down", label: "Down" }];
-  const tiltOptions = [{ value: "left", label: "Left" }, { value: "right", label: "Right" }];
+  const autoplayOptions = [
+    { value: 'up', label: 'Up' },
+    { value: 'down', label: 'Down' }
+  ];
+  const tiltOptions = [
+    { value: 'left', label: 'Left' },
+    { value: 'right', label: 'Right' }
+  ];
 
   return (
     <TabsLayout>
@@ -162,7 +181,7 @@ const InfiniteScrollDemo = () => {
               value={tiltDirection}
               name="tiltDirection"
               width={150}
-              onChange={(val) => {
+              onChange={val => {
                 setTiltDirection(val);
               }}
             />
@@ -180,7 +199,7 @@ const InfiniteScrollDemo = () => {
                 value={autoplayDirection}
                 name="autoplayDirection"
                 width={150}
-                onChange={(val) => {
+                onChange={val => {
                   setAutoplayDirection(val);
                 }}
               />
@@ -188,14 +207,14 @@ const InfiniteScrollDemo = () => {
               <PreviewSwitch
                 title="Pause on Hover"
                 isChecked={pauseOnHover}
-                onChange={(checked) => setPauseOnHover(checked)}
+                onChange={checked => setPauseOnHover(checked)}
               />
             </>
           )}
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["gsap"]} />
+        <Dependencies dependencyList={['gsap']} />
       </PreviewTab>
 
       <CodeTab>

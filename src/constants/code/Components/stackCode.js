@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/Stack/Stack.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/Stack/Stack.tsx?raw';
 
 export const stack = {
-  ...(generateCliCommands('Components/Stack')),
+  ...generateCliCommands('Components/Stack'),
   installation: `npm install motion`,
   usage: `import Stack from './Stack'
 
@@ -30,4 +30,4 @@ const images = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

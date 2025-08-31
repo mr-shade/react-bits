@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as math from 'mathjs';
 
-import "./GradualBlur.css";
+import './GradualBlur.css';
 
 const DEFAULT_CONFIG = {
   position: 'bottom',
@@ -38,23 +38,28 @@ const PRESETS = {
 };
 
 const CURVE_FUNCTIONS = {
-  linear: (p) => p,
-  bezier: (p) => p * p * (3 - 2 * p),
-  'ease-in': (p) => p * p,
-  'ease-out': (p) => 1 - Math.pow(1 - p, 2),
-  'ease-in-out': (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
+  linear: p => p,
+  bezier: p => p * p * (3 - 2 * p),
+  'ease-in': p => p * p,
+  'ease-out': p => 1 - Math.pow(1 - p, 2),
+  'ease-in-out': p => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
 };
 
 const mergeConfigs = (...configs) => configs.reduce((acc, c) => ({ ...acc, ...c }), {});
-const getGradientDirection = (position) => ({
-  top: 'to top',
-  bottom: 'to bottom',
-  left: 'to left',
-  right: 'to right'
-}[position] || 'to bottom');
+const getGradientDirection = position =>
+  ({
+    top: 'to top',
+    bottom: 'to bottom',
+    left: 'to left',
+    right: 'to right'
+  })[position] || 'to bottom';
 
 const debounce = (fn, wait) => {
-  let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), wait); };
+  let t;
+  return (...a) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...a), wait);
+  };
 };
 
 const useResponsiveDimension = (responsive, config, key) => {
@@ -64,9 +69,12 @@ const useResponsiveDimension = (responsive, config, key) => {
     const calc = () => {
       const w = window.innerWidth;
       let v = config[key];
-      if (w <= 480 && config[`mobile${key[0].toUpperCase() + key.slice(1)}`]) v = config[`mobile${key[0].toUpperCase() + key.slice(1)}`];
-      else if (w <= 768 && config[`tablet${key[0].toUpperCase() + key.slice(1)}`]) v = config[`tablet${key[0].toUpperCase() + key.slice(1)}`];
-      else if (w <= 1024 && config[`desktop${key[0].toUpperCase() + key.slice(1)}`]) v = config[`desktop${key[0].toUpperCase() + key.slice(1)}`];
+      if (w <= 480 && config[`mobile${key[0].toUpperCase() + key.slice(1)}`])
+        v = config[`mobile${key[0].toUpperCase() + key.slice(1)}`];
+      else if (w <= 768 && config[`tablet${key[0].toUpperCase() + key.slice(1)}`])
+        v = config[`tablet${key[0].toUpperCase() + key.slice(1)}`];
+      else if (w <= 1024 && config[`desktop${key[0].toUpperCase() + key.slice(1)}`])
+        v = config[`desktop${key[0].toUpperCase() + key.slice(1)}`];
       setValue(v);
     };
     const debounced = debounce(calc, 100);
@@ -83,10 +91,7 @@ const useIntersectionObserver = (ref, shouldObserve = false) => {
   useEffect(() => {
     if (!shouldObserve || !ref.current) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.1 });
 
     observer.observe(ref.current);
     return () => observer.disconnect();
@@ -112,8 +117,8 @@ function GradualBlur(props) {
   const blurDivs = useMemo(() => {
     const divs = [];
     const increment = 100 / config.divCount;
-    const currentStrength = isHovered && config.hoverIntensity ?
-      config.strength * config.hoverIntensity : config.strength;
+    const currentStrength =
+      isHovered && config.hoverIntensity ? config.strength * config.hoverIntensity : config.strength;
 
     const curveFunc = CURVE_FUNCTIONS[config.curve] || CURVE_FUNCTIONS.linear;
 
@@ -129,7 +134,7 @@ function GradualBlur(props) {
       }
 
       const p1 = math.round((increment * i - increment) * 10) / 10;
-      const p2 = math.round((increment * i) * 10) / 10;
+      const p2 = math.round(increment * i * 10) / 10;
       const p3 = math.round((increment * i + increment) * 10) / 10;
       const p4 = math.round((increment * i + increment * 2) * 10) / 10;
 
@@ -147,8 +152,10 @@ function GradualBlur(props) {
         backdropFilter: `blur(${blurValue.toFixed(3)}rem)`,
         WebkitBackdropFilter: `blur(${blurValue.toFixed(3)}rem)`,
         opacity: config.opacity,
-        transition: config.animated && config.animated !== 'scroll' ?
-          `backdrop-filter ${config.duration} ${config.easing}` : undefined
+        transition:
+          config.animated && config.animated !== 'scroll'
+            ? `backdrop-filter ${config.duration} ${config.easing}`
+            : undefined
       };
 
       divs.push(<div key={i} style={divStyle} />);

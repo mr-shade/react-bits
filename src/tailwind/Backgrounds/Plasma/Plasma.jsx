@@ -1,14 +1,10 @@
-import { useEffect, useRef } from "react";
-import { Renderer, Program, Mesh, Triangle } from "ogl";
+import { useEffect, useRef } from 'react';
+import { Renderer, Program, Mesh, Triangle } from 'ogl';
 
-const hexToRgb = (hex) => {
+const hexToRgb = hex => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return [1, 0.5, 0.2];
-  return [
-    parseInt(result[1], 16) / 255,
-    parseInt(result[2], 16) / 255,
-    parseInt(result[3], 16) / 255,
-  ];
+  return [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255];
 };
 
 const vertex = `#version 300 es
@@ -84,12 +80,12 @@ void main() {
 }`;
 
 export const Plasma = ({
-  color = "#ffffff",
+  color = '#ffffff',
   speed = 1,
-  direction = "forward",
+  direction = 'forward',
   scale = 1,
   opacity = 1,
-  mouseInteractive = true,
+  mouseInteractive = true
 }) => {
   const containerRef = useRef(null);
   const mousePos = useRef({ x: 0, y: 0 });
@@ -100,19 +96,19 @@ export const Plasma = ({
     const useCustomColor = color ? 1.0 : 0.0;
     const customColorRgb = color ? hexToRgb(color) : [1, 1, 1];
 
-    const directionMultiplier = direction === "reverse" ? -1.0 : 1.0;
+    const directionMultiplier = direction === 'reverse' ? -1.0 : 1.0;
 
     const renderer = new Renderer({
       webgl: 2,
       alpha: true,
       antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
+      dpr: Math.min(window.devicePixelRatio || 1, 2)
     });
     const gl = renderer.gl;
     const canvas = gl.canvas;
-    canvas.style.display = "block";
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
+    canvas.style.display = 'block';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
     containerRef.current.appendChild(canvas);
 
     const geometry = new Triangle(gl);
@@ -130,13 +126,13 @@ export const Plasma = ({
         uScale: { value: scale },
         uOpacity: { value: opacity },
         uMouse: { value: new Float32Array([0, 0]) },
-        uMouseInteractive: { value: mouseInteractive ? 1.0 : 0.0 },
-      },
+        uMouseInteractive: { value: mouseInteractive ? 1.0 : 0.0 }
+      }
     });
 
     const mesh = new Mesh(gl, { geometry, program });
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = e => {
       if (!mouseInteractive) return;
       const rect = containerRef.current.getBoundingClientRect();
       mousePos.current.x = e.clientX - rect.left;
@@ -147,7 +143,7 @@ export const Plasma = ({
     };
 
     if (mouseInteractive) {
-      containerRef.current.addEventListener("mousemove", handleMouseMove);
+      containerRef.current.addEventListener('mousemove', handleMouseMove);
     }
 
     const setSize = () => {
@@ -166,10 +162,10 @@ export const Plasma = ({
 
     let raf = 0;
     const t0 = performance.now();
-    const loop = (t) => {
+    const loop = t => {
       let timeValue = (t - t0) * 0.001;
 
-      if (direction === "pingpong") {
+      if (direction === 'pingpong') {
         const cycle = Math.sin(timeValue * 0.5) * directionMultiplier;
         program.uniforms.uDirection.value = cycle;
       }
@@ -184,13 +180,13 @@ export const Plasma = ({
       cancelAnimationFrame(raf);
       ro.disconnect();
       if (mouseInteractive && containerRef.current) {
-        containerRef.current.removeEventListener("mousemove", handleMouseMove);
+        containerRef.current.removeEventListener('mousemove', handleMouseMove);
       }
       try {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         containerRef.current?.removeChild(canvas);
       } catch {
-        console.warn("Canvas already removed from container");
+        console.warn('Canvas already removed from container');
       }
     };
   }, [color, speed, direction, scale, opacity, mouseInteractive]);

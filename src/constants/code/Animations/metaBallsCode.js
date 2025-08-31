@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/MetaBalls/MetaBalls.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/MetaBalls/MetaBalls.tsx?raw';
 
 export const metaBalls = {
-  ...(generateCliCommands('Animations/MetaBalls')),
+  ...generateCliCommands('Animations/MetaBalls'),
   installation: `npm install ogl`,
   usage: `import MetaBalls from './MetaBalls';
 
@@ -28,4 +28,4 @@ export const metaBalls = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

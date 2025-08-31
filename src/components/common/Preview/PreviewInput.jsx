@@ -1,15 +1,15 @@
-import { Flex, Text, Input, Field } from "@chakra-ui/react";
+import { Flex, Text, Input, Field } from '@chakra-ui/react';
 
 const PreviewInput = ({
-  title = "",
-  value = "",
-  placeholder = "",
+  title = '',
+  value = '',
+  placeholder = '',
   width = 300,
   maxLength,
   isDisabled = false,
-  onChange,
+  onChange
 }) => {
-  const handleChange = (e) => {
+  const handleChange = e => {
     onChange?.(e.target.value);
   };
 

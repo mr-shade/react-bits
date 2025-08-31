@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/TargetCursor/TargetCursor.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/TargetCursor/TargetCursor.tsx?raw';
 
 export const targetCursor = {
-  ...(generateCliCommands('Animations/TargetCursor')),
+  ...generateCliCommands('Animations/TargetCursor'),
   usage: `import TargetCursor from './TargetCursor';
 
 export default function App() {
@@ -28,5 +28,5 @@ export default function App() {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
-}
+  tsTailwind
+};

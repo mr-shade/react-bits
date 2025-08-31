@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/LogoLoop/LogoLoop.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/LogoLoop/LogoLoop.tsx?raw';
 
 export const logoLoop = {
-  ...(generateCliCommands('Animations/LogoLoop')),
+  ...generateCliCommands('Animations/LogoLoop'),
   usage: `import LogoLoop from './LogoLoop';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 
@@ -47,5 +47,5 @@ function App() {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

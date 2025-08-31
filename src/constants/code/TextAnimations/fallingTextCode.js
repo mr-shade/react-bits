@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/FallingText/FallingText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/FallingText/FallingText.tsx?raw';
 
 export const fallingText = {
-  ...(generateCliCommands('TextAnimations/FallingText')),
+  ...generateCliCommands('TextAnimations/FallingText'),
   installation: `npm install matter-js
 
   //TS only
@@ -30,4 +30,4 @@ export const fallingText = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

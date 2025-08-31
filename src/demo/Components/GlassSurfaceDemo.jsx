@@ -1,23 +1,23 @@
-import { useState, useEffect, useRef } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import { TbBackground, TbMenu } from "react-icons/tb";
-import Lenis from "lenis";
+import { useState, useEffect, useRef } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { TbBackground, TbMenu } from 'react-icons/tb';
+import Lenis from 'lenis';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import logo from '../../assets/logos/react-bits-logo-small.svg';
 
-import { glassSurface } from "../../constants/code/Components/glassSurfaceCode";
-import GlassSurface from "../../content/Components/GlassSurface/GlassSurface";
-import DarkVeil from "../../content/Backgrounds/DarkVeil/DarkVeil";
+import { glassSurface } from '../../constants/code/Components/glassSurfaceCode';
+import GlassSurface from '../../content/Components/GlassSurface/GlassSurface';
+import DarkVeil from '../../content/Backgrounds/DarkVeil/DarkVeil';
 
 const GlassSurfaceDemo = () => {
-  const [selectedExample, setSelectedExample] = useState("scroll");
+  const [selectedExample, setSelectedExample] = useState('scroll');
   const scrollContainerRef = useRef(null);
   const lenisRef = useRef(null);
 
@@ -35,8 +35,8 @@ const GlassSurfaceDemo = () => {
   const [blueOffset, setBlueOffset] = useState(20);
 
   const exampleOptions = [
-    { value: "scroll", label: "Scroll" },
-    { value: "landingPage", label: "Landing Page" }
+    { value: 'scroll', label: 'Scroll' },
+    { value: 'landingPage', label: 'Landing Page' }
   ];
 
   const commonGlassProps = {
@@ -51,129 +51,129 @@ const GlassSurfaceDemo = () => {
     redOffset,
     greenOffset,
     blueOffset,
-    displace,
+    displace
   };
 
   const propData = [
     {
-      name: "children",
-      type: "React.ReactNode",
-      default: "undefined",
-      description: "Content to display inside the glass surface"
+      name: 'children',
+      type: 'React.ReactNode',
+      default: 'undefined',
+      description: 'Content to display inside the glass surface'
     },
     {
-      name: "width",
-      type: "number | string",
-      default: "200",
+      name: 'width',
+      type: 'number | string',
+      default: '200',
       description: "Width of the glass surface (pixels or CSS value like '100%')"
     },
     {
-      name: "height",
-      type: "number | string",
-      default: "80",
+      name: 'height',
+      type: 'number | string',
+      default: '80',
       description: "Height of the glass surface (pixels or CSS value like '100vh')"
     },
     {
-      name: "borderRadius",
-      type: "number",
-      default: "20",
-      description: "Border radius in pixels"
+      name: 'borderRadius',
+      type: 'number',
+      default: '20',
+      description: 'Border radius in pixels'
     },
     {
-      name: "borderWidth",
-      type: "number",
-      default: "0.07",
-      description: "Border width factor for displacement map"
+      name: 'borderWidth',
+      type: 'number',
+      default: '0.07',
+      description: 'Border width factor for displacement map'
     },
     {
-      name: "brightness",
-      type: "number",
-      default: "50",
-      description: "Brightness percentage for displacement map"
+      name: 'brightness',
+      type: 'number',
+      default: '50',
+      description: 'Brightness percentage for displacement map'
     },
     {
-      name: "opacity",
-      type: "number",
-      default: "0.93",
-      description: "Opacity of displacement map elements"
+      name: 'opacity',
+      type: 'number',
+      default: '0.93',
+      description: 'Opacity of displacement map elements'
     },
     {
-      name: "blur",
-      type: "number",
-      default: "11",
-      description: "Input blur amount in pixels"
+      name: 'blur',
+      type: 'number',
+      default: '11',
+      description: 'Input blur amount in pixels'
     },
     {
-      name: "displace",
-      type: "number",
-      default: "0",
-      description: "Output blur (stdDeviation)"
+      name: 'displace',
+      type: 'number',
+      default: '0',
+      description: 'Output blur (stdDeviation)'
     },
     {
-      name: "backgroundOpacity",
-      type: "number",
-      default: "0",
-      description: "Background frost opacity (0-1)"
+      name: 'backgroundOpacity',
+      type: 'number',
+      default: '0',
+      description: 'Background frost opacity (0-1)'
     },
     {
-      name: "saturation",
-      type: "number",
-      default: "1",
-      description: "Backdrop filter saturation factor"
+      name: 'saturation',
+      type: 'number',
+      default: '1',
+      description: 'Backdrop filter saturation factor'
     },
     {
-      name: "distortionScale",
-      type: "number",
-      default: "-180",
-      description: "Main displacement scale"
+      name: 'distortionScale',
+      type: 'number',
+      default: '-180',
+      description: 'Main displacement scale'
     },
     {
-      name: "redOffset",
-      type: "number",
-      default: "0",
-      description: "Red channel extra displacement offset"
+      name: 'redOffset',
+      type: 'number',
+      default: '0',
+      description: 'Red channel extra displacement offset'
     },
     {
-      name: "greenOffset",
-      type: "number",
-      default: "10",
-      description: "Green channel extra displacement offset"
+      name: 'greenOffset',
+      type: 'number',
+      default: '10',
+      description: 'Green channel extra displacement offset'
     },
     {
-      name: "blueOffset",
-      type: "number",
-      default: "20",
-      description: "Blue channel extra displacement offset"
+      name: 'blueOffset',
+      type: 'number',
+      default: '20',
+      description: 'Blue channel extra displacement offset'
     },
     {
-      name: "xChannel",
+      name: 'xChannel',
       type: "'R' | 'G' | 'B'",
       default: "'R'",
-      description: "X displacement channel selector"
+      description: 'X displacement channel selector'
     },
     {
-      name: "yChannel",
+      name: 'yChannel',
       type: "'R' | 'G' | 'B'",
       default: "'G'",
-      description: "Y displacement channel selector"
+      description: 'Y displacement channel selector'
     },
     {
-      name: "mixBlendMode",
-      type: "BlendMode",
+      name: 'mixBlendMode',
+      type: 'BlendMode',
       default: "'difference'",
-      description: "Mix blend mode for displacement map"
+      description: 'Mix blend mode for displacement map'
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: "''",
-      description: "Additional CSS class names"
+      description: 'Additional CSS class names'
     },
     {
-      name: "style",
-      type: "React.CSSProperties",
-      default: "{}",
-      description: "Inline styles object"
+      name: 'style',
+      type: 'React.CSSProperties',
+      default: '{}',
+      description: 'Inline styles object'
     }
   ];
 
@@ -187,7 +187,8 @@ const GlassSurfaceDemo = () => {
     }
 
     const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    const isReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isReducedMotion =
+      typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const shouldUseNative = isTouch || isReducedMotion;
 
     if (shouldUseNative) {
@@ -205,7 +206,7 @@ const GlassSurfaceDemo = () => {
       wrapper: el,
       content: el.firstElementChild,
       duration: 2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
@@ -213,11 +214,11 @@ const GlassSurfaceDemo = () => {
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
       infinite: false,
-      lerp: 0.1,
+      lerp: 0.1
     });
     lenisRef.current = lenis;
 
-    const raf = (time) => {
+    const raf = time => {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     };
@@ -245,7 +246,7 @@ const GlassSurfaceDemo = () => {
             overflow: 'hidden'
           }}
         >
-          {selectedExample === "scroll" && (
+          {selectedExample === 'scroll' && (
             <>
               <GlassSurface
                 width={360}
@@ -259,15 +260,7 @@ const GlassSurfaceDemo = () => {
                 }}
               />
 
-              <Flex
-                gap={16}
-                alignItems="center"
-                direction="column"
-                position="absolute"
-                top={0}
-                left={0}
-                right={0}
-              >
+              <Flex gap={16} alignItems="center" direction="column" position="absolute" top={0} left={0} right={0}>
                 <Text
                   position="absolute"
                   left="50%"
@@ -287,26 +280,20 @@ const GlassSurfaceDemo = () => {
 
                 {[
                   {
-                    src: "https://images.unsplash.com/photo-1500673587002-1d2548cfba1b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    text: "The Summer Of Glass"
+                    src: 'https://images.unsplash.com/photo-1500673587002-1d2548cfba1b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    text: 'The Summer Of Glass'
                   },
                   {
-                    src: "https://images.unsplash.com/photo-1594576547505-1be67997401e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    text: "Can Hold Any Content"
+                    src: 'https://images.unsplash.com/photo-1594576547505-1be67997401e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    text: 'Can Hold Any Content'
                   },
                   {
-                    src: "https://images.unsplash.com/photo-1543127172-4b33cb699e35?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    text: "Has Built-In Fallback"
+                    src: 'https://images.unsplash.com/photo-1543127172-4b33cb699e35?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    text: 'Has Built-In Fallback'
                   }
                 ].map((item, index) => (
                   <Box key={index} position="relative">
-                    <Image
-                      w="500px"
-                      borderRadius="20px"
-                      objectFit="cover"
-                      src={item.src}
-                      filter="grayscale(100%)"
-                    />
+                    <Image w="500px" borderRadius="20px" objectFit="cover" src={item.src} filter="grayscale(100%)" />
                     <Text
                       position="absolute"
                       top="50%"
@@ -331,7 +318,7 @@ const GlassSurfaceDemo = () => {
             </>
           )}
 
-          {selectedExample === "landingPage" && (
+          {selectedExample === 'landingPage' && (
             <>
               <Box
                 w="100%"
@@ -346,41 +333,15 @@ const GlassSurfaceDemo = () => {
                 <DarkVeil speed={2} hueShift={180} noiseIntensity={0.05} />
               </Box>
 
-              <Box
-                position="absolute"
-                top="2em"
-                left={0}
-                width="100%"
-                height="60px"
-                zIndex={0}
-                pointerEvents="none"
-              >
-                <GlassSurface
-                  className="custom-glass-surface"
-                  width="90%"
-                  height={60}
-                  {...commonGlassProps}
-                >
-                  <img
-                    src={logo}
-                    alt="React Bits Logo"
-                    style={{ height: '24px', borderRadius: '50px' }}
-                  />
+              <Box position="absolute" top="2em" left={0} width="100%" height="60px" zIndex={0} pointerEvents="none">
+                <GlassSurface className="custom-glass-surface" width="90%" height={60} {...commonGlassProps}>
+                  <img src={logo} alt="React Bits Logo" style={{ height: '24px', borderRadius: '50px' }} />
 
-                  <Box
-                    display={{ base: "flex", md: "none" }}
-                    alignItems="center"
-                    color="white"
-                  >
+                  <Box display={{ base: 'flex', md: 'none' }} alignItems="center" color="white">
                     <TbMenu size={20} />
                   </Box>
 
-                  <Box
-                    display={{ base: "none", md: "flex" }}
-                    alignItems="center"
-                    gap={6}
-                    fontWeight={600}
-                  >
+                  <Box display={{ base: 'none', md: 'flex' }} alignItems="center" gap={6} fontWeight={600}>
                     <Text color="white" fontSize="14px" display="flex" alignItems="center">
                       Home
                     </Text>
@@ -404,11 +365,7 @@ const GlassSurfaceDemo = () => {
                 zIndex={1}
                 pointerEvents="none"
               >
-                <GlassSurface
-                  height={40}
-                  width={160}
-                  {...commonGlassProps}
-                >
+                <GlassSurface height={40} width={160} {...commonGlassProps}>
                   <TbBackground />
                   <Text ml={1}>Super Shiny</Text>
                 </GlassSurface>
@@ -441,19 +398,14 @@ const GlassSurfaceDemo = () => {
                     cursor="pointer"
                     _hover={{
                       bg: 'gray.100',
-                      transform: 'translateY(-1px)',
+                      transform: 'translateY(-1px)'
                     }}
                     transition="all 0.2s ease"
                   >
                     Get Started
                   </Box>
 
-                  <GlassSurface
-                    height={44.98}
-                    width={154.31}
-                    borderRadius={100}
-                    {...commonGlassProps}
-                  >
+                  <GlassSurface height={44.98} width={154.31} borderRadius={100} {...commonGlassProps}>
                     Learn More
                   </GlassSurface>
                 </Box>
@@ -490,14 +442,7 @@ const GlassSurfaceDemo = () => {
             onChange={setBackgroundOpacity}
           />
 
-          <PreviewSlider
-            title="Saturation"
-            min={0}
-            max={3}
-            step={0.1}
-            value={saturation}
-            onChange={setSaturation}
-          />
+          <PreviewSlider title="Saturation" min={0} max={3} step={0.1} value={saturation} onChange={setSaturation} />
 
           <PreviewSlider
             title="Border Width"
@@ -518,33 +463,11 @@ const GlassSurfaceDemo = () => {
             onChange={setBrightness}
           />
 
-          <PreviewSlider
-            title="Opacity"
-            min={0}
-            max={1}
-            step={0.01}
-            value={opacity}
-            onChange={setOpacity}
-          />
+          <PreviewSlider title="Opacity" min={0} max={1} step={0.01} value={opacity} onChange={setOpacity} />
 
-          <PreviewSlider
-            title="Blur"
-            min={0}
-            max={30}
-            step={1}
-            value={blur}
-            valueUnit="px"
-            onChange={setBlur}
-          />
+          <PreviewSlider title="Blur" min={0} max={30} step={1} value={blur} valueUnit="px" onChange={setBlur} />
 
-          <PreviewSlider
-            title="Displace"
-            min={0}
-            max={5}
-            step={0.1}
-            value={displace}
-            onChange={setDisplace}
-          />
+          <PreviewSlider title="Displace" min={0} max={5} step={0.1} value={displace} onChange={setDisplace} />
 
           <PreviewSlider
             title="Distortion Scale"
@@ -555,14 +478,7 @@ const GlassSurfaceDemo = () => {
             onChange={setDistortionScale}
           />
 
-          <PreviewSlider
-            title="Red Offset"
-            min={-50}
-            max={50}
-            step={1}
-            value={redOffset}
-            onChange={setRedOffset}
-          />
+          <PreviewSlider title="Red Offset" min={-50} max={50} step={1} value={redOffset} onChange={setRedOffset} />
 
           <PreviewSlider
             title="Green Offset"
@@ -573,14 +489,7 @@ const GlassSurfaceDemo = () => {
             onChange={setGreenOffset}
           />
 
-          <PreviewSlider
-            title="Blue Offset"
-            min={-50}
-            max={50}
-            step={1}
-            value={blueOffset}
-            onChange={setBlueOffset}
-          />
+          <PreviewSlider title="Blue Offset" min={-50} max={50} step={1} value={blueOffset} onChange={setBlueOffset} />
         </Customize>
 
         <PropTable data={propData} />

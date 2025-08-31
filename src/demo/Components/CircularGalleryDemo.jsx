@@ -1,17 +1,17 @@
-import { Box } from "@chakra-ui/react";
-import { useState } from "react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { Box } from '@chakra-ui/react';
+import { useState } from 'react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import CliInstallation from "../../components/code/CliInstallation";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PropTable from "../../components/common/Preview/PropTable";
-import useForceRerender from "../../hooks/useForceRerender";
+import CliInstallation from '../../components/code/CliInstallation';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PropTable from '../../components/common/Preview/PropTable';
+import useForceRerender from '../../hooks/useForceRerender';
 
-import { circularGallery } from "../../constants/code/Components/circularGalleryCode";
-import CircularGallery from "../../content/Components/CircularGallery/CircularGallery";
+import { circularGallery } from '../../constants/code/Components/circularGalleryCode';
+import CircularGallery from '../../content/Components/CircularGallery/CircularGallery';
 
 const CircularGalleryDemo = () => {
   const [bend, setBend] = useState(1);
@@ -23,44 +23,44 @@ const CircularGalleryDemo = () => {
 
   const propData = [
     {
-      name: "items",
-      type: "Array<{ image: string; text: string }>",
-      default: "undefined",
-      description: "List of items to display in the gallery. Each item should have an image URL and a text label.",
+      name: 'items',
+      type: 'Array<{ image: string; text: string }>',
+      default: 'undefined',
+      description: 'List of items to display in the gallery. Each item should have an image URL and a text label.'
     },
     {
-      name: "bend",
-      type: "number",
-      default: "3",
+      name: 'bend',
+      type: 'number',
+      default: '3',
       description:
-        "Determines the curvature of the gallery layout. A negative value bends in one direction, a positive value in the opposite.",
+        'Determines the curvature of the gallery layout. A negative value bends in one direction, a positive value in the opposite.'
     },
     {
-      name: "textColor",
-      type: "string",
+      name: 'textColor',
+      type: 'string',
       default: '"#ffffff"',
-      description: "Specifies the color of the text labels.",
+      description: 'Specifies the color of the text labels.'
     },
     {
-      name: "borderRadius",
-      type: "number",
-      default: "0.05",
-      description: "Sets the border radius for the media items to achieve rounded corners.",
+      name: 'borderRadius',
+      type: 'number',
+      default: '0.05',
+      description: 'Sets the border radius for the media items to achieve rounded corners.'
     },
     {
-      name: "scrollSpeed",
-      type: "number",
-      default: "2",
+      name: 'scrollSpeed',
+      type: 'number',
+      default: '2',
       description:
-        "Controls how much the gallery moves per scroll event. Lower values result in slower scrolling, higher values in faster scrolling.",
+        'Controls how much the gallery moves per scroll event. Lower values result in slower scrolling, higher values in faster scrolling.'
     },
     {
-      name: "scrollEase",
-      type: "number",
-      default: "0.05",
+      name: 'scrollEase',
+      type: 'number',
+      default: '0.05',
       description:
-        "Controls the smoothness of scroll transitions. Lower values create smoother, more fluid motion, while higher values make it more responsive.",
-    },
+        'Controls the smoothness of scroll transitions. Lower values create smoother, more fluid motion, while higher values make it more responsive.'
+    }
   ];
 
   return (
@@ -83,7 +83,7 @@ const CircularGalleryDemo = () => {
             max={10}
             step={1}
             value={bend}
-            onChange={(val) => {
+            onChange={val => {
               setBend(val);
               forceRerender();
             }}
@@ -95,7 +95,7 @@ const CircularGalleryDemo = () => {
             max={0.5}
             step={0.01}
             value={borderRadius}
-            onChange={(val) => {
+            onChange={val => {
               setBorderRadius(val);
               forceRerender();
             }}
@@ -107,7 +107,7 @@ const CircularGalleryDemo = () => {
             max={5}
             step={0.1}
             value={scrollSpeed}
-            onChange={(val) => {
+            onChange={val => {
               setScrollSpeed(val);
               forceRerender();
             }}
@@ -119,7 +119,7 @@ const CircularGalleryDemo = () => {
             max={0.15}
             step={0.01}
             value={scrollEase}
-            onChange={(val) => {
+            onChange={val => {
               setScrollEase(val);
               forceRerender();
             }}
@@ -127,7 +127,7 @@ const CircularGalleryDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["ogl"]} />
+        <Dependencies dependencyList={['ogl']} />
       </PreviewTab>
 
       <CodeTab>

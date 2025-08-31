@@ -1,13 +1,7 @@
-import {
-  animate,
-  motion,
-  useMotionValue,
-  useMotionValueEvent,
-  useTransform,
-} from "motion/react";
-import { useEffect, useRef, useState } from "react";
-import { Icon } from "@chakra-ui/react";
-import { RiVolumeDownFill, RiVolumeUpFill } from "react-icons/ri";
+import { animate, motion, useMotionValue, useMotionValueEvent, useTransform } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { Icon } from '@chakra-ui/react';
+import { RiVolumeDownFill, RiVolumeUpFill } from 'react-icons/ri';
 
 import './ElasticSlider.css';
 
@@ -17,11 +11,11 @@ export default function ElasticSlider({
   defaultValue = 50,
   startingValue = 0,
   maxValue = 100,
-  className = "",
+  className = '',
   isStepped = false,
   stepSize = 1,
   leftIcon = <Icon as={RiVolumeDownFill} />,
-  rightIcon = <Icon as={RiVolumeUpFill} />,
+  rightIcon = <Icon as={RiVolumeUpFill} />
 }) {
   return (
     <div className={`slider-container ${className}`}>
@@ -38,18 +32,10 @@ export default function ElasticSlider({
   );
 }
 
-function Slider({
-  defaultValue,
-  startingValue,
-  maxValue,
-  isStepped,
-  stepSize,
-  leftIcon,
-  rightIcon,
-}) {
+function Slider({ defaultValue, startingValue, maxValue, isStepped, stepSize, leftIcon, rightIcon }) {
   const [value, setValue] = useState(defaultValue);
   const sliderRef = useRef(null);
-  const [region, setRegion] = useState("middle");
+  const [region, setRegion] = useState('middle');
   const clientX = useMotionValue(0);
   const overflow = useMotionValue(0);
   const scale = useMotionValue(1);
@@ -58,19 +44,19 @@ function Slider({
     setValue(defaultValue);
   }, [defaultValue]);
 
-  useMotionValueEvent(clientX, "change", (latest) => {
+  useMotionValueEvent(clientX, 'change', latest => {
     if (sliderRef.current) {
       const { left, right } = sliderRef.current.getBoundingClientRect();
       let newValue;
 
       if (latest < left) {
-        setRegion("left");
+        setRegion('left');
         newValue = left - latest;
       } else if (latest > right) {
-        setRegion("right");
+        setRegion('right');
         newValue = latest - right;
       } else {
-        setRegion("middle");
+        setRegion('middle');
         newValue = 0;
       }
 
@@ -78,7 +64,7 @@ function Slider({
     }
   });
 
-  const handlePointerMove = (e) => {
+  const handlePointerMove = e => {
     if (e.buttons > 0 && sliderRef.current) {
       const { left, width } = sliderRef.current.getBoundingClientRect();
       let newValue = startingValue + ((e.clientX - left) / width) * (maxValue - startingValue);
@@ -93,13 +79,13 @@ function Slider({
     }
   };
 
-  const handlePointerDown = (e) => {
+  const handlePointerDown = e => {
     handlePointerMove(e);
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
   const handlePointerUp = () => {
-    animate(overflow, 0, { type: "spring", bounce: 0.5 });
+    animate(overflow, 0, { type: 'spring', bounce: 0.5 });
   };
 
   const getRangePercentage = () => {
@@ -118,19 +104,17 @@ function Slider({
         onTouchEnd={() => animate(scale, 1)}
         style={{
           scale,
-          opacity: useTransform(scale, [1, 1.2], [0.7, 1]),
+          opacity: useTransform(scale, [1, 1.2], [0.7, 1])
         }}
         className="slider-wrapper"
       >
         <motion.div
           animate={{
-            scale: region === "left" ? [1, 1.4, 1] : 1,
-            transition: { duration: 0.25 },
+            scale: region === 'left' ? [1, 1.4, 1] : 1,
+            transition: { duration: 0.25 }
           }}
           style={{
-            x: useTransform(() =>
-              region === "left" ? -overflow.get() / scale.get() : 0,
-            ),
+            x: useTransform(() => (region === 'left' ? -overflow.get() / scale.get() : 0))
           }}
         >
           {leftIcon}
@@ -155,33 +139,28 @@ function Slider({
               transformOrigin: useTransform(() => {
                 if (sliderRef.current) {
                   const { left, width } = sliderRef.current.getBoundingClientRect();
-                  return clientX.get() < left + width / 2 ? "right" : "left";
+                  return clientX.get() < left + width / 2 ? 'right' : 'left';
                 }
               }),
               height: useTransform(scale, [1, 1.2], [6, 12]),
               marginTop: useTransform(scale, [1, 1.2], [0, -3]),
-              marginBottom: useTransform(scale, [1, 1.2], [0, -3]),
+              marginBottom: useTransform(scale, [1, 1.2], [0, -3])
             }}
             className="slider-track-wrapper"
           >
             <div className="slider-track">
-              <div
-                className="slider-range"
-                style={{ width: `${getRangePercentage()}%` }}
-              />
+              <div className="slider-range" style={{ width: `${getRangePercentage()}%` }} />
             </div>
           </motion.div>
         </div>
 
         <motion.div
           animate={{
-            scale: region === "right" ? [1, 1.4, 1] : 1,
-            transition: { duration: 0.25 },
+            scale: region === 'right' ? [1, 1.4, 1] : 1,
+            transition: { duration: 0.25 }
           }}
           style={{
-            x: useTransform(() =>
-              region === "right" ? overflow.get() / scale.get() : 0,
-            ),
+            x: useTransform(() => (region === 'right' ? overflow.get() / scale.get() : 0))
           }}
         >
           {rightIcon}

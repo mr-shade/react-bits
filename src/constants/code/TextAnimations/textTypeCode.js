@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/TextType/TextType.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/TextType/TextType.tsx?raw';
 
 export const textType = {
-  ...(generateCliCommands('TextAnimations/TextType')),
+  ...generateCliCommands('TextAnimations/TextType'),
   installation: `npm install gsap`,
   usage: `import TextType from './TextType';
 
@@ -23,4 +23,4 @@ export const textType = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

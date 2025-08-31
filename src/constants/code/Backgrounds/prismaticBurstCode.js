@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/PrismaticBurst/PrismaticBurst.tsx?ra
 import tsTailwind from '@ts-tailwind/Backgrounds/PrismaticBurst/PrismaticBurst.tsx?raw';
 
 export const prismaticBurst = {
-  ...(generateCliCommands('Backgrounds/PrismaticBurst')),
+  ...generateCliCommands('Backgrounds/PrismaticBurst'),
   installation: `npm install ogl`,
   usage: `import PrismaticBurst from './PrismaticBurst';
 
@@ -29,5 +29,5 @@ export const prismaticBurst = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

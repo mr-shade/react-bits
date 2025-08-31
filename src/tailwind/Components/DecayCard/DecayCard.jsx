@@ -1,12 +1,7 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
-const DecayCard = ({
-  width = 300,
-  height = 400,
-  image = 'https://picsum.photos/300/400?grayscale',
-  children,
-}) => {
+const DecayCard = ({ width = 300, height = 400, image = 'https://picsum.photos/300/400?grayscale', children }) => {
   const svgRef = useRef(null);
   const displacementMapRef = useRef(null);
   const cursor = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
@@ -22,34 +17,22 @@ const DecayCard = ({
       winsize.current = { width: window.innerWidth, height: window.innerHeight };
     };
 
-    const handleMouseMove = (ev) => {
+    const handleMouseMove = ev => {
       cursor.current = { x: ev.clientX, y: ev.clientY };
     };
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
 
     const imgValues = {
       imgTransforms: { x: 0, y: 0, rz: 0 },
-      displacementScale: 0,
+      displacementScale: 0
     };
 
     const render = () => {
-      let targetX = lerp(
-        imgValues.imgTransforms.x,
-        map(cursor.current.x, 0, winsize.current.width, -120, 120),
-        0.1
-      );
-      let targetY = lerp(
-        imgValues.imgTransforms.y,
-        map(cursor.current.y, 0, winsize.current.height, -120, 120),
-        0.1
-      );
-      let targetRz = lerp(
-        imgValues.imgTransforms.rz,
-        map(cursor.current.x, 0, winsize.current.width, -10, 10),
-        0.1
-      );
+      let targetX = lerp(imgValues.imgTransforms.x, map(cursor.current.x, 0, winsize.current.width, -120, 120), 0.1);
+      let targetY = lerp(imgValues.imgTransforms.y, map(cursor.current.y, 0, winsize.current.height, -120, 120), 0.1);
+      let targetRz = lerp(imgValues.imgTransforms.rz, map(cursor.current.x, 0, winsize.current.width, -10, 10), 0.1);
 
       const bound = 50;
       if (targetX > bound) targetX = bound + (targetX - bound) * 0.2;
@@ -65,7 +48,7 @@ const DecayCard = ({
         gsap.set(svgRef.current, {
           x: imgValues.imgTransforms.x,
           y: imgValues.imgTransforms.y,
-          rotateZ: imgValues.imgTransforms.rz,
+          rotateZ: imgValues.imgTransforms.rz
         });
       }
 
@@ -93,17 +76,13 @@ const DecayCard = ({
     render();
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
   return (
-    <div
-      ref={svgRef}
-      className="relative"
-      style={{ width: `${width}px`, height: `${height}px` }}
-    >
+    <div ref={svgRef} className="relative" style={{ width: `${width}px`, height: `${height}px` }}>
       <svg
         viewBox="-60 -75 720 900"
         preserveAspectRatio="xMidYMid slice"

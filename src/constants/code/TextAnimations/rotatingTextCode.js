@@ -6,9 +6,8 @@ import tailwind from '@tailwind/TextAnimations/RotatingText/RotatingText.jsx?raw
 import tsCode from '@ts-default/TextAnimations/RotatingText/RotatingText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/RotatingText/RotatingText.tsx?raw';
 
-
 export const rotatingText = {
-  ...(generateCliCommands('TextAnimations/RotatingText')),
+  ...generateCliCommands('TextAnimations/RotatingText'),
   installation: `npm install motion`,
   usage: `import RotatingText from './RotatingText'
   
@@ -29,4 +28,4 @@ export const rotatingText = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

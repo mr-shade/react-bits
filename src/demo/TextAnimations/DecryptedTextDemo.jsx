@@ -1,109 +1,109 @@
-import { useState } from "react";
-import { Box, Flex, Separator } from "@chakra-ui/react";
-import { toast } from "sonner";
-import { TabsLayout, PreviewTab, CodeTab, CliTab } from "../../components/common/TabsLayout";
+import { useState } from 'react';
+import { Box, Flex, Separator } from '@chakra-ui/react';
+import { toast } from 'sonner';
+import { TabsLayout, PreviewTab, CodeTab, CliTab } from '../../components/common/TabsLayout';
 
-import CliInstallation from "../../components/code/CliInstallation";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import PropTable from "../../components/common/Preview/PropTable";
-import RefreshButton from "../../components/common/Preview/RefreshButton";
-import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import Customize from "../../components/common/Preview/Customize";
+import CliInstallation from '../../components/code/CliInstallation';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import PropTable from '../../components/common/Preview/PropTable';
+import RefreshButton from '../../components/common/Preview/RefreshButton';
+import useForceRerender from '../../hooks/useForceRerender';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import Customize from '../../components/common/Preview/Customize';
 
-import DecryptedText from "../../content/TextAnimations/DecryptedText/DecryptedText";
-import { decryptedText } from "../../constants/code/TextAnimations/decryptedTextCode";
+import DecryptedText from '../../content/TextAnimations/DecryptedText/DecryptedText';
+import { decryptedText } from '../../constants/code/TextAnimations/decryptedTextCode';
 
 const DecryptedTextDemo = () => {
   const [speed, setSpeed] = useState(60);
   const [maxIterations, setMaxIterations] = useState(10);
   const [sequential, setSequential] = useState(true);
   const [useOriginalCharsOnly, setUseOriginalCharsOnly] = useState(false);
-  const [revealDirection, setRevealDirection] = useState("start");
-  const [animateOn, setAnimateOn] = useState("view");
+  const [revealDirection, setRevealDirection] = useState('start');
+  const [animateOn, setAnimateOn] = useState('view');
 
   const [key, forceRerender] = useForceRerender();
 
   const propData = [
     {
-      name: "text",
-      type: "string",
+      name: 'text',
+      type: 'string',
       default: '""',
-      description: "The text content to decrypt.",
+      description: 'The text content to decrypt.'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "50",
-      description: "Time in ms between each iteration.",
+      name: 'speed',
+      type: 'number',
+      default: '50',
+      description: 'Time in ms between each iteration.'
     },
     {
-      name: "maxIterations",
-      type: "number",
-      default: "10",
-      description: "Max # of random iterations (non-sequential mode).",
+      name: 'maxIterations',
+      type: 'number',
+      default: '10',
+      description: 'Max # of random iterations (non-sequential mode).'
     },
     {
-      name: "sequential",
-      type: "boolean",
-      default: "false",
-      description: "Whether to reveal one character at a time in sequence.",
+      name: 'sequential',
+      type: 'boolean',
+      default: 'false',
+      description: 'Whether to reveal one character at a time in sequence.'
     },
     {
-      name: "revealDirection",
+      name: 'revealDirection',
       type: `"start" | "end" | "center"`,
       default: `"start"`,
-      description:
-        "From which position characters begin to reveal in sequential mode.",
+      description: 'From which position characters begin to reveal in sequential mode.'
     },
     {
-      name: "useOriginalCharsOnly",
-      type: "boolean",
-      default: "false",
-      description:
-        "Restrict scrambling to only the characters already in the text.",
+      name: 'useOriginalCharsOnly',
+      type: 'boolean',
+      default: 'false',
+      description: 'Restrict scrambling to only the characters already in the text.'
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: '""',
-      description: "CSS class for revealed characters.",
+      description: 'CSS class for revealed characters.'
     },
     {
-      name: "parentClassName",
-      type: "string",
+      name: 'parentClassName',
+      type: 'string',
       default: '""',
-      description: "CSS class for the main characters container.",
+      description: 'CSS class for the main characters container.'
     },
     {
-      name: "encryptedClassName",
-      type: "string",
+      name: 'encryptedClassName',
+      type: 'string',
       default: '""',
-      description: "CSS class for encrypted characters.",
+      description: 'CSS class for encrypted characters.'
     },
     {
-      name: "animateOn",
+      name: 'animateOn',
       type: `"view" | "hover"`,
       default: `"hover"`,
-      description: "Trigger scrambling on hover or scroll-into-view.",
-    },
+      description: 'Trigger scrambling on hover or scroll-into-view.'
+    }
   ];
 
-  const animateOptions = [{ label: "View", value: "view" }, { label: "Hover", value: "hover" }];
-  const directionOptions = [{ label: "Start", value: "start" }, { label: "End", value: "end" }, { label: "Center", value: "center" }];
+  const animateOptions = [
+    { label: 'View', value: 'view' },
+    { label: 'Hover', value: 'hover' }
+  ];
+  const directionOptions = [
+    { label: 'Start', value: 'start' },
+    { label: 'End', value: 'end' },
+    { label: 'Center', value: 'center' }
+  ];
 
   return (
     <TabsLayout>
       <PreviewTab>
-        <Box
-          position="relative"
-          py={{ md: 6, sm: 4 }}
-          className="demo-container"
-          overflow="hidden"
-        >
+        <Box position="relative" py={{ md: 6, sm: 4 }} className="demo-container" overflow="hidden">
           <RefreshButton onClick={forceRerender} />
           <Flex
             pl={{ md: 6, sm: 3 }}
@@ -153,7 +153,7 @@ const DecryptedTextDemo = () => {
               parentClassName="decrypted-text"
               useOriginalCharsOnly={useOriginalCharsOnly}
               animateOn={animateOn}
-              onAnimationComplete={() => toast("✅ Animation Finished!")}
+              onAnimationComplete={() => toast('✅ Animation Finished!')}
             />
           </Flex>
         </Box>
@@ -163,7 +163,7 @@ const DecryptedTextDemo = () => {
             <PreviewSwitch
               title="Sequential"
               isChecked={sequential}
-              onChange={(checked) => {
+              onChange={checked => {
                 setSequential(checked);
                 forceRerender();
               }}
@@ -172,7 +172,7 @@ const DecryptedTextDemo = () => {
             <PreviewSwitch
               title="Original Chars"
               isChecked={useOriginalCharsOnly}
-              onChange={(checked) => {
+              onChange={checked => {
                 setUseOriginalCharsOnly(checked);
                 forceRerender();
               }}
@@ -188,7 +188,7 @@ const DecryptedTextDemo = () => {
               value={animateOn}
               name="animateOn"
               width={100}
-              onChange={(val) => {
+              onChange={val => {
                 setAnimateOn(val);
                 forceRerender();
               }}
@@ -200,7 +200,7 @@ const DecryptedTextDemo = () => {
               value={revealDirection}
               name="direction"
               width={100}
-              onChange={(val) => {
+              onChange={val => {
                 setRevealDirection(val);
                 forceRerender();
               }}
@@ -217,7 +217,7 @@ const DecryptedTextDemo = () => {
               step={10}
               value={speed}
               valueUnit="ms"
-              onChange={(val) => {
+              onChange={val => {
                 setSpeed(val);
                 forceRerender();
               }}
@@ -229,7 +229,7 @@ const DecryptedTextDemo = () => {
               max={50}
               step={1}
               value={maxIterations}
-              onChange={(val) => {
+              onChange={val => {
                 setMaxIterations(val);
                 forceRerender();
               }}
@@ -238,7 +238,7 @@ const DecryptedTextDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["motion"]} />
+        <Dependencies dependencyList={['motion']} />
       </PreviewTab>
 
       <CodeTab>

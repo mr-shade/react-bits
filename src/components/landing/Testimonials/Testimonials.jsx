@@ -72,18 +72,11 @@ const Testimonials = () => {
   const row3Tweets = tweets.slice(6, 9);
 
   const TweetCard = ({ tweet }) => (
-    <div
-      className="testimonial-card"
-      onClick={() => window.open(tweet.url, '_blank')}
-    >
+    <div className="testimonial-card" onClick={() => window.open(tweet.url, '_blank')}>
       <div className="testimonial-content">
         <p className="testimonial-text">{tweet.text}</p>
         <div className="testimonial-author">
-          <img
-            src={tweet.avatar}
-            alt="Avatar"
-            className="testimonial-avatar"
-          />
+          <img src={tweet.avatar} alt="Avatar" className="testimonial-avatar" />
           <span className="testimonial-handle">{tweet.handle}</span>
         </div>
       </div>
@@ -95,10 +88,7 @@ const Testimonials = () => {
 
     return (
       <div className="testimonial-row">
-        <div
-          className={`testimonial-marquee testimonial-marquee-${direction}`}
-          style={{ '--speed': `${speed}s` }}
-        >
+        <div className={`testimonial-marquee testimonial-marquee-${direction}`} style={{ '--speed': `${speed}s` }}>
           {duplicatedTweets.map((tweet, index) => (
             <TweetCard key={`${tweet.id}-${index}`} tweet={tweet} />
           ))}
@@ -112,9 +102,7 @@ const Testimonials = () => {
       <div className="testimonials-container">
         <div className="testimonials-header">
           <h3 className="testimonials-title">Loved by devs worldwide</h3>
-          <p className="testimonials-subtitle">
-            See what developers are saying about React Bits
-          </p>
+          <p className="testimonials-subtitle">See what developers are saying about React Bits</p>
         </div>
 
         <div className="testimonials-marquee-container">

@@ -15,7 +15,11 @@
   box-sizing: border-box;
 }
 
-.sphere, .item, .item__image { transform-style: preserve-3d; }
+.sphere,
+.item,
+.item__image {
+  transform-style: preserve-3d;
+}
 
 main.sphere-main {
   position: absolute;
@@ -75,8 +79,9 @@ main.sphere-main {
   transform-origin: 50% 50%;
   backface-visibility: hidden;
   transition: transform 300ms;
-  transform:
-    rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg))) rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg))) translateZ(var(--radius));
+  transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg)))
+    rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg)))
+    translateZ(var(--radius));
 }
 
 .item__image {
@@ -138,14 +143,14 @@ main.sphere-main {
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: rgba(0, 0, 0, .4);
+  background: rgba(0, 0, 0, 0.4);
   pointer-events: none;
   opacity: 0;
   transition: opacity 500ms ease;
   backdrop-filter: blur(3px);
 }
 
-.sphere-root[data-enlarging="true"] .viewer .scrim {
+.sphere-root[data-enlarging='true'] .viewer .scrim {
   opacity: 1;
   pointer-events: all;
 }
@@ -155,9 +160,11 @@ main.sphere-main {
   z-index: 30;
   border-radius: var(--enlarge-radius, 32px);
   overflow: hidden;
-  transition: transform 500ms ease, opacity 500ms ease;
+  transition:
+    transform 500ms ease,
+    opacity 500ms ease;
   transform-origin: top left;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .viewer .enlarge img {

@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/MetallicPaint/MetallicPaint.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/MetallicPaint/MetallicPaint.tsx?raw';
 
 export const metallicPaint = {
-  ...(generateCliCommands('Animations/MetallicPaint')),
+  ...generateCliCommands('Animations/MetallicPaint'),
   usage: `import MetallicPaint, { parseLogoImage } from "./MetallicPaint";
 import { useState, useEffect } from 'react';
 
@@ -46,9 +46,9 @@ const Component = () => {
     </div>
   );
 }`,
-code,
-css,
-tailwind,
-tsCode,
-tsTailwind
+  code,
+  css,
+  tailwind,
+  tsCode,
+  tsTailwind
 };

@@ -6,7 +6,7 @@ export const lerp = (start, end, amt) => {
   return (1 - amt) * start + amt * end;
 };
 
-export const getMousePos = (e) => {
+export const getMousePos = e => {
   return {
     x: e.clientX,
     y: e.clientY

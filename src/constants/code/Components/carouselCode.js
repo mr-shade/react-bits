@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/Carousel/Carousel.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/Carousel/Carousel.tsx?raw';
 
 export const carousel = {
-  ...(generateCliCommands('Components/Carousel')),
+  ...generateCliCommands('Components/Carousel'),
   installation: `npm install motion`,
   usage: `import Carousel from './Carousel'
 
@@ -26,4 +26,4 @@ export const carousel = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

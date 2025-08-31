@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/FlyingPosters/FlyingPosters.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/FlyingPosters/FlyingPosters.tsx?raw';
 
 export const flyingPosters = {
-  ...(generateCliCommands('Components/FlyingPosters')),
+  ...generateCliCommands('Components/FlyingPosters'),
   installation: `npm install ogl`,
   usage: `import FlyingPosters from './FlyingPosters'
 
@@ -25,4 +25,4 @@ const items = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

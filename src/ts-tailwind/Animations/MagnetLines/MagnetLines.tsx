@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, CSSProperties } from "react";
+import React, { useRef, useEffect, CSSProperties } from 'react';
 
 interface MagnetLinesProps {
   rows?: number;
@@ -15,13 +15,13 @@ interface MagnetLinesProps {
 const MagnetLines: React.FC<MagnetLinesProps> = ({
   rows = 9,
   columns = 9,
-  containerSize = "80vmin",
-  lineColor = "#efefef",
-  lineWidth = "1vmin",
-  lineHeight = "6vmin",
+  containerSize = '80vmin',
+  lineColor = '#efefef',
+  lineWidth = '1vmin',
+  lineHeight = '6vmin',
   baseAngle = -10,
-  className = "",
-  style = {},
+  className = '',
+  style = {}
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,10 +29,10 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const items = container.querySelectorAll<HTMLSpanElement>("span");
+    const items = container.querySelectorAll<HTMLSpanElement>('span');
 
     const onPointerMove = (pointer: { x: number; y: number }) => {
-      items.forEach((item) => {
+      items.forEach(item => {
         const rect = item.getBoundingClientRect();
         const centerX = rect.x + rect.width / 2;
         const centerY = rect.y + rect.height / 2;
@@ -40,10 +40,9 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
         const b = pointer.x - centerX;
         const a = pointer.y - centerY;
         const c = Math.sqrt(a * a + b * b) || 1;
-        const r =
-          ((Math.acos(b / c) * 180) / Math.PI) * (pointer.y > centerY ? 1 : -1);
+        const r = ((Math.acos(b / c) * 180) / Math.PI) * (pointer.y > centerY ? 1 : -1);
 
-        item.style.setProperty("--rotate", `${r}deg`);
+        item.style.setProperty('--rotate', `${r}deg`);
       });
     };
 
@@ -51,7 +50,7 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
       onPointerMove({ x: e.x, y: e.y });
     };
 
-    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener('pointermove', handlePointerMove);
 
     if (items.length) {
       const middleIndex = Math.floor(items.length / 2);
@@ -60,7 +59,7 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
     }
 
     return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener('pointermove', handlePointerMove);
     };
   }, []);
 
@@ -74,9 +73,9 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
         width: lineWidth,
         height: lineHeight,
         //@ts-ignore
-        "--rotate": `${baseAngle}deg`,
-        transform: "rotate(var(--rotate))",
-        willChange: "transform",
+        '--rotate': `${baseAngle}deg`,
+        transform: 'rotate(var(--rotate))',
+        willChange: 'transform'
       }}
     />
   ));
@@ -90,7 +89,7 @@ const MagnetLines: React.FC<MagnetLinesProps> = ({
         gridTemplateRows: `repeat(${rows}, 1fr)`,
         width: containerSize,
         height: containerSize,
-        ...style,
+        ...style
       }}
     >
       {spans}

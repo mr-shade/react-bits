@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 const defaultParams = {
   patternScale: 2,
@@ -10,25 +10,23 @@ const defaultParams = {
   edge: 1,
   patternBlur: 0.005,
   liquid: 0.07,
-  speed: 0.3,
+  speed: 0.3
 };
 
-export function parseLogoImage(
-  file
-) {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
+export function parseLogoImage(file) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
 
   return new Promise((resolve, reject) => {
     if (!file || !ctx) {
-      reject(new Error("Invalid file or context"));
+      reject(new Error('Invalid file or context'));
       return;
     }
 
     const img = new Image();
-    img.crossOrigin = "anonymous";
+    img.crossOrigin = 'anonymous';
     img.onload = function () {
-      if (file.type === "image/svg+xml") {
+      if (file.type === 'image/svg+xml') {
         img.width = 1000;
         img.height = 1000;
       }
@@ -61,10 +59,10 @@ export function parseLogoImage(
       canvas.width = width;
       canvas.height = height;
 
-      const shapeCanvas = document.createElement("canvas");
+      const shapeCanvas = document.createElement('canvas');
       shapeCanvas.width = width;
       shapeCanvas.height = height;
-      const shapeCtx = shapeCanvas.getContext("2d");
+      const shapeCtx = shapeCanvas.getContext('2d');
       shapeCtx.drawImage(img, 0, 0, width, height);
 
       const shapeImageData = shapeCtx.getImageData(0, 0, width, height);
@@ -77,10 +75,7 @@ export function parseLogoImage(
           const g = data[idx4 + 1];
           const b = data[idx4 + 2];
           const a = data[idx4 + 3];
-          shapeMask[y * width + x] = !(
-            (r === 255 && g === 255 && b === 255 && a === 255) ||
-            a === 0
-          );
+          shapeMask[y * width + x] = !((r === 255 && g === 255 && b === 255 && a === 255) || a === 0);
         }
       }
 
@@ -143,8 +138,7 @@ export function parseLogoImage(
               newU[idx] = 0;
               continue;
             }
-            const sumN =
-              getU(x + 1, y, u) + getU(x - 1, y, u) + getU(x, y + 1, u) + getU(x, y - 1, u);
+            const sumN = getU(x + 1, y, u) + getU(x - 1, y, u) + getU(x, y + 1, u) + getU(x, y - 1, u);
             newU[idx] = (C + sumN) / 4;
           }
         }
@@ -180,19 +174,19 @@ export function parseLogoImage(
 
       ctx.putImageData(outImg, 0, 0);
 
-      canvas.toBlob((blob) => {
+      canvas.toBlob(blob => {
         if (!blob) {
-          reject(new Error("Failed to create PNG blob"));
+          reject(new Error('Failed to create PNG blob'));
           return;
         }
         resolve({
           imageData: outImg,
-          pngBlob: blob,
+          pngBlob: blob
         });
-      }, "image/png");
+      }, 'image/png');
     };
 
-    img.onerror = () => reject(new Error("Failed to load image"));
+    img.onerror = () => reject(new Error('Failed to load image'));
     img.src = URL.createObjectURL(file);
   });
 }
@@ -362,10 +356,7 @@ void main() {
 }
 `;
 
-export default function MetallicPaint({
-  imageData,
-  params = defaultParams,
-}) {
+export default function MetallicPaint({ imageData, params = defaultParams }) {
   const canvasRef = useRef(null);
   const [gl, setGl] = useState(null);
   const [uniforms, setUniforms] = useState({});
@@ -385,19 +376,15 @@ export default function MetallicPaint({
   useEffect(() => {
     function initShader() {
       const canvas = canvasRef.current;
-      const gl = canvas?.getContext("webgl2", {
+      const gl = canvas?.getContext('webgl2', {
         antialias: true,
-        alpha: true,
+        alpha: true
       });
       if (!canvas || !gl) {
         return;
       }
 
-      function createShader(
-        gl,
-        sourceCode,
-        type
-      ) {
+      function createShader(gl, sourceCode, type) {
         const shader = gl.createShader(type);
         if (!shader) {
           return null;
@@ -407,10 +394,7 @@ export default function MetallicPaint({
         gl.compileShader(shader);
 
         if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-          console.error(
-            "An error occurred compiling the shaders: " +
-            gl.getShaderInfoLog(shader)
-          );
+          console.error('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
           gl.deleteShader(shader);
           return null;
         }
@@ -418,16 +402,8 @@ export default function MetallicPaint({
         return shader;
       }
 
-      const vertexShader = createShader(
-        gl,
-        vertexShaderSource,
-        gl.VERTEX_SHADER
-      );
-      const fragmentShader = createShader(
-        gl,
-        liquidFragSource,
-        gl.FRAGMENT_SHADER
-      );
+      const vertexShader = createShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
+      const fragmentShader = createShader(gl, liquidFragSource, gl.FRAGMENT_SHADER);
       const program = gl.createProgram();
       if (!program || !vertexShader || !fragmentShader) {
         return;
@@ -438,10 +414,7 @@ export default function MetallicPaint({
       gl.linkProgram(program);
 
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        console.error(
-          "Unable to initialize the shader program: " +
-          gl.getProgramInfoLog(program)
-        );
+        console.error('Unable to initialize the shader program: ' + gl.getProgramInfoLog(program));
         return null;
       }
 
@@ -451,10 +424,7 @@ export default function MetallicPaint({
         for (let i = 0; i < uniformCount; i++) {
           let uniformName = gl.getActiveUniform(program, i)?.name;
           if (!uniformName) continue;
-          uniforms[uniformName] = gl.getUniformLocation(
-            program,
-            uniformName
-          );
+          uniforms[uniformName] = gl.getUniformLocation(program, uniformName);
         }
         return uniforms;
       }
@@ -468,7 +438,7 @@ export default function MetallicPaint({
 
       gl.useProgram(program);
 
-      const positionLocation = gl.getAttribLocation(program, "a_position");
+      const positionLocation = gl.getAttribLocation(program, 'a_position');
       gl.enableVertexAttribArray(positionLocation);
 
       gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -527,10 +497,10 @@ export default function MetallicPaint({
     }
 
     resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener('resize', resizeCanvas);
     };
   }, [gl, uniforms, imageData]);
 
@@ -568,7 +538,7 @@ export default function MetallicPaint({
 
       gl.uniform1i(uniforms.u_image_texture, 0);
     } catch (e) {
-      console.error("Error uploading texture:", e);
+      console.error('Error uploading texture:', e);
     }
 
     return () => {
@@ -578,7 +548,5 @@ export default function MetallicPaint({
     };
   }, [gl, uniforms, imageData]);
 
-  return (
-    <canvas ref={canvasRef} className="block w-full h-full object-contain" />
-  );
+  return <canvas ref={canvasRef} className="block w-full h-full object-contain" />;
 }

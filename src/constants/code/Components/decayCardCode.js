@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/DecayCard/DecayCard.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/DecayCard/DecayCard.tsx?raw';
 
 export const decayCard = {
-  ...(generateCliCommands('Components/DecayCard')),
+  ...generateCliCommands('Components/DecayCard'),
   installation: `npm install gsap`,
   usage: `import DecayCard from './DecayCard';
 
@@ -19,4 +19,4 @@ export const decayCard = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

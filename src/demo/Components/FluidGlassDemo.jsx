@@ -1,18 +1,18 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
+import { useState } from 'react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import useForceRerender from '../../hooks/useForceRerender';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 
 import { fluidGlass } from '../../constants/code/Components/fluidGlassCode';
-import FluidGlass from "../../content/Components/FluidGlass/FluidGlass";
+import FluidGlass from '../../content/Components/FluidGlass/FluidGlass';
 
 const FluidGlassDemo = () => {
   const [key, forceRerender] = useForceRerender();
@@ -32,7 +32,7 @@ const FluidGlassDemo = () => {
     { value: 'cube', label: 'Cube' }
   ];
 
-  const handleModeChange = (newMode) => {
+  const handleModeChange = newMode => {
     setMode(newMode);
 
     if (newMode === 'bar') {
@@ -58,7 +58,7 @@ const FluidGlassDemo = () => {
       ior,
       thickness,
       chromaticAberration,
-      anisotropy,
+      anisotropy
     };
 
     if (mode === 'bar') {
@@ -68,7 +68,7 @@ const FluidGlassDemo = () => {
         roughness,
         color: '#ffffff',
         attenuationColor: '#ffffff',
-        attenuationDistance: 0.25,
+        attenuationDistance: 0.25
       };
     }
 
@@ -77,28 +77,28 @@ const FluidGlassDemo = () => {
 
   const propData = [
     {
-      name: "mode",
-      type: "string",
+      name: 'mode',
+      type: 'string',
       default: "'lens'",
       description: "Display mode of the fluid glass effect. Options: 'lens', 'bar', 'cube'"
     },
     {
-      name: "lensProps",
-      type: "object",
-      default: "{}",
-      description: "Props specific to lens mode including material properties like ior, thickness, transmission"
+      name: 'lensProps',
+      type: 'object',
+      default: '{}',
+      description: 'Props specific to lens mode including material properties like ior, thickness, transmission'
     },
     {
-      name: "barProps",
-      type: "object",
-      default: "{}",
-      description: "Props specific to bar mode including navItems array and material properties"
+      name: 'barProps',
+      type: 'object',
+      default: '{}',
+      description: 'Props specific to bar mode including navItems array and material properties'
     },
     {
-      name: "cubeProps",
-      type: "object",
-      default: "{}",
-      description: "Props specific to cube mode including material properties and interaction settings"
+      name: 'cubeProps',
+      type: 'object',
+      default: '{}',
+      description: 'Props specific to cube mode including material properties and interaction settings'
     }
   ];
 
@@ -116,13 +116,7 @@ const FluidGlassDemo = () => {
         </Box>
 
         <Customize>
-          <PreviewSelect
-            title="Mode:"
-            options={modeOptions}
-            value={mode}
-            onChange={handleModeChange}
-            width={120}
-          />
+          <PreviewSelect title="Mode:" options={modeOptions} value={mode} onChange={handleModeChange} width={120} />
 
           <PreviewSlider
             title="Scale:"
@@ -134,15 +128,7 @@ const FluidGlassDemo = () => {
             width={150}
           />
 
-          <PreviewSlider
-            title="IOR:"
-            min={1.0}
-            max={2.0}
-            step={0.05}
-            value={ior}
-            onChange={setIor}
-            width={150}
-          />
+          <PreviewSlider title="IOR:" min={1.0} max={2.0} step={0.05} value={ior} onChange={setIor} width={150} />
 
           <PreviewSlider
             title="Thickness:"

@@ -1,28 +1,23 @@
-import { getLanguage } from "../../utils/utils";
-import CodeHighlighter from "./CodeHighlighter";
-import CodeOptions, {
-  CSSTab,
-  TailwindTab,
-  TSCSSTab,
-  TSTailwindTab,
-} from "./CodeOptions";
+import { getLanguage } from '../../utils/utils';
+import CodeHighlighter from './CodeHighlighter';
+import CodeOptions, { CSSTab, TailwindTab, TSCSSTab, TSTailwindTab } from './CodeOptions';
 
 const CodeExample = ({ codeObject }) => (
   <>
     {Object.entries(codeObject).map(([name, snippet]) => {
       const skip = [
-        "tailwind",
-        "css",
-        "tsTailwind",
-        "tsCode",
-        "cliDefault",
-        "cliTailwind",
-        "cliTsTailwind",
-        "cliTsDefault",
+        'tailwind',
+        'css',
+        'tsTailwind',
+        'tsCode',
+        'cliDefault',
+        'cliTailwind',
+        'cliTsTailwind',
+        'cliTsDefault'
       ];
       if (skip.includes(name)) return null;
 
-      if (name === "code" || name === "tsCode") {
+      if (name === 'code' || name === 'tsCode') {
         return (
           <div key={name}>
             <h2 className="demo-title">{name}</h2>

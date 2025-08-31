@@ -6,7 +6,7 @@ import tsCode from '@ts-default/TextAnimations/TextPressure/TextPressure.tsx?raw
 import tsTailwind from '@ts-tailwind/TextAnimations/TextPressure/TextPressure.tsx?raw';
 
 export const textPressure = {
-  ...(generateCliCommands('TextAnimations/TextPressure')),
+  ...generateCliCommands('TextAnimations/TextPressure'),
   usage: `import TextPressure from './TextPressure';
 
 // Note:
@@ -31,4 +31,4 @@ export const textPressure = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

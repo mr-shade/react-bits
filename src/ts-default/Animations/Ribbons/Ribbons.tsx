@@ -30,7 +30,7 @@ const Ribbons: React.FC<RibbonsProps> = ({
   enableFade = false,
   enableShaderEffect = false,
   effectAmplitude = 2,
-  backgroundColor = [0, 0, 0, 0],
+  backgroundColor = [0, 0, 0, 0]
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -41,12 +41,7 @@ const Ribbons: React.FC<RibbonsProps> = ({
     const renderer = new Renderer({ dpr: window.devicePixelRatio || 2, alpha: true });
     const gl = renderer.gl;
     if (Array.isArray(backgroundColor) && backgroundColor.length === 4) {
-      gl.clearColor(
-        backgroundColor[0],
-        backgroundColor[1],
-        backgroundColor[2],
-        backgroundColor[3]
-      );
+      gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
     } else {
       gl.clearColor(0, 0, 0, 0);
     }
@@ -154,7 +149,7 @@ const Ribbons: React.FC<RibbonsProps> = ({
         mouseVelocity: new Vec3(),
         mouseOffset,
         points: [] as Vec3[],
-        polyline: {} as Polyline,
+        polyline: {} as Polyline
       };
 
       const count = pointCount;
@@ -175,8 +170,8 @@ const Ribbons: React.FC<RibbonsProps> = ({
           uTime: { value: 0.0 },
           uEnableShaderEffect: { value: enableShaderEffect ? 1.0 : 0.0 },
           uEffectAmplitude: { value: effectAmplitude },
-          uEnableFade: { value: enableFade ? 1.0 : 0.0 },
-        },
+          uEnableFade: { value: enableFade ? 1.0 : 0.0 }
+        }
       });
       line.polyline.mesh.setParent(scene);
       lines.push(line);
@@ -217,10 +212,7 @@ const Ribbons: React.FC<RibbonsProps> = ({
       lastTime = currentTime;
 
       lines.forEach(line => {
-        tmp.copy(mouse)
-          .add(line.mouseOffset)
-          .sub(line.points[0])
-          .multiply(line.spring);
+        tmp.copy(mouse).add(line.mouseOffset).sub(line.points[0]).multiply(line.spring);
         line.mouseVelocity.add(tmp).multiply(line.friction);
         line.points[0].add(line.mouseVelocity);
 
@@ -265,7 +257,7 @@ const Ribbons: React.FC<RibbonsProps> = ({
     enableFade,
     enableShaderEffect,
     effectAmplitude,
-    backgroundColor,
+    backgroundColor
   ]);
 
   return <div ref={containerRef} className="ribbons-container" />;

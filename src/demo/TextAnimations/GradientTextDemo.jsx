@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { FiInfo } from "react-icons/fi";
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { useState } from 'react';
+import { FiInfo } from 'react-icons/fi';
+import { Box, Flex, Text } from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import CodeExample from "../../components/code/CodeExample";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewInput from "../../components/common/Preview/PreviewInput";
+import CodeExample from '../../components/code/CodeExample';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewInput from '../../components/common/Preview/PreviewInput';
 
-import GradientText from "../../content/TextAnimations/GradientText/GradientText";
+import GradientText from '../../content/TextAnimations/GradientText/GradientText';
 import { gradientText } from '../../constants/code/TextAnimations/gradientTextCode';
 
 const GradientTextDemo = () => {
@@ -24,32 +24,32 @@ const GradientTextDemo = () => {
       name: 'children',
       type: 'ReactNode',
       default: '-',
-      description: 'The content to be displayed inside the gradient text.',
+      description: 'The content to be displayed inside the gradient text.'
     },
     {
       name: 'className',
       type: 'string',
       default: "''",
-      description: 'Adds custom classes to the root element for additional styling.',
+      description: 'Adds custom classes to the root element for additional styling.'
     },
     {
       name: 'colors',
       type: 'string[]',
       default: `["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]`,
-      description: 'Defines the gradient colors for the text or border.',
+      description: 'Defines the gradient colors for the text or border.'
     },
     {
       name: 'animationSpeed',
       type: 'number',
       default: '8',
-      description: 'The duration of the gradient animation in seconds.',
+      description: 'The duration of the gradient animation in seconds.'
     },
     {
       name: 'showBorder',
       type: 'boolean',
       default: 'false',
-      description: 'Determines whether a border with the gradient effect is displayed.',
-    },
+      description: 'Determines whether a border with the gradient effect is displayed.'
+    }
   ];
 
   return (
@@ -57,12 +57,8 @@ const GradientTextDemo = () => {
       <PreviewTab>
         <h2 className="demo-title-extra">Default</h2>
         <Box position="relative" className="demo-container" minH={150}>
-          <Text fontSize={'2rem'} as='div'>
-            <GradientText
-              colors={colors.split(',')}
-              animationSpeed={speed}
-              showBorder={false}
-            >
+          <Text fontSize={'2rem'} as="div">
+            <GradientText colors={colors.split(',')} animationSpeed={speed} showBorder={false}>
               Add a splash of color!
             </GradientText>
           </Text>
@@ -70,12 +66,8 @@ const GradientTextDemo = () => {
 
         <h2 className="demo-title-extra">Border Animation</h2>
         <Box position="relative" className="demo-container" minH={150}>
-          <Text fontSize={'2rem'} as='div'>
-            <GradientText
-              colors={colors.split(',')}
-              animationSpeed={speed}
-              className="custom-gradient-class"
-            >
+          <Text fontSize={'2rem'} as="div">
+            <GradientText colors={colors.split(',')} animationSpeed={speed} className="custom-gradient-class">
               Now with a cool border!
             </GradientText>
           </Text>
@@ -97,11 +89,11 @@ const GradientTextDemo = () => {
               title="Colors"
               maxLength={100}
               placeholder="Enter colors separated by commas"
-              onChange={(val) => setColors(val)}
+              onChange={val => setColors(val)}
               value={colors}
             />
             <Box
-              bg={`linear-gradient(to right, ${gradientPreview.join(", ")})`}
+              bg={`linear-gradient(to right, ${gradientPreview.join(', ')})`}
               w="300px"
               marginLeft="calc(2rem + 24px)"
               h="12px"
@@ -111,8 +103,9 @@ const GradientTextDemo = () => {
           </Flex>
         </Customize>
 
-        <p className="demo-extra-info" style={{ marginTop: "1rem" }}>
-          <FiInfo position="relative" /> For a smoother animation, the gradient should start and end with the same color.
+        <p className="demo-extra-info" style={{ marginTop: '1rem' }}>
+          <FiInfo position="relative" /> For a smoother animation, the gradient should start and end with the same
+          color.
         </p>
 
         <PropTable data={propData} />

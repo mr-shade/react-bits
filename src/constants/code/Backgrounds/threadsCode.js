@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Threads/Threads.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Threads/Threads.tsx?raw';
 
 export const threads = {
-  ...(generateCliCommands('Backgrounds/Threads')),
+  ...generateCliCommands('Backgrounds/Threads'),
   installation: `npm install ogl`,
   usage: `import Threads from './Threads';
 
@@ -22,5 +22,5 @@ export const threads = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

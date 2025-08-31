@@ -13,10 +13,10 @@ const ScrollReveal = ({
   baseOpacity = 0.1,
   baseRotation = 3,
   blurStrength = 4,
-  containerClassName = "",
-  textClassName = "",
-  rotationEnd = "bottom bottom",
-  wordAnimationEnd = "bottom bottom"
+  containerClassName = '',
+  textClassName = '',
+  rotationEnd = 'bottom bottom',
+  wordAnimationEnd = 'bottom bottom'
 }) => {
   const containerRef = useRef(null);
 
@@ -36,10 +36,7 @@ const ScrollReveal = ({
     const el = containerRef.current;
     if (!el) return;
 
-    const scroller =
-      scrollContainerRef && scrollContainerRef.current
-        ? scrollContainerRef.current
-        : window;
+    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
     gsap.fromTo(
       el,
@@ -52,8 +49,8 @@ const ScrollReveal = ({
           scroller,
           start: 'top bottom',
           end: rotationEnd,
-          scrub: true,
-        },
+          scrub: true
+        }
       }
     );
 
@@ -71,8 +68,8 @@ const ScrollReveal = ({
           scroller,
           start: 'top bottom-=20%',
           end: wordAnimationEnd,
-          scrub: true,
-        },
+          scrub: true
+        }
       }
     );
 
@@ -89,8 +86,8 @@ const ScrollReveal = ({
             scroller,
             start: 'top bottom-=20%',
             end: wordAnimationEnd,
-            scrub: true,
-          },
+            scrub: true
+          }
         }
       );
     }

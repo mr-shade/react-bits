@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/PixelTransition/PixelTransition.tsx?r
 import tsTailwind from '@ts-tailwind/Animations/PixelTransition/PixelTransition.tsx?raw';
 
 export const pixelTransition = {
-  ...(generateCliCommands('Animations/PixelTransition')),
+  ...generateCliCommands('Animations/PixelTransition'),
   installation: `npm install gsap`,
   usage: `import PixelTransition from './PixelTransition';
 
@@ -42,4 +42,4 @@ export const pixelTransition = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

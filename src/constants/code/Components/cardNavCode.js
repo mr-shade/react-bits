@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/CardNav/CardNav.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/CardNav/CardNav.tsx?raw';
 
 export const cardNav = {
-  ...(generateCliCommands('Components/CardNav')),
+  ...generateCliCommands('Components/CardNav'),
   installation: `npm install gsap`,
   usage: `import CardNav from './CardNav'
 import logo from './logo.svg';
@@ -62,4 +62,4 @@ const App = () => {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

@@ -1,12 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import {
-  Dialog,
-  Input,
-  InputGroup,
-  Box,
-  Text,
-  Icon
-} from '@chakra-ui/react';
+import { Dialog, Input, InputGroup, Box, Text, Icon } from '@chakra-ui/react';
 import { FiSearch, FiLayers, FiImage, FiType, FiCircle, FiFile } from 'react-icons/fi';
 import { AiOutlineEnter } from 'react-icons/ai';
 import { motion, AnimatePresence, useInView } from 'motion/react';
@@ -15,15 +8,15 @@ import { CATEGORIES } from '../../../constants/Categories';
 import { useSearch } from '../../context/SearchContext/useSearch';
 
 const levenshtein = (a, b) => {
-  const m = a.length, n = b.length;
+  const m = a.length,
+    n = b.length;
   const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
   for (let i = 0; i <= m; i++) dp[i][0] = i;
   for (let j = 0; j <= n; j++) dp[0][j] = j;
   for (let i = 1; i <= m; i++) {
     for (let j = 1; j <= n; j++) {
-      dp[i][j] = a[i - 1] === b[j - 1]
-        ? dp[i - 1][j - 1]
-        : Math.min(dp[i - 1][j - 1] + 1, dp[i][j - 1] + 1, dp[i - 1][j] + 1);
+      dp[i][j] =
+        a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] : Math.min(dp[i - 1][j - 1] + 1, dp[i][j - 1] + 1, dp[i - 1][j] + 1);
     }
   }
   return dp[m][n];
@@ -50,13 +43,10 @@ function searchComponents(query) {
   CATEGORIES.forEach(category => {
     const { name: categoryName, subcategories } = category;
     if (fuzzyMatch(categoryName, query)) {
-      subcategories.forEach(component =>
-        results.push({ categoryName, componentName: component })
-      );
+      subcategories.forEach(component => results.push({ categoryName, componentName: component }));
     } else {
       subcategories.forEach(component => {
-        if (fuzzyMatch(component, query))
-          results.push({ categoryName, componentName: component });
+        if (fuzzyMatch(component, query)) results.push({ categoryName, componentName: component });
       });
     }
   });
@@ -82,16 +72,16 @@ const AnimatedResult = ({ children, delay = 0, dataIndex, onMouseEnter, onClick 
 };
 
 const categoryIconMapping = {
-  "Get Started": FiFile,
-  "Text Animations": FiType,
-  "Animations": FiCircle,
-  "Components": FiLayers,
-  "Backgrounds": FiImage,
+  'Get Started': FiFile,
+  'Text Animations': FiType,
+  Animations: FiCircle,
+  Components: FiLayers,
+  Backgrounds: FiImage
 };
 
 const SearchDialog = ({ isOpen, onClose }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [searchValue, setSearchValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [topGradientOpacity, setTopGradientOpacity] = useState(0);
   const [bottomGradientOpacity, setBottomGradientOpacity] = useState(1);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -110,31 +100,27 @@ const SearchDialog = ({ isOpen, onClose }) => {
 
   const results = searchComponents(searchValue);
 
-  const handleScroll = (e) => {
+  const handleScroll = e => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     setTopGradientOpacity(Math.min(scrollTop / 50, 1));
     const bottomDist = scrollHeight - (scrollTop + clientHeight);
-    setBottomGradientOpacity(
-      scrollHeight <= clientHeight ? 0 : Math.min(bottomDist / 50, 1)
-    );
+    setBottomGradientOpacity(scrollHeight <= clientHeight ? 0 : Math.min(bottomDist / 50, 1));
   };
 
   useEffect(() => {
     if (!resultsRef.current) return;
     const { scrollTop, scrollHeight, clientHeight } = resultsRef.current;
     setBottomGradientOpacity(
-      scrollHeight <= clientHeight
-        ? 0
-        : Math.min((scrollHeight - (scrollTop + clientHeight)) / 50, 1)
+      scrollHeight <= clientHeight ? 0 : Math.min((scrollHeight - (scrollTop + clientHeight)) / 50, 1)
     );
   }, [results]);
 
   const handleSelect = useCallback(
-    (result) => {
-      const slug = (str) => str.replace(/\s+/g, "-").toLowerCase();
+    result => {
+      const slug = str => str.replace(/\s+/g, '-').toLowerCase();
       navigate(`/${slug(result.categoryName)}/${slug(result.componentName)}`);
-      setInputValue("");
-      setSearchValue("");
+      setInputValue('');
+      setSearchValue('');
       setSelectedIndex(-1);
       onClose();
     },
@@ -142,23 +128,23 @@ const SearchDialog = ({ isOpen, onClose }) => {
   );
 
   useEffect(() => {
-    const onKey = (e) => {
+    const onKey = e => {
       if (!searchValue) return;
-      if (e.key === "ArrowDown" || (e.key === "Tab" && !e.shiftKey)) {
+      if (e.key === 'ArrowDown' || (e.key === 'Tab' && !e.shiftKey)) {
         e.preventDefault();
         setKeyboardNav(true);
-        setSelectedIndex((p) => Math.min(p + 1, results.length - 1));
-      } else if (e.key === "ArrowUp" || (e.key === "Tab" && e.shiftKey)) {
+        setSelectedIndex(p => Math.min(p + 1, results.length - 1));
+      } else if (e.key === 'ArrowUp' || (e.key === 'Tab' && e.shiftKey)) {
         e.preventDefault();
         setKeyboardNav(true);
-        setSelectedIndex((p) => Math.max(p - 1, 0));
-      } else if (e.key === "Enter" && selectedIndex >= 0) {
+        setSelectedIndex(p => Math.max(p - 1, 0));
+      } else if (e.key === 'Enter' && selectedIndex >= 0) {
         e.preventDefault();
         handleSelect(results[selectedIndex]);
       }
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [results, searchValue, selectedIndex, handleSelect]);
 
   useEffect(() => {
@@ -171,34 +157,31 @@ const SearchDialog = ({ isOpen, onClose }) => {
     const itemTop = item.offsetTop;
     const itemBottom = itemTop + item.offsetHeight;
     if (itemTop < container.scrollTop + margin) {
-      container.scrollTo({ top: itemTop - margin, behavior: "smooth" });
-    } else if (
-      itemBottom >
-      container.scrollTop + container.clientHeight - margin
-    ) {
+      container.scrollTo({ top: itemTop - margin, behavior: 'smooth' });
+    } else if (itemBottom > container.scrollTop + container.clientHeight - margin) {
       container.scrollTo({
         top: itemBottom - container.clientHeight + margin,
-        behavior: "smooth",
+        behavior: 'smooth'
       });
     }
     setKeyboardNav(false);
   }, [selectedIndex, keyboardNav]);
 
   useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "/") {
+    const onKey = e => {
+      if (e.key === '/') {
         e.preventDefault();
         toggleSearch();
       }
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [toggleSearch]);
 
   useEffect(() => {
     if (isOpen) return;
-    setInputValue("");
-    setSearchValue("");
+    setInputValue('');
+    setSearchValue('');
     setSelectedIndex(-1);
     setTopGradientOpacity(0);
     setBottomGradientOpacity(1);
@@ -208,20 +191,13 @@ const SearchDialog = ({ isOpen, onClose }) => {
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Dialog.Backdrop bg="rgba(0,0,0,0.9)" />
       <Dialog.Positioner placement="top">
-        <Dialog.Content
-          bg="#060010"
-          border="1px solid #271E37"
-          rounded="xl"
-          mx={4}
-          w="full"
-          maxW="600px"
-        >
+        <Dialog.Content bg="#060010" border="1px solid #271E37" rounded="xl" mx={4} w="full" maxW="600px">
           <Dialog.Body padding="1em 1em .2em 1em">
-            <InputGroup startElement={<Icon as={FiSearch} color="#B19EEF" fontSize='18px' />} mb={2}>
+            <InputGroup startElement={<Icon as={FiSearch} color="#B19EEF" fontSize="18px" />} mb={2}>
               <Input
                 autoFocus
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={e => setInputValue(e.target.value)}
                 placeholder="Search components, categories, or keywords..."
                 variant="filled"
                 pb="4px"
@@ -229,9 +205,9 @@ const SearchDialog = ({ isOpen, onClose }) => {
                 fontSize="16px"
                 borderRadius="md"
                 color="white"
-                _focus={{ bg: "#060010", borderColor: "transparent" }}
-                _hover={{ bg: "#060010" }}
-                _placeholder={{ color: "#271E37" }}
+                _focus={{ bg: '#060010', borderColor: 'transparent' }}
+                _hover={{ bg: '#060010' }}
+                _placeholder={{ color: '#271E37' }}
               />
             </InputGroup>
 
@@ -240,16 +216,12 @@ const SearchDialog = ({ isOpen, onClose }) => {
                 <motion.div
                   key="results"
                   initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
+                  animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  style={{ overflow: "hidden" }}
+                  style={{ overflow: 'hidden' }}
                 >
-                  <Box
-                    mt={0}
-                    borderTop="1px solid #271E37"
-                    position="relative"
-                  >
+                  <Box mt={0} borderTop="1px solid #271E37" position="relative">
                     <Box
                       ref={resultsRef}
                       maxH={400}
@@ -259,8 +231,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                     >
                       {results.length > 0 ? (
                         results.map((r, i) => {
-                          const IconComp =
-                            categoryIconMapping[r.categoryName] || FiSearch;
+                          const IconComp = categoryIconMapping[r.categoryName] || FiSearch;
                           const selected = i === selectedIndex;
                           return (
                             <AnimatedResult
@@ -275,7 +246,7 @@ const SearchDialog = ({ isOpen, onClose }) => {
                                 mr=".6em"
                                 mb={2}
                                 p="1em"
-                                bg={selected ? "#271E37" : "#170D27"}
+                                bg={selected ? '#271E37' : '#170D27'}
                                 rounded="xl"
                                 display="flex"
                                 alignItems="center"
@@ -299,14 +270,8 @@ const SearchDialog = ({ isOpen, onClose }) => {
                           );
                         })
                       ) : (
-                        <Text
-                          textAlign="center"
-                          mt={2}
-                          color="#B19EEF"
-                          p="1em"
-                        >
-                          No results found for{" "}
-                          <span style={{ fontWeight: 900 }}>{searchValue}</span>
+                        <Text textAlign="center" mt={2} color="#B19EEF" p="1em">
+                          No results found for <span style={{ fontWeight: 900 }}>{searchValue}</span>
                         </Text>
                       )}
                     </Box>
@@ -320,8 +285,8 @@ const SearchDialog = ({ isOpen, onClose }) => {
                       bg="linear-gradient(to bottom, #060010, transparent)"
                       pointerEvents="none"
                       style={{
-                        transition: "opacity 0.3s",
-                        opacity: topGradientOpacity,
+                        transition: 'opacity 0.3s',
+                        opacity: topGradientOpacity
                       }}
                     />
                     <Box
@@ -333,8 +298,8 @@ const SearchDialog = ({ isOpen, onClose }) => {
                       bg="linear-gradient(to top, #060010, transparent)"
                       pointerEvents="none"
                       style={{
-                        transition: "opacity 0.3s",
-                        opacity: bottomGradientOpacity,
+                        transition: 'opacity 0.3s',
+                        opacity: bottomGradientOpacity
                       }}
                     />
                   </Box>

@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import Dependencies from "../../components/code/Dependencies";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import Dependencies from '../../components/code/Dependencies';
 
-import { magicBento } from "../../constants/code/Components/magicBentoCode";
-import MagicBento from "../../content/Components/MagicBento/MagicBento";
+import { magicBento } from '../../constants/code/Components/magicBentoCode';
+import MagicBento from '../../content/Components/MagicBento/MagicBento';
 
 const MagicBentoDemo = () => {
   const [enableStars, setEnableStars] = useState(true);
@@ -24,70 +24,70 @@ const MagicBentoDemo = () => {
 
   const propData = [
     {
-      name: "textAutoHide",
-      type: "boolean",
-      default: "true",
-      description: "Whether text content should auto-hide on hover"
+      name: 'textAutoHide',
+      type: 'boolean',
+      default: 'true',
+      description: 'Whether text content should auto-hide on hover'
     },
     {
-      name: "enableStars",
-      type: "boolean",
-      default: "true",
-      description: "Enable particle star animation effect"
+      name: 'enableStars',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enable particle star animation effect'
     },
     {
-      name: "enableSpotlight",
-      type: "boolean",
-      default: "true",
-      description: "Enable spotlight cursor following effect"
+      name: 'enableSpotlight',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enable spotlight cursor following effect'
     },
     {
-      name: "enableBorderGlow",
-      type: "boolean",
-      default: "true",
-      description: "Enable border glow effect that follows cursor"
+      name: 'enableBorderGlow',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enable border glow effect that follows cursor'
     },
     {
-      name: "disableAnimations",
-      type: "boolean",
-      default: "false",
-      description: "Disable all animations (automatically enabled on mobile)"
+      name: 'disableAnimations',
+      type: 'boolean',
+      default: 'false',
+      description: 'Disable all animations (automatically enabled on mobile)'
     },
     {
-      name: "spotlightRadius",
-      type: "number",
-      default: "300",
-      description: "Radius of the spotlight effect in pixels"
+      name: 'spotlightRadius',
+      type: 'number',
+      default: '300',
+      description: 'Radius of the spotlight effect in pixels'
     },
     {
-      name: "particleCount",
-      type: "number",
-      default: "12",
-      description: "Number of particles in the star animation"
+      name: 'particleCount',
+      type: 'number',
+      default: '12',
+      description: 'Number of particles in the star animation'
     },
     {
-      name: "enableTilt",
-      type: "boolean",
-      default: "false",
-      description: "Enable 3D tilt effect on card hover"
+      name: 'enableTilt',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enable 3D tilt effect on card hover'
     },
     {
-      name: "glowColor",
-      type: "string",
-      default: "\"132, 0, 255\"",
-      description: "RGB color values for glow effects (without rgba wrapper)"
+      name: 'glowColor',
+      type: 'string',
+      default: '"132, 0, 255"',
+      description: 'RGB color values for glow effects (without rgba wrapper)'
     },
     {
-      name: "clickEffect",
-      type: "boolean",
-      default: "true",
-      description: "Enable ripple effect on card click"
+      name: 'clickEffect',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enable ripple effect on card click'
     },
     {
-      name: "enableMagnetism",
-      type: "boolean",
-      default: "true",
-      description: "Enable subtle card attraction to cursor"
+      name: 'enableMagnetism',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enable subtle card attraction to cursor'
     }
   ];
 
@@ -116,41 +116,17 @@ const MagicBentoDemo = () => {
             onChange={setSpotlightRadius}
           />
 
-          <PreviewSwitch
-            title="Stars Effect"
-            isChecked={enableStars}
-            onChange={setEnableStars}
-          />
+          <PreviewSwitch title="Stars Effect" isChecked={enableStars} onChange={setEnableStars} />
 
-          <PreviewSwitch
-            title="Spotlight Effect"
-            isChecked={enableSpotlight}
-            onChange={setEnableSpotlight}
-          />
+          <PreviewSwitch title="Spotlight Effect" isChecked={enableSpotlight} onChange={setEnableSpotlight} />
 
-          <PreviewSwitch
-            title="Tilt Effect"
-            isChecked={enableTilt}
-            onChange={setEnableTilt}
-          />
+          <PreviewSwitch title="Tilt Effect" isChecked={enableTilt} onChange={setEnableTilt} />
 
-          <PreviewSwitch
-            title="Click Effect"
-            isChecked={clickEffect}
-            onChange={setClickEffect}
-          />
+          <PreviewSwitch title="Click Effect" isChecked={clickEffect} onChange={setClickEffect} />
 
-          <PreviewSwitch
-            title="Magnetism"
-            isChecked={enableMagnetism}
-            onChange={setEnableMagnetism}
-          />
+          <PreviewSwitch title="Magnetism" isChecked={enableMagnetism} onChange={setEnableMagnetism} />
 
-          <PreviewSwitch
-            title="Disable All Animations"
-            isChecked={disableAnimations}
-            onChange={setDisableAnimations}
-          />
+          <PreviewSwitch title="Disable All Animations" isChecked={disableAnimations} onChange={setDisableAnimations} />
         </Customize>
 
         <PropTable data={propData} />

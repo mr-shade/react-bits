@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/ShinyText/ShinyText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/ShinyText/ShinyText.tsx?raw';
 
 export const shinyText = {
-  ...(generateCliCommands('TextAnimations/ShinyText')),
+  ...generateCliCommands('TextAnimations/ShinyText'),
   usage: `import ShinyText from './ShinyText';
   
 <ShinyText 
@@ -21,4 +21,4 @@ export const shinyText = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

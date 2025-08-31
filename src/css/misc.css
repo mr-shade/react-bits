@@ -15,7 +15,7 @@
 
 .rotating-text-main {
   padding: 0.125rem 0.5rem;
-  background-color: #5227FF;
+  background-color: #5227ff;
   color: #fff;
   overflow: hidden;
   display: flex;
@@ -78,7 +78,7 @@
   transform: translateX(-50%);
   z-index: 1000;
   border-radius: 10px;
-  background-color: #5227FF;
+  background-color: #5227ff;
   color: white;
   padding: 16px;
   display: flex;
@@ -136,7 +136,9 @@
   align-items: center;
   justify-content: center;
   border-radius: 50px;
-  transition: background-color 0.2s ease, border 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border 0.2s ease;
 }
 
 .announcement-close {
@@ -255,13 +257,13 @@
 }
 
 .results-container::-webkit-scrollbar-thumb {
-  background: #271E37;
+  background: #271e37;
   border-radius: 4px;
 }
 
 .results-container {
   scrollbar-width: thin;
-  scrollbar-color: #271E37 #060010;
+  scrollbar-color: #271e37 #060010;
 }
 
 .eb-demo-card {
@@ -327,7 +329,10 @@
   border-radius: 10px;
   padding: 8px 10px;
   cursor: pointer;
-  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+  transition:
+    transform 120ms ease,
+    filter 120ms ease,
+    box-shadow 120ms ease;
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
 }
 
@@ -349,8 +354,8 @@
 .eb-demo-button {
   font-size: 16px;
   line-height: 0;
-  letter-spacing: -.5px;
-  color: #B19EEF;
+  letter-spacing: -0.5px;
+  color: #b19eef;
   border: none;
   border-radius: 999px;
   padding: 8px 12px;
@@ -358,13 +363,13 @@
 }
 
 .eb-button-container {
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .eb-button-container:hover {
   transform: scale(1.1);
   background-color: rgba(177, 158, 239, 0.1);
   box-shadow: 0 8px 16px rgba(177, 158, 239, 0.1);
-  transition: .3s ease;
+  transition: 0.3s ease;
   filter: saturate(1.5);
 }

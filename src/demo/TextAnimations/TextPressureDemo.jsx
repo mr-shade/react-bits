@@ -1,15 +1,6 @@
 import { useState } from 'react';
-import {
-  CliTab,
-  CodeTab,
-  PreviewTab,
-  TabsLayout
-} from '../../components/common/TabsLayout';
-import {
-  Box,
-  Flex,
-  Text
-} from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 
 import CodeExample from '../../components/code/CodeExample';
@@ -126,7 +117,7 @@ const TextPressureDemo = () => {
   return (
     <TabsLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" bg='#060010' minH={400} maxH={450} overflow="hidden" mb={6}>
+        <Box position="relative" className="demo-container" bg="#060010" minH={400} maxH={450} overflow="hidden" mb={6}>
           <RefreshButton onClick={forceRerender} />
           <Box w="100%" h="100%">
             <TextPressure
@@ -155,14 +146,14 @@ const TextPressureDemo = () => {
             onChange={setText}
           />
 
-          <Flex alignItems='center' gap={4} flexWrap="wrap" mt={6}>
+          <Flex alignItems="center" gap={4} flexWrap="wrap" mt={6}>
             <Flex gap={4} align="center">
               <Text fontSize="sm">Text Color</Text>
               <input
                 type="color"
                 value={textColor}
                 width="60px"
-                onChange={(e) => {
+                onChange={e => {
                   setTextColor(e.target.value);
                   forceRerender();
                 }}
@@ -175,7 +166,7 @@ const TextPressureDemo = () => {
                 type="color"
                 value={strokeColor}
                 width="60px"
-                onChange={(e) => {
+                onChange={e => {
                   setStrokeColor(e.target.value);
                   forceRerender();
                 }}
@@ -183,12 +174,14 @@ const TextPressureDemo = () => {
             </Flex>
           </Flex>
 
-          <Text mt={6} color='#999'>Animation Settings</Text>
+          <Text mt={6} color="#999">
+            Animation Settings
+          </Text>
           <Flex gap={4} flexWrap="wrap">
             <PreviewSwitch
               title="Flex"
               isChecked={flex}
-              onChange={(checked) => {
+              onChange={checked => {
                 setFlex(checked);
                 forceRerender();
               }}
@@ -196,7 +189,7 @@ const TextPressureDemo = () => {
             <PreviewSwitch
               title="Alpha"
               isChecked={alpha}
-              onChange={(checked) => {
+              onChange={checked => {
                 setAlpha(checked);
                 forceRerender();
               }}
@@ -204,7 +197,7 @@ const TextPressureDemo = () => {
             <PreviewSwitch
               title="Stroke"
               isChecked={stroke}
-              onChange={(checked) => {
+              onChange={checked => {
                 setStroke(checked);
                 forceRerender();
               }}
@@ -212,7 +205,7 @@ const TextPressureDemo = () => {
             <PreviewSwitch
               title="Width"
               isChecked={width}
-              onChange={(checked) => {
+              onChange={checked => {
                 setWidth(checked);
                 forceRerender();
               }}
@@ -220,7 +213,7 @@ const TextPressureDemo = () => {
             <PreviewSwitch
               title="Weight"
               isChecked={weight}
-              onChange={(checked) => {
+              onChange={checked => {
                 setWeight(checked);
                 forceRerender();
               }}
@@ -228,7 +221,7 @@ const TextPressureDemo = () => {
             <PreviewSwitch
               title="Italic"
               isChecked={italic}
-              onChange={(checked) => {
+              onChange={checked => {
                 setItalic(checked);
                 forceRerender();
               }}

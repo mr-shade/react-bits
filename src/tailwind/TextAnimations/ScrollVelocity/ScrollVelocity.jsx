@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState } from 'react';
 import {
   motion,
   useScroll,
@@ -6,8 +6,8 @@ import {
   useTransform,
   useMotionValue,
   useVelocity,
-  useAnimationFrame,
-} from "motion/react";
+  useAnimationFrame
+} from 'motion/react';
 
 function useElementWidth(ref) {
   const [width, setWidth] = useState(0);
@@ -19,8 +19,8 @@ function useElementWidth(ref) {
       }
     }
     updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
   }, [ref]);
 
   return width;
@@ -30,7 +30,7 @@ export const ScrollVelocity = ({
   scrollContainerRef,
   texts = [],
   velocity = 100,
-  className = "",
+  className = '',
   damping = 50,
   stiffness = 400,
   numCopies = 6,
@@ -38,13 +38,13 @@ export const ScrollVelocity = ({
   parallaxClassName,
   scrollerClassName,
   parallaxStyle,
-  scrollerStyle,
+  scrollerStyle
 }) => {
   function VelocityText({
     children,
     baseVelocity = velocity,
     scrollContainerRef,
-    className = "",
+    className = '',
     damping,
     stiffness,
     numCopies,
@@ -52,17 +52,15 @@ export const ScrollVelocity = ({
     parallaxClassName,
     scrollerClassName,
     parallaxStyle,
-    scrollerStyle,
+    scrollerStyle
   }) {
     const baseX = useMotionValue(0);
-    const scrollOptions = scrollContainerRef
-      ? { container: scrollContainerRef }
-      : {};
+    const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
     const { scrollY } = useScroll(scrollOptions);
     const scrollVelocity = useVelocity(scrollY);
     const smoothVelocity = useSpring(scrollVelocity, {
       damping: damping ?? 50,
-      stiffness: stiffness ?? 400,
+      stiffness: stiffness ?? 400
     });
     const velocityFactor = useTransform(
       smoothVelocity,
@@ -80,8 +78,8 @@ export const ScrollVelocity = ({
       return mod + min;
     }
 
-    const x = useTransform(baseX, (v) => {
-      if (copyWidth === 0) return "0px";
+    const x = useTransform(baseX, v => {
+      if (copyWidth === 0) return '0px';
       return `${wrap(-copyWidth, 0, v)}px`;
     });
 
@@ -102,21 +100,14 @@ export const ScrollVelocity = ({
     const spans = [];
     for (let i = 0; i < (numCopies ?? 1); i++) {
       spans.push(
-        <span
-          className={`flex-shrink-0 ${className}`}
-          key={i}
-          ref={i === 0 ? copyRef : null}
-        >
+        <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
           {children}
         </span>
       );
     }
 
     return (
-      <div
-        className={`${parallaxClassName} relative overflow-hidden`}
-        style={parallaxStyle}
-      >
+      <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
         <motion.div
           className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]`}
           style={{ x, ...scrollerStyle }}

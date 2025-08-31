@@ -1,6 +1,6 @@
-import { motion, useMotionValue, useTransform } from "motion/react";
-import { useState } from "react";
-import "./Stack.css";
+import { motion, useMotionValue, useTransform } from 'motion/react';
+import { useState } from 'react';
+import './Stack.css';
 
 interface CardRotateProps {
   children: React.ReactNode;
@@ -15,10 +15,7 @@ function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
   const rotateY = useTransform(x, [-100, 100], [-60, 60]);
 
   function handleDragEnd(_: never, info: { offset: { x: number; y: number } }) {
-    if (
-      Math.abs(info.offset.x) > sensitivity ||
-      Math.abs(info.offset.y) > sensitivity
-    ) {
+    if (Math.abs(info.offset.x) > sensitivity || Math.abs(info.offset.y) > sensitivity) {
       onSendToBack();
     } else {
       x.set(0);
@@ -33,7 +30,7 @@ function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
       drag
       dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
       dragElastic={0.6}
-      whileTap={{ cursor: "grabbing" }}
+      whileTap={{ cursor: 'grabbing' }}
       onDragEnd={handleDragEnd}
     >
       {children}
@@ -62,17 +59,17 @@ export default function Stack({
     cardsData.length
       ? cardsData
       : [
-        { id: 1, img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format" },
-        { id: 2, img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format" },
-        { id: 3, img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format" },
-        { id: 4, img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format" }
-      ]
+          { id: 1, img: 'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format' },
+          { id: 2, img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format' },
+          { id: 3, img: 'https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format' },
+          { id: 4, img: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format' }
+        ]
   );
 
   const sendToBack = (id: number) => {
-    setCards((prev) => {
+    setCards(prev => {
       const newCards = [...prev];
-      const index = newCards.findIndex((card) => card.id === id);
+      const index = newCards.findIndex(card => card.id === id);
       const [card] = newCards.splice(index, 1);
       newCards.unshift(card);
       return newCards;
@@ -85,44 +82,34 @@ export default function Stack({
       style={{
         width: cardDimensions.width,
         height: cardDimensions.height,
-        perspective: 600,
+        perspective: 600
       }}
     >
       {cards.map((card, index) => {
-        const randomRotate = randomRotation
-          ? Math.random() * 10 - 5
-          : 0;
+        const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0;
 
         return (
-          <CardRotate
-            key={card.id}
-            onSendToBack={() => sendToBack(card.id)}
-            sensitivity={sensitivity}
-          >
+          <CardRotate key={card.id} onSendToBack={() => sendToBack(card.id)} sensitivity={sensitivity}>
             <motion.div
               className="card"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
                 rotateZ: (cards.length - index - 1) * 4 + randomRotate,
                 scale: 1 + index * 0.06 - cards.length * 0.06,
-                transformOrigin: "90% 90%",
+                transformOrigin: '90% 90%'
               }}
               initial={false}
               transition={{
-                type: "spring",
+                type: 'spring',
                 stiffness: animationConfig.stiffness,
-                damping: animationConfig.damping,
+                damping: animationConfig.damping
               }}
               style={{
                 width: cardDimensions.width,
-                height: cardDimensions.height,
+                height: cardDimensions.height
               }}
             >
-              <img
-                src={card.img}
-                alt={`card-${card.id}`}
-                className="card-image"
-              />
+              <img src={card.img} alt={`card-${card.id}`} className="card-image" />
             </motion.div>
           </CardRotate>
         );

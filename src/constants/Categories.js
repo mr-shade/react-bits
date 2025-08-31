@@ -1,16 +1,26 @@
 // Highlighted sidebar items
-export const NEW = ['Pixel Blast', 'Dome Gallery', 'Gradual Blur', 'Prismatic Burst', 'Gradient Blinds', 'Bubble Menu', 'Electric Border', 'Plasma', 'Prism', 'Logo Loop', 'Card Nav', 'Pill Nav', 'Target Cursor'];
+export const NEW = [
+  'Pixel Blast',
+  'Dome Gallery',
+  'Gradual Blur',
+  'Prismatic Burst',
+  'Gradient Blinds',
+  'Bubble Menu',
+  'Electric Border',
+  'Plasma',
+  'Prism',
+  'Logo Loop',
+  'Card Nav',
+  'Pill Nav',
+  'Target Cursor'
+];
 export const UPDATED = [];
 
 // Used for main sidebar navigation
 export const CATEGORIES = [
   {
     name: 'Get Started',
-    subcategories: [
-      'Introduction',
-      'Installation',
-      'MCP'
-    ]
+    subcategories: ['Introduction', 'Installation', 'MCP']
   },
   {
     name: 'Text Animations',
@@ -37,7 +47,7 @@ export const CATEGORIES = [
       'Glitch Text',
       'Scroll Velocity',
       'Variable Proximity',
-      'Count Up',
+      'Count Up'
     ]
   },
   {
@@ -107,7 +117,7 @@ export const CATEGORIES = [
       'Rolling Gallery',
       'Stepper',
       'Bounce Cards'
-    ],
+    ]
   },
   {
     name: 'Backgrounds',
@@ -141,6 +151,6 @@ export const CATEGORIES = [
       'Squares',
       'Liquid Chrome',
       'Balatro'
-    ],
+    ]
   }
 ];

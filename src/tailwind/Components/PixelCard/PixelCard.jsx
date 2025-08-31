@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 class Pixel {
   constructor(canvas, context, x, y, color, speed, delay) {
@@ -29,12 +29,7 @@ class Pixel {
   draw() {
     const centerOffset = this.maxSizeInteger * 0.5 - this.size * 0.5;
     this.ctx.fillStyle = this.color;
-    this.ctx.fillRect(
-      this.x + centerOffset,
-      this.y + centerOffset,
-      this.size,
-      this.size
-    );
+    this.ctx.fillRect(this.x + centerOffset, this.y + centerOffset, this.size, this.size);
   }
 
   appear() {
@@ -100,49 +95,39 @@ const VARIANTS = {
     activeColor: null,
     gap: 5,
     speed: 35,
-    colors: "#f8fafc,#f1f5f9,#cbd5e1",
+    colors: '#f8fafc,#f1f5f9,#cbd5e1',
     noFocus: false
   },
   blue: {
-    activeColor: "#e0f2fe",
+    activeColor: '#e0f2fe',
     gap: 10,
     speed: 25,
-    colors: "#e0f2fe,#7dd3fc,#0ea5e9",
+    colors: '#e0f2fe,#7dd3fc,#0ea5e9',
     noFocus: false
   },
   yellow: {
-    activeColor: "#fef08a",
+    activeColor: '#fef08a',
     gap: 3,
     speed: 20,
-    colors: "#fef08a,#fde047,#eab308",
+    colors: '#fef08a,#fde047,#eab308',
     noFocus: false
   },
   pink: {
-    activeColor: "#fecdd3",
+    activeColor: '#fecdd3',
     gap: 6,
     speed: 80,
-    colors: "#fecdd3,#fda4af,#e11d48",
+    colors: '#fecdd3,#fda4af,#e11d48',
     noFocus: true
   }
 };
 
-export default function PixelCard({
-  variant = "default",
-  gap,
-  speed,
-  colors,
-  noFocus,
-  className = "",
-  children
-}) {
+export default function PixelCard({ variant = 'default', gap, speed, colors, noFocus, className = '', children }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const pixelsRef = useRef([]);
   const animationRef = useRef(null);
   const timePreviousRef = useRef(performance.now());
-  const reducedMotion = useRef(
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ).current;
+  const reducedMotion = useRef(window.matchMedia('(prefers-reduced-motion: reduce)').matches).current;
 
   const variantCfg = VARIANTS[variant] || VARIANTS.default;
   const finalGap = gap ?? variantCfg.gap;
@@ -156,42 +141,31 @@ export default function PixelCard({
     const rect = containerRef.current.getBoundingClientRect();
     const width = Math.floor(rect.width);
     const height = Math.floor(rect.height);
-    const ctx = canvasRef.current.getContext("2d");
+    const ctx = canvasRef.current.getContext('2d');
 
     canvasRef.current.width = width;
     canvasRef.current.height = height;
     canvasRef.current.style.width = `${width}px`;
     canvasRef.current.style.height = `${height}px`;
 
-    const colorsArray = finalColors.split(",");
+    const colorsArray = finalColors.split(',');
     const pxs = [];
     for (let x = 0; x < width; x += parseInt(finalGap, 10)) {
       for (let y = 0; y < height; y += parseInt(finalGap, 10)) {
-        const color =
-          colorsArray[Math.floor(Math.random() * colorsArray.length)];
+        const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
 
         const dx = x - width / 2;
         const dy = y - height / 2;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const delay = reducedMotion ? 0 : distance;
 
-        pxs.push(
-          new Pixel(
-            canvasRef.current,
-            ctx,
-            x,
-            y,
-            color,
-            getEffectiveSpeed(finalSpeed, reducedMotion),
-            delay
-          )
-        );
+        pxs.push(new Pixel(canvasRef.current, ctx, x, y, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay));
       }
     }
     pixelsRef.current = pxs;
   };
 
-  const doAnimate = (fnName) => {
+  const doAnimate = fnName => {
     animationRef.current = requestAnimationFrame(() => doAnimate(fnName));
     const timeNow = performance.now();
     const timePassed = timeNow - timePreviousRef.current;
@@ -200,7 +174,7 @@ export default function PixelCard({
     if (timePassed < timeInterval) return;
     timePreviousRef.current = timeNow - (timePassed % timeInterval);
 
-    const ctx = canvasRef.current?.getContext("2d");
+    const ctx = canvasRef.current?.getContext('2d');
     if (!ctx || !canvasRef.current) return;
 
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -218,20 +192,20 @@ export default function PixelCard({
     }
   };
 
-  const handleAnimation = (name) => {
+  const handleAnimation = name => {
     cancelAnimationFrame(animationRef.current);
     animationRef.current = requestAnimationFrame(() => doAnimate(name));
   };
 
-  const onMouseEnter = () => handleAnimation("appear");
-  const onMouseLeave = () => handleAnimation("disappear");
-  const onFocus = (e) => {
+  const onMouseEnter = () => handleAnimation('appear');
+  const onMouseLeave = () => handleAnimation('disappear');
+  const onFocus = e => {
     if (e.currentTarget.contains(e.relatedTarget)) return;
-    handleAnimation("appear");
+    handleAnimation('appear');
   };
-  const onBlur = (e) => {
+  const onBlur = e => {
     if (e.currentTarget.contains(e.relatedTarget)) return;
-    handleAnimation("disappear");
+    handleAnimation('disappear');
   };
 
   useEffect(() => {
@@ -253,18 +227,13 @@ export default function PixelCard({
     <div
       ref={containerRef}
       className={`h-[400px] w-[300px] relative overflow-hidden grid place-items-center aspect-[4/5] border border-[#27272a] rounded-[25px] isolate transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
-
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-
       onFocus={finalNoFocus ? undefined : onFocus}
       onBlur={finalNoFocus ? undefined : onBlur}
       tabIndex={finalNoFocus ? -1 : 0}
     >
-      <canvas
-        className="w-full h-full block"
-        ref={canvasRef}
-      />
+      <canvas className="w-full h-full block" ref={canvasRef} />
       {children}
     </div>
   );

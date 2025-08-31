@@ -20,8 +20,7 @@ const TextPressure = ({
   strokeWidth = 2,
   className = '',
 
-  minFontSize = 24,
-
+  minFontSize = 24
 }) => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
@@ -43,11 +42,11 @@ const TextPressure = ({
   };
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = e => {
       cursorRef.current.x = e.clientX;
       cursorRef.current.y = e.clientY;
     };
-    const handleTouchMove = (e) => {
+    const handleTouchMove = e => {
       const t = e.touches[0];
       cursorRef.current.x = t.clientX;
       cursorRef.current.y = t.clientY;
@@ -111,13 +110,13 @@ const TextPressure = ({
         const titleRect = titleRef.current.getBoundingClientRect();
         const maxDist = titleRect.width / 2;
 
-        spansRef.current.forEach((span) => {
+        spansRef.current.forEach(span => {
           if (!span) return;
 
           const rect = span.getBoundingClientRect();
           const charCenter = {
             x: rect.x + rect.width / 2,
-            y: rect.y + rect.height / 2,
+            y: rect.y + rect.height / 2
           };
 
           const d = dist(mouseRef.current, charCenter);
@@ -145,10 +144,7 @@ const TextPressure = ({
   }, [width, weight, italic, alpha, chars.length]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-full overflow-hidden bg-transparent"
-    >
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-transparent">
       <style>{`
         @font-face {
           font-family: '${fontFamily}';
@@ -173,8 +169,9 @@ const TextPressure = ({
 
       <h1
         ref={titleRef}
-        className={`text-pressure-title ${className} ${flex ? 'flex justify-between' : ''
-          } ${stroke ? 'stroke' : ''} uppercase text-center`}
+        className={`text-pressure-title ${className} ${
+          flex ? 'flex justify-between' : ''
+        } ${stroke ? 'stroke' : ''} uppercase text-center`}
         style={{
           fontFamily,
           fontSize: fontSize,
@@ -183,16 +180,11 @@ const TextPressure = ({
           transformOrigin: 'center top',
           margin: 0,
           fontWeight: 100,
-          color: stroke ? undefined : textColor,
+          color: stroke ? undefined : textColor
         }}
       >
         {chars.map((char, i) => (
-          <span
-            key={i}
-            ref={(el) => (spansRef.current[i] = el)}
-            data-char={char}
-            className="inline-block"
-          >
+          <span key={i} ref={el => (spansRef.current[i] = el)} data-char={char} className="inline-block">
             {char}
           </span>
         ))}

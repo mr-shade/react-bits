@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/ChromaGrid/ChromaGrid.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/ChromaGrid/ChromaGrid.tsx?raw';
 
 export const chromaGrid = {
-  ...(generateCliCommands('Components/ChromaGrid')),
+  ...generateCliCommands('Components/ChromaGrid'),
   installation: `npm install gsap`,
   usage: `import ChromaGrid from './ChromaGrid'
 
@@ -46,4 +46,4 @@ const items = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

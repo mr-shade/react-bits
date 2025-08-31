@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/Cubes/Cubes.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/Cubes/Cubes.tsx?raw';
 
 export const cubes = {
-  ...(generateCliCommands('Animations/Cubes')),
+  ...generateCliCommands('Animations/Cubes'),
   installation: `npm install gsap`,
   usage: `// CREDIT
 // Component inspired from Can Tastemel's original work for the lambda.ai landing page
@@ -33,4 +33,4 @@ import Cubes from './Cubes'
   tailwind,
   tsCode,
   tsTailwind
-}
+};

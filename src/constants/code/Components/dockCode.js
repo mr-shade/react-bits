@@ -1,13 +1,13 @@
-import { generateCliCommands } from "@/utils/utils"
+import { generateCliCommands } from '@/utils/utils';
 
-import code from "@content/Components/Dock/Dock.jsx?raw"
-import css from "@content/Components/Dock/Dock.css?raw"
-import tailwind from "@tailwind/Components/Dock/Dock.jsx?raw"
-import tsCode from "@ts-default/Components/Dock/Dock.tsx?raw"
-import tsTailwind from "@ts-tailwind/Components/Dock/Dock.tsx?raw"
+import code from '@content/Components/Dock/Dock.jsx?raw';
+import css from '@content/Components/Dock/Dock.css?raw';
+import tailwind from '@tailwind/Components/Dock/Dock.jsx?raw';
+import tsCode from '@ts-default/Components/Dock/Dock.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/Dock/Dock.tsx?raw';
 
 export const dock = {
-  ...generateCliCommands("Components/Dock"),
+  ...generateCliCommands('Components/Dock'),
   installation: `npm install motion`,
   usage: `import Dock from './Dock';
 
@@ -29,4 +29,4 @@ export const dock = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

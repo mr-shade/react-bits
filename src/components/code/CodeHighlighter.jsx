@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { FiCopy, FiCheckSquare } from "react-icons/fi";
+import { FiCopy, FiCheckSquare } from 'react-icons/fi';
 import { RiEmotionSadLine } from 'react-icons/ri';
 
 import codeTheme from '../../utils/codeTheme';
@@ -30,7 +30,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
         overflow="hidden"
         maxHeight={shouldCollapse && !expanded ? 'calc(1.2em * ' + maxLines + ')' : 'none'}
       >
-        {codeString &&
+        {codeString && (
           <SyntaxHighlighter
             language={language}
             style={codeTheme}
@@ -39,14 +39,14 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           >
             {codeString}
           </SyntaxHighlighter>
-        }
+        )}
 
-        {!codeString &&
+        {!codeString && (
           <Flex alignItems="center" gap={2} my={2} color="#a1a1aa">
             <Text>Nothing here yet!</Text>
             <Icon as={RiEmotionSadLine} />
           </Flex>
-        }
+        )}
 
         {shouldCollapse && !expanded && (
           <Box
@@ -62,10 +62,10 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
         {shouldCollapse && (
           <Button
             position="absolute"
-            bottom='0.9em'
-            right='0.8em'
+            bottom="0.9em"
+            right="0.8em"
             rounded="9px"
-            height='2.5rem'
+            height="2.5rem"
             fontWeight={500}
             backgroundColor="#060010"
             border="1px solid #392e4e"
@@ -80,7 +80,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
         )}
       </Box>
 
-      {codeString &&
+      {codeString && (
         <Button
           position="absolute"
           top={2}
@@ -95,12 +95,13 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           transition="background-color 0.3s ease"
           onClick={handleCopy}
         >
-          {copied
-            ? <Icon as={FiCheckSquare} color="#fff" boxSize={4} />
-            : <Icon as={FiCopy} color="#fff" boxSize={4} />
-          }
+          {copied ? (
+            <Icon as={FiCheckSquare} color="#fff" boxSize={4} />
+          ) : (
+            <Icon as={FiCopy} color="#fff" boxSize={4} />
+          )}
         </Button>
-      }
+      )}
     </Box>
   );
 };

@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/GlitchText/GlitchText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/GlitchText/GlitchText.tsx?raw';
 
 export const glitchText = {
-  ...(generateCliCommands('TextAnimations/GlitchText')),
+  ...generateCliCommands('TextAnimations/GlitchText'),
   usage: `import GlitchText from './GlitchText';
   
 <GlitchText
@@ -23,4 +23,4 @@ export const glitchText = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

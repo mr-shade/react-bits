@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/StarBorder/StarBorder.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/StarBorder/StarBorder.tsx?raw';
 
 export const starBorder = {
-  ...(generateCliCommands('Animations/StarBorder')),
+  ...generateCliCommands('Animations/StarBorder'),
   usage: `import StarBorder from './StarBorder'
   
 <StarBorder
@@ -22,5 +22,5 @@ export const starBorder = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
-}
+  tsTailwind
+};

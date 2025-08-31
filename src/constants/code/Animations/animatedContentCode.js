@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Animations/AnimatedContent/AnimatedContent.tsx?r
 import tsTailwind from '@ts-tailwind/Animations/AnimatedContent/AnimatedContent.tsx?raw';
 
 export const animatedContent = {
-  ...(generateCliCommands('Animations/AnimatedContent')),
+  ...generateCliCommands('Animations/AnimatedContent'),
   installation: `npm install gsap`,
   usage: `import AnimatedContent from './AnimatedContent'
 
@@ -28,4 +28,4 @@ export const animatedContent = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

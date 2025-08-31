@@ -69,9 +69,7 @@ class AsciiFilter {
     this.invert = invert ?? true;
     this.fontSize = fontSize ?? 12;
     this.fontFamily = fontFamily ?? "'Courier New', monospace";
-    this.charset =
-      charset ??
-      " .'`^\",:;Il!i~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+    this.charset = charset ?? ' .\'`^",:;Il!i~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$';
 
     this.context.webkitImageSmoothingEnabled = false;
     this.context.mozImageSmoothingEnabled = false;
@@ -96,9 +94,7 @@ class AsciiFilter {
     this.context.font = `${this.fontSize}px ${this.fontFamily}`;
     const charWidth = this.context.measureText('A').width;
 
-    this.cols = Math.floor(
-      this.width / (this.fontSize * (charWidth / this.fontSize))
-    );
+    this.cols = Math.floor(this.width / (this.fontSize * (charWidth / this.fontSize)));
     this.rows = Math.floor(this.height / this.fontSize);
 
     this.canvas.width = this.cols;
@@ -155,12 +151,7 @@ class AsciiFilter {
       for (let y = 0; y < h; y++) {
         for (let x = 0; x < w; x++) {
           const i = x * 4 + y * 4 * w;
-          const [r, g, b, a] = [
-            imgData[i],
-            imgData[i + 1],
-            imgData[i + 2],
-            imgData[i + 3],
-          ];
+          const [r, g, b, a] = [imgData[i], imgData[i + 1], imgData[i + 2], imgData[i + 3]];
 
           if (a === 0) {
             str += ' ';
@@ -200,8 +191,7 @@ class CanvasTxt {
     const metrics = this.context.measureText(this.txt);
 
     const textWidth = Math.ceil(metrics.width) + 20;
-    const textHeight =
-      Math.ceil(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) + 20;
+    const textHeight = Math.ceil(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) + 20;
 
     this.canvas.width = textWidth;
     this.canvas.height = textHeight;
@@ -264,7 +254,7 @@ class CanvAscii {
     this.textCanvas = new CanvasTxt(this.textString, {
       fontSize: this.textFontSize,
       fontFamily: 'IBM Plex Mono',
-      color: this.textColor,
+      color: this.textColor
     });
     this.textCanvas.resize();
     this.textCanvas.render();
@@ -287,7 +277,7 @@ class CanvAscii {
         mouse: { value: 1.0 },
         uTexture: { value: this.texture },
         uEnableWaves: { value: this.enableWaves ? 1.0 : 0.0 }
-      },
+      }
     });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
@@ -302,7 +292,7 @@ class CanvAscii {
     this.filter = new AsciiFilter(this.renderer, {
       fontFamily: 'IBM Plex Mono',
       fontSize: this.asciiFontSize,
-      invert: true,
+      invert: true
     });
 
     this.container.appendChild(this.filter.domElement);
@@ -365,13 +355,9 @@ class CanvAscii {
   }
 
   clear() {
-    this.scene.traverse((obj) => {
-      if (
-        obj.isMesh &&
-        typeof obj.material === 'object' &&
-        obj.material !== null
-      ) {
-        Object.keys(obj.material).forEach((key) => {
+    this.scene.traverse(obj => {
+      if (obj.isMesh && typeof obj.material === 'object' && obj.material !== null) {
+        Object.keys(obj.material).forEach(key => {
           const matProp = obj.material[key];
           if (matProp !== null && typeof matProp === 'object' && typeof matProp.dispose === 'function') {
             matProp.dispose();
@@ -449,7 +435,7 @@ export default function ASCIIText({
     );
     asciiRef.current.load();
 
-    const ro = new ResizeObserver((entries) => {
+    const ro = new ResizeObserver(entries => {
       if (!entries[0] || !asciiRef.current) return;
       const { width: w, height: h } = entries[0].contentRect;
       if (w > 0 && h > 0) {

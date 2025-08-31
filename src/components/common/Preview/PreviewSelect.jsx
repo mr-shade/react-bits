@@ -1,16 +1,16 @@
-import { useMemo } from "react";
-import { Flex, Text, Select, Field, Portal, createListCollection } from "@chakra-ui/react";
+import { useMemo } from 'react';
+import { Flex, Text, Select, Field, Portal, createListCollection } from '@chakra-ui/react';
 
 const PreviewSelect = ({
-  title = "",
+  title = '',
   options = [],
-  value = "",
+  value = '',
   width = 100,
   isDisabled = false,
-  name = "",
-  onChange,
+  name = '',
+  onChange
 }) => {
-  const values = useMemo(() => options.map((opt) => opt.value), [options]);
+  const values = useMemo(() => options.map(opt => opt.value), [options]);
   const labelMap = useMemo(
     () =>
       options.reduce((map, opt) => {
@@ -20,10 +20,7 @@ const PreviewSelect = ({
     [options]
   );
 
-  const collection = useMemo(
-    () => createListCollection({ items: values }),
-    [values]
-  );
+  const collection = useMemo(() => createListCollection({ items: values }), [values]);
 
   const handleChange = ({ value: next }) => {
     onChange?.(next[0]);
@@ -52,9 +49,7 @@ const PreviewSelect = ({
               border="1px solid #392e4e"
               borderRadius="10px"
             >
-              <Select.ValueText fontSize="14px">
-                {labelMap[value]}
-              </Select.ValueText>
+              <Select.ValueText fontSize="14px">{labelMap[value]}</Select.ValueText>
             </Select.Trigger>
             <Select.IndicatorGroup>
               <Select.Indicator fontSize="14px" />
@@ -63,19 +58,15 @@ const PreviewSelect = ({
 
           <Portal>
             <Select.Positioner>
-              <Select.Content
-                bg="#060010"
-                border="1px solid #392e4e"
-                borderRadius="10px"
-              >
-                {collection.items.map((val) => (
+              <Select.Content bg="#060010" border="1px solid #392e4e" borderRadius="10px">
+                {collection.items.map(val => (
                   <Select.Item
                     key={val}
                     item={val}
                     fontSize="14px"
                     borderRadius="10px"
                     cursor="pointer"
-                    _highlighted={{ bg: "#271E37" }}
+                    _highlighted={{ bg: '#271E37' }}
                   >
                     <Select.ItemText>{labelMap[val]}</Select.ItemText>
                     <Select.ItemIndicator />

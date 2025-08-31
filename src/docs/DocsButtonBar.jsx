@@ -1,5 +1,5 @@
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 const DocsButtonBar = ({ next = null, previous = null }) => {
   return (
@@ -19,6 +19,6 @@ const DocsButtonBar = ({ next = null, previous = null }) => {
       )}
     </div>
   );
-}
+};
 
 export default DocsButtonBar;

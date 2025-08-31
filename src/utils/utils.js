@@ -1,4 +1,4 @@
-export const getLanguage = (key) => {
+export const getLanguage = key => {
   const languages = {
     code: 'jsx',
     usage: 'jsx',
@@ -6,13 +6,13 @@ export const getLanguage = (key) => {
     presets: 'jsx',
     utility: 'jsx',
     installation: 'bash',
-    css: 'css',
+    css: 'css'
   };
 
   return languages[key];
 };
 
-const formatNumber = (num) => {
+const formatNumber = num => {
   if (num < 1000) return num.toString();
 
   const rounded = Math.ceil(num / 100) * 100;
@@ -30,17 +30,21 @@ export const getStarsCount = async () => {
   }
 };
 
-export const decodeLabel = (label) => label
-  .split('-')
-  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(' ');
+export const decodeLabel = label =>
+  label
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 
 export const forceChakraDarkTheme = () => {
   localStorage.setItem('chakra-ui-color-mode', 'dark');
   console.info('Successfully set dark color mode.');
 };
 
-export const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0')}`;
+export const randomHex = () =>
+  `#${Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padStart(6, '0')}`;
 
 export const generateCliCommands = (path, variants = ['default', 'tailwind', 'ts/default', 'ts/tailwind']) => {
   const [category, component] = path.split('/');

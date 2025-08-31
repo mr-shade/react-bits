@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Aurora/Aurora.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Aurora/Aurora.tsx?raw';
 
 export const aurora = {
-  ...(generateCliCommands('Backgrounds/Aurora')),
+  ...generateCliCommands('Backgrounds/Aurora'),
   installation: `npm install ogl`,
   usage: `import Aurora from './Aurora';
   
@@ -22,4 +22,4 @@ export const aurora = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

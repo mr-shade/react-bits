@@ -1,5 +1,5 @@
-import { useRef, useMemo } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { useRef, useMemo } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import {
   Box,
@@ -14,21 +14,21 @@ import {
   Separator,
   Text,
   useDisclosure,
-  createListCollection,
-} from "@chakra-ui/react";
+  createListCollection
+} from '@chakra-ui/react';
 
-import { FiArrowRight, FiMenu, FiSearch, FiStopCircle } from "react-icons/fi";
+import { FiArrowRight, FiMenu, FiSearch, FiStopCircle } from 'react-icons/fi';
 
-import { useStars } from "../../hooks/useStars";
-import { useSearch } from "../context/SearchContext/useSearch";
-import { useLanguage } from "../context/LanguageContext/useLanguage";
+import { useStars } from '../../hooks/useStars';
+import { useSearch } from '../context/SearchContext/useSearch';
+import { useLanguage } from '../context/LanguageContext/useLanguage';
 
-import Logo from "../../assets/logos/react-bits-logo.svg";
-import Star from "../../assets/common/star.svg";
-import FadeContent from "../../content/Animations/FadeContent/FadeContent";
+import Logo from '../../assets/logos/react-bits-logo.svg';
+import Star from '../../assets/common/star.svg';
+import FadeContent from '../../content/Animations/FadeContent/FadeContent';
 
 const Header = () => {
-  const langCollection = useMemo(() => createListCollection({ items: ["JS", "TS"] }), []);
+  const langCollection = useMemo(() => createListCollection({ items: ['JS', 'TS'] }), []);
   const { languagePreset, setLanguagePreset } = useLanguage(); // “JS” | “TS”
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { toggleSearch } = useSearch();
@@ -55,7 +55,7 @@ const Header = () => {
           fontWeight={600}
           cursor="pointer"
           transition="background 0.3s"
-          _hover={{ background: "#170D27" }}
+          _hover={{ background: '#170D27' }}
         >
           <Select.ValueText color="#fff" pl={1} fontSize="12px" />
         </Select.Trigger>
@@ -75,7 +75,7 @@ const Header = () => {
             py={2}
             zIndex="modal"
           >
-            {langCollection.items.map((lang) => (
+            {langCollection.items.map(lang => (
               <Select.Item
                 item={lang}
                 key={lang}
@@ -83,7 +83,7 @@ const Header = () => {
                 px={3}
                 py={2}
                 cursor="pointer"
-                _highlighted={{ bg: "#271E37" }}
+                _highlighted={{ bg: '#271E37' }}
               >
                 {lang}
                 <Select.ItemIndicator />
@@ -106,11 +106,11 @@ const Header = () => {
           aria-label="Open Menu"
           icon={<FiMenu size="1.3em" />}
           size="md"
-          display={{ md: "none" }}
+          display={{ md: 'none' }}
           onClick={onOpen}
         />
 
-        <Flex display={{ base: "none", md: "flex" }} alignItems="center" gap={2}>
+        <Flex display={{ base: 'none', md: 'flex' }} alignItems="center" gap={2}>
           <FadeContent blur>
             <Flex
               as="button"
@@ -127,11 +127,13 @@ const Header = () => {
               cursor="text"
               userSelect="none"
               transition="background 0.3s"
-              _hover={{ background: "#170D27" }}
+              _hover={{ background: '#170D27' }}
               onClick={toggleSearch}
             >
               <Icon as={FiSearch} boxSize={4} color="#392e4e" />
-              <Text mr={8} color="#a6a6a6">Search Docs</Text>
+              <Text mr={8} color="#a6a6a6">
+                Search Docs
+              </Text>
               <Kbd
                 color="#B19EEF"
                 fontSize="10px"
@@ -155,9 +157,7 @@ const Header = () => {
           <FadeContent blur>
             <button
               className="cta-button-docs"
-              onClick={() =>
-                window.open("https://github.com/DavidHDev/react-bits", "_blank")
-              }
+              onClick={() => window.open('https://github.com/DavidHDev/react-bits', '_blank')}
             >
               Star On GitHub
               <span ref={starCountRef}>
@@ -169,29 +169,18 @@ const Header = () => {
         </Flex>
       </Flex>
 
-      <Drawer.Root
-        placement="top"
-        open={isOpen}
-        onOpenChange={(v) => (v ? onOpen() : onClose())}
-      >
-        <Drawer.Backdrop display={{ md: "none" }}>
+      <Drawer.Root placement="top" open={isOpen} onOpenChange={v => (v ? onOpen() : onClose())}>
+        <Drawer.Backdrop display={{ md: 'none' }}>
           <Drawer.Content bg="black" h="100%">
             <Drawer.Body p={0}>
               <Flex direction="column">
-                <Flex
-                  align="center"
-                  justify="space-between"
-                  h="57px"
-                  px={6}
-                  mb={6}
-                  borderBottom="1px solid #ffffff1c"
-                >
+                <Flex align="center" justify="space-between" h="57px" px={6} mb={6} borderBottom="1px solid #ffffff1c">
                   <Image src={Logo} alt="Logo" h="25px" />
                   <IconButton
                     aria-label="Close Menu"
                     icon={<Icon as={FiStopCircle} boxSize={4} />}
                     size="md"
-                    display={{ md: "none" }}
+                    display={{ md: 'none' }}
                     onClick={onClose}
                   />
                 </Flex>
@@ -201,22 +190,14 @@ const Header = () => {
                   <RouterLink to="/text-animations/split-text" onClick={onClose}>
                     Docs
                   </RouterLink>
-                  <RouterLink
-                    to="https://github.com/DavidHDev/react-bits"
-                    target="_blank"
-                    onClick={onClose}
-                  >
+                  <RouterLink to="https://github.com/DavidHDev/react-bits" target="_blank" onClick={onClose}>
                     GitHub <Icon as={FiArrowRight} transform="rotate(-45deg)" ml={1} />
                   </RouterLink>
 
                   <Separator my={4} />
 
                   <Text fontWeight="bold">Other</Text>
-                  <RouterLink
-                    to="https://x.com/davidhdev"
-                    target="_blank"
-                    onClick={onClose}
-                  >
+                  <RouterLink to="https://x.com/davidhdev" target="_blank" onClick={onClose}>
                     Who made this?
                     <Icon as={FiArrowRight} transform="rotate(-45deg)" ml={1} />
                   </RouterLink>

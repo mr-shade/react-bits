@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Backgrounds/LetterGlitch/LetterGlitch.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/LetterGlitch/LetterGlitch.tsx?raw';
 
 export const letterGlitch = {
-  ...(generateCliCommands('Backgrounds/LetterGlitch')),
+  ...generateCliCommands('Backgrounds/LetterGlitch'),
   usage: `import LetterGlitch from './LetterGlitch';
   
 <LetterGlitch
@@ -19,5 +19,4 @@ export const letterGlitch = {
   tailwind,
   tsCode,
   tsTailwind
-
-}
+};

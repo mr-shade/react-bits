@@ -1,10 +1,10 @@
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
-import safeParser from 'postcss-safe-parser'
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+import path from 'path';
+import safeParser from 'postcss-safe-parser';
 
 import { fileURLToPath } from 'url';
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -20,8 +20,8 @@ export default defineConfig({
       '@content': path.resolve(__dirname, 'src/content'),
       '@tailwind': path.resolve(__dirname, 'src/tailwind'),
       '@ts-default': path.resolve(__dirname, 'src/ts-default'),
-      '@ts-tailwind': path.resolve(__dirname, 'src/ts-tailwind'),
-    },
+      '@ts-tailwind': path.resolve(__dirname, 'src/ts-tailwind')
+    }
   },
   css: {
     postcss: {
@@ -29,4 +29,4 @@ export default defineConfig({
     }
   },
   assetsInclude: ['**/*.glb']
-})
+});

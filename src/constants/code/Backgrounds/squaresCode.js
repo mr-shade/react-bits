@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Squares/Squares.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Squares/Squares.tsx?raw';
 
 export const squares = {
-  ...(generateCliCommands('Backgrounds/Squares')),
+  ...generateCliCommands('Backgrounds/Squares'),
   usage: `import Squares from './Squares';
   
 <Squares 
@@ -21,5 +21,5 @@ hoverFillColor='#222'
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

@@ -1,17 +1,17 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import useForceRerender from "../../hooks/useForceRerender";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import useForceRerender from '../../hooks/useForceRerender';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 
-import GlitchText from "../../content/TextAnimations/GlitchText/GlitchText";
-import { glitchText } from "../../constants/code/TextAnimations/glitchTextCode";
-import { useState } from "react";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
+import GlitchText from '../../content/TextAnimations/GlitchText/GlitchText';
+import { glitchText } from '../../constants/code/TextAnimations/glitchTextCode';
+import { useState } from 'react';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 
 const GlitchTextDemo = () => {
   const [speed, setSpeed] = useState(1);
@@ -22,34 +22,34 @@ const GlitchTextDemo = () => {
 
   const propData = [
     {
-      name: "children",
-      type: "string",
-      default: "",
-      description: "The text content that will display the glitch effect."
+      name: 'children',
+      type: 'string',
+      default: '',
+      description: 'The text content that will display the glitch effect.'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "0.5",
-      description: "Multiplier for the animation speed. Higher values slow down the glitch effect."
+      name: 'speed',
+      type: 'number',
+      default: '0.5',
+      description: 'Multiplier for the animation speed. Higher values slow down the glitch effect.'
     },
     {
-      name: "enableShadows",
-      type: "boolean",
-      default: "true",
-      description: "Toggle the colored text shadows on the glitch pseudo-elements."
+      name: 'enableShadows',
+      type: 'boolean',
+      default: 'true',
+      description: 'Toggle the colored text shadows on the glitch pseudo-elements.'
     },
     {
-      name: "enableOnHover",
-      type: "boolean",
-      default: "false",
-      description: "If true, the glitch animation is only activated on hover."
+      name: 'enableOnHover',
+      type: 'boolean',
+      default: 'false',
+      description: 'If true, the glitch animation is only activated on hover.'
     },
     {
-      name: "className",
-      type: "string",
-      default: "",
-      description: "Additional custom classes to apply to the component."
+      name: 'className',
+      type: 'string',
+      default: '',
+      description: 'Additional custom classes to apply to the component.'
     }
   ];
 
@@ -57,13 +57,8 @@ const GlitchTextDemo = () => {
     <TabsLayout>
       <PreviewTab>
         <Box position="relative" className="demo-container" h={500} overflow="hidden">
-          <GlitchText
-            key={key}
-            speed={speed}
-            enableShadows={enableShadows}
-            enableOnHover={enableOnHover}
-          >
-            {enableOnHover ? "Hover Me" : "React Bits"}
+          <GlitchText key={key} speed={speed} enableShadows={enableShadows} enableOnHover={enableOnHover}>
+            {enableOnHover ? 'Hover Me' : 'React Bits'}
           </GlitchText>
         </Box>
 
@@ -74,14 +69,28 @@ const GlitchTextDemo = () => {
             max={5}
             step={0.1}
             value={speed}
-            onChange={(val) => {
+            onChange={val => {
               setSpeed(val);
               forceRerender();
             }}
           />
 
-          <PreviewSwitch title="Glitch Colors" isChecked={enableShadows} onChange={(checked) => { setEnableShadows(checked); forceRerender() }} />
-          <PreviewSwitch title="Glitch On Hover" isChecked={enableOnHover} onChange={(checked) => { setEnableOnHover(checked); forceRerender() }} />
+          <PreviewSwitch
+            title="Glitch Colors"
+            isChecked={enableShadows}
+            onChange={checked => {
+              setEnableShadows(checked);
+              forceRerender();
+            }}
+          />
+          <PreviewSwitch
+            title="Glitch On Hover"
+            isChecked={enableOnHover}
+            onChange={checked => {
+              setEnableOnHover(checked);
+              forceRerender();
+            }}
+          />
         </Customize>
 
         <PropTable data={propData} />

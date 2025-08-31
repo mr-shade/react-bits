@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState, RefObject } from "react";
-import { motion } from "motion/react";
-import "./TrueFocus.css";
+import { useEffect, useRef, useState, RefObject } from 'react';
+import { motion } from 'motion/react';
+import './TrueFocus.css';
 
 interface TrueFocusProps {
   sentence?: string;
@@ -20,33 +20,31 @@ interface FocusRect {
 }
 
 const TrueFocus: React.FC<TrueFocusProps> = ({
-  sentence = "True Focus",
+  sentence = 'True Focus',
   manualMode = false,
   blurAmount = 5,
-  borderColor = "green",
-  glowColor = "rgba(0, 255, 0, 0.6)",
+  borderColor = 'green',
+  glowColor = 'rgba(0, 255, 0, 0.6)',
   animationDuration = 0.5,
-  pauseBetweenAnimations = 1,
+  pauseBetweenAnimations = 1
 }) => {
-  const words = sentence.split(" ");
+  const words = sentence.split(' ');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [lastActiveIndex, setLastActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const wordRefs: React.MutableRefObject<(HTMLSpanElement | null)[]> = useRef(
-    []
-  );
+  const wordRefs: React.MutableRefObject<(HTMLSpanElement | null)[]> = useRef([]);
   const [focusRect, setFocusRect] = useState<FocusRect>({
     x: 0,
     y: 0,
     width: 0,
-    height: 0,
+    height: 0
   });
 
   useEffect(() => {
     if (!manualMode) {
       const interval = setInterval(
         () => {
-          setCurrentIndex((prev) => (prev + 1) % words.length);
+          setCurrentIndex(prev => (prev + 1) % words.length);
         },
         (animationDuration + pauseBetweenAnimations) * 1000
       );
@@ -67,7 +65,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
       x: activeRect.left - parentRect.left,
       y: activeRect.top - parentRect.top,
       width: activeRect.width,
-      height: activeRect.height,
+      height: activeRect.height
     });
   }, [currentIndex, words.length]);
 
@@ -91,14 +89,12 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
         return (
           <span
             key={index}
-            ref={(el) => {
+            ref={el => {
               if (el) {
                 wordRefs.current[index] = el;
               }
             }}
-            className={`focus-word ${manualMode ? "manual" : ""} ${
-              isActive && !manualMode ? "active" : ""
-            }`}
+            className={`focus-word ${manualMode ? 'manual' : ''} ${isActive && !manualMode ? 'active' : ''}`}
             style={
               {
                 filter: manualMode
@@ -109,8 +105,8 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
                     ? `blur(0px)`
                     : `blur(${blurAmount}px)`,
                 transition: `filter ${animationDuration}s ease`,
-                "--border-color": borderColor,
-                "--glow-color": glowColor,
+                '--border-color': borderColor,
+                '--glow-color': glowColor
               } as React.CSSProperties
             }
             onMouseEnter={() => handleMouseEnter(index)}
@@ -128,15 +124,15 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
           y: focusRect.y,
           width: focusRect.width,
           height: focusRect.height,
-          opacity: currentIndex >= 0 ? 1 : 0,
+          opacity: currentIndex >= 0 ? 1 : 0
         }}
         transition={{
-          duration: animationDuration,
+          duration: animationDuration
         }}
         style={
           {
-            "--border-color": borderColor,
-            "--glow-color": glowColor,
+            '--border-color': borderColor,
+            '--glow-color': glowColor
           } as React.CSSProperties
         }
       >

@@ -6,7 +6,7 @@ import tsCode from '@ts-default/TextAnimations/ASCIIText/ASCIIText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/ASCIIText/ASCIIText.tsx?raw';
 
 export const asciiText = {
-  ...(generateCliCommands('TextAnimations/ASCIIText')),
+  ...generateCliCommands('TextAnimations/ASCIIText'),
   installation: `npm install three`,
   usage: `import ASCIIText from './ASCIIText';
 
@@ -18,5 +18,5 @@ export const asciiText = {
   code,
   tailwind,
   tsCode,
-  tsTailwind,
-}
+  tsTailwind
+};

@@ -1,26 +1,26 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Input, Text } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import Customize from '../../components/common/Preview/Customize';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import PreviewSelect from "../../components/common/Preview/PreviewSelect";
-import useForceRerender from "../../hooks/useForceRerender";
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import useForceRerender from '../../hooks/useForceRerender';
 
-import { lightRays } from "../../constants/code/Backgrounds/lightRaysCode";
-import LightRays from "../../content/Backgrounds/LightRays/LightRays";
+import { lightRays } from '../../constants/code/Backgrounds/lightRaysCode';
+import LightRays from '../../content/Backgrounds/LightRays/LightRays';
 
 const LightRaysDemo = () => {
   const [key, forceRerender] = useForceRerender();
 
-  const [raysOrigin, setRaysOrigin] = useState("top-center");
-  const [raysColor, setRaysColor] = useState("#ffffff");
+  const [raysOrigin, setRaysOrigin] = useState('top-center');
+  const [raysColor, setRaysColor] = useState('#ffffff');
   const [raysSpeed, setRaysSpeed] = useState(1);
   const [lightSpread, setLightSpread] = useState(0.5);
   const [rayLength, setRayLength] = useState(3.0);
@@ -32,90 +32,91 @@ const LightRaysDemo = () => {
   const [distortion, setDistortion] = useState(0.0);
 
   const raysOriginOptions = [
-    { value: "top-center", label: "Top" },
-    { value: "right", label: "Right" },
-    { value: "left", label: "Left" },
-    { value: "bottom-center", label: "Bottom" },
+    { value: 'top-center', label: 'Top' },
+    { value: 'right', label: 'Right' },
+    { value: 'left', label: 'Left' },
+    { value: 'bottom-center', label: 'Bottom' }
   ];
 
   const propData = [
     {
-      name: "raysOrigin",
-      type: "RaysOrigin",
+      name: 'raysOrigin',
+      type: 'RaysOrigin',
       default: '"top-center"',
-      description: "Origin position of the light rays. Options: 'top-center', 'top-left', 'top-right', 'right', 'left', 'bottom-center', 'bottom-right', 'bottom-left'"
+      description:
+        "Origin position of the light rays. Options: 'top-center', 'top-left', 'top-right', 'right', 'left', 'bottom-center', 'bottom-right', 'bottom-left'"
     },
     {
-      name: "raysColor",
-      type: "string",
+      name: 'raysColor',
+      type: 'string',
       default: '"#ffffff"',
-      description: "Color of the light rays in hex format"
+      description: 'Color of the light rays in hex format'
     },
     {
-      name: "raysSpeed",
-      type: "number",
-      default: "1",
-      description: "Animation speed of the rays"
+      name: 'raysSpeed',
+      type: 'number',
+      default: '1',
+      description: 'Animation speed of the rays'
     },
     {
-      name: "lightSpread",
-      type: "number",
-      default: "0.5",
-      description: "How wide the light rays spread. Lower values = tighter rays, higher values = wider spread"
+      name: 'lightSpread',
+      type: 'number',
+      default: '0.5',
+      description: 'How wide the light rays spread. Lower values = tighter rays, higher values = wider spread'
     },
     {
-      name: "rayLength",
-      type: "number",
-      default: "1.0",
-      description: "Maximum length/reach of the rays"
+      name: 'rayLength',
+      type: 'number',
+      default: '1.0',
+      description: 'Maximum length/reach of the rays'
     },
     {
-      name: "pulsating",
-      type: "boolean",
-      default: "false",
-      description: "Enable pulsing animation effect"
+      name: 'pulsating',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enable pulsing animation effect'
     },
     {
-      name: "fadeDistance",
-      type: "number",
-      default: "1.0",
-      description: "How far rays fade out from origin"
+      name: 'fadeDistance',
+      type: 'number',
+      default: '1.0',
+      description: 'How far rays fade out from origin'
     },
     {
-      name: "saturation",
-      type: "number",
-      default: "1.0",
-      description: "Color saturation level (0-1)"
+      name: 'saturation',
+      type: 'number',
+      default: '1.0',
+      description: 'Color saturation level (0-1)'
     },
     {
-      name: "followMouse",
-      type: "boolean",
-      default: "false",
-      description: "Make rays rotate towards the mouse cursor"
+      name: 'followMouse',
+      type: 'boolean',
+      default: 'false',
+      description: 'Make rays rotate towards the mouse cursor'
     },
     {
-      name: "mouseInfluence",
-      type: "number",
-      default: "0.5",
-      description: "How much mouse affects rays (0-1)"
+      name: 'mouseInfluence',
+      type: 'number',
+      default: '0.5',
+      description: 'How much mouse affects rays (0-1)'
     },
     {
-      name: "noiseAmount",
-      type: "number",
-      default: "0.0",
-      description: "Add noise/grain to rays (0-1)"
+      name: 'noiseAmount',
+      type: 'number',
+      default: '0.0',
+      description: 'Add noise/grain to rays (0-1)'
     },
     {
-      name: "distortion",
-      type: "number",
-      default: "0.0",
-      description: "Apply wave distortion to rays"
+      name: 'distortion',
+      type: 'number',
+      default: '0.0',
+      description: 'Apply wave distortion to rays'
     },
     {
-      name: "className",
-      type: "string",
+      name: 'className',
+      type: 'string',
       default: '""',
-      description: "Additional CSS classes to apply to the container"
+      description: 'Additional CSS classes to apply to the container'
     }
   ];
 
@@ -143,11 +144,16 @@ const LightRaysDemo = () => {
 
         <Customize>
           <Flex alignItems="center" mb={4}>
-            <Text fontSize="sm" mr={2}>Rays Color</Text>
+            <Text fontSize="sm" mr={2}>
+              Rays Color
+            </Text>
             <Input
               type="color"
               value={raysColor}
-              onChange={(e) => { setRaysColor(e.target.value); forceRerender(); }}
+              onChange={e => {
+                setRaysColor(e.target.value);
+                forceRerender();
+              }}
               width="50px"
             />
           </Flex>
@@ -155,7 +161,10 @@ const LightRaysDemo = () => {
           <PreviewSelect
             title="Rays Origin"
             value={raysOrigin}
-            onChange={(value) => { setRaysOrigin(value); forceRerender(); }}
+            onChange={value => {
+              setRaysOrigin(value);
+              forceRerender();
+            }}
             width={160}
             options={raysOriginOptions}
           />
@@ -166,7 +175,10 @@ const LightRaysDemo = () => {
             max={3}
             step={0.1}
             value={raysSpeed}
-            onChange={(value) => { setRaysSpeed(value); forceRerender(); }}
+            onChange={value => {
+              setRaysSpeed(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSlider
@@ -175,7 +187,10 @@ const LightRaysDemo = () => {
             max={2}
             step={0.1}
             value={lightSpread}
-            onChange={(value) => { setLightSpread(value); forceRerender(); }}
+            onChange={value => {
+              setLightSpread(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSlider
@@ -184,7 +199,10 @@ const LightRaysDemo = () => {
             max={3}
             step={0.1}
             value={rayLength}
-            onChange={(value) => { setRayLength(value); forceRerender(); }}
+            onChange={value => {
+              setRayLength(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSlider
@@ -193,7 +211,10 @@ const LightRaysDemo = () => {
             max={2}
             step={0.1}
             value={fadeDistance}
-            onChange={(value) => { setFadeDistance(value); forceRerender(); }}
+            onChange={value => {
+              setFadeDistance(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSlider
@@ -202,7 +223,10 @@ const LightRaysDemo = () => {
             max={2}
             step={0.1}
             value={saturation}
-            onChange={(value) => { setSaturation(value); forceRerender(); }}
+            onChange={value => {
+              setSaturation(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSlider
@@ -211,7 +235,10 @@ const LightRaysDemo = () => {
             max={1}
             step={0.1}
             value={mouseInfluence}
-            onChange={(value) => { setMouseInfluence(value); forceRerender(); }}
+            onChange={value => {
+              setMouseInfluence(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSlider
@@ -220,7 +247,10 @@ const LightRaysDemo = () => {
             max={0.5}
             step={0.01}
             value={noiseAmount}
-            onChange={(value) => { setNoiseAmount(value); forceRerender(); }}
+            onChange={value => {
+              setNoiseAmount(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSlider
@@ -229,13 +259,19 @@ const LightRaysDemo = () => {
             max={1}
             step={0.1}
             value={distortion}
-            onChange={(value) => { setDistortion(value); forceRerender(); }}
+            onChange={value => {
+              setDistortion(value);
+              forceRerender();
+            }}
           />
 
           <PreviewSwitch
             title="Pulsating"
             checked={pulsating}
-            onChange={(value) => { setPulsating(value); forceRerender(); }}
+            onChange={value => {
+              setPulsating(value);
+              forceRerender();
+            }}
           />
         </Customize>
 

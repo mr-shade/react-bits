@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/ScrollVelocity/ScrollVelocity.tsx
 import tsTailwind from '@ts-tailwind/TextAnimations/ScrollVelocity/ScrollVelocity.tsx?raw';
 
 export const scrollVelocity = {
-  ...(generateCliCommands('TextAnimations/ScrollVelocity')),
+  ...generateCliCommands('TextAnimations/ScrollVelocity'),
   installation: `npm install motion`,
   usage: `import ScrollVelocity from './ScrollVelocity';
   
@@ -21,4 +21,4 @@ export const scrollVelocity = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

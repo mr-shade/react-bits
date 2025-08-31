@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Animations/PixelTrail/PixelTrail.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/PixelTrail/PixelTrail.tsx?raw';
 
 export const pixelTrail = {
-  ...(generateCliCommands('Animations/PixelTrail')),
+  ...generateCliCommands('Animations/PixelTrail'),
   installation: `npm install three @react-three/fiber @react-three/drei`,
   usage: `import PixelTrail from './PixelTrail';
 
@@ -25,5 +25,5 @@ export const pixelTrail = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

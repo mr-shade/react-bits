@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Prism/Prism.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Prism/Prism.tsx?raw';
 
 export const prism = {
-  ...(generateCliCommands('Backgrounds/Prism')),
+  ...generateCliCommands('Backgrounds/Prism'),
   installation: `npm install ogl`,
   usage: `import Prism from './Prism';
 
@@ -28,5 +28,5 @@ export const prism = {
   css,
   tailwind,
   tsCode,
-  tsTailwind,
+  tsTailwind
 };

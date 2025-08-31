@@ -1,7 +1,7 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import React, { useLayoutEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
 // use your own icon import if react-icons is not available
-import { GoArrowUpRight } from "react-icons/go";
+import { GoArrowUpRight } from 'react-icons/go';
 
 type CardNavLink = {
   label: string;
@@ -30,14 +30,14 @@ export interface CardNavProps {
 
 const CardNav: React.FC<CardNavProps> = ({
   logo,
-  logoAlt = "Logo",
+  logoAlt = 'Logo',
   items,
-  className = "",
-  ease = "power3.out",
-  baseColor = "#fff",
+  className = '',
+  ease = 'power3.out',
+  baseColor = '#fff',
   menuColor,
   buttonBgColor,
-  buttonTextColor,
+  buttonTextColor
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -49,19 +49,19 @@ const CardNav: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return 260;
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (isMobile) {
-      const contentEl = navEl.querySelector(".card-nav-content") as HTMLElement;
+      const contentEl = navEl.querySelector('.card-nav-content') as HTMLElement;
       if (contentEl) {
         const wasVisible = contentEl.style.visibility;
         const wasPointerEvents = contentEl.style.pointerEvents;
         const wasPosition = contentEl.style.position;
         const wasHeight = contentEl.style.height;
 
-        contentEl.style.visibility = "visible";
-        contentEl.style.pointerEvents = "auto";
-        contentEl.style.position = "static";
-        contentEl.style.height = "auto";
+        contentEl.style.visibility = 'visible';
+        contentEl.style.pointerEvents = 'auto';
+        contentEl.style.position = 'static';
+        contentEl.style.height = 'auto';
 
         contentEl.offsetHeight;
 
@@ -84,7 +84,7 @@ const CardNav: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, { height: 60, overflow: "hidden" });
+    gsap.set(navEl, { height: 60, overflow: 'hidden' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
@@ -92,14 +92,10 @@ const CardNav: React.FC<CardNavProps> = ({
     tl.to(navEl, {
       height: calculateHeight,
       duration: 0.4,
-      ease,
+      ease
     });
 
-    tl.to(
-      cardsRef.current,
-      { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 },
-      "-=0.1"
-    );
+    tl.to(cardsRef.current, { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 }, '-=0.1');
 
     return tl;
   };
@@ -137,8 +133,8 @@ const CardNav: React.FC<CardNavProps> = ({
       }
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [isExpanded]);
 
   const toggleMenu = () => {
@@ -150,7 +146,7 @@ const CardNav: React.FC<CardNavProps> = ({
       tl.play(0);
     } else {
       setIsHamburgerOpen(false);
-      tl.eventCallback("onReverseComplete", () => setIsExpanded(false));
+      tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
       tl.reverse();
     }
   };
@@ -165,26 +161,26 @@ const CardNav: React.FC<CardNavProps> = ({
     >
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? "open" : ""} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
+        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
         style={{ backgroundColor: baseColor }}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
+            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
             onClick={toggleMenu}
             role="button"
-            aria-label={isExpanded ? "Close menu" : "Open menu"}
+            aria-label={isExpanded ? 'Close menu' : 'Open menu'}
             tabIndex={0}
-            style={{ color: menuColor || "#000" }}
+            style={{ color: menuColor || '#000' }}
           >
             <div
               className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
+                isHamburgerOpen ? 'translate-y-[4px] rotate-45' : ''
               } group-hover:opacity-75`}
             />
             <div
               className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
+                isHamburgerOpen ? '-translate-y-[4px] -rotate-45' : ''
               } group-hover:opacity-75`}
             />
           </div>
@@ -204,9 +200,7 @@ const CardNav: React.FC<CardNavProps> = ({
 
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
-            isExpanded
-              ? "visible pointer-events-auto"
-              : "invisible pointer-events-none"
+            isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
           } md:flex-row md:items-end md:gap-[12px]`}
           aria-hidden={!isExpanded}
         >
@@ -228,10 +222,7 @@ const CardNav: React.FC<CardNavProps> = ({
                     href={lnk.href}
                     aria-label={lnk.ariaLabel}
                   >
-                    <GoArrowUpRight
-                      className="nav-card-link-icon shrink-0"
-                      aria-hidden="true"
-                    />
+                    <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
                     {lnk.label}
                   </a>
                 ))}

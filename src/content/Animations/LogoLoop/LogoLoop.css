@@ -91,7 +91,7 @@
 
 .logoloop--fade::before,
 .logoloop--fade::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   bottom: 0;
@@ -102,16 +102,20 @@
 
 .logoloop--fade::before {
   left: 0;
-  background: linear-gradient(to right,
-      var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-      rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to right,
+    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .logoloop--fade::after {
   right: 0;
-  background: linear-gradient(to left,
-      var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-      rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to left,
+    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {

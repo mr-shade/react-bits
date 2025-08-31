@@ -6,9 +6,8 @@ import tailwind from '@tailwind/TextAnimations/GradientText/GradientText.jsx?raw
 import tsCode from '@ts-default/TextAnimations/GradientText/GradientText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/GradientText/GradientText.tsx?raw';
 
-
 export const gradientText = {
-  ...(generateCliCommands('TextAnimations/GradientText')),
+  ...generateCliCommands('TextAnimations/GradientText'),
   usage: `import GradientText from './GradientText'
   
 <GradientText
@@ -24,4 +23,4 @@ export const gradientText = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

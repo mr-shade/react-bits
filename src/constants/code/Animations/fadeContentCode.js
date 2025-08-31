@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Animations/FadeContent/FadeContent.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/FadeContent/FadeContent.tsx?raw';
 
 export const fadeContent = {
-  ...(generateCliCommands('Animations/FadeContent')),
+  ...generateCliCommands('Animations/FadeContent'),
   usage: `import FadeContent from './FadeContent'
   
 <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
@@ -16,4 +16,4 @@ export const fadeContent = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

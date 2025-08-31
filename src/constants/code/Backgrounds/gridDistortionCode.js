@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Backgrounds/GridDistortion/GridDistortion.jsx?raw';
 import css from '@content/Backgrounds/GridDistortion/GridDistortion.css?raw';
 import tailwind from '@tailwind/Backgrounds/GridDistortion/GridDistortion.jsx?raw';
-import tsCode from '@ts-default/Backgrounds/GridDistortion/GridDistortion.tsx?raw'
-import tsTailwind from '@ts-tailwind/Backgrounds/GridDistortion/GridDistortion.tsx?raw'
+import tsCode from '@ts-default/Backgrounds/GridDistortion/GridDistortion.tsx?raw';
+import tsTailwind from '@ts-tailwind/Backgrounds/GridDistortion/GridDistortion.tsx?raw';
 
 export const gridDistortion = {
-  ...(generateCliCommands('Backgrounds/GridDistortion')),
+  ...generateCliCommands('Backgrounds/GridDistortion'),
   installation: `npm install three`,
   usage: `import GridDistortion from './GridDistortion';
 
@@ -26,4 +26,4 @@ export const gridDistortion = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

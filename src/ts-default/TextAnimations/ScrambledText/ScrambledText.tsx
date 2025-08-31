@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { SplitText } from "gsap/SplitText";
-import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 
-import "./ScrambledText.css";
+import './ScrambledText.css';
 
 gsap.registerPlugin(SplitText, ScrambleTextPlugin);
 
@@ -21,10 +21,10 @@ const ScrambledText: React.FC<ScrambledTextProps> = ({
   radius = 100,
   duration = 1.2,
   speed = 0.5,
-  scrambleChars = ".:",
-  className = "",
+  scrambleChars = '.:',
+  className = '',
   style = {},
-  children,
+  children
 }) => {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const charsRef = useRef<HTMLElement[]>([]);
@@ -32,21 +32,21 @@ const ScrambledText: React.FC<ScrambledTextProps> = ({
   useEffect(() => {
     if (!rootRef.current) return;
 
-    const split = SplitText.create(rootRef.current.querySelector("p"), {
-      type: "chars",
-      charsClass: "char",
+    const split = SplitText.create(rootRef.current.querySelector('p'), {
+      type: 'chars',
+      charsClass: 'char'
     });
     charsRef.current = split.chars as HTMLElement[];
 
-    charsRef.current.forEach((c) => {
+    charsRef.current.forEach(c => {
       gsap.set(c, {
-        display: "inline-block",
-        attr: { "data-content": c.innerHTML },
+        display: 'inline-block',
+        attr: { 'data-content': c.innerHTML }
       });
     });
 
     const handleMove = (e: PointerEvent) => {
-      charsRef.current.forEach((c) => {
+      charsRef.current.forEach(c => {
         const { left, top, width, height } = c.getBoundingClientRect();
         const dx = e.clientX - (left + width / 2);
         const dy = e.clientY - (top + height / 2);
@@ -57,21 +57,21 @@ const ScrambledText: React.FC<ScrambledTextProps> = ({
             overwrite: true,
             duration: duration * (1 - dist / radius),
             scrambleText: {
-              text: (c as HTMLElement).dataset.content || "",
+              text: (c as HTMLElement).dataset.content || '',
               chars: scrambleChars,
-              speed,
+              speed
             },
-            ease: "none",
+            ease: 'none'
           });
         }
       });
     };
 
     const el = rootRef.current;
-    el.addEventListener("pointermove", handleMove);
+    el.addEventListener('pointermove', handleMove);
 
     return () => {
-      el.removeEventListener("pointermove", handleMove);
+      el.removeEventListener('pointermove', handleMove);
       split.revert();
     };
   }, [radius, duration, speed, scrambleChars]);

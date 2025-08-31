@@ -6,7 +6,7 @@ import tsCode from '@ts-default/Components/FluidGlass/FluidGlass.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/FluidGlass/FluidGlass.tsx?raw';
 
 export const fluidGlass = {
-  ...(generateCliCommands('Components/FluidGlass')),
+  ...generateCliCommands('Components/FluidGlass'),
   installation: `npm install three @react-three/fiber @react-three/drei maath`,
   usage: `// IMPORTANT INFO BELOW
 // This component requires a 3D model to function correctly.
@@ -36,4 +36,4 @@ import FluidGlass from './FluidGlass'
   tailwind,
   tsCode,
   tsTailwind
-}
+};

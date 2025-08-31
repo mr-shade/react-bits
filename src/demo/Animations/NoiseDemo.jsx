@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Box, Text } from "@chakra-ui/react";
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from "../../components/common/TabsLayout";
+import { useState } from 'react';
+import { Box, Text } from '@chakra-ui/react';
+import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import RefreshButton from "../../components/common/Preview/RefreshButton";
-import CodeExample from "../../components/code/CodeExample";
-import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import Customize from "../../components/common/Preview/Customize";
+import RefreshButton from '../../components/common/Preview/RefreshButton';
+import CodeExample from '../../components/code/CodeExample';
+import useForceRerender from '../../hooks/useForceRerender';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import Customize from '../../components/common/Preview/Customize';
 
-import Noise from "../../content/Animations/Noise/Noise";
+import Noise from '../../content/Animations/Noise/Noise';
 import { noise } from '../../constants/code/Animations/noiseCode';
 
 const NoiseDemo = () => {
@@ -23,41 +23,41 @@ const NoiseDemo = () => {
 
   const propData = [
     {
-      name: "patternSize",
-      type: "number",
+      name: 'patternSize',
+      type: 'number',
       default: 250,
-      description: "Defines the size of the grain pattern.",
+      description: 'Defines the size of the grain pattern.'
     },
     {
-      name: "patternScaleX",
-      type: "number",
+      name: 'patternScaleX',
+      type: 'number',
       default: 1,
-      description: "Scaling factor for the X-axis of the grain pattern.",
+      description: 'Scaling factor for the X-axis of the grain pattern.'
     },
     {
-      name: "patternScaleY",
-      type: "number",
+      name: 'patternScaleY',
+      type: 'number',
       default: 1,
-      description: "Scaling factor for the Y-axis of the grain pattern.",
+      description: 'Scaling factor for the Y-axis of the grain pattern.'
     },
     {
-      name: "patternRefreshInterval",
-      type: "number",
+      name: 'patternRefreshInterval',
+      type: 'number',
       default: 2,
-      description: "Number of frames before the grain pattern refreshes.",
+      description: 'Number of frames before the grain pattern refreshes.'
     },
     {
-      name: "patternAlpha",
-      type: "number",
+      name: 'patternAlpha',
+      type: 'number',
       default: 15,
-      description: "Opacity of the grain pattern (0-255).",
-    },
+      description: 'Opacity of the grain pattern (0-255).'
+    }
   ];
 
   return (
     <TabsLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" background='#060010' minH={400} overflow="hidden">
+        <Box position="relative" className="demo-container" background="#060010" minH={400} overflow="hidden">
           <Text color="#271E37" fontSize="6rem" fontWeight={900} textAlign={'center'}>
             Ooh, edgy!
           </Text>
@@ -79,7 +79,7 @@ const NoiseDemo = () => {
             step={10}
             value={patternSize}
             valueUnit="px"
-            onChange={(val) => {
+            onChange={val => {
               setPatternSize(val);
               forceRerender();
             }}
@@ -91,7 +91,7 @@ const NoiseDemo = () => {
             max={5}
             step={0.1}
             value={patternScaleX}
-            onChange={(val) => {
+            onChange={val => {
               setPatternScaleX(val);
               forceRerender();
             }}
@@ -103,7 +103,7 @@ const NoiseDemo = () => {
             max={5}
             step={0.1}
             value={patternScaleY}
-            onChange={(val) => {
+            onChange={val => {
               setPatternScaleY(val);
               forceRerender();
             }}
@@ -115,7 +115,7 @@ const NoiseDemo = () => {
             max={25}
             step={5}
             value={patternAlpha}
-            onChange={(val) => {
+            onChange={val => {
               setPatternAlpha(val);
               forceRerender();
             }}

@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Button, ButtonGroup, Flex, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Button, ButtonGroup, Flex, Text } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import useForceRerender from "../../hooks/useForceRerender";
+import useForceRerender from '../../hooks/useForceRerender';
 
-import { imageTrail } from "../../constants/code/Animations/imageTrailCode";
-import ImageTrail from "../../content/Animations/ImageTrail/ImageTrail";
+import { imageTrail } from '../../constants/code/Animations/imageTrailCode';
+import ImageTrail from '../../content/Animations/ImageTrail/ImageTrail';
 
 const ImageTrailDemo = () => {
   const [variant, setVariant] = useState('1');
@@ -17,16 +17,16 @@ const ImageTrailDemo = () => {
 
   const propData = [
     {
-      name: "items",
-      type: "string[]",
-      default: "[]",
-      description: "An array of image URLs which will be animated in the trail."
+      name: 'items',
+      type: 'string[]',
+      default: '[]',
+      description: 'An array of image URLs which will be animated in the trail.'
     },
     {
-      name: "variant",
-      type: "number",
-      default: "1",
-      description: "A number from 1 to 8 - all different animation styles."
+      name: 'variant',
+      type: 'number',
+      default: '1',
+      description: 'A number from 1 to 8 - all different animation styles.'
     }
   ];
 
@@ -44,16 +44,16 @@ const ImageTrailDemo = () => {
               'https://picsum.photos/id/1027/300/300',
               'https://picsum.photos/id/1028/300/300',
               'https://picsum.photos/id/1029/300/300',
-              'https://picsum.photos/id/1030/300/300',
+              'https://picsum.photos/id/1030/300/300'
             ]}
             variant={variant}
           />
 
           <Flex position="absolute" justifyContent="center" flexDirection="column" alignItems="center">
-            <Text fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color='#271E37' mb={0}>
+            <Text fontSize="clamp(2rem, 6vw, 6rem)" fontWeight={900} color="#271E37" mb={0}>
               Hover Me.
             </Text>
-            <Text fontSize="18px" fontWeight={900} color='#a6a6a6' mt={0}>
+            <Text fontSize="18px" fontWeight={900} color="#a6a6a6" mt={0}>
               Variant {variant}
             </Text>
           </Flex>
@@ -68,11 +68,17 @@ const ImageTrailDemo = () => {
                 disabled
                 border="1px solid #271E37"
                 h={8}
-                _disabled={{ bg: '#271E37', border: "1px solid #271E37", color: '#fff', cursor: 'not-allowed', _hover: { bg: '#222' } }}
+                _disabled={{
+                  bg: '#271E37',
+                  border: '1px solid #271E37',
+                  color: '#fff',
+                  cursor: 'not-allowed',
+                  _hover: { bg: '#222' }
+                }}
               >
                 Variant
               </Button>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => {
+              {[1, 2, 3, 4, 5, 6, 7, 8].map(num => {
                 const isActive = variant === String(num);
 
                 return (

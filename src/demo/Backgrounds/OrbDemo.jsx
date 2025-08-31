@@ -1,53 +1,53 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
-import { useDebounce } from "react-haiku";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
+import { useDebounce } from 'react-haiku';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import Customize from "../../components/common/Preview/Customize";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import Customize from '../../components/common/Preview/Customize';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import Orb from "../../content/Backgrounds/Orb/Orb";
-import { orb } from "../../constants/code/Backgrounds/orbCode";
+import Orb from '../../content/Backgrounds/Orb/Orb';
+import { orb } from '../../constants/code/Backgrounds/orbCode';
 
 const OrbDemo = () => {
   const [hue, setHue] = useState(0);
-  const [hoverIntensity, setHoverIntensity] = useState(2)
+  const [hoverIntensity, setHoverIntensity] = useState(2);
   const [rotateOnHover, setRotateOnHover] = useState(true);
-  const [forceHoverState, setForceHoverState] = useState(false)
+  const [forceHoverState, setForceHoverState] = useState(false);
 
   const debouncedHue = useDebounce(hue, 300);
   const debouncedHoverIntensity = useDebounce(hoverIntensity, 300);
 
   const propData = [
     {
-      name: "hue",
-      type: "number",
-      default: "0",
-      description: "The base hue for the orb (in degrees)."
+      name: 'hue',
+      type: 'number',
+      default: '0',
+      description: 'The base hue for the orb (in degrees).'
     },
     {
-      name: "hoverIntensity",
-      type: "number",
-      default: "0.2",
-      description: "Controls the intensity of the hover distortion effect."
+      name: 'hoverIntensity',
+      type: 'number',
+      default: '0.2',
+      description: 'Controls the intensity of the hover distortion effect.'
     },
     {
-      name: "rotateOnHover",
-      type: "boolean",
-      default: "true",
-      description: "Toggle to enable or disable continuous rotation on hover."
+      name: 'rotateOnHover',
+      type: 'boolean',
+      default: 'true',
+      description: 'Toggle to enable or disable continuous rotation on hover.'
     },
     {
-      name: "forceHoverState",
-      type: "boolean",
-      default: "false",
-      description: "Force hover animations even when the orb is not actually hovered."
+      name: 'forceHoverState',
+      type: 'boolean',
+      default: 'false',
+      description: 'Force hover animations even when the orb is not actually hovered.'
     }
   ];
 
@@ -63,21 +63,11 @@ const OrbDemo = () => {
           />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="This orb is hiding something, try hovering!"
-          />
+          <BackgroundContent pillText="New Background" headline="This orb is hiding something, try hovering!" />
         </Box>
 
         <Customize>
-          <PreviewSlider
-            title="Hue Shift"
-            min={0}
-            max={360}
-            step={1}
-            value={hue}
-            onChange={setHue}
-          />
+          <PreviewSlider title="Hue Shift" min={0} max={360} step={1} value={hue} onChange={setHue} />
 
           <PreviewSlider
             title="Hover Intensity"
@@ -91,13 +81,13 @@ const OrbDemo = () => {
           <PreviewSwitch
             title="Rotate On Hover"
             isChecked={rotateOnHover}
-            onChange={(checked) => setRotateOnHover(checked)}
+            onChange={checked => setRotateOnHover(checked)}
           />
 
           <PreviewSwitch
             title="Force Hover State"
             isChecked={forceHoverState}
-            onChange={(checked) => setForceHoverState(checked)}
+            onChange={checked => setForceHoverState(checked)}
           />
         </Customize>
 

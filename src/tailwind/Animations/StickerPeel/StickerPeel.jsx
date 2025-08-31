@@ -30,7 +30,8 @@ const StickerPeel = ({
     const target = dragTargetRef.current;
     if (!target) return;
 
-    let startX = 0, startY = 0;
+    let startX = 0,
+      startY = 0;
 
     if (initialPosition === 'center') {
       return;
@@ -66,26 +67,26 @@ const StickerPeel = ({
     const handleResize = () => {
       if (draggableInstanceRef.current) {
         draggableInstanceRef.current.update();
-        
-        const currentX = gsap.getProperty(target, "x");
-        const currentY = gsap.getProperty(target, "y");
-        
+
+        const currentX = gsap.getProperty(target, 'x');
+        const currentY = gsap.getProperty(target, 'y');
+
         const boundsRect = boundsEl.getBoundingClientRect();
         const targetRect = target.getBoundingClientRect();
-        
+
         const maxX = boundsRect.width - targetRect.width;
         const maxY = boundsRect.height - targetRect.height;
-        
+
         // Clamp position within new bounds
         const newX = Math.max(0, Math.min(currentX, maxX));
         const newY = Math.max(0, Math.min(currentY, maxY));
-        
+
         if (newX !== currentX || newY !== currentY) {
-          gsap.to(target, { 
-            x: newX, 
-            y: newY, 
-            duration: 0.3, 
-            ease: "power2.out" 
+          gsap.to(target, {
+            x: newX,
+            y: newY,
+            duration: 0.3,
+            ease: 'power2.out'
           });
         }
       }
@@ -104,7 +105,7 @@ const StickerPeel = ({
   }, []);
 
   useEffect(() => {
-    const updateLight = (e) => {
+    const updateLight = e => {
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
 
@@ -211,8 +212,9 @@ const StickerPeel = ({
       ref={dragTargetRef}
       style={cssVars}
     >
-      <style dangerouslySetInnerHTML={{
-        __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
           .sticker-container:hover .sticker-main,
           .sticker-container.touch-active .sticker-main {
             clip-path: polygon(var(--sticker-start) var(--sticker-peelback-hover), var(--sticker-end) var(--sticker-peelback-hover), var(--sticker-end) var(--sticker-end), var(--sticker-start) var(--sticker-end)) !important;
@@ -230,7 +232,8 @@ const StickerPeel = ({
             top: calc(-100% + 2 * var(--sticker-peelback-active) - 1px) !important;
           }
         `
-      }} />
+        }}
+      />
 
       <svg width="0" height="0">
         <defs>
@@ -302,15 +305,12 @@ const StickerPeel = ({
               className="block"
               style={imageStyle}
               draggable="false"
-              onContextMenu={(e) => e.preventDefault()}
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
         </div>
 
-        <div
-          className="absolute top-4 left-2 w-full h-full opacity-40"
-          style={{ filter: 'brightness(0) blur(8px)' }}
-        >
+        <div className="absolute top-4 left-2 w-full h-full opacity-40" style={{ filter: 'brightness(0) blur(8px)' }}>
           <div className="sticker-flap" style={flapStyle}>
             <img
               src={imageSrc}
@@ -318,7 +318,7 @@ const StickerPeel = ({
               className="block"
               style={shadowImageStyle}
               draggable="false"
-              onContextMenu={(e) => e.preventDefault()}
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
         </div>
@@ -331,7 +331,7 @@ const StickerPeel = ({
               className="block"
               style={shadowImageStyle}
               draggable="false"
-              onContextMenu={(e) => e.preventDefault()}
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
         </div>

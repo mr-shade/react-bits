@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/CircularText/CircularText.tsx?raw
 import tsTailwind from '@ts-tailwind/TextAnimations/CircularText/CircularText.tsx?raw';
 
 export const circularText = {
-  ...(generateCliCommands('TextAnimations/CircularText')),
+  ...generateCliCommands('TextAnimations/CircularText'),
   installation: `npm install motion`,
   usage: `import CircularText from './CircularText';
   
@@ -22,4 +22,4 @@ export const circularText = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

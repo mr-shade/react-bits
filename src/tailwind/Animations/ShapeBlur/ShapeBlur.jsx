@@ -140,13 +140,15 @@ const ShapeBlur = ({
   useEffect(() => {
     const mount = mountRef.current;
     let animationFrameId;
-    let time = 0, lastTime = 0;
+    let time = 0,
+      lastTime = 0;
 
     const vMouse = new THREE.Vector2();
     const vMouseDamp = new THREE.Vector2();
     const vResolution = new THREE.Vector2();
 
-    let w = 1, h = 1;
+    let w = 1,
+      h = 1;
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera();
@@ -177,7 +179,7 @@ const ShapeBlur = ({
     const quad = new THREE.Mesh(geo, material);
     scene.add(quad);
 
-    const onPointerMove = (e) => {
+    const onPointerMove = e => {
       const rect = mount.getBoundingClientRect();
       vMouse.set(e.clientX - rect.left, e.clientY - rect.top);
     };
@@ -234,15 +236,7 @@ const ShapeBlur = ({
       mount.removeChild(renderer.domElement);
       renderer.dispose();
     };
-  }, [
-    variation,
-    pixelRatioProp,
-    shapeSize,
-    roundness,
-    borderSize,
-    circleSize,
-    circleEdge
-  ]);
+  }, [variation, pixelRatioProp, shapeSize, roundness, borderSize, circleSize, circleEdge]);
 
   return <div ref={mountRef} className={`w-full h-full ${className}`} />;
 };

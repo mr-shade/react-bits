@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Components/ScrollStack/ScrollStack.jsx?raw';
 import css from '@content/Components/ScrollStack/ScrollStack.css?raw';
 import tailwind from '@tailwind/Components/ScrollStack/ScrollStack.jsx?raw';
-import tsCode from "@ts-default/Components/ScrollStack/ScrollStack.tsx?raw";
-import tsTailwind from "@ts-tailwind/Components/ScrollStack/ScrollStack.tsx?raw";
+import tsCode from '@ts-default/Components/ScrollStack/ScrollStack.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/ScrollStack/ScrollStack.tsx?raw';
 
 export const scrollStack = {
-  ...(generateCliCommands('Components/ScrollStack')),
+  ...generateCliCommands('Components/ScrollStack'),
   installation: `npm install lenis`,
   usage: `import ScrollStack, { ScrollStackItem } from './ScrollStack'
 
@@ -30,4 +30,4 @@ export const scrollStack = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

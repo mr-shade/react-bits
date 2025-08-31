@@ -1,10 +1,10 @@
-import { Renderer, Program, Mesh, Triangle } from "ogl";
-import { useEffect, useRef } from "react";
+import { Renderer, Program, Mesh, Triangle } from 'ogl';
+import { useEffect, useRef } from 'react';
 
-import "./Balatro.css";
+import './Balatro.css';
 
 function hexToVec4(hex) {
-  let hexStr = hex.replace("#", "");
+  let hexStr = hex.replace('#', '');
   let r = 0,
     g = 0,
     b = 0,
@@ -108,16 +108,16 @@ export default function Balatro({
   spinRotation = -2.0,
   spinSpeed = 7.0,
   offset = [0.0, 0.0],
-  color1 = "#DE443B",
-  color2 = "#006BB4",
-  color3 = "#162325",
+  color1 = '#DE443B',
+  color2 = '#006BB4',
+  color3 = '#162325',
   contrast = 3.5,
   lighting = 0.4,
   spinAmount = 0.25,
   pixelFilter = 745.0,
   spinEase = 1.0,
   isRotate = false,
-  mouseInteraction = true,
+  mouseInteraction = true
 }) {
   const containerRef = useRef(null);
 
@@ -133,14 +133,10 @@ export default function Balatro({
     function resize() {
       renderer.setSize(container.offsetWidth, container.offsetHeight);
       if (program) {
-        program.uniforms.iResolution.value = [
-          gl.canvas.width,
-          gl.canvas.height,
-          gl.canvas.width / gl.canvas.height,
-        ];
+        program.uniforms.iResolution.value = [gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height];
       }
     }
-    window.addEventListener("resize", resize);
+    window.addEventListener('resize', resize);
     resize();
 
     const geometry = new Triangle(gl);
@@ -150,11 +146,7 @@ export default function Balatro({
       uniforms: {
         iTime: { value: 0 },
         iResolution: {
-          value: [
-            gl.canvas.width,
-            gl.canvas.height,
-            gl.canvas.width / gl.canvas.height,
-          ],
+          value: [gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height]
         },
         uSpinRotation: { value: spinRotation },
         uSpinSpeed: { value: spinSpeed },
@@ -168,8 +160,8 @@ export default function Balatro({
         uPixelFilter: { value: pixelFilter },
         uSpinEase: { value: spinEase },
         uIsRotate: { value: isRotate },
-        uMouse: { value: [0.5, 0.5] },
-      },
+        uMouse: { value: [0.5, 0.5] }
+      }
     });
 
     const mesh = new Mesh(gl, { geometry, program });
@@ -190,14 +182,14 @@ export default function Balatro({
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
       program.uniforms.uMouse.value = [x, y];
     }
-    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resize);
-      container.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener('resize', resize);
+      container.removeEventListener('mousemove', handleMouseMove);
       container.removeChild(gl.canvas);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [
     spinRotation,

@@ -1,21 +1,21 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Flex, Input, Text } from '@chakra-ui/react';
 
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 
-import { metaBalls } from "../../constants/code/Animations/metaBallsCode";
-import MetaBalls from "../../content/Animations/MetaBalls/MetaBalls";
+import { metaBalls } from '../../constants/code/Animations/metaBallsCode';
+import MetaBalls from '../../content/Animations/MetaBalls/MetaBalls';
 
 const MetaBallsDemo = () => {
-  const [color, setColor] = useState("#ffffff");
-  const [cursorBallColor, setCursorBallColor] = useState("#ffffff");
+  const [color, setColor] = useState('#ffffff');
+  const [cursorBallColor, setCursorBallColor] = useState('#ffffff');
   const [speed, setSpeed] = useState(0.3);
   const [animationSize, setAnimationSize] = useState(30);
   const [ballCount, setBallCount] = useState(15);
@@ -27,64 +27,64 @@ const MetaBallsDemo = () => {
 
   const propData = [
     {
-      name: "color",
-      type: "string",
-      default: "#ffffff",
-      description: "The base color of the metaballs."
+      name: 'color',
+      type: 'string',
+      default: '#ffffff',
+      description: 'The base color of the metaballs.'
     },
     {
-      name: "speed",
-      type: "number",
-      default: "0.3",
-      description: "Speed multiplier for the animation."
+      name: 'speed',
+      type: 'number',
+      default: '0.3',
+      description: 'Speed multiplier for the animation.'
     },
     {
-      name: "enableMouseInteraction",
-      type: "boolean",
-      default: "true",
-      description: "Enables or disables the ball following the mouse."
+      name: 'enableMouseInteraction',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enables or disables the ball following the mouse.'
     },
     {
-      name: "enableTransparency",
-      type: "boolean",
-      default: "false",
-      description: "Enables or disables transparency for the container of the animation."
+      name: 'enableTransparency',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enables or disables transparency for the container of the animation.'
     },
     {
-      name: "hoverSmoothness",
-      type: "number",
-      default: "0.05",
-      description: "Smoothness factor for the cursor ball when following the mouse."
+      name: 'hoverSmoothness',
+      type: 'number',
+      default: '0.05',
+      description: 'Smoothness factor for the cursor ball when following the mouse.'
     },
     {
-      name: "animationSize",
-      type: "number",
-      default: "30",
-      description: "The size of the world for the animation."
+      name: 'animationSize',
+      type: 'number',
+      default: '30',
+      description: 'The size of the world for the animation.'
     },
     {
-      name: "ballCount",
-      type: "number",
-      default: "15",
-      description: "Number of metaballs rendered."
+      name: 'ballCount',
+      type: 'number',
+      default: '15',
+      description: 'Number of metaballs rendered.'
     },
     {
-      name: "clumpFactor",
-      type: "number",
-      default: "1",
-      description: "Determines how close together the balls are rendered."
+      name: 'clumpFactor',
+      type: 'number',
+      default: '1',
+      description: 'Determines how close together the balls are rendered.'
     },
     {
-      name: "cursorBallSize",
-      type: "number",
-      default: "3",
-      description: "Size of the cursor-controlled ball."
+      name: 'cursorBallSize',
+      type: 'number',
+      default: '3',
+      description: 'Size of the cursor-controlled ball.'
     },
     {
-      name: "cursorBallColor",
-      type: "string",
-      default: "#ff0000",
-      description: "Color of the cursor ball."
+      name: 'cursorBallColor',
+      type: 'string',
+      default: '#ff0000',
+      description: 'Color of the cursor ball.'
     }
   ];
 
@@ -111,7 +111,10 @@ const MetaBallsDemo = () => {
             <Input
               type="color"
               value={color}
-              onChange={(e) => { setColor(e.target.value); setCursorBallColor(e.target.value) }}
+              onChange={e => {
+                setColor(e.target.value);
+                setCursorBallColor(e.target.value);
+              }}
               width="50px"
             />
           </Flex>
@@ -122,7 +125,7 @@ const MetaBallsDemo = () => {
             max={30}
             step={1}
             value={ballCount}
-            onChange={(val) => setBallCount(val)}
+            onChange={val => setBallCount(val)}
             width={150}
           />
 
@@ -132,7 +135,7 @@ const MetaBallsDemo = () => {
             max={1}
             step={0.1}
             value={speed}
-            onChange={(val) => setSpeed(val)}
+            onChange={val => setSpeed(val)}
             width={150}
           />
 
@@ -142,7 +145,7 @@ const MetaBallsDemo = () => {
             max={50}
             step={1}
             value={animationSize}
-            onChange={(val) => setAnimationSize(val)}
+            onChange={val => setAnimationSize(val)}
             width={150}
           />
 
@@ -152,14 +155,14 @@ const MetaBallsDemo = () => {
             max={2}
             step={0.1}
             value={clumpFactor}
-            onChange={(val) => setClumpFactor(val)}
+            onChange={val => setClumpFactor(val)}
             width={150}
           />
 
           <PreviewSwitch
             title="Follow Cursor"
             isChecked={enableMouseInteraction}
-            onChange={(checked) => setEnableMouseInteraction(checked)}
+            onChange={checked => setEnableMouseInteraction(checked)}
           />
 
           <PreviewSlider
@@ -168,7 +171,7 @@ const MetaBallsDemo = () => {
             max={0.25}
             step={0.001}
             value={hoverSmoothness}
-            onChange={(val) => setHoverSmoothness(val)}
+            onChange={val => setHoverSmoothness(val)}
             width={150}
           />
 
@@ -178,12 +181,10 @@ const MetaBallsDemo = () => {
             max={5}
             step={1}
             value={cursorBallSize}
-            onChange={(val) => setCursorBallSize(val)}
+            onChange={val => setCursorBallSize(val)}
             width={150}
           />
         </Customize>
-
-
 
         <PropTable data={propData} />
         <Dependencies dependencyList={['ogl']} />

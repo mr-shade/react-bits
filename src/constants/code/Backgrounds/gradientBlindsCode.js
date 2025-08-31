@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Backgrounds/GradientBlinds/GradientBlinds.jsx?raw';
 import css from '@content/Backgrounds/GradientBlinds/GradientBlinds.css?raw';
 import tailwind from '@tailwind/Backgrounds/GradientBlinds/GradientBlinds.jsx?raw';
-import tsCode from '@ts-default/Backgrounds/GradientBlinds/GradientBlinds.tsx?raw'
-import tsTailwind from '@ts-tailwind/Backgrounds/GradientBlinds/GradientBlinds.tsx?raw'
+import tsCode from '@ts-default/Backgrounds/GradientBlinds/GradientBlinds.tsx?raw';
+import tsTailwind from '@ts-tailwind/Backgrounds/GradientBlinds/GradientBlinds.tsx?raw';
 
 export const gradientBlinds = {
-  ...(generateCliCommands('Backgrounds/GradientBlinds')),
+  ...generateCliCommands('Backgrounds/GradientBlinds'),
   installation: `npm install ogl`,
   usage: `import GradientBlinds from './GradientBlinds';
 
@@ -32,4 +32,4 @@ export const gradientBlinds = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

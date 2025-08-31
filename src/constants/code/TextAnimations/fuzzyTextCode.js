@@ -6,7 +6,7 @@ import tsCode from '@ts-default/TextAnimations/FuzzyText/FuzzyText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/FuzzyText/FuzzyText.tsx?raw';
 
 export const fuzzyText = {
-  ...(generateCliCommands('TextAnimations/FuzzyText')),
+  ...generateCliCommands('TextAnimations/FuzzyText'),
   usage: `import FuzzyText from './FuzzyText';
   
 <FuzzyText 
@@ -20,4 +20,4 @@ export const fuzzyText = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

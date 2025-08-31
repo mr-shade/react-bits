@@ -1,18 +1,10 @@
-import { useEffect, useRef } from "react";
-import {
-  Renderer,
-  Program,
-  Mesh,
-  Triangle,
-  Transform,
-  Vec3,
-  Camera,
-} from "ogl";
+import { useEffect, useRef } from 'react';
+import { Renderer, Program, Mesh, Triangle, Transform, Vec3, Camera } from 'ogl';
 
-import "./MetaBalls.css";
+import './MetaBalls.css';
 
 function parseHexColor(hex) {
-  const c = hex.replace("#", "");
+  const c = hex.replace('#', '');
   const r = parseInt(c.substring(0, 2), 16) / 255;
   const g = parseInt(c.substring(2, 4), 16) / 255;
   const b = parseInt(c.substring(4, 6), 16) / 255;
@@ -24,11 +16,9 @@ function fract(x) {
 }
 
 function hash31(p) {
-  let r = [p * 0.1031, p * 0.1030, p * 0.0973].map(fract);
+  let r = [p * 0.1031, p * 0.103, p * 0.0973].map(fract);
   const r_yzx = [r[1], r[2], r[0]];
-  const dotVal = r[0] * (r_yzx[0] + 33.33) +
-    r[1] * (r_yzx[1] + 33.33) +
-    r[2] * (r_yzx[2] + 33.33);
+  const dotVal = r[0] * (r_yzx[0] + 33.33) + r[1] * (r_yzx[1] + 33.33) + r[2] * (r_yzx[2] + 33.33);
   for (let i = 0; i < 3; i++) {
     r[i] = fract(r[i] + dotVal);
   }
@@ -36,11 +26,9 @@ function hash31(p) {
 }
 
 function hash33(v) {
-  let p = [v[0] * 0.1031, v[1] * 0.1030, v[2] * 0.0973].map(fract);
+  let p = [v[0] * 0.1031, v[1] * 0.103, v[2] * 0.0973].map(fract);
   const p_yxz = [p[1], p[0], p[2]];
-  const dotVal = p[0] * (p_yxz[0] + 33.33) +
-    p[1] * (p_yxz[1] + 33.33) +
-    p[2] * (p_yxz[2] + 33.33);
+  const dotVal = p[0] * (p_yxz[0] + 33.33) + p[1] * (p_yxz[1] + 33.33) + p[2] * (p_yxz[2] + 33.33);
   for (let i = 0; i < 3; i++) {
     p[i] = fract(p[i] + dotVal);
   }
@@ -108,8 +96,8 @@ void main() {
 `;
 
 const MetaBalls = ({
-  className = "",
-  color = "#ffffff",
+  className = '',
+  color = '#ffffff',
   speed = 0.3,
   enableMouseInteraction = true,
   hoverSmoothness = 0.05,
@@ -117,8 +105,8 @@ const MetaBalls = ({
   ballCount = 15,
   clumpFactor = 1,
   cursorBallSize = 3,
-  cursorBallColor = "#ffffff",
-  enableTransparency = true,
+  cursorBallColor = '#ffffff',
+  enableTransparency = true
 }) => {
   const containerRef = useRef(null);
 
@@ -133,7 +121,12 @@ const MetaBalls = ({
     container.appendChild(gl.canvas);
 
     const camera = new Camera(gl, {
-      left: -1, right: 1, top: 1, bottom: -1, near: 0.1, far: 10,
+      left: -1,
+      right: 1,
+      top: 1,
+      bottom: -1,
+      near: 0.1,
+      far: 10
     });
     camera.position.z = 1;
 
@@ -160,8 +153,8 @@ const MetaBalls = ({
         iCursorBallSize: { value: cursorBallSize },
         iMetaBalls: { value: metaBallsUniform },
         iClumpFactor: { value: clumpFactor },
-        enableTransparency: { value: enableTransparency },
-      },
+        enableTransparency: { value: enableTransparency }
+      }
     });
 
     const mesh = new Mesh(gl, { geometry, program });
@@ -193,11 +186,11 @@ const MetaBalls = ({
       const width = container.clientWidth;
       const height = container.clientHeight;
       renderer.setSize(width * dpr, height * dpr);
-      gl.canvas.style.width = width + "px";
-      gl.canvas.style.height = height + "px";
+      gl.canvas.style.width = width + 'px';
+      gl.canvas.style.height = height + 'px';
       program.uniforms.iResolution.value.set(gl.canvas.width, gl.canvas.height, 0);
     }
-    window.addEventListener("resize", resize);
+    window.addEventListener('resize', resize);
     resize();
 
     function onPointerMove(e) {
@@ -216,9 +209,9 @@ const MetaBalls = ({
       if (!enableMouseInteraction) return;
       pointerInside = false;
     }
-    container.addEventListener("pointermove", onPointerMove);
-    container.addEventListener("pointerenter", onPointerEnter);
-    container.addEventListener("pointerleave", onPointerLeave);
+    container.addEventListener('pointermove', onPointerMove);
+    container.addEventListener('pointerenter', onPointerEnter);
+    container.addEventListener('pointerleave', onPointerLeave);
 
     const startTime = performance.now();
     let animationFrameId;
@@ -260,12 +253,12 @@ const MetaBalls = ({
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resize);
-      container.removeEventListener("pointermove", onPointerMove);
-      container.removeEventListener("pointerenter", onPointerEnter);
-      container.removeEventListener("pointerleave", onPointerLeave);
+      window.removeEventListener('resize', resize);
+      container.removeEventListener('pointermove', onPointerMove);
+      container.removeEventListener('pointerenter', onPointerEnter);
+      container.removeEventListener('pointerleave', onPointerLeave);
       container.removeChild(gl.canvas);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [
     color,
@@ -277,7 +270,7 @@ const MetaBalls = ({
     ballCount,
     clumpFactor,
     cursorBallSize,
-    enableTransparency,
+    enableTransparency
   ]);
 
   return <div ref={containerRef} className={`metaballs-container ${className}`} />;

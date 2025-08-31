@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/TrueFocus/TrueFocus.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/TrueFocus/TrueFocus.tsx?raw';
 
 export const trueFocus = {
-  ...(generateCliCommands('TextAnimations/TrueFocus')),
+  ...generateCliCommands('TextAnimations/TrueFocus'),
   installation: `npm install motion`,
   usage: `import TrueFocus from './TrueFocus';
 
@@ -24,4 +24,4 @@ pauseBetweenAnimations={1}
   tailwind,
   tsCode,
   tsTailwind
-}
+};

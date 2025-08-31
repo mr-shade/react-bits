@@ -31,7 +31,8 @@ const StickerPeel = ({
     const target = dragTargetRef.current;
     if (!target) return;
 
-    let startX = 0, startY = 0;
+    let startX = 0,
+      startY = 0;
 
     if (initialPosition === 'center') {
       return;
@@ -67,25 +68,25 @@ const StickerPeel = ({
     const handleResize = () => {
       if (draggableInstanceRef.current) {
         draggableInstanceRef.current.update();
-        
-        const currentX = gsap.getProperty(target, "x");
-        const currentY = gsap.getProperty(target, "y");
-        
+
+        const currentX = gsap.getProperty(target, 'x');
+        const currentY = gsap.getProperty(target, 'y');
+
         const boundsRect = boundsEl.getBoundingClientRect();
         const targetRect = target.getBoundingClientRect();
-        
+
         const maxX = boundsRect.width - targetRect.width;
         const maxY = boundsRect.height - targetRect.height;
-        
+
         const newX = Math.max(0, Math.min(currentX, maxX));
         const newY = Math.max(0, Math.min(currentY, maxY));
-        
+
         if (newX !== currentX || newY !== currentY) {
-          gsap.to(target, { 
-            x: newX, 
-            y: newY, 
-            duration: 0.3, 
-            ease: "power2.out" 
+          gsap.to(target, {
+            x: newX,
+            y: newY,
+            duration: 0.3,
+            ease: 'power2.out'
           });
         }
       }
@@ -104,7 +105,7 @@ const StickerPeel = ({
   }, []);
 
   useEffect(() => {
-    const updateLight = (e) => {
+    const updateLight = e => {
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
 
@@ -229,10 +230,7 @@ const StickerPeel = ({
         </defs>
       </svg>
 
-      <div
-        className="sticker-container"
-        ref={containerRef}
-      >
+      <div className="sticker-container" ref={containerRef}>
         <div className="sticker-main">
           <div className="sticker-lighting">
             <img
@@ -240,7 +238,7 @@ const StickerPeel = ({
               alt=""
               className="sticker-image"
               draggable="false"
-              onContextMenu={(e) => e.preventDefault()}
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
         </div>
@@ -252,7 +250,7 @@ const StickerPeel = ({
               alt=""
               className="flap-image"
               draggable="false"
-              onContextMenu={(e) => e.preventDefault()}
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
         </div>

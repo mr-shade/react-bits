@@ -17,7 +17,8 @@ const CategoryPage = () => {
   const opacity = ['fade-out', 'loading'].includes(transitionPhase) ? 0 : 1;
   const isGetStartedRoute = category === 'get-started';
 
-  const SubcategoryComponent = getPreloadedComponent(subcategory)?.default || (subcategory ? lazy(componentMap[subcategory]) : null);
+  const SubcategoryComponent =
+    getPreloadedComponent(subcategory)?.default || (subcategory ? lazy(componentMap[subcategory]) : null);
   const Loader = isGetStartedRoute ? GetStartedLoader : SkeletonLoader;
 
   useEffect(() => {
@@ -33,10 +34,13 @@ const CategoryPage = () => {
       <Box className="page-transition-fade" style={{ opacity }}>
         <h2 className={`sub-category ${isGetStartedRoute ? 'docs-category-title' : ''}`}>{decodedLabel}</h2>
 
-        {isLoading
-          ? <Loader />
-          : <Suspense fallback={<Loader />}><SubcategoryComponent /></Suspense>
-        }
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Suspense fallback={<Loader />}>
+            <SubcategoryComponent />
+          </Suspense>
+        )}
       </Box>
       <BackToTopButton />
     </Box>

@@ -9,8 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 const ScrollFloat = ({
   children,
   scrollContainerRef,
-  containerClassName = "",
-  textClassName = "",
+  containerClassName = '',
+  textClassName = '',
   animationDuration = 1,
   ease = 'back.inOut(2)',
   scrollStart = 'center bottom+=50%',
@@ -21,9 +21,9 @@ const ScrollFloat = ({
 
   const splitText = useMemo(() => {
     const text = typeof children === 'string' ? children : '';
-    return text.split("").map((char, index) => (
+    return text.split('').map((char, index) => (
       <span className="char" key={index}>
-        {char === " " ? "\u00A0" : char}
+        {char === ' ' ? '\u00A0' : char}
       </span>
     ));
   }, [children]);
@@ -32,10 +32,7 @@ const ScrollFloat = ({
     const el = containerRef.current;
     if (!el) return;
 
-    const scroller =
-      scrollContainerRef && scrollContainerRef.current
-        ? scrollContainerRef.current
-        : window;
+    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
     const charElements = el.querySelectorAll('.char');
 
@@ -70,9 +67,7 @@ const ScrollFloat = ({
 
   return (
     <h2 ref={containerRef} className={`scroll-float ${containerClassName}`}>
-      <span className={`scroll-float-text ${textClassName}`}>
-        {splitText}
-      </span>
+      <span className={`scroll-float-text ${textClassName}`}>{splitText}</span>
     </h2>
   );
 };

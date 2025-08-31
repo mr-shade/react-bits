@@ -7,7 +7,7 @@ import tsCode from '@ts-default/TextAnimations/TextCursor/TextCursor.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/TextCursor/TextCursor.tsx?raw';
 
 export const textCursor = {
-  ...(generateCliCommands('TextAnimations/TextCursor')),
+  ...generateCliCommands('TextAnimations/TextCursor'),
   installation: `npm install motion`,
   usage: `import TextCursor from './TextCursor';
 
@@ -26,4 +26,4 @@ export const textCursor = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

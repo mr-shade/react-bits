@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box, Button, Flex } from '@chakra-ui/react';
 
-import Customize from "../../components/common/Preview/Customize";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import CodeExample from "../../components/code/CodeExample";
-import CliInstallation from "../../components/code/CliInstallation";
-import PropTable from "../../components/common/Preview/PropTable";
+import Customize from '../../components/common/Preview/Customize';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import CodeExample from '../../components/code/CodeExample';
+import CliInstallation from '../../components/code/CliInstallation';
+import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 
-import Counter from "../../content/Components/Counter/Counter";
-import { counter } from "../../constants/code/Components/counterCode";
+import Counter from '../../content/Components/Counter/Counter';
+import { counter } from '../../constants/code/Components/counterCode';
 
 const CounterDemo = () => {
   const [value, setValue] = useState(1);
@@ -19,107 +19,107 @@ const CounterDemo = () => {
 
   const propData = [
     {
-      name: "value",
-      type: "number",
-      default: "N/A (required)",
-      description: "The numeric value to display in the counter."
+      name: 'value',
+      type: 'number',
+      default: 'N/A (required)',
+      description: 'The numeric value to display in the counter.'
     },
     {
-      name: "fontSize",
-      type: "number",
-      default: "100",
-      description: "The base font size used for the counter digits."
+      name: 'fontSize',
+      type: 'number',
+      default: '100',
+      description: 'The base font size used for the counter digits.'
     },
     {
-      name: "padding",
-      type: "number",
-      default: "0",
-      description: "Additional padding added to the digit height."
+      name: 'padding',
+      type: 'number',
+      default: '0',
+      description: 'Additional padding added to the digit height.'
     },
     {
-      name: "places",
-      type: "number[]",
-      default: "[100, 10, 1]",
-      description: "An array of place values to determine which digits to display."
+      name: 'places',
+      type: 'number[]',
+      default: '[100, 10, 1]',
+      description: 'An array of place values to determine which digits to display.'
     },
     {
-      name: "gap",
-      type: "number",
-      default: "8",
-      description: "The gap (in pixels) between each digit."
+      name: 'gap',
+      type: 'number',
+      default: '8',
+      description: 'The gap (in pixels) between each digit.'
     },
     {
-      name: "borderRadius",
-      type: "number",
-      default: "4",
-      description: "The border radius (in pixels) for the counter container."
+      name: 'borderRadius',
+      type: 'number',
+      default: '4',
+      description: 'The border radius (in pixels) for the counter container.'
     },
     {
-      name: "horizontalPadding",
-      type: "number",
-      default: "8",
-      description: "The horizontal padding (in pixels) for the counter container."
+      name: 'horizontalPadding',
+      type: 'number',
+      default: '8',
+      description: 'The horizontal padding (in pixels) for the counter container.'
     },
     {
-      name: "textColor",
-      type: "string",
+      name: 'textColor',
+      type: 'string',
       default: "'white'",
-      description: "The text color for the counter digits."
+      description: 'The text color for the counter digits.'
     },
     {
-      name: "fontWeight",
-      type: "string | number",
+      name: 'fontWeight',
+      type: 'string | number',
       default: "'bold'",
-      description: "The font weight of the counter digits."
+      description: 'The font weight of the counter digits.'
     },
     {
-      name: "containerStyle",
-      type: "React.CSSProperties",
-      default: "{}",
-      description: "Custom inline styles for the outer container."
+      name: 'containerStyle',
+      type: 'React.CSSProperties',
+      default: '{}',
+      description: 'Custom inline styles for the outer container.'
     },
     {
-      name: "counterStyle",
-      type: "React.CSSProperties",
-      default: "{}",
-      description: "Custom inline styles for the counter element."
+      name: 'counterStyle',
+      type: 'React.CSSProperties',
+      default: '{}',
+      description: 'Custom inline styles for the counter element.'
     },
     {
-      name: "digitStyle",
-      type: "React.CSSProperties",
-      default: "{}",
-      description: "Custom inline styles for each digit container."
+      name: 'digitStyle',
+      type: 'React.CSSProperties',
+      default: '{}',
+      description: 'Custom inline styles for each digit container.'
     },
     {
-      name: "gradientHeight",
-      type: "number",
-      default: "16",
-      description: "The height (in pixels) of the gradient overlays."
+      name: 'gradientHeight',
+      type: 'number',
+      default: '16',
+      description: 'The height (in pixels) of the gradient overlays.'
     },
     {
-      name: "gradientFrom",
-      type: "string",
+      name: 'gradientFrom',
+      type: 'string',
       default: "'black'",
-      description: "The starting color for the gradient overlays."
+      description: 'The starting color for the gradient overlays.'
     },
     {
-      name: "gradientTo",
-      type: "string",
+      name: 'gradientTo',
+      type: 'string',
       default: "'transparent'",
-      description: "The ending color for the gradient overlays."
+      description: 'The ending color for the gradient overlays.'
     },
     {
-      name: "topGradientStyle",
-      type: "React.CSSProperties",
-      default: "undefined",
-      description: "Custom inline styles for the top gradient overlay."
+      name: 'topGradientStyle',
+      type: 'React.CSSProperties',
+      default: 'undefined',
+      description: 'Custom inline styles for the top gradient overlay.'
     },
     {
-      name: "bottomGradientStyle",
-      type: "React.CSSProperties",
-      default: "undefined",
-      description: "Custom inline styles for the bottom gradient overlay."
-    },
+      name: 'bottomGradientStyle',
+      type: 'React.CSSProperties',
+      default: 'undefined',
+      description: 'Custom inline styles for the bottom gradient overlay.'
+    }
   ];
 
   return (
@@ -139,51 +139,38 @@ const CounterDemo = () => {
             fontWeight={900}
           />
 
-          <Flex gap={4} bottom="1em" direction={"row"} justify={"center"} mt={4} position='absolute'>
+          <Flex gap={4} bottom="1em" direction={'row'} justify={'center'} mt={4} position="absolute">
             <Button
               bg="#170D27"
               borderRadius="10px"
               border="1px solid #271E37"
-              _hover={{ bg: "#271E37" }}
+              _hover={{ bg: '#271E37' }}
               color="#fff"
               h={10}
               w={10}
-              onClick={() => setValue(value - 1)}>
+              onClick={() => setValue(value - 1)}
+            >
               -
             </Button>
             <Button
               bg="#170D27"
               borderRadius="10px"
               border="1px solid #271E37"
-              _hover={{ bg: "#271E37" }}
+              _hover={{ bg: '#271E37' }}
               color="#fff"
               h={10}
               w={10}
-              onClick={() => value < 999 && setValue(value + 1)}>
+              onClick={() => value < 999 && setValue(value + 1)}
+            >
               +
             </Button>
           </Flex>
         </Box>
 
-
         <Customize>
-          <PreviewSlider
-            title="Value"
-            min={0}
-            max={999}
-            step={1}
-            value={value}
-            onChange={(val) => setValue(val)}
-          />
+          <PreviewSlider title="Value" min={0} max={999} step={1} value={value} onChange={val => setValue(val)} />
 
-          <PreviewSlider
-            title="Gap"
-            min={0}
-            max={50}
-            step={10}
-            value={gap}
-            onChange={(val) => setGap(val)}
-          />
+          <PreviewSlider title="Gap" min={0} max={50} step={10} value={gap} onChange={val => setGap(val)} />
 
           <PreviewSlider
             title="Font Size"
@@ -191,7 +178,7 @@ const CounterDemo = () => {
             max={200}
             step={10}
             value={fontSize}
-            onChange={(val) => setFontSize(val)}
+            onChange={val => setFontSize(val)}
           />
         </Customize>
 

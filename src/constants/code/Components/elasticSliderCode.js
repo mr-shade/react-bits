@@ -3,11 +3,11 @@ import { generateCliCommands } from '@/utils/utils';
 import code from '@content/Components/ElasticSlider/ElasticSlider.jsx?raw';
 import css from '@content/Components/ElasticSlider/ElasticSlider.css?raw';
 import tailwind from '@tailwind/Components/ElasticSlider/ElasticSlider.jsx?raw';
-import tsCode from "@ts-default/Components/ElasticSlider/ElasticSlider.tsx?raw"
-import tsTailwind from "@ts-tailwind/Components/ElasticSlider/ElasticSlider.tsx?raw"
+import tsCode from '@ts-default/Components/ElasticSlider/ElasticSlider.tsx?raw';
+import tsTailwind from '@ts-tailwind/Components/ElasticSlider/ElasticSlider.tsx?raw';
 
 export const elasticSlider = {
-  ...(generateCliCommands('Components/ElasticSlider')),
+  ...generateCliCommands('Components/ElasticSlider'),
   installation: `npm install motion`,
   usage: `import ElasticSlider from './ElasticSlider'
   
@@ -25,4 +25,4 @@ export const elasticSlider = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

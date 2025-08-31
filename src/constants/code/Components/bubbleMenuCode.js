@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/BubbleMenu/BubbleMenu.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/BubbleMenu/BubbleMenu.tsx?raw';
 
 export const bubbleMenu = {
-  ...(generateCliCommands('Components/BubbleMenu')),
+  ...generateCliCommands('Components/BubbleMenu'),
   installation: `npm install gsap`,
   usage: `import BubbleMenu from './BubbleMenu'
 
@@ -65,4 +65,4 @@ const items = [
   tailwind,
   tsCode,
   tsTailwind
-}
+};

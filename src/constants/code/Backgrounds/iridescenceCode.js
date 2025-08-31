@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Backgrounds/Iridescence/Iridescence.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Iridescence/Iridescence.tsx?raw';
 
 export const iridescence = {
-  ...(generateCliCommands('Backgrounds/Iridescence')),
+  ...generateCliCommands('Backgrounds/Iridescence'),
   installation: `npm install ogl`,
   usage: `import Iridescence from './Iridescence';
   
@@ -22,7 +22,7 @@ export const iridescence = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};
 
 export const iridescenceMock = {
   usage: `import Iridescence from './Iridescence';
@@ -33,4 +33,4 @@ export const iridescenceMock = {
   amplitude={0.1}
   speed={1.0}
 />`
-}
+};

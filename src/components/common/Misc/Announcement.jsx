@@ -5,14 +5,14 @@ const Announcement = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const announcementMessage = "";
+  const announcementMessage = '';
 
   const STORAGE_KEYS = {
     lastMessage: 'announcement-last-message',
     userClosed: 'announcement-user-closed'
   };
 
-  const parseMessageWithLinks = useCallback((message) => {
+  const parseMessageWithLinks = useCallback(message => {
     const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
     const parts = [];
     let lastIndex = 0;
@@ -54,11 +54,10 @@ const Announcement = () => {
     const lastStoredMessage = localStorage.getItem(STORAGE_KEYS.lastMessage);
     const userClosed = localStorage.getItem(STORAGE_KEYS.userClosed) === 'true';
 
-    const shouldShow = (
+    const shouldShow =
       lastStoredMessage !== announcementMessage ||
       !lastStoredMessage ||
-      (lastStoredMessage === announcementMessage && !userClosed)
-    );
+      (lastStoredMessage === announcementMessage && !userClosed);
 
     if (shouldShow) {
       setIsVisible(true);
@@ -88,7 +87,7 @@ const Announcement = () => {
     localStorage.setItem(STORAGE_KEYS.userClosed, 'true');
   };
 
-  const shareToX = useCallback((text) => {
+  const shareToX = useCallback(text => {
     const tweetText = encodeURIComponent(text);
     const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
     window.open(twitterUrl, '_blank');
@@ -135,25 +134,13 @@ const Announcement = () => {
 
   return (
     <div className="announcement-bar">
-      <div className="announcement-content">
-        {parseMessageWithLinks(announcementMessage)}
-      </div>
+      <div className="announcement-content">{parseMessageWithLinks(announcementMessage)}</div>
       <div className="announcement-actions">
-        <button
-          onClick={handleShare}
-          className="announcement-share"
-          aria-label={isMobile ? "Share" : "Share on X"}
-        >
+        <button onClick={handleShare} className="announcement-share" aria-label={isMobile ? 'Share' : 'Share on X'}>
           <FiShare2 size={16} />
-          <span className="announcement-share-text">
-            {isMobile ? "Share" : "Share on X"}
-          </span>
+          <span className="announcement-share-text">{isMobile ? 'Share' : 'Share on X'}</span>
         </button>
-        <button
-          onClick={closeAnnouncement}
-          className="announcement-close"
-          aria-label="Close announcement"
-        >
+        <button onClick={closeAnnouncement} className="announcement-close" aria-label="Close announcement">
           <FiX size={18} />
         </button>
       </div>

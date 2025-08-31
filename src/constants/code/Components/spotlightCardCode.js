@@ -7,7 +7,7 @@ import tsCode from '@ts-default/Components/SpotlightCard/SpotlightCard.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/SpotlightCard/SpotlightCard.tsx?raw';
 
 export const spotlightCard = {
-  ...(generateCliCommands('Components/SpotlightCard')),
+  ...generateCliCommands('Components/SpotlightCard'),
   usage: `import SpotlightCard from './SpotlightCard';
   
 <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
@@ -18,4 +18,4 @@ export const spotlightCard = {
   tailwind,
   tsCode,
   tsTailwind
-}
+};

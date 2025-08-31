@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from "../../components/common/TabsLayout";
-import { Box } from "@chakra-ui/react";
+import { useState } from 'react';
+import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { Box } from '@chakra-ui/react';
 
-import RefreshButton from "../../components/common/Preview/RefreshButton";
-import CodeExample from "../../components/code/CodeExample";
-import Dependencies from "../../components/code/Dependencies";
-import useForceRerender from "../../hooks/useForceRerender";
-import PropTable from "../../components/common/Preview/PropTable";
-import CliInstallation from "../../components/code/CliInstallation";
-import PreviewSlider from "../../components/common/Preview/PreviewSlider";
-import PreviewSwitch from "../../components/common/Preview/PreviewSwitch";
-import Customize from "../../components/common/Preview/Customize";
-import BackgroundContent from "../../components/common/Preview/BackgroundContent";
+import RefreshButton from '../../components/common/Preview/RefreshButton';
+import CodeExample from '../../components/code/CodeExample';
+import Dependencies from '../../components/code/Dependencies';
+import useForceRerender from '../../hooks/useForceRerender';
+import PropTable from '../../components/common/Preview/PropTable';
+import CliInstallation from '../../components/code/CliInstallation';
+import PreviewSlider from '../../components/common/Preview/PreviewSlider';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import Customize from '../../components/common/Preview/Customize';
+import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
-import Ballpit from "../../content/Backgrounds/Ballpit/Ballpit";
+import Ballpit from '../../content/Backgrounds/Ballpit/Ballpit';
 import { ballpit } from '../../constants/code/Backgrounds/ballpitCode';
 
 const BallpitDemo = () => {
@@ -22,106 +22,106 @@ const BallpitDemo = () => {
   const [friction, setFriction] = useState(0.9975);
   const [wallBounce, setWallBounce] = useState(0.95);
   const [followCursor, setFollowCursor] = useState(false);
-  const colors = [0xffffff, 0x000000, 0x5227FF];
+  const colors = [0xffffff, 0x000000, 0x5227ff];
 
   const [key, forceRerender] = useForceRerender();
 
   const propData = [
     {
-      name: "count",
-      type: "number",
-      default: "200",
-      description: "Sets the number of balls in the ballpit.",
+      name: 'count',
+      type: 'number',
+      default: '200',
+      description: 'Sets the number of balls in the ballpit.'
     },
     {
-      name: "gravity",
-      type: "number",
-      default: "0.5",
-      description: "Controls the gravity affecting the balls.",
+      name: 'gravity',
+      type: 'number',
+      default: '0.5',
+      description: 'Controls the gravity affecting the balls.'
     },
     {
-      name: "friction",
-      type: "number",
-      default: "0.9975",
-      description: "Sets the friction applied to the ball movement.",
+      name: 'friction',
+      type: 'number',
+      default: '0.9975',
+      description: 'Sets the friction applied to the ball movement.'
     },
     {
-      name: "wallBounce",
-      type: "number",
-      default: "0.95",
-      description: "Determines how much balls bounce off walls.",
+      name: 'wallBounce',
+      type: 'number',
+      default: '0.95',
+      description: 'Determines how much balls bounce off walls.'
     },
     {
-      name: "followCursor",
-      type: "boolean",
-      default: "true",
-      description: "Enables or disables the sphere following the cursor.",
+      name: 'followCursor',
+      type: 'boolean',
+      default: 'true',
+      description: 'Enables or disables the sphere following the cursor.'
     },
     {
-      name: "colors",
-      type: "array",
-      default: "[0, 0, 0]",
-      description: "Defines the colors of the balls.",
+      name: 'colors',
+      type: 'array',
+      default: '[0, 0, 0]',
+      description: 'Defines the colors of the balls.'
     },
     {
-      name: "ambientColor",
-      type: "number",
-      default: "16777215",
-      description: "Sets the ambient light color.",
+      name: 'ambientColor',
+      type: 'number',
+      default: '16777215',
+      description: 'Sets the ambient light color.'
     },
     {
-      name: "ambientIntensity",
-      type: "number",
-      default: "1",
-      description: "Controls the intensity of ambient light.",
+      name: 'ambientIntensity',
+      type: 'number',
+      default: '1',
+      description: 'Controls the intensity of ambient light.'
     },
     {
-      name: "lightIntensity",
-      type: "number",
-      default: "200",
-      description: "Sets the intensity of the main light source.",
+      name: 'lightIntensity',
+      type: 'number',
+      default: '200',
+      description: 'Sets the intensity of the main light source.'
     },
     {
-      name: "minSize",
-      type: "number",
-      default: "0.5",
-      description: "Specifies the minimum size of the balls.",
+      name: 'minSize',
+      type: 'number',
+      default: '0.5',
+      description: 'Specifies the minimum size of the balls.'
     },
     {
-      name: "maxSize",
-      type: "number",
-      default: "1",
-      description: "Specifies the maximum size of the balls.",
+      name: 'maxSize',
+      type: 'number',
+      default: '1',
+      description: 'Specifies the maximum size of the balls.'
     },
     {
-      name: "size0",
-      type: "number",
-      default: "1",
-      description: "Initial size value for the cursor ball.",
+      name: 'size0',
+      type: 'number',
+      default: '1',
+      description: 'Initial size value for the cursor ball.'
     },
     {
-      name: "maxVelocity",
-      type: "number",
-      default: "0.15",
-      description: "Limits the maximum velocity of the balls.",
+      name: 'maxVelocity',
+      type: 'number',
+      default: '0.15',
+      description: 'Limits the maximum velocity of the balls.'
     },
     {
-      name: "maxX",
-      type: "number",
-      default: "5",
-      description: "Defines the maximum X-coordinate boundary.",
+      name: 'maxX',
+      type: 'number',
+      default: '5',
+      description: 'Defines the maximum X-coordinate boundary.'
     },
     {
-      name: "maxY",
-      type: "number",
-      default: "5",
-      description: "Defines the maximum Y-coordinate boundary.",
+      name: 'maxY',
+      type: 'number',
+      default: '5',
+      description: 'Defines the maximum Y-coordinate boundary.'
     },
     {
-      name: "maxZ",
-      type: "number",
-      default: "2",
-      description: "Defines the maximum Z-coordinate boundary.",
+      name: 'maxZ',
+      type: 'number',
+      default: '2',
+      description: 'Defines the maximum Z-coordinate boundary.'
     }
   ];
 
@@ -142,17 +142,14 @@ const BallpitDemo = () => {
           />
 
           {/* For Demo Purposes Only */}
-          <BackgroundContent
-            pillText="New Background"
-            headline="Balls! What's not to like about them?"
-          />
+          <BackgroundContent pillText="New Background" headline="Balls! What's not to like about them?" />
         </Box>
 
         <Customize>
           <PreviewSwitch
             title="Display Cursor"
             isChecked={followCursor}
-            onChange={(checked) => {
+            onChange={checked => {
               setFollowCursor(checked);
               forceRerender();
             }}
@@ -164,7 +161,7 @@ const BallpitDemo = () => {
             max={500}
             step={10}
             value={count}
-            onChange={(val) => {
+            onChange={val => {
               setCount(val);
               forceRerender();
             }}
@@ -176,7 +173,7 @@ const BallpitDemo = () => {
             max={1}
             step={0.1}
             value={gravity}
-            onChange={(val) => {
+            onChange={val => {
               setGravity(val);
               forceRerender();
             }}
@@ -188,7 +185,7 @@ const BallpitDemo = () => {
             max={1}
             step={0.001}
             value={friction}
-            onChange={(val) => {
+            onChange={val => {
               setFriction(val);
               forceRerender();
             }}
@@ -200,7 +197,7 @@ const BallpitDemo = () => {
             max={1}
             step={0.05}
             value={wallBounce}
-            onChange={(val) => {
+            onChange={val => {
               setWallBounce(val);
               forceRerender();
             }}
@@ -208,7 +205,7 @@ const BallpitDemo = () => {
         </Customize>
 
         <PropTable data={propData} />
-        <Dependencies dependencyList={["three"]} />
+        <Dependencies dependencyList={['three']} />
       </PreviewTab>
 
       <CodeTab>
