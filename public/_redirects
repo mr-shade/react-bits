@@ -1,0 +1,2 @@
+/r/*.json   /r/:splat.json 200
+/r/*        /r/:splat.json 308

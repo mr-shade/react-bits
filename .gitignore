@@ -13,6 +13,7 @@ node_modules
 dist
 dist-ssr
 *.local
+components.json
 public/default
 public/tailwind
 public/ts/default
@@ -22,6 +23,7 @@ public/ts/tailwind
 .vscode/*
 !.vscode/extensions.json
 .idea
+.wrangler
 .DS_Store
 *.suo
 *.ntvs*

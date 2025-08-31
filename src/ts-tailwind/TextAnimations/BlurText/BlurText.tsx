@@ -1,5 +1,4 @@
-import { motion, Transition } from "motion/react";
-import { EasingFunction } from "motion-utils";
+import { motion, Transition, Easing } from "motion/react";
 import { useEffect, useRef, useState, useMemo } from "react";
 
 type BlurTextProps = {
@@ -12,7 +11,7 @@ type BlurTextProps = {
   rootMargin?: string;
   animationFrom?: Record<string, string | number>;
   animationTo?: Array<Record<string, string | number>>;
-  easing?: EasingFunction;
+  easing?: Easing | Easing[];
   onAnimationComplete?: () => void;
   stepDuration?: number;
 };
@@ -43,7 +42,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   rootMargin = "0px",
   animationFrom,
   animationTo,
-  easing = (t) => t,
+  easing = (t: number) => t,
   onAnimationComplete,
   stepDuration = 0.35,
 }) => {
