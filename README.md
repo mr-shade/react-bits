@@ -32,7 +32,7 @@ React Bits is a large collection of animated React components made to spice up y
 
 ## Key Features
 
-- 100+ total components (text animations, animations, components, backgrounds), growing every week
+- 110+ total components (text animations, animations, components, backgrounds), growing every week
 - All components have minimal dependencies, and are highly customizable through props
 - Designed to integrate seamlessly with any modern React project
 - Each component comes in 4 variants, to keep everyone happy:

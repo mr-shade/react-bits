@@ -209,7 +209,7 @@ const FeatureCards = () => {
             <div className="messages-gif-wrapper">
               <img src="/assets/messages.gif" alt="Messages animation" className="messages-gif" />
             </div>
-            <h2>{isMobile ? '100' : <CountUp to={100} />}%</h2>
+            <h2>{isMobile ? '110' : <CountUp to={110} />}%</h2>
             <h3>Free &amp; Open Source</h3>
             <p>Loved by developers around the world</p>
           </ParticleCard>
