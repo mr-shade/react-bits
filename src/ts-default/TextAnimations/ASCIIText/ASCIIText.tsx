@@ -1,3 +1,5 @@
+// Component ported and enhanced from https://codepen.io/JuanFuentes/pen/eYEeoyE
+
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
