@@ -7,7 +7,10 @@ import tsTailwind from '@ts-tailwind/TextAnimations/TextPressure/TextPressure.ts
 
 export const textPressure = {
   ...generateCliCommands('TextAnimations/TextPressure'),
-  usage: `import TextPressure from './TextPressure';
+  usage: `// Component ported from https://codepen.io/JuanFuentes/full/rgXKGQ
+// Font used - https://compressa.preusstype.com/
+  
+import TextPressure from './TextPressure';
 
 // Note:
 // Make sure the font you're using supports all the variable properties. 

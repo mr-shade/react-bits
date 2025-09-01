@@ -8,7 +8,9 @@ import tsTailwind from '@ts-tailwind/TextAnimations/ASCIIText/ASCIIText.tsx?raw'
 export const asciiText = {
   ...generateCliCommands('TextAnimations/ASCIIText'),
   installation: `npm install three`,
-  usage: `import ASCIIText from './ASCIIText';
+  usage: `// Component ported and enhanced from https://codepen.io/JuanFuentes/pen/eYEeoyE
+  
+import ASCIIText from './ASCIIText';
 
 <ASCIIText
   text='hello_world'
