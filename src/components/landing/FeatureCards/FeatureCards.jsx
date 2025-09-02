@@ -211,7 +211,7 @@ const FeatureCards = () => {
             </div>
             <h2>{isMobile ? '100' : <CountUp to={100} />}%</h2>
             <h3>Free &amp; Open Source</h3>
-            <p>Loved by developers around the world</p>
+            <p>Loved by devs around the world</p>
           </ParticleCard>
 
           <ParticleCard className="feature-card card2" disableAnimations={isMobile}>
@@ -227,9 +227,9 @@ const FeatureCards = () => {
             <div className="switch-gif-wrapper">
               <img src="/assets/switch.gif" alt="Switch animation" className="switch-gif" />
             </div>
-            <h2>{isMobile ? '2' : <CountUp to={2} />}</h2>
-            <h3>Styling Options</h3>
-            <p>CSS or Tailwind, switch with one click</p>
+            <h2>{isMobile ? '4' : <CountUp to={4} />}</h2>
+            <h3>Component Variants</h3>
+            <p>Pick your favourite technologies</p>
           </ParticleCard>
         </div>
       </div>
