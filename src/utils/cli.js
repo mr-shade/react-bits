@@ -7,7 +7,7 @@ const variantForJsrepo = (language, style) => {
   if (sty === 'TW') return 'tailwind';
   return 'default';
 };
-const variantForShadcn = (language, style) => `${(language || 'JS').toUpperCase()}-${(style || 'CSS').toUpperCase()}`;
+const variantForShadcn = (language, style) => `${(language || 'JS').toUpperCase()}-${(style || 'CSS').toUpperCase()}.json`;
 
 const slugToComponentName = slug => {
   if (!slug) return '';
