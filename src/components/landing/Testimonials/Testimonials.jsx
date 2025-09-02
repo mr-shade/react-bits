@@ -4,10 +4,10 @@ const Testimonials = () => {
   const tweets = [
     {
       id: 1,
-      avatar: 'https://pbs.twimg.com/profile_images/1817890513225121792/i8vgLj8Q_400x400.jpg',
-      text: 'Just used React Bits for my landing page. This is amazing, they open sourced so many animations that would have taken so long to build and tweak even with AI.',
-      handle: '@Antashshrivast2',
-      url: 'https://x.com/Antashshrivast2/status/1957423687986033095'
+      avatar: 'https://pbs.twimg.com/profile_images/1794450494686932992/wqRqF4dt_400x400.jpg',
+      text: 'Really impressed by https://reactbits.dev. Check it out. The Splash Cursor effect is amazing.',
+      handle: '@makwanadeepam',
+      url: 'https://x.com/makwanadeepam/status/1879416558461890864'
     },
     {
       id: 2,
@@ -18,10 +18,10 @@ const Testimonials = () => {
     },
     {
       id: 3,
-      avatar: 'https://pbs.twimg.com/profile_images/1794450494686932992/wqRqF4dt_400x400.jpg',
-      text: 'Really impressed by https://reactbits.dev. Check it out. The Splash Cursor effect is amazing.',
-      handle: '@makwanadeepam',
-      url: 'https://x.com/makwanadeepam/status/1879416558461890864'
+      avatar: 'https://pbs.twimg.com/profile_images/1593304942210478080/TUYae5z7_400x400.jpg',
+      text: 'Everything about this is next level: the components, the registry, dynamic items.',
+      handle: '@shadcn',
+      url: 'https://x.com/shadcn/status/1962854085587275932'
     },
     {
       id: 4,
