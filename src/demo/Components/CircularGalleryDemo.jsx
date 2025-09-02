@@ -1,8 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
-import CliInstallation from '../../components/code/CliInstallation';
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
 import Customize from '../../components/common/Preview/Customize';
@@ -133,10 +132,6 @@ const CircularGalleryDemo = () => {
       <CodeTab>
         <CodeExample codeObject={circularGallery} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...circularGallery} />
-      </CliTab>
     </TabsLayout>
   );
 };

@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Backgrounds/GridDistortion/GridDistortion.jsx?raw';
 import css from '@content/Backgrounds/GridDistortion/GridDistortion.css?raw';
 import tailwind from '@tailwind/Backgrounds/GridDistortion/GridDistortion.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Backgrounds/GridDistortion/GridDistortion.tsx?ra
 import tsTailwind from '@ts-tailwind/Backgrounds/GridDistortion/GridDistortion.tsx?raw';
 
 export const gridDistortion = {
-  ...generateCliCommands('Backgrounds/GridDistortion'),
-  installation: `npm install three`,
+  dependencies: `three`,
   usage: `import GridDistortion from './GridDistortion';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

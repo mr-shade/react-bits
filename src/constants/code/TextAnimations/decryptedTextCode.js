@@ -1,13 +1,10 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/DecryptedText/DecryptedText.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/DecryptedText/DecryptedText.jsx?raw';
 import tsCode from '@ts-default/TextAnimations/DecryptedText/DecryptedText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/DecryptedText/DecryptedText.tsx?raw';
 
 export const decryptedText = {
-  ...generateCliCommands('TextAnimations/DecryptedText'),
-  installation: `npm install motion`,
+  dependencies: `motion`,
   usage: `import DecryptedText from './DecryptedText';
 
 {/* Example 1: Defaults (hover to decrypt) */}

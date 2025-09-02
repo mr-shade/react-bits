@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Flex } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import GradientText from '../../content/TextAnimations/GradientText/GradientText';
 import RefreshButton from '../../components/common/Preview/RefreshButton';
@@ -9,7 +9,6 @@ import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from '../../hooks/useForceRerender';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import CountUp from '../../content/TextAnimations/CountUp/CountUp';
 import { countup } from '../../constants/code/TextAnimations/countUpCode';
@@ -168,10 +167,6 @@ const CountUpDemo = () => {
       <CodeTab>
         <CodeExample codeObject={countup} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...countup} />
-      </CliTab>
     </TabsLayout>
   );
 };

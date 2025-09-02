@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Separator } from '@chakra-ui/react';
 
 import Customize from '../../components/common/Preview/Customize';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSelect from '../../components/common/Preview/PreviewSelect';
@@ -220,10 +220,6 @@ const InfiniteScrollDemo = () => {
       <CodeTab>
         <CodeExample codeObject={infiniteScroll} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...infiniteScroll} />
-      </CliTab>
     </TabsLayout>
   );
 };

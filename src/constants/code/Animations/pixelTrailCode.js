@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Animations/PixelTrail/PixelTrail.jsx?raw';
 import css from '@content/Animations/PixelTrail/PixelTrail.css?raw';
 import tailwind from '@tailwind/Animations/PixelTrail/PixelTrail.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Animations/PixelTrail/PixelTrail.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/PixelTrail/PixelTrail.tsx?raw';
 
 export const pixelTrail = {
-  ...generateCliCommands('Animations/PixelTrail'),
-  installation: `npm install three @react-three/fiber @react-three/drei`,
+  dependencies: `three @react-three/fiber @react-three/drei`,
   usage: `import PixelTrail from './PixelTrail';
 
 <div style={{ height: '500px', position: 'relative', overflow: 'hidden'}}>

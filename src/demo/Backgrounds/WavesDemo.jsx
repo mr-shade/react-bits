@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Box, Flex, Input, Text } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import Customize from '../../components/common/Preview/Customize';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 
@@ -133,10 +133,6 @@ const WavesDemo = () => {
       <CodeTab>
         <CodeExample codeObject={waves} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...waves} />
-      </CliTab>
     </TabsLayout>
   );
 };

@@ -1,11 +1,10 @@
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import { VscSparkleFilled } from 'react-icons/vsc';
 import { FaLock } from 'react-icons/fa6';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import SpotlightCard from '../../content/Components/SpotlightCard/SpotlightCard';
 import { spotlightCard } from '../../constants/code/Components/spotlightCardCode';
@@ -64,10 +63,6 @@ const SpotlightCardDemo = () => {
       <CodeTab>
         <CodeExample codeObject={spotlightCard} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...spotlightCard} />
-      </CliTab>
     </TabsLayout>
   );
 };

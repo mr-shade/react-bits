@@ -89,7 +89,7 @@
 .code-highlighter {
   border: 1px solid #392e4e !important;
   margin: 0 !important;
-  border-radius: 15px !important;
+  border-radius: 20px !important;
   background: #060010 !important;
   text-shadow: none !important;
   font-size: 14px !important;
@@ -273,8 +273,9 @@ div:has(> .props-table) {
 
 .demo-title {
   font-weight: bolder;
-  margin-top: 0.5em;
-  font-size: 2rem;
+  margin-top: 0.8em;
+  margin-bottom: 0.4em;
+  font-size: 1.6rem;
 }
 
 .demo-title span {
@@ -361,14 +362,13 @@ div:has(> .props-table) {
 
 .cli-divider {
   position: relative;
-  margin: 4em auto 3em;
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, #271e37, transparent);
+  background: linear-gradient(to right, #392e4e00, #392e4e, transparent);
 }
 
 .cli-divider::before {
-  content: 'Or';
+  content: '';
   position: absolute;
   left: 50%;
   top: 50%;
@@ -384,6 +384,10 @@ div:has(> .props-table) {
 }
 
 @media only screen and (max-width: 967px) {
+  .main-nav {
+    padding: 0 1em;
+  }
+
   .category-wrapper {
     position: static;
   }

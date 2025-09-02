@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Animations/Cubes/Cubes.jsx?raw';
 import css from '@content/Animations/Cubes/Cubes.css?raw';
 import tailwind from '@tailwind/Animations/Cubes/Cubes.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Animations/Cubes/Cubes.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/Cubes/Cubes.tsx?raw';
 
 export const cubes = {
-  ...generateCliCommands('Animations/Cubes'),
-  installation: `npm install gsap`,
+  dependencies: `gsap`,
   usage: `// CREDIT
 // Component inspired from Can Tastemel's original work for the lambda.ai landing page
 // https://cantastemel.com

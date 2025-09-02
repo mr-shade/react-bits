@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "FadeContent-JS-TW",
+  "type": "registry:block",
+  "title": "FadeContent",
+  "description": "Simple directional fade / slide entrance wrapper with threshold-based activation.",
+  "files": [
+    {
+      "path": "public/tailwind/src/tailwind/Animations/FadeContent/FadeContent.jsx",
+      "content": "import { useRef, useEffect, useState } from 'react';\n\nconst FadeContent = ({\n  children,\n  blur = false,\n  duration = 1000,\n  easing = 'ease-out',\n  delay = 0,\n  threshold = 0.1,\n  initialOpacity = 0,\n  className = ''\n}) => {\n  const [inView, setInView] = useState(false);\n  const ref = useRef(null);\n\n  useEffect(() => {\n    if (!ref.current) return;\n\n    const observer = new IntersectionObserver(\n      ([entry]) => {\n        if (entry.isIntersecting) {\n          observer.unobserve(ref.current);\n          setTimeout(() => {\n            setInView(true);\n          }, delay);\n        }\n      },\n      { threshold }\n    );\n\n    observer.observe(ref.current);\n\n    return () => observer.disconnect();\n  }, [threshold, delay]);\n\n  return (\n    <div\n      ref={ref}\n      className={className}\n      style={{\n        opacity: inView ? 1 : initialOpacity,\n        transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,\n        filter: blur ? (inView ? 'blur(0px)' : 'blur(10px)') : 'none'\n      }}\n    >\n      {children}\n    </div>\n  );\n};\n\nexport default FadeContent;\n",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import Lenis from 'lenis';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
@@ -292,10 +292,6 @@ const GradualBlurDemo = () => {
       <CodeTab>
         <CodeExample codeObject={gradualBlur} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...gradualBlur} />
-      </CliTab>
     </TabsLayout>
   );
 };

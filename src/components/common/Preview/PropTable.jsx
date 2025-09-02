@@ -6,6 +6,7 @@ const CodeCell = ({ content = '' }) => {
       fontFamily="monospace"
       py={1}
       px={2}
+      ml={2}
       borderRadius="5px"
       width="fit-content"
       fontWeight={500}
@@ -30,7 +31,7 @@ const PropTable = ({ data }) => {
                 borderRight="1px solid #392e4e"
                 textTransform={'capitalize'}
                 fontSize={'l'}
-                py={4}
+                p={4}
                 color="white"
               >
                 Property
@@ -40,7 +41,7 @@ const PropTable = ({ data }) => {
                 borderRight="1px solid #392e4e"
                 textTransform={'capitalize'}
                 fontSize={'l'}
-                py={4}
+                p={4}
                 color="white"
               >
                 Type
@@ -50,18 +51,12 @@ const PropTable = ({ data }) => {
                 borderRight="1px solid #392e4e"
                 textTransform={'capitalize'}
                 fontSize={'l'}
-                py={4}
+                p={4}
                 color="white"
               >
                 Default
               </Table.ColumnHeader>
-              <Table.ColumnHeader
-                letterSpacing="-.5px"
-                textTransform={'capitalize'}
-                fontSize={'l'}
-                py={4}
-                color="white"
-              >
+              <Table.ColumnHeader letterSpacing="-.5px" textTransform={'capitalize'} fontSize={'l'} p={4} color="white">
                 Description
               </Table.ColumnHeader>
             </Table.Row>
@@ -71,10 +66,9 @@ const PropTable = ({ data }) => {
               <Table.Row key={index} borderBottom={index === data.length - 1 ? 'none' : '1px solid #392e4e'}>
                 <Table.Cell
                   borderColor="#271E37"
-                  py={4}
+                  p={2}
                   color="white"
                   width={0}
-                  pr={8}
                   borderRight="1px solid #392e4e"
                   bg={'#060010'}
                 >
@@ -82,7 +76,7 @@ const PropTable = ({ data }) => {
                 </Table.Cell>
                 <Table.Cell
                   borderColor="#271E37"
-                  py={4}
+                  p={4}
                   color="white"
                   whiteSpace="nowrap"
                   width={'120px'}
@@ -95,7 +89,7 @@ const PropTable = ({ data }) => {
                 </Table.Cell>
                 <Table.Cell
                   borderColor="#271E37"
-                  py={4}
+                  p={2}
                   color="white"
                   borderRight="1px solid #392e4e"
                   whiteSpace="nowrap"
@@ -103,7 +97,7 @@ const PropTable = ({ data }) => {
                 >
                   <CodeCell content={prop.default && prop.default.length ? prop.default : '—'} />
                 </Table.Cell>
-                <Table.Cell borderColor="#271E37" py={4} color="white" bg={'#060010'}>
+                <Table.Cell borderColor="#271E37" p={4} color="white" bg={'#060010'}>
                   <Text maxW={300}>{prop.description}</Text>
                 </Table.Cell>
               </Table.Row>

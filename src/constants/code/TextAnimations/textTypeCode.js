@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/TextType/TextType.jsx?raw';
 import css from '@content/TextAnimations/TextType/TextType.css?raw';
 import tailwind from '@tailwind/TextAnimations/TextType/TextType.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/TextAnimations/TextType/TextType.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/TextType/TextType.tsx?raw';
 
 export const textType = {
-  ...generateCliCommands('TextAnimations/TextType'),
-  installation: `npm install gsap`,
+  dependencies: `gsap`,
   usage: `import TextType from './TextType';
 
 <TextType 

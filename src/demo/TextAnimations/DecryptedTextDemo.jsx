@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Box, Flex, Separator } from '@chakra-ui/react';
 import { toast } from 'sonner';
-import { TabsLayout, PreviewTab, CodeTab, CliTab } from '../../components/common/TabsLayout';
+import { TabsLayout, PreviewTab, CodeTab } from '../../components/common/TabsLayout';
 
-import CliInstallation from '../../components/code/CliInstallation';
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
 import PropTable from '../../components/common/Preview/PropTable';
@@ -244,10 +243,6 @@ const DecryptedTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={decryptedText} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...decryptedText} />
-      </CliTab>
     </TabsLayout>
   );
 };

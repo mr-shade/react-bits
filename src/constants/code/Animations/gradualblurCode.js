@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Animations/GradualBlur/GradualBlur.jsx?raw';
 import tailwind from '@tailwind/Animations/GradualBlur/GradualBlur.jsx?raw';
 import css from '@content/Animations/GradualBlur/GradualBlur.css?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Animations/GradualBlur/GradualBlur.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/GradualBlur/GradualBlur.tsx?raw';
 
 export const gradualBlur = {
-  ...generateCliCommands('Animations/GradualBlur'),
-  installation: `npm install mathjs`,
+  dependencies: `mathjs`,
   usage: `// Component added by Ansh - github.com/ansh-dhanani
 
 import GradualBlur from './GradualBlur';

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { FiAlertTriangle } from 'react-icons/fi';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import Customize from '../../components/common/Preview/Customize';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import PropTable from '../../components/common/Preview/PropTable';
@@ -274,10 +274,6 @@ const BlobCursorDemo = () => {
       <CodeTab>
         <CodeExample codeObject={blobCursor} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...blobCursor} />
-      </CliTab>
     </TabsLayout>
   );
 };

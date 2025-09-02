@@ -1,15 +1,11 @@
 // Fun fact: this is the first component ever made for React Bits!
-
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/SplitText/SplitText.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/SplitText/SplitText.jsx?raw';
 import tsCode from '@ts-default/TextAnimations/SplitText/SplitText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/SplitText/SplitText.tsx?raw';
 
 export const splitText = {
-  ...generateCliCommands('TextAnimations/SplitText'),
-  installation: `npm install gsap @gsap/react`,
+  dependencies: 'gsap @gsap/react',
   usage: `import SplitText from "./SplitText";
 
 const handleAnimationComplete = () => {

@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Backgrounds/Galaxy/Galaxy.jsx?raw';
 import css from '@content/Backgrounds/Galaxy/Galaxy.css?raw';
 import tailwind from '@tailwind/Backgrounds/Galaxy/Galaxy.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Backgrounds/Galaxy/Galaxy.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Galaxy/Galaxy.tsx?raw';
 
 export const galaxy = {
-  ...generateCliCommands('Backgrounds/Galaxy'),
-  installation: `npm install ogl`,
+  dependencies: `ogl`,
   usage: `import Galaxy from './Galaxy';
 
 // Basic usage

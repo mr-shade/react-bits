@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/FallingText/FallingText.jsx?raw';
 import css from '@content/TextAnimations/FallingText/FallingText.css?raw';
 import tailwind from '@tailwind/TextAnimations/FallingText/FallingText.jsx?raw';
@@ -7,11 +5,7 @@ import tsCode from '@ts-default/TextAnimations/FallingText/FallingText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/FallingText/FallingText.tsx?raw';
 
 export const fallingText = {
-  ...generateCliCommands('TextAnimations/FallingText'),
-  installation: `npm install matter-js
-
-  //TS only
-  npm install -D @types/matter-js`,
+  dependencies: 'matter-js',
   usage: `import FallingText from './FallingText';
   
 <FallingText

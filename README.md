@@ -38,10 +38,10 @@ React Bits is a collection of animated React components, made to help you stand 
 - Designed to integrate seamlessly with any modern React project
 - Components come in 4 variants, to keep everyone happy: JS-CSS, JS-TW, TS-CSS, TS-TW
 
-## CLI (<a href="https://jsrepo.dev"><img src="https://jsrepo.dev/badges/jsrepo.svg" width="50" alt="jsrepo"></a>)
+## Installing Components Via CLI
 
-React Bits uses [jsrepo](https://jsrepo.dev) for installing components via CLI. </br>
-The setup steps can be found on each component's page in the [documentation](https://reactbits.dev/).
+React Bits supports both [shadcn](https://ui.shadcn.com/) and [jsrepo](https://jsrepo.dev) for quick installs. </br>
+Each component demo provides CLI commands, ready for you to copy and run. Detailed instructions can also be found [here](https://reactbits.dev/get-started/installation).
 
 ## How To Contribute?
 

@@ -1,10 +1,9 @@
 import { Box } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import GridMotion from '../../content/Backgrounds/GridMotion/GridMotion';
 import { gridMotion } from '../../constants/code/Backgrounds/gridMotionCode';
@@ -45,10 +44,6 @@ const GridMotionDemo = () => {
       <CodeTab>
         <CodeExample codeObject={gridMotion} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...gridMotion} />
-      </CliTab>
     </TabsLayout>
   );
 };

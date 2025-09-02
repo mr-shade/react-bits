@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Flex, IconButton, Text } from '@chakra-ui/react';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
@@ -184,10 +184,6 @@ const RibbonsDemo = () => {
       <CodeTab>
         <CodeExample codeObject={ribbons} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...ribbons} />
-      </CliTab>
     </TabsLayout>
   );
 };

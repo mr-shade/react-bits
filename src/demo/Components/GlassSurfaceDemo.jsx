@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { TbBackground, TbMenu } from 'react-icons/tb';
 import Lenis from 'lenis';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
@@ -498,10 +498,6 @@ const GlassSurfaceDemo = () => {
       <CodeTab>
         <CodeExample codeObject={glassSurface} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...glassSurface} />
-      </CliTab>
     </TabsLayout>
   );
 };

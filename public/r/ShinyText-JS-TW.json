@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ShinyText-JS-TW",
+  "type": "registry:block",
+  "title": "ShinyText",
+  "description": "Metallic sheen sweeps across text producing a reflective highlight.",
+  "files": [
+    {
+      "path": "public/tailwind/src/tailwind/TextAnimations/ShinyText/ShinyText.jsx",
+      "content": "const ShinyText = ({ text, disabled = false, speed = 5, className = '' }) => {\n  const animationDuration = `${speed}s`;\n\n  return (\n    <div\n      className={`text-[#b5b5b5a4] bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}\n      style={{\n        backgroundImage:\n          'linear-gradient(120deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 60%)',\n        backgroundSize: '200% 100%',\n        WebkitBackgroundClip: 'text',\n        animationDuration: animationDuration\n      }}\n    >\n      {text}\n    </div>\n  );\n};\n\nexport default ShinyText;\n\n// tailwind.config.js\n// module.exports = {\n//   theme: {\n//     extend: {\n//       keyframes: {\n//         shine: {\n//           '0%': { 'background-position': '100%' },\n//           '100%': { 'background-position': '-100%' },\n//         },\n//       },\n//       animation: {\n//         shine: 'shine 5s linear infinite',\n//       },\n//     },\n//   },\n//   plugins: [],\n// };\n",
+      "type": "registry:component"
+    }
+  ]
+}

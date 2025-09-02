@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import Customize from '../../components/common/Preview/Customize';
@@ -101,10 +101,6 @@ const CircularTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={circularText} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...circularText} />
-      </CliTab>
     </TabsLayout>
   );
 };

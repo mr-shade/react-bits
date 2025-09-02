@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Flex, Text, Input } from '@chakra-ui/react';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from '../../hooks/useForceRerender';
@@ -143,10 +143,6 @@ const SilkDemo = () => {
       <CodeTab>
         <CodeExample codeObject={silkCode} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...silkCode} />
-      </CliTab>
     </TabsLayout>
   );
 };

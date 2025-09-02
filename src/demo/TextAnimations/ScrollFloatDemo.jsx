@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Text } from '@chakra-ui/react';
 import { gsap } from 'gsap';
 
 import useForceRerender from '../../hooks/useForceRerender';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
@@ -169,10 +169,6 @@ const ScrollFloatDemo = () => {
       <CodeTab>
         <CodeExample codeObject={scrollFloat} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...scrollFloat} />
-      </CliTab>
     </TabsLayout>
   );
 };

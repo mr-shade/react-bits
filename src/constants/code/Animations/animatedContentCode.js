@@ -1,13 +1,10 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Animations/AnimatedContent/AnimatedContent.jsx?raw';
 import tailwind from '@tailwind/Animations/AnimatedContent/AnimatedContent.jsx?raw';
 import tsCode from '@ts-default/Animations/AnimatedContent/AnimatedContent.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/AnimatedContent/AnimatedContent.tsx?raw';
 
 export const animatedContent = {
-  ...generateCliCommands('Animations/AnimatedContent'),
-  installation: `npm install gsap`,
+  dependencies: `gsap`,
   usage: `import AnimatedContent from './AnimatedContent'
 
 <AnimatedContent

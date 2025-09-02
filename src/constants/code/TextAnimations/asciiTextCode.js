@@ -1,13 +1,10 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/ASCIIText/ASCIIText.jsx?raw';
 import tailwind from '@tailwind/TextAnimations/ASCIIText/ASCIIText.jsx?raw';
 import tsCode from '@ts-default/TextAnimations/ASCIIText/ASCIIText.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/ASCIIText/ASCIIText.tsx?raw';
 
 export const asciiText = {
-  ...generateCliCommands('TextAnimations/ASCIIText'),
-  installation: `npm install three`,
+  dependencies: `three`,
   usage: `// Component ported and enhanced from https://codepen.io/JuanFuentes/pen/eYEeoyE
   
 import ASCIIText from './ASCIIText';

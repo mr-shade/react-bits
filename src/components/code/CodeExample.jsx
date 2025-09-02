@@ -1,72 +1,70 @@
 import { getLanguage } from '../../utils/utils';
+import CliInstallation from './CliInstallation';
 import CodeHighlighter from './CodeHighlighter';
-import CodeOptions, { CSSTab, TailwindTab, TSCSSTab, TSTailwindTab } from './CodeOptions';
+import CodeOptions, { CSS, Tailwind, TSCSS, TSTailwind } from './CodeOptions';
 
-const CodeExample = ({ codeObject }) => (
-  <>
-    {Object.entries(codeObject).map(([name, snippet]) => {
-      const skip = [
-        'tailwind',
-        'css',
-        'tsTailwind',
-        'tsCode',
-        'cliDefault',
-        'cliTailwind',
-        'cliTsTailwind',
-        'cliTsDefault'
-      ];
-      if (skip.includes(name)) return null;
+const SKIP_KEYS = new Set(['tailwind', 'css', 'tsTailwind', 'tsCode', 'dependencies']);
 
-      if (name === 'code' || name === 'tsCode') {
+const CodeExample = ({ codeObject }) => {
+  const { tailwind, css, tsTailwind, tsCode, code, dependencies } = codeObject;
+
+  const renderCssSection = () =>
+    css && (
+      <>
+        <h2 className="demo-title">CSS</h2>
+        <CodeHighlighter snippetId="css" language="css" codeString={css} />
+      </>
+    );
+
+  return (
+    <>
+      <CliInstallation deps={dependencies} />
+
+      {Object.entries(codeObject).map(([name, snippet]) => {
+        if (SKIP_KEYS.has(name)) return null;
+
+        if (name === 'code' || name === 'tsCode') {
+          return (
+            <div key={name}>
+              <h2 className="demo-title">{name}</h2>
+              <CodeOptions>
+                {tailwind && (
+                  <Tailwind>
+                    <CodeHighlighter snippetId="code" language="jsx" codeString={tailwind} />
+                  </Tailwind>
+                )}
+                {code && (
+                  <CSS>
+                    <CodeHighlighter snippetId="code" language="jsx" codeString={code} />
+                    {/* Render CSS snippet if available */}
+                    {css && renderCssSection()}
+                  </CSS>
+                )}
+                {tsTailwind && (
+                  <TSTailwind>
+                    <CodeHighlighter snippetId="code" language="tsx" codeString={tsTailwind} />
+                  </TSTailwind>
+                )}
+                {tsCode && (
+                  <TSCSS>
+                    <CodeHighlighter snippetId="code" language="tsx" codeString={tsCode} />
+                    {renderCssSection()}
+                  </TSCSS>
+                )}
+              </CodeOptions>
+            </div>
+          );
+        }
+
         return (
           <div key={name}>
             <h2 className="demo-title">{name}</h2>
-
-            <CodeOptions>
-              <TailwindTab>
-                <CodeHighlighter language="jsx" codeString={codeObject.tailwind} />
-              </TailwindTab>
-
-              <CSSTab>
-                <CodeHighlighter language="jsx" codeString={codeObject.code} />
-                {codeObject.css && (
-                  <>
-                    <h2 className="demo-title">CSS</h2>
-                    <CodeHighlighter language="css" codeString={codeObject.css} />
-                  </>
-                )}
-              </CSSTab>
-
-              {codeObject.tsTailwind && (
-                <TSTailwindTab>
-                  <CodeHighlighter language="tsx" codeString={codeObject.tsTailwind} />
-                </TSTailwindTab>
-              )}
-
-              {codeObject.tsCode && (
-                <TSCSSTab>
-                  <CodeHighlighter language="tsx" codeString={codeObject.tsCode} />
-                  {codeObject.css && (
-                    <>
-                      <h2 className="demo-title">CSS</h2>
-                      <CodeHighlighter language="css" codeString={codeObject.css} />
-                    </>
-                  )}
-                </TSCSSTab>
-              )}
-            </CodeOptions>
+            <CodeHighlighter snippetId={name} language={getLanguage(name)} codeString={snippet} />
           </div>
         );
-      }
-
-      return (
-        <div key={name}>
-          <h2 className="demo-title">{name}</h2>
-          <CodeHighlighter language={getLanguage(name)} codeString={snippet} />
-        </div>
-      );
-    })}
-  </>
-);
+      })}
+    </>
+  );
+};
 
 export default CodeExample;

@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/CurvedLoop/CurvedLoop.jsx?raw';
 import css from '@content/TextAnimations/CurvedLoop/CurvedLoop.css?raw';
 import tailwind from '@tailwind/TextAnimations/CurvedLoop/CurvedLoop.jsx?raw';
@@ -7,7 +5,6 @@ import tsCode from '@ts-default/TextAnimations/CurvedLoop/CurvedLoop.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/CurvedLoop/CurvedLoop.tsx?raw';
 
 export const curvedLoop = {
-  ...generateCliCommands('TextAnimations/CurvedLoop'),
   usage: `import CurvedLoop from './CurvedLoop';
 
 // Basic usage

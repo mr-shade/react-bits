@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Text } from '@chakra-ui/react';
 
 import Customize from '../../components/common/Preview/Customize';
@@ -9,7 +9,6 @@ import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from '../../hooks/useForceRerender';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import { flyingPosters } from '../../constants/code/Components/flyingPostersCode';
 import FlyingPosters from '../../content/Components/FlyingPosters/FlyingPosters';
@@ -180,10 +179,6 @@ const FlyingPostersDemo = () => {
       <CodeTab>
         <CodeExample codeObject={flyingPosters} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...flyingPosters} />
-      </CliTab>
     </TabsLayout>
   );
 };

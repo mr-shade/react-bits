@@ -1,11 +1,10 @@
 import { Box, Icon } from '@chakra-ui/react';
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import ElasticSlider from '../../content/Components/ElasticSlider/ElasticSlider';
 import { elasticSlider } from '../../constants/code/Components/elasticSliderCode';
@@ -94,10 +93,6 @@ const ElasticSliderDemo = () => {
       <CodeTab>
         <CodeExample codeObject={elasticSlider} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...elasticSlider} />
-      </CliTab>
     </TabsLayout>
   );
 };

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import RefreshButton from '../../components/common/Preview/RefreshButton';
 import CodeExample from '../../components/code/CodeExample';
 import useForceRerender from '../../hooks/useForceRerender';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 import Customize from '../../components/common/Preview/Customize';
@@ -165,10 +165,6 @@ const FadeDemo = () => {
       <CodeTab>
         <CodeExample codeObject={fadeContent} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...fadeContent} />
-      </CliTab>
     </TabsLayout>
   );
 };

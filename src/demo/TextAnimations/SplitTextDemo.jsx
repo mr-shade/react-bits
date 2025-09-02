@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
 import useForceRerender from '../../hooks/useForceRerender';
@@ -8,7 +8,7 @@ import RefreshButton from '../../components/common/Preview/RefreshButton';
 import Dependencies from '../../components/code/Dependencies';
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import Customize from '../../components/common/Preview/Customize';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
@@ -189,10 +189,6 @@ const SplitTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={splitText} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...splitText} />
-      </CliTab>
     </TabsLayout>
   );
 };

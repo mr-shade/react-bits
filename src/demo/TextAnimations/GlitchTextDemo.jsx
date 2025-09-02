@@ -1,11 +1,11 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 
 import useForceRerender from '../../hooks/useForceRerender';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 
 import GlitchText from '../../content/TextAnimations/GlitchText/GlitchText';
@@ -99,10 +99,6 @@ const GlitchTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={glitchText} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...glitchText} />
-      </CliTab>
     </TabsLayout>
   );
 };

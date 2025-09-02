@@ -1,10 +1,10 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Text, Grid, GridItem } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
@@ -133,10 +133,6 @@ const TargetCursorDemo = () => {
         <CodeTab>
           <CodeExample codeObject={targetCursor} />
         </CodeTab>
-
-        <CliTab>
-          <CliInstallation {...targetCursor} />
-        </CliTab>
       </TabsLayout>
 
       <TargetCursor spinDuration={spinDuration} hideDefaultCursor={hideDefaultCursor} />

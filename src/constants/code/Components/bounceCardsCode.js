@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Components/BounceCards/BounceCards.jsx?raw';
 import css from '@content/Components/BounceCards/BounceCards.css?raw';
 import tailwind from '@tailwind/Components/BounceCards/BounceCards.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Components/BounceCards/BounceCards.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/BounceCards/BounceCards.tsx?raw';
 
 export const bounceCards = {
-  ...generateCliCommands('Components/BounceCards'),
-  installation: `npm install gsap`,
+  dependencies: `gsap`,
   usage: `import BounceCards from './BounceCards'
 
 const images = [

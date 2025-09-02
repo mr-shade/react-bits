@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Backgrounds/Waves/Waves.jsx?raw';
 import css from '@content/Backgrounds/Waves/Waves.css?raw';
 import tailwind from '@tailwind/Backgrounds/Waves/Waves.jsx?raw';
@@ -7,7 +5,6 @@ import tsCode from '@ts-default/Backgrounds/Waves/Waves.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Waves/Waves.tsx?raw';
 
 export const waves = {
-  ...generateCliCommands('Backgrounds/Waves'),
   usage: `import Waves from './Waves';
 
 <Waves

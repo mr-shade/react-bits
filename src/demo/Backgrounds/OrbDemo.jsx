@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 import { useDebounce } from 'react-haiku';
 
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
@@ -98,10 +98,6 @@ const OrbDemo = () => {
       <CodeTab>
         <CodeExample codeObject={orb} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...orb} />
-      </CliTab>
     </TabsLayout>
   );
 };

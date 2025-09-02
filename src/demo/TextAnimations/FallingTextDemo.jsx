@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Flex, Text } from '@chakra-ui/react';
 
 import useForceRerender from '../../hooks/useForceRerender';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import Customize from '../../components/common/Preview/Customize';
@@ -164,10 +164,6 @@ const FallingTextDemo = () => {
       <CodeTab>
         <CodeExample codeObject={fallingText} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...fallingText} />
-      </CliTab>
     </TabsLayout>
   );
 };

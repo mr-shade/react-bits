@@ -1,13 +1,10 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Backgrounds/Ballpit/Ballpit.jsx?raw';
 import tailwind from '@tailwind/Backgrounds/Ballpit/Ballpit.jsx?raw';
 import tsCode from '@ts-default/Backgrounds/Ballpit/Ballpit.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Ballpit/Ballpit.tsx?raw';
 
 export const ballpit = {
-  ...generateCliCommands('Backgrounds/Ballpit'),
-  installation: `npm install three`,
+  dependencies: `three`,
   usage: `//Component inspired by Kevin Levron:
 //https://x.com/soju22/status/1858925191671271801
   

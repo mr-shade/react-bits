@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Flex } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import Customize from '../../components/common/Preview/Customize';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
@@ -10,7 +10,6 @@ import RefreshButton from '../../components/common/Preview/RefreshButton';
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from '../../hooks/useForceRerender';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import BounceCards from '../../content/Components/BounceCards/BounceCards';
 import { bounceCards } from '../../constants/code/Components/bounceCardsCode';
@@ -164,10 +163,6 @@ const BounceCardsDemo = () => {
       <CodeTab>
         <CodeExample codeObject={bounceCards} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...bounceCards} />
-      </CliTab>
     </TabsLayout>
   );
 };

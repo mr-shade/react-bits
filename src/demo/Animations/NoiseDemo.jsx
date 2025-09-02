@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import RefreshButton from '../../components/common/Preview/RefreshButton';
 import CodeExample from '../../components/code/CodeExample';
 import useForceRerender from '../../hooks/useForceRerender';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import Customize from '../../components/common/Preview/Customize';
 
@@ -128,10 +128,6 @@ const NoiseDemo = () => {
       <CodeTab>
         <CodeExample codeObject={noise} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...noise} />
-      </CliTab>
     </TabsLayout>
   );
 };

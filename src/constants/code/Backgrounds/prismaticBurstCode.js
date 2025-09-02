@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Backgrounds/PrismaticBurst/PrismaticBurst.jsx?raw';
 import css from '@content/Backgrounds/PrismaticBurst/PrismaticBurst.css?raw';
 import tailwind from '@tailwind/Backgrounds/PrismaticBurst/PrismaticBurst.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Backgrounds/PrismaticBurst/PrismaticBurst.tsx?ra
 import tsTailwind from '@ts-tailwind/Backgrounds/PrismaticBurst/PrismaticBurst.tsx?raw';
 
 export const prismaticBurst = {
-  ...generateCliCommands('Backgrounds/PrismaticBurst'),
-  installation: `npm install ogl`,
+  dependencies: `ogl`,
   usage: `import PrismaticBurst from './PrismaticBurst';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

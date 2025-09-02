@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Box } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { hyperspeedPresets } from '../../content/Backgrounds/Hyperspeed/HyperSpeedPresets';
 
 import PropTable from '../../components/common/Preview/PropTable';
@@ -8,7 +8,7 @@ import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
 import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 import Customize from '../../components/common/Preview/Customize';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import BackgroundContent from '../../components/common/Preview/BackgroundContent';
 
 import Hyperspeed from '../../content/Backgrounds/Hyperspeed/Hyperspeed';
@@ -65,10 +65,6 @@ const HyperspeedDemo = () => {
       <CodeTab>
         <CodeExample codeObject={hyperspeed} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...hyperspeed} />
-      </CliTab>
     </TabsLayout>
   );
 };

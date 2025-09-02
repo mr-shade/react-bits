@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Backgrounds/Prism/Prism.jsx?raw';
 import css from '@content/Backgrounds/Prism/Prism.css?raw';
 import tailwind from '@tailwind/Backgrounds/Prism/Prism.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Backgrounds/Prism/Prism.tsx?raw';
 import tsTailwind from '@ts-tailwind/Backgrounds/Prism/Prism.tsx?raw';
 
 export const prism = {
-  ...generateCliCommands('Backgrounds/Prism'),
-  installation: `npm install ogl`,
+  dependencies: `ogl`,
   usage: `import Prism from './Prism';
 
 <div style={{ width: '100%', height: '600px', position: 'relative' }}>

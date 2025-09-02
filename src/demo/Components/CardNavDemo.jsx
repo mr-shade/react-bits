@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 import useForceRerender from '../../hooks/useForceRerender';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 import Dependencies from '../../components/code/Dependencies';
@@ -207,10 +207,6 @@ const CardNavDemo = () => {
       <CodeTab>
         <CodeExample codeObject={cardNav} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...cardNav} />
-      </CliTab>
     </TabsLayout>
   );
 };

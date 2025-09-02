@@ -3,14 +3,14 @@ import ContributionSection from './GitHub/ContributionSection';
 import TabsFooter from './TabsFooter';
 
 import { Tabs, Icon, Flex } from '@chakra-ui/react';
-import { FiCode, FiEye, FiHeart, FiTerminal } from 'react-icons/fi';
+import { FiCode, FiEye, FiHeart } from 'react-icons/fi';
 
 const TAB_STYLE_PROPS = {
   flex: '0 0 auto',
   border: '1px solid #392e4e',
-  borderRadius: '10px',
+  borderRadius: '15px',
   fontSize: '14px',
-  h: 9,
+  h: 10,
   px: 4,
   color: '#ffffff',
   justifyContent: 'center',
@@ -21,15 +21,13 @@ const TAB_STYLE_PROPS = {
 const TabsLayout = ({ children, className }) => {
   const contentMap = {
     PreviewTab: null,
-    CodeTab: null,
-    CliTab: null
+    CodeTab: null
   };
 
   React.Children.forEach(children, child => {
     if (!child) return;
     if (child.type === PreviewTab) contentMap.PreviewTab = child;
     if (child.type === CodeTab) contentMap.CodeTab = child;
-    if (child.type === CliTab) contentMap.CliTab = child;
   });
 
   return (
@@ -43,10 +41,6 @@ const TabsLayout = ({ children, className }) => {
 
             <Tabs.Trigger value="code" {...TAB_STYLE_PROPS}>
               <Icon as={FiCode} /> Code
-            </Tabs.Trigger>
-
-            <Tabs.Trigger value="cli" {...TAB_STYLE_PROPS} className="cli-tab">
-              <Icon as={FiTerminal} /> CLI
             </Tabs.Trigger>
           </Flex>
 
@@ -62,9 +56,6 @@ const TabsLayout = ({ children, className }) => {
       <Tabs.Content pt={0} value="code">
         {contentMap.CodeTab}
       </Tabs.Content>
-      <Tabs.Content pt={0} value="cli">
-        {contentMap.CliTab}
-      </Tabs.Content>
 
       <Tabs.Content pt={0} value="contribute">
         <ContributionSection />
@@ -77,6 +68,5 @@ const TabsLayout = ({ children, className }) => {
 
 export const PreviewTab = ({ children }) => <>{children}</>;
 export const CodeTab = ({ children }) => <>{children}</>;
-export const CliTab = ({ children }) => <>{children}</>;
 
 export { TabsLayout };

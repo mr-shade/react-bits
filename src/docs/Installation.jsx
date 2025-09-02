@@ -61,8 +61,8 @@ const Installation = () => {
           <h4 className="docs-category-subtitle">2. Install dependencies</h4>
 
           <p className="docs-paragraph short">
-            Components may use external libraries, don&apos;t forget to install them. For example, the SplitText
-            component requires GSAP for smooth animations.
+            Components may use external libraries, don&apos;t forget to install them by selecting{' '}
+            <span className="docs-highlight">Manual</span>, copying the command, and running it in your terminal.
           </p>
 
           <CodeBlock showLineNumbers={true}>npm install gsap</CodeBlock>
@@ -98,75 +98,70 @@ const Installation = () => {
 
       {selectedMethod === 'cli' && (
         <>
-          <p className="docs-paragraph dim">Follow these steps to use the CLI to install components:</p>
+          <p className="docs-paragraph dim">Use a one-time command to pull any component directly into your project.</p>
 
           <p className="docs-paragraph">
-            React Bits uses a{' '}
+            React Bits supports two CLI installation methods:{' '}
+            <a style={{ textDecoration: 'underline' }} href="https://ui.shadcn.com/" target="_blank">
+              shadcn
+            </a>{' '}
+            and{' '}
             <a style={{ textDecoration: 'underline' }} href="https://jsrepo.dev/" target="_blank">
               jsrepo
-            </a>{' '}
-            registry to host components, making it very easy for you to bring them into your projects. Here, you have
-            two options:
+            </a>
+            . Pick whichever you prefer – they both fetch the same component source.
           </p>
 
-          <h4 className="docs-category-subtitle">1. One-time Installation</h4>
-
-          <p className="docs-paragraph">
-            You can install components fast using a one-time install command. You&apos;ll get prompted to select an
-            installation path and to install dependencies.
-          </p>
-
-          <p className="docs-paragraph short">All you need to do is run the command below:</p>
-
-          <CodeBlock>{`npx jsrepo add https://reactbits.dev/<PREFERENCE>/TextAnimations/SplitText`}</CodeBlock>
-
+          <h4 className="docs-category-subtitle">Installation</h4>
           <p className="docs-paragraph short">
-            In this command, &lt;PREFERENCE&gt; can be replaced with the following options:
+            Below are example commands for the SplitText component. Replace placeholders to fit your stack.
           </p>
 
+          <h4 className="docs-category-subtitle docs-highlight" style={{ marginTop: '1.25rem' }}>
+            shadcn
+          </h4>
+          <p className="docs-paragraph short"></p>
+          <CodeBlock>{`npx shadcn@latest add https://reactbits.dev/r/SplitText-<LANGUAGE>-<STYLE>`}</CodeBlock>
+          <p className="docs-paragraph short">&lt;LANGUAGE&gt; + &lt;STYLE&gt; combinations:</p>
           <ul className="docs-list">
             <li className="docs-list-item">
-              <span className="docs-highlight">default</span> - for projects that use JavaScript and Plain CSS
+              <span className="docs-highlight">JS-CSS</span> - JavaScript + Plain CSS
             </li>
             <li className="docs-list-item">
-              <span className="docs-highlight">tailwind</span> - for projects that use JavaScript and Tailwind CSS
+              <span className="docs-highlight">JS-TW</span> - JavaScript + Tailwind
             </li>
             <li className="docs-list-item">
-              <span className="docs-highlight">ts/default</span> - for projects that use TypeScript and Plain CSS
+              <span className="docs-highlight">TS-CSS</span> - TypeScript + Plain CSS
             </li>
             <li className="docs-list-item">
-              <span className="docs-highlight">ts/tailwind</span> - for projects that use TypeScript and Tailwind CSS
+              <span className="docs-highlight">TS-TW</span> - TypeScript + Tailwind
             </li>
           </ul>
 
-          <h4 className="docs-category-subtitle">2. Project-wide CLI Setup</h4>
+          <h4 className="docs-category-subtitle docs-highlight" style={{ marginTop: '1.25rem' }}>
+            jsrepo
+          </h4>
+          <p className="docs-paragraph short"></p>
+          <CodeBlock>{`npx jsrepo add https://reactbits.dev/<VARIANT>/TextAnimations/SplitText`}</CodeBlock>
+          <p className="docs-paragraph short">&lt;VARIANT&gt; options:</p>
+          <ul className="docs-list">
+            <li className="docs-list-item">
+              <span className="docs-highlight">default</span> - JavaScript + Plain CSS
+            </li>
+            <li className="docs-list-item">
+              <span className="docs-highlight">tailwind</span> - JavaScript + Tailwind
+            </li>
+            <li className="docs-list-item">
+              <span className="docs-highlight">ts/default</span> - TypeScript + Plain CSS
+            </li>
+            <li className="docs-list-item">
+              <span className="docs-highlight">ts/tailwind</span> - TypeScript + Tailwind
+            </li>
+          </ul>
 
-          <p className="docs-paragraph">
-            The full setup can help you when you want to use multiple components - setting it up once makes it faster to
-            bring in any component you need.
-          </p>
-
-          <p className="docs-paragraph short">
-            Similarly, just replace &lt;PREFERENCE&gt; in the command below, follow the prompts, and your configuration
-            file will be created:
-          </p>
-
-          <CodeBlock>{`npx jsrepo init https://reactbits.dev/<PREFERENCE>`}</CodeBlock>
-
-          <p className="docs-paragraph short">
-            Afterwards, you can browse a full list of components and select what you need:
-          </p>
-
-          <CodeBlock>{`npx jsrepo add`}</CodeBlock>
-
-          <p className="docs-paragraph short">
-            Or you can install a specific component by providing the category and name:
-          </p>
-
-          <CodeBlock>{`npx jsrepo add TextAnimations/SplitText`}</CodeBlock>
-
-          <p className="docs-paragraph dim">
-            P.S. - Installing jsrepo globally will help you avoid typing `npx` every time
+          <p className="docs-paragraph dim" style={{ marginTop: '1rem' }}>
+            Tip: You can run these with other package managers (pnpm, yarn, bun) - just swap the prefix (e.g.{' '}
+            <code>pnpm dlx</code> or <code>yarn</code> instead of <code>npx</code>).
           </p>
         </>
       )}

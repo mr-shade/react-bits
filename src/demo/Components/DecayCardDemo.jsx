@@ -1,10 +1,9 @@
 import { Box, Text } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import DecayCard from '../../content/Components/DecayCard/DecayCard';
 import { decayCard } from '../../constants/code/Components/decayCardCode';
@@ -57,10 +56,6 @@ const DecayCardDemo = () => {
       <CodeTab>
         <CodeExample codeObject={decayCard} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...decayCard} />
-      </CliTab>
     </TabsLayout>
   );
 };

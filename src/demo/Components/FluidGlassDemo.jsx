@@ -1,10 +1,10 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from '../../hooks/useForceRerender';
@@ -192,10 +192,6 @@ const FluidGlassDemo = () => {
       <CodeTab>
         <CodeExample codeObject={fluidGlass} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...fluidGlass} />
-      </CliTab>
     </TabsLayout>
   );
 };

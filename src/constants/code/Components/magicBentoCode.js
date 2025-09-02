@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Components/MagicBento/MagicBento.jsx?raw';
 import css from '@content/Components/MagicBento/MagicBento.css?raw';
 import tailwind from '@tailwind/Components/MagicBento/MagicBento.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Components/MagicBento/MagicBento.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/MagicBento/MagicBento.tsx?raw';
 
 export const magicBento = {
-  ...generateCliCommands('Components/MagicBento'),
-  installation: `npm install gsap`,
+  dependencies: `gsap`,
   usage: `import MagicBento from './MagicBento'
 
 <MagicBento 

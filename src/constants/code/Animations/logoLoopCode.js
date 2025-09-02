@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Animations/LogoLoop/LogoLoop.jsx?raw';
 import css from '@content/Animations/LogoLoop/LogoLoop.css?raw';
 import tailwind from '@tailwind/Animations/LogoLoop/LogoLoop.jsx?raw';
@@ -7,7 +5,6 @@ import tsCode from '@ts-default/Animations/LogoLoop/LogoLoop.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/LogoLoop/LogoLoop.tsx?raw';
 
 export const logoLoop = {
-  ...generateCliCommands('Animations/LogoLoop'),
   usage: `import LogoLoop from './LogoLoop';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 

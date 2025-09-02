@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ShinyText-JS-CSS",
+  "type": "registry:block",
+  "title": "ShinyText",
+  "description": "Metallic sheen sweeps across text producing a reflective highlight.",
+  "files": [
+    {
+      "path": "public/default/src/content/TextAnimations/ShinyText/ShinyText.jsx",
+      "content": "import './ShinyText.css';\n\nconst ShinyText = ({ text, disabled = false, speed = 5, className = '' }) => {\n  const animationDuration = `${speed}s`;\n\n  return (\n    <div className={`shiny-text ${disabled ? 'disabled' : ''} ${className}`} style={{ animationDuration }}>\n      {text}\n    </div>\n  );\n};\n\nexport default ShinyText;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "public/default/src/content/TextAnimations/ShinyText/ShinyText.css",
+      "content": ".shiny-text {\n  color: #b5b5b5a4; /* Adjust this color to change intensity/style */\n  background: linear-gradient(\n    120deg,\n    rgba(255, 255, 255, 0) 40%,\n    rgba(255, 255, 255, 0.8) 50%,\n    rgba(255, 255, 255, 0) 60%\n  );\n  background-size: 200% 100%;\n  -webkit-background-clip: text;\n  background-clip: text;\n  display: inline-block;\n  animation: shine 5s linear infinite;\n}\n\n@keyframes shine {\n  0% {\n    background-position: 100%;\n  }\n  100% {\n    background-position: -100%;\n  }\n}\n\n.shiny-text.disabled {\n  animation: none;\n}\n",
+      "type": "registry:item"
+    }
+  ]
+}

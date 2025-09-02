@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import useForceRerender from '../../hooks/useForceRerender';
 import RefreshButton from '../../components/common/Preview/RefreshButton';
 
@@ -235,10 +235,6 @@ const TextPressureDemo = () => {
       <CodeTab>
         <CodeExample codeObject={textPressure} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...textPressure} />
-      </CliTab>
     </TabsLayout>
   );
 };

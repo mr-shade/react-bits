@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "AnimatedContent-TS-TW",
+  "type": "registry:block",
+  "title": "AnimatedContent",
+  "description": "Wrapper that animates any children on scroll or mount with configurable direction, distance, duration and easing.",
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "public/ts/tailwind/src/ts-tailwind/Animations/AnimatedContent/AnimatedContent.tsx",
+      "content": "import React, { useRef, useEffect, ReactNode } from 'react';\nimport { gsap } from 'gsap';\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\n\ngsap.registerPlugin(ScrollTrigger);\n\ninterface AnimatedContentProps {\n  children: ReactNode;\n  distance?: number;\n  direction?: 'vertical' | 'horizontal';\n  reverse?: boolean;\n  duration?: number;\n  ease?: string | ((progress: number) => number);\n  initialOpacity?: number;\n  animateOpacity?: boolean;\n  scale?: number;\n  threshold?: number;\n  delay?: number;\n  onComplete?: () => void;\n}\n\nconst AnimatedContent: React.FC<AnimatedContentProps> = ({\n  children,\n  distance = 100,\n  direction = 'vertical',\n  reverse = false,\n  duration = 0.8,\n  ease = 'power3.out',\n  initialOpacity = 0,\n  animateOpacity = true,\n  scale = 1,\n  threshold = 0.1,\n  delay = 0,\n  onComplete\n}) => {\n  const ref = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    const el = ref.current;\n    if (!el) return;\n\n    const axis = direction === 'horizontal' ? 'x' : 'y';\n    const offset = reverse ? -distance : distance;\n    const startPct = (1 - threshold) * 100;\n\n    gsap.set(el, {\n      [axis]: offset,\n      scale,\n      opacity: animateOpacity ? initialOpacity : 1\n    });\n\n    gsap.to(el, {\n      [axis]: 0,\n      scale: 1,\n      opacity: 1,\n      duration,\n      ease,\n      delay,\n      onComplete,\n      scrollTrigger: {\n        trigger: el,\n        start: `top ${startPct}%`,\n        toggleActions: 'play none none none',\n        once: true\n      }\n    });\n\n    return () => {\n      ScrollTrigger.getAll().forEach(t => t.kill());\n      gsap.killTweensOf(el);\n    };\n  }, [\n    distance,\n    direction,\n    reverse,\n    duration,\n    ease,\n    initialOpacity,\n    animateOpacity,\n    scale,\n    threshold,\n    delay,\n    onComplete\n  ]);\n\n  return <div ref={ref}>{children}</div>;\n};\n\nexport default AnimatedContent;\n",
+      "type": "registry:component"
+    }
+  ]
+}

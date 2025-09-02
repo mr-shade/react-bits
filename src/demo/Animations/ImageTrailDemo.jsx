@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Button, ButtonGroup, Flex, Text } from '@chakra-ui/react';
 
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from '../../hooks/useForceRerender';
@@ -110,10 +110,6 @@ const ImageTrailDemo = () => {
       <CodeTab>
         <CodeExample codeObject={imageTrail} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...imageTrail} />
-      </CliTab>
     </TabsLayout>
   );
 };

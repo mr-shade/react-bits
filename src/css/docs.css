@@ -274,3 +274,176 @@
     font-size: 14px;
   }
 }
+
+.cli-install {
+  margin-top: 1em;
+}
+
+.cli-install .cli-toggle-button {
+  border: 1px solid #392e4e;
+  color: #fff;
+  height: 40px;
+  font-size: 14px;
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  letter-spacing: -0.3px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s;
+}
+
+.cli-install .pkg-buttons {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  display: flex;
+  gap: 1rem;
+}
+
+.cli-install .cli-tool-tab {
+  position: relative;
+  cursor: pointer;
+  color: #ccc;
+  padding-bottom: 0.6em;
+}
+
+.cli-install .cli-toggle-button[data-active='true'] {
+  background-color: #170d27;
+  color: #b19eef;
+}
+
+.cli-install .cli-toggle-button.disabled,
+.cli-install .cli-toggle-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: transparent;
+  color: #777;
+  border-style: dashed;
+}
+
+.cli-install .cli-tool-tab[data-active='true']::before {
+  content: '';
+  height: 1px;
+  width: 125%;
+  border-radius: 50px;
+  background: linear-gradient(to right, transparent, #b19eef, transparent);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cli-install .cli-tool-tab[data-active='true'] {
+  color: #b19eef;
+}
+
+.cli-install .cli-install-section {
+  border: 1px solid #392e4e;
+  border-radius: 20px;
+  position: relative;
+}
+
+.cli-install .cli-row {
+  background-color: #170d27;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.4rem 0 1.4rem;
+  border-radius: 20px 20px 0 0;
+  flex-wrap: wrap;
+}
+
+.cli-install .label {
+  text-transform: uppercase;
+  color: #9d8cbf;
+  background: rgba(177, 158, 239, 0.08);
+  padding: 0.25em 0.6em;
+}
+
+.cli-install code {
+  font-family: 'Google Sans Code', monospace;
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: none;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  letter-spacing: -0.2px;
+  align-items: center;
+  padding: 0 80px 0 1.4em;
+  height: 60px;
+  border-radius: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #392e4e transparent;
+  scrollbar-width: none;
+}
+
+.cli-install code::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+.cli-install .cli-custom-scrollbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 4px;
+  margin: 0 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50px;
+  pointer-events: auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cli-install .cli-custom-scrollbar-thumb {
+  height: 100%;
+  background: linear-gradient(90deg, #392e4e, #5a4780);
+  border-radius: 50px;
+  transition: background 0.25s ease;
+  will-change: transform, width;
+}
+
+.cli-install .cli-custom-scrollbar.dragging .cli-custom-scrollbar-thumb {
+  background: linear-gradient(90deg, #5a4780, #7c63b2);
+}
+
+.cli-install .cli-custom-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #5a4780, #7c63b2);
+}
+
+.cli-install code::-webkit-scrollbar {
+  height: 2px;
+}
+
+.cli-install code::-webkit-scrollbar-track {
+  height: 2px;
+  background: transparent;
+}
+
+.cli-install code::-webkit-scrollbar-thumb {
+  height: 2px;
+  background: #392e4e;
+  border-radius: 50px;
+}
+
+.cli-install code::-webkit-scrollbar-thumb:hover {
+  background: #5a4780;
+}
+
+.cli-install .right-group {
+  margin-left: auto;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cli-install [data-row='cli'] .right-group {
+  align-items: center;
+}
+
+.cli-install [data-row] {
+  --shadow-color: rgba(177, 158, 239, 0.15);
+}

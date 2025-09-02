@@ -1,8 +1,10 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { SearchProvider } from './components/context/SearchContext/SearchContext';
-import { LanguageProvider } from './components/context/LanguageContext/LanguageContext';
+import { OptionsProvider } from './components/context/OptionsContext/OptionsContext';
 import { TransitionProvider } from './components/context/TransitionContext/TransitionContext';
 import { useEffect } from 'react';
+import { ActiveRouteProvider } from './components/context/ActiveRouteContext/ActiveRouteContext';
+import { InstallationProvider } from './components/context/InstallationContext/InstallationContext';
 import { Toaster } from 'sonner';
 import { forceChakraDarkTheme } from './utils/utils';
 import { toastStyles } from './utils/customTheme';
@@ -36,19 +38,21 @@ function AppContent() {
           path="/:category/:subcategory"
           element={
             <SearchProvider>
-              <LanguageProvider>
+              <OptionsProvider>
                 <TransitionProvider>
-                  <main className="app-container">
-                    <Announcement />
-                    <Header />
-                    <section className="category-wrapper">
-                      <Sidebar />
-                      <CategoryPage />
-                    </section>
-                    <Toaster toastOptions={toastStyles} position="bottom-right" visibleToasts={1} />
-                  </main>
+                  <InstallationProvider>
+                    <main className="app-container">
+                      <Announcement />
+                      <Header />
+                      <section className="category-wrapper">
+                        <Sidebar />
+                        <CategoryPage />
+                      </section>
+                      <Toaster toastOptions={toastStyles} position="bottom-right" visibleToasts={1} />
+                    </main>
+                  </InstallationProvider>
                 </TransitionProvider>
-              </LanguageProvider>
+              </OptionsProvider>
             </SearchProvider>
           }
         />
@@ -64,7 +68,9 @@ export default function App() {
 
   return (
     <Router>
-      <AppContent />
+      <ActiveRouteProvider>
+        <AppContent />
+      </ActiveRouteProvider>
     </Router>
   );
 }

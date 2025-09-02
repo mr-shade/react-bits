@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
@@ -8,7 +8,6 @@ import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import TiltedCard from '../../content/Components/TiltedCard/TiltedCard';
 import { tiltedCard } from '../../constants/code/Components/tiltedCardCode';
@@ -164,10 +163,6 @@ const TiltedCardDemo = () => {
       <CodeTab>
         <CodeExample codeObject={tiltedCard} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...tiltedCard} />
-      </CliTab>
     </TabsLayout>
   );
 };

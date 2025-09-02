@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Animations/GlareHover/GlareHover.jsx?raw';
 import css from '@content/Animations/GlareHover/GlareHover.css?raw';
 import tailwind from '@tailwind/Animations/GlareHover/GlareHover.jsx?raw';
@@ -7,7 +5,6 @@ import tsCode from '@ts-default/Animations/GlareHover/GlareHover.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/GlareHover/GlareHover.tsx?raw';
 
 export const glareHover = {
-  ...generateCliCommands('Animations/GlareHover'),
   usage: `import GlareHover from './GlareHover'
 
 <div style={{ height: '600px', position: 'relative' }}>

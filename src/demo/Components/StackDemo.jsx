@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
@@ -9,7 +9,6 @@ import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
 import useForceRerender from '../../hooks/useForceRerender';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import Stack from '../../content/Components/Stack/Stack';
 import { stack } from '../../constants/code/Components/stackCode';
@@ -136,10 +135,6 @@ const StackDemo = () => {
       <CodeTab>
         <CodeExample codeObject={stack} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...stack} />
-      </CliTab>
     </TabsLayout>
   );
 };

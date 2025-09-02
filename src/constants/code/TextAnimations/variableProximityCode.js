@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/VariableProximity/VariableProximity.jsx?raw';
 import css from '@content/TextAnimations/VariableProximity/VariableProximity.css?raw';
 import tailwind from '@tailwind/TextAnimations/VariableProximity/VariableProximity.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/TextAnimations/VariableProximity/VariableProximi
 import tsTailwind from '@ts-tailwind/TextAnimations/VariableProximity/VariableProximity.tsx?raw';
 
 export const variableProximity = {
-  ...generateCliCommands('TextAnimations/VariableProximity'),
-  installation: `npm install motion`,
+  dependencies: `motion`,
   usage: `import { useRef } from 'react';
 import VariableProximity from './VariableProximity';
 

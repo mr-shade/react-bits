@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
@@ -131,10 +131,6 @@ const MagnetDemo = () => {
       <CodeTab>
         <CodeExample codeObject={magnet} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...magnet} />
-      </CliTab>
     </TabsLayout>
   );
 };

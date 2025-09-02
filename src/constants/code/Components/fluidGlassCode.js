@@ -1,13 +1,10 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Components/FluidGlass/FluidGlass.jsx?raw';
 import tailwind from '@tailwind/Components/FluidGlass/FluidGlass.jsx?raw';
 import tsCode from '@ts-default/Components/FluidGlass/FluidGlass.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/FluidGlass/FluidGlass.tsx?raw';
 
 export const fluidGlass = {
-  ...generateCliCommands('Components/FluidGlass'),
-  installation: `npm install three @react-three/fiber @react-three/drei maath`,
+  dependencies: `three @react-three/fiber @react-three/drei maath`,
   usage: `// IMPORTANT INFO BELOW
 // This component requires a 3D model to function correctly.
 // You can find three example models in the 'public/assets/3d' directory of the repository:

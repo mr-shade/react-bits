@@ -1,8 +1,8 @@
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 
@@ -40,10 +40,6 @@ const FlowingMenuDemo = () => {
       <CodeTab>
         <CodeExample codeObject={flowingMenu} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...flowingMenu} />
-      </CliTab>
     </TabsLayout>
   );
 };

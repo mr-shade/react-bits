@@ -1,14 +1,33 @@
+import { TbCopy, TbCopyCheckFilled, TbMoodSad } from 'react-icons/tb';
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { FiCopy, FiCheckSquare } from 'react-icons/fi';
-import { RiEmotionSadLine } from 'react-icons/ri';
 
 import codeTheme from '../../utils/codeTheme';
 
-const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLines = 25 }) => {
+const routeExpansionState = {};
+
+const hashSnippet = str => {
+  if (!str) return 'empty';
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+    if (i > 500) break;
+  }
+  return hash.toString(36);
+};
+
+const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLines = 25, snippetId }) => {
+  const { pathname } = useLocation();
+  const key = snippetId || hashSnippet(codeString + '|' + language);
   const [copied, setCopied] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(() => routeExpansionState[pathname]?.[key] ?? false);
+
+  useEffect(() => {
+    if (!routeExpansionState[pathname]) routeExpansionState[pathname] = {};
+    routeExpansionState[pathname][key] = expanded;
+  }, [expanded, pathname, key]);
 
   const handleCopy = async () => {
     try {
@@ -43,8 +62,8 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
 
         {!codeString && (
           <Flex alignItems="center" gap={2} my={2} color="#a1a1aa">
-            <Text>Nothing here yet!</Text>
-            <Icon as={RiEmotionSadLine} />
+            <Text>Sorry, this combination is not supported</Text>
+            <Icon as={TbMoodSad} />
           </Flex>
         )}
 
@@ -64,8 +83,8 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
             position="absolute"
             bottom="0.9em"
             right="0.8em"
-            rounded="9px"
-            height="2.5rem"
+            rounded="10px"
+            h={10}
             fontWeight={500}
             backgroundColor="#060010"
             border="1px solid #392e4e"
@@ -75,7 +94,7 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
             zIndex={2}
             onClick={() => setExpanded(prev => !prev)}
           >
-            {expanded ? 'Collapse Snippet' : 'See Full Snippet'}
+            {expanded ? 'Collapse Snippet' : 'Expand Snippet'}
           </Button>
         )}
       </Box>
@@ -83,9 +102,10 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
       {codeString && (
         <Button
           position="absolute"
-          top={2}
+          top=".65em"
+          h={10}
           right=".6em"
-          borderRadius="9px"
+          borderRadius="12px"
           fontWeight={500}
           backgroundColor={copied ? '#5227FF' : '#060010'}
           border="1px solid #392e4e"
@@ -96,9 +116,9 @@ const CodeHighlighter = ({ language, codeString, showLineNumbers = true, maxLine
           onClick={handleCopy}
         >
           {copied ? (
-            <Icon as={FiCheckSquare} color="#fff" boxSize={4} />
+            <Icon as={TbCopyCheckFilled} color="#fff" boxSize={4} />
           ) : (
-            <Icon as={FiCopy} color="#fff" boxSize={4} />
+            <Icon as={TbCopy} color="#fff" boxSize={4} />
           )}
         </Button>
       )}

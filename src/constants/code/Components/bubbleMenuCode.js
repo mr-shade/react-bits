@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Components/BubbleMenu/BubbleMenu.jsx?raw';
 import css from '@content/Components/BubbleMenu/BubbleMenu.css?raw';
 import tailwind from '@tailwind/Components/BubbleMenu/BubbleMenu.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Components/BubbleMenu/BubbleMenu.tsx?raw';
 import tsTailwind from '@ts-tailwind/Components/BubbleMenu/BubbleMenu.tsx?raw';
 
 export const bubbleMenu = {
-  ...generateCliCommands('Components/BubbleMenu'),
-  installation: `npm install gsap`,
+  dependencies: `gsap`,
   usage: `import BubbleMenu from './BubbleMenu'
 
 const items = [

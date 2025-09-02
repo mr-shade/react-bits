@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box } from '@chakra-ui/react';
 
 import Customize from '../../components/common/Preview/Customize';
@@ -7,7 +7,7 @@ import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 
@@ -175,10 +175,6 @@ const CubesDemo = () => {
       <CodeTab>
         <CodeExample codeObject={cubes} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...cubes} />
-      </CliTab>
     </TabsLayout>
   );
 };

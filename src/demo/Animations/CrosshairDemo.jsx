@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
 import Dependencies from '../../components/code/Dependencies';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import Customize from '../../components/common/Preview/Customize';
 import PropTable from '../../components/common/Preview/PropTable';
 
@@ -40,7 +40,7 @@ const CrosshairDemo = () => {
         setMinWidth(hiddenRef.current.getBoundingClientRect().width);
       }
     }
-  }, [linkText]);
+  }, [linkText, minWidth]);
 
   return (
     <TabsLayout>
@@ -128,10 +128,6 @@ const CrosshairDemo = () => {
       <CodeTab>
         <CodeExample codeObject={crosshair} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...crosshair} />
-      </CliTab>
     </TabsLayout>
   );
 };

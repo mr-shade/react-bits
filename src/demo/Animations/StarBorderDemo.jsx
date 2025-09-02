@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PreviewSlider from '../../components/common/Preview/PreviewSlider';
 import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 
@@ -99,10 +99,6 @@ const StarBorderDemo = () => {
       <CodeTab>
         <CodeExample codeObject={starBorder} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...starBorder} />
-      </CliTab>
     </TabsLayout>
   );
 };

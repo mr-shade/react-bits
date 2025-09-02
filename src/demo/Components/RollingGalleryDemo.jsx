@@ -1,10 +1,9 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { CliTab, CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
-import CliInstallation from '../../components/code/CliInstallation';
 
 import RollingGallery from '../../content/Components/RollingGallery/RollingGallery';
 import { rollingGallery } from '../../constants/code/Components/rollingGalleryCode';
@@ -52,10 +51,6 @@ const RollingGalleryDemo = () => {
       <CodeTab>
         <CodeExample codeObject={rollingGallery} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...rollingGallery} />
-      </CliTab>
     </TabsLayout>
   );
 };

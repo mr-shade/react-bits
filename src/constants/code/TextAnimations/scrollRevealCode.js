@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/ScrollReveal/ScrollReveal.jsx?raw';
 import css from '@content/TextAnimations/ScrollReveal/ScrollReveal.css?raw';
 import tailwind from '@tailwind/TextAnimations/ScrollReveal/ScrollReveal.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/TextAnimations/ScrollReveal/ScrollReveal.tsx?raw
 import tsTailwind from '@ts-tailwind/TextAnimations/ScrollReveal/ScrollReveal.tsx?raw';
 
 export const scrollReveal = {
-  ...generateCliCommands('TextAnimations/ScrollReveal'),
-  installation: `npm install gsap`,
+  dependencies: `gsap`,
   usage: `import ScrollReveal from './ScrollReveal';
 
 <ScrollReveal

@@ -38,9 +38,6 @@ const Footer = () => {
             <Link to="/showcase" className="footer-link">
               Showcase
             </Link>
-            <a href="https://www.jsrepo.com/" target="_blank" className="footer-link">
-              CLI
-            </a>
           </div>
         </div>
       </footer>

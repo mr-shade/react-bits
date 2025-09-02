@@ -1,13 +1,10 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/Animations/ShapeBlur/ShapeBlur.jsx?raw';
 import tailwind from '@tailwind/Animations/ShapeBlur/ShapeBlur.jsx?raw';
 import tsCode from '@ts-default/Animations/ShapeBlur/ShapeBlur.tsx?raw';
 import tsTailwind from '@ts-tailwind/Animations/ShapeBlur/ShapeBlur.tsx?raw';
 
 export const shapeBlur = {
-  ...generateCliCommands('Animations/ShapeBlur'),
-  installation: `npm install three`,
+  dependencies: `three`,
   usage: `import ShapeBlur from './ShapeBlur';
 
 <div style={{position: 'relative', height: '500px', overflow: 'hidden'}}>

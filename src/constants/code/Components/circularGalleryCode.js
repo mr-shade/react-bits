@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import css from '@content/Components/CircularGallery/CircularGallery.css?raw';
 import code from '@content/Components/CircularGallery/CircularGallery.jsx?raw';
 import tailwind from '@tailwind/Components/CircularGallery/CircularGallery.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/Components/CircularGallery/CircularGallery.tsx?r
 import tsTailwind from '@ts-tailwind/Components/CircularGallery/CircularGallery.tsx?raw';
 
 export const circularGallery = {
-  ...generateCliCommands('Components/CircularGallery'),
-  installation: `npm install ogl`,
+  dependencies: `ogl`,
   usage: `import CircularGallery from './CircularGallery'
 
 <div style={{ height: '600px', position: 'relative' }}>

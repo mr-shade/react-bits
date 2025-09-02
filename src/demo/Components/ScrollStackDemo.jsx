@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { CodeTab, PreviewTab, CliTab, TabsLayout } from '../../components/common/TabsLayout';
+import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { LuComponent, LuImage, LuPlay, LuText } from 'react-icons/lu';
 import { Box, Text } from '@chakra-ui/react';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
-import CliInstallation from '../../components/code/CliInstallation';
+
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
 import RefreshButton from '../../components/common/Preview/RefreshButton';
@@ -266,10 +266,6 @@ const ScrollStackDemo = () => {
       <CodeTab>
         <CodeExample codeObject={scrollStack} />
       </CodeTab>
-
-      <CliTab>
-        <CliInstallation {...scrollStack} />
-      </CliTab>
     </TabsLayout>
   );
 };

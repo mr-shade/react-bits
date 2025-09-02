@@ -1,5 +1,3 @@
-import { generateCliCommands } from '@/utils/utils';
-
 import code from '@content/TextAnimations/TextTrail/TextTrail.jsx?raw';
 import css from '@content/TextAnimations/TextTrail/TextTrail.css?raw';
 import tailwind from '@tailwind/TextAnimations/TextTrail/TextTrail.jsx?raw';
@@ -7,8 +5,7 @@ import tsCode from '@ts-default/TextAnimations/TextTrail/TextTrail.tsx?raw';
 import tsTailwind from '@ts-tailwind/TextAnimations/TextTrail/TextTrail.tsx?raw';
 
 export const textTrail = {
-  ...generateCliCommands('TextAnimations/TextTrail'),
-  installation: `npm install three`,
+  dependencies: `three`,
   usage: `import TextTrail from './TextTrail';
 
 // Basic usage
