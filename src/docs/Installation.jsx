@@ -121,7 +121,7 @@ const Installation = () => {
             shadcn
           </h4>
           <p className="docs-paragraph short"></p>
-          <CodeBlock>{`npx shadcn@latest add https://reactbits.dev/r/SplitText-<LANGUAGE>-<STYLE>.json`}</CodeBlock>
+          <CodeBlock>{`npx shadcn@latest add https://reactbits.dev/r/SplitText-<LANGUAGE>-<STYLE>`}</CodeBlock>
           <p className="docs-paragraph short">&lt;LANGUAGE&gt; + &lt;STYLE&gt; combinations:</p>
           <ul className="docs-list">
             <li className="docs-list-item">
