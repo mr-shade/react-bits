@@ -67,7 +67,7 @@ float fbm(vec2 p)
   mat2 modify0 = rotate(time * 0.02);
   f += amp * noise(p);
   p = modify0 * p * 2.0;
-  amp *= 0.454545; // 1/2.2
+  amp *= 0.454545;
   
   mat2 modify1 = rotate(time * 0.02);
   f += amp * noise(p);
@@ -150,7 +150,7 @@ float displace(vec2 look)
 
 vec3 getColor(vec2 p){
     
-    float bar = step(mod(p.y + time * 20.0, 1.0), 0.2) * 0.4 + 1.0; // more efficient than ternary
+    float bar = step(mod(p.y + time * 20.0, 1.0), 0.2) * 0.4 + 1.0;
     bar *= uScanlineIntensity;
     
     float displacement = displace(p);

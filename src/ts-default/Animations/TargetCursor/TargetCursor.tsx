@@ -104,18 +104,14 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     };
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
-
-    //---------------------------------------------------------------
-    // This code for onclick animation
-
     window.addEventListener('mousemove', moveHandler);
+
     const mouseDownHandler = (): void => {
       if (!dotRef.current) return;
       gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
       gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
     };
 
-    // Animate it back to its original size
     const mouseUpHandler = (): void => {
       if (!dotRef.current) return;
       gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
@@ -125,7 +121,6 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     window.addEventListener('mousedown', mouseDownHandler);
     window.addEventListener('mouseup', mouseUpHandler);
 
-    //----------------------------------------------------------------
     const enterHandler = (e: MouseEvent) => {
       const directTarget = e.target as Element;
 

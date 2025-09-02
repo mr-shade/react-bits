@@ -130,7 +130,7 @@ void main() {
   vec2 mouseNorm = uMouse - vec2(0.5);
   
   if (uAutoCenterRepulsion > 0.0) {
-    vec2 centerUV = vec2(0.0, 0.0); // Center in UV space
+    vec2 centerUV = vec2(0.0, 0.0);
     float centerDist = length(uv - centerUV);
     vec2 repulsion = normalize(uv - centerUV) * (uAutoCenterRepulsion / (centerDist + 0.1));
     uv += repulsion * 0.05;
@@ -161,8 +161,8 @@ void main() {
 
   if (uTransparent) {
     float alpha = length(col);
-    alpha = smoothstep(0.0, 0.3, alpha); // Enhance contrast
-    alpha = min(alpha, 1.0); // Clamp to maximum 1.0
+    alpha = smoothstep(0.0, 0.3, alpha);
+    alpha = min(alpha, 1.0);
     gl_FragColor = vec4(col, alpha);
   } else {
     gl_FragColor = vec4(col, 1.0);

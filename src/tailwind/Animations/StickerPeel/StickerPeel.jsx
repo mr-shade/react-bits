@@ -77,7 +77,6 @@ const StickerPeel = ({
         const maxX = boundsRect.width - targetRect.width;
         const maxY = boundsRect.height - targetRect.height;
 
-        // Clamp position within new bounds
         const newX = Math.max(0, Math.min(currentX, maxX));
         const newY = Math.max(0, Math.min(currentY, maxY));
 

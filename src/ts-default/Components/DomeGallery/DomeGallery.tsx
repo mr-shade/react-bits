@@ -357,7 +357,7 @@ export default function DomeGallery({
 
         if (!movedRef.current) {
           const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
-          if (dist2 > 16) movedRef.current = true; // 4px
+          if (dist2 > 16) movedRef.current = true;
         }
 
         const nextX = clamp(

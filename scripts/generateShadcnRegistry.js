@@ -4,7 +4,6 @@ import path from 'path';
 import process from 'process';
 import { pathToFileURL } from 'url';
 
-// Simple ANSI color utilities (no external deps)
 const supportsColor = process.stdout.isTTY;
 const color = (open, close) => s => (supportsColor ? `\u001b[${open}m${s}\u001b[${close}m` : s);
 const bold = color('1', '22');

@@ -171,7 +171,6 @@ const Cubes: React.FC<CubesProps> = ({
       const cellW = rect.width / gridSize;
       const cellH = rect.height / gridSize;
 
-      // 터치와 마우스 모두 지원
       const clientX = (e as MouseEvent).clientX || ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientX);
       const clientY = (e as MouseEvent).clientY || ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientY);
 

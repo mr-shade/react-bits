@@ -1,4 +1,3 @@
-// Simple variant helpers
 const variantForJsrepo = (language, style) => {
   const lang = (language || 'JS').toUpperCase();
   const sty = (style || 'CSS').toUpperCase();

@@ -39,7 +39,6 @@ export default function CountUp({
 
   const isInView = useInView(ref, { once: true, margin: '0px' });
 
-  // Get number of decimal places in a number
   const getDecimalPlaces = (num: number): number => {
     const str = num.toString();
     if (str.includes('.')) {

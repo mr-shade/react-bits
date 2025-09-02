@@ -15,7 +15,6 @@ import { cubes } from '../../constants/code/Animations/cubesCode';
 import Cubes from '../../content/Animations/Cubes/Cubes';
 
 const CubesDemo = () => {
-  // State for customizable props
   const [borderStyle, setBorderStyle] = useState('2px dashed #B19EEF');
   const [gridSize, setGridSize] = useState(10);
   const [maxAngle, setMaxAngle] = useState(45);
@@ -23,7 +22,6 @@ const CubesDemo = () => {
   const [autoAnimate, setAutoAnimate] = useState(true);
   const [rippleOnClick, setRippleOnClick] = useState(true);
 
-  // Border style options for select
   const borderOptions = [
     { value: '2px dotted #fff', label: 'Dotted White' },
     { value: '2px dashed #B19EEF', label: 'Dashed Purple' },

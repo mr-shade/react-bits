@@ -589,7 +589,6 @@ const Hyperspeed = ({
           this.scene.clear();
         }
 
-        // Remove event listeners
         window.removeEventListener('resize', this.onWindowResize.bind(this));
         if (this.container) {
           this.container.removeEventListener('mousedown', this.onMouseDown);

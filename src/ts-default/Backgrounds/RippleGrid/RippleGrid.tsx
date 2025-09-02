@@ -194,7 +194,7 @@ void main() {
       if (!mouseInteraction || !containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
-      const y = 1.0 - (e.clientY - rect.top) / rect.height; // Flip Y coordinate
+      const y = 1.0 - (e.clientY - rect.top) / rect.height;
       targetMouseRef.current = { x, y };
     };
 
