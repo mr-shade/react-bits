@@ -53,6 +53,7 @@ const VARIANTS = [
 ];
 
 const REGISTRY_PATH = path.join(process.cwd(), 'registry.json');
+const PUBLIC_REGISTRY_PATH = path.join(process.cwd(), 'public', 'r', 'registry.json');
 const PACKAGE_JSON_PATH = path.join(process.cwd(), 'package.json');
 
 function readJSON(file) {
@@ -262,6 +263,14 @@ function buildRegistry() {
   const registry = { ...meta, items };
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n');
 
+  // Also emit a copy into /public/r/registry.json for direct consumption by the site
+  try {
+    fs.mkdirSync(path.dirname(PUBLIC_REGISTRY_PATH), { recursive: true });
+    fs.writeFileSync(PUBLIC_REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n');
+  } catch (e) {
+    console.error('Failed to write public registry copy:', e);
+  }
+
   // Summary metrics
   const totalRegistryItems = items.length; // variants
   const totalFiles = items.reduce((sum, it) => sum + (it.files?.length || 0), 0);
@@ -292,6 +301,7 @@ function buildRegistry() {
   line('Unique components', uniqueComponents.toString(), magenta);
   line('Total files', totalFiles.toString(), green);
   line('Registry file', 'registry.json', yellow);
+  line('Public copy', 'public/r/registry.json', yellow);
   line('Description coverage', `${coveragePct}%`, missingDescriptions.length ? yellow : green);
   if (missingDescriptions.length) {
     console.log('\n' + yellow('Missing descriptions:'));
