@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
 import { Box, Flex, Input, Text } from '@chakra-ui/react';
 
@@ -5,13 +6,13 @@ import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
 import PropTable from '../../components/common/Preview/PropTable';
 import Dependencies from '../../components/code/Dependencies';
+import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
+import PreviewSelect from '../../components/common/Preview/PreviewSelect';
+import useForceRerender from '../../hooks/useForceRerender';
+import logo from "../../assets/logos/reactbits-gh-white.svg";
 
 import { staggeredMenu } from '../../constants/code/Components/staggeredMenuCode';
 import StaggeredMenu from '@content/Components/StaggeredMenu/StaggeredMenu';
-import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
-import PreviewSelect from '../../components/common/Preview/PreviewSelect';
-import { useState } from 'react';
-import useForceRerender from '../../hooks/useForceRerender';
 
 const StaggeredMenuDemo = () => {
   const [displaySocials, setDisplaySocials] = useState(true);
@@ -126,7 +127,7 @@ const StaggeredMenuDemo = () => {
         <Box position="relative" className="demo-container demo-container-dots" h={800} overflow="hidden" p={0}>
           <StaggeredMenu
             key={menuKey}
-            logoUrl="/src/assets/logos/reactbits-gh-white.svg"
+            logoUrl={logo}
             items={items}
             socialItems={socialItems}
             openMenuButtonColor={position === 'left' ? '#fff' : '#000'}
