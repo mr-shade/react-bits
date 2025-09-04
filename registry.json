@@ -7,7 +7,7 @@
       "name": "AnimatedContent-JS-CSS",
       "type": "registry:block",
       "title": "AnimatedContent",
-      "description": "Animates any children on scroll or mount. Configurable direction, distance & more.",
+      "description": "Wrapper that animates any children on scroll or mount with configurable direction, distance, duration and easing.",
       "files": [
         {
           "path": "public/default/src/content/Animations/AnimatedContent/AnimatedContent.jsx",
@@ -22,7 +22,7 @@
       "name": "AnimatedContent-JS-TW",
       "type": "registry:block",
       "title": "AnimatedContent",
-      "description": "Animates any children on scroll or mount. Configurable direction, distance & more.",
+      "description": "Wrapper that animates any children on scroll or mount with configurable direction, distance, duration and easing.",
       "files": [
         {
           "path": "public/tailwind/src/tailwind/Animations/AnimatedContent/AnimatedContent.jsx",
@@ -37,7 +37,7 @@
       "name": "AnimatedContent-TS-CSS",
       "type": "registry:block",
       "title": "AnimatedContent",
-      "description": "Animates any children on scroll or mount. Configurable direction, distance & more.",
+      "description": "Wrapper that animates any children on scroll or mount with configurable direction, distance, duration and easing.",
       "files": [
         {
           "path": "public/ts/default/src/ts-default/Animations/AnimatedContent/AnimatedContent.tsx",
@@ -52,7 +52,7 @@
       "name": "AnimatedContent-TS-TW",
       "type": "registry:block",
       "title": "AnimatedContent",
-      "description": "Animates any children on scroll or mount. Configurable direction, distance & more.",
+      "description": "Wrapper that animates any children on scroll or mount with configurable direction, distance, duration and easing.",
       "files": [
         {
           "path": "public/ts/tailwind/src/ts-tailwind/Animations/AnimatedContent/AnimatedContent.tsx",
@@ -937,7 +937,7 @@
       "name": "ChromaGrid-JS-CSS",
       "type": "registry:block",
       "title": "ChromaGrid",
-      "description": "Responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
+      "description": "A responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
       "files": [
         {
           "path": "public/default/src/content/Components/ChromaGrid/ChromaGrid.jsx",
@@ -956,7 +956,7 @@
       "name": "ChromaGrid-JS-TW",
       "type": "registry:block",
       "title": "ChromaGrid",
-      "description": "Responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
+      "description": "A responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
       "files": [
         {
           "path": "public/tailwind/src/tailwind/Components/ChromaGrid/ChromaGrid.jsx",
@@ -971,7 +971,7 @@
       "name": "ChromaGrid-TS-CSS",
       "type": "registry:block",
       "title": "ChromaGrid",
-      "description": "Responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
+      "description": "A responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
       "files": [
         {
           "path": "public/ts/default/src/ts-default/Components/ChromaGrid/ChromaGrid.tsx",
@@ -990,7 +990,7 @@
       "name": "ChromaGrid-TS-TW",
       "type": "registry:block",
       "title": "ChromaGrid",
-      "description": "Responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
+      "description": "A responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
       "files": [
         {
           "path": "public/ts/tailwind/src/ts-tailwind/Components/ChromaGrid/ChromaGrid.tsx",
@@ -6287,6 +6287,74 @@
       ],
       "dependencies": [
         "motion"
+      ]
+    },
+    {
+      "name": "StaggeredMenu-JS-CSS",
+      "type": "registry:block",
+      "title": "StaggeredMenu",
+      "description": "Menu with staggered item animations and smooth transitions on open/close.",
+      "files": [
+        {
+          "path": "public/default/src/content/Components/StaggeredMenu/StaggeredMenu.jsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/default/src/content/Components/StaggeredMenu/StaggeredMenu.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "gsap"
+      ]
+    },
+    {
+      "name": "StaggeredMenu-JS-TW",
+      "type": "registry:block",
+      "title": "StaggeredMenu",
+      "description": "Menu with staggered item animations and smooth transitions on open/close.",
+      "files": [
+        {
+          "path": "public/tailwind/src/tailwind/Components/StaggeredMenu/StaggeredMenu.jsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "gsap"
+      ]
+    },
+    {
+      "name": "StaggeredMenu-TS-CSS",
+      "type": "registry:block",
+      "title": "StaggeredMenu",
+      "description": "Menu with staggered item animations and smooth transitions on open/close.",
+      "files": [
+        {
+          "path": "public/ts/default/src/ts-default/Components/StaggeredMenu/StaggeredMenu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/ts/default/src/ts-default/Components/StaggeredMenu/StaggeredMenu.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "gsap"
+      ]
+    },
+    {
+      "name": "StaggeredMenu-TS-TW",
+      "type": "registry:block",
+      "title": "StaggeredMenu",
+      "description": "Menu with staggered item animations and smooth transitions on open/close.",
+      "files": [
+        {
+          "path": "public/ts/tailwind/src/ts-tailwind/Components/StaggeredMenu/StaggeredMenu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "gsap"
       ]
     },
     {

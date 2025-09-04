@@ -57,7 +57,7 @@ Notes:
 
 ## Animations
 
-- [Animated Content](https://www.reactbits.dev/animations/animated-content): Animates any children on scroll or mount. Configurable direction, distance & more. CLI: `AnimatedContent`.
+- [Animated Content](https://www.reactbits.dev/animations/animated-content): Wrapper that animates any children on scroll or mount with configurable direction, distance, duration and easing. CLI: `AnimatedContent`.
 - [Blob Cursor](https://www.reactbits.dev/animations/blob-cursor): Organic blob cursor that smoothly follows the pointer with inertia and elastic morphing. CLI: `BlobCursor`.
 - [Click Spark](https://www.reactbits.dev/animations/click-spark): Creates particle spark bursts at click position. CLI: `ClickSpark`.
 - [Crosshair](https://www.reactbits.dev/animations/crosshair): Custom crosshair cursor with tracking, and link hover effects. CLI: `Crosshair`.
@@ -90,7 +90,7 @@ Notes:
 - [Card Nav](https://www.reactbits.dev/components/card-nav): Expandable navigation bar with card panels revealing nested links. CLI: `CardNav`.
 - [Card Swap](https://www.reactbits.dev/components/card-swap): Cards animate position swapping with smooth layout transitions. CLI: `CardSwap`.
 - [Carousel](https://www.reactbits.dev/components/carousel): Responsive carousel with touch gestures, looping and transitions. CLI: `Carousel`.
-- [Chroma Grid](https://www.reactbits.dev/components/chroma-grid): Responsive grid of grayscale tiles. Hovering the grid reaveals their colors. CLI: `ChromaGrid`.
+- [Chroma Grid](https://www.reactbits.dev/components/chroma-grid): A responsive grid of grayscale tiles. Hovering the grid reaveals their colors. CLI: `ChromaGrid`.
 - [Circular Gallery](https://www.reactbits.dev/components/circular-gallery): Circular orbit gallery rotating images. CLI: `CircularGallery`.
 - [Counter](https://www.reactbits.dev/components/counter): Flexible animated counter supporting increments + easing. CLI: `Counter`.
 - [Decay Card](https://www.reactbits.dev/components/decay-card): Hover parallax effect that disintegrates the content of a card. CLI: `DecayCard`.
@@ -117,6 +117,7 @@ Notes:
 - [Scroll Stack](https://www.reactbits.dev/components/scroll-stack): Overlapping card stack reveals on scroll with depth layering. CLI: `ScrollStack`.
 - [Spotlight Card](https://www.reactbits.dev/components/spotlight-card): Dynamic spotlight follows cursor casting gradient illumination. CLI: `SpotlightCard`.
 - [Stack](https://www.reactbits.dev/components/stack): Layered stack with swipe animations and smooth transitions. CLI: `Stack`.
+- [Staggered Menu](https://www.reactbits.dev/components/staggered-menu): Menu with staggered item animations and smooth transitions on open/close. CLI: `StaggeredMenu`.
 - [Stepper](https://www.reactbits.dev/components/stepper): Animated multi-step progress indicator with active state transitions. CLI: `Stepper`.
 - [Tilted Card](https://www.reactbits.dev/components/tilted-card): 3D perspective tilt card reacting to pointer. CLI: `TiltedCard`.
 

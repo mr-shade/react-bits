@@ -12,7 +12,8 @@ export const NEW = [
   'Logo Loop',
   'Card Nav',
   'Pill Nav',
-  'Target Cursor'
+  'Target Cursor',
+  'Staggered Menu'
 ];
 export const UPDATED = [];
 
@@ -97,6 +98,7 @@ export const CATEGORIES = [
       'Dome Gallery',
       'Chroma Grid',
       'Folder',
+      'Staggered Menu',
       'Model Viewer',
       'Lanyard',
       'Profile Card',

@@ -58,8 +58,7 @@ export const descriptions = {
   'Components/CardNav': 'Expandable navigation bar with card panels revealing nested links.',
   'Components/CardSwap': 'Cards animate position swapping with smooth layout transitions.',
   'Components/Carousel': 'Responsive carousel with touch gestures, looping and transitions.',
-  'Components/ChromaGrid':
-    'A responsive grid of grayscale tiles. Hovering the grid reaveals the colors of the elements.',
+  'Components/ChromaGrid': 'A responsive grid of grayscale tiles. Hovering the grid reaveals their colors.',
   'Components/CircularGallery': 'Circular orbit gallery rotating images.',
   'Components/Counter': 'Flexible animated counter supporting increments + easing.',
   'Components/DecayCard': 'Hover parallax effect that disintegrates the content of a card.',
@@ -88,6 +87,7 @@ export const descriptions = {
   'Components/Stack': 'Layered stack with swipe animations and smooth transitions.',
   'Components/Stepper': 'Animated multi-step progress indicator with active state transitions.',
   'Components/TiltedCard': '3D perspective tilt card reacting to pointer.',
+  'Components/StaggeredMenu': 'Menu with staggered item animations and smooth transitions on open/close.',
 
   // Backgrounds
   'Backgrounds/Aurora': 'Flowing aurora gradient background.',

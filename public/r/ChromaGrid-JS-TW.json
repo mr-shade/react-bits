@@ -3,7 +3,7 @@
   "name": "ChromaGrid-JS-TW",
   "type": "registry:block",
   "title": "ChromaGrid",
-  "description": "A responsive grid of grayscale tiles. Hovering the grid reaveals the colors of the elements.",
+  "description": "A responsive grid of grayscale tiles. Hovering the grid reaveals their colors.",
   "dependencies": [
     "gsap"
   ],
