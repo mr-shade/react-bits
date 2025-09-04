@@ -15,12 +15,7 @@ const CATEGORY_SLUGS = {
   TextAnimations: 'text-animations'
 };
 
-const CATEGORY_ORDER = [
-  'TextAnimations',
-  'Animations',
-  'Components',
-  'Backgrounds'
-];
+const CATEGORY_ORDER = ['TextAnimations', 'Animations', 'Components', 'Backgrounds'];
 
 function readRegistry() {
   if (!fs.existsSync(REGISTRY_PATH)) {
@@ -95,10 +90,26 @@ const AGENT_NOTES = [
 ];
 
 const DOC_LINKS = [
-  { label: 'Homepage', url: 'https://www.reactbits.dev', note: 'Landing page, quick presentation of the library, testimonials.' },
-  { label: 'Introduction', url: 'https://www.reactbits.dev/get-started/introduction', note: 'Project mission and principles.' },
-  { label: 'Installation', url: 'https://www.reactbits.dev/get-started/installation', note: 'Manual copy and CLI commands (jsrepo, shadcn).' },
-  { label: 'MCP Setup', url: 'https://www.reactbits.dev/get-started/mcp', note: 'Set up a MCP server to help you with development.' }
+  {
+    label: 'Homepage',
+    url: 'https://www.reactbits.dev',
+    note: 'Landing page, quick presentation of the library, testimonials.'
+  },
+  {
+    label: 'Introduction',
+    url: 'https://www.reactbits.dev/get-started/introduction',
+    note: 'Project mission and principles.'
+  },
+  {
+    label: 'Installation',
+    url: 'https://www.reactbits.dev/get-started/installation',
+    note: 'Manual copy and CLI commands (jsrepo, shadcn).'
+  },
+  {
+    label: 'MCP Setup',
+    url: 'https://www.reactbits.dev/get-started/mcp',
+    note: 'Set up a MCP server to help you with development.'
+  }
 ];
 
 const CLI_INSTRUCTIONS = {
@@ -125,25 +136,41 @@ const CLI_INSTRUCTIONS = {
 
 const VARIANT_LINKS = [
   { label: 'JavaScript + CSS (default)', path: 'src/content', note: 'Plain CSS styling; copyable into any React app.' },
-  { label: 'JavaScript + Tailwind', path: 'src/tailwind', note: 'Tailwind-first implementations of the same components.' },
+  {
+    label: 'JavaScript + Tailwind',
+    path: 'src/tailwind',
+    note: 'Tailwind-first implementations of the same components.'
+  },
   { label: 'TypeScript + CSS', path: 'src/ts-default', note: 'Typed variants with plain CSS.' },
   { label: 'TypeScript + Tailwind', path: 'src/ts-tailwind', note: 'Typed Tailwind variants.' }
 ];
 
 const KEY_DEPENDENCIES = [
   { label: 'GSAP', url: 'https://gsap.com/docs/v3/', note: 'Animation engine used by many motion components.' },
-  { label: 'Motion (Framer)', url: 'https://www.framer.com/motion/', note: 'Declarative motion primitives for enter/exit/stagger.' },
+  {
+    label: 'Motion (Framer)',
+    url: 'https://www.framer.com/motion/',
+    note: 'Declarative motion primitives for enter/exit/stagger.'
+  },
   { label: 'three.js', url: 'https://threejs.org/docs/', note: '3D engine for backgrounds and interactive visuals.' },
   { label: 'ogl', url: 'https://github.com/oframe/ogl', note: 'Lightweight WebGL; shader-driven backgrounds.' }
 ];
 
 const MCP_LINKS = [
-  { label: 'MCP Setup', url: 'https://www.reactbits.dev/get-started/mcp', note: 'How AI agents can browse/search React Bits.' },
+  {
+    label: 'MCP Setup',
+    url: 'https://www.reactbits.dev/get-started/mcp',
+    note: 'How AI agents can browse/search React Bits.'
+  },
   { label: 'Model Context Protocol', url: 'https://modelcontextprotocol.io/', note: 'Protocol reference.' }
 ];
 
 const DEV_LINKS = [
-  { label: 'CONTRIBUTING.md', url: 'CONTRIBUTING.md', note: 'Workflow and quality gates; keep all 4 variants updated for component changes.' },
+  {
+    label: 'CONTRIBUTING.md',
+    url: 'CONTRIBUTING.md',
+    note: 'Workflow and quality gates; keep all 4 variants updated for component changes.'
+  },
   { label: 'LICENSE', url: 'LICENSE.md', note: 'License information.' }
 ];
 
@@ -204,9 +231,9 @@ function buildDev() {
 }
 
 function generateMarkdown(categories) {
-  const categorySections = CATEGORY_ORDER
-    .filter(cat => categories[cat])
-    .map(cat => buildComponentSection(cat, categories[cat]));
+  const categorySections = CATEGORY_ORDER.filter(cat => categories[cat]).map(cat =>
+    buildComponentSection(cat, categories[cat])
+  );
 
   return [
     buildHeader(),
@@ -228,7 +255,11 @@ function main() {
   fs.writeFileSync(OUTPUT_PATH, md, 'utf8');
   const rootFile = path.join(process.cwd(), OUTPUT_FILENAME);
   if (rootFile !== OUTPUT_PATH && fs.existsSync(rootFile)) {
-    try { fs.unlinkSync(rootFile); } catch { /* ignore */ }
+    try {
+      fs.unlinkSync(rootFile);
+    } catch {
+      /* ignore */
+    }
   }
   console.log(`Generated ${path.relative(process.cwd(), OUTPUT_PATH)} with dynamic component index.`);
 }

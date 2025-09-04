@@ -143,10 +143,12 @@
   position: absolute;
   inset: 0;
   padding: 1px;
-  background: radial-gradient(200px circle at var(--glow-x) var(--glow-y),
-      rgba(132, 0, 255, calc(var(--glow-intensity) * 0.8)) 0%,
-      rgba(132, 0, 255, calc(var(--glow-intensity) * 0.4)) 30%,
-      transparent 60%);
+  background: radial-gradient(
+    200px circle at var(--glow-x) var(--glow-y),
+    rgba(132, 0, 255, calc(var(--glow-intensity) * 0.8)) 0%,
+    rgba(132, 0, 255, calc(var(--glow-intensity) * 0.4)) 30%,
+    transparent 60%
+  );
   border-radius: inherit;
   mask:
     linear-gradient(#fff 0 0) content-box,
