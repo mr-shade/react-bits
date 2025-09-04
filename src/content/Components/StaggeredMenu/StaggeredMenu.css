@@ -256,7 +256,7 @@
   position: relative;
   color: #000;
   font-weight: 600;
-  font-size: 4rem;
+  font-size: 3.5rem;
   cursor: pointer;
   line-height: 1;
   letter-spacing: -2px;
@@ -306,7 +306,7 @@
   content: counter(smItem, decimal-leading-zero);
   position: absolute;
   top: 0.1em;
-  right: 3.2em;
+  right: 2.8em;
   font-size: 18px;
   font-weight: 400;
   color: var(--sm-accent, #5227ff);
