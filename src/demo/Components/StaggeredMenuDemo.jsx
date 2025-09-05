@@ -9,7 +9,7 @@ import Dependencies from '../../components/code/Dependencies';
 import PreviewSwitch from '../../components/common/Preview/PreviewSwitch';
 import PreviewSelect from '../../components/common/Preview/PreviewSelect';
 import useForceRerender from '../../hooks/useForceRerender';
-import logo from "../../assets/logos/reactbits-gh-white.svg";
+import logo from '../../assets/logos/reactbits-gh-white.svg';
 
 import { staggeredMenu } from '../../constants/code/Components/staggeredMenuCode';
 import StaggeredMenu from '@content/Components/StaggeredMenu/StaggeredMenu';
