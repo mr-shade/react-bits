@@ -71,7 +71,7 @@ const FadeDemo = () => {
   return (
     <TabsLayout>
       <PreviewTab>
-        <Box position="relative" className="demo-container" minH={200}>
+        <Box position="relative" className="demo-container" h={400}>
           <FadeContent
             key={key}
             blur={blur}
