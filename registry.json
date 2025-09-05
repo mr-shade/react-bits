@@ -3946,6 +3946,74 @@
       ]
     },
     {
+      "name": "LiquidEther-JS-CSS",
+      "type": "registry:block",
+      "title": "LiquidEther",
+      "description": "Interactive liquid shader with flowing distortion and customizable colors.",
+      "files": [
+        {
+          "path": "public/default/src/content/Backgrounds/LiquidEther/LiquidEther.jsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/default/src/content/Backgrounds/LiquidEther/LiquidEther.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "name": "LiquidEther-JS-TW",
+      "type": "registry:block",
+      "title": "LiquidEther",
+      "description": "Interactive liquid shader with flowing distortion and customizable colors.",
+      "files": [
+        {
+          "path": "public/tailwind/src/tailwind/Backgrounds/LiquidEther/LiquidEther.jsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "name": "LiquidEther-TS-CSS",
+      "type": "registry:block",
+      "title": "LiquidEther",
+      "description": "Interactive liquid shader with flowing distortion and customizable colors.",
+      "files": [
+        {
+          "path": "public/ts/default/src/ts-default/Backgrounds/LiquidEther/LiquidEther.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/ts/default/src/ts-default/Backgrounds/LiquidEther/LiquidEther.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "name": "LiquidEther-TS-TW",
+      "type": "registry:block",
+      "title": "LiquidEther",
+      "description": "Interactive liquid shader with flowing distortion and customizable colors.",
+      "files": [
+        {
+          "path": "public/ts/tailwind/src/ts-tailwind/Backgrounds/LiquidEther/LiquidEther.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
       "name": "LogoLoop-JS-CSS",
       "type": "registry:block",
       "title": "LogoLoop",

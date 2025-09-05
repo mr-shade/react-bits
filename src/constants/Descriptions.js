@@ -118,5 +118,6 @@ export const descriptions = {
   'Backgrounds/Silk': 'Smooth waves background with soft lighting.',
   'Backgrounds/Squares': 'Animated squares with scaling + direction customization.',
   'Backgrounds/Threads': 'Animated pattern of lines forming a fabric-like motion.',
-  'Backgrounds/Waves': 'Layered lines that form smooth wave patterns with animation.'
+  'Backgrounds/Waves': 'Layered lines that form smooth wave patterns with animation.',
+  'Backgrounds/LiquidEther': 'Interactive liquid shader with flowing distortion and customizable colors.'
 };

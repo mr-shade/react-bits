@@ -141,6 +141,7 @@ Notes:
 - [Lightning](https://www.reactbits.dev/backgrounds/lightning): Procedural lightning bolts with branching and glow flicker. CLI: `Lightning`.
 - [Light Rays](https://www.reactbits.dev/backgrounds/light-rays): Volumetric light rays/beams with customizable direction. CLI: `LightRays`.
 - [Liquid Chrome](https://www.reactbits.dev/backgrounds/liquid-chrome): Liquid metallic chrome shader with flowing reflective surface. CLI: `LiquidChrome`.
+- [Liquid Ether](https://www.reactbits.dev/backgrounds/liquid-ether): Interactive liquid shader with flowing distortion and customizable colors. CLI: `LiquidEther`.
 - [Orb](https://www.reactbits.dev/backgrounds/orb): Floating energy orb with customizable hover effect. CLI: `Orb`.
 - [Particles](https://www.reactbits.dev/backgrounds/particles): Configurable particle system. CLI: `Particles`.
 - [Pixel Blast](https://www.reactbits.dev/backgrounds/pixel-blast): Exploding pixel particle bursts with optional liquid postprocessing. CLI: `PixelBlast`.

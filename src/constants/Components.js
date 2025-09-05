@@ -125,7 +125,8 @@ const backgrounds = {
   prism: () => import('../demo/Backgrounds/PrismDemo'),
   'gradient-blinds': () => import('../demo/Backgrounds/GradientBlindsDemo'),
   'prismatic-burst': () => import('../demo/Backgrounds/PrismaticBurstDemo.jsx'),
-  'pixel-blast': () => import('../demo/Backgrounds/PixelBlastDemo.jsx')
+  'pixel-blast': () => import('../demo/Backgrounds/PixelBlastDemo.jsx'),
+  'liquid-ether': () => import('../demo/Backgrounds/LiquidEtherDemo.jsx')
 };
 
 export const componentMap = {

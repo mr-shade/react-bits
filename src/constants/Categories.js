@@ -7,13 +7,10 @@ export const NEW = [
   'Gradient Blinds',
   'Bubble Menu',
   'Electric Border',
-  'Plasma',
   'Prism',
-  'Logo Loop',
   'Card Nav',
-  'Pill Nav',
-  'Target Cursor',
-  'Staggered Menu'
+  'Staggered Menu',
+  'Liquid Ether'
 ];
 export const UPDATED = [];
 
@@ -124,6 +121,7 @@ export const CATEGORIES = [
   {
     name: 'Backgrounds',
     subcategories: [
+      'Liquid Ether',
       'Prism',
       'Dark Veil',
       'Silk',
