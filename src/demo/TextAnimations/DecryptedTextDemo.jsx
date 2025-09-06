@@ -91,7 +91,8 @@ const DecryptedTextDemo = () => {
 
   const animateOptions = [
     { label: 'View', value: 'view' },
-    { label: 'Hover', value: 'hover' }
+    { label: 'Hover', value: 'hover' },
+    { label: 'Both', value: 'both' }
   ];
   const directionOptions = [
     { label: 'Start', value: 'start' },

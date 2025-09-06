@@ -29,7 +29,7 @@ interface DecryptedTextProps extends HTMLMotionProps<'span'> {
   className?: string;
   parentClassName?: string;
   encryptedClassName?: string;
-  animateOn?: 'view' | 'hover';
+  animateOn?: 'view' | 'hover' | 'both';
 }
 
 export default function DecryptedText({
@@ -163,7 +163,7 @@ export default function DecryptedText({
   }, [isHovering, text, speed, maxIterations, sequential, revealDirection, characters, useOriginalCharsOnly]);
 
   useEffect(() => {
-    if (animateOn !== 'view') return;
+    if (animateOn !== 'view' && animateOn !== 'both') return;
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
@@ -194,7 +194,7 @@ export default function DecryptedText({
   }, [animateOn, hasAnimated]);
 
   const hoverProps =
-    animateOn === 'hover'
+    animateOn === 'hover' || animateOn === 'both'
       ? {
           onMouseEnter: () => setIsHovering(true),
           onMouseLeave: () => setIsHovering(false)
