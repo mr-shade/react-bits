@@ -6002,6 +6002,78 @@
       ]
     },
     {
+      "name": "Shuffle-JS-CSS",
+      "type": "registry:block",
+      "title": "Shuffle",
+      "description": "Animated text reveal where characters shuffle before settling.",
+      "files": [
+        {
+          "path": "public/default/src/content/TextAnimations/Shuffle/Shuffle.jsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/default/src/content/TextAnimations/Shuffle/Shuffle.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "@gsap/react",
+        "gsap"
+      ]
+    },
+    {
+      "name": "Shuffle-JS-TW",
+      "type": "registry:block",
+      "title": "Shuffle",
+      "description": "Animated text reveal where characters shuffle before settling.",
+      "files": [
+        {
+          "path": "public/tailwind/src/tailwind/TextAnimations/Shuffle/Shuffle.jsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@gsap/react",
+        "gsap"
+      ]
+    },
+    {
+      "name": "Shuffle-TS-CSS",
+      "type": "registry:block",
+      "title": "Shuffle",
+      "description": "Animated text reveal where characters shuffle before settling.",
+      "files": [
+        {
+          "path": "public/ts/default/src/ts-default/TextAnimations/Shuffle/Shuffle.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/ts/default/src/ts-default/TextAnimations/Shuffle/Shuffle.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "@gsap/react",
+        "gsap"
+      ]
+    },
+    {
+      "name": "Shuffle-TS-TW",
+      "type": "registry:block",
+      "title": "Shuffle",
+      "description": "Animated text reveal where characters shuffle before settling.",
+      "files": [
+        {
+          "path": "public/ts/tailwind/src/ts-tailwind/TextAnimations/Shuffle/Shuffle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@gsap/react",
+        "gsap"
+      ]
+    },
+    {
       "name": "Silk-JS-CSS",
       "type": "registry:block",
       "title": "Silk",

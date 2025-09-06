@@ -34,6 +34,6 @@ coverage/
 registry.json
 
 # Other
-Components.ts
-Categories.ts
-Descriptions.ts
+Components.js
+Categories.js
+Descriptions.js

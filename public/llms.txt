@@ -47,6 +47,7 @@ Notes:
 - [Scroll Reveal](https://www.reactbits.dev/text-animations/scroll-reveal): Text gently unblurs and reveals on scroll. CLI: `ScrollReveal`.
 - [Scroll Velocity](https://www.reactbits.dev/text-animations/scroll-velocity): Text marquee animatio - speed and distortion scale with user's scroll velocity. CLI: `ScrollVelocity`.
 - [Shiny Text](https://www.reactbits.dev/text-animations/shiny-text): Metallic sheen sweeps across text producing a reflective highlight. CLI: `ShinyText`.
+- [Shuffle](https://www.reactbits.dev/text-animations/shuffle): Animated text reveal where characters shuffle before settling. CLI: `Shuffle`.
 - [Split Text](https://www.reactbits.dev/text-animations/split-text): Splits text into characters / words for staggered entrance animation. CLI: `SplitText`.
 - [Text Cursor](https://www.reactbits.dev/text-animations/text-cursor): Make any text element follow your cursor, leaving a trail of copies behind it. CLI: `TextCursor`.
 - [Text Pressure](https://www.reactbits.dev/text-animations/text-pressure): Characters scale / warp interactively based on pointer pressure zone. CLI: `TextPressure`.

@@ -10,7 +10,8 @@ export const NEW = [
   'Prism',
   'Card Nav',
   'Staggered Menu',
-  'Liquid Ether'
+  'Liquid Ether',
+  'Shuffle'
 ];
 export const UPDATED = [];
 
@@ -27,6 +28,7 @@ export const CATEGORIES = [
       'Blur Text',
       'Circular Text',
       'Text Type',
+      'Shuffle',
       'Shiny Text',
       'Text Pressure',
       'Curved Loop',

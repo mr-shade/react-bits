@@ -50,6 +50,7 @@ export const descriptions = {
   'TextAnimations/TextType': 'Typewriter effect with blinking cursor and adjustable typing cadence.',
   'TextAnimations/TrueFocus': 'Applies dynamic blur / clarity based over a series of words in order.',
   'TextAnimations/VariableProximity': 'Letter styling changes continuously with pointer distance mapping.',
+  'TextAnimations/Shuffle': 'Animated text reveal where characters shuffle before settling.',
 
   // Components
   'Components/AnimatedList': 'List items enter with staggered motion variants for polished reveals.',
