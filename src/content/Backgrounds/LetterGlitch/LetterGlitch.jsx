@@ -6,7 +6,8 @@ const LetterGlitch = ({
   glitchSpeed = 50,
   centerVignette = false,
   outerVignette = true,
-  smooth = true
+  smooth = true,
+  characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789",
 }) => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
@@ -15,70 +16,12 @@ const LetterGlitch = ({
   const context = useRef(null);
   const lastGlitchTime = useRef(Date.now());
 
+  const lettersAndSymbols = Array.from(characters);
+
   const fontSize = 16;
   const charWidth = 10;
   const charHeight = 20;
 
-  const lettersAndSymbols = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-    '!',
-    '@',
-    '#',
-    '$',
-    '&',
-    '*',
-    '(',
-    ')',
-    '-',
-    '_',
-    '+',
-    '=',
-    '/',
-    '[',
-    ']',
-    '{',
-    '}',
-    ';',
-    ':',
-    '<',
-    '>',
-    ',',
-    '0',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9'
-  ];
 
   const getRandomChar = () => {
     return lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)];

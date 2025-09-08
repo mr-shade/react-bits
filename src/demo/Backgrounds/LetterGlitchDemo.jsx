@@ -54,6 +54,12 @@ const LetterGlitchDemo = () => {
       type: 'boolean',
       default: 'true',
       description: 'When true, smoothens the animation of the letters for a more subtle feel.'
+    },
+    {
+      name: 'characters',
+      type: 'string',
+      default: "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789",
+      description: 'String of characters to render in the canvas.'
     }
   ];
 
