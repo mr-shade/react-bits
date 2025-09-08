@@ -42,7 +42,7 @@ export const CATEGORIES = [
       'Scroll Float',
       'Scroll Reveal',
       'ASCII Text',
-      'Scramble Text',
+      'Scrambled Text',
       'Rotating Text',
       'Glitch Text',
       'Scroll Velocity',
