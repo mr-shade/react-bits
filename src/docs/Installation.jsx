@@ -174,7 +174,7 @@ const Installation = () => {
       </p>
 
       <DocsButtonBar
-        next={{ label: 'Mcp Server', route: '/get-started/mcp' }}
+        // next={{ label: 'Mcp Server', route: '/get-started/mcp' }}
         previous={{ label: 'Introduction', route: '/get-started/introduction' }}
       />
     </section>
