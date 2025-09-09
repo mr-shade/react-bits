@@ -68,6 +68,7 @@ Notes:
 - [Glare Hover](https://www.reactbits.dev/animations/glare-hover): Adds a realistic moving glare highlight on hover over any element. CLI: `GlareHover`.
 - [Gradual Blur](https://www.reactbits.dev/animations/gradual-blur): Progressively un-blurs content based on scroll or trigger creating a cinematic reveal. CLI: `GradualBlur`.
 - [Image Trail](https://www.reactbits.dev/animations/image-trail): Cursor-based image trail with several built-in variants. CLI: `ImageTrail`.
+- [Laser Flow](https://www.reactbits.dev/animations/laser-flow): Dynamic laser light that flows onto a surface, customizable effect. CLI: `LaserFlow`.
 - [Logo Loop](https://www.reactbits.dev/animations/logo-loop): Continuously looping marquee of brand or tech logos with seamless repeat and hover pause. CLI: `LogoLoop`.
 - [Magnet](https://www.reactbits.dev/animations/magnet): Elements magnetically ease toward the cursor then settle back with spring physics. CLI: `Magnet`.
 - [Magnet Lines](https://www.reactbits.dev/animations/magnet-lines): Animated field lines bend toward the cursor. CLI: `MagnetLines`.

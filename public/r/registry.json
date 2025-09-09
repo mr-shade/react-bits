@@ -3706,6 +3706,74 @@
       ]
     },
     {
+      "name": "LaserFlow-JS-CSS",
+      "type": "registry:block",
+      "title": "LaserFlow",
+      "description": "Dynamic laser light that flows onto a surface, customizable effect.",
+      "files": [
+        {
+          "path": "public/default/src/content/Animations/LaserFlow/LaserFlow.jsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/default/src/content/Animations/LaserFlow/LaserFlow.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "name": "LaserFlow-JS-TW",
+      "type": "registry:block",
+      "title": "LaserFlow",
+      "description": "Dynamic laser light that flows onto a surface, customizable effect.",
+      "files": [
+        {
+          "path": "public/tailwind/src/tailwind/Animations/LaserFlow/LaserFlow.jsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "name": "LaserFlow-TS-CSS",
+      "type": "registry:block",
+      "title": "LaserFlow",
+      "description": "Dynamic laser light that flows onto a surface, customizable effect.",
+      "files": [
+        {
+          "path": "public/ts/default/src/ts-default/Animations/LaserFlow/LaserFlow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/ts/default/src/ts-default/Animations/LaserFlow/LaserFlow.css",
+          "type": "registry:item"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "name": "LaserFlow-TS-TW",
+      "type": "registry:block",
+      "title": "LaserFlow",
+      "description": "Dynamic laser light that flows onto a surface, customizable effect.",
+      "files": [
+        {
+          "path": "public/ts/tailwind/src/ts-tailwind/Animations/LaserFlow/LaserFlow.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
       "name": "LetterGlitch-JS-CSS",
       "type": "registry:block",
       "title": "LetterGlitch",

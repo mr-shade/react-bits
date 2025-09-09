@@ -11,7 +11,8 @@ export const NEW = [
   'Card Nav',
   'Staggered Menu',
   'Liquid Ether',
-  'Shuffle'
+  'Shuffle',
+  'Laser Flow'
 ];
 export const UPDATED = [];
 
@@ -60,6 +61,7 @@ export const CATEGORIES = [
       'Glare Hover',
       'Logo Loop',
       'Target Cursor',
+      'Laser Flow',
       'Magnet Lines',
       'Gradual Blur',
       'Click Spark',

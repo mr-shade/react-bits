@@ -25,6 +25,7 @@ export const descriptions = {
   'Animations/StarBorder': 'Animated star / sparkle border orbiting content with twinkle pulses.',
   'Animations/StickerPeel': 'Sticker corner lift + peel interaction using 3D transform and shadow depth.',
   'Animations/TargetCursor': 'A cursor follow animation with 4 corners that lock onto targets.',
+  'Animations/LaserFlow': 'Dynamic laser light that flows onto a surface, customizable effect.',
 
   // Text Animations
   'TextAnimations/ASCIIText': 'Renders text with an animated ASCII background for a retro feel.',
