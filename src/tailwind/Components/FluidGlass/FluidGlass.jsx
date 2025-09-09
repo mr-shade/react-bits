@@ -231,27 +231,27 @@ function Images() {
       <Image
         position={[-2, 0, 0]}
         scale={[3, height / 1.1, 1]}
-        url="/src/assets/demo/cs1.webp"
+        url="/assets/demo/cs1.webp"
       />
       <Image
         position={[2, 0, 3]}
         scale={3}
-        url="/src/assets/demo/cs2.webp"
+        url="/assets/demo/cs2.webp"
       />
       <Image
         position={[-2.05, -height, 6]}
         scale={[1, 3, 1]}
-        url="/src/assets/demo/cs3.webp"
+        url="/assets/demo/cs3.webp"
       />
       <Image
         position={[-0.6, -height, 9]}
         scale={[1, 2, 1]}
-        url="/src/assets/demo/cs1.webp"
+        url="/assets/demo/cs1.webp"
       />
       <Image
         position={[0.75, -height, 10.5]}
         scale={1.5}
-        url="/src/assets/demo/cs2.webp"
+        url="/assets/demo/cs2.webp"
       />
     </group>
   );
