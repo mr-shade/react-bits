@@ -95,7 +95,7 @@ uniform float uFade;
 
 // Volumetric fog controls
 #define FOG_ON 1
-#define FOG_CONTRAST 1.5
+#define FOG_CONTRAST 0.8
 #define FOG_SPEED_U 0.1
 #define FOG_SPEED_V -0.1
 #define FOG_OCTAVES 5
@@ -106,7 +106,7 @@ uniform float uFade;
 #define FOG_TILT_SHAPE 1.5
 #define FOG_BEAM_MIN 0.0
 #define FOG_BEAM_MAX 0.75
-#define FOG_MASK_GAMMA 0.20
+#define FOG_MASK_GAMMA 0.5
 #define FOG_EXPAND_SHAPE 12.2
 #define FOG_EDGE_MIX 0.5
 
@@ -234,7 +234,10 @@ void mainImage(out vec4 fc,in vec2 frag){
     float nxF=abs((frag.x-C.x)*invW),hE=1.0-smoothstep(HFOG_EDGE_START,HFOG_EDGE_END,nxF); hE=pow(clamp(hE,0.0,1.0),HFOG_EDGE_GAMMA);
     float hW=mix(1.0,hE,clamp(yP,0.0,1.0));
     float bBias=mix(1.0,1.0-sPix,FOG_BOTTOM_BIAS);
-    fog=n*uFogIntensity*bBias*bm*hW;
+    // Safari-compatible fog calculation with enhanced fade
+    float radialFade = 1.0 - smoothstep(0.0, 0.7, length(uvc) / 120.0);
+    float safariFog = n * uFogIntensity * bBias * bm * hW * radialFade;
+    fog = safariFog;
 #endif
     float LF=L+fog;
     float dith=(h21(frag)-0.5)*(DITHER_STRENGTH/255.0);
