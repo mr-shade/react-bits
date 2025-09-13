@@ -72,7 +72,7 @@ uniform float uFade;
 
 // Volumetric fog controls
 #define FOG_ON 1
-#define FOG_CONTRAST 1.5
+#define FOG_CONTRAST 1.2
 #define FOG_SPEED_U 0.1
 #define FOG_SPEED_V -0.1
 #define FOG_OCTAVES 5
@@ -83,7 +83,7 @@ uniform float uFade;
 #define FOG_TILT_SHAPE 1.5
 #define FOG_BEAM_MIN 0.0
 #define FOG_BEAM_MAX 0.75
-#define FOG_MASK_GAMMA 0.20
+#define FOG_MASK_GAMMA 0.5
 #define FOG_EXPAND_SHAPE 12.2
 #define FOG_EDGE_MIX 0.5
 
@@ -199,6 +199,11 @@ void mainImage(out vec4 fc,in vec2 frag){
     fuv+=prp*(0.08*sin(dot(uvc,prp)*0.08+uFogTime*0.9));
     float n=fbm2(fuv+vec2(fbm2(fuv+vec2(7.3,2.1)),fbm2(fuv+vec2(-3.7,5.9)))*0.6);
     n=pow(clamp(n,0.0,1.0),FOG_CONTRAST);
+    
+    // Safari-specific fog fade fix - add distance-based attenuation
+    float distFromCenter = length(uvc) / 200.0;
+    float safariFade = 1.0 - smoothstep(0.4, 1.2, distFromCenter);
+    n *= safariFade;
     float pixW = 1.0 / max(iResolution.y, 1.0);
 #ifdef GL_OES_standard_derivatives
     float wL = max(fwidth(L), pixW);
@@ -211,7 +216,15 @@ void mainImage(out vec4 fc,in vec2 frag){
     float nxF=abs((frag.x-C.x)*invW),hE=1.0-smoothstep(HFOG_EDGE_START,HFOG_EDGE_END,nxF); hE=pow(clamp(hE,0.0,1.0),HFOG_EDGE_GAMMA);
     float hW=mix(1.0,hE,clamp(yP,0.0,1.0));
     float bBias=mix(1.0,1.0-sPix,FOG_BOTTOM_BIAS);
-    fog=n*uFogIntensity*bBias*bm*hW;
+    // Browser-specific fog intensity adjustment
+    float browserFogIntensity = uFogIntensity;
+    // Increase fog intensity for Chrome and other browsers (reduce for Safari)
+    browserFogIntensity *= 1.8;
+    
+    // Safari-compatible fog calculation with enhanced fade
+    float radialFade = 1.0 - smoothstep(0.0, 0.7, length(uvc) / 120.0);
+    float safariFog = n * browserFogIntensity * bBias * bm * hW * radialFade;
+    fog = safariFog;
 #endif
     float LF=L+fog;
     float dith=(h21(frag)-0.5)*(DITHER_STRENGTH/255.0);
@@ -264,8 +277,15 @@ export const LaserFlow = ({
       antialias: true,
       alpha: false,
       powerPreference: 'high-performance',
-      premultipliedAlpha: false
+      premultipliedAlpha: false,
+      preserveDrawingBuffer: false,
+      failIfMajorPerformanceCaveat: false
     });
+    
+    // Performance optimizations
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
+    renderer.shadowMap.enabled = false; // Disable shadows for better performance
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setClearColor(0x000000, 1);
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
@@ -355,10 +375,36 @@ export const LaserFlow = ({
     window.addEventListener('mousemove', onMove);
 
     let raf = 0;
+    let lastFrameTime = 0;
+    let frameCount = 0;
+    let lastFpsTime = 0;
+    const targetFPS = 60;
+    const frameInterval = 1000 / targetFPS;
+    
+    // Pre-calculate color values to avoid repeated calculations
+    let colorR = 1, colorG = 1, colorB = 1;
+    if (color) {
+      let c = color.trim();
+      if (c[0] === '#') c = c.slice(1);
+      if (c.length === 3) {
+        c = c.split('').map(x => x + x).join('');
+      }
+      const n = parseInt(c, 16) || 0xffffff;
+      colorR = ((n >> 16) & 255) / 255;
+      colorG = ((n >> 8) & 255) / 255;
+      colorB = (n & 255) / 255;
+    }
+    
     const animate = () => {
-      const t = clock.getElapsedTime();
-      const dt = Math.max(0, t - prevTime);
-      prevTime = t;
+      const currentTime = performance.now();
+      const deltaTime = currentTime - lastFrameTime;
+      
+      // Frame rate throttling for consistent performance
+      if (deltaTime >= frameInterval) {
+        const t = clock.getElapsedTime();
+        const dt = Math.max(0, t - prevTime);
+        prevTime = t;
+        lastFrameTime = currentTime;
       uniforms.iTime.value = t;
       uniforms.uTiltScale.value = mouseTiltStrength;
       uniforms.uWispDensity.value = wispDensity;
@@ -375,22 +421,9 @@ export const LaserFlow = ({
       uniforms.uDecay.value = decay;
       uniforms.uFalloffStart.value = falloffStart;
       uniforms.uFogFallSpeed.value = fogFallSpeed;
-      (function () {
-        let c = color || '#ffffff';
-        c = c.trim();
-        if (c[0] === '#') c = c.slice(1);
-        if (c.length === 3)
-          c = c
-            .split('')
-            .map(x => x + x)
-            .join('');
-        let n = parseInt(c, 16);
-        if (isNaN(n)) n = 0xffffff;
-        const r = ((n >> 16) & 255) / 255;
-        const g = ((n >> 8) & 255) / 255;
-        const b = (n & 255) / 255;
-        uniforms.uColor.value.set(r, g, b);
-      })();
+      
+      // Use pre-calculated color values for better performance
+      uniforms.uColor.value.set(colorR, colorG, colorB);
       const cdt = Math.min(0.033, Math.max(0.001, dt));
       flowTime += cdt;
       fogTime += cdt;
@@ -405,12 +438,25 @@ export const LaserFlow = ({
         uniforms.uFade.value = 1;
       }
 
-      const tau = Math.max(1e-3, mouseSmoothTime);
-      const alpha = 1 - Math.exp(-cdt / tau);
-      mouseSmooth.lerp(mouseTarget, alpha);
-      uniforms.iMouse.value.set(mouseSmooth.x, mouseSmooth.y, 0, 0);
+        const tau = Math.max(1e-3, mouseSmoothTime);
+        const alpha = 1 - Math.exp(-cdt / tau);
+        mouseSmooth.lerp(mouseTarget, alpha);
+        uniforms.iMouse.value.set(mouseSmooth.x, mouseSmooth.y, 0, 0);
 
-      renderer.render(scene, camera);
+        renderer.render(scene, camera);
+        
+        // Performance monitoring (optional - can be removed in production)
+        frameCount++;
+        if (currentTime - lastFpsTime >= 1000) {
+          const fps = Math.round((frameCount * 1000) / (currentTime - lastFpsTime));
+          if (fps < 50) {
+            console.warn(`LaserFlow performance warning: ${fps} FPS`);
+          }
+          frameCount = 0;
+          lastFpsTime = currentTime;
+        }
+      }
+      
       raf = requestAnimationFrame(animate);
     };
     animate();
