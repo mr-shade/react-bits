@@ -6,7 +6,7 @@ const LetterGlitch = ({
   centerVignette = false,
   outerVignette = true,
   smooth = true,
-  characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789"
+  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789'
 }) => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);

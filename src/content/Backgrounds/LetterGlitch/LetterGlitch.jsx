@@ -7,7 +7,7 @@ const LetterGlitch = ({
   centerVignette = false,
   outerVignette = true,
   smooth = true,
-  characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789",
+  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789'
 }) => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
@@ -21,7 +21,6 @@ const LetterGlitch = ({
   const fontSize = 16;
   const charWidth = 10;
   const charHeight = 20;
-
 
   const getRandomChar = () => {
     return lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)];

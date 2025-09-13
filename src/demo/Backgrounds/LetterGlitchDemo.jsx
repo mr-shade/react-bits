@@ -58,7 +58,7 @@ const LetterGlitchDemo = () => {
     {
       name: 'characters',
       type: 'string',
-      default: "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789",
+      default: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789',
       description: 'String of characters to render in the canvas.'
     }
   ];

@@ -11,7 +11,7 @@ import Dependencies from '../../components/code/Dependencies';
 import RefreshButton from '@/components/common/Preview/RefreshButton';
 import useForceRerender from '@/hooks/useForceRerender';
 
-import LaserFlow from '@/ts-default/Animations/LaserFlow/LaserFlow';
+import LaserFlow from '@/content/Animations/LaserFlow/LaserFlow';
 import { laserFlow } from '@/constants/code/Animations/laserFlowCode';
 
 const LaserFlowDemo = () => {

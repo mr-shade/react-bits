@@ -401,7 +401,7 @@ const Prism: React.FC<PrismProps> = ({
     };
 
     interface PrismContainer extends HTMLElement {
-      __prismIO?: IntersectionObserver
+      __prismIO?: IntersectionObserver;
     }
 
     if (suspendWhenOffscreen) {

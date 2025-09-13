@@ -281,10 +281,9 @@ export const LaserFlow = ({
       preserveDrawingBuffer: false,
       failIfMajorPerformanceCaveat: false
     });
-    
-    // Performance optimizations
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
-    renderer.shadowMap.enabled = false; // Disable shadows for better performance
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = false;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setClearColor(0x000000, 1);
     renderer.domElement.style.width = '100%';
@@ -380,63 +379,65 @@ export const LaserFlow = ({
     let lastFpsTime = 0;
     const targetFPS = 60;
     const frameInterval = 1000 / targetFPS;
-    
-    // Pre-calculate color values to avoid repeated calculations
-    let colorR = 1, colorG = 1, colorB = 1;
+
+    let colorR = 1,
+      colorG = 1,
+      colorB = 1;
     if (color) {
       let c = color.trim();
       if (c[0] === '#') c = c.slice(1);
       if (c.length === 3) {
-        c = c.split('').map(x => x + x).join('');
+        c = c
+          .split('')
+          .map(x => x + x)
+          .join('');
       }
       const n = parseInt(c, 16) || 0xffffff;
       colorR = ((n >> 16) & 255) / 255;
       colorG = ((n >> 8) & 255) / 255;
       colorB = (n & 255) / 255;
     }
-    
+
     const animate = () => {
       const currentTime = performance.now();
       const deltaTime = currentTime - lastFrameTime;
-      
-      // Frame rate throttling for consistent performance
+
       if (deltaTime >= frameInterval) {
         const t = clock.getElapsedTime();
         const dt = Math.max(0, t - prevTime);
         prevTime = t;
         lastFrameTime = currentTime;
-      uniforms.iTime.value = t;
-      uniforms.uTiltScale.value = mouseTiltStrength;
-      uniforms.uWispDensity.value = wispDensity;
-      uniforms.uBeamXFrac.value = horizontalBeamOffset;
-      uniforms.uBeamYFrac.value = verticalBeamOffset;
-      uniforms.uFlowSpeed.value = flowSpeed;
-      uniforms.uVLenFactor.value = verticalSizing;
-      uniforms.uHLenFactor.value = horizontalSizing;
-      uniforms.uFogIntensity.value = fogIntensity;
-      uniforms.uFogScale.value = fogScale;
-      uniforms.uWSpeed.value = wispSpeed;
-      uniforms.uWIntensity.value = wispIntensity;
-      uniforms.uFlowStrength.value = flowStrength;
-      uniforms.uDecay.value = decay;
-      uniforms.uFalloffStart.value = falloffStart;
-      uniforms.uFogFallSpeed.value = fogFallSpeed;
-      
-      // Use pre-calculated color values for better performance
-      uniforms.uColor.value.set(colorR, colorG, colorB);
-      const cdt = Math.min(0.033, Math.max(0.001, dt));
-      flowTime += cdt;
-      fogTime += cdt;
-      uniforms.uFlowTime.value = flowTime;
-      uniforms.uFogTime.value = fogTime;
-      if (!hasFadedRef.current) {
-        const fadeDur = 1.0;
-        fade = Math.min(1, fade + cdt / fadeDur);
-        uniforms.uFade.value = fade;
-        if (fade >= 1) hasFadedRef.current = true;
-      } else if (uniforms.uFade.value !== 1) {
-        uniforms.uFade.value = 1;
-      }
+        uniforms.iTime.value = t;
+        uniforms.uTiltScale.value = mouseTiltStrength;
+        uniforms.uWispDensity.value = wispDensity;
+        uniforms.uBeamXFrac.value = horizontalBeamOffset;
+        uniforms.uBeamYFrac.value = verticalBeamOffset;
+        uniforms.uFlowSpeed.value = flowSpeed;
+        uniforms.uVLenFactor.value = verticalSizing;
+        uniforms.uHLenFactor.value = horizontalSizing;
+        uniforms.uFogIntensity.value = fogIntensity;
+        uniforms.uFogScale.value = fogScale;
+        uniforms.uWSpeed.value = wispSpeed;
+        uniforms.uWIntensity.value = wispIntensity;
+        uniforms.uFlowStrength.value = flowStrength;
+        uniforms.uDecay.value = decay;
+        uniforms.uFalloffStart.value = falloffStart;
+        uniforms.uFogFallSpeed.value = fogFallSpeed;
+
+        uniforms.uColor.value.set(colorR, colorG, colorB);
+        const cdt = Math.min(0.033, Math.max(0.001, dt));
+        flowTime += cdt;
+        fogTime += cdt;
+        uniforms.uFlowTime.value = flowTime;
+        uniforms.uFogTime.value = fogTime;
+        if (!hasFadedRef.current) {
+          const fadeDur = 1.0;
+          fade = Math.min(1, fade + cdt / fadeDur);
+          uniforms.uFade.value = fade;
+          if (fade >= 1) hasFadedRef.current = true;
+        } else if (uniforms.uFade.value !== 1) {
+          uniforms.uFade.value = 1;
+        }
 
         const tau = Math.max(1e-3, mouseSmoothTime);
         const alpha = 1 - Math.exp(-cdt / tau);
@@ -444,8 +445,7 @@ export const LaserFlow = ({
         uniforms.iMouse.value.set(mouseSmooth.x, mouseSmooth.y, 0, 0);
 
         renderer.render(scene, camera);
-        
-        // Performance monitoring (optional - can be removed in production)
+
         frameCount++;
         if (currentTime - lastFpsTime >= 1000) {
           const fps = Math.round((frameCount * 1000) / (currentTime - lastFpsTime));
@@ -456,7 +456,7 @@ export const LaserFlow = ({
           lastFpsTime = currentTime;
         }
       }
-      
+
       raf = requestAnimationFrame(animate);
     };
     animate();
